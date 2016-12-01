@@ -1,0 +1,42 @@
+@charset "UTF-8";
+@import "../../common/common";
+.mod-help-sidebar{
+  background: #e4ebf0;
+  padding: 32px 0 48px;
+  .container{
+    width:1180px;
+    margin:0 auto;
+  }
+  .help-nav{
+    width: 300px;
+    background: #fff;
+    text-align: center;
+    li a {
+      display:inline-block;
+      width: 100%;
+      font-size: 20px;
+      color: #4b677b;
+      padding: 30px 0;
+      border-top: 1px solid #e4ebf0;
+      &:hover {
+        background: #ff515b;
+        color: #fff;
+      }
+    }
+    .current a {
+      color: #ec3e48;
+    }
+  }
+  .mod-right-content {
+    width: 790px;
+    font-size: 12px;
+    line-height: 16px;
+    color: #4b677b;
+    background: #fff;
+    padding: 11px 40px 0 30px;
+    min-height: 600px;
+    .content {
+      padding-bottom: 20px;
+    }
+  }
+}
