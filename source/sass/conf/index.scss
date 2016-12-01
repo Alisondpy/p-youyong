@@ -34,14 +34,13 @@
   margin-bottom: $mB;
   border-radius:20px;
 }
-@mixin arrow($url){
-  width: 24px;
-  height: 85px;
-  cursor: pointer;
-  display: inline-block;
+@mixin arrow(){
   position: absolute;
   top:280px;
-  background: $url;
+  font-size: 90px;
+  color: #4b677b;
+  cursor: pointer;
+  display: inline-block;
 }
 /*index config end*/
 /*banner begin*/
@@ -311,17 +310,17 @@ $height: 172px;
     }
   }
   .arrow-left{
-    @include arrow(url(../../images/index/arrowLeft.png) no-repeat);
-    left: 0px;
+    @include arrow();
+    left: -50px;
     &:hover{
-      background: url(../../images/index/arrowLeftHover.png) no-repeat;
+      color: $hoverColor;
     }
   }
   .arrow-right{
-    @include arrow(url(../../images/index/arrowRight.png) no-repeat);
-    right: 0px;
+    @include arrow();
+    right: -50px;
     &:hover{
-      background: url(../../images/index/arrowRightHover.png) no-repeat;
+      color: $hoverColor;
     }
   }
 }
