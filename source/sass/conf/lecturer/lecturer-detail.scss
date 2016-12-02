@@ -1,2 +1,155 @@
 @charset "UTF-8";
 @import "../../common/common";
+@import "../../common/slider/slider";
+@import "../../common/layer/default/layer";
+body {
+    background-color: #eee;
+}
+h1{
+	margin:0;
+	padding:0;
+}
+
+// 讲师详情上的内容样式
+.mod-lecturer{
+	.w-1180{
+		width:1180px;
+		margin:0 auto;
+		.mod-up{
+			.title{
+				margin:42px 0 19px 0;
+				font-size:16px;/*px*/
+			}
+
+			.mod-contain{
+			padding:32px 40px 30px 40px;
+			background-color:#fff;	
+				.avatar{
+					float:left;
+					width:255px;
+					height:255px;
+					img{
+						width:255px;
+					}
+				}
+				.info{
+					float:left;
+					padding:9px 19px;
+					.teacher-name{
+						font-size:30px;
+					}
+					.job{
+						font-size:16px;
+						font-weight:bold;
+					}
+					.text{
+						margin-top:15px;
+						width:576px;
+						font-size:14px;
+						color:#999999;
+					}
+					.btn{
+						margin-top:15px;
+						background-color:#f00;
+						width:128px;
+						height:40px;
+						line-height:40px;
+						text-align:center;
+						a{
+							color:#fff;
+							font-size:16px;
+							border-radius:10px;
+						}
+					}
+				}
+				.contain-right{
+					float:right;
+					img{
+						width:140px;
+						height:140px;
+					}
+					.see{
+						font-size: 18px;
+					}
+				}
+			}
+		}
+
+		.mod-down{
+			margin-top: 27px;
+			.mod-tab{
+				.w-a{
+					display:inline-block;
+					width:151px;
+					height:50px;
+					border:1px solid #eee;
+					line-height:51px;
+					text-align:center;
+					overflow:hidden;
+					font-size:16px;
+					background:#fff;
+				}
+				.tab1{
+					float:left;
+					
+				}
+				.tab2{
+					float:left;
+					border-left:none;
+				}
+			}
+			.mod-li{
+				.course{
+					padding:41px 28px 41px 20px;
+					background-color:#fff;
+					.contain-course{
+						float:left;
+						margin-left:21px;
+						a{
+							.picture{
+								position:relative;
+								width:259px;
+								height:141px;
+								img{
+									width:259px;
+									height:141px;
+								}
+								span{
+									position:absolute;
+									bottom:0;
+									right:0;
+									width:46px;
+									height:30px;
+									line-height:30px;
+									text-align:center;
+									color:#fff;
+									background-color:#423424;
+									opacity:0.5;
+								}
+							}
+							.course-name{
+								margin-top:10px;
+								font-size:18px;
+								font-weight:bold;
+								color:#f00；
+							}
+							.course-teacher{
+								margin-top:10px;
+							}
+						}
+					}
+				}
+			}
+		}
+		.page{
+
+			ul{
+				float:right;
+				li{
+					float:left;
+				}
+			}
+		}
+
+	}
+}
