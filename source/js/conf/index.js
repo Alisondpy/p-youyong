@@ -10,8 +10,6 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var swiper = require('lib/plugins/swiper/3.1.2/swiper');
     require('plugins/layer/layer');
-    //console.log(layer);
-    layer.msg('Hello layer');
 
     //轮播图
     var slider = new Slider('#jSlider', {
@@ -64,5 +62,15 @@ define(function(require, exports, module) {
             $('.jTab0').hide();
             $('.jTab1').show();
         }
+    });
+
+    //弹出相框
+    $('.jAlum').on('click',function(){
+        io.get('test/photos.json?v='+new Date, function(json){
+            layer.photos({
+                photos: json //格式见API文档手册页
+                ,anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机
+            });
+        });
     });
 });
