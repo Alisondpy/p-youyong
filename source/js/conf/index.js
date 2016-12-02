@@ -76,7 +76,6 @@ define(function(require, exports, module) {
                     var id = imgData[0].imageId;
                     var imgList = [];
                     $.each(imgData, function(i, n) {
-                        console.log(n);
                         imgList[i] = {
                             "alt":n.imageName,
                             "pid":n.imageId,

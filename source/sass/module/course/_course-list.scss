@@ -1,0 +1,64 @@
+.lists{
+  width: 1152px;
+  padding: 30px 30px 0;
+  .list{
+    position: relative;
+    overflow: hidden;
+    width: 258px;
+    height: 240px;
+    img{
+      width: 258px;
+      height: 140px;
+    }
+    position: relative;
+    margin:0 30px 30px 0;
+    &:hover h2{
+      color: #ec3e48;
+    }
+  }
+  .mod-detail{
+    h2{
+      padding: 10px 0 16px;
+      line-height: 40px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #333;
+    }
+    .mod-label{
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 50px;
+      line-height: 40px;
+      background: #fff;
+      font-size: 15px;
+      color: #666;
+      .icon{
+        position: relative;
+        margin-left: 110px;
+        i{
+          position: absolute;
+          top: 10px;
+          left: -25px;
+          display: inline-block;
+          width: 20px;
+          height: 20px;
+          background: url("../images/personIcon.png") no-repeat;
+        }
+      }
+    }
+  }
+  .description{
+    position: relative;
+    height: 140px;
+    .label{
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      background: rgba(0,0,0,0.6);
+      padding: 8px 12px;
+      font-size: 15px;
+      color: #fff;
+    }
+  }
+}
