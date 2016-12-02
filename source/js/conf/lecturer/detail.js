@@ -7,7 +7,10 @@ define(function(require, exports, module) {
     var box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
-
+    var jTinfo = $('.jTinfo');
+    var tab1 = $('.jTab-l');
+    var tab2 = $('.jTab-r');
+    var jLi = $('.jLi');
     //图片懒加载
     var lazy = new Lazyload($('.jImg'), {
         mouseWheel: true,
@@ -28,4 +31,13 @@ define(function(require, exports, module) {
             $(this).find('.jModLabel').stop(true,false).slideDown();
         }
     });
+
+    //讲师介绍和主讲课程的tab切换
+    tab1.on('click',function(){
+        jTinfo.addClass('active').css('display','block').siblings().removeClass('active').css('display','none');
+    })
+
+    tab2.on('click',function(){
+        jli.addClass('active').css('display','block').siblings().removeClass('active').css('display','none');
+    })
 });
