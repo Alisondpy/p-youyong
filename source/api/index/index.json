@@ -1,0 +1,31 @@
+{
+  "error":0,
+  "msg":"服务器错误",
+  "data":[
+    {
+      "id": 10027,
+      "imageId": 105092,
+      "imageName": "相册1",
+      "imageUrl": "http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/02/ChMkJ1bKxU6IZQXfAAjRonJI2bUAALHUAFNYFcACNG6158.jpg"
+    },
+    {
+      "id": 10028,
+      "imageId": 105103,
+      "imageName": "相册2",
+      "imageUrl": "http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/02/ChMkJlbKxU6INkf5ABCa9qCIQxMAALHUAFe7awAEJsO378.jpg"
+    },
+    {
+      "id": 10029,
+      "imageId": 105104,
+      "imageName": "相册3",
+      "imageUrl": "http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/02/ChMkJ1bKxU6IcnlVABljKexeXB0AALHUAFviLoAGWNB208.jpg"
+    },
+    {
+      "id": 10030,
+      "imageId": 105105,
+      "imageName": "相册4",
+      "imageUrl": "http://desk.fd.zol-img.com.cn/t_s960x600c5/g5/M00/02/02/ChMkJ1bKxU-IEMI7AAae4zjmV58AALHUAGOjfsABp77110.jpg"
+    }
+  ],
+  "ver": "1.0.0"
+}
