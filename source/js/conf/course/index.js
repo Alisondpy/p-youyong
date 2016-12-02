@@ -61,6 +61,7 @@ define(function(require, exports, module) {
             $('#jType1').removeClass('ui-nav-border');
             $('#jType2').removeClass('ui-nav-border');
         }
+        lazy.update();
     });
     //点播课和直播课效果
     $('.jList').mouseenter(function(){
