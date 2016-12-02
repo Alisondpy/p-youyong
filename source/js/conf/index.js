@@ -62,6 +62,7 @@ define(function(require, exports, module) {
             $('.jTab0').hide();
             $('.jTab1').show();
         }
+        lazy.update();
     });
 
     //弹出相框
