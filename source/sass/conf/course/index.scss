@@ -9,23 +9,25 @@
   .mod-nav{
     position: relative;
     background-color: #fff;
-    padding:0 30px;
+    padding:10px 30px;
     .common-nav{
       position: relative;
       top: -1px;
-      border-top: 1px dashed #eef3f7;
-      height: 78px;
+      height: 51px;
+    }
+    .ui-nav-border{
+      border-bottom: 1px dashed #eef3f7;
     }
     .type{
       position: absolute;
       font-size: 16px;
       color: #999;
-      line-height: 78px;
+      line-height: 51px;
     }
   }
   .nav{
     margin-left: 104px;
-    line-height: 78px;
+    line-height: 50px;
     li{
       a{
         margin: 22px 10px 0 0;

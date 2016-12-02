@@ -15,7 +15,53 @@ define(function(require, exports, module) {
         snap: true
     });
 
-
+    //课程类型切换
+    $('#jCourseType').on('click','.nav li',function(){
+        $(this).addClass("current").siblings().removeClass("current");
+    });
+    $('#jCourseType').on('click','#jType0 li',function(){
+        var type = $(this).find('a').attr('data-type');
+        if(type === '1'){
+            $('#jType1').show();
+            $('#jType2').hide();
+            $('#jSubNav').show();
+            $('#jTab0').hide();
+            $('#jTab1').show();
+            $('#jTab2').hide();
+            $('#jType0Title').hide();
+            if(!$('#jType0').hasClass('ui-nav-border')){
+                $('#jType0').addClass('ui-nav-border');
+            }
+            $('#jType1').removeClass('ui-nav-border');
+            $('#jType2').removeClass('ui-nav-border');
+        }else if(type === '2'){
+            $('#jType1').show();
+            $('#jType2').show();
+            $('#jSubNav').hide();
+            $('#jTab0').hide();
+            $('#jTab1').hide();
+            $('#jTab2').show();
+            $('#jType0Title').hide();
+            if(!$('#jType0').hasClass('ui-nav-border')){
+                $('#jType0').addClass('ui-nav-border');
+            }
+            if(!$('#jType1').hasClass('ui-nav-border')){
+                $('#jType1').addClass('ui-nav-border');
+            }
+            $('#jTab2').removeClass('ui-nav-border');
+        }else {
+            $('#jType1').hide();
+            $('#jType2').hide();
+            $('#jSubNav').hide();
+            $('#jTab0').show();
+            $('#jTab1').hide();
+            $('#jTab2').hide();
+            $('#jType0Title').show();
+            $('#jType0').removeClass('ui-nav-border');
+            $('#jType1').removeClass('ui-nav-border');
+            $('#jType2').removeClass('ui-nav-border');
+        }
+    });
     //点播课和直播课效果
     $('.jList').mouseenter(function(){
         var titleLen = $(this).find('.jTitle').text().length;
