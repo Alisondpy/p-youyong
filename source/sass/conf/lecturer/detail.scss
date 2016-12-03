@@ -1,7 +1,7 @@
 @charset "UTF-8";
 @import "../../common/common";
-@import "../../common/slider/slider";
-@import "../../common/layer/default/layer";
+@import "../../module/course/course-list";
+
 body {
     background-color: #eee;
     position:relative;	
@@ -164,8 +164,6 @@ input{
 				}
 				.tab1{
 					float:left;
-<<<<<<< e9380506caabc3d624a87e1595ddf47149abfb37:source/sass/conf/lecturer/lecturer-detail.scss
-=======
 				}
 				&.active{
 						.tab1{
@@ -173,13 +171,11 @@ input{
 						color:#f00;
 						}
 					}
->>>>>>> donkey201612021704:source/sass/conf/lecturer/detail.scss
 					
 				.tab2{
 					float:left;
 					border-left:none;
 				}
-<<<<<<< e9380506caabc3d624a87e1595ddf47149abfb37:source/sass/conf/lecturer/lecturer-detail.scss
 			}
 			.mod-li{
 				.course{
@@ -222,7 +218,6 @@ input{
 						}
 					}
 				}
-=======
 				&.active{
 						.tab2{
 						border-bottom:none;
@@ -237,7 +232,6 @@ input{
 			.teacher-info{
 				display:none;
 				background-color:#fff;
->>>>>>> donkey201612021704:source/sass/conf/lecturer/detail.scss
 			}
 		}
 		.page{

@@ -7,13 +7,14 @@ define(function(require, exports, module) {
     var box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
-    var validate = require('lib/plugins/validation/1.15.1/jquery-validate');
-    var message = require('lib/plugins/validation/1.15.1/localization/messages_zh');
+    // var validate = require('lib/plugins/validation/1.15.1/jquery-validate');
+    // var message = require('lib/plugins/validation/1.15.1/localization/messages_zh');
     var jTinfo = $('.jTinfo');
     var tab1 = $('.jTab-l');
     var tab2 = $('.jTab-r');
     var jLi = $('.jLi');
     var mask = $('.mod-mask');
+    
     //图片懒加载
     var lazy = new Lazyload($('.jImg'), {
         mouseWheel: true,
@@ -53,18 +54,18 @@ define(function(require, exports, module) {
         io.post();
     });
 
-    function cvalidate(){
-        $('#cvalidate').validate({
-            rules:{
-                cname:{
-                    required: true,
-                    minlength:1
-                }
-                ctel:{
-                    required:true;
-                }
-            }
-        })
-    }
+    // function cvalidate(){
+    //     $('#cvalidate').validate({
+    //         rules:{
+    //             cname:{
+    //                 required: true,
+    //                 minlength:1
+    //             }
+    //             ctel:{
+    //                 required:true;
+    //             }
+    //         }
+    //     })
+    // }
 
 });
