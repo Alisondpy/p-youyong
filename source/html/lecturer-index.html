@@ -24,80 +24,7 @@
             </div>
         </div>
         <div class="mod-learn">
-            <div class="lists clearfix">
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>丁莹莹</h3>
-                        <span class="txt-overflow">资深营销就业学习专家</span>
-                    </div>
-                    <span class="label">销售技巧</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>丁莹莹</h3>
-                        <span class="txt-overflow">资深营销就业学习专家</span>
-                    </div>
-                    <span class="label">销售技巧</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>丁莹莹</h3>
-                        <span class="txt-overflow">资深营销就业学习专家</span>
-                    </div>
-                    <span class="label">销售技巧</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>丁莹莹</h3>
-                        <span class="txt-overflow">资深营销就业学习专家</span>
-                    </div>
-                    <span class="label">销售技巧</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>丁莹莹</h3>
-                        <span class="txt-overflow">资深营销就业学习专家</span>
-                    </div>
-                    <span class="label">销售技巧</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>丁莹莹</h3>
-                        <span class="txt-overflow">资深营销就业学习专家</span>
-                    </div>
-                    <span class="label">销售技巧</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>丁莹莹</h3>
-                        <span class="txt-overflow">资深营销就业学习专家</span>
-                    </div>
-                    <span class="label">销售技巧</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>丁莹莹</h3>
-                        <span class="txt-overflow">资深营销就业学习专家</span>
-                    </div>
-                    <span class="label">销售技巧</span>
-                    <span class="mask"></span>
-                </a>
-            </div>
+            <div class="lists clearfix" id="jLists"></div>
         </div>
         <div class="mod-page clearfix">
             <ul class="clearfix f-r">
@@ -117,6 +44,19 @@
 <!--#include file="./common/js.html"-->
 <script type="text/javascript">
     require(['conf/lecturer/index'], function() {});
+</script>
+<script id="lists" type="text/html">
+    {{each list as value i}}
+    <a href="javascript:void(0);" class="list f-l">
+        <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="讲师" class="jImg img-error">
+        <div class="description">
+            <h3>{{value.teacher}}</h3>
+            <span class="txt-overflow">{{value.title}}</span>
+        </div>
+        <span class="label">{{value.type}}</span>
+        <span class="mask"></span>
+    </a>
+    {{/each}}
 </script>
 <!--#include file="./common/tj.html"-->
 <!--#include file="./common/statistics.html"-->
