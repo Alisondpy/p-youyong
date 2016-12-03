@@ -56,4 +56,9 @@ define(function(require, exports, module) {
             $('#jFixNav').addClass('ui-fix-nav-show');
         }
     });
+
+    $(".ui-btn-sub").click(function(){
+        alert(111);
+        //$("#jViewSub").validate();
+    })
 });
