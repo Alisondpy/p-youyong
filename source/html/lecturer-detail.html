@@ -14,24 +14,23 @@
 	
 
 	<!-- 弹出层 -->
-	<div class="mod-mask">
+	<div class="mod-mask jMod-mask">
         <div class="bg">
             <form id="cvalidate">
-                <label class="item f-r"><i class="tag">*</i><span >姓名</span><input type="text" class="name" placeholder="请输入姓名" name="cname">
+                <label class="item f-r"><i class="tag">*</i><span >姓名</span><input type="text" class="name f" placeholder="请输入姓名" name="cname">
                 </label>
 
-                <label class="item f-r"><i class="tag">*</i><span class="phonenum">手机号</span><input type="text" class="tel" placeholder="请输入手机号" name="ctel">
+                <label class="item f-r"><i class="tag">*</i><span class="phonenum">手机号</span><input type="text" class="tel f" placeholder="请输入手机号" name="ctel">
                 </label>
 
-                <label class="item f-r"><i class="tag">*</i><span class="company-name">企业名称</span><input type="text" class="company" placeholder="请输入企业名称" name="ccompany">
+                <label class="item f-r"><i class="tag">*</i><span class="company-name">企业名称</span><input type="text" class="company f" placeholder="请输入企业名称" name="ccompany">
                 </label>
-
-                <label class="item f-r t-need"><div class="f-l m-l"><i class="tag">*</i><span>需求</span></div><textarea placeholder="请输入需求" class="need" name="cneed"></textarea>
+                <label class="item f-r t-need"><div class="f-l m-l"><i class="tag">*</i><span>需求</span></div><textarea placeholder="请输入需求" class="need f" name="cneed"></textarea>
                 </label>
                 
-                <label class="item f-r"><i class="tag">*</i><span>报价</span><input type="text" class="price" placeholder="请输入报价" name="cprice"></label>
+                <label class="item f-r"><span>报价</span><input type="text" class="price f" placeholder="请输入报价" name="cprice"></label>
 
-                <div class="item f-r"><input type="submit" id="btn"></div>
+                <div class="item f-r"><input type="submit" class="ui-btn-sub" id="btn"></div>
             </form>
         </div>
     </div>
@@ -70,55 +69,16 @@
 
 			<div class="mod-down clearfix">
 				<div class="mod-tab clearfix">
-					<a href="#" class="tab1 w-a">讲师介绍</a>
-					<a href="#" class="tab2 w-a">主将课程</a>
+					<a href="#" class="tab1 w-a jTab-l">讲师介绍</a>
+					<a href="#" class="tab2 w-a jTab-r">主将课程</a>
 				</div>
-				<div class="mod-li">
+				<div class="mod-li jLi" id="content">
 					<!--通用课程列表 begin-->
 					<div class="lists clearfix tab2 ui-hid" id="jTab2">
 					    <a href="javascript:void(0);" class="list f-l clearfix jList">
 					        <div class="description">
 					            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-					            <span class="label">预告：2016-12-11</span>
-					        </div>
-					        <div class="mod-detail">
-					            <h2 class="jTitle">金字塔原理金字塔原理</h2>
-					            <div class="mod-label clearfix jModLabel">
-					                <span class="f-l">徐老师</span>
-					                <span class="f-l icon"><i></i>1,200</span>
-					            </div>
-					        </div>
-					    </a>
-					    <a href="javascript:void(0);" class="list f-l clearfix jList">
-					        <div class="description">
-					            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-					            <span class="label">预告：2016-12-11</span>
-					        </div>
-					        <div class="mod-detail">
-					            <h2 class="jTitle">金字塔原理金字塔原理金字塔原理金字塔原理</h2>
-					            <div class="mod-label clearfix jModLabel">
-					                <span class="f-l">徐老师</span>
-					                <span class="f-l icon"><i></i>1,200</span>
-					            </div>
-					        </div>
-					    </a>
-					    <a href="javascript:void(0);" class="list f-l clearfix jList">
-					        <div class="description">
-					            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-					            <span class="label">进行中</span>
-					        </div>
-					        <div class="mod-detail">
-					            <h2 class="jTitle">金字塔原理金字塔原理</h2>
-					            <div class="mod-label clearfix jModLabel">
-					                <span class="f-l">徐老师</span>
-					                <span class="f-l icon"><i></i>1,200</span>
-					            </div>
-					        </div>
-					    </a>
-					    <a href="javascript:void(0);" class="list f-l clearfix jList">
-					        <div class="description">
-					            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-					            <span class="label">已结束</span>
+					            <span class="label">免费</span>
 					        </div>
 					        <div class="mod-detail">
 					            <h2 class="jTitle">金字塔原理金字塔原理</h2>
@@ -152,11 +112,30 @@
 			</div>
 		</div>
 	</div>
-
     <!--#include file="./common/footer.html"-->
     <!--#include file="./common/js.html"-->
     <script type="text/javascript">
     require(['conf/lecturer/detail'], function() {});
+    </script>
+
+    <script type="text/html" id="test">
+		
+    	<div class="lists clearfix tab2 ui-hid" id="jTab2">
+    		{{each list as value i}
+			<a href="javascript:void(0);" class="list f-l clearfix jList">
+				<div class="description">
+					 <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imgSrc}}" alt="系列课" class="jImg img-error">
+					   <span class="label">{{value.info}}</span>
+				 </div>
+					<div class="mod-detail">
+					    <h2 class="jTitle">{{value.title}}</h2>
+					       <div class="mod-label clearfix jModLabel">
+					            <span class="f-l">{{value.teacher}}</span>
+					        </div>
+					  </div>
+					</a>
+				{{/each}}
+			</div>
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->

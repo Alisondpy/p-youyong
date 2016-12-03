@@ -23,6 +23,10 @@ input{
 	padding-left:9px;
 	border-radius:4px;
 	color:#aaa;
+	
+}
+input.error{
+	border:1px solid #f00;
 }
 
 .mod-mask{
@@ -46,6 +50,10 @@ input{
 			span{
 				margin-left:2px;
 			}
+			.tag{
+				color:#f00;
+				font-size:16px;
+			}
 			.m-l{
 				margin:20px 10px 0 0;
 			}
@@ -61,8 +69,8 @@ input{
 				padding-left:9px;
 				border-radius:4px;
 				color:#aaa;
+				border:1px solid #f00;
 			}
-			
 			#btn{
 				width:128px;
 				height:40px;
