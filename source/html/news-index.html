@@ -94,13 +94,13 @@
 <script id="wrap2" type="text/html">
     {{each list as value i}}
     <div class="mod-item talk clearfix">
-        <div class="head-img f-l"><a href=""><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error"></a></div>
+        <div class="head-img f-l"><a href=""><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="讲师" class="jImg img-error"></a></div>
         <div class="sub-content f-l">
-            <a href="" class="h2">人民币中间价8年来首次跌破6.9 这五类人最受伤!人民币中间价8年来首次跌破6.9 这五类人最受伤!</a>
+            <a href="" class="h2">{{value.title}}</a>
             <div class="mod-sub-label clearfix">
-                <span class="date f-l">2016-11-10 22:10:20</span>
+                <span class="date f-l">{{value.date}}</span>
             </div>
-            <p>仅仅一天的停歇之后，人民币汇率就开始继续向下突破。数据显示，隔夜（23日）晚盘，银行间市场人民币兑美元汇率一度跌破6.9关口，将8年来新低烦是...</p>
+            <p>{{value.content}}</p>
         </div>
     </div>
     {{/each}}
