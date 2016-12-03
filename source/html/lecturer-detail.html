@@ -14,17 +14,24 @@
 	
 
 	<!-- 弹出层 -->
-	<div class="mod-page">
+	<div class="mod-mask">
         <div class="bg">
-            <form id="validate">
-                <label class="item f-r"><i class="tag">*</i><span >姓名</span><input type="text" class="name" placeholder="请输入姓名"></label>
-                <label class="item f-r"><i class="tag">*</i><span class="phonenum">手机号</span><input type="text" class="tel" placeholder="请输入手机号"></label>
-                <label class="item f-r"><i class="tag">*</i><span class="company-name">企业名称</span><input type="text" class="company" placeholder="请输入企业名称"></label>
+            <form id="cvalidate">
+                <label class="item f-r"><i class="tag">*</i><span >姓名</span><input type="text" class="name" placeholder="请输入姓名" name="cname">
+                </label>
 
-                <label class="item f-r t-need"><div class="f-l m-l"><i class="tag">*</i><span>需求</span></div><textarea placeholder="请输入需求" class="need"></textarea></label>
+                <label class="item f-r"><i class="tag">*</i><span class="phonenum">手机号</span><input type="text" class="tel" placeholder="请输入手机号" name="ctel">
+                </label>
+
+                <label class="item f-r"><i class="tag">*</i><span class="company-name">企业名称</span><input type="text" class="company" placeholder="请输入企业名称" name="ccompany">
+                </label>
+
+                <label class="item f-r t-need"><div class="f-l m-l"><i class="tag">*</i><span>需求</span></div><textarea placeholder="请输入需求" class="need" name="cneed"></textarea>
+                </label>
                 
-                <label class="item f-r"><i class="tag">*</i><span>报价</span><input type="text" class="price" placeholder="请输入报价"></label>
-                <div class="item f-r"><input type="submit" class="btn"></div>
+                <label class="item f-r"><i class="tag">*</i><span>报价</span><input type="text" class="price" placeholder="请输入报价" name="cprice"></label>
+
+                <div class="item f-r"><input type="submit" id="btn"></div>
             </form>
         </div>
     </div>
@@ -49,7 +56,7 @@
 						<div class="text">对方的路径算法来看待jfk垃圾啊开绿灯解放反抗军拉萨解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列克斯的jfk了对方的路径算法来看待jfk垃圾啊开绿灯解放反抗军拉萨解放了就阿列解放了就阿列解放了就阿列解放了
 						</div>
 						<div class="btn">
-							<a href="popup.html">邀约</a>
+							<a href="javascript:void(0);" class="invite-btn">邀约</a>
 						</div>
 					</div>
 
