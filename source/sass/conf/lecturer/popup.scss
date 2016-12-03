@@ -1,7 +1,6 @@
 @charset "UTF-8";
 @import "../../common/common";
-@import "../../common/slider/slider";
-@import "../../common/layer/default/layer";
+@import "../../module/course/course-list";
 body {
     background-color: #eee;
 }
@@ -93,8 +92,6 @@ h1{
 				}
 				.tab1{
 					float:left;
-<<<<<<< e9380506caabc3d624a87e1595ddf47149abfb37:source/sass/conf/lecturer/lecturer-detail.scss
-=======
 				}
 				&.active{
 						.tab1{
@@ -102,56 +99,11 @@ h1{
 						color:#f00;
 						}
 					}
->>>>>>> donkey201612021704:source/sass/conf/lecturer/detail.scss
 					
 				.tab2{
 					float:left;
 					border-left:none;
 				}
-<<<<<<< e9380506caabc3d624a87e1595ddf47149abfb37:source/sass/conf/lecturer/lecturer-detail.scss
-			}
-			.mod-li{
-				.course{
-					padding:41px 28px 41px 20px;
-					background-color:#fff;
-					.contain-course{
-						float:left;
-						margin-left:21px;
-						a{
-							.picture{
-								position:relative;
-								width:259px;
-								height:141px;
-								img{
-									width:259px;
-									height:141px;
-								}
-								span{
-									position:absolute;
-									bottom:0;
-									right:0;
-									width:46px;
-									height:30px;
-									line-height:30px;
-									text-align:center;
-									color:#fff;
-									background-color:#423424;
-									opacity:0.5;
-								}
-							}
-							.course-name{
-								margin-top:10px;
-								font-size:18px;
-								font-weight:bold;
-								color:#f00；
-							}
-							.course-teacher{
-								margin-top:10px;
-							}
-						}
-					}
-				}
-=======
 				&.active{
 						.tab2{
 						border-bottom:none;
@@ -166,7 +118,6 @@ h1{
 			.teacher-info{
 				display:none;
 				background-color:#fff;
->>>>>>> donkey201612021704:source/sass/conf/lecturer/detail.scss
 			}
 		}
 		.page{
