@@ -1,29 +1,19 @@
 <div class="mod-hot f-r">
     <h2 class="hot-title">热门活动</h2>
-    <ul class="mod-hot-list">
-        <li>
-            <a href="javascript:;" title="寻找下一个创业奇点—海量免费"><span class="hot-rank top-three">1</span>寻找下一个创业奇点—海量免费</a>
-            <span class="applicants-no">1，321 &nbsp;报名</span>
-        </li>
-        <li>
-            <a href="javascript:;"><span class="hot-rank top-three">2</span>寻找下一个创业奇点—海量免费</a>
-            <span class="applicants-no">1，321 &nbsp;报名</span>
-        </li>
-        <li>
-            <a href="javascript:;"><span class="hot-rank top-three">3</span>寻找下一个创业奇点—海量免费</a>
-            <span class="applicants-no">1，321 &nbsp;报名</span>
-        </li>
-        <li>
-            <a href="javascript:;"><span class="hot-rank ">4</span>寻找下一个创业奇点—海量免费</a>
-            <span class="applicants-no">1，321 &nbsp;报名</span>
-        </li>
-        <li>
-            <a href="javascript:;"><span class="hot-rank ">5</span>寻找下一个创业奇点—海量免费</a>
-            <span class="applicants-no">1，321 &nbsp;报名</span>
-        </li>
-        <li>
-            <a href="javascript:;"><span class="hot-rank ">6</span>寻找下一个创业奇点—海量免费</a>
-            <span class="applicants-no">1，321 &nbsp;报名</span>
-        </li>
+    <ul id="jHotActive" class="mod-hot-list">
+
     </ul>
 </div>
+<script id="hot" type="text/html">
+    {{each list as value i}}
+        <li class="clearfix">
+            {{if i < 3}}
+            <a href="javascript:;" title=""><span class="hot-rank top-three">{{i+1}}</span>{{value.activeTitle}}</a>
+            {{/if}}
+            {{if i>=3}}
+                <a href="javascript:;" title=""><span class="hot-rank">{{i+1}}</span>{{value.activeTitle}}</a>
+            {{/if}}
+                <span class="applicants-no">{{value.activeNo}} &nbsp;报名</span>
+        </li>
+    {{/each}}
+</script>
