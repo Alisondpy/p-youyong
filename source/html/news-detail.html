@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>资讯详情页</title>
+    <!--#include file="./common/meta.html"-->
+    <!--#include file="./common/css.html"-->
+    <link rel="stylesheet" href="/css/conf/news/news-detail.css" type="text/css" charset="utf-8"/>
+</head>
+<body>
+<!--#include file="common/header.html"-->
+<div class="mod-subject clearfix">
+    <div class="mod-sub-left f-l">
+        <div class="mod-nav">
+            <div class="common-nav">
+                <span class="nav-classify">活动分类</span>
+                <p class="nav-area">
+                    <a href="javascript:;" class="active">全部</a>
+                    <a href="javascript:;">就业</a>
+                    <a href="javascript:;">创业</a>
+                    <a href="javascript:;">岗前</a>
+                    <a href="javascript:;">晋升</a>
+                </p>
+            </div>
+            <div class="common-nav">
+                <span class="nav-classify">活动时间</span>
+                <p class="nav-area">
+                    <a href="javascript:;" class="active">全部</a>
+                    <a href="javascript:;">今天</a>
+                    <a href="javascript:;">本周</a>
+                    <a href="javascript:;">周末</a>
+                </p>
+            </div>
+        </div>
+        <!--专题活动列表-->
+        <div class="mod-sub-detail" id="content">
+
+        </div>
+    </div>
+    <!--#include file="./common/mod-hot.html"-->
+</div>
+
+<!--#include file="./common/footer.html"-->
+<!--#include file="./common/js.html"-->
+<script type="text/javascript">
+    require(['conf/sub-list'],function(){})
+</script>
+<script id="test" type="text/html">
+    <ul class="sub-detail">
+        {{each list as value i}}
+        <li class="clearfix">
+            <a href="javascript:;" class="sub-img f-l"><img src="{{value.imgSrc}}" alt=""/></a>
+            <div class="sub-info f-r">
+                <a href="javascript:;"><h1>{{value.subTitle}}</h1></a>
+                <p><i class="iyoyo iyoyo-time"></i>{{value.subTime}}</p>
+                <p><i class="iyoyo iyoyo-location"></i>{{value.subLocal}}</p>
+            </div>
+        </li>
+        {{/each}}
+    </ul>
+</script>
+<!--#include file="./common/tj.html"-->
+<!--#include file="./common/statistics.html"-->
+</body>
+</html>
