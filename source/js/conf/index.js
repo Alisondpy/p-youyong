@@ -49,6 +49,8 @@ define(function(require, exports, module) {
         nextButton: '.arrow-right',
         prevButton: '.arrow-left',
         slidesPerView: 3
+    },function(){
+        lazy.update();
     });
 
     //教学环境合作企业tab切换

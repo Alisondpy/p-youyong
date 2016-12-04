@@ -20,6 +20,7 @@ define(function(require, exports, module) {
         $(this).addClass('current').siblings().removeClass('current');
         $('.mod-sub-wrap').hide();
         $('.jWrap'+$(this).attr('data-value')+'').show();
+        lazy.update();
     });
 
     //评论字数限制

@@ -37,13 +37,12 @@
                 position: relative;
                 margin-left: 110px;
                 i {
-                    position: absolute;
-                    top: 10px;
-                    left: -25px;
-                    display: inline-block;
-                    width: 20px;
-                    height: 20px;
-                    // background: url("../images/personIcon.png") no-repeat;
+                    padding: 0 4px 3px 4px;
+                    font-size: 12px;
+                    margin-right: 5px;
+                    color: #fff;
+                    background: #999;
+                    border-radius: 4px;
                 }
             }
         }
