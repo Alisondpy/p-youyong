@@ -1,0 +1,308 @@
+@charset "UTF-8";
+@import "../../common/common";
+@import "../../common/slider/slider";
+
+body{
+	background-color: #e4ebf0;
+}
+.mod-main{
+	padding: 40px 0;
+	width: 1180px;
+	margin: 0 auto;
+	//左边问答内容
+	.mod-left-content{
+		padding: 0 30px;
+		padding-bottom: 30px;
+		width: 780px;
+		background-color: #fff;
+		//我的问题
+		.mod-my-questions{
+			padding-top: 30px;
+			height: 155px;
+			border-bottom: 1px solid #eee;/*no*/
+			//提问者头像
+			.logo{
+				margin-right: 10px;
+				width: 70px;
+				height: 70px;
+				.img{
+					width: 70px;
+					height: 70px;
+					border-radius: 50%;
+				}
+			}
+			//提问具体内容
+			.content{
+				width: 692px;
+				//提问者名字问题
+				.top{
+					height: 70px;
+					.title{
+						.name{
+							display: block;
+							width: 100px;
+							line-height: 44px;
+							font-size: 14px;/*px*/
+							color: #4c677b;
+						}
+						.questions{
+							display: block;
+							width: 400px;
+							line-height: 25px;
+							font-size: 16px;/*px*/
+							color: #333;
+						}
+					}
+					//分享连接
+					.share{
+						width: 150px;
+						height: 22px;
+						.iyoyo{
+							font-size: 22px;/*px*/
+							color: #999;
+							cursor: pointer;
+						}
+						.iyoyo-weibo{
+							font-size: 20px;/*px*/
+						}
+						.iyoyo-qzone:hover{
+							color: #f6c743;
+						}
+						.iyoyo-weixin:hover{
+							color: #5ecb7f;
+						}
+						.iyoyo-weibo:hover{
+							color: #ec5c51;
+						}
+					}
+				}
+				//提问者具体描述
+				.bottom{
+					width: 100%;
+					line-height: 25px;
+					font-size: 16px;/*px*/
+					color: #666;
+					.details{
+						color: #666;
+						line-height: 30px;
+					}
+					.info{
+						// margin-top: 20px;
+						line-height: 30px;
+						color: #b8b8b8;
+						font-size: 14px;/*px*/
+						.ago, .to, .an-times, .br-times{
+							margin-left: 10px;
+							font-style: normal;
+						}
+						.info-left{
+
+						}
+						.info-right{
+							margin-right: 10px;
+						}
+					}
+				}
+			}
+		}
+		//回答者内容
+		.mod-somebody-answers{
+			padding-top: 30px;
+			width: 780px;
+			// height: 145px;
+			//回答者头像
+			.stamp{
+				text-align: center;
+				margin-right: 10px;
+				.logo{
+					width: 70px;
+					height: 70px;
+					.img{
+						width: 70px;
+						height: 70px;
+						border-radius: 50%;
+					}
+				}
+				.best-name{
+					display: block;
+					width: 60px;
+					margin-top:10px; 
+					font-size: 14px;/*px*/
+					color: #4c677b;
+				}
+				.best{
+					display: inline-block;
+					margin-top:10px; 
+					padding: 2px;
+					border: 1px solid #ea3e48;/*no*/
+					border-radius: 4px; 
+					font-size: 12px;/*px*/
+					color: #ea3e48;
+				}
+			}
+			//回答者详细信息
+			.content{
+				width: 692px;
+				.mod-title{
+					.name{
+						width: 100px;
+						line-height: 40px;
+						color: #4c677b;
+						font-size: 14px;/*px*/
+					}
+					.detials{
+						color: #666; 
+						height: 80px;
+						overflow: hidden;
+						font-size: 16px;/*px*/
+					}
+					.info{
+						line-height: 30px;
+						.rebest{
+							margin-left: 10px;
+							padding: 2px 8px;
+							border-radius: 4px;
+							background-color: #ea3e48;/*no*/
+							color: #fff;
+						}
+						.response{
+							margin-right: 20px;
+						}
+						.iyoyo-favour:hover{
+							color:red;
+							cursor: pointer;
+						}
+						.ago, .pr-times{
+							margin-left: 10px;
+							font-style: normal;
+						}
+					}
+				}
+				//回复列表
+				.mod-response{
+					overflow: hidden;
+					.item{
+						padding: 10px 0;
+						height: 50px;
+						.logo{
+							margin-right: 10px;
+							width: 52px;
+							height: 52px;
+							border-radius: 50%;
+							overflow: hidden;
+							.img{
+								width: 52px;
+								height: 52px;
+							}
+						}
+						.title{
+							.nickname{
+								line-height: 26px;
+								.name{
+									display: inline-block;
+									width: 70px;
+									line-height: 26px;
+									margin-right: 20px;
+									font-size: 14px;/*px*/
+									color: #4c677b;
+								}
+								.reply{
+									display: inline-block;
+									line-height: 26px;
+									width: 400px;
+									font-size: 16px;/*px*/
+									color: #666;
+								}
+							}
+							.info{
+								color: #b8b8b8;
+								.ago{
+									margin-right: 30px;
+									font-style: normal;
+								}
+								.response{
+									color: #4c677b;
+								}
+							}
+						}
+					}
+				}
+				.mod-me{
+					padding: 20px 0;
+					border-bottom: 1px solid #ccc;/*no*/
+					.mine{
+						.logo{
+							margin-right: 10px;
+							width: 70px;
+							height: 70px;
+							.img{
+								width: 70px;
+								height: 70px;
+								border-radius: 50%;
+							}
+						}
+						.name{
+							width: 70px;
+							margin-top: 10px;
+							color: #4c677b;
+							text-align: center;
+							font-size: 14px;/*px*/
+						}
+					}
+					.comment{
+						.txtarea{
+							margin-left: 30px;
+							padding: 8px;
+							width: 464px;
+							height: 64px;
+							resize:none;
+							border: 1px solid #ccc;/*no*/
+							border-radius: 4px;
+							color: #ccc;
+						}
+						.ui-btn{
+							margin-left: 10px;
+							margin-top: 0;
+							padding: 20px;
+							width: 80px;
+							height: 80px;
+							line-height: 20px;
+							font-size: 14px;/*px*/
+						}
+					}
+				}
+			}
+		}
+	}
+	//右边发布新问题/相关问题
+	.mod-right-content{
+		padding: 30px;
+		width: 260px;
+		height: 214px;
+		background-color: #fff;
+		overflow: hidden;
+		.ui-btn{
+			width: 264px;
+			height: 40px;
+			line-height: 40px;
+			letter-spacing: 2px;
+			font-weight: bold;
+			font-size: 16px;/*px*/
+		}
+		.title{
+			line-height: 48px;
+			border-bottom: 1px solid #ccc;/*no*/
+			font-size: 18px;/*px*/
+		}
+		.question{
+			padding-top: 6px;
+			.a{
+				display: block;
+				height: 24px;
+				line-height: 24px;
+				font-size: 14px;/*px*/
+			}
+		}
+	}
+}
+
