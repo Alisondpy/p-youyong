@@ -12,5 +12,10 @@ define(function(require, exports, module) {
         function(){
         }
     )
-    hot.HotActivity()
+    new hot('jHotActive',{
+    url:"/p-youyong/source/api/sub/hot-activity.json",
+    tmpId:'hot'
+
+});
+
 });
