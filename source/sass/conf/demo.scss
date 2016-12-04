@@ -1,4 +1,6 @@
 @charset "UTF-8";
+// 图片根目录、字体目录配置参数，轻放在顶部
+@import "../common/config/level-1";
 @import "../common/common";
 @import "../common/slider/slider";
 @import "../common/layer/default/layer";
