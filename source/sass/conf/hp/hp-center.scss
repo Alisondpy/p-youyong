@@ -1,7 +1,8 @@
 @charset "UTF-8";
+@import "../../common/config/level-2";
 @import "../../common/_common";
 @import "../../module/hp/_hp-left-menu";
-  .mod-right-content {
+.mod-right-content {
     width: 790px;
     font-size: 12px;
     line-height: 16px;
@@ -10,6 +11,6 @@
     padding: 0 40px;
     min-height: 600px;
     .content {
-      padding-bottom: 20px;
+        padding-bottom: 20px;
     }
-  }
+}
