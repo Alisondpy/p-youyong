@@ -6,8 +6,8 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     require('lib/plugins/validation/1.15.1/jquery-validate');
     require('lib/plugins/validation/1.15.1/localization/messages_zh');
-    var form = require('lib/core/1.0.0/utils/form');
     var template = require('template');
+    var form = require('lib/core/1.0.0/utils/form'); 
     var jTinfo = $('.jTinfo');
     var tab1 = $('.jTab-l');
     var tab2 = $('.jTab-r');
@@ -16,9 +16,12 @@ define(function(require, exports, module) {
     var f = $('.f');
 
     //模板加载
-    io.get('/path/to/file',function(data) {
-            var html = template('test',data);
-            docuemnt.getElementById('content').innerHTML = html;
+    io.get('/p-youyong/source/api/lecturer/detail.json', function(res) {
+        console.log(res.data);
+            var html = template('test', res.data);
+            document.getElementById('content').innerHTML = html;
+    },function(error){
+
     });
 
 

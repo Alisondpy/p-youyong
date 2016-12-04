@@ -69,7 +69,6 @@ input.error{
 				padding-left:9px;
 				border-radius:4px;
 				color:#aaa;
-				border:1px solid #f00;
 			}
 			#btn{
 				width:128px;
@@ -238,8 +237,19 @@ input.error{
 				background-color:#fff;
 			}
 			.teacher-info{
+				padding:40px 27px;
 				display:none;
 				background-color:#fff;
+				.info-t{
+					margin-top:0;
+					color:#666666;
+					font-size:18px;/*px*/
+				}
+				p{
+					margin-top:40px;
+					color:#666666;
+					font-size:18px;/*px*/
+				}
 			}
 		}
 		.page{

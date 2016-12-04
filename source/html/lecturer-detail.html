@@ -2,6 +2,7 @@
 <html>
 
 <head>
+	<meta charset="utf-8">
     <title>讲师详情</title>
     <!--#include file="./common/meta.html"-->
     <!--#include file="./common/css.html"-->
@@ -74,7 +75,7 @@
 				</div>
 				<div class="mod-li jLi" id="content">
 					<!--通用课程列表 begin-->
-					<div class="lists clearfix tab2 ui-hid" id="jTab2">
+					<!-- <div class="lists clearfix tab2 ui-hid" id="jTab2">
 					    <a href="javascript:void(0);" class="list f-l clearfix jList">
 					        <div class="description">
 					            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
@@ -88,12 +89,12 @@
 					            </div>
 					        </div>
 					    </a>
-					</div>
+					</div> -->
 					<!--通用课程列表 begin-->
 				</div>
 					<div class="teacher-info jTinfo">	
 					<h3>简介</h3>
-					<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
+					<p class="info-t">地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法就离开jfk啦</p>
 					<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
 					<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
 					<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
@@ -117,15 +118,13 @@
     <script type="text/javascript">
     require(['conf/lecturer/detail'], function() {});
     </script>
-
     <script type="text/html" id="test">
-		
     	<div class="lists clearfix tab2 ui-hid" id="jTab2">
     		{{each list as value i}
 			<a href="javascript:void(0);" class="list f-l clearfix jList">
 				<div class="description">
-					 <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imgSrc}}" alt="系列课" class="jImg img-error">
-					   <span class="label">{{value.info}}</span>
+					 <img src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
+					 <span class="label">{{value.info}}</span>
 				 </div>
 					<div class="mod-detail">
 					    <h2 class="jTitle">{{value.title}}</h2>
