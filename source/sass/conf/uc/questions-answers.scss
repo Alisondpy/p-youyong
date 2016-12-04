@@ -60,8 +60,17 @@ body {
                     //分享连接
                     .share {
                         width: 150px;
-                        height: 22px;
+                        height: 70px;
+                        .iyo{
+                        	float: left;
+                        	margin-right: 10px;
+                        	display: inline-block;
+                        	height: 35px;
+                        	line-height: 35px;
+                        	font-style: normal;
+                        }
                         .iyoyo {
+                        	line-height: 26px;
                             font-size: 22px;
                             /*px*/
                             color: #999;
@@ -182,6 +191,15 @@ body {
                         }
                         .response {
                             margin-right: 20px;
+                            cursor: pointer;
+                            &:hover{
+                            	color: red;
+                            }
+                        }
+                        .iyoyo{
+                            &.favour{
+                            	color: red;
+                            }
                         }
                         .iyoyo-favour:hover {
                             color: red;
@@ -240,9 +258,19 @@ body {
                                 }
                                 .response {
                                     color: #4c677b;
+		                            cursor: pointer;
+		                            &:hover{
+		                            	color: red;
+		                            }
                                 }
                             }
                         }
+                    }
+                }
+                .clkmore{
+                	cursor: pointer;
+                	&:hover{
+                    	color: red;
                     }
                 }
                 .mod-me {
@@ -300,7 +328,6 @@ body {
     .mod-right-content {
         padding: 30px;
         width: 260px;
-        height: 214px;
         background-color: #fff;
         overflow: hidden;
         .ui-btn {
