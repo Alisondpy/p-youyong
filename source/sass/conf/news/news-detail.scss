@@ -1,0 +1,213 @@
+@charset "UTF-8";
+@import "../../common/config/level-2";
+@import "../../common/common";
+@import "../../common/slider/slider";
+@import "../../conf/uc/questions-answers";
+h1,h2,h3{
+  margin:0;
+  padding:0;
+  font-weight:normal;
+}
+span,a,i,b{
+  display:inline-block;
+  font-style:normal;
+}
+.mod-news{
+  width:$width;
+  margin:0 auto;
+  padding:40px 0;
+  .mod-path{
+    font-size:14px;
+    color:#666;
+    line-height:1;
+    margin-bottom:30px;
+  }
+ .news-content{
+   background:#fff;
+   padding:35px 40px;
+   h1{
+     font-size:24px;
+     color:#333;
+   }
+   .news-time{
+     font-size:14px;
+     color:#666;
+     margin-bottom:30px;
+     margin-top:10px;
+   }
+   .content{
+     min-height:500px;
+   }
+   .news-source{
+     font-size:14px;
+     color:#999;
+     position:relative;
+     &:before{
+       content:'';
+       width:100px;
+       height:1px;
+       background:#bbb;
+       position:absolute;
+       top:-15px;
+     }
+   }
+   .news-copyright{
+    @extend .news-source;
+     &:before{
+       display:none;
+     }
+   }
+   .praise-btn{
+     width:80px;
+     height: 80px;
+     border-radius:50%;
+     background:#44687d;
+     text-align: center;
+     margin:30px auto 0;
+     span{
+       color:#fff;
+       font-size:12px;
+       display:block;
+       margin-top:34px;
+     }
+   }
+   .share{
+     text-align: center;
+     font-size:14px;
+     color:#5e5e5e;
+     margin-top:7px;
+   }
+ }
+
+  .mod-left-content{
+    margin-top:20px;
+    padding-top:25px;
+    .info{
+      span{
+        font-size:14px;
+        color:#666;
+      }
+      .response{
+        color:#44687d;
+      }
+      .reply-btn{
+        margin-left:30px;
+      }
+      .more{
+        font-size:16px;
+        color:#4e687c;
+      }
+    }
+    .touch-more{
+      font-size:14px;
+      color:#4e687c;
+    }
+    h1{
+      font-size:20px;
+      color:#1f2c35;
+      border-bottom:1px solid #eef3f7;
+      padding-bottom:15px;
+    }
+.mod-replay{
+  padding-bottom:30px;
+  .mine{
+      width:90px;
+    .name{
+      font-size:14px;
+      color:#4c677b;
+      margin-top:3px;
+    }
+  }
+  .logo{
+   width:68px;
+    height:68px;
+    margin-top:6px;
+    border-radius:50%;
+    overflow: hidden;
+    img{
+      width:100%;
+      height:100%;
+    }
+  }
+  .replay-login{
+    width:577px;
+    height:80px;
+    line-height:80px;
+    box-sizing:border-box;
+    overflow: hidden;
+    font-size:14px;
+    color:#666;
+    text-align: center;
+    background:#eef3f7;
+    border-radius:3px;
+    border:none;
+    resize: none;
+    position:relative;
+    &:before{
+      content:'';
+      width:0;
+      height:0;
+      position:absolute;
+      border-style:solid;
+      border-width:12px;
+      border-color:transparent #eef3f7 transparent transparent;
+      left:-24px;
+      top:28px;
+    }
+    .ui-login-btn{
+      font-size:14px;
+      color:#fff;
+      line-height:1;
+      background:#ea3e48;
+      border-radius:3px;
+      padding:6px 10px;
+      margin:0 5px;
+    }
+  }
+  .public-comment{
+    @extend .replay-login;
+    background:#fff;
+    border:1px solid #ccc;
+    text-align: left;
+    line-height:inherit;
+    padding:7px 10px;
+  }
+  .ui-btn-disabled{
+    width:80px;
+    height:80px;
+    background:#ddd;
+    border-radius:3px;
+    border:none;
+    margin-left:10px;
+    color:#fff;
+    line-height:18px;
+    font-size: 14px;
+  }
+  .ui-btn-active{
+    background:#ea3e48;
+  }
+  .reply-comment{
+    @extend .public-comment;
+    width:487px;
+  }
+}
+    .reply-border{
+      border-bottom:1px solid #eee;
+    }
+    .mod-reply-comment{
+      margin-top:30px;
+    }
+  }
+  .mod-main .mod-left-content .mod-somebody-answers .content .mod-title .detials{
+    color:#333;
+  }
+  .mod-news-right{
+    width:320px;
+    box-sizing:border-box;
+    .mod-hot-news{
+      padding:20px;
+      background:#fff;
+    }
+  }
+
+}
