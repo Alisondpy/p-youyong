@@ -5,9 +5,9 @@
     <title>首页</title>
     <!--#include file="./common/meta.html"-->
     <!--#include file="./common/css.html"-->
-    <link rel="stylesheet" href="/css/conf/uc/questions-answers.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="/css/conf/uc/questions-answers.css" type="text/css" charset="utf-8" />
     <script type="text/javascript">
-        $PAGE_DATA['questions'] = '/p-youyong/source/api/uc/questions-answers.json';
+        $PAGE_DATA['questions'] = "/p-youyong/source/api/uc/questions-answers.json";
     </script>
 </head>
 
@@ -16,12 +16,12 @@
     <!--#include file="./common/header.html"-->
     <!-- 公共头部 -->
     <div class="mod-main clearfix">
-         <!-- 左侧内容 start-->
+        <!-- 左侧内容 start -->
         <div class="mod-left-content f-l">
-            <!-- 我的问题 start-->
+            <!-- 我的问题 start -->
             <div class="mod-my-questions clearfix">
                 <div class="logo f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://pic40.nipic.com/20140417/10035198_103051773153_2.jpg" alt="我的头像" class="jImg img img-error"/>
+                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://pic40.nipic.com/20140417/10035198_103051773153_2.jpg" alt="我的头像" class="jImg img img-error" />
                 </div>
                 <div class="content f-l">
                     <div class="top">
@@ -51,14 +51,13 @@
                     </div>
                 </div>
             </div>
-            <!-- 我的问题 end-->
-
-            <!-- 别人的回答 start-->
+            <!-- 我的问题 end -->
+            <!-- 别人的回答 start -->
             <div class="mod-somebody-answers clearfix">
                 <!-- 回复人左侧头像信息 -->
                 <div class="stamp f-l">
                     <div class="logo">
-                        <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img0.ph.126.net/GJZZlEQyB7duDmb4rMfweQ==/6597800941890803007.jpg" alt="答题者头像" class="jImg img img-error"/>
+                        <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img0.ph.126.net/GJZZlEQyB7duDmb4rMfweQ==/6597800941890803007.jpg" alt="答题者头像" class="jImg img img-error" />
                     </div>
                     <span class="best-name txt-overflow" title="大探长大探长">大探长</span>
                     <span class="best">最佳答案</span>
@@ -94,19 +93,20 @@
                                     <span class="reply txt-overflow f-l">厉害了我的哥</span>
                                 </div>
                                 <div class="info">
-                                     <span class="time">时间: <i class="ago">2天前</i></span><span class="response jItemsReply">回复</span>
+                                    <span class="time">时间: <i class="ago">2天前</i></span><span class="response jItemsReply">回复</span>
                                 </div>
                             </div>
                         </li>
                     </ul>
                     <!-- 点击查看全部 -->
                     <div class="touch-more">
-                        <span class="clkmore" id="jMoreComment">点击查看全部<span class="more-num">5</span>评论</span></div>
+                        <span class="clkmore" id="jMoreComment">点击查看全部<span class="more-num">5</span>评论</span>
+                    </div>
                     <!-- 我的回复 -->
                     <div class="mod-me clearfix">
                         <div class="mine f-l">
                             <div class="logo">
-                                <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://pic40.nipic.com/20140417/10035198_103051773153_2.jpg" alt="头像" class="jImg img img-error"/>
+                                <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://pic40.nipic.com/20140417/10035198_103051773153_2.jpg" alt="头像" class="jImg img img-error" />
                             </div>
                             <div class="name txt-overflow">花村扛把子</div>
                         </div>
@@ -117,29 +117,70 @@
                     </div>
                 </div>
             </div>
-
-             <div class="mod-somebody-answers  clearfix">
-                <!-- 回复人左侧头像信息 -->
+            <!-- 别人的回答 end -->
+        </div>
+        <!-- 左侧内容 end -->
+        <!-- 右侧内容 start -->
+        <div class="mod-right-content f-r">
+            <button class="ui-btn ui-btn-danger news-btn" id="jBtnNewQuestions">发布新问题</button>
+            <div class="title">相关问题</div>
+            <div class="question" id="jRightQuestions"></div>
+        </div>
+        <!-- 右侧内容 end -->
+    </div>
+    <!--#include file="./common/footer.html"-->
+    <!--#include file="./common/js.html"-->
+    <!-- 我是注释 -->
+    <script type="text/javascript">
+    require(['conf/uc/questions-answers'], function() {});
+    </script>
+    <script id="jReply" type="text/html">
+        {{each list as item i}}
+        <li class="item">
+            <div class="logo f-l">
+                <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{item.imageUrl}}" alt="头像" class="jImg img img-error" />
+            </div>
+            <div class="title f-l">
+                <div class="nickname">
+                    <span class="name txt-overflow f-l">{{item.name}}</span>
+                    <span class="reply txt-overflow f-l">{{item.answers}}</span>
+                </div>
+                <div class="info">
+                    <span class="time">时间: <i class="ago">{{item.time}}</i></span><span class="response jItemsReply">{{i}}回复</span>
+                </div>
+            </div>
+        </li>
+        {{/each}}
+    </script>
+    <script id="jAlist" type="text/html">
+        {{each alist as item i}}
+            <a href={{item.url}} class="a txt-overflow">{{item.content}}</a>
+        {{/each}}
+    </script>
+    <script id="jBigList" type="text/html">
+        {{each Blist as item i}}
+            <div class="mod-somebody-answers  clearfix">
+                回复人左侧头像信息
                 <div class="stamp f-l">
                     <div class="logo">
-                        <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img0.ph.126.net/GJZZlEQyB7duDmb4rMfweQ==/6597800941890803007.jpg" alt="答题者头像" class="jImg img img-error"/>
+                        <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img0.ph.126.net/GJZZlEQyB7duDmb4rMfweQ==/6597800941890803007.jpg" alt="答题者头像" class="jImg img img-error" />
                     </div>
                     <span class="best-name txt-overflow" title="大探长大探长">大探长</span>
                     <span class="best">最佳答案</span>
                 </div>
-                <!-- 回复人右侧描述信息 -->
+                回复人右侧描述信息
                 <div class="content f-l">
                     <div class="mod-title">
                         <div class="name txt-overflow">大探长</div>
                         <div class="detials">
                             首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡
-                            <!-- <div class="more">[查看全文]</div> -->
+                            <div class="more">[查看全文]</div>
                         </div>
                         <div class="info clearfix">
                             <div class="info-left f-l">
                                 <span class="time">时间 :<i class="ago">2天前</i></span>
-                                <!-- 点击使显示内容 -->
-                                <!-- <span class="rebest">采纳为最佳答案</span> -->
+                                点击使显示内容
+                                <span class="rebest">采纳为最佳答案</span>
                             </div>
                             <div class="info-right f-r jClkRefavour">
                                 <span class="response jClkResponse">回复</span>
@@ -149,50 +190,10 @@
                     </div>
                 </div>
             </div>
-            <!-- 别人的回答 end-->
-        </div>
-         <!-- 左侧内容 end-->
-
-         <!-- 右侧内容 start-->        
-        <div class="mod-right-content f-r">
-            <button class="ui-btn ui-btn-danger news-btn" id="jBtnNewQuestions">发布新问题</button>
-            <div class="title">相关问题</div>
-            <div class="question" id="jRightQuestions"></div>
-        </div>
-        <!-- 右侧内容 end--> 
-    </div>
-
-    <!--#include file="./common/footer.html"-->
-    <!--#include file="./common/js.html"-->
-    <!-- 我是注释 -->
-    <script type="text/javascript">
-        require(['conf/uc/questions-answers'], function() {});
-    </script>
-    <script id="jReply" type="text/html">
-        {{each list as item i}}
-            <li class="item">
-                <div class="logo f-l">
-                    <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{item.imageUrl}}" alt="头像" class="jImg img img-error"/>
-                </div>
-                <div class="title f-l">
-                    <div class="nickname">
-                        <span class="name txt-overflow f-l">{{item.name}}</span>
-                        <span class="reply txt-overflow f-l">{{item.answers}}</span>
-                    </div>
-                    <div class="info">
-                         <span class="time">时间: <i class="ago">{{item.time}}</i></span><span class="response jItemsReply">{{i}}回复</span>
-                    </div>
-                </div>
-            </li>
         {{/each}}
     </script>
-    <script id="jAlist" type="text/html">
-        {{each alist as item i}}
-            <a href={{item.url}} class="a txt-overflow">{{item.content}}</a>
-        {{/each}}
-    </script>
-    <!--#include file="./common/tj.html"-->
-    <!--#include file="./common/statistics.html"-->
+    <!-- #include file="./common/tj.html" -->
+    <!-- #include file="./common/statistics.html" -->
 </body>
 
 </html>

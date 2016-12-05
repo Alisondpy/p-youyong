@@ -61,16 +61,16 @@ body {
                     .share {
                         width: 150px;
                         height: 70px;
-                        .iyo{
-                        	float: left;
-                        	margin-right: 10px;
-                        	display: inline-block;
-                        	height: 35px;
-                        	line-height: 35px;
-                        	font-style: normal;
+                        .iyo {
+                            float: left;
+                            margin-right: 10px;
+                            display: inline-block;
+                            height: 35px;
+                            line-height: 35px;
+                            font-style: normal;
                         }
                         .iyoyo {
-                        	line-height: 26px;
+                            line-height: 26px;
                             font-size: 22px;
                             /*px*/
                             color: #999;
@@ -192,13 +192,13 @@ body {
                         .response {
                             margin-right: 20px;
                             cursor: pointer;
-                            &:hover{
-                            	color: red;
+                            &:hover {
+                                color: red;
                             }
                         }
-                        .iyoyo{
-                            &.favour{
-                            	color: red;
+                        .iyoyo {
+                            &.favour {
+                                color: red;
                             }
                         }
                         .iyoyo-favour:hover {
@@ -258,19 +258,19 @@ body {
                                 }
                                 .response {
                                     color: #4c677b;
-		                            cursor: pointer;
-		                            &:hover{
-		                            	color: red;
-		                            }
+                                    cursor: pointer;
+                                    &:hover {
+                                        color: red;
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                .clkmore{
-                	cursor: pointer;
-                	&:hover{
-                    	color: red;
+                .clkmore {
+                    cursor: pointer;
+                    &:hover {
+                        color: red;
                     }
                 }
                 .mod-me {
