@@ -1,0 +1,55 @@
+@charset "UTF-8";
+@import "../../common/config/level-2";
+@import "../../common/common";
+body {
+    width: 100%;
+    height: 100%;
+    background-color: #e4ebf0;
+}
+
+.mod-form {
+    width: 500px;
+    height: 510px;
+    border-top: 1px solid #fff;
+    background-color: #ccc;
+    .ulform {
+        margin-top: 50px;
+        width: 430px;
+        .item {
+            .ipt {
+                .ui-input {
+                    padding: 0;
+                    width: 288px;
+                    height: 40px;
+                    text-indent: 16px;
+                    letter-spacing: 2px;
+                    border-radius: 4px;
+                }
+                .mark {
+                    margin-right: 5px;
+                }
+                .necessary {
+                    margin-right: 5px;
+                    color: red;
+                }
+                .ui-btn {
+                    margin-right: 100px;
+                    width: 128px;
+                    height: 40px;
+                    line-height: 40px;
+                    letter-spacing: 2px;
+                    font-size: 14px;
+                    /*px*/
+                }
+            }
+            .tip {
+                width: 288px;
+                height: 20px;
+                font-size: 12px;
+                /*px*/
+                text-align: left;
+                color: #03ccbb;
+            }
+        }
+    }
+}
