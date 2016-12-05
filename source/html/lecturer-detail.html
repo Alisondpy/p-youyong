@@ -18,19 +18,26 @@
 	<div class="mod-mask jMod-mask">
         <div class="bg">
             <form id="cvalidate">
-                <label class="item f-r"><i class="tag">*</i><span >姓名</span><input type="text" class="name f" placeholder="请输入姓名" name="cname">
+            	<div class="mod-warp clearfix">
+                <label class="item f-r"><i class="tag">*</i><span >姓名</span><input type="text" class="name f isname" placeholder="请输入姓名" name="cname">
                 </label>
-
-                <label class="item f-r"><i class="tag">*</i><span class="phonenum">手机号</span><input type="text" class="tel f" placeholder="请输入手机号" name="ctel">
+                </div> 
+				<div class="mod-warp clearfix">
+                <label class="item f-r"><i class="tag">*</i><span class="phonenum">手机号</span><input type="text" class="tel f isphonenum" placeholder="请输入手机号" name="ctel">
                 </label>
+				</div> 
 
+				<div class="mod-warp clearfix">
                 <label class="item f-r"><i class="tag">*</i><span class="company-name">企业名称</span><input type="text" class="company f" placeholder="请输入企业名称" name="ccompany">
                 </label>
+                </div> 
+                <div class="mod-warp clearfix">
                 <label class="item f-r t-need"><div class="f-l m-l"><i class="tag">*</i><span>需求</span></div><textarea placeholder="请输入需求" class="need f" name="cneed"></textarea>
                 </label>
-                
+                </div>
+                <div>
                 <label class="item f-r"><span>报价</span><input type="text" class="price f" placeholder="请输入报价" name="cprice"></label>
-
+				</div>
                 <div class="item f-r"><input type="submit" class="ui-btn-sub" id="btn"></div>
             </form>
         </div>
@@ -68,49 +75,41 @@
 				</div>
 			</div>
 
-			<div class="mod-down clearfix">
-				<div class="mod-tab clearfix">
-					<a href="#" class="tab1 w-a jTab-l">讲师介绍</a>
-					<a href="#" class="tab2 w-a jTab-r">主将课程</a>
+			<div class="mod-down clearfix" id="jTab">
+				<div class="mod-tab clearfix" node-type="hd">
+					<a href="javascript:void(0);" class="tab1 w-a jTab-l" node-type="hdItem" data-target="1">讲师介绍</a>
+					<a href="javascript:void(0);" class="tab2 w-a jTab-r current" node-type="hdItem" data-target="2">主将课程</a>
 				</div>
-				<div class="mod-li jLi" id="content">
-					<!--通用课程列表 begin-->
-					<!-- <div class="lists clearfix tab2 ui-hid" id="jTab2">
-					    <a href="javascript:void(0);" class="list f-l clearfix jList">
-					        <div class="description">
-					            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-					            <span class="label">免费</span>
-					        </div>
-					        <div class="mod-detail">
-					            <h2 class="jTitle">金字塔原理金字塔原理</h2>
-					            <div class="mod-label clearfix jModLabel">
-					                <span class="f-l">徐老师</span>
-					                <span class="f-l icon"><i></i>1,200</span>
-					            </div>
-					        </div>
-					    </a>
-					</div> -->
-					<!--通用课程列表 begin-->
-				</div>
-					<div class="teacher-info jTinfo">	
-					<h3>简介</h3>
-					<p class="info-t">地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法就离开jfk啦</p>
-					<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
-					<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
-					<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
+
+				<div node-type="bd">
+				<!-- artTemplate模块加载内容存放的地方 start-->
+					<div class="mod-li jLi" id="content" node-type="container" data-id="2">
+
 					</div>
+					<!-- artTemplate模块加载内容存放的地方 end-->
+
+
+					<div class="teacher-info jTinfo" node-type="container" data-id="1">	
+						<h3>简介</h3>
+						<p class="info-t">地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法就离开jfk啦</p>
+						<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
+						<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
+						<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
+					</div>
+				</div>
 			</div>
-			<div class="page clearfix">
-				<ul>
-					<li><a href="">上一页</a></li>
-					<li><a href="">1</a></li>
-					<li><a href="">1</a></li>
-					<li><a href="">1</a></li>
-					<li><a href="">1</a></li>
-					<li><a href="">1</a></li>
-					<li><a href="">上一页</a></li>
-				</ul>
-			</div>
+			<div class="mod-page clearfix">
+            <ul class="clearfix f-r">
+                <li class="f-l disable"><a href="javascript:void(0);">上一页</a></li>
+                <li class="f-l active"><a href="javascript:void(0);">2</a></li>
+                <li class="f-l"><a href="javascript:void(0);">3</a></li>
+                <li class="f-l"><a href="javascript:void(0);">4</a></li>
+                <li class="f-l">...</li>
+                <li class="f-l"><a href="javascript:void(0);">5</a></li>
+                <li class="f-l"><a href="javascript:void(0);">6</a></li>
+                <li class="f-l"><a href="javascript:void(0);">下一页</a></li>
+            </ul>
+        </div>
 		</div>
 	</div>
     <!--#include file="./common/footer.html"-->
@@ -119,11 +118,11 @@
     require(['conf/lecturer/detail'], function() {});
     </script>
     <script type="text/html" id="test">
-    	<div class="lists clearfix tab2 ui-hid" id="jTab2">
-    		{{each list as value i}
+		<div class="lists clearfix tab2 ui-hid" id="jTab2" >
+    		{{each list as value i}}
 			<a href="javascript:void(0);" class="list f-l clearfix jList">
 				<div class="description">
-					 <img src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
+					 <img src={{value.imageUrl}} alt="系列课" class="jImg img-error">
 					 <span class="label">{{value.info}}</span>
 				 </div>
 					<div class="mod-detail">
@@ -134,7 +133,7 @@
 					  </div>
 					</a>
 				{{/each}}
-			</div>
+		</div>
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->
