@@ -46,7 +46,7 @@
     line-height: 70px;
     position: relative;
     left: 50%;
-    margin: $top 0 $bottom -72px;
+    margin: $top 0 $bottom -96px;
 }
 
 @mixin more($color, $mT, $mB) {
@@ -478,7 +478,7 @@ $height: 172px;
         left: 50%;
         margin-top: 50px;
         margin-bottom: 42px;
-        margin-left: -179px;
+        margin-left: -227px;
         cursor: pointer;
     }
     padding-bottom: 76px;
