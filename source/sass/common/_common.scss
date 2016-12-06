@@ -1,42 +1,28 @@
 @charset "UTF-8";
-
-/*样式重置*/
-
+//样式重置
 @import "./reset/reset";
-
-/*全局配置参数*/
-
+//mixins工具方法
+@import "./mixmins";
+//全局配置参数
 @import "./config/config";
-
-/*box*/
-
+//box
 @import "./box/box";
-
-/*animate loading*/
-
+//animate loading
 @import "./animate/loading";
-
-/*表单*/
-
+//表单
 @import "./button/button";
 @import "./input/input";
-
-/*mod-header*/
-
+//mod-header
 @import "../module/mod-header";
 @import "../module/mod-footer";
 @import "../module/ui-fix-bar";
-
-/*重置字体样式*/
-
+//重置字体样式
 .ibase,
 .iyoyo {
     font-size: 12px;
 }
 
-
-/*公共常用样式*/
-
+//公共常用样式
 body {
     font: 12px/1.5 "Microsoft Yahei", "Arial", "Hiragino Sans GB", "San Francisco", "STHeiti";
     min-width: 1300px;
@@ -47,9 +33,12 @@ body {
     color: $normalColor;
 }
 
-a:hover {
-    color: #ff5d66;
-    text-decoration: none;
+a {
+    transition: color .2s ease-in-out;
+    &:hover {
+        color: #ff5d66;
+        text-decoration: none;
+    }
 }
 
 html {
@@ -86,7 +75,7 @@ a {
     text-decoration: none;
 }
 
-.w-1180{
+.w-1180 {
     width: $width;
     margin: 0 auto;
 }
