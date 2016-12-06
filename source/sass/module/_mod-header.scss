@@ -67,11 +67,11 @@
             top: 5px;
             text-align: center;
         }
-    }
-    .search-active {
-        border-color: $hoverColor;
-        .iyoyo {
-            color: $hoverColor;
+        &.focus {
+            border-color: $hoverColor;
+            .iyoyo {
+                color: $hoverColor;
+            }
         }
     }
     .login-box {
