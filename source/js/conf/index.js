@@ -9,6 +9,7 @@ define(function(require, exports, module) {
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var swiper = require('lib/plugins/swiper/3.1.2/swiper');
+    var Tab = require('lib/ui/tab/1.0.0/tab');
     require('plugins/layer/layer');
 
     //轮播图
@@ -45,27 +46,26 @@ define(function(require, exports, module) {
 
     //师资团队滚动
     var teacherSwiper = new swiper('.swiper-container',{
-        // 如果需要前进后退按钮
         nextButton: '.arrow-right',
         prevButton: '.arrow-left',
         slidesPerView: 3
-    },function(){
-        lazy.update();
     });
 
     //教学环境合作企业tab切换
-    $('.jTitle').on('click',function(){
-        var val = $(this).attr('data-value');
-        $(this).addClass('title-active').siblings().removeClass('title-active');
-        if(val === '0'){
-            $('.jTab1').hide();
-            $('.jTab0').show();
-        }else {
-            $('.jTab0').hide();
-            $('.jTab1').show();
-        }
-        lazy.update();
-    });
+    //$('.jTitle').on('click',function(){
+    //    var val = $(this).attr('data-value');
+    //    $(this).addClass('title-active').siblings().removeClass('title-active');
+    //    if(val === '0'){
+    //        $('.jTab1').hide();
+    //        $('.jTab0').show();
+    //    }else {
+    //        $('.jTab0').hide();
+    //        $('.jTab1').show();
+    //    }
+    //    lazy.update();
+    //});
+    var jTab = $('#jTab');
+    var tab = new Tab(jTab);
 
     //弹出相框
     function getAlums(photoId){
