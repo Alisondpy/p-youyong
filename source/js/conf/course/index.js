@@ -85,16 +85,16 @@ define(function(require, exports, module) {
         }
         lazy.update();
     });
-    //点播课和直播课效果
-    $('.jLists').on('mouseenter','.jList',function(){
-        var titleLen = $(this).find('.jTitle').text().length;
-        if(titleLen > 13){
-            $(this).find('.jModLabel').stop(true,false).slideUp();
-        }
-    }).on('mouseleave','.jList',function(){
-        var titleLen = $(this).find('.jTitle').text().length;
-        if(titleLen > 13){
-            $(this).find('.jModLabel').stop(true,false).slideDown();
-        }
-    });
+    ////点播课和直播课效果
+    //$('.jLists').on('mouseenter','.jList',function(){
+    //    var titleLen = $(this).find('.jTitle').text().length;
+    //    if(titleLen > 13){
+    //        $(this).find('.jModLabel').stop(true,false).slideUp();
+    //    }
+    //}).on('mouseleave','.jList',function(){
+    //    var titleLen = $(this).find('.jTitle').text().length;
+    //    if(titleLen > 13){
+    //        $(this).find('.jModLabel').stop(true,false).slideDown();
+    //    }
+    //});
 });

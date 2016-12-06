@@ -112,8 +112,8 @@
                 font-size: 18px;
                 color: #fff;
                 text-indent: 20px;
-                height: 48px;
-                line-height: 48px;
+                height: 40px;
+                line-height: 40px;
                 z-index: 1;
             }
             .mask {
@@ -129,6 +129,38 @@
         .tab1,
         .tab2 {
             width: 1152px;
+            .mod-detail {
+                h2 {
+                    padding: 15px 0 16px;
+                    line-height: 30px;
+                    font-size: 20px;
+                    font-weight: bold;
+                    color: #333;
+                }
+                .mod-label {
+                    position: absolute;
+                    bottom: 0;
+                    width: 100%;
+                    height: 50px;
+                    transition: height 0.2s linear;
+                    line-height: 40px;
+                    background: #fff;
+                    font-size: 15px;
+                    color: #666;
+                    .icon {
+                        position: relative;
+                        margin-left: 110px;
+                        i {
+                            padding: 4px 4px 3px 4px;
+                            font-size: 12px;
+                            margin-right: 5px;
+                            color: #fff;
+                            background: #999;
+                            border-radius: 4px;
+                        }
+                    }
+                }
+            }
             .list {
                 position: relative;
                 overflow: hidden;
@@ -143,35 +175,9 @@
                 &:hover h2 {
                     color: #ec3e48;
                 }
-            }
-            .mod-detail {
-                h2 {
-                    padding: 10px 0 16px;
-                    line-height: 40px;
-                    font-size: 20px;
-                    font-weight: bold;
-                    color: #333;
-                }
-                .mod-label {
-                    position: absolute;
-                    bottom: 0;
-                    width: 100%;
-                    height: 50px;
-                    line-height: 40px;
-                    background: #fff;
-                    font-size: 15px;
-                    color: #666;
-                    .icon {
-                        position: relative;
-                        margin-left: 110px;
-                        i {
-                            padding: 0 4px 3px 4px;
-                            font-size: 12px;
-                            margin-right: 5px;
-                            color: #fff;
-                            background: #999;
-                            border-radius: 4px;
-                        }
+                &:hover{
+                    .mod-label{
+                        height: 0;
                     }
                 }
             }
