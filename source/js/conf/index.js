@@ -12,6 +12,11 @@ define(function(require, exports, module) {
     var Tab = require('lib/ui/tab/1.0.0/tab');
     require('plugins/layer/layer');
 
+    var TopSearch = require('module/top-search/1.0.0/top-search');
+
+    //顶部搜索框
+    var topSearch = new TopSearch();
+
     //轮播图
     $('#jSlider').slider();
 
