@@ -12,10 +12,10 @@ define(function(require, exports, module) {
     var Tab = require('lib/ui/tab/1.0.0/tab');
     require('plugins/layer/layer');
 
-    var TopSearch = require('module/top-search/1.0.0/top-search');
-
-    //顶部搜索框
-    var topSearch = new TopSearch();
+    //var TopSearch = require('module/top-search/1.0.0/top-search');
+    //
+    ////顶部搜索框
+    //var topSearch = new TopSearch();
 
     //轮播图
     $('#jSlider').slider();
@@ -28,7 +28,7 @@ define(function(require, exports, module) {
     });
 
     //师资团队滚动
-    var teacherSwiper = new swiper('.swiper-container', {
+    var teacherSwiper = new swiper('#jSwiper', {
         onInit: function(swiper) {
             swiper.swipeNext();
             swiper.swipePrev();
@@ -36,10 +36,10 @@ define(function(require, exports, module) {
         slidesPerView: 3
     });
 
-    $('.arrow-right').on('click', function() {
+    $('#jRight').on('click', function() {
         teacherSwiper.swipeNext();
     });
-    $('.arrow-left').on('click', function() {
+    $('#jLeft').on('click', function() {
         teacherSwiper.swipePrev();
     });
 
