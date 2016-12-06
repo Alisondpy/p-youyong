@@ -8,12 +8,23 @@ define(function(require, exports, module) {
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var template = require("template");
+    var Pagination = require('lib/ui/pagination/1.0.1/pagination');
+    var Pager = require('plugins/pager/1.0.0/pager');
     var lazy;
     lazy = new Lazyload($('.jImg'), {
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true
     });
+    $('.jMore').on('click', function () {
+        if($(this).text()=='查看全部') {
+            $(this).text('收起');
+            $(this).parents('.jInfo').siblings('.jDetials').css({'overflow':'visible','height':'auto'});
+        }else{
+            $(this).text('查看全部');
+            $(this).parents('.jInfo').siblings('.jDetials').css({'overflow':'hidden','height':'75px'})
+        }
+    })
     //查看全部评论
     function insertItems(url, data, tmpEl, htmEl) {
         io.get(url, { "data": data }, function(res) {
@@ -37,25 +48,8 @@ define(function(require, exports, module) {
             document.getElementById(htmEl).innerHTML = '<div style="color: #000;">请求超时请重试！<a href="">刷新</a></div>';
         });
     }
-    //insertAlist($PAGE_DATA['questions'], '发布新问题', 'jAlist', 'jRightQuestions')
 
-    function insertAlist(url, data, tmpEl, htmEl) {
-        io.get(url, { "data": data }, function(res) {
-            var data = res.data;
-            if (!$.isEmptyObject(data) && data.alist.length > 0) {
-                var html = template(tmpEl, data);
-                document.getElementById(htmEl).innerHTML += html;
-            } else if (res.error < 0) {
-                box.warn('有问题');
-            } else {
-                document.getElementById(htmEl).innerHTML = '<div class="ui-empty-list"><div class="isema isema-box"></div><div class="txt">暂时没有相关内容</div></div>';
-            }
-        }, function(error) {
-            document.getElementById(htmEl).innerHTML = '<div style="color: #000;">请求超时请重试！<a href="">刷新</a></div>';
-        });
-    }
-
-    insertPerson($PAGE_DATA['questions'], '个人信息', 'jP', 'jMain');
+    // insertPerson($PAGE_DATA['questions'], '个人信息', 'jP', 'jMain');
     function insertPerson(url, data, tmpEl, htmEl) {
         io.get(url, { "data": data }, function(res) {
             var data = res.data;
@@ -104,4 +98,59 @@ define(function(require, exports, module) {
             document.getElementById(htmEl).innerHTML = '<div style="color: #000;">请求超时请重试！<a href="">刷新</a></div>';
         });
     }
+    
+
+    var jContainer = $('#jContainer');
+    var jPagination = $('.jPagination');
+
+    var pager = new Pager(jPagination, {
+        url: $PAGE_DATA['questions'],
+        data:{
+            class : 'djune'
+        },
+        alias: {
+            currentPage: 'currentPage',
+            pageSize: 'pageSize'
+        },
+        options: {
+            currentPage: 2, // start with 1
+            pageSize: 20
+        }
+    });
+    var loading = null;
+
+    pager.on('ajaxStart', function() {
+        loading = Box.loading('正在加载...', {
+            modal: false
+        });
+    });
+
+    pager.on('ajaxSuccess', function(data, callback) {
+        console.log(data, callback);
+        // jContainer.html(template(data.data.resultList));
+        callback && callback(data.data.records);
+        loading && loading.hide();
+    });
+
+    pager.on('ajaxError', function(data) {
+        jContainer.html('网络错误，请重试！');
+        loading && loading.hide();
+    });
+
+    pager.on('change', function(pageNum, e) {
+        console.log('pageNum', pageNum, e);
+        $('#jCurrentPage').html(pageNum)
+    });
+
+    function template(data) {
+        var str = '';
+        for (var i = 0; i < data.length; i++) {
+            str += '<div>' + data[i] + '</div>';
+        }
+        if(str == ''){
+            str = '<div>数据为空</div>'
+        }
+        return str;
+    }
+
 })

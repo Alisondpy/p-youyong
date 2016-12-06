@@ -39,9 +39,10 @@ html, body {
             }
             label.error{
                 position: absolute;
-                right: 5px;
+                bottom: -8px;
+                left: 145px;
                 line-height: 40px;
-                color: red;
+                color: #eb3d48;
             }
             .necessary {
                 margin-right: 5px;

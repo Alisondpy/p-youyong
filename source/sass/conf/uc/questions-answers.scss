@@ -2,6 +2,8 @@
 @import "../../common/config/level-2";
 @import "../../common/common";
 @import "../../common/slider/slider";
+@import "../../common/pager/pager";
+
 body {
     background-color: #e4ebf0;
 }
@@ -174,7 +176,7 @@ body {
                     }
                     .detials {
                         color: #666;
-                        height: 80px;
+                        height: 75px;
                         overflow: hidden;
                         font-size: 16px;
                         /*px*/
@@ -207,8 +209,17 @@ body {
                         }
                         .ago,
                         .pr-times {
-                            margin-left: 10px;
                             font-style: normal;
+                        }
+                        .more{
+                            display: inline-block;
+                            width: 60px;
+                            margin-left: 10px;
+                            text-align: center;
+                            cursor: pointer;
+                            &:hover{
+                                color: red;
+                            }
                         }
                     }
                 }
@@ -274,6 +285,7 @@ body {
                     }
                 }
                 .mod-me {
+                    display: none;
                     padding: 20px 0;
                     border-bottom: 1px solid #ccc;
                     /*no*/
@@ -355,6 +367,17 @@ body {
                 font-size: 14px;
                 /*px*/
             }
+        }
+    }
+}
+.mod-page {
+    width: 1180px;
+    margin: 0 auto;
+    .ui-pager{
+        width: 840px;
+        padding-bottom: 20px;
+        ul{
+            float: right;
         }
     }
 }

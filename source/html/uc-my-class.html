@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>首页</title>
+    <title>我的班级</title>
     <!--#include file="./common/meta.html"-->
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/uc/my-class.css" type="text/css" charset="utf-8">
@@ -22,27 +22,24 @@
                 </div>
                 <a href="" class="user-name">花村扛把子</a>
             </div>
-            <ul class="menu-list">
+            <ul class="menu-list" id="accordion">
                 <li class="item">
-                    <a href="">我的账户</a>
+                    <a href="javascript:;" class="link">我的账户</a>
                 </li>
                 <li class="item">
-                    <a href="">我的班级</a>
+                    <a href="javascript:;" class="link">我的班级</a>
                 </li>
                 <li class="item">
-                    <a href="">课程管理</a>
+                    <a href="javascript:;" class="link">我的学习</a>
+                    <ul class="submenu">
+                        <li class="sublist"><a class="sublink" href="#">我的课程</a></li>
+                        <li class="sublist"><a class="sublink" href="#">我的考试</a></li>
+                        <li class="sublist"><a class="sublink" href="#">我的问答</a></li>
+                        <li class="sublist"><a class="sublink" href="#">我的笔记</a></li>
+                    </ul>
                 </li>
                 <li class="item">
-                    <a href="">我的笔记</a>
-                </li>
-                <li class="item">
-                    <a href="">我的活动</a>
-                </li>
-                <li class="item">
-                    <a href="">我的收藏</a>
-                </li>
-                <li class="item">
-                    <a href="">我的消息</a>
+                    <a href="javascript:;" class="link">我的收藏</a>
                 </li>
             </ul>
         </div>
@@ -78,6 +75,7 @@
                             <i class="offline">0</i>/<i class="online">50</i>
                         </span>
                         <button class="ui-btn ui-btn-danger">开始学习</button>
+                        <button class="ui-btn ui-btn-defulat">综合考评</button>
                     </div>
                 </li>
                 
@@ -96,10 +94,10 @@
 
     <!--#include file="./common/footer.html"-->
     <!--#include file="./common/js.html"-->
-    <!-- 我是注释
+    <!-- 我是注释 -->
     <script type="text/javascript">
-        require(['conf/demo'], function() {});
-    </script> -->
+        require(['conf/uc/my-class'], function() {});
+    </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->
 </body>
