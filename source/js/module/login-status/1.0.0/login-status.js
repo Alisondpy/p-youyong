@@ -2,14 +2,12 @@ define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     var io = require('lib/core/1.0.0/io/request');
-    var Util = require('lib/core/1.0.0/utils/util');
-    var EventEmitter = require('lib/core/1.0.0/event/emitter');
     var build = require('lib/core/1.0.0/dom/build');
 
     function LoginStatus(options) {
         var _this = this;
         var defaults = {
-            el: '#jLoginStatus',
+            selector: '#jLoginStatus',
             ajax: {
                 type: 'get', //'get'|'post'|'jsonp'
                 url: ($PAGE_DATA && $PAGE_DATA['getUserInfo']) || '', // required 获取用户登录信息
@@ -30,7 +28,7 @@ define(function(require, exports, module) {
         if (!_this.options.ajax.url) {
             throw new Error('the param [options.ajax.url] is required.');
         }
-        _this.el = $(options.selector);
+        _this.el = $(_this.options.selector);
         _this._init();
     };
 
@@ -49,25 +47,31 @@ define(function(require, exports, module) {
     LoginStatus.prototype._initEvent = function() {
         var _this = this,
             isMoveing = false,
-            builder = build.build(_this.el[0]),
+            builder = build.build(_this.el[0], false),
             userName = builder.get('userName'),
             tipsMenu = builder.get('tipsMenu');
-
         userName.on('mouseenter', function() {
-
+            isMoveing = true;
+            tipsMenu.addClass('active');
         });
         userName.on('mouseleave', function() {
-
+            isMoveing = false;
+            setTimeout(function() {
+                if (!isMoveing) {
+                    tipsMenu.removeClass('active');
+                }
+            }, 200);
         });
         tipsMenu.on('mouseenter', function() {
-
+            isMoveing = true;
         });
         tipsMenu.on('mouseleave', function() {
-
+            isMoveing = false;
+            tipsMenu.removeClass('active');
         });
     };
 
-    LoginStatus.prototype._getLoginedHtml(data) {
+    LoginStatus.prototype._getLoginedHtml = function(data) {
         var _this = this,
             options = _this.options,
             menuList = options.menuList;
@@ -81,7 +85,7 @@ define(function(require, exports, module) {
         str += '        <div class="tips-menu" node-type="tipsMenu">';
         str += '            <div class="arrow"><i></i><b></b></div>';
         str += '            <ul class="tips-menu-list">';
-        for (var i = 0, len = menuList.lenth; i < len; i++) {
+        for (var i = 0, len = menuList.length; i < len; i++) {
             str += '            <li class="tips-menu-item"><a href="' + menuList[i].url + '">' + menuList[i].title + '</a></li>';
         }
         str += '            </ul>';

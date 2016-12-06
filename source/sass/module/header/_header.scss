@@ -109,10 +109,10 @@
                 position: relative;
                 .tips-menu {
                     @include opacity(0);
-                    display: none;
-                    transition: opacity .25s ease .1s;
-                    &.active{
-                        display: block;  
+                    transition: opacity .5s;
+                    display: none\0;
+                    &.active {
+                        display: block\0;
                         @include opacity(1);
                     }
                     position: absolute;
