@@ -26,7 +26,6 @@
                 <div class="opation clearfix">
                     <div class="change clearfix">
                         <div class="arrow-l">
-
                             <em class="line"></em>
                             <i class="iyoyo iyoyo-arrow-left-sm"></i>
                         </div>
@@ -38,85 +37,96 @@
                     </div>
                     <div class="mod-share clearfix">
                         <div class="heart">
-                            <i class="iyoyo iyoyo-heart"></i>
+                            <a href="javascript:void(0)"><i class="iyoyo iyoyo-heart"></i></a>
                             <span class="info">收藏课程</span>
                         </div>
                         <div class="share">
                             <span class="title">分享</span>
-                            <i class="iyoyo iyoyo-weixin"></i>
-                            <i class="iyoyo iyoyo-qzone"></i>
-                            <i class="iyoyo iyoyo-weibo"></i>
+                            <a href="javascript:void(0)"><i class="iyoyo iyoyo-weixin"></i></a>
+                            <a href="javascript:void(0)"><i class="iyoyo iyoyo-qzone"></i></a>
+                            <a href="javascript:void(0)"><i class="iyoyo iyoyo-weibo"></i></a>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="mod-r">
-                <div class="up clearfix jUp">
-                    <a href="javascript:void(0)" class="catlog jCatlog">
-                        <i class="iyoyo iyoyo-catalog"></i>
-                        <span>目录</span>
-                    </a>
+            <div class="mod-r" id="jTab">
+                <div class="up clearfix jUp" node-type="hd" >
+                    <li  node-type="hdItem" data-target="1" class="current">
+                        <a href="javascript:void(0)" class="catlog jCatlog t" >
+                            <i class="iyoyo iyoyo-catalog"></i>
+                            <span>目录</span>
+                        </a>
+                    </li>
+                    <li node-type="hdItem" data-target="2">
+                        <a href=javascript:void(0) class="note jNote t" >
+                            <i class="iyoyo iyoyo-note"></i>
+                            <span>笔记</span>
+                        </a>
+                    </li>
 
-                    <a href=javascript:void(0) class="note jNote">
-                        <i class="iyoyo iyoyo-note"></i>
-                        <span>笔记</span>
-                    </a>
-
-                    <a href=javascript:void(0) class="question jQuestion">
-                        <i class="iyoyo iyoyo-question-3"></i>
-                        <span>问答</span>
-                    </a>
+                    <li node-type="hdItem" data-target="3">
+                        <a href=javascript:void(0) class="question jQuestion t" >
+                            <i class="iyoyo iyoyo-question-3"></i>
+                            <span>问答</span>
+                        </a>
+                    </li>
                 </div>
-                <!-- tab切换问答部分 start-->
-                <div class="mod-question tab-question jMod-question">
-                    <div class="title">
-                        <a href="" class="m-answer tab-q"> 我的问答</a>
-                        <a href="" class="all-answer tab-q">全部问答</a>
-                    </div>
-                    <div class="contain clearfix">
-                        <div class="avater">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-                        </div>
-                        <div class="text clearfix">
-                            <div class="cname">花村抗靶子</div>
-               
-                            <p>的分厘卡但是jfk了大家分k大家分k大家分k大家分k大家分k大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方<a href="" class="all">[显示全部]</a>
-                            </p>
-                            <div class="contain-down">
-                                <span class="time"><em>时间:</em><i>一分钟前</i></span>
-                                <span class="answer"><em>0</em>回答<i>10</i>浏览</span>
-                            </div>
-                        </div>
-                    </div>
 
-                     <div class="contain clearfix">
-                        <div class="avater">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-                        </div>
-                        <div class="text clearfix">
-                            <div class="cname">花村抗靶子</div>
-               
-                            <p>的分厘卡但是jfk了大家分k了大家分k了大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方<a href="" class="all">[显示全部]</a>
-                            </p>
-                            <div class="contain-down line-none">
-                                <span class="time"><em>时间:</em><i>一分钟前</i></span>
-                                <span class="answer"><em>0</em>回答<i>10</i>浏览</span>
-                            </div>
-                        </div>
+            <div node-type="bd">
+                 <!-- 目录tab切换 start-->
+                <div class="mod-catlog jMod-catlog current" node-type="container" data-id="1">  
+                    <div class="status">
+                        <i class="iyoyo iyoyo-ok"></i>
+                        <a>
+                        <em>课时一</em>
+                        <span class="tool">PS基础工具使用</span>
+                        </a>
                     </div>
-
-                    <div class="square">
-                        <textarea class="textarea" placeholder="有疑问?让大家解答一下吧~(限500字)"></textarea>
-                        <p><em class="num">0</em>/500</p>
+                    <div class="line"></div>
+                    <div class="status">
+                        <i class="iyoyo iyoyo-pause"></i>
+                        <a>
+                        <em>课时一</em>
+                        <span class="tool">PS基础工具使用</span>
+                        </a>
                     </div>
-
-                    <button class="btn">提交</button>
-
+                    <div class="line"></div>
+                    <div class="status">
+                        <i class="iyoyo iyoyo-half-circle"></i>
+                        <a>
+                        <em>课时一</em>
+                        <span class="tool">PS基础工具使用</span>
+                        </a>
+                    </div>
+                    <div class="line"></div>
+                    <div class="status">
+                        <i class="iyoyo iyoyo-circle"></i>
+                        <a>
+                        <em>课时一</em>
+                        <span class="tool">PS基础工具使用</span>
+                        </a>
+                    </div>
+                    <div class="line"></div>
+                    <div class="status">
+                        <i class="iyoyo iyoyo-circle"></i>
+                        <a>
+                        <em>课时一</em>
+                        <span class="tool">PS基础工具使用</span>
+                        </a>
+                    </div>
+                    <div class="line"></div>
+                    <div class="status">
+                        <i class="iyoyo iyoyo-circle"></i>
+                        <a>
+                        <em>课时一</em>
+                        <span class="tool">PS基础工具使用</span>
+                        </a>
+                    </div>
                 </div>
-                <!-- tab切换问答部分 end -->
+                <!-- 目录tab切换  end -->
 
-                <!-- tab切换笔记部分 -->
-                <div class="mod-note jMod-note">
+            <!-- tab切换笔记部分 -->
+                <div class="mod-note jMod-note" data-id="2" node-type="container">
                     <div class="title">
                         <a href="" class="m-answer tab-q"> 我的问答</a>
                         <a href="" class="all-answer tab-q">全部问答</a>
@@ -171,64 +181,59 @@
                         
                     </div>
 
-                    <button class="btn">提交</button>
+                    <button class="ui-btn">提交</button>
 
                 </div>
-                <!-- tab切换笔记部分结束 -->
+                    <!-- tab切换笔记部分结束 -->
 
-                <!-- 目录tab切换 start-->
-                <div class="mod-catlog jMod-catlog">
-                    <div class="status">
-                        <i class="iyoyo iyoyo-ok"></i>
-                        <a>
-                        <em>课时一</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-pause"></i>
-                        <a>
-                        <em>课时一</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-half-circle"></i>
-                        <a>
-                        <em>课时一</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-circle"></i>
-                        <a>
-                        <em>课时一</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-circle"></i>
-                        <a>
-                        <em>课时一</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-circle"></i>
-                        <a>
-                        <em>课时一</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
+                <!-- tab切换问答部分 start-->
 
+                <div class="mod-question tab-question jMod-question" data-id="3" node-type="container">
+                        <div class="title">
+                            <a href="" class="m-answer tab-q"> 我的问答</a>
+                            <a href="" class="all-answer tab-q">全部问答</a>
+                        </div>
+                        <div class="contain clearfix">
+                            <div class="avater">
+                                <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
+                            </div>
+                            <div class="text clearfix">
+                                <div class="cname">花村抗靶子</div>
+                   
+                                <p>的分厘卡但是jfk了大家分k大家分k大家分k大家分k大家分k大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方<a href="" class="all">[显示全部]</a>
+                                </p>
+                                <div class="contain-down">
+                                    <span class="time"><em>时间:</em><i>一分钟前</i></span>
+                                    <span class="answer"><em>0</em>回答<i>10</i>浏览</span>
+                                </div>
+                            </div>
+                        </div>
 
+                         <div class="contain clearfix">
+                            <div class="avater">
+                                <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
+                            </div>
+                            <div class="text clearfix">
+                                <div class="cname">花村抗靶子</div>
+                   
+                                <p>的分厘卡但是jfk了大家分k了大家分k了大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方<a href="" class="all">[显示全部]</a>
+                                </p>
+                                <div class="contain-down line-none">
+                                    <span class="time"><em>时间:</em><i>一分钟前</i></span>
+                                    <span class="answer"><em>0</em>回答<i>10</i>浏览</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="square">
+                            <textarea class="textarea" placeholder="有疑问?让大家解答一下吧~(限500字)"></textarea>
+                            <p><em class="num">0</em>/500</p>
+                        </div>
+
+                        <button class="ui-btn">提交</button>
                 </div>
-                <!-- 目录tab切换  end -->
+                    <!-- tab切换问答部分 end -->
+                </div>
             </div>
         </div>
     </div>
