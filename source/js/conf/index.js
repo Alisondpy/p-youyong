@@ -5,7 +5,7 @@ define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     var box = require('lib/ui/box/1.0.1/box');
-    var Slider = require('lib/ui/slider/3.0.4/slider');
+    require('lib/ui/slider/1.0.0/slider');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var swiper = require('lib/plugins/swiper/2.7.0/swiper');
@@ -13,29 +13,7 @@ define(function(require, exports, module) {
     require('plugins/layer/layer');
 
     //轮播图
-    var slider = new Slider('#jSlider', {
-        lazyLoad: {
-            loadingClass: 'img-error'
-        },
-        play: {
-            auto: true,
-            interval: 4000,
-            swap: true,
-            pauseOnHover: true,
-            restartDelay: 2500
-        },
-        navigation: {
-            arrows: true,
-            toggleOnHover: false,
-            effect: 'slide',
-            nextArrow: '',
-            prevArrow: ''
-        },
-        callback: {
-            start: function(index) {},
-            loaded: function() {}
-        }
-    });
+    $('#jSlider').slider();
 
     //图片懒加载
     var lazy = new Lazyload($('.jImg'), {
@@ -45,18 +23,18 @@ define(function(require, exports, module) {
     });
 
     //师资团队滚动
-    var teacherSwiper = new swiper('.swiper-container',{
-        onInit: function(swiper){
+    var teacherSwiper = new swiper('.swiper-container', {
+        onInit: function(swiper) {
             swiper.swipeNext();
             swiper.swipePrev();
         },
         slidesPerView: 3
     });
 
-    $('.arrow-right').on('click',function(){
+    $('.arrow-right').on('click', function() {
         teacherSwiper.swipeNext();
     });
-    $('.arrow-left').on('click',function(){
+    $('.arrow-left').on('click', function() {
         teacherSwiper.swipePrev();
     });
 
@@ -72,44 +50,44 @@ define(function(require, exports, module) {
     tab.setCurrent();
 
     //弹出相框
-    function getAlums(photoId){
-        io.get('/p-youyong/source/api/index/index.json',{"pid":photoId},function(data){
-            if(data.error < 0){
+    function getAlums(photoId) {
+        io.get('/p-youyong/source/api/index/index.json', { "pid": photoId }, function(data) {
+            if (data.error < 0) {
                 box.error(data.msg);
-            }else {
-                try{
+            } else {
+                try {
                     var imgData = data.data;
                     var title = imgData[0].imageName;
                     var id = imgData[0].imageId;
                     var imgList = [];
                     $.each(imgData, function(i, n) {
                         imgList[i] = {
-                            "alt":n.imageName,
-                            "pid":n.imageId,
-                            "src":n.imageUrl,
-                            "thumb":""
+                            "alt": n.imageName,
+                            "pid": n.imageId,
+                            "src": n.imageUrl,
+                            "thumb": ""
                         }
                     });
                     var imgJson = {
-                        "title":title,
-                        "id":id,
-                        "start":0,
-                        "status":1,
-                        "data":imgList
+                        "title": title,
+                        "id": id,
+                        "start": 0,
+                        "status": 1,
+                        "data": imgList
                     };
                     layer.photos({
                         photos: imgJson,
                         anim: 5 //0-6的选择，指定弹出图片动画类型，默认随机（请注意，3.0之前的版本用shift参数）
                     });
-                }catch (e){
+                } catch (e) {
                     box.error('暂无数据');
                 }
             }
-        },function(res){
+        }, function(res) {
             box.error('网络错误');
-        },this);
+        }, this);
     };
-    $('.jAlum').on('click',function(){
+    $('.jAlum').on('click', function() {
         var photoId = $(this).attr("data-id");
         getAlums(photoId);
     });

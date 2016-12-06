@@ -77,38 +77,25 @@
 
 
 /*banner begin*/
-.mod-slider{
+
+.mod-slider {
     height: 540px;
-    img{
-        min-width: 1600px;
-        height: 540px;
-    }
-}
-.ui-slider {
-    .ui-slider-slide {
-        background: $normalColor;
-        overflow: hidden;
-        img {
-            position: relative;
-            left: 50%;
-            margin-left: -800px;
-        }
-    }
-    .ui-slider-pagination {
-        bottom: 20px;
-        li {
+    .ui-slider {
+        .slider-num {
+            bottom: 20px;
             a {
-                display: inline-block;
                 width: 60px;
                 height: 5px;
+                background-color: #e4ebf0;
                 border-radius: 10px;
-                background: #e4ebf0;
-                margin-right: 15px;
-                opacity: 1;
-                text-indent: -999px;
-                &.active {
+                margin: 0 15px;
+                cursor: pointer;
+                display: inline-block;
+                filter: alpha(opacity=80);
+                opacity: 0.8;
+                &.hover,
+                &:hover {
                     background: $hoverColor;
-                    opacity: 1;
                 }
             }
         }
@@ -513,12 +500,12 @@ $height: 172px;
     .ml-70 {
         margin-left: 70px;
     }
-    .items{
+    .items {
         display: none;
     }
     .current {
         display: block;
-        h2{
+        h2 {
             color: $normalColor;
             border-bottom: 2px solid $BgNormalColor;
         }
