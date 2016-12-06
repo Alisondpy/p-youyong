@@ -1,10 +1,13 @@
 .ui-input{
-	border:1px solid #e2e2e2;/*no*/
+	border:1px solid #ccc;/*no*/
 	padding: 10px 20px;
 	color: #333;
-	&:focus{
-		border-color: #40d1ad;
-	}
+    &:focus{
+        border: 1px solid #aaa;
+    }
+    &.error{
+        border: 1px solid #eb3d48;
+    }
 }
 
 .ui-input-error{
