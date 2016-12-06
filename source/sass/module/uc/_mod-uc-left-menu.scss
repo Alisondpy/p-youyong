@@ -34,6 +34,37 @@
             /*px*/
             color: #4b677b;
             border-top: 1px solid #e4ebf0;
+            .link {
+                position: relative;
+                cursor: pointer;
+                display: block;
+                transition: all 0.4s ease;
+            }
+            .submenu {
+                display: none;
+                background: #444359;
+                font-size: 14px;
+                .sublist {
+                    border-bottom: 1px solid #4b4a5e;
+                    .sublink {
+                        display: block;
+                        text-decoration: none;
+                        color: #d9d9d9;
+                        padding: 12px;
+                        text-align: center;
+                        transition: all 0.25s ease;
+                    }
+                    &:hover {
+                        background: #b63b4d;
+                        color: #FFF;
+                    }
+                }
+            }
+            &.open {
+                .link {
+                    color: #ec3e48;
+                }
+            }
         }
     }
 }
