@@ -107,7 +107,7 @@ gulp.task('rev-html', function() {
 
 //./dist目录
 gulp.task('clear-dist', function() {
-    return del([CONFIG.dist]).then(paths => {
+    return del([CONFIG.dist]).then(paths >= {
         console.log('Deleted files and folders:\n', paths.join('\n'));
     });
 });

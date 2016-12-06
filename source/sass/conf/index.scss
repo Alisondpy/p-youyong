@@ -2,7 +2,6 @@
 @import "../common/config/level-1";
 @import "../common/common";
 @import "../common/slider/slider";
-@import "../common/swiper/swiper";
 @import "../common/layer/default/layer";
 
 /*index config begin*/
@@ -78,18 +77,21 @@
 
 
 /*banner begin*/
-
+.mod-slider{
+    height: 540px;
+    img{
+        min-width: 1600px;
+        height: 540px;
+    }
+}
 .ui-slider {
     .ui-slider-slide {
-        width: 100%;
         background: $normalColor;
         overflow: hidden;
         img {
             position: relative;
             left: 50%;
             margin-left: -800px;
-            width: 1600px;
-            height: 540px;
         }
     }
     .ui-slider-pagination {
@@ -112,8 +114,6 @@
         }
     }
 }
-
-
 /*banner end*/
 
 
@@ -396,6 +396,7 @@ $height: 172px;
         margin-left: auto;
         margin-right: auto;
         position: relative;
+        height: 400px;
         overflow: hidden;
         z-index: 1;
     }
@@ -512,9 +513,15 @@ $height: 172px;
     .ml-70 {
         margin-left: 70px;
     }
-    .title-active {
-        color: $normalColor;
-        border-bottom: 2px solid $BgNormalColor;
+    .items{
+        display: none;
+    }
+    .current {
+        display: block;
+        h2{
+            color: $normalColor;
+            border-bottom: 2px solid $BgNormalColor;
+        }
     }
     .item {
         width: 295px;
