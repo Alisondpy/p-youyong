@@ -8,7 +8,7 @@ body {
 
 .mod-main {
     width: 1180px;
-    height: 870px;
+    min-height: 870px;
     //overflow: hidden;
     margin: 0 auto;
     margin-top: 33px;
@@ -52,33 +52,51 @@ body {
                 border-top: 1px solid #e4ebf0;
                 .link{
                     position: relative;
-                    cursor: pointer;
                     display: block;
-                    transition: all 0.4s ease;
+                    cursor: pointer;
+                    // transition: all 0.4s ease;
+                }
+                &:hover{
+                    background: #ec3e48;
+                    .link{
+                        color: #fff;
+                    }
                 }
                 .submenu {
                     display: none;
-                    background: #444359;
                     font-size: 14px;
                     .sublist {
-                        border-bottom: 1px solid #4b4a5e;
+                        height: 60px;
+                        line-height: 60px;
+                        border-bottom: 1px solid #ccc;
+                        cursor: pointer;
+                        background-color: #95aab8;
                         .sublink {
                             display: block;
+                            color: #fff;
                             text-decoration: none;
-                            color: #d9d9d9;
-                            padding: 12px;
                             text-align: center;
                             transition: all 0.25s ease;
+                            &:hover{
+                                background-color: #ec3e48;
+                            }
                         }
-                        &:hover {
-                            background: #b63b4d;
+                        &.stamp{
+                            background: #ec3e48;
                             color: #FFF;
                         }
                     }
                 }
                 &.open{
+                    background-color: #ec3e48;
                     .link{
-                        color: #ec3e48;
+                        color: #fff;
+                    }
+                }
+                &.spread{
+                    background-color: #b9c9d4;
+                    .link{
+                        color: #fff;
                     }
                 }
             }
