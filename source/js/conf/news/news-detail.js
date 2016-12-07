@@ -17,6 +17,10 @@ define(function(require, exports, module) {
         temId:'hot',
         formatNum:false
     });
-
+    new HOT('jHotTrain',{
+        url:"/p-youyong/source/api/news/hot-train-course.json",
+        temId:'hotCourse',
+        formatNum:false
+    });
 });
 

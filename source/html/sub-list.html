@@ -5,7 +5,7 @@
     <title>专题活动</title>
     <!--#include file="./common/meta.html"-->
     <!--#include file="./common/css.html"-->
-    <link rel="stylesheet" href="/css/conf/sub-list.css" type="text/css" charset="utf-8"/>
+    <link rel="stylesheet" href="/css/conf/subject/sub-list.css" type="text/css" charset="utf-8"/>
 </head>
 <body>
 <!--#include file="common/header.html"-->
@@ -33,9 +33,10 @@
             </div>
         </div>
         <!--专题活动列表-->
-        <div class="mod-sub-detail" id="content">
+        <div class="mod-sub-detail" id="jContainer">
 
         </div>
+        <div class="jPagination"></div>
     </div>
 <!--#include file="./common/mod-hot.html"-->
 </div>
@@ -43,13 +44,13 @@
 <!--#include file="./common/footer.html"-->
 <!--#include file="./common/js.html"-->
 <script type="text/javascript">
-    require(['conf/sub-list'],function(){})
+    require(['conf/subject/sub-list'],function(){})
 </script>
 <script id="test" type="text/html">
     <ul class="sub-detail">
         {{each list as value i}}
         <li class="clearfix">
-            <a href="javascript:;" class="sub-img f-l"><img src="{{value.imgSrc}}" alt=""/></a>
+            <a href="javascript:;" class="sub-img f-l"><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imgSrc}}" class="jImg img-error" alt=""/></a>
             <div class="sub-info f-r">
                 <a href="javascript:;"><h1>{{value.subTitle}}</h1></a>
                 <p><i class="iyoyo iyoyo-time"></i>{{value.subTime}}</p>

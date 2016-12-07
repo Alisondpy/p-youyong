@@ -1,21 +1,20 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var form = require('lib/core/1.0.0/utils/form');
+    var EventEmitter = require('lib/core/1.0.0/event/emitter');
+    var Util = require('lib/core/1.0.0/utils/util');
     var template=require("template");
     var IO = require('lib/core/1.0.0/io/request');
 
  /*   * @param selector [dom selector] dom选择器
-      * @param options [mix] 参数
-      * @param formatNum 是否需要数字三位一划分
-      * @param numClass  数字的key值
+      * @param options [mix] 参数详情见defaults
 */
     function HotActivity(selector,options){
      var _this = this;
         var defaults = {
             url: null,
-            formatNum:false,
-            numClass:'activeNo'
+            formatNum:false,//是否需要数字三位一划分
+            numClass:'activeNo'//需要数字划分的属性（例如报名人数）
         };
         _this.el = $("#"+selector);
         _this.options = $.extend(true,{},defaults,options);
@@ -27,15 +26,14 @@ define(function(require, exports, module) {
         var el = _this.el;
         el.html("this is loading...");
         IO.get(options.url,function(res){
-                if(options.url==null){
-                    el.html("the url of options is required");
+                if(!options.url){
+                    throw new Error("the url of defaults is required");
                 }
                 if(res.data.list.length <= 0){
                     el.html("暂时没有热门活动！");
                 }else{
-                    _this._template(res,"activeNo");
+                    _this._template(res,options.numClass);
                 }
-
             },
             function(res){
                 el.html('<p>网络错误，请点击<a class="jReload">重新加载</a></p>');

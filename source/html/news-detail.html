@@ -27,7 +27,7 @@
                 </div>
                 <p class="news-source">文章来源：100offer</p>
                 <p class="news-copyright">版权保护声明：我们极其尊重并保护原创作品的版权，诺原作者有任何疑问，请联系微信号：chengxuyuan8</p>
-                <p class="praise-btn"><i class="iyoyo iyoyo-note"></i><span>12122</span></p>
+                <p class="praise-btn"><i class="iyoyo iyoyo-favour"></i><span>12122</span></p>
                 <p class="share">
                     <span>分享</span>
                     <a href="javascript:;" class="iyoyo iyoyo-weixin"></a>
@@ -47,9 +47,9 @@
                             <div class="name txt-overflow">花村扛把子</div>
                         </div>
                         <div class="comment f-l">
-                            <textarea class="txtarea f-l public-comment" name="public-comment" id="jPubComment" placeholder="看点糟点，不吐不快！别憋着，马上大声说出来吧！"></textarea>
-                            <!--<p class="replay-login f-l">请先<a href="javascript:;" class="ui-login-btn">登录</a>后发表评论！</p>-->
-                            <button class="ui-btn-disabled ui-btn-active f-l">发表<br/>评论</button>
+                            <textarea class="txtarea f-l ui-input public-comment" name="public-comment" id="jPubComment" placeholder="看点糟点，不吐不快！别憋着，马上大声说出来吧！" style="display:none;"></textarea>
+                            <p class="replay-login f-l">请先<a href="javascript:;" class="ui-login-btn">登录</a>后发表评论！</p>
+                            <button class="ui-btn-disabled  f-l" >发表<br/>评论</button>
                         </div>
                     </div>
                     <div class="mod-somebody-answers clearfix">
@@ -154,7 +154,7 @@
                                 <div class="name txt-overflow">花村扛把子</div>
                             </div>
                             <div class="comment f-l">
-                                <textarea class="txtarea  reply-comment f-l" name="reply-comment" id="jReplyComment"></textarea>
+                                <textarea class="txtarea  ui-input reply-comment f-l" name="reply-comment" id="jReplyComment"></textarea>
                                 <button class="ui-btn-disabled ui-btn-active f-l">发表<br/>评论</button>
                             </div>
                         </div>
@@ -163,15 +163,23 @@
             </div>
         </div>
 
-        <div class="mod-news-right f-r">
+        <div class="mod-news-right f-r clearfix">
             <!--热门资讯-->
-            <div class="mod-hot-news clearfix">
-                <!--#include file="./common/mod-hot-news.html"-->
-                <!--热门培训课程-->
-                <div class="hot-train-course">
+            <!--#include file="./common/mod-hot-news.html"-->
 
+            <!--热门培训课程-->
+                <div class="mod-hot hot-train-course f-r">
+                    <h2 class="hot-title">热门培训课程</h2>
+                    <ul id="jHotTrain" class="mod-course-list clearfix">
+                    </ul>
                 </div>
-            </div>
+                <script id="hotCourse" type="text/html">
+                    {{each list as value i}}
+                    <li class="clearfix">
+                        <a href="javascript:;" class="course-wrap"><img src="{{value.activeTitle}}" alt="热门课程"/><p>{{value.courseName}}</p></a>
+                    </li>
+                    {{/each}}
+                </script>
         </div>
     </div>
 

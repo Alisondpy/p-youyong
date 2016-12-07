@@ -5,12 +5,10 @@ define(function(require, exports, module) {
     var form = require('lib/core/1.0.0/utils/form');
     var template=require("template");
     var io = require('lib/core/1.0.0/io/request');
-    var hot=require('module/hot-activity');
-    new hot('jHotActive',{
+    var Hot=require('module/hot-activity/1.0.0/hot-activity');
+    new Hot('jHotActive',{
         url:"/p-youyong/source/api/sub/hot-activity.json",
         temId:'hot',
         formatNum:true
-
     });
-
 });
