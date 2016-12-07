@@ -4,22 +4,23 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var box = require('lib/ui/box/1.0.1/box');
+    var Box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var template=require("template");
     var Pager = require('plugins/pager/1.0.0/pager');
     var Tab = require('lib/ui/tab/1.0.0/tab');
 
-    var lazy,pager;
-    var jPagination0 = $('#jPagination0');
-    var jPagination1 = $('#jPagination1');
-    var jPagination2 = $('#jPagination2');
+    var jPagination = $('#jPagination');
 
     /*
     * 渲染分页列表
     * */
+    var lazy,pager;
     function renderList(url,data,tmpEl,htmEl,pagEl){
+        if(typeof pager !== 'undefined'){
+            pager.destroy();
+        }
         pager = new Pager(pagEl, {
             url:url,
             data:data,
@@ -84,43 +85,19 @@ define(function(require, exports, module) {
                 type1.hide();
                 type2.hide();
                 subNav.hide();
-                if(!jPagination0.hasClass('has-build')){
-                    jPagination1.hide();
-                    jPagination2.hide();
-                    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'info':'系列课'},'tab0','jTab0',jPagination0);
-                }else {
-                    jPagination0.show();
-                    jPagination1.hide();
-                    jPagination2.hide();
-                }
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'info':'系列课'},'tab0','jTab0',jPagination);
                 break;
             case '2':
                 type1.show();
                 type2.show();
                 subNav.show();
-                if(!jPagination1.hasClass('has-build')){
-                    jPagination0.hide();
-                    jPagination2.hide();
-                    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab1.json',{'info':'点播课'},'tab1','jTab1',jPagination1);
-                }else {
-                    jPagination0.hide();
-                    jPagination1.show();
-                    jPagination2.hide();
-                }
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab1.json',{'info':'点播课'},'tab1','jTab1',jPagination);
                 break;
             case '3':
                 type1.show();
                 type2.show();
                 subNav.hide();
-                if(!jPagination2.hasClass('has-build')){
-                    jPagination0.hide();
-                    jPagination1.hide();
-                    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab2.json',{'info':'直播课'},'tab2','jTab2',jPagination2);
-                }else {
-                    jPagination0.hide();
-                    jPagination1.hide();
-                    jPagination2.show();
-                }
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab2.json',{'info':'直播课'},'tab2','jTab2',jPagination);
                 break;
         }
     });

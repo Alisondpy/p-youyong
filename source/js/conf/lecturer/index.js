@@ -9,13 +9,16 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var template=require("template");
     var Pager = require('plugins/pager/1.0.0/pager');
-    var lazy,pager;
     var jPagination = $('#jPagination');
 
     /*
      * 渲染分页列表
      * */
+    var lazy,pager;
     function renderList(url,data,tmpEl,htmEl,pagEl){
+        if(typeof pager !== 'undefined'){
+            pager.destroy();
+        }
         pager = new Pager(pagEl, {
             url:url,
             data:data,

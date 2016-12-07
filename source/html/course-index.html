@@ -18,6 +18,7 @@
             <div class="common-nav" id="jType0">
                 <span class="type">课程类型</span>
                 <ul class="clearfix nav" node-type="hd">
+                    <input type="hidden" name="type">
                     <li node-type="hdItem" data-target="1" class="f-l current"><a href="javascript:void(0);" data-type="0">系列课</a></li>
                     <li node-type="hdItem" data-target="2" class="f-l"><a href="javascript:void(0);" data-type="1">点播课</a></li>
                     <li node-type="hdItem" data-target="3" class="f-l"><a href="javascript:void(0);" data-type="2">直播课</a></li>
@@ -26,6 +27,7 @@
             <div class="common-nav ui-hid" id="jType1">
                 <span class="type">课程分类</span>
                 <ul class="clearfix nav jNav">
+                    <input type="hidden" name="classify">
                     <li class="f-l current"><a href="javascript:void(0);">全部</a></li>
                     <li class="f-l"><a href="javascript:void(0);">客服</a></li>
                     <li class="f-l"><a href="javascript:void(0);">运营</a></li>
@@ -37,6 +39,7 @@
             <div class="common-nav ui-hid" id="jType2">
                 <span class="type">课程状态</span>
                 <ul class="clearfix nav jNav">
+                    <input type="hidden" name="state">
                     <li class="f-l current"><a href="javascript:void(0);">全部</a></li>
                     <li class="f-l"><a href="javascript:void(0);">直播预告</a></li>
                     <li class="f-l"><a href="javascript:void(0);">进行中</a></li>
@@ -75,9 +78,7 @@
         </div>
         <!--分页begin-->
         <div class="mod-page clearfix">
-            <div class="f-r" id="jPagination0"></div>
-            <div class="f-r" id="jPagination1"></div>
-            <div class="f-r" id="jPagination2"></div>
+            <div class="f-r" id="jPagination"></div>
         </div>
         <!--分页end-->
     </div>
