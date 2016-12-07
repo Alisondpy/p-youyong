@@ -56,7 +56,8 @@ define(function(require, exports, module) {
 
     //弹出相框
     function getAlums(photoId) {
-        io.get($PAGE_DATA['baseStaticUrl']+'source/api/index/index.json', { "pid": photoId }, function(data) {
+        io.get($PAGE_DATA['topSearchUrl'], {"pid":photoId}, function(data) {
+            console.log(data);
             if (data.error < 0) {
                 box.error(data.msg);
             } else {
@@ -94,6 +95,7 @@ define(function(require, exports, module) {
     };
     $('.jAlum').on('click', function() {
         var photoId = $(this).attr("data-id");
+        console.log(photoId);
         getAlums(photoId);
     });
 });

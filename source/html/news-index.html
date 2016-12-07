@@ -17,74 +17,27 @@
         <div class="mod-wrap clearfix">
             <div class="mod-left f-l">
                 <div class="mod-sub-nav clearfix">
-                    <a href="javascript:void(0);" class="f-l" data-value="0">最新</a>
+                    <a href="javascript:void(0);" class="f-l current" data-value="0">最新</a>
                     <a href="javascript:void(0);" class="f-l" data-value="1">就业指导</a>
-                    <a href="javascript:void(0);" class="f-l current" data-value="2">电商动态</a>
+                    <a href="javascript:void(0);" class="f-l" data-value="2">电商动态</a>
                     <a href="javascript:void(0);" class="f-l" data-value="3">行业早报</a>
                     <a href="javascript:void(0);" class="f-l" data-value="4">干货分享</a>
                 </div>
-                <div class="mod-sub-wrap jWrap2" id="jWrap0"></div>
-                <div class="mod-sub-wrap jWrap2" id="jWrap1"></div>
-                <div class="mod-sub-wrap jWrap2" id="jWrap2"></div>
-                <div class="mod-sub-wrap jWrap2" id="jWrap3"></div>
-                <div class="mod-sub-wrap jWrap2" id="jWrap4"></div>
+                <div class="mod-sub-wrap jWrap2" id="jWrap"></div>
+                <!--分页begin-->
+                <div class="mod-page clearfix">
+                    <div class="f-r" id="jPagination"></div>
+                </div>
+                <!--分页end-->
             </div>
             <div class="mod-right f-r">
                 <div class="mod-slider">
                     <h2>热门资讯</h2>
-                    <div class="mod-news-list">
-                        <ul>
-                            <li class="list list-red clearfix"><span class="f-l">1</span><a class="f-l txt-overflow" href="">支付宝拿下成田机场</a></li>
-                            <li class="list list-red clearfix"><span class="f-l">2</span><a class="f-l txt-overflow" href="">双十一不需要运费</a></li>
-                            <li class="list list-red clearfix"><span class="f-l">3</span><a class="f-l txt-overflow" href="">京东明年部署无人机</a></li>
-                            <li class="list clearfix"><span class="f-l">4</span><a class="f-l txt-overflow" href="">支付宝拿下成田机场</a></li>
-                            <li class="list clearfix"><span class="f-l">5</span><a class="f-l txt-overflow" href="">京东明年部署无人机</a></li>
-                            <li class="list clearfix"><span class="f-l">6</span><a class="f-l txt-overflow" href="">双十一不需要运费</a></li>
-                            <li class="list clearfix"><span class="f-l">7</span><a class="f-l txt-overflow" href="">京东明年部署无人机</a></li>
-                            <li class="list clearfix"><span class="f-l">8</span><a class="f-l txt-overflow" href="">支付宝拿下成田机场</a></li>
-                        </ul>
-                    </div>
+                    <div class="mod-news-list" id="jHotNews"></div>
                 </div>
                 <div class="mod-slider">
                     <h2>热门培训课程</h2>
-                    <div class="items clearfix">
-                        <a href="" class="item f-l">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                            <div class="info">
-                                <span>徐老师</span>
-                            </div>
-                        </a>
-                        <a href="" class="item f-l">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                            <div class="info">
-                                <span>徐老师</span>
-                            </div>
-                        </a>
-                        <a href="" class="item f-l">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                            <div class="info">
-                                <span>徐老师</span>
-                            </div>
-                        </a>
-                        <a href="" class="item f-l">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                            <div class="info">
-                                <span>徐老师</span>
-                            </div>
-                        </a>
-                        <a href="" class="item f-l">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                            <div class="info">
-                                <span>徐老师</span>
-                            </div>
-                        </a>
-                        <a href="" class="item f-l">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                            <div class="info">
-                                <span>徐老师</span>
-                            </div>
-                        </a>
-                    </div>
+                    <div class="items clearfix" id="jHotCourse"></div>
                 </div>
             </div>
         </div>
@@ -95,7 +48,7 @@
 <script type="text/javascript">
     require(['conf/news/index'], function() {});
 </script>
-<script id="wrap2" type="text/html">
+<script id="wrap" type="text/html">
     {{each list as value i}}
     <div class="mod-item talk clearfix">
         <div class="head-img f-l"><a href=""><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="讲师" class="jImg img-error"></a></div>
@@ -107,6 +60,28 @@
             <p>{{value.content}}</p>
         </div>
     </div>
+    {{/each}}
+</script>
+<script id="jNews" type="text/html">
+    <ul>
+        {{each list as value i}}
+            {{if i < 3}}
+            <li class="list list-red clearfix"><span class="f-l">{{i+1}}</span><a class="f-l txt-overflow" href="">{{value.activeTitle}}</a></li>
+            {{/if}}
+            {{if i >= 3}}
+            <li class="list clearfix"><span class="f-l">{{i+1}}</span><a class="f-l txt-overflow" href="">{{value.activeTitle}}</a></li>
+            {{/if}}
+        {{/each}}
+    </ul>
+</script>
+<script id="jCourse" type="text/html">
+    {{each list as value i}}
+        <a href="" class="item f-l">
+            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="讲师" class="jImg img-error">
+            <div class="info">
+                <span>{{value.teacherName}}</span>
+            </div>
+        </a>
     {{/each}}
 </script>
 <!--#include file="./common/tj.html"-->

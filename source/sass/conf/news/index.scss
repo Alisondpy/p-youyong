@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "../../common/config/level-2";
 @import "../../common/common";
+@import "../../common/pager/pager";
 .mod-container {
     margin: 0 auto;
     width: $width;
@@ -84,6 +85,9 @@
                 font-size: 14px;
                 color: #999;
             }
+        }
+        .mod-page{
+            padding-top: 22px;
         }
         .mod-right {
             width: 320px;

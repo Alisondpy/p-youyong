@@ -4,14 +4,57 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var box = require('lib/ui/box/1.0.1/box');
+    var Box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var template=require("template");
-    var lazy;
+    var Pager = require('plugins/pager/1.0.0/pager');
+    var Hot = require('module/hot-activity/1.0.0/hot-activity');
 
-    function getLists(url,data,tmpEl,htmEl){
-        io.get(url,{"data":data},function(res){
+    var jPagination = $('#jPagination');
+
+    /*
+    * 渲染侧边栏
+    * */
+    new Hot('jHotNews',{
+        url:$PAGE_DATA['baseStaticUrl']+"source/api/sub/hot-activity.json",
+        temId:'jNews'
+    });
+
+    new Hot('jHotCourse',{
+        url:$PAGE_DATA['baseStaticUrl']+"source/api/sub/hot-activity.json",
+        temId:'jCourse'
+    });
+    /*
+     * 渲染分页列表
+     * */
+    var lazy,pager;
+    function renderList(url,data,tmpEl,htmEl,pagEl){
+        if(typeof pager !== 'undefined'){
+            pager.destroy();
+        }
+        pager = new Pager(pagEl, {
+            url:url,
+            data:data,
+            alias: {
+                currentPage: 'currentPage',
+                pageSize: 'pageSize'
+            },
+            options: {
+                currentPage: 1, // start with 1
+                pageSize: 8
+            }
+        });
+
+        var loading = null;
+
+        pager.on('ajaxStart', function() {
+            loading = Box.loading('正在加载...', {
+                modal: false
+            });
+        });
+
+        pager.on('ajaxSuccess', function(res, callback) {
             if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
@@ -25,18 +68,28 @@ define(function(require, exports, module) {
                 effect: 'fadeIn',
                 snap: true
             });
-        },function(res){
-            document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
+            callback && callback(res.data.records);
+            loading && loading.hide();
         });
-    }
 
-    getLists('/p-youyong/source/api/news/index.json','资讯','wrap2','jWrap2');
+        pager.on('ajaxError', function(data) {
+            document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
+            loading && loading.hide();
+        });
+
+        pager.on('change', function(pageNum, e) {
+        });
+
+        pagEl.addClass('has-build');
+    };
+
+    renderList($PAGE_DATA['baseStaticUrl']+'source/api/news/index.json',{'info':'0'},'wrap','jWrap',jPagination);
 
     //tab页切换
     $('.mod-wrap .mod-sub-nav a').click(function(){
         $(this).addClass('current').siblings().removeClass('current');
-        $('.mod-sub-wrap').hide();
-        $('.jWrap'+$(this).attr('data-value')+'').show();
+        var id = $(this).attr('data-value');
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/news/index.json',{'info':id},'wrap','jWrap',jPagination);
     });
 
 });
