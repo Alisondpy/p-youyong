@@ -8,10 +8,41 @@ define(function(require, exports, module) {
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var template=require("template");
-    var lazy;
+    var Pager = require('plugins/pager/1.0.0/pager');
+    var Tab = require('lib/ui/tab/1.0.0/tab');
 
-    function getLists(url,data,tmpEl,htmEl){
-        io.get(url,{"data":data},function(res){
+    var lazy,pager;
+    var jPagination0 = $('#jPagination0');
+    var jPagination1 = $('#jPagination1');
+    var jPagination2 = $('#jPagination2');
+
+    /*
+    * 渲染分页列表
+    * */
+    function renderList(url,data,tmpEl,htmEl,pagEl){
+        pager = new Pager(pagEl, {
+            url:url,
+            data:data,
+            alias: {
+                currentPage: 'currentPage',
+                pageSize: 'pageSize'
+            },
+            options: {
+                currentPage: 1, // start with 1
+                pageSize: 8
+            }
+        });
+
+        var loading = null;
+
+        pager.on('ajaxStart', function() {
+            loading = Box.loading('正在加载...', {
+                modal: false
+            });
+        });
+
+        pager.on('ajaxSuccess', function(res, callback) {
+            console.log({"后台返回的数据":res},"回调函数："+callback);
             if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
@@ -25,12 +56,23 @@ define(function(require, exports, module) {
                 effect: 'fadeIn',
                 snap: true
             });
-        },function(res){
-            document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
+            callback && callback(res.data.records);
+            loading && loading.hide();
         });
-    }
 
-    getLists('/p-youyong/source/api/course/tab0.json','系列课','tab0','jTab0');
+        pager.on('ajaxError', function(data) {
+            document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
+            loading && loading.hide();
+        });
+
+        pager.on('change', function(pageNum, e) {
+            console.log('pageNum', pageNum, e);
+        });
+
+        console.log(pager.el.hasClass('current'));
+    };
+
+    renderList('/p-youyong/source/api/course/tab0.json',{'info':'系列课'},'tab0','jTab0',jPagination0);
 
     //课程类型切换
     $('#jCourseType').on('click','.nav li',function(){
@@ -53,7 +95,7 @@ define(function(require, exports, module) {
                 $('#jType1').addClass('ui-nav-border');
             }
             $('#jType2').removeClass('ui-nav-border');
-            getLists('/p-youyong/source/api/course/tab1.json','点播课','tab1','jTab1');
+            renderList('/p-youyong/source/api/course/tab1.json',{'info':'点播课'},'tab1','jTab1',jPagination1);
         }else if(type === '2'){
             $('#jType1').show();
             $('#jType2').show();
@@ -69,7 +111,7 @@ define(function(require, exports, module) {
                 $('#jType1').addClass('ui-nav-border');
             }
             $('#jTab2').removeClass('ui-nav-border');
-            getLists('/p-youyong/source/api/course/tab2.json','直播课','tab2','jTab2');
+            renderList('/p-youyong/source/api/course/tab2.json',{'info':'直播课'},'tab2','jTab2',jPagination2);
         }else {
             $('#jType1').hide();
             $('#jType2').hide();
@@ -81,20 +123,6 @@ define(function(require, exports, module) {
             $('#jType0').removeClass('ui-nav-border');
             $('#jType1').removeClass('ui-nav-border');
             $('#jType2').removeClass('ui-nav-border');
-            getLists('/p-youyong/source/api/course/tab0.json','系列课','tab0','jTab0');
         }
-        lazy.update();
     });
-    ////点播课和直播课效果
-    //$('.jLists').on('mouseenter','.jList',function(){
-    //    var titleLen = $(this).find('.jTitle').text().length;
-    //    if(titleLen > 13){
-    //        $(this).find('.jModLabel').stop(true,false).slideUp();
-    //    }
-    //}).on('mouseleave','.jList',function(){
-    //    var titleLen = $(this).find('.jTitle').text().length;
-    //    if(titleLen > 13){
-    //        $(this).find('.jModLabel').stop(true,false).slideDown();
-    //    }
-    //});
 });

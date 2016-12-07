@@ -17,10 +17,10 @@
         <div class="mod-nav">
             <div class="common-nav" id="jType0">
                 <span class="type">课程类型</span>
-                <ul class="clearfix nav">
-                    <li class="f-l current"><a href="javascript:void(0);" data-type="0">系列课</a></li>
-                    <li class="f-l"><a href="javascript:void(0);" data-type="1">点播课</a></li>
-                    <li class="f-l"><a href="javascript:void(0);" data-type="2">直播课</a></li>
+                <ul class="clearfix nav" node-type="hd">
+                    <li node-type="hdItem" data-target="1" class="f-l current"><a href="javascript:void(0);" data-type="0">系列课</a></li>
+                    <li node-type="hdItem" data-target="2" class="f-l"><a href="javascript:void(0);" data-type="1">点播课</a></li>
+                    <li node-type="hdItem" data-target="3" class="f-l"><a href="javascript:void(0);" data-type="2">直播课</a></li>
                 </ul>
             </div>
             <div class="common-nav ui-hid" id="jType1">
@@ -52,7 +52,7 @@
             </ul>
         </div>
         <!--只点播课页面有 end-->
-        <div class="mod-learn">
+        <div class="mod-learn" node-type="bd">
             <!--只系列课页面有 begin-->
             <div class="title" id="jType0Title">
                 <h1>职业学习</h1>
@@ -60,27 +60,22 @@
             </div>
             <!--只系列课页面有 end-->
             <!--系列课tab begin-->
-            <div class="lists jLists clearfix tab0" id="jTab0"></div>
+            <div class="lists jLists clearfix tab0" id="jTab0" node-type="container" data-id="1"></div>
             <!--系列课tab end-->
             <!--点播课tab begin-->
-            <div class="lists jLists clearfix tab1 ui-hid" id="jTab1"></div>
+            <div class="lists jLists clearfix tab1 ui-hid" id="jTab1" node-type="container" data-id="2"></div>
             <!--点播课tab end-->
             <!--直播课tab begin-->
-            <div class="lists jLists clearfix tab2 ui-hid" id="jTab2"></div>
+            <div class="lists jLists clearfix tab2 ui-hid" id="jTab2" node-type="container" data-id="3"></div>
             <!--直播课tab end-->
         </div>
+        <!--分页begin-->
         <div class="mod-page clearfix">
-            <ul class="clearfix f-r">
-                <li class="f-l disable"><a href="">上一页</a></li>
-                <li class="f-l active"><a href="">2</a></li>
-                <li class="f-l"><a href="">3</a></li>
-                <li class="f-l"><a href="">4</a></li>
-                <li class="f-l">...</li>
-                <li class="f-l"><a href="">5</a></li>
-                <li class="f-l"><a href="">6</a></li>
-                <li class="f-l"><a href="">下一页</a></li>
-            </ul>
+            <div class="f-r" id="jPagination0"></div>
+            <div class="f-r" id="jPagination1"></div>
+            <div class="f-r" id="jPagination2"></div>
         </div>
+        <!--分页end-->
     </div>
 </div>
 <!--#include file="./common/footer.html"-->
