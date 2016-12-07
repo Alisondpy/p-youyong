@@ -6,7 +6,6 @@ define(function(require, exports, module) {
     var IO = require('lib/core/1.0.0/io/request');
     var EventEmitter = require('lib/core/1.0.0/event/emitter');
     var Util = require('lib/core/1.0.0/utils/util');
-    var build = require('lib/core/1.0.0/dom/build');
 
     /**
      * 分页控件
@@ -97,6 +96,11 @@ define(function(require, exports, module) {
         _this.pagination = new Pagination(_this.el, options.options);
         _this.pagination.selectPage(options.options.currentPage);
         _this.el.show();
+    }
+
+    Pager.prototype.destroy = function() {
+        var _this = this;
+        _this.pagination.destroy();
     }
 
     module.exports = Pager;

@@ -36,7 +36,8 @@ body {
 }
 
 a {
-    transition: color .2s ease-in-out;
+    transition: all .2s ease-in-out;
+    // transition: background-color .2s ease-in-out;
     &:hover {
         color: #ff5d66;
         text-decoration: none;
@@ -142,9 +143,25 @@ a {
         line-height: 100px;
     }
     .txt {
-        margin: 0 auto;
         padding: 20px 0 0 0;
-        width: 800px;
+        text-align: center;
+        font-size: 14px;
+        line-height: 30px;
+        color: #999;
+    }
+}
+
+.ui-loading-list {
+    .img-loading {
+        width: 32px;
+        height: 32px;
+        margin: 0 auto;
+        background: url('#{$gImgBase}error-img.gif');
+        background-position: 50% 50%;
+        background-repeat: no-repeat;
+    }
+    .txt {
+        padding: 20px 0 0 0;
         text-align: center;
         font-size: 14px;
         line-height: 30px;

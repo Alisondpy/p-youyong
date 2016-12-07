@@ -45,12 +45,20 @@
         padding: 6px 50px 6px 20px;
         border-radius: 42px;
         border: 1px solid $grayColor;
-        input {
+        .lbl,
+        .txt {
             color: $grayColor;
             width: 160px;
             height: 30px;
             line-height: 30px;
             font-size: 18px;
+        }
+        .lbl {
+            position: absolute;
+            left: 20px;
+            top: 5px;
+        }
+        .txt {
             border: 0;
             background-color: transparent;
         }
@@ -71,6 +79,9 @@
             border-color: $hoverColor;
             .iyoyo {
                 color: $hoverColor;
+            }
+            .lbl{
+                display: none;
             }
         }
     }

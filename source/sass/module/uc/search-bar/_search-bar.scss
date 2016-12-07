@@ -1,0 +1,50 @@
+@charset "UTF-8";
+//个人中心搜索栏
+.ui-uc-search-bar {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    padding: 6px 50px 6px 20px;
+    border-radius: 42px;
+    border: 1px solid $grayColor;
+    .lbl,
+    .txt {
+        color: $grayColor;
+        width: 160px;
+        height: 30px;
+        line-height: 30px;
+    }
+    .lbl {
+        position: absolute;
+        left: 20px;
+        top: 5px;
+        font-size: 16px;
+    }
+    .txt {
+        font-size: 18px;
+        border: 0;
+        background-color: transparent;
+    }
+    .iyoyo {
+        background-color: transparent;
+        border: 0;
+        color: $grayColor;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        font-size: 18px;
+        right: 20px;
+        top: 5px;
+        text-align: center;
+    }
+    &.focus {
+        border-color: $hoverColor;
+        .iyoyo {
+            color: $hoverColor;
+        }
+        .lbl{
+        	display: none;
+        }
+    }
+}
