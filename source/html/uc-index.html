@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/conf/uc/index.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
     $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
+    $PAGE_DATA['currentPage'] = '1';
     </script>
 </head>
 
@@ -16,47 +17,16 @@
     <!--#include file="./common/header.html"-->
     <div class="mod-page ">
         <div class="ifm-uc clearfix">
-            <div class="ifm-left-menu">
-                <a class="header">
-                    <!-- <img data-src="http://pic.nen.com.cn/003/001/629/00300162902_i1000500000500ae_3a02c95b.jpg" src="//s1.zzhstatic.com/lib/assets/images/s.gif" /> -->
-                    <img src="http://pic.nen.com.cn/003/001/629/00300162902_i1000500000500ae_3a02c95b.jpg" />
-                </a>
-                <div class="nick txt-overflow">扛把子扛把子扛把子扛把子</div>
-                <ul class="menu-level-1 clearfix" id="jLeftMenu">
-                    <li class="item-level-1 active" node-type="itemLevel1">
-                        <a href="" class="txt-level-1">我的账户</a>
-                    </li>
-                    <li class="item-level-1" node-type="itemLevel1">
-                        <a class="txt-level-1">我的学习我的学习我的学习我的学习我的学习</a>
-                        <ul class="menu-level-2">
-                            <li class="item-level-2" node-type="itemLevel2">
-                                <a href="" class="txt-level-2">我的课程</a>
-                            </li>
-                            <li class="item-level-2" node-type="itemLevel2">
-                                <a href="" class="txt-level-2">我的考试</a>
-                            </li>
-                        </ul>
-                    </li>
-                    <li class="item-level-1 has-child" node-type="itemLevel1">
-                        <a class="txt-level-1">我的学习1</a>
-                        <ul class="menu-level-2">
-                            <li class="item-level-2" node-type="itemLevel2">
-                                <a href="" class="txt-level-2">我的课程1</a>
-                            </li>
-                            <li class="item-level-2" node-type="itemLevel2">
-                                <a href="" class="txt-level-2">我的考试1</a>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <!--#include file="./module/uc/left-menu.html"-->
             <div class="ifm-right-container">
                 <div id="jIfmTab" class="ifm-tab">
                     <div class="ifm-hd clearfix">
+                        <!-- tab 头部 start -->
                         <ul class="clearfix ifm-tab-hd" node-type="hd">
                             <li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的账户</a></li>
                             <li class="ifm-tab-item" node-type="hdItem" data-target="2"><a href="http://www.baidu.com">我的心肝</a></li>
                         </ul>
+                        <!-- tab 头部 end -->
                         <div class="ifm-top-bar">
                             <!-- tab右侧工具栏 start -->
                             <div class="ui-uc-search-bar" id="jUcSearchBar">
