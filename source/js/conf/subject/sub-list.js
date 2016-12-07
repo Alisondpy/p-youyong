@@ -19,6 +19,7 @@ define(function(require, exports, module) {
     $(".nav-area").on("click","a",function(){
         $(this).addClass("active").siblings().removeClass("active");
         console.log($(this).text());
+        rendList()
     })
     //"/source/api/sub/sub.json"
     var rendList = function(url){
@@ -64,6 +65,6 @@ define(function(require, exports, module) {
             $('#jCurrentPage').html(pageNum)
         });
     }
-
+    rendList("/source/api/sub/sub.json");
 
 });
