@@ -1,0 +1,47 @@
+@charset "UTF-8";
+@import "../../common/config/level-2";
+@import "../../common/common";
+body {
+    background-color: #e4ebf0;
+}
+.mod-news{
+	.item{
+		padding: 20px 0;
+        width: 806px;
+        border-bottom: 1px solid #eef3f7;
+        background-color: #fff;
+		.details{
+			height: 40px;
+        	margin: 16px 0;
+        	text-align: justify;
+			font-size: 14px;
+			color: #1c2c36;
+			overflow: hidden;
+		}
+        &.mark{
+			.details{
+				height: auto;
+			}
+        }
+		.control{
+			font-size: 12px;
+			.time{
+				color: #999;
+			}
+			.iyoyo{
+				margin: 0 18px;
+				color: #eb4953;
+				cursor: pointer;
+				&.mark{
+					color: #9f9f9f;
+				}
+			}
+			.more{
+				color: #698697;
+				cursor: pointer;
+			}
+		}
+	}
+}
+
+

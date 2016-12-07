@@ -167,6 +167,11 @@ body {
             .content {
                 width: 692px;
                 .mod-title {
+                    &.mark{
+                        .details{
+                            height: auto;
+                        }
+                    }
                     .name {
                         width: 100px;
                         line-height: 40px;

@@ -1,7 +1,6 @@
 @charset "UTF-8";
 @import "../../common/config/level-2";
 @import "../../common/common";
-@import "../../common/slider/slider";
 body {
     background-color: #e4ebf0;
 }
@@ -156,12 +155,13 @@ body {
             overflow: hidden;
             //border-top: 2px solid #e4ebf0;
             .item {
-                width: 804px;
-                //height: 60px;
-                padding: 20px 30px;
+                width: 794px;
+                margin: 0 auto;
+                padding: 20px 0;
                 border-bottom: 1px solid #e4ebf0;
                 .left-title {
                     .up {
+                        position: relative;
                         line-height: 30px;
                         .job {
                             display: inline-block;
@@ -175,6 +175,39 @@ body {
                             color: #95aab8;
                             &:hover {
                                 color: #000;
+                            }
+                        }
+                        .yoqq, .yotalk{
+                            display: none;
+                            position: absolute;
+                            z-index: 99;
+                            padding: 11px;
+                            width: 76px;
+                            height: 76px;
+                            border: 1px solid #e4ebf0;
+                            border-radius: 4px;
+                            background-color: #fff;
+                            .code{
+                                width: 76px;
+                                height: 76px;
+                            }
+                        }
+                        .yoqq{
+                            left: 180px;
+                        }
+                        .yotalk{
+                            left: 210px;
+                        }
+                        .iyo{
+                            display: inline-block;
+                            cursor: pointer;
+                            &:hover{
+                                .yoqq{
+                                    display: block;
+                                }
+                                .yotalk{
+                                    display: block;
+                                }
                             }
                         }
                     }
@@ -229,6 +262,13 @@ body {
                         line-height: 40px;
                         font-size: 12px;
                         /*px*/
+                    }
+                    .ui-btn-defulat{
+                        background-color: #d1d7dc;
+                        color: #fff;
+                        &.active{
+                            background-color: #ff4545;
+                        }
                     }
                 }
             }

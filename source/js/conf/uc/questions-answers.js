@@ -16,15 +16,19 @@ define(function(require, exports, module) {
         effect: 'fadeIn',
         snap: true
     });
-    $('.jMore').on('click', function () {
-        if($(this).text()=='查看全部') {
-            $(this).text('收起');
-            $(this).parents('.jInfo').siblings('.jDetials').css({'overflow':'visible','height':'auto'});
-        }else{
-            $(this).text('查看全部');
-            $(this).parents('.jInfo').siblings('.jDetials').css({'overflow':'hidden','height':'75px'})
+
+    $('.jTitle').on('click', function () {
+        var $this = $(this);
+        var target = $(e.target);
+        if(target.is('.jMore')&&target.text()=='查看全部') {
+            target.text('收起');
+            $this.addClass('mark');
+        } else if(target.text()=='收起'){
+            target.text('查看全部');
+            $this.removeClass('mark');
         }
     })
+
     //查看全部评论
     function insertItems(url, data, tmpEl, htmEl) {
         io.get(url, { "data": data }, function(res) {
