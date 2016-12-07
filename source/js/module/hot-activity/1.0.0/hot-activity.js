@@ -5,10 +5,12 @@ define(function(require, exports, module) {
     var Util = require('lib/core/1.0.0/utils/util');
     var template=require("template");
     var IO = require('lib/core/1.0.0/io/request');
+    var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
 
  /*   * @param selector [dom selector] dom选择器
       * @param options [mix] 参数详情见defaults
 */
+    var lazy;
     function HotActivity(selector,options){
      var _this = this;
         var defaults = {
@@ -34,6 +36,12 @@ define(function(require, exports, module) {
                 }else{
                     _this._template(res,options.numClass);
                 }
+                //图片懒加载
+                lazy = new Lazyload(el.find($('.jImg')), {
+                    mouseWheel: true,
+                    effect: 'fadeIn',
+                    snap: true
+                });
             },
             function(res){
                 el.html('<p>网络错误，请点击<a class="jReload">重新加载</a></p>');

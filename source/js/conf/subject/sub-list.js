@@ -16,25 +16,22 @@ define(function(require, exports, module) {
         formatNum:true
 });
 
-    $(".nav-area").on("click","a",function(){
-        $(this).addClass("active").siblings().removeClass("active");
-        console.log($(this).text());
-        rendList()
-    })
     //"/source/api/sub/sub.json"
-    var rendList = function(url){
-        var pager = new Pager(jPagination,{
+    var pager;
+    var rendList = function(url,data){
+        if(typeof pager !== 'undefined'){
+            pager.destroy();
+        }
+            pager = new Pager(jPagination,{
             url:$PAGE_DATA['baseStaticUrl'] + url,
-            data:{
-                //传递给后台的数据
-            },
+            data:data,
             alias: {
                 currentPage: 'currentPage',
                 pageSize: 'pageSize'
             },
             options: {
                 currentPage: 1, // start with 1
-                pageSize:2
+                pageSize:10
             }
         });
 
@@ -60,11 +57,15 @@ define(function(require, exports, module) {
         pager.on('ajaxError',function(res,callback){
 
         });
+        //切换页数回调函数
         pager.on('change', function(pageNum, e) {
-            console.log('pageNum', pageNum, e);
-            $('#jCurrentPage').html(pageNum)
+            console.log(e);
         });
     }
     rendList("/source/api/sub/sub.json");
-
+    $(".nav-area").on("click","a",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        console.log($(this).text());
+        rendList("/source/api/sub/index.json")
+    })
 });
