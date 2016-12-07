@@ -1,8 +1,9 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var Util = require('lib/core/1.0.0/utils/util');
     var build = require('lib/core/1.0.0/dom/build');
+    var EventEmitter = require('lib/core/1.0.0/event/emitter');
+    var Util = require('lib/core/1.0.0/utils/util');
 
     function SearchBar(selector, options) {
         var _this = this;
@@ -10,11 +11,11 @@ define(function(require, exports, module) {
             activeClass: 'focus'
         };
         _this.options = $.extend(true, {}, defaults, options);
-        if (_this.options.url == '') {
-            throw new Error('the params options.url is required');
+        if (selector === undefined) {
+            throw new Error('the params [selector] is required');
         }
         _this.el = $(selector);
-        var builder = build.build(_this.el[0], false);
+        var builder = build.build(_this.el, false);
         _this.ipt = builder.get('ipt');
         _this.btn = builder.get('btn');
         _this.lbl = builder.get('lbl');
@@ -22,13 +23,18 @@ define(function(require, exports, module) {
         _this._initEvent();
     };
 
+    //继承自定义事件
+    Util.inherits(SearchBar, EventEmitter);
+
     SearchBar.prototype._initEvent = function() {
         var _this = this;
         _this.ipt.on('focus', function() {
             _this.focus();
         });
         _this.ipt.on('blur', function() {
-            _this.blur();
+            if (_this.getValue().length == 0) {
+                _this.blur();
+            }
         });
         //回车事件
         _this.ipt.on('keydown', function(e) {
@@ -49,12 +55,6 @@ define(function(require, exports, module) {
         if (val.length > 0) {
             _this.focus();
         }
-        if (iptId) {
-            _this.options.alias = iptId;
-        }
-        if (_this.options.data) {
-            _this.options.data[_this.options.alias] = $.trim(_this.ipt.val());
-        }
     }
 
     SearchBar.prototype.focus = function() {
@@ -74,10 +74,11 @@ define(function(require, exports, module) {
 
     SearchBar.prototype.search = function() {
         var _this = this;
-        _this.options.data[_this.options.alias] = _this.getValue();
-        window.location.href = _this.options.url + '?' + _this._getUrlString();
+        var val = _this.getValue();
+        if (val.length > 0) {
+            _this.emit('search', val);
+        }
     }
-
 
     module.exports = SearchBar;
 });

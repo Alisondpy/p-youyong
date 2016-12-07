@@ -15,8 +15,14 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
+    //搜索工具栏
+    var SearchBar = require('module/uc/search-bar/search-bar');
+    var searchBar = new SearchBar('#jUcSearchBar');
+    searchBar.on('search', function(val) {
+        console.log('你可以根据这个返回值来做业务:', val);
+    });
 
-
+    
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
     var ifmTab = new Tab(jIfmTab);

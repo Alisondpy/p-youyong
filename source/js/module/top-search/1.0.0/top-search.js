@@ -32,7 +32,9 @@ define(function(require, exports, module) {
             _this.focus();
         });
         _this.ipt.on('blur', function() {
-            _this.blur();
+            if (_this.getValue().length == 0) {
+                _this.blur();
+            }
         });
         //回车事件
         _this.ipt.on('keydown', function(e) {
