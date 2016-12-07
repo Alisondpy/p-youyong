@@ -2,6 +2,9 @@
   "error":0,
   "msg":"服务器错误",
   "data":{
+    "pageNo": 1,
+    "pageSize": 8,
+    "records": 200,
     "list":[
       {
         "imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
@@ -51,7 +54,8 @@
         "type":"销售技巧",
         "teacher":"丁莹莹"
       }
-    ]
+    ],
+    "total": 2
   },
   "ver": "1.0.0"
 }

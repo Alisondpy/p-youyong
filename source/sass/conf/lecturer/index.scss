@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "../../common/config/level-2";
 @import "../../common/common";
+@import "../../common/pager/pager";
 .mod-container {
     margin: 0 auto;
     width: $width;
@@ -119,29 +120,6 @@
         }
     }
     .mod-page {
-        padding: 20px 0;
-        li {
-            margin-left: 10px;
-            a {
-                padding: 10px;
-                border: 1px solid #bcbcbc;
-                display: inline-block;
-                font-size: 14px;
-                color: #333;
-                &:hover {
-                    background-color: #e32f35;
-                    border: 1px solid #e32f35;
-                    color: #fff;
-                }
-            }
-        }
-        .disable a {
-            color: #bcbcbc;
-        }
-        .active a {
-            background-color: #e32f35;
-            border: 1px solid #e32f35;
-            color: #fff;
-        }
+        padding-top: 22px;
     }
 }

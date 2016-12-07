@@ -87,6 +87,9 @@
         .lists {
             padding: 30px 30px 0;
         }
+        .tab{
+            display: none;
+        }
         .tab0 {
             width: 1152px;
             .list {
@@ -196,6 +199,9 @@
                     color: #fff;
                 }
             }
+        }
+        .current{
+            display: block;
         }
     }
     .mod-page{

@@ -56,7 +56,7 @@ define(function(require, exports, module) {
 
     //弹出相框
     function getAlums(photoId) {
-        io.get('/p-youyong/source/api/index/index.json', { "pid": photoId }, function(data) {
+        io.get($PAGE_DATA['baseStaticUrl']+'source/api/index/index.json', { "pid": photoId }, function(data) {
             if (data.error < 0) {
                 box.error(data.msg);
             } else {

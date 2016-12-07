@@ -42,7 +42,6 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            console.log({"后台返回的数据":res},"回调函数："+callback);
             if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
@@ -66,63 +65,68 @@ define(function(require, exports, module) {
         });
 
         pager.on('change', function(pageNum, e) {
-            console.log('pageNum', pageNum, e);
         });
 
-        console.log(pager.el.hasClass('current'));
+        pagEl.addClass('has-build');
     };
 
-    renderList('/p-youyong/source/api/course/tab0.json',{'info':'系列课'},'tab0','jTab0',jPagination0);
-
     //课程类型切换
-    $('#jCourseType').on('click','.nav li',function(){
-        $(this).addClass("current").siblings().removeClass("current");
-    });
-    $('#jCourseType').on('click','#jType0 li',function(){
-        var type = $(this).find('a').attr('data-type');
-        if(type === '1'){
-            $('#jType1').show();
-            $('#jType2').show();
-            $('#jSubNav').show();
-            $('#jTab0').hide();
-            $('#jTab1').show();
-            $('#jTab2').hide();
-            $('#jType0Title').hide();
-            if(!$('#jType0').hasClass('ui-nav-border')){
-                $('#jType0').addClass('ui-nav-border');
-            }
-            if(!$('#jType1').hasClass('ui-nav-border')){
-                $('#jType1').addClass('ui-nav-border');
-            }
-            $('#jType2').removeClass('ui-nav-border');
-            renderList('/p-youyong/source/api/course/tab1.json',{'info':'点播课'},'tab1','jTab1',jPagination1);
-        }else if(type === '2'){
-            $('#jType1').show();
-            $('#jType2').show();
-            $('#jSubNav').hide();
-            $('#jTab0').hide();
-            $('#jTab1').hide();
-            $('#jTab2').show();
-            $('#jType0Title').hide();
-            if(!$('#jType0').hasClass('ui-nav-border')){
-                $('#jType0').addClass('ui-nav-border');
-            }
-            if(!$('#jType1').hasClass('ui-nav-border')){
-                $('#jType1').addClass('ui-nav-border');
-            }
-            $('#jTab2').removeClass('ui-nav-border');
-            renderList('/p-youyong/source/api/course/tab2.json',{'info':'直播课'},'tab2','jTab2',jPagination2);
-        }else {
-            $('#jType1').hide();
-            $('#jType2').hide();
-            $('#jSubNav').hide();
-            $('#jTab0').show();
-            $('#jTab1').hide();
-            $('#jTab2').hide();
-            $('#jType0Title').show();
-            $('#jType0').removeClass('ui-nav-border');
-            $('#jType1').removeClass('ui-nav-border');
-            $('#jType2').removeClass('ui-nav-border');
+    var jTab = $('#jCourseType');
+    var tab = new Tab(jTab);
+    var type;
+    var type1 = $('#jType1');
+    var type2 = $('#jType2');
+    var subNav = $('#jSubNav');
+    tab.on('change', function(el) {
+        type = el.body.attr('data-id');
+        switch (type){
+            case '1':
+                type1.hide();
+                type2.hide();
+                subNav.hide();
+                if(!jPagination0.hasClass('has-build')){
+                    jPagination1.hide();
+                    jPagination2.hide();
+                    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'info':'系列课'},'tab0','jTab0',jPagination0);
+                }else {
+                    jPagination0.show();
+                    jPagination1.hide();
+                    jPagination2.hide();
+                }
+                break;
+            case '2':
+                type1.show();
+                type2.show();
+                subNav.show();
+                if(!jPagination1.hasClass('has-build')){
+                    jPagination0.hide();
+                    jPagination2.hide();
+                    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab1.json',{'info':'点播课'},'tab1','jTab1',jPagination1);
+                }else {
+                    jPagination0.hide();
+                    jPagination1.show();
+                    jPagination2.hide();
+                }
+                break;
+            case '3':
+                type1.show();
+                type2.show();
+                subNav.hide();
+                if(!jPagination2.hasClass('has-build')){
+                    jPagination0.hide();
+                    jPagination1.hide();
+                    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab2.json',{'info':'直播课'},'tab2','jTab2',jPagination2);
+                }else {
+                    jPagination0.hide();
+                    jPagination1.hide();
+                    jPagination2.show();
+                }
+                break;
         }
+    });
+    tab.setCurrent();
+
+    $('#jCourseType').on('click','.jNav li',function(){
+        $(this).addClass("current").siblings().removeClass("current");
     });
 });

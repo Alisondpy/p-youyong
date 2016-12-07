@@ -25,7 +25,7 @@
             </div>
             <div class="common-nav ui-hid" id="jType1">
                 <span class="type">课程分类</span>
-                <ul class="clearfix nav">
+                <ul class="clearfix nav jNav">
                     <li class="f-l current"><a href="javascript:void(0);">全部</a></li>
                     <li class="f-l"><a href="javascript:void(0);">客服</a></li>
                     <li class="f-l"><a href="javascript:void(0);">运营</a></li>
@@ -36,7 +36,7 @@
             </div>
             <div class="common-nav ui-hid" id="jType2">
                 <span class="type">课程状态</span>
-                <ul class="clearfix nav">
+                <ul class="clearfix nav jNav">
                     <li class="f-l current"><a href="javascript:void(0);">全部</a></li>
                     <li class="f-l"><a href="javascript:void(0);">直播预告</a></li>
                     <li class="f-l"><a href="javascript:void(0);">进行中</a></li>
@@ -46,27 +46,31 @@
         </div>
         <!--只点播课页面有 begin-->
         <div class="mod-sub-nav ui-hid" id="jSubNav">
-            <ul class="clearfix nav">
+            <ul class="clearfix nav jNav">
                 <li class="f-l current"><a href="javascript:void(0);">最新</a></li>
                 <li class="f-l"><a href="javascript:void(0);">最热</a></li>
             </ul>
         </div>
         <!--只点播课页面有 end-->
         <div class="mod-learn" node-type="bd">
-            <!--只系列课页面有 begin-->
-            <div class="title" id="jType0Title">
-                <h1>职业学习</h1>
-                <span>实战课程，助你成就高薪梦想</span>
-            </div>
-            <!--只系列课页面有 end-->
             <!--系列课tab begin-->
-            <div class="lists jLists clearfix tab0" id="jTab0" node-type="container" data-id="1"></div>
+            <div class="tab current" node-type="container" data-id="1">
+                <div class="title" id="jType0Title">
+                    <h1>职业学习</h1>
+                    <span>实战课程，助你成就高薪梦想</span>
+                </div>
+                <div class="lists jLists clearfix tab0 current" id="jTab0"></div>
+            </div>
             <!--系列课tab end-->
             <!--点播课tab begin-->
-            <div class="lists jLists clearfix tab1 ui-hid" id="jTab1" node-type="container" data-id="2"></div>
+            <div class="tab" node-type="container" data-id="2">
+                <div class="lists jLists clearfix tab1" id="jTab1"></div>
+            </div>
             <!--点播课tab end-->
             <!--直播课tab begin-->
-            <div class="lists jLists clearfix tab2 ui-hid" id="jTab2" node-type="container" data-id="3"></div>
+            <div class="tab" node-type="container" data-id="3">
+                <div class="lists jLists clearfix tab2" id="jTab2"></div>
+            </div>
             <!--直播课tab end-->
         </div>
         <!--分页begin-->
