@@ -36,12 +36,6 @@ define(function(require, exports, module) {
                 }else{
                     _this._template(res,options.numClass);
                 }
-                //图片懒加载
-                lazy = new Lazyload(el.find($('.jImg')), {
-                    mouseWheel: true,
-                    effect: 'fadeIn',
-                    snap: true
-                });
             },
             function(res){
                 el.html('<p>网络错误，请点击<a class="jReload">重新加载</a></p>');
@@ -71,6 +65,12 @@ define(function(require, exports, module) {
         }
         var html = template(options.temId, res.data);
         el.html(html);
+        //图片懒加载
+        lazy = new Lazyload(el.find($('.jImg')), {
+            mouseWheel: true,
+            effect: 'fadeIn',
+            snap: true
+        });
     }
     //数字每三位添加逗号
     HotActivity.prototype._formatNum = function(str){

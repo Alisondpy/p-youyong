@@ -10,6 +10,7 @@ define(function(require, exports, module) {
     var template=require("template");
     var Pager = require('plugins/pager/1.0.0/pager');
     var Tab = require('lib/ui/tab/1.0.0/tab');
+    var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
 
     var jPagination = $('#jPagination');
 
@@ -75,39 +76,61 @@ define(function(require, exports, module) {
     var jTab = $('#jCourseType');
     var tab = new Tab(jTab);
     var type;
-    var type0 = $('#jType0');
-    var type1 = $('#jType1');
-    var type2 = $('#jType2');
-    var subNav = $('#jSubNav');
+    var jNavType = $('#jNavType');
+    var jNavClassify = $('#jNavClassify');
+    var jNavStatus = $('#jNavStatus');
+    var jNavSubClassify = $('#jNavSubClassify');
     tab.on('change', function(el) {
         type = el.body.attr('data-id');
         switch (type){
             case '1':
-                type0.removeClass('ui-nav-border');
-                type1.hide().removeClass('ui-nav-border');
-                type2.hide().removeClass('ui-nav-border');
-                subNav.hide();
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'info':'系列课'},'tab0','jTab0',jPagination);
+                jNavType.removeClass('ui-nav-border');
+                jNavClassify.hide().removeClass('ui-nav-border');
+                jNavStatus.hide().removeClass('ui-nav-border');
+                jNavSubClassify.hide();
                 break;
             case '2':
-                type0.addClass('ui-nav-border');
-                type1.show().addClass('ui-nav-border');
-                type2.show();
-                subNav.show();
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab1.json',{'info':'点播课'},'tab1','jTab1',jPagination);
+                jNavType.addClass('ui-nav-border');
+                jNavClassify.show().addClass('ui-nav-border');
+                jNavStatus.show();
+                jNavSubClassify.show();
                 break;
             case '3':
-                type0.addClass('ui-nav-border');
-                type1.show().addClass('ui-nav-border');
-                type2.show();
-                subNav.hide();
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab2.json',{'info':'直播课'},'tab2','jTab2',jPagination);
+                jNavType.addClass('ui-nav-border');
+                jNavClassify.show().addClass('ui-nav-border');
+                jNavStatus.show();
+                jNavSubClassify.hide();
                 break;
         }
     });
     tab.setCurrent();
 
-    $('#jCourseType').on('click','.jNav li',function(){
-        $(this).addClass("current").siblings().removeClass("current");
+    function init(){
+        var data = {};
+        var jNavType = $('#jNavType');
+        var name = jNavType.attr('name');
+        var val = jNavType.find('.current').attr('data-value');
+        data[name] = val;
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'data':data},'tab0','jTab0',jPagination);
+    }
+    init();
+
+   var nav = new navigation('#jCourseNav',{
+       currentClass:'current',//当前样式
+       navSelector:['#jNavType','#jNavClassify','#jNavStatus','#jNavSubClassify']//导航栏dom选择器
+    });
+    nav.on('change',function(data){
+        var type = data.type;
+        switch (type){
+            case '0':
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'data':data},'tab0','jTab0',jPagination);
+                break;
+            case '1':
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab1.json',{'data':data},'tab1','jTab1',jPagination);
+                break;
+            case '2':
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab2.json',{'data':data},'tab2','jTab2',jPagination);
+                break;
+        }
     });
 });
