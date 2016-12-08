@@ -358,24 +358,21 @@ a {
                 }
                 .arrow {
                     position: absolute;
-                    top: 40px;
+                    top: 32px;
                     left: -16px;
                     display: inline-block;
-                    width: 18px;
-                    height: 26px;
-                    // background-image: url("../images/arrow.png");
+                    font-size: 28px;
+                    color: #ccc;
                 }
                 .arrow-disabled {
                     left: -18px;
-                    // background-image: url("../images/arrow-disabled.png");
+                    color: #eef3f7;
                 }
                 .arrow-focus {
                     left: -15px;
-                    // background-image: url("../images/arrow-fcous.png");
                 }
                 .arrow-error {
                     left: -15px;
-                    // background-image: url("../images/arrow-error.png");
                 }
                 margin-left: 30px;
                 textarea {
