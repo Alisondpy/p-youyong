@@ -46,12 +46,9 @@ var define2 = define(function(require, exports, module) {
         submitHandler: function(formRes){
             var formData = form.serializeForm(formRes);
             io.get($PAGE_DATA['saveUrl'],formData,function(data){
-                box.ok("你已成功到达后台",function(result){
-                       if(result==true && data.error ==0){
-                           formRes.reset();
-                       }
-                    }
-                );
+                box.ok("意见反馈提交成功");
+                jImgList.html('<label id="jChooseBg" class="upload-btn"><span class="iyoyo iyoyo-add-img"></span></label>');
+                formRes.reset();
             },function(){
                 box.error('提交意见反馈失败');
             });

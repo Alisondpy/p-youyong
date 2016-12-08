@@ -16,6 +16,11 @@ define(function(require, exports, module) {
         formatNum:true
 });
 
+    $(".nav-area").on("click","a",function(){
+        $(this).addClass("active").siblings().removeClass("active");
+        console.log($(this).text());
+        rendList("/source/api/sub/hot")
+    })
     //"/source/api/sub/sub.json"
     var pager;
     var rendList = function(url,data){
@@ -31,7 +36,7 @@ define(function(require, exports, module) {
             },
             options: {
                 currentPage: 1, // start with 1
-                pageSize:10
+                pageSize:2
             }
         });
 
@@ -43,8 +48,16 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            var strHtml = template('test', res.data);
-            jContainer.html(strHtml);
+            if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
+                var strHtml = template('test', res.data);
+                jContainer.html(strHtml);
+            }else{
+                jContainer.html('<div class="ui-empty-list">'+
+                                    '<div class="iyoyo iyoyo-box"></div>'+
+                                    '<div class="txt">还木有专题活动</div>'+
+                                '</div>')
+                pager.destroy();
+            }
             //图片懒加载
             lazy = new Lazyload(jContainer.find('.jImg'), {
                 mouseWheel: true,
@@ -53,19 +66,13 @@ define(function(require, exports, module) {
             })
             callback && callback(res.data.records);//渲染分页数据
         });
-
         pager.on('ajaxError',function(res,callback){
-
         });
-        //切换页数回调函数
         pager.on('change', function(pageNum, e) {
-            console.log(e);
+            console.log('pageNum', pageNum, e);
+            $('#jCurrentPage').html(pageNum)
         });
     }
     rendList("/source/api/sub/sub.json");
-    $(".nav-area").on("click","a",function(){
-        $(this).addClass("active").siblings().removeClass("active");
-        console.log($(this).text());
-        rendList("/source/api/sub/index.json")
-    })
+
 });

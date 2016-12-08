@@ -72,6 +72,9 @@ define(function(require, exports, module) {
         pagEl.addClass('has-build');
     };
 
+
+
+
     //课程类型切换
     var jTab = $('#jCourseType');
     var tab = new Tab(jTab);
