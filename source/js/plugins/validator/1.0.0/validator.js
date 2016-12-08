@@ -5,7 +5,6 @@
  */
 define(function(require, exports, module) {
     'use strict';
-
     var $ = require('jquery');
     require('lib/plugins/validation/1.15.1/jquery-validate');
 
@@ -46,7 +45,6 @@ define(function(require, exports, module) {
         }
         return pass;
     }
-
     var rTel = /^(\d{3,4}-?)?\d{7,9}$/,
         rMobile = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/,
         rEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
