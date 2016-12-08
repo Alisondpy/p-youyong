@@ -19,7 +19,7 @@ span {
     display: inline-block;
 }
 
-@mixin ver-align($height) {
+@mixin ver-align($height) {.
     height: $height;
     line-height: $height;
 }
