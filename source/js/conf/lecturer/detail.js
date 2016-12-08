@@ -21,7 +21,7 @@ define(function(require, exports, module) {
     var tab = new Tab(jTab);
     var pager;
     tab.on('change',function(el){
-        console.log(el.body.hasClass('teacher-info'));
+        
         //模板加载
             var content = $('#content');
                  //tab body data-id="1"
@@ -29,7 +29,6 @@ define(function(require, exports, module) {
             if(el.body.hasClass('teacher-info')){
                 pager.destroy();
             }else{
-                console.log("sss");
                 pager = new Pager(jPagination, {
                 url: $PAGE_DATA['getPager'],
                 data: {
@@ -50,14 +49,22 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxSuccess', function(data, callback) {
-                console.log(data, callback);
-                content.html(template('test',data.data));
-               //图片懒加载
-                var lazy = new Lazyload($('.jImg'), {
+                if(!$.isEmptyObject(data.data) && data.data.records.length>0){
+                     content.html(template('test',data.data));
+                     //图片懒加载
+                    var lazy = new Lazyload($('.jImg'), {
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true
                     });
+                }else{
+                    content.html('<div class="ui-empty-list">'+
+                                    '<div class="iyoyo iyoyo-box"></div>'+
+                                    '<div class="txt">暂时没有课程</div>'+
+                                '</div>')
+                }
+               
+               
 
                 callback && callback(data.data.records);
                 loading && loading.hide();
@@ -69,7 +76,6 @@ define(function(require, exports, module) {
             });
 
             pager.on('change', function(pageNum, e) {
-                console.log('pageNum', pageNum, e);
                 $('#jCurrentPage').html(pageNum)
             });
 
