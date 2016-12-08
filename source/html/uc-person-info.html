@@ -42,61 +42,7 @@
                         <div class="ifm-tab-container" node-type="container" data-id="1">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
-                                <div node-type="jContainer">
-                                    <div class="ui-loading-list">
-                                        <div class="img-loading"></div>
-                                        <div class="txt">
-                                            正在卖力加载，请稍后...
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 页面主内容 end -->
-                            </div>
-                            <div class="ifm-bottom-bar">
-                                <!-- 底部工具栏 start -->
-                                <div node-type="jPagination" class="pager"></div>
-                                <!-- 底部工具栏 end -->
-                            </div>
-                        </div>
-                        <!-- tab内容区域-1 end-->
-
-                         <!-- tab内容区域-2 start-->
-                        <div class="ifm-tab-container" node-type="container" data-id="2">
-                            <div class="ifm-main-container">
-                                <!-- 页面主内容 start -->
-                                <div node-type="jContainer">
-                                    <div class="ui-loading-list">
-                                        <div class="img-loading"></div>
-                                        <div class="txt">
-                                            正在卖力加载，请稍后...
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- 页面主内容 end -->
-                            </div>
-                            <div class="ifm-bottom-bar">
-                                <!-- 底部工具栏 start -->
-                                <div node-type="jPagination" class="pager"></div>
-                                <!-- 底部工具栏 end -->
-                            </div>
-                        </div>
-                        <!-- tab内容区域-2 end-->
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--#include file="./module/uc/right-container.html"-->
-    </div>
-    <!--#include file="./common/footer.html"-->
-    <!--#include file="./common/js.html"-->
-    <script type="text/javascript">
-    require(['conf/uc/my-study'], function() {});
-    </script>
-    <!--#include file="./common/tj.html"-->
-    <!--#include file="./common/statistics.html"-->
-     <script type="text/html" id="jModule">
-        
-                <div class="mod-personinfo">
+                                 <div class="mod-personinfo">
                     <div class="line">
                         <span><em>注册时间:</em><i>2016-05-19 16:30:56</i></span>  
                         <span class="load"><em>登陆次数:</em><i>53</i></span>  
@@ -104,10 +50,14 @@
                     </div>
                     <div class="picture"><span class="avater">当前头像</span>
                     <em class="avater-pic">
-                        <a href="">
+                     
+                        <label>
                             <div class="mask"></div>
+                           <div id="jImgList" class="upload-list">
                             <div class="edit-pic">编辑头像</div>
-                        </a>
+                           </div>
+                        </label>
+                         
                     <img src="http://i0.hdslb.com/bfs/archive/c6ce1ec8823bac470770985bb851946e938e7411.jpg_320x200.jpg">
 
                     </em>
@@ -140,8 +90,68 @@
 
                     <div class="btn"><button class="ui-btn">保存</button></div>
               </div>
-        
-     </script>
+                                <!-- 页面主内容 end -->
+                            </div>
+
+                        </div>
+                        <!-- tab内容区域-1 end-->
+
+                         <!-- tab内容区域-2 start-->
+                        <div class="ifm-tab-container" node-type="container" data-id="2">
+                            <div class="ifm-main-container">
+                                <!-- 页面主内容 start -->
+                                <div class="mod-personinfo">
+                    <div class="line">
+                        <span><em>注册时间:</em><i>2016-05-19 16:30:56</i></span>  
+                        <span class="load"><em>登陆次数:</em><i>53</i></span>  
+                        <span><em>上次登陆时间:</em><i>2016-05-19 16:30:56</i></span>       
+                    </div>
+                    <div class="zpassword clearfix">
+                        <div class="oldpassword">
+                            <label for="password">
+                                原登录密码
+                            </label>
+                            <input type="text" id="password">
+                        </div>
+
+                        <div class="newpassword">
+                            <label>
+                               新登录密码
+                            </label>
+                             <input type="text" id="nepassword">
+                        </div>
+
+                        <div class="surepassword">
+                            <label for="sure">
+                               确认新登录密码
+                            </label>
+                             <input type="" id="sure">
+                        </div>
+                    </div>
+
+                   <div class="btn">
+                   <button class="ui-btn">保存</button>
+                    <span class="rember"><a href="">忘记密码</a></span>
+                   </div>
+              </div>
+                                <!-- 页面主内容 end -->
+                            </div>
+
+                        </div>
+                        <!-- tab内容区域-2 end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--#include file="./module/uc/right-container.html"-->
+    </div>
+    <!--#include file="./common/footer.html"-->
+    <!--#include file="./common/js.html"-->
+    <script type="text/javascript">
+    require(['conf/uc/person-info'], function() {});
+    </script>
+    <!--#include file="./common/tj.html"-->
+    <!--#include file="./common/statistics.html"-->
 </body>
 
 </html>

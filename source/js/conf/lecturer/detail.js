@@ -6,6 +6,8 @@ define(function(require, exports, module) {
     require('plugins/validator/1.0.0/validator');
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var io = require('lib/core/1.0.0/io/request');
+    var build = require('lib/core/1.0.0/dom/build');
+    var Pager = require('plugins/pager/1.0.0/pager');
     var template = require('template');
     var form = require('lib/core/1.0.0/utils/form'); 
     var jTinfo = $('.jTinfo');
@@ -17,22 +19,73 @@ define(function(require, exports, module) {
 
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
+    var pager;
     tab.on('change',function(el){
+        console.log(el.body.hasClass('teacher-info'));
+        //模板加载
+            var content = $('#content');
+                 //tab body data-id="1"
+            var jPagination = $('#jPagination');
+            if(el.body.hasClass('teacher-info')){
+                pager.destroy();
+            }else{
+                console.log("sss");
+                pager = new Pager(jPagination, {
+                url: $PAGE_DATA['getPager'],
+                data: {
+                    // class: 'djune'
+                },
+                options: {
+                    currentPage: 2, // start with 1
+                    pageSize: 20
+                }
+            });
+
+            var loading = null;
+
+            pager.on('ajaxStart', function() {
+                loading = box.loading('正在加载...', {
+                    modal: false
+                });
+            });
+
+            pager.on('ajaxSuccess', function(data, callback) {
+                console.log(data, callback);
+                content.html(template('test',data.data));
+               //图片懒加载
+                var lazy = new Lazyload($('.jImg'), {
+                    mouseWheel: true,
+                    effect: 'fadeIn',
+                    snap: true
+                    });
+
+                callback && callback(data.data.records);
+                loading && loading.hide();
+            });
+
+            pager.on('ajaxError', function(data) {
+                content.html('网络错误，请重试！');
+                loading && loading.hide();
+            });
+
+            pager.on('change', function(pageNum, e) {
+                console.log('pageNum', pageNum, e);
+                $('#jCurrentPage').html(pageNum)
+            });
+
+            }
+
+           
+       
+ 
     })
+
+
+       
+    
     
 
-    //模板加载
-    io.get('/p-youyong/source/api/lecturer/detail.json', function(res) {
-            var html = template('test', res.data);
-            document.getElementById('content').innerHTML = html;
-                //图片懒加载
-            var lazy = new Lazyload($('.jImg'), {
-                mouseWheel: true,
-                effect: 'fadeIn',
-                snap: true
-                });
-            },function(error){
-    });
+    
 
 
     //图片懒加载
@@ -44,53 +97,6 @@ define(function(require, exports, module) {
 
 
 
-    //关于遮罩层的操作
-    $('.invite-btn').on('click',function(){
-        mask.css('display','block');
-        bg.css('display','block');
-    });
 
-    $('#btn').on('click',function(){
-        io.post();
-    });
-
-
-    //关于遮罩层上面的的验证。
-        $().ready(function(){
-           $('#cvalidate').validate({
-             onfocusout: function(element){
-                $(element).valid();
-            },
-            debug:true,
-            rules:{
-                cname:{
-                    required:true,
-                },
-                phone:{
-                    required:true,
-                    minlength:11
-                },
-                ccompany:{
-                    required:true,
-                },
-                cneed:{
-                    required:true,
-                }
-            },
-            messages:{
-                cname:{
-                    required:"请填写姓名",
-                    minlength:"姓名不合法"
-                },
-                ccompany:{
-                    required:"请填写公司的名称"
-                },
-                cneed:{
-                    required:"请填写您的需求"
-
-                }
-            }
-        }) 
-    })
 
 });

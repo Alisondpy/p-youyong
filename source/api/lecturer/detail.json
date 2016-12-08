@@ -2,6 +2,8 @@
   "error":0,
   "msg":"服务器错误",
   "data":{
+    "pageSize": 12,
+    "records": 100,
     "list":[
       {
         "imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
@@ -11,6 +13,18 @@
   
       },
       {
+        "imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+        "info":"免费",
+        "title":"资深营销",
+        "teacher":"丁莹莹"
+      },
+       {
+        "imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+        "info":"免费",
+        "title":"资深营销",
+        "teacher":"丁莹莹"
+      },
+       {
         "imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
         "info":"免费",
         "title":"资深营销",
@@ -47,11 +61,24 @@
         "teacher":"丁莹莹"
       },
       {
+       "imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+        "info":"免费",
+        "title":"资深营销就业学习专家",
+        "teacher":"丁莹莹"
+      },
+      {
+        "imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+        "info":"免费",
+        "title":"资深营销就专家",
+        "teacher":"丁莹莹"
+      },
+       {
         "imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
         "info":"免费",
         "title":"资深营销就专家",
         "teacher":"丁莹莹"
       }
+
     ]
   },
   "ver": "1.0.0"

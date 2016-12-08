@@ -1,6 +1,8 @@
 @charset "UTF-8";
 @import "../../common/config/level-2";
 @import "../../common/common";
+@import "../../module/uc/common";
+@import "../../common/pager/pager";
 @import "../../module/course/course-list";
 body {
     background-color: #eee;
@@ -124,6 +126,9 @@ h1 {
     .w-1180 {
         width: 1180px;
         margin: 0 auto;
+        .ifm-bottom-bar{
+            margin:20px 0;
+        }
         .mod-up {
             .title {
                 margin: 42px 0 19px 0;

@@ -7,19 +7,18 @@
     <!--#include file="./common/meta.html"-->
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/lecturer/detail.css" type="text/css" charset="utf-8">
+
+    <script type="text/javascript">
+    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/lecturer/detail.json';
+    $PAGE_DATA['currentPage'] = '1';
+    </script>
 </head>
 
 <body>
     <!-- 我是注释 -->
     <!--#include file="./common/header.html"-->
-	
-
-	
-	
-
-
     <div class="mod-lecturer">
-    	<div class="w-1180">
+    	<div class="w-1180 clearfix">
 			<div class="mod-up">
 				<div class="title">
 					<a href="#">师资阵容</a>
@@ -35,6 +34,7 @@
 						<div class="job">市场运营金牌讲师</div>
 						<div class="text">对方的路径算法来看待jfk垃圾啊开绿灯解放反抗军拉萨解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列克斯的jfk了对方的路径算法来看待jfk垃圾啊开绿灯解放反抗军拉萨解放了就阿列解放了就阿列解放了就阿列解放了
 						</div>
+
 					</div>
 
 					<div class="contain-right">
@@ -68,13 +68,11 @@
 					</div>
 				</div>
 			</div>
-			 <div class="mod-page">
-		        <div class="jPagination"></div>
-		        <div id="jContainer"></div>
-		        <div class="jPagination"></div>
-		        <div class="iyoyo iyoyo-weixin"></div>
-		        <div>你正在访问第<span id="jCurrentPage"></span>页</div>
-    		</div>
+             <div class="ifm-bottom-bar f-r">
+            <!-- 底部工具栏 start -->
+            <div id="jPagination" class="pager"></div>
+            <!-- 底部工具栏 end -->
+        </div>
 		</div>
 	</div>
     <!--#include file="./common/footer.html"-->
