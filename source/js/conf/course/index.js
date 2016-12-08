@@ -68,8 +68,6 @@ define(function(require, exports, module) {
 
         pager.on('change', function(pageNum, e) {
         });
-
-        pagEl.addClass('has-build');
     };
 
 

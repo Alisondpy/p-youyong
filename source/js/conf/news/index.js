@@ -36,10 +36,6 @@ define(function(require, exports, module) {
         pager = new Pager(pagEl, {
             url:url,
             data:data,
-            alias: {
-                currentPage: 'currentPage',
-                pageSize: 'pageSize'
-            },
             options: {
                 currentPage: 1, // start with 1
                 pageSize: 8
@@ -57,7 +53,6 @@ define(function(require, exports, module) {
         pager.on('ajaxSuccess', function(res, callback) {
             if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
-                console.log("sss:"+html,tmpEl,htmEl);
                 document.getElementById(htmEl).innerHTML = html;
             }else {
                 document.getElementById(htmEl).innerHTML = '<div class="ui-empty-list">'+
@@ -84,8 +79,6 @@ define(function(require, exports, module) {
 
         pager.on('change', function(pageNum, e) {
         });
-
-        pagEl.addClass('has-build');
     };
 
     renderList($PAGE_DATA['loadNews'],{'type':'0'},'jWrap','jWrapBox',jPagination);

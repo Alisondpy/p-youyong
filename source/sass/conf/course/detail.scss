@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "../../common/config/level-2";
 @import "../../common/common";
+@import "../../common/pager/pager";
 h1,
 h2,
 h3,
@@ -338,7 +339,7 @@ a {
         }
         .comment {
             position: relative;
-            padding-bottom: 20px;
+            margin-bottom: 30px;
             .input {
                 position: relative;
                 .input-login {
@@ -384,6 +385,8 @@ a {
                     border: 1px solid #ccc;
                     outline: none;
                     resize: none;
+                    font-size: 14px;
+                    color: #ccc;
                 }
                 .text-disabled {
                     border: 1px solid #eef3f7;
@@ -552,6 +555,9 @@ a {
                     color: #ea3e48;
                 }
             }
+        }
+        .mod-page{
+            padding-top: 22px;
         }
         .mod-right {
             width: 320px;

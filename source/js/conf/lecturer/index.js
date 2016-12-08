@@ -23,10 +23,6 @@ define(function(require, exports, module) {
         pager = new Pager(pagEl, {
             url:url,
             data:data,
-            alias: {
-                currentPage: 'currentPage',
-                pageSize: 'pageSize'
-            },
             options: {
                 currentPage: 1, // start with 1
                 pageSize: 8
@@ -42,7 +38,7 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
+            if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
             }else {
@@ -66,8 +62,6 @@ define(function(require, exports, module) {
 
         pager.on('change', function(pageNum, e) {
         });
-
-        pagEl.addClass('has-build');
     };
 
     renderList($PAGE_DATA['pagerTeacher'],{'info':'系列课'},'lists','jLists',jPagination);

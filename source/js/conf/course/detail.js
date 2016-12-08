@@ -8,6 +8,66 @@ define(function(require, exports, module) {
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var Tab = require('lib/ui/tab/1.0.0/tab');
+    var template=require("template");
+    var Pager = require('plugins/pager/1.0.0/pager');
+
+    var jPagination = $('#jPagination');
+    /*
+     * 渲染分页列表
+     * */
+    var lazy,pager;
+    function renderList(url,data,tmpEl,htmEl,pagEl){
+        if(typeof pager !== 'undefined'){
+            pager.destroy();
+        }
+        pager = new Pager(pagEl, {
+            url:url,
+            data:data,
+            options: {
+                currentPage: 1, // start with 1
+                pageSize: 8
+            }
+        });
+
+        var loading = null;
+
+        pager.on('ajaxStart', function() {
+            loading = Box.loading('正在加载...', {
+                modal: false
+            });
+        });
+
+        pager.on('ajaxSuccess', function(res, callback) {
+            if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
+                var html = template(tmpEl,res.data);
+                console.log(tmpEl,htmEl);
+                document.getElementById(htmEl).innerHTML = html;
+            }else {
+                document.getElementById(htmEl).innerHTML = '<div class="ui-empty-list">'+
+                    '<div class="iyoyo iyoyo-box"></div>'+
+                    '<div class="txt">暂无数据</div>'+
+                    '</div>';
+                pager.destroy();
+            }
+
+            //图片懒加载
+            lazy = new Lazyload($('.jImg'), {
+                mouseWheel: true,
+                effect: 'fadeIn',
+                snap: true
+            });
+            callback && callback(res.data.records);
+            loading && loading.hide();
+        });
+
+        pager.on('ajaxError', function(data) {
+            document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
+            loading && loading.hide();
+        });
+
+        pager.on('change', function(pageNum, e) {
+        });
+    };
 
     //图片懒加载
     var lazy = new Lazyload($('.jImg'), {
@@ -20,7 +80,21 @@ define(function(require, exports, module) {
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
     tab.on('change', function(el) {
-        lazy.update();
+        var type = el.hd.attr('data-value');
+        console.log(type);
+        switch (type){
+            case '0':
+                break;
+            case '1':
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':type},'jWrap1','jWrap1Box',jPagination);
+                break;
+            case '2':
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':type},'jWrap2','jWrap2Box',jPagination);
+                break;
+            case '3':
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':type},'jWrap3','jWrap3Box',jPagination);
+                break;
+        }
     });
 
     //评论字数限制
@@ -52,7 +126,7 @@ define(function(require, exports, module) {
     });
 
     //点赞
-    $('.mod-item .like').click(function(){
+    $('#jWrap1Box').on('click','.mod-item .like',function(){
         if($(this).hasClass("activeLike")){
             $(this).removeClass('activeLike');
         }else {

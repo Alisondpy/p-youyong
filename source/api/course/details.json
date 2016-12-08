@@ -1,0 +1,91 @@
+{
+	"error":0,
+	"msg":"服务器错误",
+	"data":{
+		"pageNo": 1,
+		"pageSize": 8,
+		"records": 300,
+		"resultList":[
+			{
+				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+				"title":"Mac装PS CC如何破解？",
+				"updateTime":"2012-11-10",
+				"source":"PS新建文档",
+				"content":"PS制作过程中，图层会比较多，缩略图又会比较小，所以名称尽量起的明确些，如“原始图”之类的，以便于与其他图层进行区分。",
+				"num":12122,
+				"nick":"花村扛把子",
+				"time":10,
+				"ask":3,
+				"view":5,
+				"cai":20
+			},
+			{
+				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+				"title":"Mac装PS CC如何破解？",
+				"updateTime":"2012-11-10",
+				"source":"PS新建文档",
+				"content":"PS制作过程中，图层会比较多，缩略图又会比较小，所以名称尽量起的明确些，如“原始图”之类的，以便于与其他图层进行区分。",
+				"num":11122,
+				"nick":"花村扛把子",
+				"time":10,
+				"ask":3,
+				"view":5,
+				"cai":20
+			},
+			{
+				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+				"title":"Mac装PS CC如何破解？",
+				"updateTime":"2012-11-10",
+				"source":"PS新建文档",
+				"content":"PS制作过程中，图层会比较多，缩略图又会比较小，所以名称尽量起的明确些，如“原始图”之类的，以便于与其他图层进行区分。",
+				"num":15122,
+				"nick":"花村扛把子",
+				"time":10,
+				"ask":2,
+				"view":1,
+				"cai":20
+			},
+			{
+				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+				"title":"Mac装PS CC如何破解？",
+				"updateTime":"2012-11-10",
+				"source":"PS新建文档",
+				"content":"PS制作过程中，图层会比较多，缩略图又会比较小，所以名称尽量起的明确些，如“原始图”之类的，以便于与其他图层进行区分。",
+				"num":12622,
+				"nick":"花村扛把子",
+				"time":10,
+				"ask":3,
+				"view":5,
+				"cai":20
+			},
+			{
+				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+				"title":"Mac装PS CC如何破解？",
+				"updateTime":"2012-11-10",
+				"source":"PS新建文档",
+				"content":"PS制作过程中，图层会比较多，缩略图又会比较小，所以名称尽量起的明确些，如“原始图”之类的，以便于与其他图层进行区分。",
+				"num":2122,
+				"nick":"花村扛把子",
+				"time":10,
+				"ask":3,
+				"view":5,
+				"cai":20
+			},
+			{
+				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+				"title":"Mac装PS CC如何破解？",
+				"updateTime":"2012-11-10",
+				"source":"PS新建文档",
+				"content":"PS制作过程中，图层会比较多，缩略图又会比较小，所以名称尽量起的明确些，如“原始图”之类的，以便于与其他图层进行区分。",
+				"num":12122,
+				"nick":"花村扛把子",
+				"time":10,
+				"ask":3,
+				"view":5,
+				"cai":20
+			}
+		],
+		"total": 2
+	},
+	"ver": "1.0.0"
+}
