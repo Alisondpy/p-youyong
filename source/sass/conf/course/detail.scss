@@ -358,21 +358,22 @@ a {
                 }
                 .arrow {
                     position: absolute;
-                    top: 32px;
-                    left: -16px;
+                    top: 42px;
+                    left: -18px;
                     display: inline-block;
                     font-size: 28px;
                     color: #ccc;
+                    line-height: 22px;
+                    background-color: #fff;
                 }
                 .arrow-disabled {
-                    left: -18px;
                     color: #eef3f7;
                 }
                 .arrow-focus {
-                    left: -15px;
+                    color: #aaa;
                 }
                 .arrow-error {
-                    left: -15px;
+                    color: #ec3e48;
                 }
                 margin-left: 30px;
                 textarea {

@@ -16,15 +16,15 @@ define(function(require, exports, module) {
     /*
     * 渲染侧边栏
     * */
-    new Hot('jHotNews',{
-        url:$PAGE_DATA['baseStaticUrl']+"source/api/news/hot-news.json",
-        temId:'jNews'
-    });
-
-    new Hot('jHotCourse',{
-        url:$PAGE_DATA['baseStaticUrl']+"source/api/news/hot-news.json",
-        temId:'jCourse'
-    });
+    //new Hot('jHotNews',{
+    //    url:$PAGE_DATA['baseStaticUrl']+"source/api/news/hot-news.json",
+    //    temId:'jNews'
+    //});
+    //
+    //new Hot('jHotCourse',{
+    //    url:$PAGE_DATA['baseStaticUrl']+"source/api/news/hot-news.json",
+    //    temId:'jCourse'
+    //});
     /*
      * 渲染分页列表
      * */

@@ -70,13 +70,13 @@ define(function(require, exports, module) {
         pagEl.addClass('has-build');
     };
 
-    renderList($PAGE_DATA['baseStaticUrl']+'source/api/lecturer/index.json',{'info':'系列课'},'lists','jLists',jPagination);
+    renderList($PAGE_DATA['pagerTeacher'],{'info':'系列课'},'lists','jLists',jPagination);
 
     var nav = new navigation('#jCourseNav',{
         currentClass:'current',//当前样式
         navSelector:['#jNavType']//导航栏dom选择器
     });
     nav.on('change',function(data){
-        renderList($PAGE_DATA['baseStaticUrl']+'source/api/lecturer/index.json',{'data':data},'lists','jLists',jPagination);
+        renderList($PAGE_DATA['pagerTeacher'],{'data':data},'lists','jLists',jPagination);
     });
 });
