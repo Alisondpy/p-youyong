@@ -1,10 +1,11 @@
 @charset "UTF-8";
 @import "../../common/config/level-2";
 @import "../../common/common";
-body {
-    background-color: #e4ebf0;
-}
+@import "../../module/uc/common";
+@import "../../module/uc/search-bar/search-bar";
+@import "../../common/pager/pager";
 .mod-note{
+	padding: 0 33px;
     .note-list{
         .item{
             padding: 20px 0;
@@ -23,12 +24,21 @@ body {
 				}
             }
             .details{
-            	max-height: 66px;
+            	padding: 5px;
+            	width: 780px;
+            	height: 60px;
             	margin: 16px 0;
-            	text-align: justify;
-            	overflow: hidden;
+            	border:none;
+            	resize:none;
 				font-size: 14px;
+            	text-align: justify;
 				color: #1c2c36;
+				overflow: hidden;
+            	&.edittxt{
+            		overflow-y: auto;
+					border: 1px solid #ccc;
+            		border-radius: 4px;
+            	}
             }
             .control{
 				font-size: 12px;
@@ -43,21 +53,35 @@ body {
 				.edit{
 					.iyoyo{
 						font-size: 12px;
-						cursor: pointer;
 					}
 					.iyoyo-heart, .iyoyo-del{
 						color: #f43c3c;
 					}
 					.secret{
-						cursor: pointer;
+						margin-right: 15px;
 						.iyoyo-heart{
 							font-size: 20px;
+						}
+						.normal{
+							font-style: normal;	
 						}
 					}
 					.iyoyo-note{
 						color: #5e7d8f;
-						margin-left: 20px;
+						margin-left: 10px;
 						margin-right: 10px;
+						cursor: pointer;
+					}
+					.iyoyo-del{
+						cursor: pointer;
+					}
+					.ui-btn{
+						display: none;
+						margin-right: 30px;
+						width: 40px;
+						height: 20px;
+						line-height: 20px;
+						font-size: 12px;
 					}
 				}
             }
