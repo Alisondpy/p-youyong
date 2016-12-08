@@ -43,7 +43,9 @@ body{
 			}
 		}
 	}
+	//普通登录
 	.right-login{
+		display: none;
 		.ulform{
 			padding: 10px 40px 0 40px;
 			width: 280px;
@@ -87,8 +89,8 @@ body{
 			}
 		}
 	}
+	//手机登录
 	.right-login-mobile{
-		display: none;
 		.ulform{
 			padding: 10px 40px 0 40px;
 			width: 280px;
@@ -151,10 +153,14 @@ body{
 					margin-top: 12px;
 					border: none;
 					color: #4b677b;
+					.register{
+						cursor: pointer;
+					}
 				}
 			}
 		}
 	}
+	//注册页面
 	.right-signin{
 		display: none;
 		position: relative;
