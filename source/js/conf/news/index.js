@@ -55,12 +55,16 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            console.log(res);
-            if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
+            if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
+                console.log("sss:"+html,tmpEl,htmEl);
                 document.getElementById(htmEl).innerHTML = html;
             }else {
-                document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>暂无数据</div>";
+                document.getElementById(htmEl).innerHTML = '<div class="ui-empty-list">'+
+                    '<div class="iyoyo iyoyo-box"></div>'+
+                    '<div class="txt">暂无数据</div>'+
+                    '</div>';
+                pager.destroy();
             }
 
             //图片懒加载
@@ -84,13 +88,13 @@ define(function(require, exports, module) {
         pagEl.addClass('has-build');
     };
 
-    renderList($PAGE_DATA['loadNews'],{'type':'0'},'wrap','jWrap',jPagination);
+    renderList($PAGE_DATA['loadNews'],{'type':'0'},'jWrap','jWrapBox',jPagination);
 
     //tab页切换
     $('.mod-wrap .mod-sub-nav a').click(function(){
         $(this).addClass('current').siblings().removeClass('current');
         var id = $(this).attr('data-value');
-        renderList($PAGE_DATA['loadNews'],{'type':id},'wrap','jWrap',jPagination);
+        renderList($PAGE_DATA['loadNews'],{'type':id},'jWrap','jWrapBox',jPagination);
     });
 
 });

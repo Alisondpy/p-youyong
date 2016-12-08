@@ -126,7 +126,7 @@ define(function(require, exports, module) {
             case '0':
                 renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'data':data},'tab0','jTab0',jPagination);
                 break;
-            case '1':
+            case '1': data
                 renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab1.json',{'data':data},'tab1','jTab1',jPagination);
                 break;
             case '2':

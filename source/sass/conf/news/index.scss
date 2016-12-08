@@ -144,7 +144,6 @@
                     }
                     .info {
                         position: absolute;
-                        background: rgba(0, 0, 0, 0.7);
                         left: 0;
                         right: 0;
                         top: 0;
@@ -152,9 +151,18 @@
                         text-align: center;
                     }
                     span {
+                        display: none;
                         line-height: 68px;
                         font-size: 18px;
                         color: #fff;
+                    }
+                    &:hover{
+                        .info{
+                            background: rgba(0, 0, 0, 0.7);
+                        }
+                        span{
+                            display: inline-block;
+                        }
                     }
                 }
             }
