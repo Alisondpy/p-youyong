@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Hot = require('module/hot-activity/1.0.0/hot-activity');
     var Pager = require('plugins/pager/1.0.0/pager');
+    var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
     var lazy;
     var jContainer = $('#jContainer');
     var jPagination = $('.jPagination');
@@ -16,14 +17,14 @@ define(function(require, exports, module) {
         formatNum:true
 });
 
-    $(".nav-area").on("click","a",function(){
+    /*$(".nav-area").on("click","a",function(){
         $(this).addClass("active").siblings().removeClass("active");
         console.log($(this).text());
-        rendList("/source/api/sub/hot")
-    })
+        renderList("/source/api/sub/hot")
+    })*/
     //"/source/api/sub/sub.json"
     var pager;
-    var rendList = function(url,data){
+    var renderList = function(url,data){
         if(typeof pager !== 'undefined'){
             pager.destroy();
         }
@@ -73,6 +74,25 @@ define(function(require, exports, module) {
             $('#jCurrentPage').html(pageNum)
         });
     }
-    rendList("/source/api/sub/sub.json");
+    renderList("/source/api/sub/sub.json");
+    var nav = new navigation('#jActivity',{
+        currentClass:'current',//当前样式
+        navSelector:['#jActClassify','#jActTime']//导航栏dom选择器
+    });
+    nav.on('change',function(data){
+        console.log(data);
+        var type = data.type;
+        switch (type){
+            case '0':
+                renderList('source/api/course/tab0.json');
+                break;
+            case '1':
+                renderList('source/api/course/tab1.json');
+                break;
+            case '2':
+                renderList('source/api/course/tab2.json');
+                break;
+        }
+    })
 
 });

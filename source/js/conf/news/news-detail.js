@@ -4,23 +4,25 @@ define(function(require, exports, module) {
     var form = require('lib/core/1.0.0/utils/form');
     var template=require("template");
     var io = require('lib/core/1.0.0/io/request');
-    var HOT=require('module/hot-activity');
+    var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
+    var lazy;
+    var jHotTrain = $("#jHotTrain");
+    var HOT=require('module/hot-activity/1.0.0/hot-activity');
     io.get("/p-youyong/source/api/sub/sub.json",function(res){
             var html = template('test', res.data);
             document.getElementById('content').innerHTML = html;
         },
         function(){
         }
-    )
-    new HOT('jHotNews',{
-        url:"/p-youyong/source/api/news/hot-news.json",
-        temId:'hot',
-        formatNum:false
+    );
+
+
+    //图片懒加载
+    lazy = new Lazyload(jHotTrain.find('.jImg'), {
+        mouseWheel: true,
+        effect: 'fadeIn',
+        snap: true
     });
-    new HOT('jHotTrain',{
-        url:"/p-youyong/source/api/news/hot-train-course.json",
-        temId:'hotCourse',
-        formatNum:false
-    });
+
 });
 
