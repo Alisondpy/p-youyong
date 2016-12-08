@@ -52,13 +52,17 @@ define(function(require, exports, module) {
             tipsMenu = builder.get('tipsMenu');
         userName.on('mouseenter', function() {
             isMoveing = true;
-            tipsMenu.addClass('active');
+            tipsMenu.stop().fadeIn(500, function() {
+                tipsMenu.addClass('active');
+            });
         });
         userName.on('mouseleave', function() {
             isMoveing = false;
             setTimeout(function() {
                 if (!isMoveing) {
-                    tipsMenu.removeClass('active');
+                    tipsMenu.stop().fadeOut(500, function() {
+                        tipsMenu.removeClass('active');
+                    });
                 }
             }, 200);
         });

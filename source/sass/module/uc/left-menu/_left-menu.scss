@@ -1,4 +1,5 @@
 @charset "UTF-8";
+
 /*左侧菜单*/
 
 .ifm-left-menu {
@@ -51,7 +52,10 @@
                 background-color: #fff;
                 @extend .menu-txt;
             }
-            &.active {
+            &.active{
+                .menu-level-2 {
+                    display: block;
+                }
                 .txt-level-1 {
                     color: #fff;
                     background-color: $BgHoverColor;
@@ -76,7 +80,14 @@
         }
     }
     .menu-level-2 {
+        display: none;
         .item-level-2 {
+            &.active {
+                .txt-level-2 {
+                    color: #fff;
+                    background-color: $BgHoverColor;
+                }
+            }
             .txt-level-2 {
                 height: 60px;
                 line-height: 60px;

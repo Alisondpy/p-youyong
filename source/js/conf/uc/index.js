@@ -21,8 +21,11 @@ define(function(require, exports, module) {
     searchBar.on('search', function(val) {
         console.log('你可以根据这个返回值来做业务:', val);
     });
+    //左侧菜单
+    var LeftMenu = require('module/uc/left-menu/left-menu');
+    var searchBar = new LeftMenu();
 
-    
+
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
     var ifmTab = new Tab(jIfmTab);
@@ -134,7 +137,7 @@ define(function(require, exports, module) {
 
     ifmTab.setCurrent();
 
-    function template(){
+    function template() {
         return 'ddd';
     }
 
