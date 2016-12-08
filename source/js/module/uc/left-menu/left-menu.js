@@ -13,12 +13,14 @@ define(function(require, exports, module) {
         _this.el = $(_this.options.selector);
         var builder = build.build(_this.el, false);
         _this.itemLevel1s = builder.get('itemLevel1');
+        _this.menuLevel2s = builder.get('menuLevel2');
         _this._initEvent();
     };
 
     LeftMenu.prototype._initEvent = function() {
         var _this = this;
         _this.itemLevel1s.on('click', function(e) {
+            debugger;
             var itemLevel1 = $(this);
             e.preventDefault();
             var builder = build.build(itemLevel1, false);
@@ -29,7 +31,9 @@ define(function(require, exports, module) {
                         itemLevel1.removeClass('active');
                     });
                 } else {
+                    _this.menuLevel2s.slideUp();
                     menuLevel2.slideDown(function() {
+                        _this.itemLevel1s.removeClass('active');
                         itemLevel1.addClass('active');
                     });
                 }

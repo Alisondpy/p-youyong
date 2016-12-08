@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Thu Dec  8 15:27:54 2016
+Created by FontForge 20120731 at Thu Dec  8 16:09:12 2016
  By admin
 </metadata>
 <defs>
@@ -19,7 +19,7 @@ Created by FontForge 20120731 at Thu Dec  8 15:27:54 2016
     bbox="0 -212 1194 896"
     underline-thickness="0"
     underline-position="0"
-    unicode-range="U+0078-E7E2"
+    unicode-range="U+0078-E7E3"
   />
 <missing-glyph 
  />
@@ -209,5 +209,7 @@ d="M512 896q-138 0 -256 -69t-187 -187t-69 -256t69 -256t187 -187t256 -69t256 69t1
     <glyph glyph-name="arrow-left-sm" unicode="&#xe7e2;" 
 d="M512 -30q113 0 208.5 55.5t150.5 151t55 207.5t-55.5 207.5t-151 151t-207.5 55.5t-207.5 -55.5t-151 -151t-55.5 -207.5t55 -207.5t150.5 -151t208.5 -55.5zM366 407l206 206q9 9 22.5 9t22.5 -9t9 -22t-9 -23l-184 -184l183 -182q9 -9 9 -22t-9 -22q-10 -9 -23 -9
 t-21 9l-206 204q-9 9 -9 23q0 13 9 22z" />
+    <glyph glyph-name="iyoyo-arrow-left-normal-entity" unicode="&#xe7e3;" 
+d="M707 -96l-432 445v59l432 456v-960z" />
   </font>
 </defs></svg>

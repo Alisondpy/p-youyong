@@ -32,7 +32,7 @@ define(function(require, exports, module) {
             data: null,
             ajaxType: 'get', //支持jsonp|get|post
             alias: {
-                currentPage: 'currentPage',
+                currentPage: 'pageNo',
                 pageSize: 'pageSize'
             },
             options: {

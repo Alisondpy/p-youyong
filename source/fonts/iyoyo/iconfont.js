@@ -298,6 +298,12 @@ var svgSprite = '<svg>' +
       ''+
     '</symbol>'+
   ''+
+    '<symbol id="iyoyo-iyoyo-arrow-left-normal-entity" viewBox="0 0 1024 1024">'+
+      ''+
+      '<path d="M706.582 992l-431.829-445.494v-58.762l431.829-455.744z" fill="" ></path>'+
+      ''+
+    '</symbol>'+
+  ''+
 '</svg>'
 var script = function() {
     var scripts = document.getElementsByTagName('script')
