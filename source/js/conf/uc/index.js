@@ -134,7 +134,9 @@ define(function(require, exports, module) {
 
     ifmTab.setCurrent();
 
-
+    function template(){
+        return 'ddd';
+    }
 
 
 });
