@@ -11,7 +11,8 @@ define(function(require, exports, module) {
 		var _this = this;
 		var defaults = {
 			currentClass:'',//当前样式
-			navSelector:[]//导航栏dom选择器
+			navSelector:[],//导航栏dom选择器
+			navItemSlect:'li'
 		};
 
 		_this.el = $(selector);
@@ -24,7 +25,7 @@ define(function(require, exports, module) {
 	Util.inherits(NavigationBar, EventEmitter);
 	NavigationBar.prototype._initEvent = function() {
 		var _this = this;
-		_this.el.on('click','li',function() {
+		_this.el.on('click',_this.options.navItemSlect,function() {
 			var $li = $(this);
 			if (!$li.hasClass(_this.options.currentClass)) {
 				$li.addClass(_this.options.currentClass).siblings().removeClass(_this.options.currentClass);

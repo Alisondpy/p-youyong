@@ -5,31 +5,25 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var Box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
-    var Hot = require('module/hot-activity/1.0.0/hot-activity');
     var Pager = require('plugins/pager/1.0.0/pager');
     var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
     var lazy;
     var jContainer = $('#jContainer');
     var jPagination = $('.jPagination');
-    new Hot('jHotActive',{
+    //热门活动列表
+   /* new Hot('jHotActive',{
         url:"/p-youyong/source/api/sub/hot-activity.json",
         temId:'hot',
         formatNum:true
-});
+});*/
 
-    /*$(".nav-area").on("click","a",function(){
-        $(this).addClass("active").siblings().removeClass("active");
-        console.log($(this).text());
-        renderList("/source/api/sub/hot")
-    })*/
-    //"/source/api/sub/sub.json"
     var pager;
     var renderList = function(url,data){
         if(typeof pager !== 'undefined'){
             pager.destroy();
         }
             pager = new Pager(jPagination,{
-            url:$PAGE_DATA['baseStaticUrl'] + url,
+            url:url,
             data:data,
             alias: {
                 currentPage: 'currentPage',
@@ -37,7 +31,7 @@ define(function(require, exports, module) {
             },
             options: {
                 currentPage: 1, // start with 1
-                pageSize:2
+                pageSize:10
             }
         });
 
@@ -74,15 +68,16 @@ define(function(require, exports, module) {
             $('#jCurrentPage').html(pageNum)
         });
     }
-    renderList("/source/api/sub/sub.json");
+    renderList($PAGE_DATA['baseStaticUrl']+"/source/api/sub/sub.json");
     var nav = new navigation('#jActivity',{
-        currentClass:'current',//当前样式
-        navSelector:['#jActClassify','#jActTime']//导航栏dom选择器
+        currentClass:'active',//当前样式
+        navSelector:['#jActClassify','#jActTime'],//导航栏dom选择器
+        navItemSlect:'a' //导航栏标签
     });
     nav.on('change',function(data){
         console.log(data);
-        var type = data.type;
-        switch (type){
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',data);
+        /*switch (type){
             case '0':
                 renderList('source/api/course/tab0.json');
                 break;
@@ -92,7 +87,7 @@ define(function(require, exports, module) {
             case '2':
                 renderList('source/api/course/tab2.json');
                 break;
-        }
+        }*/
     })
 
 });
