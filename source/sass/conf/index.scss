@@ -494,6 +494,12 @@ $height: 172px;
     }
     .items {
         display: none;
+        overflow: hidden;
+        position: relative;
+    }
+    .swiper-container,.swiper-wrapper{
+        position: relative;
+        height: 209px;
     }
     .current {
         display: block;
@@ -540,6 +546,27 @@ $height: 172px;
         background: #000;
         opacity: 0.5;
         filter: alpha(opacity=50);
+    }
+    .tab-container{
+        position: relative;
+    }
+    .arrow-left,.arrow-right{
+        position: absolute;
+        top:50%;
+        margin-top: -60px;
+        font-size: 80px;
+        color: #fff;
+        background: rgba(0,0,0,0.5);
+        cursor: pointer;
+        &:hover{
+            color: #ec3e48;
+        }
+    }
+    .arrow-right{
+        right: 0;
+    }
+    .arrow-left{
+        left: 0;
     }
 }
 

@@ -17,7 +17,8 @@
 				"time":10,
 				"ask":3,
 				"view":5,
-				"cai":20
+				"cai":20,
+				"name":""
 			},
 			{
 				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
@@ -30,7 +31,8 @@
 				"time":10,
 				"ask":3,
 				"view":5,
-				"cai":20
+				"cai":20,
+				"name":"探长"
 			},
 			{
 				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
@@ -43,7 +45,8 @@
 				"time":10,
 				"ask":2,
 				"view":1,
-				"cai":20
+				"cai":20,
+				"name":"探长"
 			},
 			{
 				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
@@ -56,7 +59,8 @@
 				"time":10,
 				"ask":3,
 				"view":5,
-				"cai":20
+				"cai":20,
+				"name":"探长"
 			},
 			{
 				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
@@ -69,7 +73,8 @@
 				"time":10,
 				"ask":3,
 				"view":5,
-				"cai":20
+				"cai":20,
+				"name":"探长"
 			},
 			{
 				"imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
@@ -82,7 +87,8 @@
 				"time":10,
 				"ask":3,
 				"view":5,
-				"cai":20
+				"cai":20,
+				"name":""
 			}
 		],
 		"total": 2

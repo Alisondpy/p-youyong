@@ -64,7 +64,15 @@ define(function(require, exports, module) {
         });
     };
 
-    renderList($PAGE_DATA['pagerTeacher'],{'info':'系列课'},'lists','jLists',jPagination);
+    function init(){
+        var data = {};
+        var jNavType = $('#jNavType');
+        var name = jNavType.attr('name');
+        var val = jNavType.find('.current').attr('data-value');
+        data[name] = val;
+        renderList($PAGE_DATA['pagerTeacher'],{'data':data},'lists','jLists',jPagination);
+    }
+    init();
 
     var nav = new navigation('#jCourseNav',{
         currentClass:'current',//当前样式

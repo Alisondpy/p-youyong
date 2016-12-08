@@ -10,6 +10,7 @@ define(function(require, exports, module) {
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var template=require("template");
     var Pager = require('plugins/pager/1.0.0/pager');
+    var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
 
     var jPagination = $('#jPagination');
     /*
@@ -97,6 +98,25 @@ define(function(require, exports, module) {
         }
     });
 
+
+    var nav1 = new navigation('.jWrap2',{
+        currentClass:'active',//当前样式
+        navSelector:['#jSubNav'],//导航栏dom选择器
+        navItemSlect:'.bar-left'
+    });
+    nav1.on('change',function(data){
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap2','jWrap2Box',jPagination);
+    });
+
+    var nav2 = new navigation('.jWrap3',{
+        currentClass:'active',//当前样式
+        navSelector:['#jSubNav'],//导航栏dom选择器
+        navItemSlect:'.bar-left'
+    });
+    nav2.on('change',function(data){
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap3','jWrap3Box',jPagination);
+    });
+
     //评论字数限制
     $('.jTxt').keyup(function(){
         var txtLen = $('.jTxt').val().length;
@@ -135,7 +155,7 @@ define(function(require, exports, module) {
     });
 
     //采集
-    $('.mod-item .pick').click(function(){
+    $('#jWrap3Box').on('click','.mod-item .pick',function(){
         if($(this).hasClass("picked")){
             $(this).find('i').text('采集');
             $(this).removeClass('picked');
@@ -145,10 +165,6 @@ define(function(require, exports, module) {
         }
     });
 
-    //最新
-    $('.jWrap3 .bar-left').click(function(){
-        $(this).addClass('active').siblings().removeClass('active');
-    });
     //只看我的
     $('.jWrap3 .bar-right').click(function(){
         if($(this).text() === '只看我的'){

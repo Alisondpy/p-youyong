@@ -12,10 +12,16 @@ define(function(require, exports, module) {
     var Tab = require('lib/ui/tab/1.0.0/tab');
     require('plugins/layer/layer');
 
+    /*顶部搜索、登录状态、底部、右侧在线客服 start*/
     //var TopSearch = require('module/top-search/1.0.0/top-search');
-    //
-    ////顶部搜索框
+    //var LoginStatus = require('module/login-status/1.0.0/login-status');
+    //var FixBar = require('module/fix-bar/1.0.0/fix-bar');
+    //var Footer = require('module/footer/1.0.0/footer');
     //var topSearch = new TopSearch();
+    //var loginStatus = new LoginStatus();
+    //var fixBar = new FixBar();
+    //var footer = new Footer();
+    /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     //轮播图
     $('#jSlider').slider();
@@ -29,10 +35,6 @@ define(function(require, exports, module) {
 
     //师资团队滚动
     var teacherSwiper = new swiper('#jSwiper', {
-        onInit: function(swiper) {
-            swiper.swipeNext();
-            swiper.swipePrev();
-        },
         slidesPerView: 3
     });
 
@@ -47,9 +49,22 @@ define(function(require, exports, module) {
     //教学环境合作企业tab切换
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
-
     tab.on('change', function(el) {
+        var type = el.hd.attr('data-target');
         lazy.update();
+        if(type == '2'){
+            //合作企业滚动
+            var companySwiper = new swiper('#jSubSwiper', {
+                slidesPerView: 4
+            });
+
+            $('#jSubSwiper').on('click','#jSubRight', function() {
+                companySwiper.swipeNext();
+            });
+            $('#jSubSwiper').on('click', '#jSubLeft',function() {
+                companySwiper.swipePrev();
+            });
+        }
     });
 
     //弹出相框

@@ -360,7 +360,7 @@ a {
                 .arrow {
                     position: absolute;
                     top: 42px;
-                    left: -18px;
+                    left: -19px;
                     display: inline-block;
                     font-size: 28px;
                     color: #ccc;
@@ -369,6 +369,7 @@ a {
                 }
                 .arrow-disabled {
                     color: #eef3f7;
+                    background:none;
                 }
                 .arrow-focus {
                     color: #aaa;
@@ -444,7 +445,6 @@ a {
                         display: inline-block;
                         width: 15px;
                         height: 16px;
-                        // background: url("../images/viewDown.png") no-repeat;
                     }
                     .view-up {
                         position: relative;
@@ -453,7 +453,6 @@ a {
                         display: inline-block;
                         width: 15px;
                         height: 16px;
-                        // background: url("../images/viewUp.png") no-repeat;
                     }
                 }
             }
@@ -472,11 +471,11 @@ a {
                 line-height: 24px;
             }
             .note p {
-                overflow: hidden;
-                text-overflow: ellipsis;
-                display: -webkit-box;
-                -webkit-line-clamp: 3;
-                -webkit-box-orient: vertical;
+                //overflow: hidden;
+                //text-overflow: ellipsis;
+                //display: -webkit-box;
+                //-webkit-line-clamp: 3;
+                //-webkit-box-orient: vertical;
             }
             .question p{
                 width: 100%;
