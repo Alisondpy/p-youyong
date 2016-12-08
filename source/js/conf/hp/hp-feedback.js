@@ -1,4 +1,4 @@
-define(function(require, exports, module) {
+var define2 = define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     require('plugins/validator/1.0.0/validator');
@@ -7,53 +7,53 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var box = require('lib/ui/box/1.0.1/box');
 
-    var jChooseBg = $('#jChooseBg');
     var jImgList = $('#jImgList');
-
+    var jImgFile = $("#jImgFile");
     //图片上传插件
-    jChooseBg.on('click', function() {
+    jImgList.on('click', function() {
         var uploader = new Uploader({
             tabs: [{
                 type: 'local',
                 options: {
-                    uploadLimit: 0,
-                    swf: '../../../lib/plugins/uploader/1.0.1/uploadify.swf',//swf的路径
-                    uploader: '/Upload/images/'//后台存放图片的地址
+                    uploadLimit: 1,
+                    fileObjName:'file_data',
+                    swf:$PAGE_DATA['swfUrl'],//swf的路径
+                    uploader: $PAGE_DATA['uploadImgUrl'],//后台存放图片的地址
+                    formData:$PAGE_DATA['uploadData']
                 }
             }],
-            limit: 0, //上传限制，当是0的时候就代表无限制多选
+            limit: 1, //上传限制，当是0的时候就代表无限制多选
             selected: [] //选种的图片
         });
         uploader.on('ok', function(urls) {
-            console.log(urls);
-            var str = '';
-            for (var i = 0; i < urls.length; i++) {
-                str += '<img src="' + urls[i] + '">';
+            var str='';
+            if(urls && urls.length > 0){
+                for (var i = 0; i < urls.length; i++) {
+                    str += '<img src="' + urls[i] + '">';
+                    jImgFile.val(urls[i]);
+                    jImgList.html(str);
+                }
+            }else{
+                jImgFile.val("");
             }
-            jImgList.html(urls);
             this.hide();
         });
         uploader.show();
     });
     //意见反馈表单验证
-/*    submitHandler: function(form){
-        var formData = form.serializeForm($('#jViewSub'));
-        io['post']($PAGE_DATA['feedbacksUrl'],formData,function(data){
-            box.success('gongxx');
-        },function(data){
-            box.error('ddddk');
-        });
-    }*/
 
     $("#jViewSub").validate({
-        submitHandler: function(form){
-            var imgSrc=$("#jImgUpload").attr("src");
-            $("#imgFile").val(imgSrc);
-            var formData = form.serializeForm($('#jViewSub'));
-            io['post']($PAGE_DATA['feedbacksUrl'],formData,function(data){
-                box.success('你已成功到达后台');
+        submitHandler: function(formRes){
+            var formData = form.serializeForm(formRes);
+            io.get($PAGE_DATA['saveUrl'],formData,function(data){
+                box.ok("你已成功到达后台",function(result){
+                       if(result==true && data.error ==0){
+                           formRes.reset();
+                       }
+                    }
+                );
             },function(){
-                box.error("sorry,表单提交失败");
+                box.error('提交意见反馈失败');
             });
         },
         //失去焦点校验
@@ -61,6 +61,20 @@ define(function(require, exports, module) {
             $(element).valid();
         },
         //onkeyup:false,
+        rules:{
+            title:{
+                required:true,
+                rangelength:[6,20]
+            },
+            contact:{
+                required:true,
+                isContact:"isContact"
+            },
+            content:{
+                required:true
+            }
+
+        },
         messages: {
             title: {
                 required: "请填写标题",

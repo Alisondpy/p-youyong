@@ -26,9 +26,6 @@ span {
 }
 
 .mod-feedbk {
-    form {
-        padding: 35px 0;
-    }
     .mod-title {
         font-size: 20px;
         color: #333;
@@ -53,7 +50,8 @@ span {
         .img-upload{
             width: 100px;
             height: 100px;
-            border: 1px solid #ccc;
+            text-align: center;
+            line-height: 100px;
             border-radius: 3px;
             display: inline-block;
             cursor:pointer;
@@ -62,8 +60,19 @@ span {
         .upload-btn {
            @extend .img-upload;
             span {
-                width: 30px;
-                height: 30px;
+                font-size:28px;
+                color:#ddd;
+            }
+        }
+        .upload-list {
+            @extend .img-upload;
+            border: 1px solid #ccc;
+            overflow: hidden;
+            img{
+                width:100px;
+                height:auto;
+                display:inline;
+                vertical-align: middle;
             }
         }
 
