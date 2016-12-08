@@ -134,17 +134,6 @@ define(function(require, exports, module) {
 
     ifmTab.setCurrent();
 
-    //公共模板
-    function template(data) {
-        var str = '';
-        for (var i = 0; i < data.length; i++) {
-            str += '<div>' + data[i] + '</div>';
-        }
-        if (str == '') {
-            str = '<div>数据为空</div>'
-        }
-        return str;
-    }
 
 
 

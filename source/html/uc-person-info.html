@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>个人信息</title>
+    <!--#include file="./common/meta.html"-->
+    <!--#include file="./common/css.html"-->
+    <link rel="stylesheet" href="/css/conf/uc/person-info.css" type="text/css" charset="utf-8">
+    <script type="text/javascript">
+    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
+    $PAGE_DATA['currentPage'] = '1';
+    </script>
+</head>
+
+<body>
+    <!-- 我是注释 -->
+    <!--#include file="./common/header.html"-->
+    <div class="mod-page">
+        <div class="ifm-uc clearfix">
+            <!--#include file="./module/uc/left-menu.html"-->
+            <div class="ifm-right-container">
+                <div id="jIfmTab" class="ifm-tab">
+                    <div class="ifm-hd clearfix">
+                        <!-- tab 头部 start -->
+                        <ul class="clearfix ifm-tab-hd" node-type="hd">
+                            <li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">个人信息</a></li>
+                             <li class="ifm-tab-item current" node-type="hdItem" data-target="2"><a href="javascript:;">修改登陆密码</a></li>
+                        </ul>
+                        <!-- tab 头部 end -->
+                        <div class="ifm-top-bar">
+                            <!-- tab右侧工具栏 start -->
+                            <div class="ui-uc-search-bar" id="jUcSearchBar">
+                                <label class="lbl" for="_ucSearchBar">按考试名称模糊搜索</label>
+                                <input class="txt" id="_ucSearchBar" node-type="ipt" type="text" data-id="key">
+                                <button node-type="btn" class="iyoyo iyoyo-search"></button>
+                            </div>
+                            <!-- tab右侧工具栏 end -->
+                        </div>
+                    </div>
+                    <div class="ifm-tab-bd" node-type="bd">
+                        <!-- tab内容区域-1 start-->
+                        <div class="ifm-tab-container" node-type="container" data-id="1">
+                            <div class="ifm-main-container">
+                                <!-- 页面主内容 start -->
+                                <div node-type="jContainer">
+                                    <div class="ui-loading-list">
+                                        <div class="img-loading"></div>
+                                        <div class="txt">
+                                            正在卖力加载，请稍后...
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 页面主内容 end -->
+                            </div>
+                            <div class="ifm-bottom-bar">
+                                <!-- 底部工具栏 start -->
+                                <div node-type="jPagination" class="pager"></div>
+                                <!-- 底部工具栏 end -->
+                            </div>
+                        </div>
+                        <!-- tab内容区域-1 end-->
+
+                         <!-- tab内容区域-2 start-->
+                        <div class="ifm-tab-container" node-type="container" data-id="2">
+                            <div class="ifm-main-container">
+                                <!-- 页面主内容 start -->
+                                <div node-type="jContainer">
+                                    <div class="ui-loading-list">
+                                        <div class="img-loading"></div>
+                                        <div class="txt">
+                                            正在卖力加载，请稍后...
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- 页面主内容 end -->
+                            </div>
+                            <div class="ifm-bottom-bar">
+                                <!-- 底部工具栏 start -->
+                                <div node-type="jPagination" class="pager"></div>
+                                <!-- 底部工具栏 end -->
+                            </div>
+                        </div>
+                        <!-- tab内容区域-2 end-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--#include file="./module/uc/right-container.html"-->
+    </div>
+    <!--#include file="./common/footer.html"-->
+    <!--#include file="./common/js.html"-->
+    <script type="text/javascript">
+    require(['conf/uc/my-study'], function() {});
+    </script>
+    <!--#include file="./common/tj.html"-->
+    <!--#include file="./common/statistics.html"-->
+     <script type="text/html" id="jModule">
+        
+                <div class="mod-personinfo">
+                    <div class="line">
+                        <span><em>注册时间:</em><i>2016-05-19 16:30:56</i></span>  
+                        <span class="load"><em>登陆次数:</em><i>53</i></span>  
+                        <span><em>上次登陆时间:</em><i>2016-05-19 16:30:56</i></span>       
+                    </div>
+                    <div class="picture"><span class="avater">当前头像</span>
+                    <em class="avater-pic">
+                        <a href="">
+                            <div class="mask"></div>
+                            <div class="edit-pic">编辑头像</div>
+                        </a>
+                    <img src="http://i0.hdslb.com/bfs/archive/c6ce1ec8823bac470770985bb851946e938e7411.jpg_320x200.jpg">
+
+                    </em>
+                    <em>
+                     <img src="http://i0.hdslb.com/bfs/archive/c6ce1ec8823bac470770985bb851946e938e7411.jpg_320x200.jpg">
+                    </em>
+                    
+                    </div>
+
+                    <!-- 个人信息统计 -->
+                    <div class="info clearfix">
+                    <div class="pet"><label for="pet">昵称</label><input type="text" id="pet"></div>
+                    <div><label for="name"><span>*</span>真实姓名</label><input type="text" id="name"></div>
+                    <div><label for="phonenum"><span>*</span>手机号码</label><input type="text" id="phonenum"></div>
+                    <div><label for="mail"><span>*</span>邮箱</label><input type="text" id="mail"></div>
+                    <div><label for="career"><span>*</span>职业</label><input type="text" id="career">
+                    </div>
+                    <div><label for="company"><span>*</span>所属公司</label><input type="text" id="company">
+                    </div>
+                    <div class="check">
+                    性别
+                    <input type="radio" id="male"><label for="male">男</label>
+                    <input type="radio" id="women"><label for="women">女</label>
+                    </div>
+                    <div><label for="qq">QQ</label><input type="text" id="qq"></div>
+                    <div><label for="inaddress">所在地</label><input type="text" id="inaddress"></div>
+                    <div><label for="address">详细地址</label><input type="text" id="address"></div>
+                    </div>
+
+
+                    <div class="btn"><button class="ui-btn">保存</button></div>
+              </div>
+        
+     </script>
+</body>
+
+</html>
+

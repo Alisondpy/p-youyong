@@ -14,34 +14,7 @@
     <!--#include file="./common/header.html"-->
 	
 
-	<!-- 弹出层 -->
-	<div class="mod-mask jMod-mask">
-    </div>
-    <div class="bg jBg">
-            <form id="cvalidate">
-            	<div class="mod-warp clearfix">
-                <label class="item f-r"><i class="tag">*</i><span >姓名</span><input type="text" class="name f" placeholder="请输入姓名" name="cname">
-                </label>
-                </div> 
-				<div class="mod-warp clearfix">
-                <label class="item f-r"><i class="tag">*</i><span class="phonenum">手机号</span><input type="text" class="tel f phone" placeholder="请输入手机号" name="phone">
-                </label>
-				</div> 
-
-				<div class="mod-warp clearfix">
-                <label class="item f-r"><i class="tag">*</i><span class="company-name">企业名称</span><input type="text" class="company f" placeholder="请输入企业名称" name="ccompany">
-                </label>
-                </div> 
-                <div class="mod-warp clearfix">
-                <label class="item f-r t-need"><div class="f-l m-l"><i class="tag">*</i><span>需求</span></div><textarea placeholder="请输入需求" class="need f" name="cneed"></textarea>
-                </label>
-                </div>
-                <div>
-                <label class="item f-r"><span>报价</span><input type="text" class="price f" placeholder="请输入报价" name="cprice"></label>
-				</div>
-                <div class="item f-r"><input type="submit" class="ui-btn-sub" id="btn"></div>
-            </form>
-        </div>
+	
 	
 
 
@@ -62,9 +35,6 @@
 						<div class="job">市场运营金牌讲师</div>
 						<div class="text">对方的路径算法来看待jfk垃圾啊开绿灯解放反抗军拉萨解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列解放了就阿列克斯的jfk了对方的路径算法来看待jfk垃圾啊开绿灯解放反抗军拉萨解放了就阿列解放了就阿列解放了就阿列解放了
 						</div>
-						<div class="btn">
-							<a href="javascript:void(0);" class="invite-btn">邀约</a>
-						</div>
 					</div>
 
 					<div class="contain-right">
@@ -77,19 +47,19 @@
 
 			<div class="mod-down clearfix" id="jTab">
 				<div class="mod-tab clearfix" node-type="hd">
-					<li node-type="hdItem" data-target="1"><a href="javascript:void(0);" class="tab1 w-a jTab-l t" >讲师介绍</a></li>
-					<li class="current" node-type="hdItem" data-target="2"><a href="javascript:void(0);" class="tab2 w-a jTab-r t">主讲课程</a></li>
+					<li class="current" node-type="hdItem" data-target="1"><a href="javascript:void(0);" class="tab1 w-a jTab-l t" >讲师介绍</a></li>
+					<li  node-type="hdItem" data-target="2"><a href="javascript:void(0);" class="tab2 w-a jTab-r t">主讲课程</a></li>
 				</div>
 
 				<div node-type="bd">
 				<!-- artTemplate模块加载内容存放的地方 start-->
-					<div class="mod-li jLi current" id="content" node-type="container" data-id="2">
+					<div class="mod-li jLi" id="content" node-type="container" data-id="2">
 						
 					</div>
 					<!-- artTemplate模块加载内容存放的地方 end-->
 
 
-					<div class="teacher-info jTinfo" node-type="container" data-id="1">	
+					<div class="teacher-info jTinfo current" node-type="container" data-id="1">	
 						<h3>简介</h3>
 						<p class="info-t">地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快了解开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法开了罚款力度加快立法就离开jfk啦</p>
 						<p>地方肯定就罚款了多久啊看来解开了解开了罚款力度加快立法就离开jfk啦</p>
@@ -98,18 +68,13 @@
 					</div>
 				</div>
 			</div>
-			<div class="mod-page clearfix">
-            <ul class="clearfix f-r">
-                <li class="f-l disable"><a href="javascript:void(0);">上一页</a></li>
-                <li class="f-l active"><a href="javascript:void(0);">2</a></li>
-                <li class="f-l"><a href="javascript:void(0);">3</a></li>
-                <li class="f-l"><a href="javascript:void(0);">4</a></li>
-                <li class="f-l">...</li>
-                <li class="f-l"><a href="javascript:void(0);">5</a></li>
-                <li class="f-l"><a href="javascript:void(0);">6</a></li>
-                <li class="f-l"><a href="javascript:void(0);">下一页</a></li>
-            </ul>
-        </div>
+			 <div class="mod-page">
+		        <div class="jPagination"></div>
+		        <div id="jContainer"></div>
+		        <div class="jPagination"></div>
+		        <div class="iyoyo iyoyo-weixin"></div>
+		        <div>你正在访问第<span id="jCurrentPage"></span>页</div>
+    		</div>
 		</div>
 	</div>
     <!--#include file="./common/footer.html"-->

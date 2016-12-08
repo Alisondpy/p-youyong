@@ -1,0 +1,32 @@
+@charset "UTF-8";
+// 图片根目录、字体目录配置参数，轻放在顶部
+@import "../../common/config/level-2";
+@import "../../common/common";
+@import "../../module/uc/uc-container";
+body {
+    background-color: #eee;
+}
+.moe-exam{
+	.mod-uc-right-content{
+		.mod-contain{
+			.line{
+				.tab{
+					width:353px;
+					height:35px;
+					ul{
+						background-color:#f00;
+						li{
+							a{
+								display:inline-block;
+								color:#f00;
+							}
+						}
+					}
+				}
+			}
+
+		}
+	}
+
+}
+
