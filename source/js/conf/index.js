@@ -52,8 +52,6 @@ define(function(require, exports, module) {
         lazy.update();
     });
 
-    tab.setCurrent();
-
     //弹出相框
     function getAlums(photoId) {
         io.get($PAGE_DATA['loadPicture'], {"pid":photoId}, function(data) {

@@ -7,6 +7,7 @@ define(function(require, exports, module) {
     var box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
+    var Tab = require('lib/ui/tab/1.0.0/tab');
 
     //图片懒加载
     var lazy = new Lazyload($('.jImg'), {
@@ -16,10 +17,9 @@ define(function(require, exports, module) {
     });
 
     //tab页切换
-    $('.mod-wrap .mod-sub-nav a').click(function(){
-        $(this).addClass('current').siblings().removeClass('current');
-        $('.mod-sub-wrap').hide();
-        $('.jWrap'+$(this).attr('data-value')+'').show();
+    var jTab = $('#jTab');
+    var tab = new Tab(jTab);
+    tab.on('change', function(el) {
         lazy.update();
     });
 

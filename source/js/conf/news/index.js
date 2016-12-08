@@ -55,6 +55,7 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
+            console.log(res);
             if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
@@ -83,13 +84,13 @@ define(function(require, exports, module) {
         pagEl.addClass('has-build');
     };
 
-    renderList($PAGE_DATA['baseStaticUrl']+'source/api/news/index.json',{'info':'0'},'wrap','jWrap',jPagination);
+    renderList($PAGE_DATA['loadNews'],{'type':'0'},'wrap','jWrap',jPagination);
 
     //tab页切换
     $('.mod-wrap .mod-sub-nav a').click(function(){
         $(this).addClass('current').siblings().removeClass('current');
         var id = $(this).attr('data-value');
-        renderList($PAGE_DATA['baseStaticUrl']+'source/api/news/index.json',{'info':id},'wrap','jWrap',jPagination);
+        renderList($PAGE_DATA['loadNews'],{'type':id},'wrap','jWrap',jPagination);
     });
 
 });

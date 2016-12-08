@@ -9,6 +9,7 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var template=require("template");
     var Pager = require('plugins/pager/1.0.0/pager');
+    var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
     var jPagination = $('#jPagination');
 
     /*
@@ -71,9 +72,11 @@ define(function(require, exports, module) {
 
     renderList($PAGE_DATA['baseStaticUrl']+'source/api/lecturer/index.json',{'info':'系列课'},'lists','jLists',jPagination);
 
-    //课程类型切换
-    $('#jCourseType').on('click','.nav li',function(){
-        $(this).addClass("current").siblings().removeClass("current");
+    var nav = new navigation('#jCourseNav',{
+        currentClass:'current',//当前样式
+        navSelector:['#jNavType']//导航栏dom选择器
     });
-
+    nav.on('change',function(data){
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/lecturer/index.json',{'data':data},'lists','jLists',jPagination);
+    });
 });
