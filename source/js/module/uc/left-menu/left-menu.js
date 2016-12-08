@@ -13,16 +13,17 @@ define(function(require, exports, module) {
         _this.el = $(_this.options.selector);
         var builder = build.build(_this.el, false);
         _this.itemLevel1s = builder.get('itemLevel1');
+        _this.txtLevel1s = builder.get('txtLevel1');
         _this.menuLevel2s = builder.get('menuLevel2');
         _this._initEvent();
     };
 
     LeftMenu.prototype._initEvent = function() {
         var _this = this;
-        _this.itemLevel1s.on('click', function(e) {
-            debugger;
-            var itemLevel1 = $(this);
+        _this.txtLevel1s.on('click', function(e) {
             e.preventDefault();
+            var txtLevel1 = $(this);
+            var itemLevel1 = txtLevel1.parent();
             var builder = build.build(itemLevel1, false);
             var menuLevel2 = builder.get('menuLevel2');
             if (menuLevel2) {
@@ -38,9 +39,9 @@ define(function(require, exports, module) {
                     });
                 }
             } else {
-                var txtLevel1 = builder.get('txtLevel1');
                 window.location.href = txtLevel1.attr('href');
             }
+
         });
     }
     module.exports = LeftMenu;
