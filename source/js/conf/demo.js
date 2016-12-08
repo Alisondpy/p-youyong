@@ -18,23 +18,34 @@ define(function(require, exports, module) {
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
 
-    // var layer = require('plugins/layer/3.0/layer');
+    var LocationSelect = require('plugins/location-select/location-select');
 
-    //tab层
-    // layer.tab({
-    //     area: ['600px', '300px'],
-    //     tab: [{
-    //         title: 'TAB1',
-    //         content: '内容1'
-    //     }, {
-    //         title: 'TAB2',
-    //         content: '内容2'
-    //     }, {
-    //         title: 'TAB3',
-    //         content: '内容3'
-    //     }]
-    // });
-
+    var locationSelect = new LocationSelect('#jAddrDiv', {
+        // url: urlPrefix['www'] + '/api/getRegion/jsonp/', //获取地址url
+        // defaultUrl: urlPrefix['www'] + '/api/getUserRegion', //获取默认地址url
+        // setCookieUrl: urlPrefix['www'] + '/api/setUserRegion', //设置cookie
+        degree: 4,
+        labelTxt: ['选择省', '选择市', '选择区', '选择街道'],
+        selectedIndex: 3, //选中的索引
+        isShowCtn: false, //界面初始化时，是否打开box面板
+        isShowClose: true, //是否显示关闭按钮
+        isGetDefaultAddr: true, //是否获取默认地址,指接口获取的值或者cookie的值
+        isSetAddrCookie: false, //是否调用后端存储cookie的url
+        ajaxData: {} //外部ajax参数
+    });
+    locationSelect.on('loaded', function() {
+        // _self._saveVal();
+        // loaded && loaded();
+    });
+    locationSelect.on('lastChange', function() {
+        $('#jLinkInfo').hide();
+        $('#jLinkInfoThree').hide();
+        console.log(this);
+        // _self._saveVal();
+        // lastChangeCallBack && lastChangeCallBack();
+    });
+    locationSelect.init();
+    // locationSelect.show();
 
     //slider
     var slider = new Slider('#jSlider', {

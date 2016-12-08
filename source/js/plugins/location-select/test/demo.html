@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>多级联动</title>
+    <link href="http://s1.bbgstatic.com/pub/module/base/1.0.1/base.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="jAddrPop" data-location-select="湖南_长沙市_开福区_望麓园街道:43_430100000000_430105000000_430105040000" style="width:400px;height:400px;border:1px solid red;"></div>
+    <div id="jAddrPop2" data-location-select="" style="width:200px;height:100px;"></div>
+</body>
+<script type="text/javascript" src="//s1.bbgstatic.com/lib/require/2.1/require.js"></script>
+<script type="text/javascript">
+    window.$PAGE_DATA = {};
+    require.config({
+        baseUrl: 'http://s1.bbgstatic.com/pub',
+        paths: {
+            'lib': '//s1.bbgstatic.com/lib',
+            'jquery': 'lib/jquery/1.11.1/jquery'
+        }
+    });
+    if (!Function.prototype.bind) {
+        require(['lib/es5-shim/4.0.3/es5-shim']);
+    }
+</script>
+<!-- 路由 -->
+<script type="text/javascript">
+    require(['pub/module/local-select/1.0.3/location-select'], function(locationSelect) {
+        var lnk = new locationSelect('#jAddrPop', {
+            //调用多级地址的对象
+            ajaxData: {
+                a: 1
+            },
+            labelTxt: ['选择省1', '选择市', '选择区', '选择街道'],
+            //isGetDefaultAddr: false,
+            //     isShowCtn: true,
+            selectedIndex: 4,
+            degree: 4
+        });
+        //
+        var lnk2 = new locationSelect('#jAddrPop2', {
+            //调用多级地址的对象
+            ajaxData: {
+                a: 2
+            },
+            // isShowCtn: true,
+            degree: 2
+        });
+         lnk.on('lastChange', function(addr) {
+             lnk2.setAddr(addr);
+         });
+
+        // lnk.on('afterGetDefaultAddr', function() {
+        // 		//console.log(lnk.getCacheData('full'))
+        // })
+        lnk.init();
+        lnk2.init();
+       // lnk.destroy();
+    });
+</script>
+
+</html>
