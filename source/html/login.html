@@ -10,6 +10,9 @@
     $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
     $PAGE_DATA['currentPage'] = '1';
     </script>-->
+    <script>
+        $PAGE_DATA['login'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/demo/login.json';
+    </script>
 </head>
 
 <body>
@@ -27,7 +30,7 @@
         <div class="left-ad f-l">
             <img src="http://cms2.51edu.com/uploadfile/20161114/1479093685882948.jpg" alt="" class="img">
         </div>
-        <form class="right-login common f-r">
+        <form id="jsLoginForm" class="right-login common f-r jsRightLogin">
             <div class="tab">
                 <span class="normal active">普通登录</span>
                 <span class="dynamic">手机动态码登录</span>
@@ -35,7 +38,7 @@
             <ul class="ulform">
                 <li class="item">
                     <label for="jName" class="mark"><i class="icon iyoyo iyoyo-teacher"></i></label>
-                    <input id="jName" class="ui-input" name="name" type="text" placeholder="手机/邮箱" />
+                    <input id="jName" class="ui-input" name="mobile" type="text" placeholder="手机/邮箱" />
                 </li>
                 <li class="item">
                     <label for="jPassword" class="mark"><i class="icon iyoyo iyoyo-question-1"></i></label>
@@ -52,7 +55,7 @@
                 </li>
             </ul>
         </form>
-        <form class="right-login-mobile common f-r">
+        <form id="jsRightLoginMobile" class="right-login-mobile common f-r jsRightLoginMobile">
             <div class="tab">
                 <span class="normal">普通登录</span>
                 <span class="dynamic active">手机动态码登录</span>
@@ -66,7 +69,7 @@
                     <label for="jDynamic" class="mark code"><i class="icon iyoyo iyoyo-question-1"></i>
                         <input id="jDynamic" class="ui-input" name="dynamic" type="text" placeholder="动态验证码"/>
                     </label>
-                    <input type="button" class="ui-btn ui-btn-danger" value="获取动态码"/>
+                    <input type="button" class="ui-btn ui-btn-danger jsVerifyCode" value="获取动态码"/>
                 </li>
                 <li class="item subbtn">
                     <label>
@@ -78,7 +81,7 @@
                 </li>
             </ul>
         </form>
-        <form class="right-signin common f-r">
+        <form class="right-signin common f-r jsRightSignin">
             <ul class="ulform">
                 <li class="item">
                     <label for="jName" class="mark"><i class="icon iyoyo iyoyo-teacher"></i></label>
