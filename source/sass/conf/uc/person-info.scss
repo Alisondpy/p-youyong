@@ -137,11 +137,20 @@ body {
          } 
         }
         .inwhere{
-            position:relative;
+            margin-top: 20px;
             .where{
-                position:absolute;
-                left:79px;
+                margin-left: 30px;
+                text-align: right;
+                width: 100px;
+                //position:absolute;
+                //left:79px;
                 font-size:16px;
+            }
+            #areaSelect{
+                margin-left: 15px;
+                select{
+                    margin-right: 20px;
+                }
             }
         }
         .check {

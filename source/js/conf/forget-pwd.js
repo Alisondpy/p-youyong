@@ -27,7 +27,6 @@ define(function(require, exports, module) {
 
     }, $.validator.format("请输入正确的手机号"));
 
-
     $("#jsForgetPwd").validate({
         rules: {
             mobile:{
@@ -43,7 +42,7 @@ define(function(require, exports, module) {
                 minlength : 6
             }
         },
-        message: {
+        messages: {
             password: {
                 required: "请输入密码",
                 minlength: "密码长度不能小于6个字母,不允许包含空格"

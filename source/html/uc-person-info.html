@@ -85,9 +85,22 @@
                                                 <label for="jQQ">QQ</label>
                                                 <input type="text" id="jQQ" name="qq">
                                             </div>
-                                            <div class="inwhere">
-                                                <span class="where">所在地</span>
-                                                <div id="jAddrDiv" data-location-select="   湖南_长沙市_开福区:43_430100000000_430105000000">
+                                            <div class="inwhere clearfix">
+                                                <span class="where f-l">所在地</span>
+                                                <div id="areaSelect" class="f-l">
+                                                    <!--<label class="col-md-2 control-label" for="">省市区:</label>-->
+                                                    <select id="province" name="province" class=" form-control required" size="1">
+                                                        <option value="0">请选择省</option>
+                                                    </select>
+                                                    <span class="form-control-feedback showError"></span>
+                                                    <select id="city" name="city" class=" form-control required" size="1">
+                                                        <option value="0">请选择市</option>
+                                                    </select>
+                                                    <span class="form-control-feedback showError"></span>
+                                                    <select id="county" name="county" class=" form-control required" size="1">
+                                                        <option value="0">请选择区</option>
+                                                    </select>
+                                                    <span class="form-control-feedback showError"></span>
                                                 </div>
                                             </div>
                                             <div class="item">
@@ -151,6 +164,9 @@
         </div>
         <!--#include file="./module/uc/right-container.html"-->
     </div>
+    <input type="hidden" name="province_hid" id="province_hid" value="${(userBaseInfo.province)!}" />
+    <input type="hidden" name="city_hid" id="city_hid" value="${(userBaseInfo.city)!}" />
+    <input type="hidden" name="county_hid" id="county_hid" value="${(userBaseInfo.county)!}" />
     <!--#include file="./common/footer.html"-->
     <!--#include file="./common/js.html"-->
     <script type="text/javascript">

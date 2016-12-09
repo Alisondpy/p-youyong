@@ -70,7 +70,7 @@ define(function(require, exports, module) {
             //    digits : true
             //}
         },
-        message: {
+        messages: {
             mobile: {
                 required: "请输入正确43433的手机号"
                 //mobile:true

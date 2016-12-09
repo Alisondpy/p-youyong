@@ -9,97 +9,149 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var cookie = require('lib/core/1.0.0/io/cookie');
-    var Emitter = require('lib/core/1.0.0/event/emitter');
-    var io = require('lib/core/1.0.0/io/request');
-    //mod for location select
-    var config = require('./js/config');
-    var Com = require('./js/common');
-    var Select = require('./js/select');
-    var Box = require('./js/box/box');
+    var Io = require('lib/core/1.0.0/io/request');
+    var basePath = $("base").attr('href');
 
-    function LocationSelect(selector, opt) {
-        var self = this;
-        this.opt = {};
-        this.selector = selector;
-        $.extend(this.opt, config, opt);
-        // this.init();
-    }
-    LocationSelect.prototype = {
-        init: function() {
-            var self = this;
-            if (typeof self.selector != 'string') {
-                throw 'lack of selector';
-                return false;
+    alert(1);
+    $.extend({
+        // 省市区三级联动
+        loadAreaSelect : function(elementName,options) {
+            var defaults = {
+                url : ($PAGE_DATA && $PAGE_DATA['']) || '',
+                data : {}
             }
-            self.o = $(self.selector);
-            self._create();
-            self.com = new Com(self.selector, self.opt);
-            self.com.getDefaultAddr(function(dAddr) {
-                self.select = new Select(self.selector, self.opt);
-                self.box = new Box(self.selector, self.opt);
-                self.select.on('click', function() {
-                    self.box.show();
+            var _options = $.extend(true,{},defaults,options);
+            var element = $("#" + elementName);
+            var province = element.find("select").eq(0);
+            var provinceName = province.attr("name");
+            var provinceMap = loadArea(basePath + "/commons/queryRegion");
+            province.empty();
+            province.append("<option value='0'>请选择省</option>");
+
+            if (provinceMap != null) {
+                $.each(provinceMap, function(i, n) {
+                    province.append("<option value='" + n.id + "'>" + n.name + "</option>");
                 });
-                self.box.on('lastChange', function(defaultAddr) {
-                    self.com.setCache(defaultAddr);
-                    self.select.setTextBox();
-                    self.com.setAddrCookie();
-                    self.emit('lastChange', defaultAddr);
+                var provinceValue = $("input[name='" + provinceName + "_hide']").val();
+                if (typeof (provinceValue) != "undefined" && provinceValue != "" && provinceValue != null && provinceValue != "0") {
+                    province.val(provinceValue);
+                    var city = element.find("select").eq(1);
+                    var cityName = city.attr("name");
+                    city.empty();
+                    city.append("<option value='0'>请选择市</option>");
+                    var cityMap = loadArea(basePath + "/commons/queryRegion?parentId=" + provinceValue);
+                    if (cityMap != 0) {
+                        $.each(cityMap, function(i, n) {
+                            city.append("<option value='" + n.id + "'>" + n.name + "</option>");
+                        });
+                        var cityValue = $("input[name='" + cityName + "_hide']").val();
+                        if (cityValue != "" && typeof (cityValue) != "undefined" && cityValue != null && cityValue != "0") {
+                            city.val(cityValue);
+                            var county = element.find("select").eq(2);
+                            var countyName = county.attr("name");
+                            var countyValue = $("input[name='" + countyName + "_hide']").val();
+                            var countyMap = loadArea(basePath + "/commons/queryRegion?parentId=" + cityValue);
+                            county.empty();
+                            county.append("<option value='0'>请选择县/区</option>");
+                            if (countyMap != null) {
+                                $.each(countyMap, function(i, n) {
+                                    county.append("<option value='" + n.id + "'>" + n.name + "</option>");
+                                });
+
+                                if (countyValue != "" && typeof (countyValue) != "undefined" && countyValue != null && countyValue != "0") {
+                                    county.val(countyValue);
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
+            province.change(function() {
+                element.find("select").each(function(i) {
+                    switch (i) {
+                        case 1:
+                            $(this).empty();
+                            $(this).append("<option value='0'>请选择市</option>");
+                            break;
+                        case 2:
+                            $(this).empty();
+                            $(this).append("<option value='0'>请选择区/县</option>");
+                            break;
+                    }
                 });
-                self.box.on('loaded', function($ctn) {
-                    self.emit('loaded', $ctn);
-                });
-                self.box.init();
-                self.com.setCache(dAddr);
-                self.select.init();
-                self.opt.isShowCtn && self.box.show();
-                self.emit('afterGetDefaultAddr');
+                var province_change = $(this).val();
+                var cityMap = loadArea(basePath + "/commons/queryRegion?parentId=" + province_change);
+                if (cityMap != 0) {
+                    $.each(cityMap, function(i, n) {
+                        city.append("<option value='" + n.id + "'>" + n.name + "</option>");
+                    });
+                }
             });
-        },
-        destroy: function() {
-            this.select.destroy();
-            this.box.destroy();
-            this.com.destroy();
-            this.select = null;
-            this.box = null;
-            this.com = null;
-            this.o.html('');
-        },
-        show: function() {
-            this.box.show();
-        },
-        getCacheData: function(addr) {
-            return this.com.getCacheData(addr);
-        },
-        setAddr: function(ls) {
-            var addr = '';
-            var self = this;
-            if (typeof ls == 'string') {
-                addr = ls;
-            } else if (ls && typeof ls == 'object') {
-                addr = ls.getCacheData('full');
-            } else {
-                return false;
-            }
-            self.com.setCache(addr);
-            self.select.setTextBox();
-        },
-        _create: function() {
-            if ($(this.selector).find('.jLocationSelect').length != 0) {
-                return false;
-            }
-            var self = this;
-            var ar = [];
-            ar.push('   <div class="ui-location-select jLocationSelect">',
-                '<div class="jCacheData cache-data" data-addr-mainland="" data-addr-id="" data-addr-text="" data-addr-full=""></div>',
-                '<div class="jSelect"></div>',
-                '<div class="jBox"></div>',
-                '</div>');
-            self.o.append(ar.join(''));
-        }
-    };
 
-    Emitter.applyTo(LocationSelect);
-    module.exports = LocationSelect;
+            var province_val = $("#" + province.attr("name") + "_hid").val();
+            var city = element.find("select").eq(1);
+            if (province_val != null && typeof (province_val) != "undefined" && province_val != '') {
+                province.val(province_val);
+                var city_change_Map = loadArea(basePath + "/commons/queryRegion?parentId=" + province_val);
+                city.empty();
+                city.append("<option value='0'>请选择市</option>");
+                if (city_change_Map != 0) {
+                    $.each(city_change_Map, function(i, n) {
+                        city.append("<option value='" + n.id + "'>" + n.name + "</option>");
+                    });
+                }
+            }
+            city.change(function() {
+                var city_change = $(this).val();
+                var county_change_Map = loadArea(basePath + "/commons/queryRegion?parentId=" + city_change);
+                county.empty();
+                county.append("<option value='0'>请选择县/区</option>");
+                if (county_change_Map != null) {
+                    $.each(county_change_Map, function(i, n) {
+                        county.append("<option value='" + n.id + "'>" + n.name + "</option>");
+                    });
+                }
+            });
+
+            var city_val = $("#" + city.attr("name") + "_hid").val();
+            var county = element.find("select").eq(2);
+            if (city_val != null && typeof (city_val) != "undefined" && city_val != '') {
+                city.val(city_val);
+                var countyMap = loadArea(basePath + "/commons/queryRegion?parentId=" + city_val);
+                county.empty();
+                county.append("<option value='0'>请选择县/区</option>");
+                if (countyMap != null) {
+                    $.each(countyMap, function(i, n) {
+                        county.append("<option value='" + n.id + "'>" + n.name + "</option>");
+                    });
+                }
+            }
+
+            var county_val = $("#" + county.attr("name") + "_hid").val();
+            if (county_val != null && typeof (county_val) != "undefined" && county_val != '') {
+                county.val(county_val);
+            }
+        }
+    });
+
+    function loadArea(url) {
+        var areaMap;
+        //$.ajax({
+        //    url : url,
+        //    dataType : 'json',
+        //    type : 'POST',
+        //    async : false,
+        //    success : function(data) {
+        //        areaMap = data.regionInfoList;
+        //    }
+        //});
+        Io.post(url,{},
+            function(data){
+                areaMap = data.regionInfoList;
+            },function(){}
+        );
+        return areaMap;
+    }
+
 });
