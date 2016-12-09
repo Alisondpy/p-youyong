@@ -1,18 +1,18 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
+    var login = require('./login');
 
     function LoginStatus(options) {
         var _this = this;
         var defaults = {
             selector: '#jLoginStatus',
-            ajax: {
-                type: 'get', //'get'|'post'|'jsonp'
-                url: ($PAGE_DATA && $PAGE_DATA['getUserInfo']) || '', // required 获取用户登录信息
-                data: null //获取用户登录信息接口参数
-            },
+            // ajax: {
+            //     type: 'get', //'get'|'post'|'jsonp'
+            //     url: ($PAGE_DATA && $PAGE_DATA['getUserInfo']) || '', // required 获取用户登录信息
+            //     data: null //获取用户登录信息接口参数
+            // },
             userCenterUrl: ($PAGE_DATA && $PAGE_DATA['userCenterUrl']) || 'javascript:;', //用户中心url
             loginOutUrl: ($PAGE_DATA && $PAGE_DATA['loginOutUrl']) || 'javascript:;', //登出url
             //下拉菜单配置
@@ -25,23 +25,17 @@ define(function(require, exports, module) {
             }]
         };
         _this.options = $.extend(true, {}, defaults, options);
-        if (!_this.options.ajax.url) {
-            throw new Error('the param [options.ajax.url] is required.');
-        }
         _this.el = $(_this.options.selector);
         _this._init();
     };
 
     LoginStatus.prototype._init = function() {
-        var _this = this,
-            options = _this.options,
-            ajax = options.ajax;
-        io[ajax.type](ajax.url, ajax.data, function(data) {
-            _this.el.html(_this._getLoginedHtml(data.data));
+        var _this = this;
+        var nick = login.getNick();
+        if (nick) {
+            _this.el.html(_this._getLoginedHtml(nick));
             _this._initEvent();
-        }, function(data) {
-            //获取登录信息失败
-        })
+        }
     };
 
     LoginStatus.prototype._initEvent = function() {
@@ -75,7 +69,7 @@ define(function(require, exports, module) {
         });
     };
 
-    LoginStatus.prototype._getLoginedHtml = function(data) {
+    LoginStatus.prototype._getLoginedHtml = function(nick) {
         var _this = this,
             options = _this.options,
             menuList = options.menuList;
@@ -85,7 +79,7 @@ define(function(require, exports, module) {
         str += '        <span>您好，</span>';
         str += '    </li>';
         str += '    <li class="item tips-menu-box">';
-        str += '        <a href="' + options.userCenterUrl + '" class="user-name txt-overflow" node-type="userName">' + data.nickName + '</a>';
+        str += '        <a href="' + options.userCenterUrl + '" class="user-name txt-overflow" node-type="userName">' + nick + '</a>';
         str += '        <div class="tips-menu" node-type="tipsMenu">';
         str += '            <div class="arrow"><i></i><b></b></div>';
         str += '            <ul class="tips-menu-list">';
