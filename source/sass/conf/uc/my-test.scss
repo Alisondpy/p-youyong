@@ -1,0 +1,84 @@
+@charset "UTF-8";
+@import "../../common/config/level-2";
+@import "../../common/common";
+@import "../../module/uc/common";
+@import "../../common/pager/pager";
+
+.ifm-right-container{
+  .mod-test-title{
+    width:188px;
+    height:56px;
+    line-height:56px;
+    text-align:center;
+    font-weight:normal;
+    font-size:18px;
+    color:#44687d;
+    background:#fff;
+  }
+  .ifm-tab{
+    background:#fff;
+    padding:20px 30px;
+    .ifm-tab-hd{
+      .ifm-tab-item{
+        margin-right:-20px;
+        &.current{
+          a{
+            height:33px;
+            line-height:33px;
+            color:#fff;
+            background:#ff1c41;
+            z-index:2;
+          }
+        }
+        a{
+          position:relative;
+          height:33px;
+          line-height:33px;
+          padding:0 30px;
+          border-radius:20px;
+          font-size:14px;
+          color:#4b677b;
+          background:#e3ebf1;
+        }
+      }
+    }
+  }
+  .ui-btn{
+    width:96px;
+    height:30px;
+    line-height:30px;
+    text-align: center;
+    border-radius:3px;
+    background:#ff1c41;
+    color:#fff;
+    font-size:14px;
+  }
+  .t-btn{
+    display:none;
+  }
+  .mod-item{
+    .item{
+      border-bottom:1px solid #eef3f7;
+      padding:30px 0;
+      &:first-child{
+        padding-top:10px;
+      }
+    }
+    .picture{
+      width:150px;
+      height:80px;
+      background:#fff;
+      line-height:80px;
+      margin-right:20px;
+      img{
+        width:100%;
+      }
+    }
+    .container{
+      .course-label{
+        color:#1c2d36;
+        font-size:16px;
+      }
+    }
+  }
+}

@@ -10,6 +10,7 @@ define(function(require, exports, module) {
     var lazy;
     var jContainer = $('#jContainer');
     var jPagination = $('.jPagination');
+    var loadActivity = $PAGE_DATA['loadActivity'];
     //热门活动列表
    /* new Hot('jHotActive',{
         url:"/p-youyong/source/api/sub/hot-activity.json",
@@ -25,10 +26,6 @@ define(function(require, exports, module) {
             pager = new Pager(jPagination,{
             url:url,
             data:data,
-            alias: {
-                currentPage: 'currentPage',
-                pageSize: 'pageSize'
-            },
             options: {
                 currentPage: 1, // start with 1
                 pageSize:10
@@ -43,7 +40,8 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
+            console.log(res.data);
+            if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
                 var strHtml = template('test', res.data);
                 jContainer.html(strHtml);
             }else{
@@ -64,30 +62,18 @@ define(function(require, exports, module) {
         pager.on('ajaxError',function(res,callback){
         });
         pager.on('change', function(pageNum, e) {
-            console.log('pageNum', pageNum, e);
-            $('#jCurrentPage').html(pageNum)
+
         });
     }
-    renderList($PAGE_DATA['baseStaticUrl']+"/source/api/sub/sub.json");
+    renderList(loadActivity,{"type":0,"timeType":0});
     var nav = new navigation('#jActivity',{
         currentClass:'active',//当前样式
         navSelector:['#jActClassify','#jActTime'],//导航栏dom选择器
         navItemSlect:'a' //导航栏标签
     });
-    nav.on('change',function(data){
-        console.log(data);
-        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',data);
-        /*switch (type){
-            case '0':
-                renderList('source/api/course/tab0.json');
-                break;
-            case '1':
-                renderList('source/api/course/tab1.json');
-                break;
-            case '2':
-                renderList('source/api/course/tab2.json');
-                break;
-        }*/
+    nav.on('change',function(callbackData){
+        console.log(callbackData);
+        renderList(loadActivity,callbackData);
     })
 
 });
