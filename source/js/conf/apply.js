@@ -20,13 +20,13 @@ define(function(require, exports, module) {
             io.get($PAGE_DATA['getInfo'], function(res){
                 jContainer.html(template('jForm', res));
                 data = {
-                    'userid':
+                    'userid': res.data.userId
                 };
             })
         },
-        handle:function () {
+        handle:function (data) {
             io.get($PAGE_DATA['postInfo'], {data:data} ,function(data){
-                alert();
+                
             })
         }
     };

@@ -1,43 +1,199 @@
-/**
- * Created by temulun on 2016/12/06 12:05.
- */
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    $(function() {
-		var Accordion = function(el, multiple) {
-			this.el = el || {};
-			this.multiple = multiple || false;
-			// Variables privadas
-			var links = this.el.find('.link');
-			// Evento
-			links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown);
+    /*顶部搜索、登录状态、底部、右侧在线客服 start*/
+    var TopSearch = require('module/top-search/1.0.0/top-search');
+    var LoginStatus = require('module/login-status/1.0.0/login-status');
+    var Footer = require('module/footer/1.0.0/footer');
+    var topSearch = new TopSearch();
+    var loginStatus = new LoginStatus();
+    var footer = new Footer();
+    /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
-		}
-		Accordion.prototype.dropdown = function(e) {
-			var $el = e.data.el,
-				$this = $(this),
-				$next = $this.next();
-			$next.slideToggle();
-			if($this.parent().children().length>1) {
-				$this.parent().toggleClass('spread').siblings().removeClass('open');
-			} else {
-				$this.parent().toggleClass('open').siblings().removeClass('open');
-			}
-			if($this.parent().siblings('spread')){
-				if (!e.data.multiple) {
-					$el.find('.submenu').not($next).slideUp().parent().removeClass('spread');
-				} else if($this.parent().children().length>1) {
-					$this.parent().siblings().removeClass('open');
-				}
-			}
-		}
-		var accordion = new Accordion($('#accordion'), false);
-		$('#accordion .sublist').on('click', function () {
-			$(this).addClass('stamp').siblings().removeClass('stamp');
-		});
+    var box = require('lib/ui/box/1.0.1/box');
+    var io = require('lib/core/1.0.0/io/request');
+    var build = require('lib/core/1.0.0/dom/build');
+    var Pager = require('plugins/pager/1.0.0/pager');
+    var Tab = require('lib/ui/tab/1.0.0/tab');
+    var template = require('template');
+    var jIfmTab = $('#jIfmTab');
+    var ifmTab = new Tab(jIfmTab);
+    var pager;
+    var tabsCallback = {};
+    call();
+    function call(data) { 
+        var jContainer = $('#jContainer');
+        var jPagination = $('#jPagination');
 
-	});
+        if(typeof pager != 'undefined'){
+            pager.destroy();
+        }
+
+        pager = new Pager(jPagination, {
+            url: $PAGE_DATA['getPager'],
+            data: data,
+            alias: {
+                currentPage: 'currentPage',
+                pageSize: 'pageSize'
+            },
+            options: {
+                currentPage: 3, // start with 1
+                pageSize: 10
+            }
+        });
+
+        var loading = null;
+        pager.on('ajaxStart', function() {
+            loading = box.loading('正在加载...', {
+                modal: false
+            });
+        });
+
+        pager.on('ajaxSuccess', function(data, callback) {
+            jContainer.html(template('jClass1', data.data));
+            var res = data.data;
+                $('#jBtn').on('click', function (e) {
+                    var target = $(e.target);
+                    var $this = $(this);
+                    if(target.is('.jStart')) {
+                        call({
+                            "id":res
+                        })
+                    }
+                })
+            callback && callback(data.data.records);
+            loading && loading.hide();
+        });
+        pager.on('ajaxError', function(data) {
+            jContainer.html('网络错误，请重试！');
+            loading && loading.hide();
+        });
+
+        pager.on('change', function(pageNum, e) {
+            $('#jCurrentPage').html(pageNum)
+        });
+    }
+
+    /*//tab body data-id="1"
+    tabsCallback.callback1 = function(body) {
+        if (!tabsCallback.callback1.isInited) {
+            tabsCallback.callback1.isInited = true;
+            var builder = build.build(body, false);
+            var jPagination = builder.get('jPagination');
+            var jContainer = builder.get('jContainer');
+            jContainer.on('click','.jBtn',function(){
+                console.log(0);
+            });
+            var pager = new Pager(jPagination, {
+                url: $PAGE_DATA['getPager'],
+                data: {
+                    // class: 'djune'
+                },
+                alias: {
+                    currentPage: 'currentPage',
+                    pageSize: 'pageSize'
+                },
+                options: {
+                    currentPage: 1, // start with 1
+                    pageSize: 10
+                }
+            });
+
+            var loading = null;
+
+            pager.on('ajaxStart', function() {
+                loading = box.loading('正在加载...', {
+                    modal: false
+                });
+            });
+
+            pager.on('ajaxSuccess', function(data, callback) {
+                jContainer.html(template('jClass1', data.data));
+                $('#jBtn').on('click', function (e) {
+                    var target = $(e.target);
+                    var $this = $(this);
+                    if(target.is('.jBtn')) {
+                        alert()
+                    }
+                })
+                callback && callback(data.data.records);
+                loading && loading.hide();
+            });
+
+            pager.on('ajaxError', function(data) {
+                jContainer.html('网络错误，请重试！');
+                loading && loading.hide();
+            });
+
+            pager.on('change', function(pageNum, e) {
+                console.log('pageNum', pageNum, e);
+                $('#jCurrentPage').html(pageNum)
+            });
+        }
+    }*/
+
+    //tab body data-id="2"
+    tabsCallback.callback2 = function(body) {
+        if (!tabsCallback.callback2.isInited) {
+            tabsCallback.callback2.isInited = true;
+            var builder = build.build(body, false);
+            var jPagination = builder.get('jPagination');
+            var jContainer = builder.get('jContainer');
+            jContainer.on('click','.jBtn',function(){
+                console.log(0);
+            });
+            var pager = new Pager(jPagination, {
+                url: $PAGE_DATA['getPager'],
+                data: {
+                    // class: 'djune'
+                },
+                alias: {
+                    currentPage: 'currentPage',
+                    pageSize: 'pageSize'
+                },
+                options: {
+                    currentPage: 1, // start with 1
+                    pageSize: 10
+                }
+            });
+
+            var loading = null;
+
+            pager.on('ajaxStart', function() {
+                loading = box.loading('正在加载...', {
+                    modal: false
+                });
+            });
+
+            pager.on('ajaxSuccess', function(data, callback) {
+                console.log(data.data, callback);
+                jContainer.html(template('jClass2', data.data));
+                callback && callback(data.data.records);
+                loading && loading.hide();
+            });
+
+            pager.on('ajaxError', function(data) {
+                jContainer.html('网络错误，请重试！');
+                loading && loading.hide();
+            });
+
+            pager.on('change', function(pageNum, e) {
+                console.log('pageNum', pageNum, e);
+                $('#jCurrentPage').html(pageNum)
+            });
+        }
+    }
+    
+
+    ifmTab.on('change', function(el) {
+        var id = el.body.attr('data-id');
+        tabsCallback['callback' + id] && tabsCallback['callback' + id](el.body);
+    });
+
+    ifmTab.setCurrent();
 
 
-})
+});
+
+
+
