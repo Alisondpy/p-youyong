@@ -5,6 +5,7 @@
  */
 define(function(require, exports, module) {
     'use strict';
+
     var $ = require('jquery');
     require('lib/plugins/validation/1.15.1/jquery-validate');
 
@@ -45,6 +46,7 @@ define(function(require, exports, module) {
         }
         return pass;
     }
+
     var rTel = /^(\d{3,4}-?)?\d{7,9}$/,
         rMobile = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/,
         rEmail = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/,
@@ -86,24 +88,6 @@ define(function(require, exports, module) {
         text: '银行卡号格式不正确，请重新输入(不包含空格或者-等连接符号)',
         func: function(v, elem) {
             return this.optional(elem) || rFinanceBankCardno.test(v);
-        }
-    }, {
-        name: 'realname',
-        text: '姓名需2-10个汉字之间',
-        func: function(v, elem) {
-            return this.optional(elem) || /([\u4e00-\u9fa5]{2,4})/.test(v);
-        }
-    }, {
-        name: 'qq',
-        text: '请输入5-10位QQ号码',
-        func: function(v, elem) {
-            return this.optional(elem) || /^\d{5,10}$/.test(v);
-        }
-    }, {
-        name: 'wechat',
-        text: '请输入6-20个字母,数字,— ,_以字母开头',
-        func: function(v, elem) {
-            return this.optional(elem) || /^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/.test(v);
         }
     }];
 

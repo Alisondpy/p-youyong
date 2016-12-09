@@ -76,7 +76,7 @@ define(function(require, exports, module) {
                 params[options.alias.pageSize] = pageOptions.pageSize;
                 _this.emit('ajaxStart');
                 var deferred = $.Deferred();
-                // simulating async  paging
+                // simulating async paging
                 IO[options.ajaxType](options.url, $.extend({}, params, options.data), function(data) {
                     _this.emit('ajaxSuccess', data, function(totalCount) {
                         if (totalCount >= 0) {
