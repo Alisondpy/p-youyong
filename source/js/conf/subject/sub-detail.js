@@ -5,10 +5,13 @@ define(function(require, exports, module) {
     var form = require('lib/core/1.0.0/utils/form');
     var template=require("template");
     var io = require('lib/core/1.0.0/io/request');
-    var Hot=require('module/hot-activity/1.0.0/hot-activity');
-    new Hot('jHotActive',{
-        url:"/p-youyong/source/api/sub/hot-activity.json",
-        temId:'hot',
-        formatNum:true
-    });
+    var TopSearch = require('module/top-search/1.0.0/top-search');
+    var LoginStatus = require('module/login-status/1.0.0/login-status');
+    var FixBar = require('module/fix-bar/1.0.0/fix-bar');
+    var Footer = require('module/footer/1.0.0/footer');
+    var topSearch = new TopSearch();
+    var loginStatus = new LoginStatus();
+    var fixBar = new FixBar();
+    var footer = new Footer();
+
 });
