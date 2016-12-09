@@ -21,10 +21,10 @@ define(function(require, exports, module) {
     var pager;
     var tabsCallback = {};
     call();
+    //tab body data-id="1" 在读班级加载与事件
     function call(data) { 
         var jContainer = $('#jContainer');
         var jPagination = $('#jPagination');
-
         if(typeof pager != 'undefined'){
             pager.destroy();
         }
@@ -41,26 +41,30 @@ define(function(require, exports, module) {
                 pageSize: 10
             }
         });
-
         var loading = null;
         pager.on('ajaxStart', function() {
             loading = box.loading('正在加载...', {
                 modal: false
             });
         });
-
         pager.on('ajaxSuccess', function(data, callback) {
-            jContainer.html(template('jClass1', data.data));
-            var res = data.data;
-                $('#jBtn').on('click', function (e) {
-                    var target = $(e.target);
-                    var $this = $(this);
-                    if(target.is('.jStart')) {
-                        call({
-                            "id":res
-                        })
-                    }
-                })
+            if (data.error < 0) {
+                box.error(data.msg);
+            } else {
+                try {
+                    data = data.data;
+                    jContainer.html(template('jClass1', data));
+                    $('#jBtn').on('click', function (e) {
+                        var target = $(e.target);
+                        var $this = $(this);
+                        if(target.is('.jStart')) {
+                            call(data);
+                        }
+                    })
+                } catch (e) {
+                    box.error('暂无数据');
+                }
+            }
             callback && callback(data.data.records);
             loading && loading.hide();
         });
@@ -74,74 +78,13 @@ define(function(require, exports, module) {
         });
     }
 
-    /*//tab body data-id="1"
-    tabsCallback.callback1 = function(body) {
-        if (!tabsCallback.callback1.isInited) {
-            tabsCallback.callback1.isInited = true;
-            var builder = build.build(body, false);
-            var jPagination = builder.get('jPagination');
-            var jContainer = builder.get('jContainer');
-            jContainer.on('click','.jBtn',function(){
-                console.log(0);
-            });
-            var pager = new Pager(jPagination, {
-                url: $PAGE_DATA['getPager'],
-                data: {
-                    // class: 'djune'
-                },
-                alias: {
-                    currentPage: 'currentPage',
-                    pageSize: 'pageSize'
-                },
-                options: {
-                    currentPage: 1, // start with 1
-                    pageSize: 10
-                }
-            });
-
-            var loading = null;
-
-            pager.on('ajaxStart', function() {
-                loading = box.loading('正在加载...', {
-                    modal: false
-                });
-            });
-
-            pager.on('ajaxSuccess', function(data, callback) {
-                jContainer.html(template('jClass1', data.data));
-                $('#jBtn').on('click', function (e) {
-                    var target = $(e.target);
-                    var $this = $(this);
-                    if(target.is('.jBtn')) {
-                        alert()
-                    }
-                })
-                callback && callback(data.data.records);
-                loading && loading.hide();
-            });
-
-            pager.on('ajaxError', function(data) {
-                jContainer.html('网络错误，请重试！');
-                loading && loading.hide();
-            });
-
-            pager.on('change', function(pageNum, e) {
-                console.log('pageNum', pageNum, e);
-                $('#jCurrentPage').html(pageNum)
-            });
-        }
-    }*/
-
-    //tab body data-id="2"
+    //tab body data-id="2" 已结业班级
     tabsCallback.callback2 = function(body) {
         if (!tabsCallback.callback2.isInited) {
             tabsCallback.callback2.isInited = true;
             var builder = build.build(body, false);
             var jPagination = builder.get('jPagination');
             var jContainer = builder.get('jContainer');
-            jContainer.on('click','.jBtn',function(){
-                console.log(0);
-            });
             var pager = new Pager(jPagination, {
                 url: $PAGE_DATA['getPager'],
                 data: {
@@ -166,7 +109,7 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxSuccess', function(data, callback) {
-                console.log(data.data, callback);
+                // console.log(data.data, callback);
                 jContainer.html(template('jClass2', data.data));
                 callback && callback(data.data.records);
                 loading && loading.hide();
@@ -178,7 +121,7 @@ define(function(require, exports, module) {
             });
 
             pager.on('change', function(pageNum, e) {
-                console.log('pageNum', pageNum, e);
+                // console.log('pageNum', pageNum, e);
                 $('#jCurrentPage').html(pageNum)
             });
         }
