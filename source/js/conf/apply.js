@@ -8,7 +8,6 @@ define(function(require, exports, module) {
     var jContainer = $('#jContainer');
     var form = require('lib/core/1.0.0/utils/form');
 
-    var ucData ;
     var handshake = {
         init:function () {
             io.get($PAGE_DATA['getInfo'], function(data) {
