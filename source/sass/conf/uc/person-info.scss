@@ -3,11 +3,16 @@
 @import "../../common/common";
 @import "../../module/uc/common";
 @import "../../module/uc/search-bar/search-bar";
+@import "../../plugins/location-select/location-select";
 @import "../../common/pager/pager";
 body {
     background-color: #eee;
 }
-
+#jAddrDiv{
+    width:100px;
+    height:30px;
+    margin:20px 0 0 142px;
+}
 .mod-personinfo {
     .avater {
     	display: block;
@@ -70,7 +75,6 @@ body {
         }
     }
     .zpassword {
-        padding-right: 376px;
         input {
             width: 341px;
             height: 34px;
@@ -79,12 +83,23 @@ body {
         }
 
         div {
-            float: right;
+            position:relative;
+            margin-left:30px;
             label {
-                font-size: 14px;
-                
+                text-align:right;
+                display:inline-block;
+                width:112px;
+                height:30px;
+                font-size: 16px;  
             }  
-             
+              label.error{
+                position:absolute;
+                text-align:left;
+                width:200px;
+                left:479px;
+                top:24px;
+                color:#f00;
+            } 
         }
         
     }
@@ -99,7 +114,7 @@ body {
         input.error{
             border:1px solid #f00;
         }
-        div {
+         .item{
             position:relative;
             margin-left:30px;
             span {
@@ -120,6 +135,14 @@ body {
                 top:24px;
                 color:#f00;
          } 
+        }
+        .inwhere{
+            position:relative;
+            .where{
+                position:absolute;
+                left:79px;
+                font-size:16px;
+            }
         }
         .check {
             width: 386px;

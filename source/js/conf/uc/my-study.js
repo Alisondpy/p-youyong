@@ -16,12 +16,6 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
-    //搜索工具栏
-    var SearchBar = require('module/uc/search-bar/search-bar');
-    var searchBar = new SearchBar('#jUcSearchBar');
-    searchBar.on('search', function(val) {
-        console.log('你可以根据这个返回值来做业务:', val);
-    });
 
     
     var Tab = require('lib/ui/tab/1.0.0/tab');
@@ -38,7 +32,7 @@ define(function(require, exports, module) {
             var jPagination = builder.get('jPagination');
             var jContainer = builder.get('jContainer');
             jContainer.on('click','.jBtn',function(){
-                console.log(0);
+               console.log(0);
             });
             var pager = new Pager(jPagination, {
                 url: $PAGE_DATA['getPager'],
@@ -74,23 +68,6 @@ define(function(require, exports, module) {
                 });
                 callback && callback(data.data.records);
                 loading && loading.hide();
-                var jBtn = $('.jBtn');
-                var jTbtn = $('.jTbtn');
-                jBtn.on('click', function(){
-                    jBtn.css('display','none').siblings(jTbtn).css('display','block');
-                    $('.jLoad').css('display','none').siblings('.jDele').css('display','block');
-                });
-                jTbtn.on('click', function(){
-                    jTbtn.css('display','none').siblings(jBtn).css('display','block');
-                     $('.jLoad').css('display','block').siblings('.jDele').css('display','none');
-                })
-                $('.mod-item').on('click', function(e){
-                    var _this = $(this);
-                    var target = $(e.target);
-                    if(target.is('.jDel')){
-                        _this.fadeOut();
-                    }
-                })
             });
 
             pager.on('ajaxError', function(data) {

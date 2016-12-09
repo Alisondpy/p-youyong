@@ -23,23 +23,14 @@
                     <div class="ifm-hd clearfix">
                         <!-- tab 头部 start -->
                         <ul class="clearfix ifm-tab-hd" node-type="hd">
-                            <li class="ifm-tab-item current person-info" node-type="hdItem" data-target="1"><a href="javascript:;">个人信息</a></li>
-                            <li class="ifm-tab-item current" node-type="hdItem" data-target="2"><a href="javascript:;">修改登陆密码</a></li>
+                            <li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">个人信息</a></li>
+                            <li class="ifm-tab-item" node-type="hdItem" data-target="2"><a href="javascript:;">修改登陆密码</a></li>
                         </ul>
                         <!-- tab 头部 end -->
-                        <div class="ifm-top-bar">
-                            <!-- tab右侧工具栏 start -->
-                            <div class="ui-uc-search-bar" id="jUcSearchBar">
-                                <label class="lbl" for="_ucSearchBar">按考试名称模糊搜索</label>
-                                <input class="txt" id="_ucSearchBar" node-type="ipt" type="text" data-id="key">
-                                <button node-type="btn" class="iyoyo iyoyo-search"></button>
-                            </div>
-                            <!-- tab右侧工具栏 end -->
-                        </div>
                     </div>
                     <div class="ifm-tab-bd" node-type="bd">
                         <!-- tab内容区域-1 start-->
-                        <div class="ifm-tab-container" node-type="container" data-id="1">
+                        <div class="ifm-tab-container current" node-type="container" data-id="1">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
                                 <div class="mod-personinfo">
@@ -49,7 +40,7 @@
                                             <span class="load"><em>登陆次数:</em><i>53</i></span>
                                             <span><em>上次登陆时间:</em><i>2016-05-19 16:30:56</i></span>
                                         </div>
-                                        <a class="avater" id="jAvater">
+                                        <a href="javascript:;" class="avater" id="jAvater">
                                             <img class="jImg img" src="http://i0.hdslb.com/bfs/archive/c6ce1ec8823bac470770985bb851946e938e7411.jpg_320x200.jpg">
                                             <div class="mask">
                                             </div>
@@ -59,27 +50,27 @@
                                         </a>
                                         <!-- 个人信息统计 -->
                                         <div class="info clearfix">
-                                            <div class="pet">
+                                            <div class=" item pet">
                                                 <label for="jPet">昵称</label>
                                                 <input type="text" name="nickname" id="jPet">
                                             </div>
-                                            <div>
+                                            <div class="item">
                                                 <label for="jName"><span>*</span>真实姓名</label>
                                                 <input type="text" name="realname" id="jName">
                                             </div>
-                                            <div>
+                                            <div class="item">
                                                 <label for="jPhonenum"><span>*</span>手机号码</label>
                                                 <input type="text" id="jPhonenum" name="mobile">
                                             </div>
-                                            <div>
+                                            <div class="item">
                                                 <label for="jMail"><span>*</span>邮箱</label>
                                                 <input type="text" id="jMail" name="email">
                                             </div>
-                                            <div>
+                                            <div class="item">
                                                 <label for="jCareer"><span>*</span>职业</label>
                                                 <input type="text" id="jCareer" name="occupation">
                                             </div>
-                                            <div>
+                                            <div class="item">
                                                 <label for="jCompany"><span>*</span>所属公司</label>
                                                 <input type="text" id="jCompany" name="companyName">
                                             </div>
@@ -90,21 +81,22 @@
                                                 <input type="radio" id="male" value="1" name="sex">
                                                 <label for="male">男</label>
                                             </div>
-                                            <div>
+                                            <div class="item">
                                                 <label for="jQQ">QQ</label>
                                                 <input type="text" id="jQQ" name="qq">
                                             </div>
-                                            <div>
-                                                <label for="jInaddress">所在地</label>
-                                                <input type="text" id="jInaddress">
+                                            <div class="inwhere">
+                                                <span class="where">所在地</span>
+                                                <div id="jAddrDiv" data-location-select="   湖南_长沙市_开福区:43_430100000000_430105000000">
+                                                </div>
                                             </div>
-                                            <div>
+                                            <div class="item">
                                                 <label for="jAddres">详细地址</label>
                                                 <input type="text" id="JAddres" name="address">
                                             </div>
                                         </div>
                                         <div class="btn">
-                                            <button class="ui-btn jBtn">保存</button>
+                                            <button class="ui-btn jBtn" type="sumbit">保存</button>
                                         </div>
                                     </form>    
                                 </div>
@@ -122,31 +114,30 @@
                                         <span class="load"><em>登陆次数:</em><i>53</i></span>
                                         <span><em>上次登陆时间:</em><i>2016-05-19 16:30:56</i></span>
                                     </div>
-                                    <form class="jForm">
+                                    <form id="jFormPwd">
                                         <div class="zpassword clearfix">
-
                                             <div class="oldpassword">
                                                 <label for="password">
                                                     原登录密码
                                                 </label>
-                                                <input type="password" id="password" name="password">
+                                                <input type="password" id="password" name="oldPassword">
                                             </div>
                                             <div class="newpassword">
                                                 <label>
                                                     新登录密码
                                                 </label>
-                                                <input type="password" id="nepassword" name="nepassword0">
+                                                <input type="password" id="nepassword" name="newPassword">
                                             </div>
                                             <div class="surepassword">
                                                 <label for="sure">
                                                     确认新登录密码
                                                 </label>
-                                                <input type="password" id="sure" class="nepassword1">
+                                                <input type="password" id="sure" name="rePassword">
                                             </div>
                                         </div>
                                         <div class="btn">
-                                            <button class="ui-btn">保存</button>
-                                            <span class="rember"><a href="">忘记密码</a></span>
+                                            <button type="sumbit" class="ui-btn jSbtn">保存</button>
+                                            <span class="rember"><a href="javascript:void(0);">忘记密码</a></span>
                                         </div>
                                     </form>
                                 </div>

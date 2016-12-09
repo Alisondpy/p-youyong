@@ -39,7 +39,7 @@ define(function(require, exports, module) {
                 },
                 options: {
                     currentPage: 1, // start with 1
-                    pageSize: 20
+                    pageSize: 12
                 }
             });
 
