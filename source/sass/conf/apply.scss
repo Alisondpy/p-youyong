@@ -1,18 +1,15 @@
 @charset "UTF-8";
 @import "../common/config/level-1";
 @import "../common/common";
+body{
+    width:500px;
+    min-width: 500px;
+}
 html, body {
-    width: 100%;
-    height: 100%;
     background-color: #e4ebf0;
 }
 
 .mod-form {
-    position: relative;
-    left: 50%;
-    top: 50%;
-    margin-top: -255px;
-    margin-left: -250px;
     width: 500px;
     height: 510px;
     border: 1px solid #fff;

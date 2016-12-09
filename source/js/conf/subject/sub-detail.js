@@ -5,13 +5,12 @@ define(function(require, exports, module) {
     var form = require('lib/core/1.0.0/utils/form');
     var template=require("template");
     var io = require('lib/core/1.0.0/io/request');
-    var TopSearch = require('module/top-search/1.0.0/top-search');
-    var LoginStatus = require('module/login-status/1.0.0/login-status');
-    var FixBar = require('module/fix-bar/1.0.0/fix-bar');
-    var Footer = require('module/footer/1.0.0/footer');
-    var topSearch = new TopSearch();
-    var loginStatus = new LoginStatus();
-    var fixBar = new FixBar();
-    var footer = new Footer();
-
+    var box = require('lib/ui/box/1.0.1/crossbox');
+    $("#jReport").on("click",function(){
+        box.loadUrl('/p-youyong/dist/html/apply.html', {
+            title: '报名详情',
+            autoRelease: false,
+            modal: true //是否有遮罩层
+        });
+    })
 });

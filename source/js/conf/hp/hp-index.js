@@ -10,5 +10,4 @@ define(function(require, exports, module) {
     var loginStatus = new LoginStatus();
     var fixBar = new FixBar();
     var footer = new Footer();
-
 });
