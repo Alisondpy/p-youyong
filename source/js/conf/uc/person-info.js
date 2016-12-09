@@ -118,7 +118,7 @@ define(function(require, exports, module) {
                     console.log(data);
                     box.ok("保存成功");
                     },function(data){
-                        box.error(data.msg || '保存失败');
+                        box.error(data.msg || '保存失败了');
                     });
                 },
             rules:{
