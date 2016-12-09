@@ -10,9 +10,11 @@
         .item{
             padding: 20px 0;
             width: 806px;
-            border-bottom: 1px solid #eef3f7;
+            border-top: 1px solid #eef3f7;
             background-color: #fff;
-            overflow: hidden;
+            &.first{
+	            border: none;
+	        }
             .title{
 				font-size: 16px;
 				.course-title{
@@ -31,7 +33,7 @@
             .details{
             	padding: 5px;
             	width: 780px;
-            	height: 60px;
+            	max-height: 60px;
             	margin: 16px 0;
             	border:none;
             	resize:none;
@@ -59,14 +61,11 @@
 					.iyoyo{
 						font-size: 12px;
 					}
-					.iyoyo-heart, .iyoyo-del{
+					.iyoyo-key, .iyoyo-del{
 						color: #f43c3c;
 					}
 					.secret{
 						margin-right: 15px;
-						.iyoyo-heart{
-							font-size: 20px;
-						}
 						.normal{
 							font-style: normal;	
 						}
@@ -94,5 +93,14 @@
     }
 }
 
+.ui-empty-list{
+    padding: 100px 0;
+    .txt{
+        font-size: 30px;
+    }
+}
+.ui-loading-list{
+    padding: 100px 0;
+}
 
 

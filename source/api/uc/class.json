@@ -7,15 +7,28 @@
 		"records": 300,
 		"resultList":[
 			{
-				"id":"001",
+				"id":1,
 				"name":"班级名称",
 				"totalPeriod":"总课时分钟",
-				"studiedPeriod":"已学时分钟",
+				"studiedPeriod":0,
 				"startTime":"开班时间",
-				"studentNum":120,
+				"studentNum":"120",
+				"qqQRCodeUrl":"1236456412s",
+				"wechatQRCUrl":"http://pic61.nipic.com/file/20150304/20245617_095937129615_2.jpg",
+				"isNeedExam":0,
+				"url":"javascript:;"
+			},
+			{
+				"id":1,
+				"name":"班级名称",
+				"totalPeriod":"总课时分钟",
+				"studiedPeriod":0,
+				"startTime":"开班时间",
+				"studentNum":"120",
 				"qqQRCodeUrl":"12365",
-				"wechatQRCUrl":"45648",
-				"isNeedExam":1
+				"wechatQRCUrl":"http://pic61.nipic.com/file/20150304/20245617_095937129615_2.jpg",
+				"isNeedExam":0,
+				"url":"javascript:;"
 			}
 		],
 		"total": 2

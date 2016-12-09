@@ -21,80 +21,84 @@ define(function(require, exports, module) {
     var isEdit = false;
     var pager;
 
+    var jContainer = $('#jContainer');
+    var jPagination = $('#jPagination');
+
     var tabsCallback = {};
-    //tab body data-id="1"
-    call();
-    function call(data) { 
-        var jContainer = $('#jContainer');
-        var jPagination = $('#jPagination');
-        if(typeof pager != 'undefined'){
-            pager.destroy();
-        }
-        pager = new Pager(jPagination, {
-            url: $PAGE_DATA['getPager'],
-            data: data,
-            alias: {
-                currentPage: 'currentPage',
-                pageSize: 'pageSize'
-            },
-            options: {
-                currentPage: 1, // start with 1
-                pageSize: 10
-            }
-        });
+    tabsCallback.callback1 = function(body) {
+        if (!tabsCallback.callback1.inited) {
+            tabsCallback.callback1.inited = true;
 
-        var loading = null;
-        pager.on('ajaxStart', function() {
-            loading = box.loading('正在加载...', {
-                modal: false
+            pager = new Pager(jPagination, {
+                url: $PAGE_DATA['noteInfo'],
+                data: {}
             });
-        });
-
-        pager.on('ajaxSuccess', function(data, callback) {
-            var data = data.data;
-            jContainer.html(template('jNote', data));
-            $('.jEdit').on('click', function(e) {
-                var $this = $(this);
-                var target = $(e.target);
-                var id = $this.attr('data-id');
-                var context = $this.find('.jEditDetails').val();
-                //文本输入编辑
-                if (target.is('.jEditTxt') && !isEdit) {
-                    $this.find('.jHide').hide().siblings('.jSave').show();
-                    $this.find('.jEditDetails').removeAttr('readonly').addClass('edittxt');
-                    isEdit = true;
-                    //保存编辑内容
-                } else if (target.is('.jSave')) {
-                    $this.find('.jSave').hide().siblings('.jHide').show();
-                    $this.find('.jEditDetails').attr('readonly', true).removeClass('edittxt');
-                    
-                    call({
-                        'id':id,
-                        'context': context
-                    });
-                    isEdit = false;
-                    //删除笔记
-                } else if (target.is('.jDel') && !isEdit) {
-                    call({
-                        'id':id
-                    });
-                    isEdit = false;
-                    //点击跳转页面
-                } else if (target.is('.jEditDetails') && !isEdit) {
-                    //window.location.href = 'uc-note.html';
+            var loading = null;
+            pager.on('ajaxStart', function() {
+                loading = box.loading('正在加载...', {
+                    modal: false
+                });
+            });
+            pager.on('ajaxSuccess', function(data, callback) {
+                if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
+                    jContainer.html(template('tNote', data.data));
+                    InitEvent.init(body);
+                    callback && callback(data.data.records);
+                } else {
+                    jContainer.html(template('tEmpty'));
+                    callback && callback(1);
                 }
-            })
-            callback && callback(data.data.records);
-            loading && loading.hide();
-        });
-        pager.on('ajaxError', function(data) {
-            jContainer.html('网络错误，请重试！');
-            loading && loading.hide();
-        });
+                loading && loading.hide();
+            });
 
-        pager.on('change', function(pageNum, e) {
-            $('#jCurrentPage').html(pageNum)
-        });
+            pager.on('ajaxError', function(data) {
+                box.error('网络错误，请重试！');
+                loading && loading.hide();
+            });
+
+        }
+        var InitEvent = {
+            init: function(body) {
+                if (!InitEvent.inited) {
+                    InitEvent.inited = true;
+                    
+                    body.find('.jEdit').on('click', function(e) {
+                        var $this = $(this);
+                        var target = $(e.target);
+                        var id = $this.attr('data-id');
+                        var context = $this.find('.jEditDetails').val();
+                        //文本输入编辑
+                        if (target.is('.jEditTxt') && !isEdit) {
+                            $this.find('.jHide').hide().siblings('.jSave').show();
+                            $this.find('.jEditDetails').removeAttr('readonly').addClass('edittxt');
+                            isEdit = true;
+                            //保存编辑内容
+                        } else if (target.is('.jSave')) {
+                            $this.find('.jSave').hide().siblings('.jHide').show();
+                            $this.find('.jEditDetails').attr('readonly', true).removeClass('edittxt');
+                            postparams($PAGE_DATA['noteInfo'], {'id':id , 'context':context}, '保存成功！') 
+                            isEdit = false;
+                            //删除笔记
+                        } else if (target.is('.jDel') && !isEdit) {
+                            postparams($PAGE_DATA['noteInfo'], {'id':id}, '删除成功！')
+                            alert($this.siblings())
+                            $this.remove()
+                            isEdit = false;
+                            //点击跳转页面
+                        } else if (target.is('.jEditDetails') && !isEdit) {
+                            //window.location.href = 'uc-note.html';
+                        }
+                    });
+                }
+            }
+        }
+    }
+    function postparams(url, data, tips) {
+        io.get(url, data , function (res) {
+            box.ok(tips)
+        }, function (res) {
+            box.error(res.msg || '网络错误,请重试');
+        }, this)
     }
     ifmTab.on('change', function(el) {
         var id = el.body.attr('data-id');

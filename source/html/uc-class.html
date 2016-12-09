@@ -2,12 +2,12 @@
 <html>
 
 <head>
-    <title>我的消息</title>
+    <title>我的班级</title>
     <!--#include file="./common/meta.html"-->
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/uc/class.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
-    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/class.json';
+    $PAGE_DATA['getPager'] = '/userCenter/class/list';
     </script>
 </head>
 <body>
@@ -22,7 +22,7 @@
                         <!-- tab 头部 start -->
                         <ul class="clearfix ifm-tab-hd" node-type="hd">
                             <li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">在读班级</a></li>
-                             <li class="ifm-tab-item current" node-type="hdItem" data-target="2"><a href="javascript:;">已结业班级</a></li>
+                             <li class="ifm-tab-item" node-type="hdItem" data-target="2"><a href="javascript:;">已结业班级</a></li>
                         </ul>
                         <!-- tab 头部 end -->
                         <div class="ifm-top-bar">
@@ -33,10 +33,10 @@
                     </div>
                     <div class="ifm-tab-bd" node-type="bd">
                         <!-- tab内容区域-1 start-->
-                        <div class="ifm-tab-container" node-type="container" data-id="1">
+                        <div class="ifm-tab-container current" node-type="container" data-id="1">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
-                                <div node-type="jContainer" id="jContainer">
+                                <div node-type="jContainer">
                                     <div class="ui-loading-list">
                                         <div class="img-loading"></div>
                                         <div class="txt">
@@ -48,7 +48,7 @@
                             </div>
                             <div class="ifm-bottom-bar">
                                 <!-- 底部工具栏 start -->
-                                <div node-type="jPagination" id="jPagination" class="pager"></div>
+                                <div node-type="jPagination" class="pager"></div>
                                 <!-- 底部工具栏 end -->
                             </div>
                         </div>
@@ -86,13 +86,14 @@
     <script type="text/javascript">
     require(['conf/uc/class'], function() {});
     </script>
-    <script type="text/html" id="jClass1">
+    <script type="text/html" id="tClass1">
         <ul class="content">
-        {{each resultList item i}}
-            <li class="item clearfix">
+        {{each resultList as item i}}
+            <li class="item clearfix {{if i=='0'}}first{{/if}}">
                 <div class="left-title f-l">
                     <div class="up">
-                        <span class="job txt-overflow">{{item.name}}</span>
+                        <span class="name">班级名称：</span>
+                        <a href="javascript:;" class="job txt-overflow">{{item.name}}</a>
                         <span class="iyo">
                             <i class="iyoyo iyoyo-qq"></i>
                             <div class="yoqq">
@@ -102,7 +103,7 @@
                         <span class="iyo">
                             <i class="iyoyo iyoyo-talk"></i>
                             <div class="yotalk">
-                                {{item.wechatQRCUrl}}
+                                <img src={{item.wechatQRCUrl}} alt="" class="code"/>
                             </div>
                         </span>
                     </div>
@@ -112,24 +113,34 @@
                         <span class="people">班级人数</span><span class="number">{{item.studentNum}}人</span>
                     </div>
                 </div>
-                <div class="right-start-button f-r" id="jBtn">
+                <div class="right-start-button f-r">
                     <span class="over-time">已学课时</span>
                     <span class="already">
                         <i class="offline">{{item.studiedPeriod}}</i>/<i class="online">{{item.totalPeriod}}</i>
                     </span>
-                    <button class="ui-btn ui-btn-danger jStart">开始学习</button>
-                    <button class="ui-btn ui-btn-defulat jEvaluation">综合考评</button>
+                    
+                    <a href="javascript:;" class="ui-btn ui-btn-danger">
+                        {{if item.studiedPeriod==0}}开始学习{{/if}}
+                        {{if item.studiedPeriod==1}}继续学习{{/if}}
+                    </a>
+                    {{if item.isNeedExam == 1}}
+                    <a href="javascript:;" class="ui-btn ui-btn-danger">综合考评</a>
+                    {{else}}
+                    <a href="javascript:;" class="ui-btn ui-btn-defulat">综合考评</a>
+                    {{/if}}
                 </div>
             </li>
         {{/each}}
         </ul>
     </script>
-    <script type="text/html" id="jClass2">
+    <script type="text/html" id="tClass2">
         <ul class="content">
-            <li class="item clearfix">
+        {{each resultList as item i}}
+            <li class="item clearfix {{if i=='0'}}first{{/if}}">
                 <div class="left-title f-l">
                     <div class="up">
-                        <span class="job txt-overflow">{{item.name}}</span>
+                        <span class="name">班级名称：</span>
+                        <a href="javascript:;" class="job txt-overflow">{{item.name}}</a>
                         <span class="iyo">
                             <i class="iyoyo iyoyo-qq"></i>
                             <div class="yoqq">
@@ -139,7 +150,7 @@
                         <span class="iyo">
                             <i class="iyoyo iyoyo-talk"></i>
                             <div class="yotalk">
-                                {{item.wechatQRCUrl}}
+                                <img src={{item.wechatQRCUrl}} alt="" class="code"/>
                             </div>
                         </span>
                         
@@ -157,7 +168,11 @@
                     </span>
                 </div>
             </li>
+            {{/each}}
         </ul>
+    </script>
+    <script type="text/html" id="tEmpty">
+        <div class="ui-empty-list"><div class="iyoyo iyoyo-box"></div><div class="txt">暂无班级信息</div></div>
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->

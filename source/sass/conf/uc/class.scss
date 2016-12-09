@@ -12,18 +12,30 @@
         width: 794px;
         margin: 0 auto;
         padding: 20px 0;
-        border-bottom: 1px solid #e4ebf0;
+        border-top: 1px solid #e4ebf0;
+        &.first{
+            border: none;
+        }
         .left-title {
             .up {
                 position: relative;
                 line-height: 30px;
+                .name{
+                    vertical-align:middle;
+                    display: inline-block;
+                    line-height: 20px;
+                    font-size: 18px;
+                }
                 .job {
                     display: inline-block;
-                    width: 200px;
+                    vertical-align:middle;
+                    width: 150px;
                     font-size: 20px;
                     /*px*/
                 }
                 .iyoyo {
+                    /* position: relative;
+                    top: -6px; */
                     margin-left: 10px;
                     font-size: 20px;
                     color: #95aab8;
@@ -34,27 +46,31 @@
                 .yoqq, .yotalk{
                     display: none;
                     position: absolute;
+                    top: 30px;
                     z-index: 99;
                     padding: 11px;
-                    width: 76px;
-                    height: 76px;
                     border: 1px solid #e4ebf0;
                     border-radius: 4px;
                     background-color: #fff;
+                    text-align: center;
                     .code{
                         width: 76px;
                         height: 76px;
                     }
                 }
+                .yotalk{
+                    width: 76px;
+                    height: 76px;
+                }
                 .yoqq{
-                    left: 180px;
+                    width: 76px;
+                    left: 220px;
                 }
                 .yotalk{
-                    left: 210px;
+                    left: 252px;
                 }
                 .iyo{
                     display: inline-block;
-                    cursor: pointer;
                     &:hover{
                         .yoqq{
                             display: block;
@@ -115,7 +131,9 @@
                 height: 40px;
                 line-height: 40px;
                 font-size: 12px;
-                /*px*/
+                &:hover{
+                    color: #fff;
+                }
             }
             .ui-btn-defulat{
                 background-color: #d1d7dc;
@@ -126,4 +144,13 @@
             }
         }
     }
+}
+.ui-empty-list{
+    padding: 100px 0;
+    .txt{
+        font-size: 30px;
+    }
+}
+.ui-loading-list{
+    padding: 100px 0;
 }
