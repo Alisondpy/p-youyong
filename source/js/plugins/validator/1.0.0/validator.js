@@ -88,7 +88,7 @@ define(function(require, exports, module) {
             return this.optional(elem) || rFinanceBankCardno.test(v);
         }
     }, {
-        name: 'admin',
+        name: 'realname',
         text: '姓名需2-10个汉字之间',
         func: function(v, elem) {
             return this.optional(elem) || /([\u4e00-\u9fa5]{2,4})/.test(v);

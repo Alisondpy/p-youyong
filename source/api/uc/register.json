@@ -2,10 +2,16 @@
     "code": 0,
     "msg": "牛逼，你已经到后台了！",
     "data": {
-        "userId":"132",
-        "realname":"nihao",
-        "mobile":"13132154",
-        "email":"dsad"
+    	"companyId":"01",
+    	"activityId":"001",
+        "userId":"0001",
+        "realname":"realname",
+        "mobile":"13222222222",
+        "email":"email",
+        "wechat":"wechat",
+        "qq":"qq",
+        "school":"school",
+        "avatarUrl":"dasda"
     },
     "ver": "1.0"
 }

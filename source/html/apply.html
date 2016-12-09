@@ -7,7 +7,7 @@
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/apply.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
-        $PAGE_DATA['getInfo'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
+        $PAGE_DATA['getInfo'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/register.json';
         $PAGE_DATA['postInfo'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/register.json';
     </script>
 </head>
@@ -21,7 +21,6 @@
         </ul>
     </form>
     <!-- 主要内容 end-->
-    
     <!--#include file="./common/js.html"-->
     <!-- 我是注释 -->
     <script type="text/javascript">
@@ -30,19 +29,19 @@
     <script type="text/html" id="jForm">
         <li class="item">
             <label for="jName" class="mark"><i class="necessary">*</i>姓名</label>
-            <input id="jName" class="ui-input" name="admin" type="text" placeholder="请输入姓名" value="temulun" />
+            <input id="jName" class="ui-input" name="admin" type="text" placeholder="请输入姓名" value="扛把子" />
         </li>
         <li class="item">
             <label for="jMobile" class="mark"><i class="necessary">*</i>手机号</label>
-            <input id="jMobile" class="ui-input" name="mobile" type="text" placeholder="请输入您的手机号"/>
+            <input id="jMobile" class="ui-input" name="mobile" type="text" placeholder="请输入您的手机号" value="13222222222"  disabled="disabled"/>
         </li>
         <li class="item">
             <label for="jEmail" class="mark"><i class="necessary">*</i>E-mail</label>
-            <input id="jEmail" class="ui-input" name="email" type="email" placeholder="请填写您的邮箱"/>
+            <input id="jEmail" class="ui-input" name="email" type="email" placeholder="请填写您的邮箱" value="" disabled="disabled"/>
         </li>
         <li class="item">
             <label for="jScholl" class="mark"><i class="necessary">*</i>学校/单位</label>
-            <input id="jScholl" class="ui-input" name="scholl" type="text" placeholder="请填写您的学校或单位"/>
+            <input id="jScholl" class="ui-input" name="scholl" type="text" value="ms" placeholder="请填写您的学校或单位"/>
         </li>
         <li class="item">
             <label for="jQQ" class="mark">QQ</label>
