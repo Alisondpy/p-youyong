@@ -59,17 +59,38 @@
                     <h1>职业学习</h1>
                     <span>实战课程，助你成就高薪梦想</span>
                 </div>
-                <div class="lists jLists clearfix tab0 current" id="jTab0"></div>
+                <div class="lists jLists clearfix tab0 current" id="jTab0">
+                    <div class="ui-loading-list">
+                        <div class="img-loading"></div>
+                        <div class="txt">
+                            正在卖力加载，请稍后
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--系列课tab end-->
             <!--点播课tab begin-->
             <div class="tab" node-type="container" data-id="2">
-                <div class="lists jLists clearfix tab1" id="jTab1"></div>
+                <div class="lists jLists clearfix tab1" id="jTab1">
+                    <div class="ui-loading-list">
+                        <div class="img-loading"></div>
+                        <div class="txt">
+                            正在卖力加载，请稍后
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--点播课tab end-->
             <!--直播课tab begin-->
             <div class="tab" node-type="container" data-id="3">
-                <div class="lists jLists clearfix tab2" id="jTab2"></div>
+                <div class="lists jLists clearfix tab2" id="jTab2">
+                    <div class="ui-loading-list">
+                        <div class="img-loading"></div>
+                        <div class="txt">
+                            正在卖力加载，请稍后
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--直播课tab end-->
         </div>
@@ -86,7 +107,7 @@
     require(['conf/course/index'], function() {});
 </script>
 <script id="tab0" type="text/html">
-    {{each list as value i}}
+    {{each resultList as value i}}
     <a href="javascript:void(0);" class="list f-l">
         <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
         <span class="description txt-overflow">{{value.title}}</span>
@@ -95,7 +116,7 @@
     {{/each}}
 </script>
 <script id="tab1" type="text/html">
-    {{each list as value i}}
+    {{each resultList as value i}}
     <a href="javascript:void(0);" class="list f-l clearfix jList">
         <div class="description">
             <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
@@ -111,7 +132,7 @@
     {{/each}}
 </script>
 <script id="tab2" type="text/html">
-    {{each list as value i}}
+    {{each resultList as value i}}
     <a href="javascript:void(0);" class="list f-l clearfix jList">
         <div class="description">
             <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
@@ -126,6 +147,12 @@
         </div>
     </a>
     {{/each}}
+</script>
+<script id="tEmpty" type="text/html">
+    <div class="ui-empty-list">
+        <div class="iyoyo iyoyo-box"></div>
+        <div class="txt">暂无数据</div>
+    </div>
 </script>
 <!--#include file="./common/tj.html"-->
 <!--#include file="./common/statistics.html"-->

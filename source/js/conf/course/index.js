@@ -54,20 +54,21 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            if(!$.isEmptyObject(res.data) && res.data.list.length > 0){
+            if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
+                //图片懒加载
+                lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
+                    mouseWheel: true,
+                    effect: 'fadeIn',
+                    snap: true
+                });
+                callback && callback(res.data.records);
             }else {
-                document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>暂无数据</div>";
+                var html = template('tEmpty',1);
+                document.getElementById(htmEl).innerHTML = html;
+                pagEl.hide();
             }
-
-            //图片懒加载
-            lazy = new Lazyload($('.jImg'), {
-                mouseWheel: true,
-                effect: 'fadeIn',
-                snap: true
-            });
-            callback && callback(res.data.records);
             loading && loading.hide();
         });
 
@@ -76,8 +77,7 @@ define(function(require, exports, module) {
             loading && loading.hide();
         });
 
-        pager.on('change', function(pageNum, e) {
-        });
+        pager.on('change', function(pageNum, e) {});
     };
 
 
@@ -134,7 +134,7 @@ define(function(require, exports, module) {
             case '0':
                 renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'data':data},'tab0','jTab0',jPagination);
                 break;
-            case '1': data
+            case '1':
                 renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab1.json',{'data':data},'tab1','jTab1',jPagination);
                 break;
             case '2':

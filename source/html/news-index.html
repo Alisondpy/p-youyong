@@ -40,11 +40,25 @@
             <div class="mod-right f-r">
                 <div class="mod-slider">
                     <h2>热门资讯</h2>
-                    <div class="mod-news-list" id="jHotNews"></div>
+                    <div class="mod-news-list" id="jHotNews">
+                        <div class="ui-loading-list">
+                            <div class="img-loading"></div>
+                            <div class="txt">
+                                正在卖力加载，请稍后
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="mod-slider">
                     <h2>热门培训课程</h2>
-                    <div class="items clearfix" id="jHotCourse"></div>
+                    <div class="items clearfix" id="jHotCourse">
+                        <div class="ui-loading-list">
+                            <div class="img-loading"></div>
+                            <div class="txt">
+                                正在卖力加载，请稍后
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -90,6 +104,12 @@
             </div>
         </a>
     {{/each}}
+</script>
+<script id="tEmpty" type="text/html">
+    <div class="ui-empty-list">
+        <div class="iyoyo iyoyo-box"></div>
+        <div class="txt">暂无数据</div>
+    </div>
 </script>
 <!--#include file="./common/tj.html"-->
 <!--#include file="./common/statistics.html"-->

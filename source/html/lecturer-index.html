@@ -25,42 +25,12 @@
         </div>
         <div class="mod-learn">
             <div class="lists clearfix" id="jLists">
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>{{value.name}}</h3>
-                        <span class="txt-overflow">{{value.title}}</span>
+                <div class="ui-loading-list">
+                    <div class="img-loading"></div>
+                    <div class="txt">
+                        正在卖力加载，请稍后
                     </div>
-                    <span class="label">{{value.tag}}</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>{{value.name}}</h3>
-                        <span class="txt-overflow">{{value.title}}</span>
-                    </div>
-                    <span class="label">{{value.tag}}</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>{{value.name}}</h3>
-                        <span class="txt-overflow">{{value.title}}</span>
-                    </div>
-                    <span class="label">{{value.tag}}</span>
-                    <span class="mask"></span>
-                </a>
-                <a href="javascript:void(0);" class="list f-l">
-                    <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="讲师" class="jImg img-error">
-                    <div class="description">
-                        <h3>{{value.name}}</h3>
-                        <span class="txt-overflow">{{value.title}}</span>
-                    </div>
-                    <span class="label">{{value.tag}}</span>
-                    <span class="mask"></span>
-                </a>
+                </div>
             </div>
         </div>
         <div class="mod-page clearfix">
@@ -76,7 +46,7 @@
 <script id="lists" type="text/html">
     {{each resultList as value i}}
     <a href="javascript:void(0);" class="list f-l">
-        <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="讲师" class="jImg img-error">
+        <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="{{value.courseImageUrl}}" alt="讲师" class="jImg img-error">
         <div class="description">
             <h3>{{value.name}}</h3>
             <span class="txt-overflow">{{value.title}}</span>
@@ -85,6 +55,12 @@
         <span class="mask"></span>
     </a>
     {{/each}}
+</script>
+<script id="tEmpty" type="text/html">
+    <div class="ui-empty-list">
+        <div class="iyoyo iyoyo-box"></div>
+        <div class="txt">暂无数据</div>
+    </div>
 </script>
 <!--#include file="./common/tj.html"-->
 <!--#include file="./common/statistics.html"-->

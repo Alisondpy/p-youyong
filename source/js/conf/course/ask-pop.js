@@ -12,22 +12,7 @@ define(function(require, exports, module) {
 	var form = require('lib/core/1.0.0/utils/form');
 
 	var handshake = {
-		init:function () {
-			io.get($PAGE_DATA['getInfo'], function(data) {
-				if (data.error < 0) {
-					box.error(data.msg);
-				} else {
-					try {
-						data = data.data;
-						form.setFormData('#jSigninForm',data);
-					} catch (e) {
-						box.error('暂无数据');
-					}
-				}
-			}, function(res) {
-				box.error('网络错误');
-			});
-		},
+		init:function () {},
 		handle:function (data) {
 			var ucData = form.serializeForm('#jSigninForm');
 			io.get($PAGE_DATA['getInfo'], ucData ,function(data){
@@ -40,31 +25,42 @@ define(function(require, exports, module) {
 	handshake.init();
 	$('#jSigninForm').validate({
 		rules: {
-			realname: {
-				required: true,
-				realname:true
+			title: {
+				required: true
 			},
-			mobile:{
-				required: true,
-				mobile:true
+			content:{
+				required: true
+			}
+		},
+		messages:{
+			title:{
+				required:"请填写标题"
 			},
-			email:{
-				required: true,
-				email:true
-			},
-			scholl:{
-				required: true,
-			},
-			qq:{
-				qq:true
-			},
-			wechat:{
-				wechat:true
+			content:{
+				required:"请填写内容"
 			}
 		},
 		submitHandler:function(form){
 			handshake.handle();
+		},
+		//失去焦点验证
+		onfocusout: function(element){
+			$(element).valid();
 		}
 	})
 
+	//评论字数限制
+	$('#jContainer').on('keyup','#jContent',function(){
+		var txtLen = $('#jContent').val().length;
+		if(txtLen > 100){
+			$(this).addClass('text-error');
+			$('#jTxtNum').css({'color':'red'});
+			$('#jContainer').find('input[type=submit]').addClass('ui-btn-disabled');
+		}else {
+			$(this).removeClass('text-error');
+			$('#jTxtNum').css({'color':'#666'});
+			$('#jContainer').find('input[type=submit]').removeClass('ui-btn-disabled');
+		}
+		$('#jTxtNum').children('span').text(txtLen);
+	});
 });

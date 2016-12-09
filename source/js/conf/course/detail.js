@@ -43,6 +43,10 @@ define(function(require, exports, module) {
         pager = new Pager(pagEl, {
             url:url,
             data:data,
+            alias: {
+                currentPage: 'currentPage',
+                pageSize: 'pageSize'
+            },
             options: {
                 currentPage: 1, // start with 1
                 pageSize: 8
@@ -58,25 +62,21 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
+            if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
-                console.log(tmpEl,htmEl);
                 document.getElementById(htmEl).innerHTML = html;
+                //图片懒加载
+                lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
+                    mouseWheel: true,
+                    effect: 'fadeIn',
+                    snap: true
+                });
+                callback && callback(res.data.records);
             }else {
-                document.getElementById(htmEl).innerHTML = '<div class="ui-empty-list">'+
-                    '<div class="iyoyo iyoyo-box"></div>'+
-                    '<div class="txt">暂无数据</div>'+
-                    '</div>';
-                pager.destroy();
+                var html = template('tEmpty',1);
+                document.getElementById(htmEl).innerHTML = html;
+                pagEl.hide();
             }
-
-            //图片懒加载
-            lazy = new Lazyload($('.jImg'), {
-                mouseWheel: true,
-                effect: 'fadeIn',
-                snap: true
-            });
-            callback && callback(res.data.records);
             loading && loading.hide();
         });
 
@@ -85,16 +85,22 @@ define(function(require, exports, module) {
             loading && loading.hide();
         });
 
-        pager.on('change', function(pageNum, e) {
-        });
+        pager.on('change', function(pageNum, e) {});
     };
 
+
     //图片懒加载
-    var lazy = new Lazyload($('.jImg'), {
+    lazy = new Lazyload($('.jImg'), {
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true
     });
+
+    function init(){
+        var data = $('#jSubNav').find('.current').attr("data-value");
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'type':data},'jWrap0','jWrap0Box',jPagination);
+    }
+    init();
 
     //tab页切换
     var jTab = $('#jTab');
@@ -104,15 +110,16 @@ define(function(require, exports, module) {
         console.log(type);
         switch (type){
             case '0':
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':type},'jWrap0','jWrap0Box',jPagination);
                 break;
             case '1':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':type},'jWrap1','jWrap1Box',jPagination);
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':type},'jWrap1','jWrap1Box',jPagination);
                 break;
             case '2':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':type},'jWrap2','jWrap2Box',jPagination);
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':type},'jWrap2','jWrap2Box',jPagination);
                 break;
             case '3':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':type},'jWrap3','jWrap3Box',jPagination);
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':type},'jWrap3','jWrap3Box',jPagination);
                 break;
         }
     });

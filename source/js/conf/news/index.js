@@ -65,21 +65,18 @@ define(function(require, exports, module) {
             if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
+                //图片懒加载
+                lazy = new Lazyload($('#'+htmEl).find('.jImg'), {
+                    mouseWheel: true,
+                    effect: 'fadeIn',
+                    snap: true
+                });
+                callback && callback(res.data.records);
             }else {
-                document.getElementById(htmEl).innerHTML = '<div class="ui-empty-list">'+
-                    '<div class="iyoyo iyoyo-box"></div>'+
-                    '<div class="txt">暂无数据</div>'+
-                    '</div>';
-                pager.destroy();
+                var html = template('tEmpty',1);
+                document.getElementById(htmEl).innerHTML = html;
+                pagEl.hide();
             }
-
-            //图片懒加载
-            lazy = new Lazyload($('.jImg'), {
-                mouseWheel: true,
-                effect: 'fadeIn',
-                snap: true
-            });
-            callback && callback(res.data.records);
             loading && loading.hide();
         });
 

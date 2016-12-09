@@ -34,6 +34,10 @@ define(function(require, exports, module) {
         pager = new Pager(pagEl, {
             url:url,
             data:data,
+            alias: {
+                currentPage: 'currentPage',
+                pageSize: 'pageSize'
+            },
             options: {
                 currentPage: 1, // start with 1
                 pageSize: 8
@@ -49,20 +53,21 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
+            if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
+                //图片懒加载
+                lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
+                    mouseWheel: true,
+                    effect: 'fadeIn',
+                    snap: true
+                });
+                callback && callback(res.data.records);
             }else {
-                document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>暂无数据</div>";
+                var html = template('tEmpty',1);
+                document.getElementById(htmEl).innerHTML = html;
+                pagEl.hide();
             }
-
-            //图片懒加载
-            lazy = new Lazyload($('.jImg'), {
-                mouseWheel: true,
-                effect: 'fadeIn',
-                snap: true
-            });
-            callback && callback(res.data.records);
             loading && loading.hide();
         });
 
@@ -71,8 +76,7 @@ define(function(require, exports, module) {
             loading && loading.hide();
         });
 
-        pager.on('change', function(pageNum, e) {
-        });
+        pager.on('change', function(pageNum, e) {});
     };
 
     function init(){
@@ -81,7 +85,6 @@ define(function(require, exports, module) {
         var name = jNavType.attr('name');
         var val = jNavType.find('.current').attr('data-value');
         data[name] = val;
-        //data = JSON.stringify(data);
         renderList($PAGE_DATA['pagerTeacher'],data,'lists','jLists',jPagination);
     }
     init();
