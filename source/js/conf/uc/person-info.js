@@ -46,7 +46,7 @@ define(function(require, exports, module) {
 
     //个人信息表单验证
      $().ready(function(){
-           $('#jInfoForm, #jForm').validate({
+           $('#jInfoForm').validate({
              onfocusout: function(element){
                 $(element).valid();
             },
@@ -115,9 +115,79 @@ define(function(require, exports, module) {
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
     var ifmTab = new Tab(jIfmTab);
-
     ifmTab.setCurrent();
-
+    ifmTab.on('change', function(el) {
+        //个人信息表单验证
+     $().ready(function(){
+           $('#jInfoForm').validate({
+             onfocusout: function(element){
+                $(element).valid();
+            },
+            rules:{
+                password:{
+                    minlength:2,
+                    maxlength:12
+                },
+                nickname:{
+                    minlength:2,
+                    maxlength:12
+                },
+                realname:{
+                    required:true,
+                    realname:true
+                },
+                mobile:{
+                    required:true,
+                    minlength:11,
+                    mobile:true
+                },
+                email:{
+                    required:true,
+                    email:true
+                },
+                occupation:{
+                    required:true,
+                    minlength:2,
+                    maxlength:12
+                },
+                companyName:{
+                    required:true,
+                    minlength:2,
+                    maxlength:20
+                },
+                occuption:{
+                    required:true
+                },
+                qq:{
+                    qq:true
+                },
+                address:{
+                    minlength:2,
+                    maxlength:45
+                },
+                nepassword0:{
+                    required:true
+                }
+            },
+            messages:{
+                companyName:{
+                    required:"请填写公司的名称"
+                }
+            }
+        }) 
+    })
+        
+       $().ready(function(){
+        console.log(0);
+            $('#jForm').validate({
+                rules:{
+                    password:{
+                        required:true
+                    }
+                }
+            })
+       })
+    });
 
 
 
