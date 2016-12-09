@@ -33,15 +33,7 @@ define(function(require, exports, module) {
         }
         pager = new Pager(pagEl, {
             url:url,
-            data:data,
-            alias: {
-                currentPage: 'currentPage',
-                pageSize: 'pageSize'
-            },
-            options: {
-                currentPage: 1, // start with 1
-                pageSize: 8
-            }
+            data:data
         });
 
         var loading = null;

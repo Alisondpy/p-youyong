@@ -350,6 +350,106 @@ body {
                 }
             }
         }
+        .comment {
+            position: relative;
+            padding: 20px 0 50px 40px;
+            i,span{
+                display: inline-block;
+                font-style: normal;
+            }
+            .head-img{
+                padding-top: 10px;
+                width: 70px;
+                height: 70px;
+                img{
+                    width: 70px;
+                    height: 70px;
+                    border-radius: 100%;
+                }
+            }
+            .input {
+                position: relative;
+                .input-login {
+                    position: absolute;
+                    top: 40px;
+                    left: 200px;
+                    font-size: 14px;
+                    color: #666;
+                    a {
+                        margin: 0 5px;
+                        font-size: 14px;
+                        color: #fff;
+                        padding: 5px 10px;
+                        background: #ec3e48;
+                        border-radius: 3px;
+                    }
+                }
+                .arrow {
+                    position: absolute;
+                    top: 42px;
+                    left: -19px;
+                    display: inline-block;
+                    font-size: 28px;
+                    color: #ccc;
+                    line-height: 22px;
+                    background-color: #fff;
+                }
+                .arrow-disabled {
+                    color: #eef3f7;
+                    background:none;
+                }
+                .arrow-focus {
+                    color: #aaa;
+                }
+                .arrow-error {
+                    color: #ec3e48;
+                }
+                margin-left: 30px;
+                textarea {
+                    width: 540px;
+                    height: 60px;
+                    margin-top: 10px;
+                    padding: 10px;
+                    border: 1px solid #ccc;
+                    outline: none;
+                    resize: none;
+                    font-size: 14px;
+                    color: #ccc;
+                }
+                .text-disabled {
+                    border: 1px solid #eef3f7;
+                    background: #eef3f7;
+                }
+                .text-focus {
+                    border: 1px solid #aaa;
+                }
+                .text-error {
+                    border: 1px solid #ec3e48;
+                }
+                .limit {
+                    position: absolute;
+                    left: 0;
+                    bottom: -12px;
+                    font-size: 12px;
+                    color: #666;
+                }
+            }
+            .publish {
+                margin: 10px 0 0 10px;
+                padding: 20px 20px;
+                background-color: #ec3e48;
+                border-radius: 5px;
+                span {
+                    width: 28px;
+                    font-size: 14px;
+                    color: #fff;
+                }
+            }
+            .publish-error {
+                cursor: default;
+                background-color: #ddd;
+            }
+        }
     }
     //右边发布新问题/相关问题
     .mod-right-content {

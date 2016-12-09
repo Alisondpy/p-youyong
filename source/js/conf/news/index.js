@@ -46,11 +46,7 @@ define(function(require, exports, module) {
         }
         pager = new Pager(pagEl, {
             url:url,
-            data:data,
-            options: {
-                currentPage: 1, // start with 1
-                pageSize: 8
-            }
+            data:data
         });
 
         var loading = null;
@@ -62,11 +58,11 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            if(!$.isEmptyObject(res.data) && res.data.resultList.length > 0){
+            if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
                 document.getElementById(htmEl).innerHTML = html;
                 //图片懒加载
-                lazy = new Lazyload($('#'+htmEl).find('.jImg'), {
+                lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true
@@ -85,11 +81,14 @@ define(function(require, exports, module) {
             loading && loading.hide();
         });
 
-        pager.on('change', function(pageNum, e) {
-        });
+        pager.on('change', function(pageNum, e) {});
     };
 
-    renderList($PAGE_DATA['loadNews'],{'type':'0'},'jWrap','jWrapBox',jPagination);
+    function init(){
+        var type = $('#jNewsNav').find('.current').attr('data-value');
+        renderList($PAGE_DATA['loadNews'],{'type':type},'jWrap','jWrapBox',jPagination);
+    }
+    init();
 
     //tab页切换
     $('.mod-wrap .mod-sub-nav a').click(function(){

@@ -134,12 +134,7 @@ body {
 				height:706px;
 				float:right;
 				background-color:#fff;
-
-
-
 				.up{
-					
-					
 					li{
 						float:left;
 						a{
@@ -155,10 +150,8 @@ body {
 							float:left;
 							margin:0 2px 0 20px;
 						}
-
+						}
 					}
-					}
-					
 					.catlog{
 							border-left:none;
 						}
@@ -175,9 +168,14 @@ body {
 						font-size:14px;
 						border-bottom:1px solid #eee;
 						.tab-q{
+							font-size: 14px;
+							color: #4c677b;
 							display:inline-block;
 							width:110px;
 							text-align:center;
+							&:hover{
+								color: #ec3e48;
+							}
 						}
 					}
 					.contain{
@@ -205,7 +203,6 @@ body {
 									margin-left:10px;
 								}
 							}
-
 							.contain-down{
 								margin-top:10px;
 								height:30px;
@@ -259,7 +256,6 @@ body {
 						}
 					}
 					.square{
-
 						.textarea{
 							width:250px;
 							height:60px;
@@ -302,7 +298,12 @@ body {
 							color:#44687d;
 						}
 						a{
+							font-size: 14px;
+							color: #1f2c35;
 							margin-top:-4px;
+							&:hover{
+								color: #ec3e48;
+							}
 							em{
 								font-size: 14px;
 								color:#999;
@@ -313,7 +314,6 @@ body {
 							margin-left:5px;
 						}
 						}
-						
 					}
 					.line{
 						height:30px;
@@ -328,11 +328,7 @@ body {
 						border-bottom:none;
 					}
 				}
-
 			}
-
-
 		}
-
 }
 

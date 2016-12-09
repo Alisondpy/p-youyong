@@ -14,7 +14,11 @@ define(function(require, exports, module) {
     var isEdit = false;
     var pager;
 
-    var tabsCallback = {};
+    lazy = new Lazyload($('.jImg'), {
+        mouseWheel: true,
+        effect: 'fadeIn',
+        snap: true
+    });
     call();
     function call(data) { 
         var jContainer = $('#jContainer');
@@ -25,14 +29,6 @@ define(function(require, exports, module) {
         pager = new Pager(jPagination, {
             url: $PAGE_DATA['getPager'],
             data: data,
-            alias: {
-                currentPage: 'currentPage',
-                pageSize: 'pageSize'
-            },
-            options: {
-                currentPage: 3, // start with 1
-                pageSize: 10
-            }
         });
 
         var loading = null;
@@ -92,36 +88,31 @@ define(function(require, exports, module) {
         });
     }
 
-})
-
-/*$('.jTitle').on('click', function () {
-    var $this = $(this);
-    var target = $(e.target);
-    if(target.is('.jMore')&&target.text()=='查看全部') {
-        target.text('收起');
-        $this.addClass('mark');
-    } else if(target.text()=='收起'){
-        target.text('查看全部');
-        $this.removeClass('mark');
-    }
-})*/
-//点击查看全部评论
-/*$('#jMoreComment').on('click', function() {
-    $(this).hide();
-    insertItems($PAGE_DATA['questions'], '查看全部', 'jReply', 'jReplyList');
-});*/
-
-//发布新问题
-/*$('#jBtnNewQuestions').on('click', function() {
-    box.ok('new questions publish success');
-});*/
-//回复评论
-/*$('#jReplyList').on('click', function(e) {
-        if ($(e.target).is('.jItemsReply')) {
-            box.ok($(e.target).text())
+    //评论字数限制
+    $('.jTxt').keyup(function(){
+        var txtLen = $('.jTxt').val().length;
+        if(txtLen > 300){
+            $(this).addClass('text-error');
+            $('.jPublish').addClass('publish-error');
+            $('.jArrow').addClass('arrow-error');
+            $('.jTxtNum').css({'color':'red'});
+        }else {
+            $(this).removeClass('text-error');
+            $('.jPublish').removeClass('publish-error');
+            $('.jArrow').removeClass('arrow-error');
+            $('.jTxtNum').css({'color':'#666'});
         }
-    })*/
+        $('.jTxtNum').children('i').text(txtLen);
+    });
 
-/*else if ($(e.target).is('.jClkResponse')) {
-    box.ok('实现什么效果？')
-}*/
+    //评论focus效果
+    $('.jTxt').focus(function(){
+        $('.jArrow').addClass('arrow-focus');
+        $(this).addClass('text-focus').attr('placeholder','');
+    }).blur(function(){
+        if($(this).val() === ''){
+            $(this).removeClass('text-focus').attr('placeholder','看点糟点，不吐不快！别憋着，马上大声说出来吧！');
+            $('.jArrow').removeClass('arrow-focus');
+        }
+    });
+});
