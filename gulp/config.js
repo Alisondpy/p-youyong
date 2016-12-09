@@ -102,9 +102,10 @@ var CONFIG = {
         common: {
             findNestedDependencies: true,
             paths: {
+                'template': 'lib/template/3.0/template-simple',
                 'css': 'lib/require/2.1/plugins/css/css', // or whatever the path to require-css is
                 'text': 'lib/require/2.1/plugins/text/text', // or whatever the path to require-css is
-                'jquery': 'lib/zeptojs/1.1.5/zepto'
+                'jquery': 'lib/jquery/1.11.1/jquery'
             },
             shim: {}
         },
