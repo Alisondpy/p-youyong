@@ -1,0 +1,76 @@
+@charset "UTF-8";
+@import "../../common/config/level-2";
+@import "../../common/common";
+html, body {
+	min-width: 502px;
+	width: 500px;
+}
+.mod-form {
+	width: 500px;
+	border: 1px solid #fff;
+	background-color: #fff;
+	.ulform {
+		padding-top: 50px;
+		width: 430px;
+		.item {
+			position: relative;
+			height: 65px;
+			width:410px;
+			.ui-input {
+				position: absolute;
+				right: 0;
+				display: inline-block;
+				padding: 0;
+				width: 288px;
+				height: 40px;
+				text-indent: 16px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				&:focus{
+					border: 1px solid #aaa;
+				}
+				&.error{
+					border: 1px solid #eb3d48;
+				}
+			}
+			.mark {
+				position: absolute;
+				right: 300px;
+				line-height: 38px;
+				font-size: 16px;
+				color: #333;
+			}
+			label.error{
+				position: absolute;
+				bottom: -8px;
+				left: 145px;
+				line-height: 40px;
+				color: #eb3d48;
+			}
+			.necessary {
+				margin-right: 5px;
+				color: red;
+			}
+			.ui-btn {
+				position: absolute;
+				left: 180px;
+				width: 128px;
+				height: 40px;
+				line-height: 40px;
+				letter-spacing: 2px;
+				font-size: 14px;
+				/*px*/
+			}
+			.ui-textarea{
+				text-indent: 0;
+				padding: 10px;
+				width: 268px;
+				height: 100px;
+				resize: none;
+			}
+		}
+		.item-text{
+			height: 160px;
+		}
+	}
+}

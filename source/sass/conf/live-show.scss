@@ -69,9 +69,8 @@ body {
 					border-right:none;
 				}
 			}
-			.mod-question, .mod-note{
+			.mod-question, .mod-admin{
 				display:none;
-				padding:0 18px;
 				.contain{
 					padding-top:10px;
 					.avater{
@@ -87,7 +86,9 @@ body {
 					.text{
 						margin-left:55px;
 						.cname{
+							font-size: 14px;
 							color:#5d7486;
+							line-height: 45px;
 						}
 						.line-none{
 							border-bottom:none;
@@ -96,7 +97,10 @@ body {
 				}
 			}
 			.mod-tab{
+				display: none;
+				padding:20px;
 				background-color: #fff;
+				min-height: 620px;
 			}
 			.mod-catlog{
 				display:none;

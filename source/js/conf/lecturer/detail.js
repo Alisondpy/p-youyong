@@ -9,7 +9,7 @@ define(function(require, exports, module) {
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
     var template = require('template');
-    var form = require('lib/core/1.0.0/utils/form'); 
+    var form = require('lib/core/1.0.0/utils/form');
     var jTinfo = $('.jTinfo');
     var tab1 = $('.jTab-l');
     var tab2 = $('.jTab-r');

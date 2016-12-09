@@ -10,9 +10,6 @@ define(function(require, exports, module) {
 	var question = $('.jMod-question');
 	var jTab = $('#jTab');
 	var tab = new Tab(jTab);
-	tab.on('change', function(el) {
-		console.log(el.body);
-	});
 
 	//图片懒加载
 	var lazy = new Lazyload($('.jImg'), {
@@ -21,18 +18,7 @@ define(function(require, exports, module) {
 		snap: true
 	});
 
-	// 页面上最大的三个tab切换
-	// $('.jCatlog').on('click',function(){
-	//     catlog.css('display','block').siblings().not('.jUp').css('display','none');
-	// })
-	// $('.jNote').on('click',function(){
-	//     note.css('display','block').siblings().not('.jUp').css('display','none');
-	// })
-	// $('.jQuestion').on('click',function(){
-	//     question.css('display','block').siblings().not('.jUp').css('display','none');
-	// })
-
-
-
-
+	tab.on('change', function(el) {
+		lazy.update();
+	});
 });

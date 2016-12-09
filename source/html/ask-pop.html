@@ -1,19 +1,41 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>首页</title>
+	<title>提问</title>
 	<!--#include file="./common/meta.html"-->
 	<!--#include file="./common/css.html"-->
-	<link rel="stylesheet" href="/css/conf/index.css" type="text/css" charset="utf-8">
+	<link rel="stylesheet" href="/css/conf/course/ask-pop.css" type="text/css" charset="utf-8">
+	<script type="text/javascript">
+		$PAGE_DATA['getInfo'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/register.json';
+		$PAGE_DATA['postInfo'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/register.json';
+	</script>
 </head>
+
 <body>
 <!-- 我是注释 -->
-<!--#include file="./common/header.html"-->
-
-<!--#include file="./common/footer.html"-->
+<!-- 主要内容 start-->
+<form class="mod-form" id="jSigninForm" method="get" action="">
+	<ul class="ulform" id="jContainer">
+		<li class="item">
+			<label for="jTitle" class="mark">标题</label>
+			<input id="jTitle" class="ui-input" name="title" type="text" placeholder="请输入标题" value=""/>
+		</li>
+		<li class="item item-text">
+			<label for="jContent" class="mark">内容</label>
+			<textarea id="jContent" class="ui-input ui-textarea" name="content" type="text" placeholder="" value=""></textarea>
+		</li>
+		<li class="item">
+			<label>
+				<input class="submit ui-btn ui-btn-danger" type="submit" value="确认提交"/>
+			</label>
+		</li>
+	</ul>
+</form>
+<!-- 主要内容 end-->
 <!--#include file="./common/js.html"-->
 <script type="text/javascript">
-	require(['conf/index'], function() {});
+	require(['conf/course/ask-pop'], function() {});
 </script>
 <!--#include file="./common/tj.html"-->
 <!--#include file="./common/statistics.html"-->
