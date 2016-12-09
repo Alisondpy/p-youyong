@@ -22,13 +22,15 @@ body {
 				background-color:#ea3e48;
 			}
 		}
-		
 	}
 	.mod-question{
 		ul{
 			.question{
+				.first{
+					border-top: 0;
+				}
 				padding:20px 0;
-				border-bottom:1px solid #eee;
+				border-top:1px solid #eee;
 				.answer-num{
 				width:42px;
 				height:38px;

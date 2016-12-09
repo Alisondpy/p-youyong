@@ -24,7 +24,7 @@
                         <!-- tab 头部 start -->
                         <ul class="clearfix ifm-tab-hd" node-type="hd">
                             <li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的提问</a></li>
-                             <li class="ifm-tab-item current" node-type="hdItem" data-target="2"><a href="javascript:;">我的问答</a></li>
+                            <li class="ifm-tab-item" node-type="hdItem" data-target="2"><a href="javascript:;">我的问答</a></li>
                         </ul>
                         <!-- tab 头部 end -->
                         <div class="ifm-top-bar">
@@ -52,8 +52,7 @@
                             </div>
                         </div>
                         <!-- tab内容区域-1 end-->
-
-                         <!-- tab内容区域-2 start-->
+                        <!-- tab内容区域-2 start-->
                         <div class="ifm-tab-container" node-type="container" data-id="2">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
@@ -87,18 +86,16 @@
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->
-    <script type="text/html" id="jModule">
+    <script type="text/html" id="tModule1">
         <div class="mod-answer">
             <div class="clearfix">
                 <div class="line clearfix">
-                <div>
-                    
-                </div>
+                    <div>
+                    </div>
                     <div class="f-r manage">
-                        <button class="ui-btn">管理</button>
+                        <button class="ui-btn jBtnManage">管理</button>
                     </div>
                 </div>
-
                 <div class="mod-question">
                     <ul>
                         <li class="question clearfix">
@@ -109,34 +106,29 @@
                             <div class="question-r f-l">
                                 <h2 class="title"><a href="javascript:void(0);">标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试</a></h2>
                                 <div class="ques-time">
-                                        <span>提问时间</span>
-                                        <em>2016-11-10 12：00</em>
+                                    <span>提问时间</span>
+                                    <em>2016-11-10 12：00</em>
                                 </div>
                             </div>
                             <div class="del f-r">
                                 <i class="iyoyo iyoyo-del"></i>
                             </div>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
         </div>
     </script>
-
-    <script type="text/html" id="jModule2">
+    <script type="text/html" id="tModule2">
         <div class="mod-answer">
             <div class="clearfix">
                 <div class="line clearfix">
-                <div>
-                    
-                </div>
+                    <div>
+                    </div>
                     <div class="f-r manage">
-                        <button class="ui-btn">管理</button>
+                        <button class="ui-btn jBtnManage">管理</button>
                     </div>
                 </div>
-
                 <div class="mod-question">
                     <ul>
                         <li class="question clearfix">
@@ -149,8 +141,8 @@
                                         <em class="f-l">探长探长探长探长探长探长探长探长探长探长探长</em>
                                     </div>
                                     <div class="ques-time f-l other-time">
-                                            <span>回答时间</span>
-                                            <em>2016-11-10 12：00</em>
+                                        <span>回答时间</span>
+                                        <em>2016-11-10 12：00</em>
                                     </div>
                                 </div>
                             </div>
@@ -158,13 +150,18 @@
                                 <i class="iyoyo iyoyo-del"></i>
                             </div>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
         </div>
     </script>
+    <script type="text/html" id="tEmpty">
+    <div class="ui-empty-list">
+        <div class="iyoyo iyoyo-box"></div>
+        <div class="txt">
+            sorry，暂无数据
+        </div>
+    </div>
+    </script>
 </body>
-
 </html>

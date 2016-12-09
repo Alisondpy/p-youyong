@@ -16,14 +16,9 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
-    //搜索工具栏
-    // var SearchBar = require('module/uc/search-bar/search-bar');
-    // var searchBar = new SearchBar('#jUcSearchBar');
-    // searchBar.on('search', function(val) {
-    //     console.log('你可以根据这个返回值来做业务:', val);
-    // });
 
-    
+
+
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
     var ifmTab = new Tab(jIfmTab);
@@ -37,22 +32,12 @@ define(function(require, exports, module) {
             var builder = build.build(body, false);
             var jPagination = builder.get('jPagination');
             var jContainer = builder.get('jContainer');
-            jContainer.on('click','.jBtn',function(){
+            jContainer.on('click', '.jBtn', function() {
                 console.log(0);
             });
             var pager = new Pager(jPagination, {
                 url: $PAGE_DATA['getPager'],
-                data: {
-                    // class: 'djune'
-                },
-                alias: {
-                    currentPage: 'currentPage',
-                    pageSize: 'pageSize'
-                },
-                options: {
-                    currentPage: 1, // start with 1
-                    pageSize: 10
-                }
+                data: {}
             });
 
             var loading = null;
@@ -65,8 +50,8 @@ define(function(require, exports, module) {
 
             pager.on('ajaxSuccess', function(data, callback) {
                 console.log(data.data, callback);
-                jContainer.html(template('jModule', data.data));
-                        //image-lazyload
+                jContainer.html(template('tModule1', data.data));
+                //image-lazyload
                 var lazy = new Lazyload($('.jImg'), {
                     mouseWheel: true,
                     effect: 'fadeIn',
@@ -98,22 +83,12 @@ define(function(require, exports, module) {
             var builder = build.build(body, false);
             var jPagination = builder.get('jPagination');
             var jContainer = builder.get('jContainer');
-            jContainer.on('click','.jBtn',function(){
+            jContainer.on('click', '.jBtn', function() {
                 console.log(0);
             });
             var pager = new Pager(jPagination, {
                 url: $PAGE_DATA['getPager'],
-                data: {
-                    // class: 'djune'
-                },
-                alias: {
-                    currentPage: 'currentPage',
-                    pageSize: 'pageSize'
-                },
-                options: {
-                    currentPage: 1, // start with 1
-                    pageSize: 10
-                }
+                data: {}
             });
 
             var loading = null;
@@ -126,8 +101,8 @@ define(function(require, exports, module) {
 
             pager.on('ajaxSuccess', function(data, callback) {
                 console.log(data.data, callback);
-                jContainer.html(template('jModule2', data.data));
-                        //image-lazyload
+                jContainer.html(template('tModule2', data.data));
+                //image-lazyload
                 var lazy = new Lazyload($('.jImg'), {
                     mouseWheel: true,
                     effect: 'fadeIn',
@@ -158,21 +133,4 @@ define(function(require, exports, module) {
 
     ifmTab.setCurrent();
 
-    // 公共模板
-    function template(data) {
-        var str = '';
-        for (var i = 0; i < data.length; i++) {
-            str += '<div>' + data[i] + '</div>';
-        }
-        if (str == '') {
-            str = '<div>数据为空</div>'
-        }
-        return str;
-    }
-
-
-
 });
-
-
-
