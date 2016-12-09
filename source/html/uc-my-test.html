@@ -21,11 +21,11 @@
             <div  class="ifm-tab">
                 <div class="ifm-hd clearfix">
                     <!-- tab 头部 start -->
-                    <ul id="jTestStatus" class="clearfix ifm-tab-hd">
-                        <li class="ifm-tab-item"><a href="javascript:;" data-type="0">全部</a></li>
-                        <li class="ifm-tab-item"><a href="javascript:;" data-type="1">待参加</a></li>
-                        <li class="ifm-tab-item"><a href="javascript:;" data-type="2">已通过</a></li>
-                        <li class="ifm-tab-item"><a href="javascript:;" data-type="3">未通过</a></li>
+                    <ul id="jTestStatus" class="clearfix ifm-tab-hd" name="testStatus">
+                        <li class="ifm-tab-item active"  data-value="0"><a href="javascript:;" >全部</a></li>
+                        <li class="ifm-tab-item" data-value="1"><a href="javascript:;" >待参加</a></li>
+                        <li class="ifm-tab-item" data-value="2"><a href="javascript:;" >已通过</a></li>
+                        <li class="ifm-tab-item" data-value="3"><a href="javascript:;" >未通过</a></li>
                     </ul>
                     <!-- tab 头部 end -->
                     <div class="ifm-top-bar">
@@ -39,24 +39,19 @@
                 </div>
                 <div class="ifm-tab-bd" >
                     <!-- tab内容区域-1 start-->
-                    <div id="jContainer" class="ifm-tab-container">
-                        <div class="ifm-main-container">
-                            <!-- 页面主内容 start -->
-                            <div >
-                                <div class="ui-loading-list">
-                                    <div class="img-loading"></div>
-                                    <div class="txt">
-                                        正在卖力加载，请稍后...
-                                    </div>
-                                </div>
+                    <div id="jContainer" class="ifm-tab-container current">
+                        <!-- 页面主内容 start -->
+                        <div class="ui-loading-list">
+                            <div class="img-loading"></div>
+                            <div class="txt">
+                                正在卖力加载，请稍后...
                             </div>
-                            <!-- 页面主内容 end -->
                         </div>
-
-                        <!--分页区域-->
-                        <div class="jPagination f-r"></div>
-
+                        <!-- 页面主内容 end -->
                     </div>
+                    <!--分页区域 start-->
+                    <div class="jPagination f-r"></div>
+                    <!--分页区域 end-->
                 </div>
             </div>
         </div>
@@ -75,51 +70,51 @@
         <div class="mod-item">
             <ul>
                 {{each resultList as value i}}
-                <li class="item clearfix">
-                    <div class="picture f-l">
-                        <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
-                    </div>
-                    <div class="contain f-l">
-                        <div class="title clearfix">
-                            <h3 class="hit f-l">{{value.examName}}</h3>
-                            <span class="course-label f-l">客服考试</span>
-                            <span class="course-label f-l">线上考试</span>
+                    <li class="item clearfix">
+                        <div class="picture f-l">
+                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
                         </div>
-                        <div class="contain-down">
-                            <div class="dis teacher">
-                                <span>总分<em>{{value.totalScore}}</em></span>
-                                <span>限时<em>{{value.limitMinute}}分钟</em></span>
+                        <div class="contain f-l">
+                            <div class="title clearfix">
+                                <h3 class="hit f-l" title="{{value.examName}}">{{value.examName}}</h3>
+                                <span class="course-label f-l">客服考试</span>
+                                <span class="course-label f-l">线上考试</span>
                             </div>
-                            <div class="dis study-time">
-                                <span>考试时间<em>{{value.startTime}} ~ {{value.endTime}}</em></span>
+                            <div class="contain-down">
+                                <div class="dis teacher">
+                                    <span>总分<em>{{value.totalScore}}</em></span>
+                                    <span>限时<em>{{value.limitMinute}}分钟</em></span>
+                                </div>
+                                <div class="dis study-time">
+                                    <span>考试时间<em>{{value.startTime}} ~ {{value.endTime}}</em></span>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <!--<div class="f-r mod-exam">
-                        {{if value.isExamed == 1}}
-                            {{if value.isPassed == 1}}
-                                <div class="mod-pass-exam has-join clearfix">
-                                    <p class="f-l"><span>90分</span><i>已通过</i></p>
-                                    <a href="javascript:;" class="f-l view-page">查看答卷</a>
-                                </div>
-                                <a href="javascript:;" class="ui-delete-btn iyoyo iyoyo-del"></a>
+                        <div class="f-r mod-exam">
+                            {{if value.isExamed == 1}}
+                                {{if value.isPassed == 1}}
+                                    <div class="mod-pass-exam has-join clearfix">
+                                        <p class="f-l"><span>90分</span><i>已通过</i></p>
+                                        <a href="javascript:;" class="f-l view-page">查看答卷</a>
+                                    </div>
+                                    <a href="javascript:;" class="ui-delete-btn iyoyo iyoyo-del"></a>
+                                {{/if}}
+                                {{if value.isPassed == 0}}
+                                    <div class="mod-fail-exam has-join clearfix">
+                                        <p class="f-l"><span>59分</span><i>未通过</i></p>
+                                        <a href="javascript:;" class="f-r view-page">查看答卷</a>
+                                    </div>
+                                    <a href="javascript:;" class="ui-delete-btn iyoyo iyoyo-del"></a>
+                                {{/if}}
                             {{/if}}
-                            {{if value.isPassed == 0}}
-                                <div class="mod-fail-exam has-join clearfix">
-                                    <p class="f-l"><span>59分</span><i>未通过</i></p>
-                                    <a href="javascript:;" class="f-r view-page">查看答卷</a>
-                                </div>
-                                <a href="javascript:;" class="ui-delete-btn iyoyo iyoyo-del"></a>
+                            {{if value.isExamed == 0}}
+                            <div class="mod-in-exam">
+                                <a href="javascript:;" class="join-exam">参加考试</a>
+                                <p>离考试结束还有1天3时</p>
+                            </div>
                             {{/if}}
-                        {{/if}}
-                        {{if value.isExamed == 0}}
-                        <div class="mod-in-exam">
-                            <a href="javascript:;" class="join-exam">参加考试</a>
-                            <p>离考试结束还有1天3时</p>
                         </div>
-                        {{/if}}
-                    </div>-->
-                </li>
+                    </li>
                 {{/each}}
             </ul>
         </div>

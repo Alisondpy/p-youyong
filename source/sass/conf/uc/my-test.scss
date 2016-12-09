@@ -23,11 +23,11 @@ span,i,em,label,b{
   }
   .ifm-tab{
     background:#fff;
-    padding:20px 30px;
+    padding:20px 30px 70px;
     .ifm-tab-hd{
       .ifm-tab-item{
         margin-right:-20px;
-        &.current{
+        &.active{
           a{
             height:33px;
             line-height:33px;
@@ -70,9 +70,6 @@ span,i,em,label,b{
       position:relative;
       border-bottom:1px solid #eef3f7;
       padding:30px 0;
-      &:first-child{
-        padding-top:10px;
-      }
     }
     .picture{
       width:150px;
@@ -87,6 +84,10 @@ span,i,em,label,b{
     .contain{
       .title{
         h3{
+          width:150px;
+          overflow: hidden;
+          text-overflow:ellipsis;
+          white-space: nowrap;
           font-size:16px;
           color:#1c2d36;
           font-weight:normal;
@@ -188,3 +189,6 @@ span,i,em,label,b{
     }
   }
 }
+  .ui-pager{
+    margin-top:100px;
+  }

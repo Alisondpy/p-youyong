@@ -12,13 +12,14 @@ define(function(require, exports, module) {
     var jPagination = $('.jPagination');
     //var loadActivity = $PAGE_DATA['loadActivity'];
     var loadTest = $PAGE_DATA['loadTest'];
-    var jTestModule=$("#jTestModule");/*Ä£°å*/
+    var jTestModule=$("#jTestModule");/*æ¨¡æ¿*/
 
     var pager;
     var renderList = function(url,data){
-        if(typeof pager !== 'undefined'){
+        if(pager){
             pager.destroy();
         }
+
         pager = new Pager(jPagination,{
             url:url,
             data:data
@@ -26,25 +27,25 @@ define(function(require, exports, module) {
 
         var loading = null;
         pager.on("ajaxStart",function(){
-            loading = Box.loading('ÕıÔÚ¼ÓÔØ¡£¡£¡£',{
+            loading = Box.loading('æ­£åœ¨åŠ è½½ã€‚ã€‚ã€‚',{
                 modal:false
             });
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
             if(res && res.data &&  res.data.resultList && res.data.resultList.length > 0){
-                var strHtml = template('test', res.data);
+                var strHtml = template('jTestModule', res.data);
                 jContainer.html(strHtml);
-                //Í¼Æ¬ÀÁ¼ÓÔØ
+                //å›¾ç‰‡æ‡’åŠ è½½
                 lazy = new Lazyload(jContainer.find('.jImg'), {
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true
                 })
-                callback && callback(res.data.records);//äÖÈ¾·ÖÒ³Êı¾İ
+                callback && callback(res.data.records);//æ¸²æŸ“åˆ†é¡µæ•°æ®
             }else {
-                jContainer.html(template('jTestModule'))
-                callback && callback(1);//äÖÈ¾·ÖÒ³Êı¾İ
+                jContainer.html(template('tEmpty'))
+                callback && callback(1);//æ¸²æŸ“åˆ†é¡µæ•°æ®
             }
         });
         pager.on('ajaxError',function(res,callback){
@@ -53,12 +54,13 @@ define(function(require, exports, module) {
         });
     }
     renderList(loadTest,{"type":0});
-    var nav = new navigation('#jActivity',{
-        currentClass:'active',//µ±Ç°ÑùÊ½
-        navSelector:['#jActClassify','#jActTime'],//µ¼º½À¸domÑ¡ÔñÆ÷
-        navItemSlect:'a' //µ¼º½À¸±êÇ©
+    var nav = new navigation('#jTestStatus',{
+        currentClass:'active',//å½“å‰æ ·å¼
+        navSelector:['#jTestStatus'],//å¯¼èˆªæ domé€‰æ‹©å™¨
+        navItemSlect:'li' //å¯¼èˆªæ æ ‡ç­¾
     });
     nav.on('change',function(callbackData){
+        console.log(callbackData);
         renderList(loadTest,callbackData);
     })
 
