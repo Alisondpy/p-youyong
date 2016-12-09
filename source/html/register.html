@@ -24,28 +24,28 @@
     </div>
     <!-- 头部 end-->
     <div class="mod-login clearfix">
-        <div class="left-ad f-l">
+        <div class="left-img f-l">
             <img src="http://cms2.51edu.com/uploadfile/20161114/1479093685882948.jpg" alt="" class="img">
         </div>
-        <form class="right-signin common f-r">
+        <form id="jsRightSignin" class="right-signin common f-r">
             <ul class="ulform">
                 <li class="item">
-                    <label for="jName" class="mark"><i class="icon iyoyo iyoyo-teacher"></i></label>
-                    <input id="jName" class="ui-input" name="name" type="text" placeholder="手机号" />
+                    <label for="jName" class="mark"><i class="icon iyoyo iyoyo-phone-1"></i></label>
+                    <input id="jName" class="ui-input" name="mobile" autocomplete="off" type="text" placeholder="手机号" />
                 </li>
                 <li class="item no-border">
-                    <label for="jPassword" class="mark code"><i class="icon iyoyo iyoyo-question-1"></i>
-                        <input id="jPassword" class="ui-input" name="password" type="text" placeholder="动态验证码"/>
+                    <label for="jDynamic" class="mark code"><i class="icon iyoyo iyoyo-shield"></i>
+                        <input id="jDynamic" class="ui-input" name="dynamic" type="text" autocomplete="off" placeholder="动态验证码"/>
                     </label>
-                    <input type="button" class="ui-btn ui-btn-danger" value="获取动态码" />
+                    <input id="jsVerifyCode" type="button" class="jsVerifyCode ui-btn ui-btn-danger ui-btn-disable" value="获取动态码" />
                 </li>
                 <li class="item">
-                    <label for="jEmail" class="mark"><i class="icon iyoyo iyoyo-teacher"></i></label>
-                    <input id="jEmail" class="ui-input" name="email" type="email" placeholder="邮箱"/>
+                    <label for="jEmail" class="mark"><i class="icon iyoyo iyoyo-email-1"></i></label>
+                    <input id="jEmail" class="ui-input" name="email" type="email" autocomplete="off" placeholder="邮箱"/>
                 </li>
                 <li class="item">
-                    <label for="jName" class="mark"><i class="icon iyoyo iyoyo-teacher"></i></label>
-                    <input id="jName" class="ui-input" name="name" type="text" placeholder="登录密码" />
+                    <label for="jPassword" class="mark"><i class="icon iyoyo iyoyo-key"></i></label>
+                    <input id="jPassword" class="ui-input" name="password" type="text" autocomplete="off" placeholder="登录密码" />
                 </li>
                 <li class="accept">
                     <p>注册即表示已阅读并接受在线<span class="clause">注册条款</span></p>
@@ -56,7 +56,7 @@
                     </label>
                 </li>
                 <li class="item last">
-                    <span class="register f-r">已有账号, <i class="instant">立即注册</i></span>
+                    <a href="login.html" class="register f-r">已有账号, <i class="instant">立即登陆</i></a>
                 </li>
             </ul>
         </form>
@@ -65,7 +65,7 @@
     <!--#include file="./common/footer.html"-->
     <!--#include file="./common/js.html"-->
     <script type="text/javascript">
-        require(['conf/login'], function() {});
+        require(['conf/register'], function() {});
     </script>
     <script type="text/html" id="jNote">
     </script>

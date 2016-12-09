@@ -11,7 +11,9 @@
     $PAGE_DATA['currentPage'] = '1';
     </script>-->
     <script>
-        $PAGE_DATA['login'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/demo/login.json';
+        $PAGE_DATA['normalLogin'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/demo/login.json';
+        $PAGE_DATA['mobileLogin'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/demo/login.json';
+        $PAGE_DATA['code'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/demo/code.json';
     </script>
 </head>
 
@@ -27,22 +29,23 @@
     </div>
     <!-- 头部 end-->
     <div class="mod-login clearfix">
-        <div class="left-ad f-l">
+        <div class="left-img f-l">
             <img src="http://cms2.51edu.com/uploadfile/20161114/1479093685882948.jpg" alt="" class="img">
         </div>
-        <form id="jsLoginForm" class="right-login common f-r jsRightLogin">
-            <div class="tab">
+        <div class="f-l">
+            <div class="tab jsTab">
                 <span class="normal active">普通登录</span>
                 <span class="dynamic">手机动态码登录</span>
             </div>
+            <form id="jLoginForm" class="right-login common f-r jsRightLogin">
             <ul class="ulform">
                 <li class="item">
-                    <label for="jName" class="mark"><i class="icon iyoyo iyoyo-teacher"></i></label>
-                    <input id="jName" class="ui-input" name="mobile" type="text" placeholder="手机/邮箱" />
+                    <label for="jName" class="mark"><i class="icon iyoyo iyoyo-phone-1"></i></label>
+                    <input id="jName" class="ui-input" name="username" type="text" autocomplete="off" placeholder="手机/邮箱" />
                 </li>
                 <li class="item">
-                    <label for="jPassword" class="mark"><i class="icon iyoyo iyoyo-question-1"></i></label>
-                    <input id="jPassword" class="ui-input" name="password" type="text" placeholder="登录密码"/>
+                    <label for="jPassword" class="mark"><i class="icon iyoyo iyoyo-key"></i></label>
+                    <input id="jPassword" class="ui-input" name="password" type="text" autocomplete="off" placeholder="登录密码"/>
                 </li>
                 <li class="item subbtn">
                     <label>
@@ -50,37 +53,34 @@
                     </label>
                 </li>
                 <li class="item last">
-                    <span class="forget f-l">忘记密码？</span>
-                    <span class="register f-r">立即注册</span>
+                    <a href="forget-pwd.html" class="forget f-l">忘记密码？</a>
+                    <a href="register.html" class="register f-r jsRegister">立即注册</a>
                 </li>
             </ul>
         </form>
-        <form id="jsRightLoginMobile" class="right-login-mobile common f-r jsRightLoginMobile">
-            <div class="tab">
-                <span class="normal">普通登录</span>
-                <span class="dynamic active">手机动态码登录</span>
-            </div>
-            <ul class="ulform">
-                <li class="item">
-                    <label for="jMobile" class="mark"><i class="icon iyoyo iyoyo-teacher"></i></label>
-                    <input id="jMobile" class="ui-input" name="mobile" type="text" placeholder="手机号" />
-                </li>
-                <li class="item no-border">
-                    <label for="jDynamic" class="mark code"><i class="icon iyoyo iyoyo-question-1"></i>
-                        <input id="jDynamic" class="ui-input" name="dynamic" type="text" placeholder="动态验证码"/>
-                    </label>
-                    <input type="button" class="ui-btn ui-btn-danger jsVerifyCode" value="获取动态码"/>
-                </li>
-                <li class="item subbtn">
-                    <label>
-                        <input class="submit ui-btn ui-btn-danger" type="submit" value="登录"/>
-                    </label>
-                </li>
-                <li class="item last">
-                    <span class="register f-r">立即注册</span>
-                </li>
-            </ul>
-        </form>
+            <form id="jRightLoginMobile" class="right-login-mobile common f-r jsRightLoginMobile">
+                <ul class="ulform">
+                    <li class="item">
+                        <label for="jMobile" class="mark"><i class="icon iyoyo iyoyo-phone-1"></i></label>
+                        <input id="jMobile" class="ui-input" name="mobile" type="text" autocomplete="off" placeholder="手机号" />
+                    </li>
+                    <li class="item no-border">
+                        <label for="jDynamic" class="mark code"><i class="icon iyoyo iyoyo-shield"></i>
+                            <input id="jDynamic" class="ui-input" name="vierfyCode" type="text" placeholder="动态验证码"/>
+                        </label>
+                        <input type="button" class="ui-btn ui-btn-danger jsVerifyCode ui-btn-disable" value="获取动态码"/>
+                    </li>
+                    <li class="item subbtn">
+                        <label>
+                            <input class="submit ui-btn ui-btn-danger" type="submit" value="登录" autocomplete="off"/>
+                        </label>
+                    </li>
+                    <li class="item last">
+                        <a href="register.html" class="register f-r jsRegister">立即注册</a>
+                    </li>
+                </ul>
+            </form>
+        </div>
     </div>
 
     <!--#include file="./common/footer.html"-->

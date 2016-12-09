@@ -8,7 +8,8 @@ body{
 	padding: 124px 80px;
 	width: 1020px;
 	margin: 0 auto;
-	.left-ad{
+	.left-img{
+		margin-right: 50px;
 		width: 604px;
 		height: 350px;
 		.img{
@@ -63,6 +64,11 @@ body{
 					line-height: 46px;
 					border: none;
 					color: #95aab8;
+					&.error + label{
+						display: inline-block;
+						margin-top: 3px;
+						color: #ec3b45;
+					}
 				}
 				.code{
 					display: inline-block;
@@ -80,6 +86,9 @@ body{
 					font-size: 16px;
 					font-weight: 700;
 					background-color: #ec3b45;
+				}
+				.ui-btn-disable{
+					background-color: #ccc;
 				}
 				.iyoyo{
 					padding: 0 10px;

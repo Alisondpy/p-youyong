@@ -11,25 +11,107 @@ define(function(require, exports, module) {
         "www.baidu.com",
         "www.google.com"
     ];
-    //$().ready(function(){
 
-        //$('#jSignupForm').validate({
-        //    debug:true,
-        //    rules: {
-        //
-        //    }
-        //})
-    //})
-    $("#jsRightLoginMobile").validate({
+    //页面进入先失去焦点
+    //$("#jMobile").blur();
+    // 中文字两个字节
+    $.validator.addMethod("lms", function(value, element, param) {
+        var mobile = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
+        if(mobile.test(value)){
+            //修改点击提交触发验证,恢复验证码按钮色彩的功能
+            if($(".jsVerifyCode").hasClass("change")){
+            }else{
+                $(param).removeClass("ui-btn-disable");
+            }
+            return this.optional(element) || true;
+        }else{
+            $(param).addClass("ui-btn-disable");
+            return false
+        }
+
+    }, $.validator.format("请输入正确的手机号"));
+
+    //手机动态码登陆
+    $("#jRightLoginMobile").validate({
         submitHandler: function(formRes){
             var formData = form.serializeForm(formRes);
-            debugger;
-            io.get($PAGE_DATA['login'],formData,function(data){
+            io.get($PAGE_DATA['mobileLogin'],formData,function(data){
                 box.ok("登陆成功");
                 var refer = document.referrer;
                 setTimeout(function(){
                     //如果来源是zzh或白名单,返回refer
-                    if(refer.indexOf("zhongzhihui") || includeUrl(refer)){
+                    if(refer.indexOf("zhongzhihui.com") || includeUrl(refer)){
+                        //如果需要解码
+                        //refer = decodeURI(refer)
+                        location.href = refer;
+                    }else{
+                        //否则返回到指定域名
+                        location.href = "www.zhongzhihui.com";
+                    }
+                },2000);
+            },function(res){
+                if(res.msg){
+                    box.error(res.msg);
+                }else{
+                    box.error('网络错误');
+                }
+                return false;
+            });
+        },
+        rules: {
+            mobile:{
+                lms:'.jsVerifyCode',
+                required: true,
+                mobile:true
+            },
+
+            //dynamic : {
+            //    require : true,
+            //    digits : true
+            //}
+        },
+        message: {
+            mobile: {
+                required: "请输入正确43433的手机号"
+                //mobile:true
+            }
+        }
+    });
+
+
+    //普通登陆
+    $("#jLoginForm").validate({
+        rules: {
+            username:{
+                required: true,
+                mobile:true
+            },
+            password: {
+                required: true,
+                minlength: 6
+            },
+        },
+        message: {
+            username:{
+                required: "请输入手机号",
+                mobile:"请输入正确的手机号"
+            },
+            password: {
+                required: "请输入密码",
+                minlength: "密码长度不能小于6个字符"
+            },
+        },
+        submitHandler: function(formRes){
+            var formData = form.serializeForm(formRes);
+            io.get($PAGE_DATA['normalLogin'],formData,function(data){
+                box.ok("登陆成功");
+                var refer = document.referrer;
+                //等待两秒跳转页面
+                setTimeout(function(){
+                    //如果来源是zzh或白名单,返回refer
+                    console.log(refer.indexOf("zhongzhihui.com"));
+                    console.log(includeUrl(refer));
+                    if(refer.indexOf("zhongzhihui.com") || includeUrl(refer)){
                         location.href = refer;
                     }else{
                         //否则返回到指定域名
@@ -46,39 +128,53 @@ define(function(require, exports, module) {
             });
         },
 
+    });
 
+    //登陆页面切换登陆形态
+    $(".jsTab").on("click","span",function(){
+        if($(this).hasClass("active")){
+            return false;
+        }
+        $(this).addClass("active").siblings().removeClass("active");
+        $(".mod-login form").toggle();
     });
 
     //获取验证码
     $(".jsVerifyCode").on("click",function(){
+        var verifyCode = $(this);
         //获取阶段直接返回
-        if($(".jsVerifyCode").hasClass("ui-disable")){
+        if(verifyCode.hasClass("ui-btn-disable")){
             return false;
         }
-        //验证码循环
-        VerificationCode();
-    });
+        //发送ajax请求
+        io.get($PAGE_DATA['code'],{mobile : $("#jMobile").val()},
+            function(res){
+                //成功后的回调
 
-    //验证码循环
-    function VerificationCode(){
-        var verifyCode = $(".jsVerifyCode");
-        var count = 3;
-        verifyCode.val(count).addClass("ui-disable");
+            },function(res){
+                //fail
+                if(res.msg){
+                    box.error(res.msg);
+                }else{
+                    box.error('网络错误');
+                }
+            });
+        //验证码循环
+        var count = 60;
+        verifyCode.val(count).addClass("ui-btn-disable change");
         var time = setInterval(function(){
-            console.log(count);
             if(count > 1){
                 count --;
                 verifyCode.val(count);
             }else{
-                verifyCode.removeClass("ui-disable").val("获取验证码");
+                verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
                 clearInterval(time);
             }
         },1000);
-    }
+    });
 
     //验证是否属于白名单里面
     function includeUrl(refer){
-        //var host = refer.slice(0,refer.indexOf("/"));
         for(var i = 0;i < allowerList.length;i ++){
             if(refer.indexOf(allowerList[i])){
                 return true
@@ -87,12 +183,5 @@ define(function(require, exports, module) {
         return false;
     }
 
-    //手机动态码登录
-    $(".jsRightLoginMobile").on("click",".subbtn input",function(){
-        io.get($PAGE_DATA['login'],{},
-            function(){
-
-            }, function(){})
-    });
 
 });

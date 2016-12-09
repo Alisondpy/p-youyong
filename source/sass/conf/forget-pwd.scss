@@ -1,0 +1,134 @@
+@charset "UTF-8";
+@import "../common/config/level-1";
+@import "../common/common";
+body{
+  background-color: #e4ebf0;
+}
+.hide{
+  display: none;
+}
+.mod-login{
+  padding: 124px 80px;
+  width: 360px;
+  margin: 0 auto;
+  .get-pwd{
+    margin: 0;
+    text-align: center;
+    color: #4b677b;
+  }
+  .left-ad{
+    width: 604px;
+    height: 350px;
+    .img{
+      width: 604px;
+      height: 350px;
+      border: none;
+    }
+  }
+  .common{
+    width: 360px;
+    height: 250px;
+    .tab{
+      margin-right: -2px;
+      height: 56px;
+      border-bottom: 2px solid #e4ebf0;
+      background-color: #e4ebf0;
+      .normal, .dynamic{
+        display: inline-block;
+        line-height: 54px;
+        width: 178px;
+        font-size: 18px;
+        text-align: center;
+        color: #4b677b;
+        cursor: pointer;
+        background-color: #fff;
+        &.active{
+          line-height: 58px;
+          color: #ec3b45;
+          background-color: #fff;
+        }
+      }
+    }
+  }
+  .right-signin{
+    //position: relative;
+    //top: -40px;
+    .ulform{
+      padding: 10px 40px 0 40px;
+      width: 280px;
+      .item{
+        margin-top: 20px;
+        padding:0 0 2px 0;
+        width: 280px;
+        height: 46px;
+        border: 1px solid #e4ebf0;
+        border-radius: 4px;
+        background-color: #fff;
+        .ui-input{
+          padding: 0;
+          width: 230px;
+          line-height: 46px;
+          border: none;
+          color: #95aab8;
+          &.error + label{
+            display: inline-block;
+            color: #ec3b45;
+            margin-top: 3px;
+          }
+        }
+        .code{
+          display: inline-block;
+          margin-right: 4px;
+          width: 167px;
+          line-height: 48px;
+          border-radius: 4px;
+          background-color: #fff;
+        }
+        .ui-btn{
+          display: inline-block;
+          width: 100px;
+          height: 50px;
+          line-height: 50px;
+          color: #fff;
+          font-size: 16px;
+          font-weight: 700;
+          background-color: #ec3b45;
+          &.ui-btn-disable{
+            background-color: #ccc;
+          }
+        }
+
+        .iyoyo{
+          padding: 0 10px;
+          font-size: 18px;
+          color: #95aab8;
+        }
+        &.no-border{
+          background-color: transparent;
+          border: none;
+          .ui-input{
+            width: 100px;
+          }
+        }
+        &.subbtn{
+          margin-top: 20px;
+          border: none;
+          .ui-btn{
+            width: 280px;
+          }
+        }
+        &.last{
+          margin-top: 12px;
+          height: 46px;
+          border: none;
+          color: #4b677b;
+          .instant{
+            font-weight: 700;
+            font-style: normal;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+}
