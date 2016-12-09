@@ -70,7 +70,8 @@ define(function(require, exports, module) {
         var name = jNavType.attr('name');
         var val = jNavType.find('.current').attr('data-value');
         data[name] = val;
-        renderList($PAGE_DATA['pagerTeacher'],{'data':data},'lists','jLists',jPagination);
+        //data = JSON.stringify(data);
+        renderList($PAGE_DATA['pagerTeacher'],data,'lists','jLists',jPagination);
     }
     init();
 
@@ -79,6 +80,6 @@ define(function(require, exports, module) {
         navSelector:['#jNavType']//导航栏dom选择器
     });
     nav.on('change',function(data){
-        renderList($PAGE_DATA['pagerTeacher'],{'data':data},'lists','jLists',jPagination);
+        renderList($PAGE_DATA['pagerTeacher'],data,'lists','jLists',jPagination);
     });
 });

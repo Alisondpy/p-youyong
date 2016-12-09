@@ -13,6 +13,14 @@ define(function(require, exports, module) {
     var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
 
     var jPagination = $('#jPagination');
+
+    $('.jWrap2').on('click','#jQuestion',function(){
+        box.loadUrl('/p-youyong/dist/html/uc-register.html', {
+            title: '登陆页面',
+            autoRelease: true,
+            modal: false
+        });
+    });
     /*
      * 渲染分页列表
      * */
@@ -97,7 +105,6 @@ define(function(require, exports, module) {
                 break;
         }
     });
-
 
     var nav1 = new navigation('.jWrap2',{
         currentClass:'active',//当前样式
