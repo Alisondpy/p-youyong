@@ -1,4 +1,4 @@
-@charset "UTF-8";
+    @charset "UTF-8";
 @import "../../common/config/level-2";
 @import "../../common/common";
 @import "../../module/uc/common";
@@ -77,12 +77,16 @@ body {
             line-height: 34px;
             margin: 20px 0 0 10px;
         }
+
         div {
             float: right;
             label {
                 font-size: 14px;
-            }
+                
+            }  
+             
         }
+        
     }
     .info {
         padding-right: 376px;
@@ -92,7 +96,11 @@ body {
             line-height: 34px;
             margin: 20px 0 0 10px;
         }
+        input.error{
+            border:1px solid #f00;
+        }
         div {
+            position:relative;
             float: right;
             span {
                 color: #f00;
@@ -100,6 +108,12 @@ body {
             label {
                 font-size: 16px;
             }
+            label.error{
+                position:absolute;
+                right:-105px;
+                top:24px;
+                color:#f00;
+         } 
         }
         .check {
             width: 386px;

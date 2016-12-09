@@ -1,6 +1,7 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
+    require('plugins/validator/1.0.0/validator'); 
     /*顶部搜索、登录状态、底部、右侧在线客服 start*/
     var TopSearch = require('module/top-search/1.0.0/top-search');
     var LoginStatus = require('module/login-status/1.0.0/login-status');
@@ -45,6 +46,44 @@ define(function(require, exports, module) {
         });
         uploader.show();
     });
+
+    //个人信息表单验证
+     $().ready(function(){
+           $('#jInfoForm').validate({
+             onfocusout: function(element){
+                $(element).valid();
+            },
+            debug:true,
+            rules:{
+                cname:{
+                    required:true,
+                },
+                phone:{
+                    required:true,
+                    minlength:11
+                },
+                ccompany:{
+                    required:true,
+                },
+                email:{
+                    required:true,
+                }
+            },
+            messages:{
+                cname:{
+                    required:"请填写姓名",
+                    minlength:"姓名不合法"
+                },
+                ccompany:{
+                    required:"请填写公司的名称"
+                }
+                // email:{
+                //     required:"请填写您的需求"
+
+                // }
+            }
+        }) 
+    })
 
 
     var Tab = require('lib/ui/tab/1.0.0/tab');

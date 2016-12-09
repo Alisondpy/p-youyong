@@ -8,6 +8,7 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
+    var build = require('lib/core/1.0.0/dom/build');
     var template = require('template');
     var form = require('lib/core/1.0.0/utils/form');
     var jTinfo = $('.jTinfo');
@@ -20,22 +21,24 @@ define(function(require, exports, module) {
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
     var pager;
-    tab.on('change',function(el){
-        
-        //模板加载
-            var content = $('#content');
-                 //tab body data-id="1"
-            var jPagination = $('#jPagination');
-            if(el.body.hasClass('teacher-info')){
-                pager.destroy();
-            }else{
-                pager = new Pager(jPagination, {
-                url: $PAGE_DATA['getPager'],
+
+
+    var tabsCallback = {};
+
+    //tab body data-id="2"
+    tabsCallback.callback2 = function(body) {
+        if (!tabsCallback.callback2.isInited) {
+            tabsCallback.callback2.isInited = true;
+            var builder = build.build(body, false);
+            var jPagination = builder.get('jPagination');
+            var jContainer = builder.get('jContainer');
+            var pager = new Pager(jPagination, {
+                url: $PAGE_DATA['coursePager'],
                 data: {
-                    // class: 'djune'
+                  teacherId:$PAGE_DATA['teacherid'] 
                 },
                 options: {
-                    currentPage: 2, // start with 1
+                    currentPage: 1, // start with 1
                     pageSize: 20
                 }
             });
@@ -49,50 +52,43 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxSuccess', function(data, callback) {
-                if(!$.isEmptyObject(data.data) && data.data.records.length>0){
-                     content.html(template('test',data.data));
-                     //图片懒加载
-                    var lazy = new Lazyload($('.jImg'), {
-                    mouseWheel: true,
-                    effect: 'fadeIn',
-                    snap: true
+                if(data && data.data && data.data.records>0){
+                    callback && callback(data.data.records);
+                    jContainer.html(template('tList',data.data));
+                    //图片懒加载
+                    var lazy = new Lazyload(jContainer.find('.jImg'), {
+                        mouseWheel: true,
+                        effect: 'fadeIn',
+                        snap: true
                     });
                 }else{
-                    content.html('<div class="ui-empty-list">'+
-                                    '<div class="iyoyo iyoyo-box"></div>'+
-                                    '<div class="txt">暂时没有课程</div>'+
-                                '</div>')
-                }
-               
-               
-
-                callback && callback(data.data.records);
+                    jContainer.html(template('tFempty'));
+                }              
                 loading && loading.hide();
             });
 
             pager.on('ajaxError', function(data) {
-                content.html('网络错误，请重试！');
+                jContainer.html('网络错误，请重试！');
                 loading && loading.hide();
             });
 
             pager.on('change', function(pageNum, e) {
+                console.log('pageNum', pageNum, e);
                 $('#jCurrentPage').html(pageNum)
             });
+        }
+    }
 
-            }
+    //tab body data-id="1"
+    tabsCallback.callback1 = function(){};
 
-           
-       
- 
-    })
+    tab.on('change',function(el){      
 
+        var id = el.body.attr('data-id');
+        tabsCallback['callback' + id] && tabsCallback['callback' + id](el.body);
+    });
 
-       
-    
-    
-
-    
-
+    tab.setCurrent();
 
     //图片懒加载
     var lazy = new Lazyload($('.jImg'), {
@@ -100,9 +96,5 @@ define(function(require, exports, module) {
         effect: 'fadeIn',
         snap: true
     });
-
-
-
-
 
 });

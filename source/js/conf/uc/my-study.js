@@ -74,6 +74,23 @@ define(function(require, exports, module) {
                 });
                 callback && callback(data.data.records);
                 loading && loading.hide();
+                var jBtn = $('.jBtn');
+                var jTbtn = $('.jTbtn');
+                jBtn.on('click', function(){
+                    jBtn.css('display','none').siblings(jTbtn).css('display','block');
+                    $('.jLoad').css('display','none').siblings('.jDele').css('display','block');
+                });
+                jTbtn.on('click', function(){
+                    jTbtn.css('display','none').siblings(jBtn).css('display','block');
+                     $('.jLoad').css('display','block').siblings('.jDele').css('display','none');
+                })
+                $('.mod-item').on('click', function(e){
+                    var _this = $(this);
+                    var target = $(e.target);
+                    if(target.is('.jDel')){
+                        _this.fadeOut();
+                    }
+                })
             });
 
             pager.on('ajaxError', function(data) {
