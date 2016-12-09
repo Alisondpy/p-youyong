@@ -1,7 +1,7 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var box = require('lib/ui/box/1.0.1/box');
+    var box = require('lib/ui/box/1.0.1/crossbox');
     var io = require('lib/core/1.0.0/io/request');
     var validate = require('plugins/validator/1.0.0/validator');
     var template = require("template");
@@ -10,26 +10,23 @@ define(function(require, exports, module) {
     var handshake = {
         init:function () {
             io.get($PAGE_DATA['getInfo'], function(data) {
-                if (data.error < 0) {
-                    box.error(data.msg);
-                } else {
-                    try {
-                        data = data.data;
-                        form.setFormData('#jSigninForm',data);
-                    } catch (e) {
-                        box.error('暂无数据');
-                    }
+                if(data && data.data) {
+                    form.setFormData('#jSigninForm', data);
                 }
             }, function(res) {
-                box.error('网络错误');
+                box.error(res.msg || '网络错误,请重试' );
             });
         },
         handle:function (data) {
             var ucData = form.serializeForm('#jSigninForm');
-            io.get($PAGE_DATA['getInfo'], ucData ,function(data){
-                box.ok('提交成功')
+            io.get($PAGE_DATA['getInfo'], $.extend({activityId:$PAGE_DATA['activityId']},ucData) ,function(data){
+                var topBox = box.get(window);
+                box.ok('恭喜您，报名成功！')
+                setTimeout(function(){
+                    topBox.hide();
+                },3000);
             },function(res) {
-                box.error('网络错误,请重试');
+                box.error(res.msg || '网络错误,请重试');
             }, this)
         }
     };
