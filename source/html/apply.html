@@ -17,45 +17,41 @@
     <!-- 主要内容 start-->
     <form class="mod-form" id="jSigninForm" method="get" action="">
         <ul class="ulform" id="jContainer">
-            
+            <li class="item">
+                <label for="jName" class="mark"><i class="necessary">*</i>姓名</label>
+                <input id="jName" class="ui-input" name="realname" type="text" placeholder="请输入姓名" value=""} />
+            </li>
+            <li class="item">
+                <label for="jMobile" class="mark"><i class="necessary">*</i>手机号</label>
+                <input id="jMobile" class="ui-input" name="mobile" type="text" placeholder="请输入您的手机号" value="" disabled="disabled"/>
+            </li>
+            <li class="item">
+                <label for="jEmail" class="mark"><i class="necessary">*</i>E-mail</label>
+                <input id="jEmail" class="ui-input" name="email" type="email" placeholder="请填写您的邮箱" value="" disabled="disabled"  />
+            </li>
+            <li class="item">
+                <label for="jScholl" class="mark"><i class="necessary">*</i>学校/单位</label>
+                <input id="jScholl" class="ui-input" name="scholl" type="text" value="" placeholder="请填写您的学校或单位"/>
+            </li>
+            <li class="item">
+                <label for="jQQ" class="mark">QQ</label>
+                <input id="jQQ" class="ui-input" name="qq" type="text" value="" placeholder="请填写您的QQ号"/>
+            </li>
+            <li class="item">
+                <label for="jWechat" class="mark">微信</label>
+                <input id="jWechat" class="ui-input" name="wechat" type="text" value="" placeholder="请填写您的微信号"/>
+            </li>
+            <li class="item">
+                <label>
+                    <input class="submit ui-btn ui-btn-danger" type="submit" value="提交" />
+                </label>
+            </li>
         </ul>
     </form>
     <!-- 主要内容 end-->
     <!--#include file="./common/js.html"-->
-    <!-- 我是注释 -->
     <script type="text/javascript">
         require(['conf/apply'], function() {});
-    </script>
-    <script type="text/html" id="jForm">
-        <li class="item">
-            <label for="jName" class="mark"><i class="necessary">*</i>姓名</label>
-            <input id="jName" class="ui-input" name="admin" type="text" placeholder="请输入姓名" value="扛把子" />
-        </li>
-        <li class="item">
-            <label for="jMobile" class="mark"><i class="necessary">*</i>手机号</label>
-            <input id="jMobile" class="ui-input" name="mobile" type="text" placeholder="请输入您的手机号" value="13222222222"  disabled="disabled"/>
-        </li>
-        <li class="item">
-            <label for="jEmail" class="mark"><i class="necessary">*</i>E-mail</label>
-            <input id="jEmail" class="ui-input" name="email" type="email" placeholder="请填写您的邮箱" value="" disabled="disabled"/>
-        </li>
-        <li class="item">
-            <label for="jScholl" class="mark"><i class="necessary">*</i>学校/单位</label>
-            <input id="jScholl" class="ui-input" name="scholl" type="text" value="ms" placeholder="请填写您的学校或单位"/>
-        </li>
-        <li class="item">
-            <label for="jQQ" class="mark">QQ</label>
-            <input id="jQQ" class="ui-input" name="qq" type="text" placeholder="请填写您的QQ号"/>
-        </li>
-        <li class="item">
-            <label for="jWechat" class="mark">微信</label>
-            <input id="jWechat" class="ui-input" name="wechat" type="text" placeholder="请填写您的微信号"/>
-        </li>
-        <li class="item">
-            <label>
-                <input class="submit ui-btn ui-btn-danger" type="submit" value="提交" />
-            </label>
-        </li>
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->
