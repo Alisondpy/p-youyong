@@ -89,7 +89,7 @@ body {
         
     }
     .info {
-        padding-right: 376px;
+        // padding-right: 376px;
         input {
             width: 341px;
             height: 34px;
@@ -101,16 +101,22 @@ body {
         }
         div {
             position:relative;
-            float: right;
+            margin-left:30px;
             span {
                 color: #f00;
             }
             label {
+                text-align:right;
+                display:inline-block;
+                width:100px;
+                height:30px;
                 font-size: 16px;
             }
             label.error{
                 position:absolute;
-                right:-105px;
+                text-align:left;
+                width:200px;
+                left:463px;
                 top:24px;
                 color:#f00;
          } 
@@ -119,8 +125,13 @@ body {
             width: 386px;
             height: 34px;
             font-size: 16px;
+            margin-left:96px;
             input {
                 width: 28px;
+                height: 14px;
+            }
+            label{
+                 width: 28px;
                 height: 14px;
             }
         }

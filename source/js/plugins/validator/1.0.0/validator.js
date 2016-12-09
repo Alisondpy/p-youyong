@@ -105,6 +105,14 @@ define(function(require, exports, module) {
         func: function(v, elem) {
             return this.optional(elem) || /^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/.test(v);
         }
+    },
+       
+    {
+        name: 'password',
+        text: '请输入正确的密码',
+        func: function(v, elem) {
+            return this.optional(elem) ||  /^(?=.{6,16}$)(?![0-9]+$)(?!.*(.).*\1)[0-9a-zA-Z]+$/;
+        }
     }];
 
     // Extends some usefull validate methods.

@@ -81,18 +81,18 @@
                                             </div>
                                             <div>
                                                 <label for="jCompany"><span>*</span>所属公司</label>
-                                                <input type="text" id="jCompany" class="companyName">
+                                                <input type="text" id="jCompany" name="companyName">
                                             </div>
                                             <div class="check">
                                                 性别
-                                                <input type="radio" id="jMale" name="sex">
-                                                <label for="male">男</label>
-                                                <input type="radio" id="jWomen" name="sex">
+                                                <input type="radio" id="women" value="0" name="sex"> 
                                                 <label for="women">女</label>
+                                                <input type="radio" id="male" value="1" name="sex">
+                                                <label for="male">男</label>
                                             </div>
                                             <div>
                                                 <label for="jQQ">QQ</label>
-                                                <input type="text" id="jQQ">
+                                                <input type="text" id="jQQ" name="qq">
                                             </div>
                                             <div>
                                                 <label for="jInaddress">所在地</label>
@@ -104,7 +104,7 @@
                                             </div>
                                         </div>
                                         <div class="btn">
-                                            <button class="ui-btn">保存</button>
+                                            <button class="ui-btn jBtn">保存</button>
                                         </div>
                                     </form>    
                                 </div>
@@ -122,30 +122,33 @@
                                         <span class="load"><em>登陆次数:</em><i>53</i></span>
                                         <span><em>上次登陆时间:</em><i>2016-05-19 16:30:56</i></span>
                                     </div>
-                                    <div class="zpassword clearfix">
-                                        <div class="oldpassword">
-                                            <label for="password">
-                                                原登录密码
-                                            </label>
-                                            <input type="text" id="password">
+                                    <form class="jForm">
+                                        <div class="zpassword clearfix">
+
+                                            <div class="oldpassword">
+                                                <label for="password">
+                                                    原登录密码
+                                                </label>
+                                                <input type="password" id="password" name="password">
+                                            </div>
+                                            <div class="newpassword">
+                                                <label>
+                                                    新登录密码
+                                                </label>
+                                                <input type="password" id="nepassword" name="nepassword0">
+                                            </div>
+                                            <div class="surepassword">
+                                                <label for="sure">
+                                                    确认新登录密码
+                                                </label>
+                                                <input type="password" id="sure" class="nepassword1">
+                                            </div>
                                         </div>
-                                        <div class="newpassword">
-                                            <label>
-                                                新登录密码
-                                            </label>
-                                            <input type="text" id="nepassword">
+                                        <div class="btn">
+                                            <button class="ui-btn">保存</button>
+                                            <span class="rember"><a href="">忘记密码</a></span>
                                         </div>
-                                        <div class="surepassword">
-                                            <label for="sure">
-                                                确认新登录密码
-                                            </label>
-                                            <input type="" id="sure">
-                                        </div>
-                                    </div>
-                                    <div class="btn">
-                                        <button class="ui-btn">保存</button>
-                                        <span class="rember"><a href="">忘记密码</a></span>
-                                    </div>
+                                    </form>
                                 </div>
                                 <!-- 页面主内容 end -->
                             </div>
