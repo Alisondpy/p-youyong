@@ -79,7 +79,7 @@ define(function(require, exports, module) {
                 // simulating async paging
                 IO[options.ajaxType](options.url, $.extend({}, params, options.data), function(data) {
                     _this.emit('ajaxSuccess', data, function(totalCount) {
-                        if (totalCount >= 0) {
+                        if (totalCount > 1) {
                             _this.pagination.show();
                             _this.pagination.setTotalCount(totalCount);
                         } else {
