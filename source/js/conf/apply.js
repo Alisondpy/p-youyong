@@ -50,7 +50,7 @@ define(function(require, exports, module) {
                 email:true
             },
             scholl:{
-                required: true,
+                required: true
             },
             qq:{
                 qq:true

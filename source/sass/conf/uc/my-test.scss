@@ -3,7 +3,13 @@
 @import "../../common/common";
 @import "../../module/uc/common";
 @import "../../common/pager/pager";
-
+h1,h2,h3{
+  font-weight:normal;
+}
+span,i,em,label,b{
+  display:inline-block;
+  font-style:normal;
+}
 .ifm-right-container{
   .mod-test-title{
     width:188px;
@@ -57,6 +63,9 @@
     display:none;
   }
   .mod-item{
+    ul{
+
+    }
     .item{
       border-bottom:1px solid #eef3f7;
       padding:30px 0;
@@ -90,6 +99,21 @@
         margin-left:5px;
         margin-top:3px;
       }
+    .contain-down{
+      font-size:12px;
+      margin-top:15px;
+      .study-time{
+        margin-top:5px;
+      }
+      span{
+        color:#95aab8;
+        margin-right:40px;
+      }
+      em{
+        color:#4b677b;
+        margin-left:12px;
+      }
+    }
     }
   }
 }

@@ -139,9 +139,9 @@
 <!--#include file="./common/statistics.html"-->
 <script type="text/html" id="jModule">
     <div class="mod-contain clearfix">
-        {{each resultList as value i}}
         <div class="mod-item">
             <ul>
+                {{each resultList as value i}}
                 <li class="item clearfix">
                     <div class="picture f-l">
                         <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
@@ -154,20 +154,36 @@
                         </div>
                         <div class="contain-down">
                             <div class="dis teacher">
-                                <span>讲师</span><em>姜凯城</em>
-                            </div>
-                            <div class="dis study-num">
-                                <span>讲师</span><em>姜凯城</em>
+                                <span>讲师<em>100分</em></span>
+                                <span>限时<em>60分钟</em></span>
                             </div>
                             <div class="dis study-time">
-                                <span>上次学习的时间</span><em>2016-05</em><strong>13:30</strong>
+                                <span>考试时间<em>2016-03-28  14:12 ~ 2116-03-28  14:12</em></span>
                             </div>
                         </div>
                     </div>
+                    <div class="f-r">
+                        {{if resultList.status==0}}
+                        <a href="javascript:;">参加考试</a>
+                        <p>离考试结束还有1天3时</p>
+                        {{/if}}
+                        {{if resultList.status==1}}
+                        <a href="javascript:;">参加考试</a>
+                        <p>离考试结束还有1天3时</p>
+                        {{/if}}
+                        {{if resultList.status==2}}
+                        <a href="javascript:;">参加考试</a>
+                        <p>离考试结束还有1天3时</p>
+                        {{/if}}
+                        {{if resultList.status==0}}
+                        <a href="javascript:;">参加考试</a>
+                        <p>离考试结束还有1天3时</p>
+                        {{/if}}
+                    </div>
                 </li>
+                {{/each}}
             </ul>
         </div>
-        {{/each}}
     </div>
 </script>
 
