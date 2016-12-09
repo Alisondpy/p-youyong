@@ -5,7 +5,6 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var validate = require('plugins/validator/1.0.0/validator');
     var template = require("template");
-    var jContainer = $('#jContainer');
     var form = require('lib/core/1.0.0/utils/form');
 
     var handshake = {
