@@ -1,18 +1,18 @@
 {
   "error": 0,
-  "msg": "·şÎñÆ÷´íÎó",
+  "msg": "æœåŠ¡å™¨é”™è¯¯",
   "data": {
     "pageNo": 4,
     "pageSize": 12,
     "records": 200,
     "total": 2,
     "resultList":[
-    {"isExamed":"0","intervalExamMinute":"15020","isPassed":"0","startTime":"2016-12-3 08:00","totalScore":"100","score":"60","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"0","examName":"ºÃºÃÑ§Ï°£¬ÌìÌìÏòÉÏ","subTime":"2016-11-24"},
-    {"isExamed":"1","intervalExamMinute":"0","isPassed":"1","startTime":"2016-12-3 08:00","totalScore":"100","score":"80","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"1","examName":"ºÃºÃÑ§Ï°£¬ÌìÌìÏòÉÏ","subTime":"2016-11-24"},
-    {"isExamed":"0","intervalExamMinute":"2589","isPassed":"1","startTime":"2016-12-3 08:00","totalScore":"100","score":"90","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"2","examName":"ºÃºÃÑ§Ï°£¬ÌìÌìÏòÉÏ","subTime":"2016-11-24"},
-    {"isExamed":"1","intervalExamMinute":"265","isPassed":"0","startTime":"2016-12-3 08:00","totalScore":"100","score":"50","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"3","examName":"ÈËÃñ±ÒÖĞ¼ä¼Û8ÄêÀ´Ê×´ÎµøÆÆ6.9 ÕâÎåÀàÈË×îÊÜÉË£¡ÈËÃñ±ÒÖĞ¼ä¼Û8ÄêÀ´Ê×´ÎµøÆÆ6.9 ÕâÎåÀàÈË×îÊÜÉË£¡","subTime":"2016-11-24 ¡«2016-11-28"},
-    {"isExamed":"0","intervalExamMinute":"14785","isPassed":"1","startTime":"2016-12-3 08:00","totalScore":"100","score":"60","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"2","examName":"Ñ°ÕÒÏÂÒ»¸ö´´ÒµÆæµã¡ªº£Á¿Ãâ·ÑÃ½Ìå×ÊÔ´µÈÄãÄÃ£¡","subTime":"2016-11-24"},
-    {"isExamed":"1","intervalExamMinute":"45698","isPassed":"0","startTime":"2016-12-3 08:00","totalScore":"100","score":"70","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"1","examName":"Ñ°ÕÒÏÂÒ»¸ö´´ÒµÆæµã¡ªº£Á¿Ãâ·ÑÃ½Ìå×ÊÔ´µÈÄãÄÃ£¡","subTime":"2016-11-24"}
+    {"isExamed":"0","intervalExamMinute":"15020","isPassed":"0","startTime":"2016-12-3 08:00","totalScore":"100","score":"60","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"0","examName":"å¥½å¥½å­¦ä¹ ï¼Œå¤©å¤©å‘ä¸Š","subTime":"2016-11-24"},
+    {"isExamed":"1","intervalExamMinute":"0","isPassed":"1","startTime":"2016-12-3 08:00","totalScore":"100","score":"80","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"1","examName":"å¥½å¥½å­¦ä¹ ï¼Œå¤©å¤©å‘ä¸Š","subTime":"2016-11-24"},
+    {"isExamed":"0","intervalExamMinute":"2589","isPassed":"1","startTime":"2016-12-3 08:00","totalScore":"100","score":"90","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"2","examName":"å¥½å¥½å­¦ä¹ ï¼Œå¤©å¤©å‘ä¸Š","subTime":"2016-11-24"},
+    {"isExamed":"1","intervalExamMinute":"265","isPassed":"0","startTime":"2016-12-3 08:00","totalScore":"100","score":"50","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"3","examName":"äººæ°‘å¸ä¸­é—´ä»·8å¹´æ¥é¦–æ¬¡è·Œç ´6.9 è¿™äº”ç±»äººæœ€å—ä¼¤ï¼äººæ°‘å¸ä¸­é—´ä»·8å¹´æ¥é¦–æ¬¡è·Œç ´6.9 è¿™äº”ç±»äººæœ€å—ä¼¤ï¼","subTime":"2016-11-24 ï½2016-11-28"},
+    {"isExamed":"0","intervalExamMinute":"14785","isPassed":"1","startTime":"2016-12-3 08:00","totalScore":"100","score":"60","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"2","examName":"å¯»æ‰¾ä¸‹ä¸€ä¸ªåˆ›ä¸šå¥‡ç‚¹â€”æµ·é‡å…è´¹åª’ä½“èµ„æºç­‰ä½ æ‹¿ï¼","subTime":"2016-11-24"},
+    {"isExamed":"1","intervalExamMinute":"45698","isPassed":"0","startTime":"2016-12-3 08:00","totalScore":"100","score":"70","limitMinute":"60","imageUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg","examStatus":"1","examName":"å¯»æ‰¾ä¸‹ä¸€ä¸ªåˆ›ä¸šå¥‡ç‚¹â€”æµ·é‡å…è´¹åª’ä½“èµ„æºç­‰ä½ æ‹¿ï¼","subTime":"2016-11-24"}
     ]
 },
 "ver": "1.0"
