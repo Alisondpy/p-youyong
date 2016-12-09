@@ -80,8 +80,10 @@ define(function(require, exports, module) {
                 IO[options.ajaxType](options.url, $.extend({}, params, options.data), function(data) {
                     _this.emit('ajaxSuccess', data, function(totalCount) {
                         if (totalCount >= 0) {
+                            _this.pagination.show();
                             _this.pagination.setTotalCount(totalCount);
                         } else {
+                            _this.pagination.hide();
                             _this.pagination.setTotalCount(1);
                         }
                     });
