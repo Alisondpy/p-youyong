@@ -85,7 +85,7 @@ define(function(require, exports, module) {
         str += '        <span>您好，</span>';
         str += '    </li>';
         str += '    <li class="item tips-menu-box">';
-        str += '        <a href="' + options.userCenterUrl + '" class="user-name txt-overflow" node-type="userName">' + data.nick + '</a>';
+        str += '        <a href="' + options.userCenterUrl + '" class="user-name txt-overflow" node-type="userName">' + data.nickName + '</a>';
         str += '        <div class="tips-menu" node-type="tipsMenu">';
         str += '            <div class="arrow"><i></i><b></b></div>';
         str += '            <ul class="tips-menu-list">';
