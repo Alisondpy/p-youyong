@@ -1,0 +1,137 @@
+@charset "UTF-8";
+@import "../common/config/_level-1";
+@import "../common/common";
+@import "../module/mod-hot";
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-weight: normal;
+	margin: 0;
+}
+
+i,
+a,
+b,
+span {
+	display: inline-block;
+	font-style: normal;
+	font-weight: normal;
+}
+
+body {
+	background-color: #eef3f7;
+}
+
+//详情第一部分样式
+.mod-detail-title {
+	width: $width;
+	margin: 0 auto;
+	padding: 40px 0;
+	.mod-path {
+		padding-bottom: 20px;
+		font-size: 14px;
+		color: #666;
+	}
+	.mod-content {
+		background-color: #fff;
+		padding: 40px;
+		.img {
+			width: 512px;
+			height: 278px;
+			border: 1px solid #ccc;
+		}
+		.sub-content {
+			width: 576px;
+			h1 {
+				font-size: 32px;
+				color: #333;
+				height: 80px;
+				line-height: 40px;
+				overflow: hidden;
+				font-weight:bold;
+				margin-top: -6px;
+			}
+			.mod-label {
+				padding-top: 15px;
+				font-size: 14px;
+				color: #5e5e5e;
+				.time {
+					padding-left: 8px;
+				}
+				.num {
+					padding-left: 8px;
+				}
+			}
+			.line {
+				padding: 0 10px;
+			}
+			p {
+				font-size: 16px;
+				color: #4c677b;
+				@include text-overf;
+				margin-bottom: 15px;
+				.iyoyo {
+					margin-right: 10px;
+					font-size: inherit;
+					padding-left: 1px;
+				}
+			}
+			.study {
+				width: 130px;
+				height: 40px;
+				line-height: 40px;
+				text-align: center;
+				background-color: #ea3e48;
+				border-radius: 3px;
+				font-size: 16px;
+				color: #fff;
+				margin-right: 20px;
+			}
+			.study-no {
+				color: #4c677b;
+				font-size: 14px;
+				b {
+					color: #ea3e48;
+					padding: 0 5px;
+				}
+				i {
+					font-size: 12px;
+					color: #999;
+				}
+			}
+			.mod-share {
+				font-size: 14px;
+				color: #5e5e5e;
+				margin-top: 15px;
+				a {
+					margin-right: 5px;
+					display: inline-block;
+				}
+				.collect {
+					color: #5e5e5e;
+				}
+			}
+		}
+	}
+}
+
+.mod-detail {
+	margin-top: 20px;
+	.mod-detail-left {
+		width: 760px;
+		min-height: 500px;
+		background: #fff;
+		padding: 30px 40px;
+	}
+	h1 {
+		font-size: 24px;
+		color: #333;
+		line-height: 1;
+		border-bottom: 1px solid #eee;
+		padding-bottom: 20px;
+		margin-bottom: 20px;
+	}
+}
