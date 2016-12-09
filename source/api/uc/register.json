@@ -1,0 +1,11 @@
+{
+    "code": 0,
+    "msg": "牛逼，你已经到后台了！",
+    "data": {
+        "userId":"132",
+        "realname":"nihao",
+        "mobile":"13132154",
+        "email":"dsad"
+    },
+    "ver": "1.0"
+}

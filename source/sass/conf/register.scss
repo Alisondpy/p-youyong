@@ -43,58 +43,13 @@ body{
 			}
 		}
 	}
-	//普通登录
-	.right-login{
+	.right-signin{
+		position: relative;
+		top: -40px;
 		.ulform{
 			padding: 10px 40px 0 40px;
 			width: 280px;
-			height: 240px;
-			.item{
-				margin-top: 20px;
-				padding: 2px 0;
-				width: 280px;
-				height: 46px;
-				border: 1px solid #e4ebf0;
-				border-radius: 4px;
-				.ui-input{
-					padding: 0;
-					width: 230px;
-					line-height: 46px;
-					border: none;
-					color: #95aab8;
-				}
-				.iyoyo{
-					padding: 0 10px;
-					font-size: 18px;
-					color: #95aab8;
-				}
-				&.subbtn{
-					margin-top: 35px;
-					border: none;
-					.ui-btn{
-						width: 280px;
-						height: 50px;
-						line-height: 50px;
-						font-size: 16px;
-						font-weight: 700;
-						background-color: #ec3b45;
-					}
-				}
-				&.last{
-					margin-top: 12px;
-					border: none;
-					color: #4b677b;
-				}
-			}
-		}
-	}
-	//手机登录
-	.right-login-mobile{
-		display: none;
-		.ulform{
-			padding: 10px 40px 0 40px;
-			width: 280px;
-			height: 240px;
+			background-color: #fff;
 			.item{
 				margin-top: 20px;
 				padding: 2px 0;
@@ -138,7 +93,7 @@ body{
 					}
 				}
 				&.subbtn{
-					margin-top: 35px;
+					margin-top: 5px;
 					border: none;
 					.ui-btn{
 						width: 280px;
@@ -151,11 +106,23 @@ body{
 				}
 				&.last{
 					margin-top: 12px;
+					height: 46px;
 					border: none;
 					color: #4b677b;
-					.register{
+					.instant{
+						font-weight: 700;
+						font-style: normal;
 						cursor: pointer;
 					}
+				}
+			}
+			.accept{
+				margin-top: 20px;
+				color: #4b677b;
+				.clause{
+					margin-left: 10px;
+					font-weight: 700;
+					cursor: pointer;
 				}
 			}
 		}

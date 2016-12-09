@@ -22,7 +22,7 @@ define(function(require, exports, module) {
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
     var ifmTab = new Tab(jIfmTab);
-
+    var pager;
     var tabsCallback = {};
 
     //tab body data-id="1"
@@ -32,11 +32,12 @@ define(function(require, exports, module) {
             var builder = build.build(body, false);
             var jPagination = builder.get('jPagination');
             var jContainer = builder.get('jContainer');
+            if(typeof pager != 'undefined'){
+                pager.destroy();
+            }
             var pager = new Pager(jPagination, {
                 url: $PAGE_DATA['getPager'],
-                data: {
-                    class: 'djune'
-                },
+                data: {},
                 alias: {
                     currentPage: 'currentPage',
                     pageSize: 'pageSize'
@@ -56,21 +57,9 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxSuccess', function(data, callback) {
-                //console.log(data, callback);
                 jContainer.html(template('jNote', data.data));
                 callback && callback(data.data.records);
                 loading && loading.hide();
-                $('.jIems').on('click', function (e) {
-                    var $this = $(this);
-                    var target = $(e.target);
-                    if(target.is('.jMore')&&target.text()=='查看全部') {
-                        target.text('收起');
-                        $this.addClass('mark');
-                    } else if(target.text()=='收起') {
-                        target.text('查看全部');
-                        $this.removeClass('mark');
-                    }
-                })
             });
 
             pager.on('ajaxError', function(data) {
@@ -79,7 +68,6 @@ define(function(require, exports, module) {
             });
 
             pager.on('change', function(pageNum, e) {
-                //console.log('pageNum', pageNum, e);
                 $('#jCurrentPage').html(pageNum);
             });
         }
@@ -89,7 +77,6 @@ define(function(require, exports, module) {
         var id = el.body.attr('data-id');
         tabsCallback['callback' + id] && tabsCallback['callback' + id](el.body);
     });
-
     ifmTab.setCurrent();
     
 });

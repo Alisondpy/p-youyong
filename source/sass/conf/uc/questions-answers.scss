@@ -14,13 +14,16 @@ body {
     margin: 0 auto;
     //左边问答内容
     .mod-left-content {
-        padding: 0 30px;
-        padding-bottom: 30px;
-        width: 780px;
+        width: 840px;
         background-color: #fff;
         //我的问题
+        .ui-loading-list{
+            padding: 100px 0;
+        }
         .mod-my-questions {
+            width: 780px;
             padding-top: 30px;
+            margin: 0 auto;
             height: 155px;
             border-bottom: 1px solid #eee;
             /*no*/
@@ -59,7 +62,7 @@ body {
                             color: #333;
                         }
                     }
-                    //分享连接
+                    /* //分享连接
                     .share {
                         width: 150px;
                         height: 70px;
@@ -68,19 +71,17 @@ body {
                             margin-right: 10px;
                             display: inline-block;
                             height: 35px;
-                            line-height: 35px;
+                            line-height: 26px;
                             font-style: normal;
                         }
                         .iyoyo {
                             line-height: 26px;
                             font-size: 22px;
-                            /*px*/
                             color: #999;
                             cursor: pointer;
                         }
                         .iyoyo-weibo {
                             font-size: 20px;
-                            /*px*/
                         }
                         .iyoyo-qzone:hover {
                             color: #f6c743;
@@ -91,7 +92,7 @@ body {
                         .iyoyo-weibo:hover {
                             color: #ec5c51;
                         }
-                    }
+                    } */
                 }
                 //提问者具体描述
                 .bottom {
@@ -127,8 +128,10 @@ body {
         }
         //回答者内容
         .mod-somebody-answers {
-            padding-top: 30px;
+            padding: 25px 0;
             width: 780px;
+            margin: 0 auto;
+            border-bottom: 1px solid #eee;
             // height: 145px;
             //回答者头像
             .stamp {
@@ -143,25 +146,22 @@ body {
                         border-radius: 50%;
                     }
                 }
-                .best-name {
+                /*.best-name {
                     display: block;
                     width: 60px;
                     margin-top: 10px;
                     font-size: 14px;
-                    /*px*/
                     color: #4c677b;
                 }
-                .best {
+                 .best {
                     display: inline-block;
                     margin-top: 10px;
                     padding: 2px;
                     border: 1px solid #ea3e48;
-                    /*no*/
                     border-radius: 4px;
                     font-size: 12px;
-                    /*px*/
                     color: #ea3e48;
-                }
+                } */
             }
             //回答者详细信息
             .content {
@@ -181,8 +181,7 @@ body {
                     }
                     .detials {
                         color: #666;
-                        height: 75px;
-                        overflow: hidden;
+                        text-align: justify;
                         font-size: 16px;
                         /*px*/
                     }
@@ -216,7 +215,7 @@ body {
                         .pr-times {
                             font-style: normal;
                         }
-                        .more{
+                        /* .more{
                             display: inline-block;
                             width: 60px;
                             margin-left: 10px;
@@ -225,11 +224,11 @@ body {
                             &:hover{
                                 color: red;
                             }
-                        }
+                        } */
                     }
                 }
                 //回复列表
-                .mod-response {
+                /* .mod-response {
                     overflow: hidden;
                     .item {
                         padding: 10px 0;
@@ -254,7 +253,6 @@ body {
                                     line-height: 26px;
                                     margin-right: 20px;
                                     font-size: 14px;
-                                    /*px*/
                                     color: #4c677b;
                                 }
                                 .reply {
@@ -262,7 +260,6 @@ body {
                                     line-height: 26px;
                                     width: 400px;
                                     font-size: 16px;
-                                    /*px*/
                                     color: #666;
                                 }
                             }
@@ -282,61 +279,74 @@ body {
                             }
                         }
                     }
-                }
-                .clkmore {
+                } */
+                /* .clkmore {
                     cursor: pointer;
                     &:hover {
                         color: red;
                     }
+                } */
+                
+            }
+        } 
+
+    //评论
+    .mod-me {
+            display: block;
+            padding: 30px;
+            /*no*/
+            .mine {
+                .logo {
+                    margin-right: 10px;
+                    width: 70px;
+                    height: 70px;
+                    .img {
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 50%;
+                    }
                 }
-                .mod-me {
-                    display: none;
-                    padding: 20px 0;
-                    border-bottom: 1px solid #ccc;
+                .name {
+                    width: 70px;
+                    margin-top: 10px;
+                    color: #4c677b;
+                    text-align: center;
+                    font-size: 14px;
+                    /*px*/
+                }
+            }
+            .comment {
+                .txtarea {
+                    margin-left: 30px;
+                    padding: 8px;
+                    width: 554px;
+                    height: 64px;
+                    resize: none;
+                    border: 1px solid #ccc;
                     /*no*/
-                    .mine {
-                        .logo {
-                            margin-right: 10px;
-                            width: 70px;
-                            height: 70px;
-                            .img {
-                                width: 70px;
-                                height: 70px;
-                                border-radius: 50%;
-                            }
-                        }
-                        .name {
-                            width: 70px;
-                            margin-top: 10px;
-                            color: #4c677b;
-                            text-align: center;
-                            font-size: 14px;
-                            /*px*/
-                        }
-                    }
-                    .comment {
-                        .txtarea {
-                            margin-left: 30px;
-                            padding: 8px;
-                            width: 464px;
-                            height: 64px;
-                            resize: none;
-                            border: 1px solid #ccc;
-                            /*no*/
-                            border-radius: 4px;
-                            color: #ccc;
-                        }
-                        .ui-btn {
-                            margin-left: 10px;
-                            margin-top: 0;
-                            padding: 20px;
-                            width: 80px;
-                            height: 80px;
-                            line-height: 20px;
-                            font-size: 14px;
-                            /*px*/
-                        }
-                    }
+                    border-radius: 4px;
+                }
+                .ui-btn {
+                    margin-left: 10px;
+                    margin-top: 0;
+                    padding: 20px;
+                    width: 80px;
+                    height: 80px;
+                    line-height: 20px;
+                    font-size: 14px;
+                    /*px*/
+                }
+            }
+        }
+        .mod-page {
+            padding-top: 20px;
+            width: 840px;
+            margin: 0 auto;
+            background-color: #e4ebf0;
+            .ui-pager{
+                width: 840px;
+                ul{
+                    float: right;
                 }
             }
         }
@@ -346,16 +356,14 @@ body {
         padding: 30px;
         width: 260px;
         background-color: #fff;
-        overflow: hidden;
-        .ui-btn {
+        /* .ui-btn {
             width: 264px;
             height: 40px;
             line-height: 40px;
             letter-spacing: 2px;
             font-weight: bold;
             font-size: 16px;
-            /*px*/
-        }
+        } */
         .title {
             line-height: 48px;
             border-bottom: 1px solid #ccc;
@@ -370,19 +378,7 @@ body {
                 height: 24px;
                 line-height: 24px;
                 font-size: 14px;
-                /*px*/
             }
-        }
-    }
-}
-.mod-page {
-    width: 1180px;
-    margin: 0 auto;
-    .ui-pager{
-        width: 840px;
-        padding-bottom: 20px;
-        ul{
-            float: right;
         }
     }
 }

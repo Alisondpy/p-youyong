@@ -3,9 +3,9 @@ define(function(require, exports, module) {
     var $ = require('jquery');
     var box = require('lib/ui/box/1.0.1/box');
     var io = require('lib/core/1.0.0/io/request');
-    var validate = require('lib/plugins/validation/1.15.1/jquery-validate');
-    var message = require('lib/plugins/validation/1.15.1/localization/messages_zh');
-
+    var validate = require('plugins/validator/1.0.0/validator');
+    var template = require("template");
+    var jContainer = $('#jContainer');
       /*box.loadUrl('http://www.baidu.com', {
                 data: { t: +new Date },
                 content: '加载中',
@@ -14,38 +14,52 @@ define(function(require, exports, module) {
                     alert(JSON.stringify(res));
                 }
             });*/
-
+            var data = null;
+    var handshake = {
+        init:function () {
+            io.get($PAGE_DATA['getInfo'], function(res){
+                jContainer.html(template('jForm', res));
+                data = {
+                    'userid':
+                };
+            })
+        },
+        handle:function () {
+            io.get($PAGE_DATA['postInfo'], {data:data} ,function(data){
+                alert();
+            })
+        }
+    };
+    handshake.init();
+   
     $().ready(function(){
-        $.validator.addMethod('telephone', function(value, el, params) {
-            var reg = /^1[1-9]{10}$/;
-            if(reg.test(value)) {
-                return true;
-            }else{
-                return false;
-            }
-        }, '请输入11位有效的手机号');
-        $('#jSignupForm').validate({
-            debug:true,
+        $('#jSigninForm').validate({
+            //debug:true,
             rules: {
-                name: {
+                admin: {
                     required: true,
-                    minlength: 6,
-                    maxlength: 10
+                    admin:true
                 },
-                telnum:{
+                mobile:{
                     required: true,
-                    telephone:12345678912
+                    mobile:true
                 },
                 email:{
                     required: true,
                     email:true
                 },
                 scholl:{
-                    required: true
+                    required: true,
+                },
+                qq:{
+                    qq:true
+                },
+                wechat:{
+                    wechat:true
                 }
-                
-            },        
-            messages: {
+            },
+            submitHandler:function(form){
+                handshake.handle();
             }
         })
     
