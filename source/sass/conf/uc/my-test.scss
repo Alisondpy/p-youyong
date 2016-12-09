@@ -67,6 +67,7 @@ span,i,em,label,b{
 
     }
     .item{
+      position:relative;
       border-bottom:1px solid #eef3f7;
       padding:30px 0;
       &:first-child{
@@ -114,6 +115,76 @@ span,i,em,label,b{
         margin-left:12px;
       }
     }
+    }
+  }
+  .mod-exam{
+    text-align: right;
+    font-size:14px;
+    &.active{
+      .has-join{
+        display:none;
+      }
+      .ui-delete-btn{
+        display:inline-block;
+      }
+    }
+    .ui-delete-btn{
+      position:absolute;
+      display:none;
+      color:#ff2f51;
+      font-size:20px;
+      right:25px;
+      top:50px;
+
+    }
+    p{
+      color:#44687d;
+      margin-top:5px;
+    }
+    .mod-in-exam{
+      .join-exam{
+        width:110px;
+        height:38px;
+        line-height:38px;
+        text-align:center;
+        border-radius:3px;
+        background:#ff1c41;
+        display:inline-block;
+        color:#fff;
+      }
+      p{
+        line-height:1;
+      }
+    }
+    .mod-wait-exam{
+      margin-top:30px;
+    }
+    .has-join{
+      p{
+        width:50px;
+      .mod-fail-exam{
+        color:#ff1c41;
+       }
+        span{
+          font-size:18px;
+        }
+        i{
+          font-size:14px;
+          color:#44687d;
+        }
+      }
+      .view-page{
+        text-decoration: underline;
+        color:#44687d;
+        font-size:12px;
+        margin-left:20px;
+        margin-top:20px;
+      }
+    }
+    .mod-pass-exam{
+      p{
+        color:#44687d;
+      }
     }
   }
 }

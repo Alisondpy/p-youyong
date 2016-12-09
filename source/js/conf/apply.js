@@ -8,29 +8,22 @@ define(function(require, exports, module) {
     var form = require('lib/core/1.0.0/utils/form');
 
     var handshake = {
-        init:function () {
-            io.get($PAGE_DATA['getInfo'], function(data) {
-                if(data && data.data) {
-                    form.setFormData('#jSigninForm', data);
-                }
-            }, function(res) {
-                box.error(res.msg || '网络错误,请重试' );
-            });
-        },
         handle:function (data) {
             var ucData = form.serializeForm('#jSigninForm');
             io.get($PAGE_DATA['getInfo'], $.extend({activityId:$PAGE_DATA['activityId']},ucData) ,function(data){
+                console.log(data);
                 var topBox = box.get(window);
                 box.ok('恭喜您，报名成功！')
                 setTimeout(function(){
+                    window.top.window.location.reload();
                     topBox.hide();
-                },3000);
+                },2000);
             },function(res) {
                 box.error(res.msg || '网络错误,请重试');
             }, this)
         }
     };
-    handshake.init();
+    //handshake.init();
     $('#jSigninForm').validate({
         rules: {
             realname: {
@@ -45,7 +38,7 @@ define(function(require, exports, module) {
                 required: true,
                 email:true
             },
-            scholl:{
+            school:{
                 required: true
             },
             qq:{
@@ -54,6 +47,10 @@ define(function(require, exports, module) {
             wechat:{
                 wechat:true
             }
+        },
+        //失去焦点校验
+        onfocusout: function(element){
+            $(element).valid();
         },
         submitHandler:function(form){
             handshake.handle();

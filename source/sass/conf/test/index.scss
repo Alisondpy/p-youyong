@@ -23,6 +23,14 @@ body{
 .mod-test{
   width:$width;
   margin: 0 auto 100px;
+  position:relative;
+  .exam-result{
+    position:absolute;
+    font-size: 110px;
+    color: #ea464f;
+    right: 35px;
+    top: 20px;
+  }
   .mod-title{
     font-size:48px;
     color:#333;
@@ -75,6 +83,7 @@ body{
         margin-top:15px;
         span{
           margin-right:30px;
+          cursor:pointer;
         }
         .error{
           color:#ea3e48;

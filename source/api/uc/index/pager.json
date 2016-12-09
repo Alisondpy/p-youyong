@@ -1,12 +1,12 @@
 {
-    "error": 0,
-    "msg": "牛逼，你已经到后台了！",
-    "data": {
-        "pageNo": 4,
-        "pageSize": 12,
-        "records": 200,
-        "resultList": [1, 2],
-        "total": 2
-    },
-    "ver": "1.0"
+"error": 0,
+"msg": "服务器错误",
+"data": {
+"pageNo": 4,
+"pageSize": 12,
+"records": 200,
+"resultList": [1, 2],
+"total": 2
+},
+"ver": "1.0"
 }

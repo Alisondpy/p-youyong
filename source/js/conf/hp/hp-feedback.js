@@ -48,7 +48,9 @@ var define2 = define(function(require, exports, module) {
             io.get($PAGE_DATA['saveUrl'],formData,function(data){
                 box.ok("意见反馈提交成功");
                 jImgList.html('<label id="jChooseBg" class="upload-btn"><span class="iyoyo iyoyo-add-img"></span></label>');
-                formRes.reset();
+                setTimeout(function(){
+                    formRes.reset();
+                },3000)
             },function(){
                 box.error('提交意见反馈失败');
             });
@@ -82,7 +84,6 @@ var define2 = define(function(require, exports, module) {
                 required: "请填写联系方式",
                 isContact:"请填写正确的联系方式"
             }
-
         }
     })
     //自定义联系方式校验

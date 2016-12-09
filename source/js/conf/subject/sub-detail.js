@@ -7,7 +7,7 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var box = require('lib/ui/box/1.0.1/crossbox');
     $("#jReport").on("click",function(){
-        box.loadUrl('/p-youyong/dist/html/apply.html', {
+        box.loadUrl($PAGE_DATA['applyUrl'], {
             title: '报名详情',
             autoRelease: false,
             modal: true //是否有遮罩层

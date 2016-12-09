@@ -1,6 +1,3 @@
-/**
- * Created by admin on 2016/12/9 0009.
- */
 
 define(function(require, exports, module) {
 	'use strict';
@@ -8,10 +5,12 @@ define(function(require, exports, module) {
 	var form = require('lib/core/1.0.0/utils/form');
 	var template=require("template");
 	var io = require('lib/core/1.0.0/io/request');
-	var Hot=require('module/hot-activity/1.0.0/hot-activity');
-	new Hot('jHotActive',{
-		url:"/p-youyong/source/api/sub/hot-activity.json",
-		temId:'hot',
-		formatNum:true
-	});
+	var box = require('lib/ui/box/1.0.1/crossbox');
+	$("#jReport").on("click",function(){
+		box.loadUrl($PAGE_DATA['applyUrl'], {
+			title: '报名详情',
+			autoRelease: false,
+			modal: true //是否有遮罩层
+		});
+	})
 });
