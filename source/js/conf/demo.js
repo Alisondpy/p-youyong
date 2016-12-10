@@ -18,35 +18,6 @@ define(function(require, exports, module) {
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
 
-    var LocationSelect = require('plugins/location-select/location-select');
-
-    var locationSelect = new LocationSelect('#jAddrDiv', {
-        // url: urlPrefix['www'] + '/api/getRegion/jsonp/', //获取地址url
-        // defaultUrl: urlPrefix['www'] + '/api/getUserRegion', //获取默认地址url
-        // setCookieUrl: urlPrefix['www'] + '/api/setUserRegion', //设置cookie
-        degree: 4,
-        labelTxt: ['选择省', '选择市', '选择区', '选择街道'],
-        selectedIndex: 3, //选中的索引
-        isShowCtn: false, //界面初始化时，是否打开box面板
-        isShowClose: true, //是否显示关闭按钮
-        isGetDefaultAddr: true, //是否获取默认地址,指接口获取的值或者cookie的值
-        isSetAddrCookie: false, //是否调用后端存储cookie的url
-        ajaxData: {} //外部ajax参数
-    });
-    locationSelect.on('loaded', function() {
-        // _self._saveVal();
-        // loaded && loaded();
-    });
-    locationSelect.on('lastChange', function() {
-        $('#jLinkInfo').hide();
-        $('#jLinkInfoThree').hide();
-        console.log(this);
-        // _self._saveVal();
-        // lastChangeCallBack && lastChangeCallBack();
-    });
-    locationSelect.init();
-    // locationSelect.show();
-
     //slider
     var slider = new Slider('#jSlider', {
         lazyLoad: {
@@ -77,6 +48,73 @@ define(function(require, exports, module) {
             $('#jFixNav').removeClass('ui-fix-nav-show');
         } else {
             $('#jFixNav').addClass('ui-fix-nav-show');
+        }
+    });
+
+    box.
+    var clickHandles = {
+
+        loadUrl: function() {
+            // async request with loading bar
+            box.loadUrl('/m-service-market/source/api/demo/publish-require.json', {
+                data: { t: +new Date },
+                content: '加载中',
+                success: function(res) {
+                    console.log(res);
+                    alert(JSON.stringify(res));
+                }
+            });
+        },
+
+        loading: function() {
+            // async request with loading bar
+            var _box = box.loading('加载中,3秒后关闭');
+            setTimeout(function() { _box.hide(); }, 3000);
+        },
+
+        tips: function() {
+            box.tips('ok! it\'s a tips', null, 1000);
+        },
+
+        alert: function() {
+            box.alert('ok! it\'s a tips');
+        },
+
+        confirm: function() {
+            box.confirm('Are you sure?',
+                function() {
+                    box.tips('ok');
+                },
+                function() {
+                    alert('cancel');
+                }, this
+            );
+        },
+
+        bubble: function() {
+            box.bubble('我是气泡，可以任意调整方向', { align: 't' }, this);
+        },
+
+        warn: function() {
+            box.warn('Opps!');
+        },
+
+        sendPost: function() {
+            io.jsonp('/m-service-market/source/api/demo/publish-require.json', { 'foo': 'foo text' }, function(res) {
+                alert(res.msg + ' (code: ' + res.error + ')');
+            }, this);
+            // io.get('/m-service-market/source/api/demo/publish-require.json', { 'foo': 'foo text' }, function(res) {
+            //     alert(res.msg + ' (code: ' + res.error + ')');
+            // }, this);
+        }
+    };
+
+    $('#jBox .btn').each(function() {
+        var _this = $(this),
+            type = _this.attr('data-type'),
+            handle = clickHandles[type];
+        if (handle) {
+            _this.on('click', handle);
         }
     });
 });

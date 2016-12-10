@@ -15,6 +15,7 @@ define(function(require, exports, module) {
         _this.itemLevel1s = builder.get('itemLevel1');
         _this.txtLevel1s = builder.get('txtLevel1');
         _this.menuLevel2s = builder.get('menuLevel2');
+        _this._init();
         _this._initEvent();
     };
 
@@ -44,5 +45,16 @@ define(function(require, exports, module) {
 
         });
     }
+
+    LeftMenu.prototype._init = function() {
+        var _this = this;
+        _this.menuLevel2s.each(function() {
+            var self = $(this);
+            if (self.hasClass('active')) {
+                self.parent('.has-child').addClass('active');
+            }
+        });
+    }
+
     module.exports = LeftMenu;
 });
