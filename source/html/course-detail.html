@@ -189,57 +189,26 @@
     require(['conf/course/detail'], function() {});
 </script>
 <script id="jWrap0" type="text/html">
+    {{each resultList as value i}}
     <div class="dir clearfix play">
+        {{if value.studyState == 3}}
         <i class="icon iyoyo iyoyo-ok f-l"></i>
-        <i class="ui-line"></i>
-        <span class="f-l course-name">课时1</span>
-        <a href="" class="h3 f-l">PS基础工具使用</a>
-        <div class="f-r label clearfix">
-            <i class="f-l iyoyo iyoyo-play"></i>
-            <span class="time">5:00</span>
-        </div>
-    </div>
-    <div class="dir clearfix pause">
+        {{/if}}
+        {{if value.studyState == 2}}
         <i class="icon iyoyo iyoyo-pause f-l"></i>
-        <i class="ui-line"></i>
-        <span class="f-l course-name">课时2</span>
-        <a href="" class="h3 f-l">主图设计的几种分类</a>
-        <i class="line f-l"></i>
-        <div class="f-r label clearfix">
-            <i class="f-l iyoyo iyoyo-play"></i>
-            <span class="time">5:00</span>
-        </div>
-    </div>
-    <div class="dir clearfix pause">
+        {{if value.studyState == 1}}
         <i class="icon iyoyo iyoyo-half-circle f-l"></i>
-        <i class="ui-line"></i>
-        <span class="f-l course-name">课时3</span>
-        <a href="" class="h3 f-l">主图设计的几种分类</a>
-        <div class="f-r label clearfix">
-            <i class="f-l iyoyo iyoyo-play"></i>
-            <span class="time">5:00</span>
-        </div>
-    </div>
-    <div class="dir clearfix pause">
+        {{if value.studyState == 3}}
         <i class="icon-default f-l"></i>
         <i class="ui-line"></i>
-        <span class="f-l course-name">课时4</span>
-        <a href="" class="h3 f-l">主图设计的几种分类</a>
+        <span class="f-l course-name">{{value.name}}</span>
+        <a href="" class="h3 f-l">{{value.title}}</a>
         <div class="f-r label clearfix">
             <i class="f-l iyoyo iyoyo-play"></i>
-            <span class="time">5:00</span>
+            <span class="time">{{value.courseTime}}</span>
         </div>
     </div>
-    <div class="dir clearfix pause">
-        <i class="icon-default f-l"></i>
-        <i class="ui-line ui-line-none"></i>
-        <span class="f-l course-name">课时4</span>
-        <a href="" class="h3 f-l">主图设计的几种分类</a>
-        <div class="f-r label clearfix">
-            <i class="f-l iyoyo iyoyo-play"></i>
-            <span class="time">5:00</span>
-        </div>
-    </div>
+    {{/each}}
 </script>
 <script id="jWrap1" type="text/html">
     {{each resultList as value i}}

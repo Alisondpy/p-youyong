@@ -20,9 +20,11 @@
 				"answerNum":3,
 				"viewNum":5,
 				"cai":20,
-				"name":"",
+				"name":"课时1",
 				"createTime":"2001-03-15",
-				"isPraised":0
+				"isPraised":0,
+				"courseTime":"5.00",
+				"studyState":3
 			},
 			{
 				"id":1344,
@@ -38,9 +40,11 @@
 				"answerNum":3,
 				"viewNum":5,
 				"cai":20,
-				"name":"探长",
+				"name":"课时2",
 				"createTime":"2001-03-15",
-				"isPraised":1
+				"isPraised":1,
+				"courseTime":"23.20",
+				"studyState":2
 			},
 			{
 				"id":1344,
@@ -56,9 +60,11 @@
 				"answerNum":2,
 				"viewNum":1,
 				"cai":20,
-				"name":"探长",
+				"name":"课时3",
 				"createTime":"2001-03-15",
-				"isPraised":0
+				"isPraised":0,
+				"courseTime":"6.00",
+				"studyState":1
 			},
 			{
 				"id":1344,
@@ -74,9 +80,11 @@
 				"answerNum":3,
 				"viewNum":5,
 				"cai":20,
-				"name":"探长",
+				"name":"课时4",
 				"createTime":"2001-03-15",
-				"isPraised":1
+				"isPraised":1,
+				"courseTime":"28.00",
+				"studyState":2
 			},
 			{
 				"id":1344,
@@ -92,27 +100,11 @@
 				"answerNum":3,
 				"viewNum":5,
 				"cai":20,
-				"name":"探长",
+				"name":"课时5",
 				"createTime":"2001-03-15",
-				"isPraised":0
-			},
-			{
-				"id":1344,
-				"userId":1108,
-				"avatarUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
-				"title":"Mac装PS CC如何破解？",
-				"releaseTime":"2012-11-10",
-				"source":"PS新建文档",
-				"content":"PS制作过程中，图层会比较多，缩略图又会比较小，所以名称尽量起的明确些，如“原始图”之类的，以便于与其他图层进行区分。",
-				"praiseCount":12122,
-				"nickname":"花村扛把子",
-				"releaseTime":10,
-				"answerNum":3,
-				"viewNum":5,
-				"cai":20,
-				"name":"",
-				"createTime":"2001-03-15",
-				"isPraised":0
+				"isPraised":0,
+				"courseTime":"16.34",
+				"studyState":1
 			}
 		],
 		"total": 2
