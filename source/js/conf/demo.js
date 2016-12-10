@@ -51,7 +51,10 @@ define(function(require, exports, module) {
         }
     });
 
-    box.
+    box.tips('ddd',{
+        xtype:'ok',
+        duration : 0
+    });
     var clickHandles = {
 
         loadUrl: function() {
