@@ -55,5 +55,11 @@ define(function(require, exports, module) {
         // _this._interval && clearInterval(_this._interval);
     }
 
+    //动态设置ajax data
+    Polling.prototype.setData = function(data) {
+        var _this = this;
+        _this.options.ajax.data = $.extend({}, _this.options.ajax.data, data);
+    }
+
     module.exports = Polling;
 });
