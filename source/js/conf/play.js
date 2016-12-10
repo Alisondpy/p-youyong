@@ -224,17 +224,10 @@ define(function(require, exports, module) {
                 url: url
             },
             pagerAjax: {
-                url: url
+                url: '#jQuestionTab',$PAGE_DATA['baseStaticUrl'] + '/source/api/demo/demo.json'
             }
-        });
-        question.on('error',function(data){
-            console.log(data);
-        });
-        question.on('success',function(data){
-            console.log(data);
         });
         question.start();
     };
-    monitor('#jAnswerTab',$PAGE_DATA['baseStaticUrl'] + '/source/api/demo/demo.json');
     monitor('#jQuestionTab',$PAGE_DATA['baseStaticUrl'] + '/source/api/demo/demo.json');
 });
