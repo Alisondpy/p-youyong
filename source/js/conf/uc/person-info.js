@@ -174,7 +174,8 @@ define(function(require, exports, module) {
             var element = $("#" + elementName);
             var province = element.find("select").eq(0);
             var provinceName = province.attr("name");
-            var provinceMap = loadArea(basePath + "/region/queryRegion?parentId=");
+            //var provinceMap = loadArea($PAGE_DATA['location']+1);
+            var provinceMap = loadArea($PAGE_DATA['location']);
             province.empty();
             province.append("<option value='0'>请选择省</option>");
 
@@ -189,7 +190,7 @@ define(function(require, exports, module) {
                     var cityName = city.attr("name");
                     city.empty();
                     city.append("<option value='0'>请选择市</option>");
-                    var cityMap = loadArea(basePath + "/region/queryRegion?parentId=" + provinceValue);
+                    var cityMap = loadArea($PAGE_DATA['location'] + provinceValue);
                     if (cityMap != 0) {
                         $.each(cityMap, function(i, n) {
                             city.append("<option value='" + n.id + "'>" + n.name + "</option>");
@@ -200,7 +201,7 @@ define(function(require, exports, module) {
                             var county = element.find("select").eq(2);
                             var countyName = county.attr("name");
                             var countyValue = $("input[name='" + countyName + "_hide']").val();
-                            var countyMap = loadArea(basePath + "/commons/queryRegion?parentId=" + cityValue);
+                            var countyMap = loadArea($PAGE_DATA['location'] + cityValue);
                             county.empty();
                             county.append("<option value='0'>请选择县/区</option>");
                             if (countyMap != null) {
@@ -231,7 +232,7 @@ define(function(require, exports, module) {
                     }
                 });
                 var province_change = $(this).val();
-                var cityMap = loadArea(basePath + "/commons/queryRegion?parentId=" + province_change);
+                var cityMap = loadArea($PAGE_DATA['location']);
                 if (cityMap != 0) {
                     $.each(cityMap, function(i, n) {
                         city.append("<option value='" + n.id + "'>" + n.name + "</option>");
@@ -243,7 +244,7 @@ define(function(require, exports, module) {
             var city = element.find("select").eq(1);
             if (province_val != null && typeof (province_val) != "undefined" && province_val != '') {
                 province.val(province_val);
-                var city_change_Map = loadArea(basePath + "/commons/queryRegion?parentId=" + province_val);
+                var city_change_Map = loadArea($PAGE_DATA['location']);
                 city.empty();
                 city.append("<option value='0'>请选择市</option>");
                 if (city_change_Map != 0) {
@@ -254,7 +255,7 @@ define(function(require, exports, module) {
             }
             city.change(function() {
                 var city_change = $(this).val();
-                var county_change_Map = loadArea(basePath + "/commons/queryRegion?parentId=" + city_change);
+                var county_change_Map = loadArea($PAGE_DATA['location'] + city_change);
                 county.empty();
                 county.append("<option value='0'>请选择县/区</option>");
                 if (county_change_Map != null) {
@@ -268,7 +269,7 @@ define(function(require, exports, module) {
             var county = element.find("select").eq(2);
             if (city_val != null && typeof (city_val) != "undefined" && city_val != '') {
                 city.val(city_val);
-                var countyMap = loadArea(basePath + "/commons/queryRegion?parentId=" + city_val);
+                var countyMap = loadArea($PAGE_DATA['location'] + city_val);
                 county.empty();
                 county.append("<option value='0'>请选择县/区</option>");
                 if (countyMap != null) {

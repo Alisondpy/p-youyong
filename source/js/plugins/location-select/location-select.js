@@ -11,7 +11,7 @@ define(function(require, exports, module) {
     var $ = require('jquery');
     var Io = require('lib/core/1.0.0/io/request');
     var basePath = $("base").attr('href');
-
+    console.log(basePath);
     alert(1);
     $.extend({
         // 省市区三级联动
@@ -24,7 +24,7 @@ define(function(require, exports, module) {
             var element = $("#" + elementName);
             var province = element.find("select").eq(0);
             var provinceName = province.attr("name");
-            var provinceMap = loadArea(basePath + "/commons/queryRegion");
+            var provinceMap = loadArea("/commons/queryRegion");
             province.empty();
             province.append("<option value='0'>请选择省</option>");
 
@@ -118,7 +118,7 @@ define(function(require, exports, module) {
             var county = element.find("select").eq(2);
             if (city_val != null && typeof (city_val) != "undefined" && city_val != '') {
                 city.val(city_val);
-                var countyMap = loadArea(basePath + "/commons/queryRegion?parentId=" + city_val);
+                var countyMap = loadArea("/region/queryRegion?parentId=" + city_val);
                 county.empty();
                 county.append("<option value='0'>请选择县/区</option>");
                 if (countyMap != null) {
@@ -136,6 +136,7 @@ define(function(require, exports, module) {
     });
 
     function loadArea(url) {
+        console.log(1);
         var areaMap;
         //$.ajax({
         //    url : url,

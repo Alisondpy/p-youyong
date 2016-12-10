@@ -58,22 +58,26 @@ define(function(require, exports, module) {
                 return false;
             });
         },
+        errorPlacement : function(error,element){
+            //console.log(error,element);
+            error.appendTo(element.parent());
+            $(element).parent().addClass("error");
+        },
         rules: {
             mobile:{
                 lms:'.jsVerifyCode',
                 required: true,
                 mobile:true
             },
-
-            //dynamic : {
+            //vierfyCode : {
             //    require : true,
-            //    digits : true
+                //digits : true
             //}
         },
         messages: {
             mobile: {
-                required: "请输入正确43433的手机号"
-                //mobile:true
+                required: "请输入手机号",
+                mobile:"请正确地填写你的手机号"
             }
         }
     });
@@ -91,10 +95,20 @@ define(function(require, exports, module) {
                 minlength: 6
             },
         },
-        message: {
+        errorPlacement : function(error,element){
+            //console.log(error,element);
+            error.appendTo(element.parent());
+            $(element).parent().addClass("error");
+        },
+        success: function(label) {
+            // set &nbsp; as text for IE
+            label.html("&nbsp;").addClass("checked");
+            label.parent().removeClass("error");
+        },
+        messages: {
             username:{
-                required: "请输入手机号",
-                mobile:"请输入正确的手机号"
+                required: "请输入手机或邮箱",
+                mobile:"请输入正确的手机号或邮箱地址"
             },
             password: {
                 required: "请输入密码",
