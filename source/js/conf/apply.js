@@ -11,7 +11,6 @@ define(function(require, exports, module) {
         handle:function (data) {
             var ucData = form.serializeForm('#jSigninForm');
             io.get($PAGE_DATA['getInfo'], $.extend({activityId:$PAGE_DATA['activityId']},ucData) ,function(data){
-                console.log(data);
                 var topBox = box.get(window);
                 box.ok('恭喜您，报名成功！')
                 setTimeout(function(){

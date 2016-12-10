@@ -64,7 +64,7 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxError', function(data) {
-                box.warn('网络错误，请重试！');
+                box.warn(data.msg||'网络错误，请重试！');
                 loading && loading.hide();
             });
         }
