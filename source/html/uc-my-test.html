@@ -18,23 +18,17 @@
         <!--#include file="./module/uc/left-menu.html"-->
         <div class="ifm-right-container">
             <h3 class="mod-test-title">我的考试</h3>
-            <div  class="ifm-tab">
+            <div  class="ifm-tab ">
+                <div class="ifm-tab-head clearfix">
                     <!-- tab 头部 start -->
-                    <ul id="jTestStatus" class="clearfix ifm-tab-hd" name="testStatus">
+                    <ul id="jTestStatus" class="clearfix ifm-tab-hd"  name="status">
                         <li class="ifm-tab-item active"  data-value="0"><a href="javascript:;" >全部</a></li>
                         <li class="ifm-tab-item" data-value="1"><a href="javascript:;" >待参加</a></li>
                         <li class="ifm-tab-item" data-value="2"><a href="javascript:;" >已通过</a></li>
                         <li class="ifm-tab-item" data-value="3"><a href="javascript:;" >未通过</a></li>
                     </ul>
                     <!-- tab 头部 end -->
-                    <div class="ifm-top-bar">
-                        <!-- tab右侧工具栏 start -->
-                        <div class="btn f-r clearfix">
-                            <button class="ui-btn jBtn">管理</button>
-                            <button class="ui-btn t-btn jTbtn">完成</button>
-                        </div>
-                        <!-- tab右侧工具栏 end -->
-                    </div>
+                </div>
                 <div class="ifm-tab-bd" >
                     <!-- tab内容区域-1 start-->
                     <div id="jContainer" class="ifm-tab-container current">
@@ -65,18 +59,19 @@
 <!--#include file="./common/statistics.html"-->
 <script type="text/html" id="jTestModule">
     <div class="mod-contain clearfix">
-        <div class="mod-item">
+        <div class="btn ">
+            <button class="ui-btn jBtn {{deletingClass}}">{{deletingTxt}}</button>
+        </div>
+        <div class="mod-item" >
             <ul>
                 {{each resultList as value i}}
-                    <li class="item clearfix">
-                        <div class="picture f-l">
+                    <li class="jExamList item  clearfix {{deletingClass}}" >
+                  <!--      <div class="picture f-l">
                             <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
-                        </div>
+                        </div>-->
                         <div class="contain f-l">
                             <div class="title clearfix">
                                 <h3 class="hit f-l" title="{{value.examName}}">{{value.examName}}</h3>
-                                <span class="course-label f-l">客服考试</span>
-                                <span class="course-label f-l">线上考试</span>
                             </div>
                             <div class="contain-down">
                                 <div class="dis teacher">
@@ -88,28 +83,41 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="f-r mod-exam">
-                            {{if value.isExamed == 1}}
-                                {{if value.isPassed == 1}}
-                                    <div class="mod-pass-exam has-join clearfix">
-                                        <p class="f-l"><span>90分</span><i>已通过</i></p>
-                                        <a href="javascript:;" class="f-l view-page">查看答卷</a>
-                                    </div>
-                                    <a href="javascript:;" class="ui-delete-btn iyoyo iyoyo-del"></a>
-                                {{/if}}
-                                {{if value.isPassed == 0}}
-                                    <div class="mod-fail-exam has-join clearfix">
-                                        <p class="f-l"><span>59分</span><i>未通过</i></p>
-                                        <a href="javascript:;" class="f-r view-page">查看答卷</a>
-                                    </div>
-                                    <a href="javascript:;" class="ui-delete-btn iyoyo iyoyo-del"></a>
-                                {{/if}}
+                        <div class="f-r mod-exam jExamManage">
+                            <!--考试未开始-->
+                            {{if value.status == 0}}
+                                <div class="mod-wait-exam">
+                                    <p>还有{{value.intervalExamMinute}}开考</p>
+                                </div>
                             {{/if}}
-                            {{if value.isExamed == 0}}
-                            <div class="mod-in-exam">
-                                <a href="javascript:;" class="join-exam">参加考试</a>
-                                <p>离考试结束还有1天3时</p>
-                            </div>
+                            <!--考试开始-->
+                            {{if value.status == 1}}
+                            <!--未参加过考试-->
+                                {{if value.isExamed == 0}}
+                                    <div class="mod-in-exam">
+                                        <a href="javascript:;" class="join-exam">参加考试</a>
+                                        <p>离考试结束还有{{value.intervalExamEndMinute}}</p>
+                                    </div>
+                                {{/if}}
+                                <!--已参加过考试-->
+                                {{if value.isExamed == 1}}
+                                    <!--通过考试-->
+                                    {{if value.isPassed == 1}}
+                                        <div class="mod-pass-exam has-join clearfix">
+                                            <p class="f-l"><span>90分</span><i>已通过</i></p>
+                                    {{/if}}
+                                    <!--未通过考试-->
+                                    {{if value.isPassed == 0}}
+                                        <div class="mod-fail-exam has-join clearfix">
+                                            <p class="f-l"><span>59分</span><i>未通过</i></p>
+                                    {{/if}}
+                                            <h6 class="f-l">
+                                                <a href="javascript:;" class="view-page">查看答卷</a>
+                                                <a href="javascript:;" class="view-page">分析报告</a>
+                                            </h6>
+                                        </div>
+                                {{/if}}
+                                <a href="javascript:;" data-id="{{value.id}}" class="jBtnDel ui-delete-btn iyoyo iyoyo-del"></a>
                             {{/if}}
                         </div>
                     </li>
@@ -118,6 +126,11 @@
         </div>
     </div>
 </script>
-
+<script id="tEmpty" type="text/html">
+    <div class="ui-empty-list">
+        <div class="iyoyo iyoyo-box"></div>
+        <div class="txt">请先学习，再来考试哦</div>
+    </div>
+</script>
 </body>
 </html>

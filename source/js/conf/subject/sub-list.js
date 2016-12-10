@@ -54,6 +54,7 @@ define(function(require, exports, module) {
                 jContainer.html(template('tEmpty'))
                 callback && callback(1);//渲染分页数据
             }
+            loading && loading.hide();
         });
         pager.on('ajaxError',function(res,callback){
         });
