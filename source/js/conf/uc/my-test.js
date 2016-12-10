@@ -1,17 +1,10 @@
 define(function (require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var TopSearch = require('module/top-search/1.0.0/top-search');
-    var LoginStatus = require('module/login-status/1.0.0/login-status');
-    var Footer = require('module/footer/1.0.0/footer');
-    var topSearch = new TopSearch();
-    var loginStatus = new LoginStatus();
-    var footer = new Footer();
+    require('./common');
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     //左侧菜单栏
-    var LeftMenu = require('module/uc/left-menu/left-menu');
-    var searchBar = new LeftMenu();
 
     var template = require("template");
     var io = require('lib/core/1.0.0/io/request');
