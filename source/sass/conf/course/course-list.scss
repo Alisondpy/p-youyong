@@ -1,0 +1,183 @@
+@charset "UTF-8";
+@import "../../common/config/level-2";
+@import "../../common/common";
+.header{background: #fff;}
+.header .container{height: 100px;position: relative;}
+.header .nav a{line-height: 100px;color: #666;}
+.header .nav li,a{font-size: 18px;color: #666;}
+.header .nav a:hover{color: #53be45;}
+.header .nav {position: relative;}
+.header .search input{box-sizing:border-box;border:1px solid #d7d7d7;width: 149px;height: 36px;border-radius: 5px;padding:0 41px 0 15px;position: absolute;top:50%;left:-162px;margin-top: -16px;}
+.header .search input:focus{border: 1px solid #53be45;border-radius: 5px;}
+.header .login{width: 120px; text-align: center;padding: 28px 0px;}
+.header .login span{display: inline-block;width: 16px;height: 9px;background: url("../image/arrowD-icon.png")no-repeat;margin-left: 10px;}
+.header .login img{width: 43px;height: 43px;border-radius: 100%;}
+.header .login-pop{width:120px;display: none;position: absolute; top:100%;left:0;text-align: center;background: #fcfcfc;}
+.header .login-pop a{display: block;line-height: 46px;}
+.header .login-pop a:hover{background: #f4f4f4;}
+.header .login:hover{background: #fcfcfc;}
+.header .login:hover span{background: url("../image/arrowD-hover.png") no-repeat;}
+.header .login:hover .login-pop{display: block;}
+
+/*暴走大学样式by dpy*/
+/**{font-family:"微软雅黑";}*/
+.text-overflow{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width:100%;}
+.col-666{color:#666;}
+.pl-10{padding-left:10px;}
+.col-999{color:#999;}
+.mt-100{margin-top:100px;}
+.mb-60{margin-bottom:60px;}
+.mb-25{margin-bottom:25px;}
+.shadow{box-shadow:0 0 30px rgba(17,5,10,.5);}
+.wrap{width:1200px;margin:0 auto;}
+.collegeHeader{height:80px;line-height:80px;background:#fff;}
+.collegeHeader h1{font-size:36px;padding-left:60px;background:url(../image/collegeIconList.png)no-repeat 0 12px;}
+.collegeHeader span{font-size:18px;margin-left:10px;}
+.collegeHeader span.active{color:#fa694e;}
+.collegeHeader img{width:50px;height:50px;border-radius:50%;background:#ccc;}
+.courseClassify{height:260px;width:100%;background:#f6f6f6;text-align: center;line-height:260px;}
+.courseClassify img{width:auto;height:auto;}
+.videoDetail{width:959px;position:relative;}
+.videoIntr{position:absolute;height:200PX;background:rgba(255,255,255,.8);bottom:0;padding:30px 70px;box-sizing:border-box;}
+.videoIntr h1{font-size:20px;}
+.videoIntr p{color:#666;line-height:24px;}
+.watchVideo{font-size:16px;padding-left:40px;background:url(../image/collegeIconList.png)no-repeat 0 -137px;line-height: 35px;}
+.watchVideo:hover{color:#fa694e;background-position:-2px -214px;}
+.videoList li img{width:219px;height:117px;}
+.videoList li{position:relative;margin-bottom:16px;}
+.videoList h2{position:absolute;font-size: 14px;box-sizing: border-box;height:30px;width:100%;background:rgba(255,255,255,.8);line-height:30px;padding-left:10px;bottom:0;}
+.videoList p{position:absolute;z-index:10;top:0;left:0;bottom:0;right:0;background:rgba(255,255,255,.9);text-align: center;line-height: 115px;display:none;}
+.videoList li:hover p{display:block;}
+.videoList li:hover h2{display:none;}
+
+.jobWrap li{float:left;width:360px;height:360px;position:relative;margin-left:60px;cursor: pointer;color:#bababa;}
+.jobWrap li:first-child{margin-left:0;}
+.jobWrap h3,.jobWrap p{position:absolute;text-align:center;font-size:36px;width: 100%;bottom: 52px;}
+.jobWrap p{font-size:24px;bottom:10px;}
+.courseSort{background:#fa694e;top:20px;}
+.salary{background:#fa874d;top:70px;}
+.commonTitle span{font-size:22px;}
+.commonTitle p{color:#666;}
+.commonTitle{height:45px;position:relative;padding-left:calc(0.5*(100% - 1180px));}
+.titleShadow{position:absolute;width:0;height:45px;background:#f6f6f6;margin-left:-10px;border-right:6px solid #fa694e;}
+.jobWrap li:hover{box-shadow:0 10px 50px rgba(17,5,10,.2);color:#ea5413;
+}
+.companyList{width:1300px;}
+.companyList>li{width:285px;height:200px;border:1px solid #c1c1c1;position:relative;float:left;margin:0 20px 20px 0;}
+.companyInfo{position:absolute;width:100%;height:50px;background:rgba(255,255,255,.8);bottom:0;z-index:50;}
+.companyInfo p{width:33.33%;float:left;text-align: center;color:#666;height:24px;box-sizing:border-box;position:relative;}
+.companyInfo span{display:block;color:#fa694e;}
+.companyInfo i{width:1px;height:24px;background:#dcdcdc;position:absolute;right: 0;top: 12px;}
+.companyWrap{width:285px;height:200px;position:relative;overflow: hidden;}
+.companytIntr{width:12000px;position:absolute;height:200px;z-index:20;}
+.companytIntr li{width:285px;height:200px;float:left;text-align: center;line-height:200px;overflow: hidden;}
+.companytIntr img{width:auto;height:auto;}
+.companyWrap span{position:absolute;display:none;width:36px;height:64px;z-index:30;background:rgba(0,0,0,.5) url(../image/collegeIconList.png)no-repeat -4px -284px;top:48px;}
+.companyWrap .backward{background-position:3px -370px;}
+.forward{right:0;}
+.companyList  li:hover .companyWrap span{display:block;}
+.jobWrap i{vertical-align: sub;}
+.courseTitle{background:#fff;padding:25px 40px;}
+.courseTitle h2{font-size:30px;color:#fa694e;}
+.courseTitle p{line-height:20px;color:#666;}
+.courseLabel span{color:#999;margin-right:40px;padding-left:35px;line-height:25px;background:url(../image/collegeIconList.png)no-repeat 0 -743px;}
+.studentCount{padding-left: 34px;background: url(../image/collegeIconList.png)no-repeat 10px -557px/36px auto;}
+.courseLabel span:first-child{background-position:0 -635px;}
+
+.stageShow{background:#fff;padding:50px 40px 30px 70px;}
+.stageShow .stageLabel{float:left;font-size:18px;color:#ccc;width:320px;position:relative;}
+.stageShow .active,.stageShow .current{color:#fa694e;}
+.stageShow .active span,.stageShow .current span{background:#fa874d;}
+.stageShow span{width:37px;height:37px;border-radius:50%;background:#ccc;margin-left: 17px;}
+.stageLabel:after{content:"";width:217px;border-top:1px dashed #ccc;position:absolute;right:28px;top:20px;}
+.stageLabel:last-child:after{display:none;}
+.stageShow .stageLabel:last-child{width:80px;}
+.stageLabel.active:after{border-top:1px solid #fa874d;}
+.stageShow .current{width:340px;}
+.stageShow .current span{box-shadow:0 0 0 12px rgba(250,135,77,.2),0 0 5px 23px rgba(250,135,77,.2);}
+
+.courseStage{padding:25px 40px 5px;background:#fff;}
+.courseStage h3{font-size:18px;color:#fa694e;}
+.courseStage p{line-height:20px;}
+.courseContainer{overflow: hidden;}
+.courseContainer ul{width:1250px;}
+.videoDetail a{width:100%;height:516px;}
+.courseContainer li p{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width:100%;}
+.courseContainer li{float:left;margin-right:20px;background:#f2f2f2;padding-bottom:5px;margin-bottom:20px;position:relative;width: 265px;overflow: hidden;}
+.courseContainer h2{font-size:16px;color:#666;line-height:1;padding-left:10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width:90%;}
+.courseContainer li:hover{box-shadow:0 0 10px rgba(17,5,10,.3);}
+.locked{position:absolute;width:100%;top:0;left:0;height:144px;background:rgba(255,255,255,.9) url(../image/collegeIconList.png)no-repeat 103px -439px;}
+.lockedCourse h2{color:#999;}
+.courseContainer li>a{width:100%;height: 140px;position:relative;}
+.courseContainer li>a:after{content:'';position:absolute;bottom:0;width:100%;height:40px;background: linear-gradient(transparent,rgba(0,0,0,.1) 25%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.55) 75%,rgba(0,0,0,0.8));}
+.collegeBanner li{float:left;}
+.collegeBanner{width:calc(100% + 17px);height:800px;overflow: hidden;position:relative;}
+.collegeBanner ul{width:99999px;position:absolute;}
+.pagenation span{width:22px;height:22px;background: url(../image/collegeIconList.png)no-repeat 0 -808px;margin-right:20px;cursor:pointer;font-size:0;}
+.pagenation{position: absolute;bottom: 30px;width: 100%;text-align: center;}
+.pagenation span.current{background-position:0 -880px;}
+
+.loadMore{height:40px;background:#fff;text-align: center;line-height: 40px;color:#999;}
+.loadMore span{padding-left:24px;background:url(../image/collegeIconList.png)no-repeat 0 -922px;    cursor: pointer;}
+.loadMore:hover{background:#e8e8e8;}
+.loadMore:hover span{background-position:0 -971px;color:#fa874d;}
+.loadMore.active span{background-position:0 -1022px;}
+.loadMore.active:hover span{background-position:0 -1082px;color:#fa874d;}
+.clearfix{zoom: 1}
+.clearfix:after{content:'';display:block;clear:both;overflow: hidden;}
+.fl{float: left;}
+.fr{float: right;}
+.container{width: 1180px;margin: 0 auto}
+.mc{margin: 0 auto;}
+.ml-10{margin-left: 10px;}
+.ml-15{margin-left: 15px;}
+.ml-20{margin-left: 20px;}
+.ml-22{margin-left: 25px;}
+.mr-10{margin-right: 10px;}
+.mr-20{margin-right: 20px;}
+.mr-300{margin-right: 300px;}
+.mt-5{margin-top: 5px;}
+.mt-10{margin-top: 10px;}
+.mt-20{margin-top: 20px;}
+.mt-30{margin-top: 30px;}
+.mt-50{margin-top: 50px;}
+.mt-60{margin-top: 60px;}
+.mb-20{margin-bottom: 20px;}
+.mb-30{margin-bottom: 30px;}
+.mb-60{margin-bottom: 60px;}
+.mb-260{margin-bottom: 260px;}
+
+body,button,input,select,textarea,a{font:14px/24px  "微软雅黑","Microsoft YaHei",Tahoma,Helvetica,Arial,sans-serif;}
+h1,h2,h3,h4,h5,h6 {font-size: 100%;font-weight:normal;}
+em, i {  font-style: normal}
+ul, ol,li{list-style: none; }
+a {text-decoration: none;color: #333;outline: 0;display:inline-block;_blr: expression(this.onFocus=this.blur())  }
+a, button, input{  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);}
+input::-webkit-input-placeholder {color:#ccc;  }
+input:-webkit-autofill {-webkit-box-shadow: 0 0 0 1000px white inset;border: 1px solid #CCC!important;}
+button,input,select,textarea {font-size: 100%;outline: none;border:none;  }
+table {border-collapse: collapse;  border-spacing: 0  }
+a,span,b,i,em {  display: inline-block;  font-style: normal;font-weight: normal;}
+img {width: 100%;height: 100%;vertical-align: middle;border:none;}
+/*//*/
+input::-webkit-input-placeholder,input:-ms-input-placeholder,input::-moz-placeholder {color: #ccc;}
+textarea{ resize:none;}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
