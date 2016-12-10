@@ -6,17 +6,38 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var template=require("template");
+    var Question = require('module/monitor/1.0.0/question');
+    var Note = require('module/monitor/1.0.0/note');
     var catlog = $('.jMod-catlog');
     var note = $('.jMod-note');
-    var question = $('.jMod-question');
+    //var question = $('.jMod-question');
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
-    var lazy;
+    var lazy,question,note;
     //图片懒加载
     lazy = new Lazyload($('.jImg'), {
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true
+    });
+
+    /*实时监听*/
+    var question = new Question('#jQuestionTab', {
+        pollingAjax: {
+            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
+        },
+        pagerAjax: {
+            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
+        }
+    });
+
+    answer = new Note('#jNoteTab', {
+        pollingAjax: {
+            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
+        },
+        pagerAjax: {
+            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
+        }
     });
 
     /*交互*/
@@ -197,10 +218,11 @@ define(function(require, exports, module) {
                 renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tAnswer','jAnswerTab');
                 break;
             case '2':
+                question.stop();
                 renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tQuestion','jQuestionTab');
                 break;
             case '3':
-                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tQuestion','jQuestionTab');
+                question.start();
                 break;
         }
     };
@@ -214,20 +236,4 @@ define(function(require, exports, module) {
         var type = el.body.find('.ui-current').attr('data-type');
         init(type);
     });
-
-    /*实时监听*/
-    function monitor(htmlEl,url){
-        var Question = require('module/monitor/1.0.0/question');
-        var Answer = require('module/monitor/1.0.0/note');
-        var question = new Question(htmlEl, {
-            pollingAjax: {
-                url: url
-            },
-            pagerAjax: {
-                url: '#jQuestionTab',$PAGE_DATA['baseStaticUrl'] + '/source/api/demo/demo.json'
-            }
-        });
-        question.start();
-    };
-    monitor('#jQuestionTab',$PAGE_DATA['baseStaticUrl'] + '/source/api/demo/demo.json');
 });

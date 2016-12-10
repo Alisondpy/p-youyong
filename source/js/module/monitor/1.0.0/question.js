@@ -6,6 +6,7 @@ define(function(require, exports, module) {
     var IO = require('lib/core/1.0.0/io/request');
     var EventEmitter = require('lib/core/1.0.0/event/emitter');
     var Util = require('lib/core/1.0.0/utils/util');
+    var template=require("template");
 
     function Question(el, options) {
         var _this = this;
@@ -26,7 +27,7 @@ define(function(require, exports, module) {
                 type: 'get', //'get'|'post'|'json'
                 data: null
             }
-        }
+        };
         _this.options = $.extend(true, {}, defaults, options);
         _this._isPulling = false;
         _this._init();
@@ -56,9 +57,10 @@ define(function(require, exports, module) {
         //数据获取失败
         _this.pollingList.on('success', function(data) {
             //如果刷新成功，并且有更新，直接用html替换
-            // if (data && data.list && data.list.length > 0) {
-            _this.pollingList.html(_this.template(data));
-            // }
+            console.log(data,'ddd');
+             if (data && data.resultList && data.resultList.length > 0) {
+                _this.pollingList.html(_this.template(data.data));
+             }
             _this.scrollTo(0);
         });
         //鼠标移进容器就暂停刷新
@@ -75,13 +77,12 @@ define(function(require, exports, module) {
                 _this._isPulling = true;
                 IO[pagerAjax.type](pagerAjax.url, pagerAjax.data, function(data) {
                     _this._isPulling = false;
-                    _this.pollingList.append(_this.template(data));
+                    _this.pollingList.append(_this.template(data.data));
                 }, function(data) {
                     _this._isPulling = false;
                 });
             }
         });
-        _this.el.on('click','')
     }
 
     //开始拉新
@@ -116,10 +117,11 @@ define(function(require, exports, module) {
     var count = 1;
     Question.prototype.template = function(data) {
         var str = '';
-        for (var i = count; i < count + 10; i++) {
-            str += '<div class="item">' + i + '</div>';
+        for(var i=0;i<count+10;i++){
+
+            str+='<div style="height:50px;border:1px solid red;"></div>';
         }
-        count = count + 10;
+        count = count+10;
         return str;
     }
 

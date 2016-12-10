@@ -2,7 +2,6 @@ define(function(require, exports, module) {
     'use strict';
 
     var $ = require('jquery');
-    var Pagination = require('lib/ui/pagination/1.0.1/pagination');
     var IO = require('lib/core/1.0.0/io/request');
     var EventEmitter = require('lib/core/1.0.0/event/emitter');
     var Util = require('lib/core/1.0.0/utils/util');
@@ -11,11 +10,12 @@ define(function(require, exports, module) {
     function PollingList(el, options) {
         var _this = this;
         _this.el = $(el);
-        if (_this.el.lenght == 0) {
+        if (_this.el.length == 0) {
             throw new Error('the param [el] is required.');
         }
         _this.container = $('<div node-type="container"></div>');
-        _this.el.append(_this.container);
+        _this.el.append(_this.container );
+        console.log(_this.container ,'dddss');
         var defaults = {
             ajax: {
                 url: null,
@@ -109,7 +109,7 @@ define(function(require, exports, module) {
     PollingList.prototype.scrollTo = function(top) {
         var _this = this;
         _this.el.stop().animate({
-            scrollTop: top | 0
+            scrollTop: top || 0
         });
     }
 
