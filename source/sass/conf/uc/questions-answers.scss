@@ -316,6 +316,20 @@ body {
                 }
             }
             .comment {
+                position: relative;
+                .hollow, .solid{
+                    position: absolute;
+                    left: 11px;
+                    top: 28px;
+                    line-height: 22px;
+                    display: inline-block;
+                    background-color: #fff;
+                    font-size: 28px;
+                    color: #ccc;
+                }
+                .solid{
+                    color: #eef3f7;
+                }
                 .txtarea {
                     margin-left: 30px;
                     padding: 8px;
@@ -325,6 +339,9 @@ body {
                     border: 1px solid #ccc;
                     /*no*/
                     border-radius: 4px;
+                    &:focus{
+                        border-color: #aaa;
+                    }
                 }
                 .ui-btn {
                     margin-left: 10px;

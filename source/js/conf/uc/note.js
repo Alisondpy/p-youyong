@@ -27,11 +27,9 @@ define(function(require, exports, module) {
     function call(data) { 
         var jContainer = $('#jContainer');
         var jPagination = $('#jPagination');
-
         if(typeof pager != 'undefined'){
             pager.destroy();
         }
-
         pager = new Pager(jPagination, {
             url: $PAGE_DATA['getPager'],
             data: data,
@@ -40,7 +38,7 @@ define(function(require, exports, module) {
                 pageSize: 'pageSize'
             },
             options: {
-                currentPage: 3, // start with 1
+                currentPage: 1, // start with 1
                 pageSize: 10
             }
         });
@@ -53,10 +51,13 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(data, callback) {
-            jContainer.html(template('jNote', data.data));
+            var data = data.data;
+            jContainer.html(template('jNote', data));
             $('.jEdit').on('click', function(e) {
                 var $this = $(this);
                 var target = $(e.target);
+                var id = $this.attr('data-id');
+                var context = $this.find('.jEditDetails').val();
                 //文本输入编辑
                 if (target.is('.jEditTxt') && !isEdit) {
                     $this.find('.jHide').hide().siblings('.jSave').show();
@@ -66,16 +67,16 @@ define(function(require, exports, module) {
                 } else if (target.is('.jSave')) {
                     $this.find('.jSave').hide().siblings('.jHide').show();
                     $this.find('.jEditDetails').attr('readonly', true).removeClass('edittxt');
+                    
                     call({
-                        'id':'', 
-                        'txt':$this.find('.jEditDetails').val()
+                        'id':id,
+                        'context': context
                     });
                     isEdit = false;
                     //删除笔记
                 } else if (target.is('.jDel') && !isEdit) {
                     call({
-                        'id':'',
-                        'page':''
+                        'id':id
                     });
                     isEdit = false;
                     //点击跳转页面

@@ -37,7 +37,7 @@ define(function(require, exports, module) {
                 modal: false
             });
         });
-
+        
         pager.on('ajaxSuccess', function(data, callback) {
             if (!$.isEmptyObject(data) ) {
                 jContainer.html(template('jPage', data.data));

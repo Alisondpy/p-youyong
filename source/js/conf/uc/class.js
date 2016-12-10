@@ -41,22 +41,16 @@ define(function(require, exports, module) {
             });
         });
         pager.on('ajaxSuccess', function(data, callback) {
-            if (data.error < 0) {
-                box.error(data.msg);
-            } else {
-                try {
-                    data = data.data;
-                    jContainer.html(template('jClass1', data));
-                    $('#jBtn').on('click', function (e) {
-                        var target = $(e.target);
-                        var $this = $(this);
-                        if(target.is('.jStart')) {
-                            call(data);
-                        }
-                    })
-                } catch (e) {
-                    box.error('暂无数据');
-                }
+            if(data && data.data) {
+                data = data.data;
+                jContainer.html(template('jClass1', data));
+                $('#jBtn').on('click', function (e) {
+                    var target = $(e.target);
+                    var $this = $(this);
+                    if(target.is('.jStart')) {
+                        call(data);
+                    }
+                })
             }
             callback && callback(data.data.records);
             loading && loading.hide();

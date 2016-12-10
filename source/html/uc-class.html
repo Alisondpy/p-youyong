@@ -7,8 +7,7 @@
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/uc/class.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
-    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
-    $PAGE_DATA['currentPage'] = '1';
+    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/class.json';
     </script>
 </head>
 <body>
@@ -89,38 +88,40 @@
     </script>
     <script type="text/html" id="jClass1">
         <ul class="content">
+        {{each resultList item i}}
             <li class="item clearfix">
                 <div class="left-title f-l">
                     <div class="up">
-                        <span class="job txt-overflow">一介P夫美工班一介P夫</span>
+                        <span class="job txt-overflow">{{item.name}}</span>
                         <span class="iyo">
                             <i class="iyoyo iyoyo-qq"></i>
                             <div class="yoqq">
-                                <img class="code" src="http://images.weiphone.net/data/attachment/forum/201408/26/213430qz0gkwukuftsl2mt.jpg" alt="">
+                                {{item.qqQRCodeUrl}}
                             </div>
                         </span>
                         <span class="iyo">
                             <i class="iyoyo iyoyo-talk"></i>
                             <div class="yotalk">
-                                <img class="code" src="http://pic.58pic.com/58pic/17/74/48/22d58PICYgM_1024.jpg" alt="">
+                                {{item.wechatQRCUrl}}
                             </div>
                         </span>
                     </div>
                     <div class="down">
-                        <span class="begin">开班日期</span><span class="date">2016.12.02</span>
-                        <span class="teacher">班主任</span><span class="name txt-overflow">老徐老徐老徐</span>
-                        <span class="people">班级人数</span><span class="number">50人</span>
+                        <span class="begin">开班日期</span><span class="date">{{item.startTime}}</span>
+                        <span class="teacher">班主任</span><span class="name txt-overflow">{{item.headmaster}}</span>
+                        <span class="people">班级人数</span><span class="number">{{item.studentNum}}人</span>
                     </div>
                 </div>
                 <div class="right-start-button f-r" id="jBtn">
                     <span class="over-time">已学课时</span>
                     <span class="already">
-                        <i class="offline">0</i>/<i class="online">50</i>
+                        <i class="offline">{{item.studiedPeriod}}</i>/<i class="online">{{item.totalPeriod}}</i>
                     </span>
                     <button class="ui-btn ui-btn-danger jStart">开始学习</button>
                     <button class="ui-btn ui-btn-defulat jEvaluation">综合考评</button>
                 </div>
             </li>
+        {{/each}}
         </ul>
     </script>
     <script type="text/html" id="jClass2">
@@ -128,31 +129,31 @@
             <li class="item clearfix">
                 <div class="left-title f-l">
                     <div class="up">
-                        <span class="job txt-overflow">一介P夫美工班一介P夫</span>
+                        <span class="job txt-overflow">{{item.name}}</span>
                         <span class="iyo">
                             <i class="iyoyo iyoyo-qq"></i>
                             <div class="yoqq">
-                                <img class="code" src="http://images.weiphone.net/data/attachment/forum/201408/26/213430qz0gkwukuftsl2mt.jpg" alt="">
+                                {{item.qqQRCodeUrl}}
                             </div>
                         </span>
                         <span class="iyo">
                             <i class="iyoyo iyoyo-talk"></i>
                             <div class="yotalk">
-                                <img class="code" src="http://pic.58pic.com/58pic/17/74/48/22d58PICYgM_1024.jpg" alt="">
+                                {{item.wechatQRCUrl}}
                             </div>
                         </span>
                         
                     </div>
                     <div class="down">
-                        <span class="begin">开班日期</span><span class="date">2016.12.02</span>
-                        <span class="teacher">班主任</span><span class="name txt-overflow">老徐老徐老徐</span>
+                        <span class="begin">开班日期</span><span class="date">{{item.startTime}}</span>
+                        <span class="teacher">班主任</span><span class="name txt-overflow">{{item.headmaster}}</span>
                         <span class="people">班级人数</span><span class="number">50人</span>
                     </div>
                 </div>
                 <div class="right-start-button f-r">
                     <span class="over-time">已学课时</span>
                     <span class="already">
-                        <i class="offline">0</i>/<i class="online">50</i>
+                        <i class="offline">{{item.studiedPeriod}}</i>/<i class="online">{{item.totalPeriod}}</i>
                     </span>
                 </div>
             </li>
