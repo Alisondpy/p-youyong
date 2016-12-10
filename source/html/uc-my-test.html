@@ -21,12 +21,12 @@
             <div  class="ifm-tab ">
                 <div class="ifm-tab-head clearfix">
                     <!-- tab 头部 start -->
-                    <ul id="jTestStatus" class="clearfix ifm-tab-hd"  name="status">
+                   <!-- <ul id="jTestStatus" class="clearfix ifm-tab-hd"  name="status">
                         <li class="ifm-tab-item active"  data-value="0"><a href="javascript:;" >全部</a></li>
                         <li class="ifm-tab-item" data-value="1"><a href="javascript:;" >待参加</a></li>
                         <li class="ifm-tab-item" data-value="2"><a href="javascript:;" >已通过</a></li>
                         <li class="ifm-tab-item" data-value="3"><a href="javascript:;" >未通过</a></li>
-                    </ul>
+                    </ul>-->
                     <!-- tab 头部 end -->
                 </div>
                 <div class="ifm-tab-bd" >
@@ -66,9 +66,6 @@
             <ul>
                 {{each resultList as value i}}
                     <li class="jExamList item  clearfix {{deletingClass}}" >
-                  <!--      <div class="picture f-l">
-                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.imageUrl}}" alt="系列课" class="jImg img-error">
-                        </div>-->
                         <div class="contain f-l">
                             <div class="title clearfix">
                                 <h3 class="hit f-l" title="{{value.examName}}">{{value.examName}}</h3>
@@ -105,18 +102,26 @@
                                     {{if value.isPassed == 1}}
                                         <div class="mod-pass-exam has-join clearfix">
                                             <p class="f-l"><span>90分</span><i>已通过</i></p>
-                                    {{/if}}
-                                    <!--未通过考试-->
-                                    {{if value.isPassed == 0}}
-                                        <div class="mod-fail-exam has-join clearfix">
-                                            <p class="f-l"><span>59分</span><i>未通过</i></p>
-                                    {{/if}}
                                             <h6 class="f-l">
                                                 <a href="javascript:;" class="view-page">查看答卷</a>
                                                 <a href="javascript:;" class="view-page">分析报告</a>
                                             </h6>
                                         </div>
+                                    {{/if}}
+                                    <!--未通过考试-->
+                                    {{if value.isPassed == 0}}
+                                        <div class="mod-fail-exam has-join clearfix">
+                                            <p class="f-l"><span>59分</span><i>未通过</i></p>
+                                            <h6 class="f-l">
+                                                <a href="javascript:;" class="view-page">查看答卷</a>
+                                                <a href="javascript:;" class="view-page">分析报告</a>
+                                            </h6>
+                                        </div>
+                                    {{/if}}
+                                    <a href="javascript:;" data-id="{{value.id}}" class="jBtnDel ui-delete-btn iyoyo iyoyo-del"></a>
                                 {{/if}}
+                            {{/if}}
+                            {{if value.status > 1}}
                                 <a href="javascript:;" data-id="{{value.id}}" class="jBtnDel ui-delete-btn iyoyo iyoyo-del"></a>
                             {{/if}}
                         </div>
@@ -126,6 +131,7 @@
         </div>
     </div>
 </script>
+<!---->
 <script id="tEmpty" type="text/html">
     <div class="ui-empty-list">
         <div class="iyoyo iyoyo-box"></div>

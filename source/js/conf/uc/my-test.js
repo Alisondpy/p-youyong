@@ -134,7 +134,8 @@ define(function (require, exports, module) {
     };
 
     //时间转换方法
-    var TimeConver = function(minutes){
+    var TimeConver = function(data){
+        var minutes = data/1000/60;
         var str;
         var ss = minutes%60>0?minutes%60+'分':'';//分钟
         var aa = parseInt(minutes/60);//总共小时数
@@ -144,6 +145,5 @@ define(function (require, exports, module) {
        str = dd+hh+ss
         return str;
     }
-
     InitEvent.init(jContainer, pager);
 });

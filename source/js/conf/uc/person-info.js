@@ -3,6 +3,7 @@ define(function(require, exports, module) {
     var $ = require('jquery');
     var jFormPwd = $('#jFormPwd');
      require('./common');
+
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     var form = require('lib/core/1.0.0/utils/form');
