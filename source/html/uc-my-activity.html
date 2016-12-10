@@ -7,8 +7,7 @@
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/uc/my-activity.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
-    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
-    $PAGE_DATA['currentPage'] = '1';
+    $PAGE_DATA['activityList'] = '/userCenter/activity/list';
     </script>
 </head>
 
@@ -23,13 +22,15 @@
                     <div class="ifm-hd clearfix">
                         <!-- tab 头部 start -->
                         <ul class="clearfix ifm-tab-hd" node-type="hd">
-                            <li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的活动</a></li>
+                            <li class="ifm-tab-item current" node-type="hdItem" data-target="1">
+                                <a href="javascript:;">我的活动</a>
+                            </li>
                         </ul>
                         <!-- tab 头部 end -->
                     </div>
                     <div class="ifm-tab-bd" node-type="bd">
                         <!-- tab内容区域-1 start-->
-                        <div class="ifm-tab-container" node-type="container" data-id="1">
+                        <div class="ifm-tab-container current" node-type="container" data-id="1">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
                                 <div node-type="jContainer">
@@ -58,57 +59,57 @@
     <!--#include file="./common/footer.html"-->
     <!--#include file="./common/js.html"-->
     <script type="text/javascript">
-    require(['conf/uc/my-study'], function() {});
+    require(['conf/uc/my-activity'], function() {});
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->
-     <script type="text/html" id="jModule">
-        
-                <div class="mod-contain ">
-                    <div class="btn clearfix">
-                        <button class="ui-btn jBtn">管理</button>
-                        <button class="ui-btn t-btn jTbtn">完成</button>
-                    </div>
-                {{each resultList as value i}}
-                <div class="mod-item">
-                    <ul>
-                        <li class="item clearfix">
-                            <div class="picture f-l">
-                                <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
+    <script type="text/html" id="jModule">
+        <div class="mod-contain ">
+            <div class="btn clearfix">
+                <button class="ui-btn jBtnManage {{deletingClass}}">{{deletingTxt}}</button>
+            </div>
+
+            {{each resultList as value i}}
+            <div class="jItem mod-item {{deletingClass}}">
+                <ul>
+                    <li class="item clearfix">
+                        <div class="picture f-l">
+                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src={{value.resourceUrl}} alt="系列课" class="jImg img-error">
+                        </div>
+                        <div class="contain f-l">
+                            <div class="title clearfix">
+                                <h3 class="hit f-l">{{value.title}}</h3>
                             </div>
-                            <div class="contain f-l">
-                                <div class="title clearfix">
-                                    <h3 class="hit f-l">教农产品电商认识京东平台</h3>
+                            <div class="contain-down">
+                                <div class="dis teacher">
+                                    <span>主办方</span><em>{{value.organizer}}</em>
                                 </div>
-                                <div class="contain-down">
-                                    <div class="dis teacher">
-                                        <span>讲师</span><em>姜凯城</em>
-                                    </div>
-                                    <div class="dis study-num">
-                                        <span>讲师</span><em>姜凯城</em>
-                                    </div>
-                                    <div class="dis study-time">
-                                        <span>上次学习的时间</span><em>2016-05</em><strong>13:30</strong>
-                                    </div>
+                                <div class="dis study-num">
+                                    <span>地点</span><em>{{value.address}}</em>
+                                </div>
+                                <div class="dis study-time">
+                                    <span>时间</span><em>{{value.startTime}}</em><strong>{{value.endTime}}</strong>
                                 </div>
                             </div>
-                            <div class="d-zone">
-                                <div class="load f-r">
-                                    <p class="num">已报名</p>
-                                    <p class="txt"><em class="personnum">121</em>人已报名</p>
-                                </div>
-                                <div class="dele f-r">
-                                    <i class="iyoyo iyoyo-del"></i>
-                                </div>
+                        </div>
+                        <div class="d-zone jControl">
+                            <div class="load f-r jAplly">
+                                <p class="num">已报名</p>
+                                <p class="txt"><em class="personnum">{{value.signupNum}}</em>人已报名</p>
                             </div>
-                        </li>
-                    </ul>
-                </div>
+                            <div class="dele f-r jDel" data-id={{value.id}}>
+                                <i class="iyoyo iyoyo-del"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
             {{/each}}
-              </div>
-        
-     </script>
+        </div>
+    </script>
+    <script type="text/html" id="tEmpty">
+        <div class="ui-empty-list"><div class="iyoyo iyoyo-box"></div><div class="txt">暂无活动</div></div>
+    </script>
 </body>
 
 </html>
-

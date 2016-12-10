@@ -5,33 +5,37 @@ define(function(require, exports, module) {
     var TopSearch = require('module/top-search/1.0.0/top-search');
     var LoginStatus = require('module/login-status/1.0.0/login-status');
     var Footer = require('module/footer/1.0.0/footer');
+    var template = require('template');
     var topSearch = new TopSearch();
     var loginStatus = new LoginStatus();
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     var box = require('lib/ui/box/1.0.1/box');
+    var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
+    var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
-    var template = require("template");
+
 
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
     var ifmTab = new Tab(jIfmTab);
-    var isEdit = false;
-    var pager;
-
-    var jContainer = $('#jContainer');
-    var jPagination = $('#jPagination');
 
     var tabsCallback = {};
+    var lazy;
+    //tab body data-id="1"
     tabsCallback.callback1 = function(body) {
-        if (!tabsCallback.callback1.inited) {
-            tabsCallback.callback1.inited = true;
-
-            pager = new Pager(jPagination, {
+        var isDeleting = false;
+        if (!tabsCallback.callback1.isInited) {
+            tabsCallback.callback1.isInited = true;
+            var builder = build.build(body, false);
+            var jPagination = builder.get('jPagination');
+            var jContainer = builder.get('jContainer');
+            var pager = new Pager(jPagination, {
                 url: $PAGE_DATA['noteInfo'],
-                data: {}
+                data: {
+                }
             });
             var loading = null;
             pager.on('ajaxStart', function() {
@@ -39,10 +43,12 @@ define(function(require, exports, module) {
                     modal: false
                 });
             });
+
             pager.on('ajaxSuccess', function(data, callback) {
+                
                 if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
                     jContainer.html(template('tNote', data.data));
-                    InitEvent.init(body);
+                    InitEvent.init(body, pager);
                     callback && callback(data.data.records);
                 } else {
                     jContainer.html(template('tEmpty'));
@@ -52,58 +58,66 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxError', function(data) {
-                box.error('网络错误，请重试！');
+                box.warn('网络错误，请重试！');
                 loading && loading.hide();
             });
-
         }
+
         var InitEvent = {
-            init: function(body) {
+            init: function(body, pager) {
                 if (!InitEvent.inited) {
                     InitEvent.inited = true;
-                    
-                    body.find('.jEdit').on('click', function(e) {
-                        var $this = $(this);
-                        var target = $(e.target);
-                        var id = $this.attr('data-id');
-                        var context = $this.find('.jEditDetails').val();
-                        //文本输入编辑
-                        if (target.is('.jEditTxt') && !isEdit) {
-                            $this.find('.jHide').hide().siblings('.jSave').show();
-                            $this.find('.jEditDetails').removeAttr('readonly').addClass('edittxt');
-                            isEdit = true;
-                            //保存编辑内容
-                        } else if (target.is('.jSave')) {
-                            $this.find('.jSave').hide().siblings('.jHide').show();
-                            $this.find('.jEditDetails').attr('readonly', true).removeClass('edittxt');
-                            postparams($PAGE_DATA['noteInfo'], {'id':id , 'context':context}, '保存成功！') 
-                            isEdit = false;
-                            //删除笔记
-                        } else if (target.is('.jDel') && !isEdit) {
-                            postparams($PAGE_DATA['noteInfo'], {'id':id}, '删除成功！')
-                            alert($this.siblings())
-                            $this.remove()
-                            isEdit = false;
-                            //点击跳转页面
-                        } else if (target.is('.jEditDetails') && !isEdit) {
-                            //window.location.href = 'uc-note.html';
+                    body.on('click', '.jEdit .jEditTxt', function() {
+                        var _this = $(this);
+                        if (!isDeleting) {
+                            isDeleting = true;
+                            _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('readonly').addClass('edittxt');
+                            _this.parents('.jEdit').find('.jHide').hide().siblings('.jSave').show();
+                        } else {
+                            box.ok('请先保存')
                         }
-                    });
+                    })
+                    body.on('click', '.jEdit .jSave', function() {
+                        var _this = $(this);
+                        if (isDeleting) {
+                            var context = _this.parents('.jEdit').siblings('.jEditDetails').val();
+                            var id = _this.parents('.jEdit').attr('data-id');
+                            _this.parents('.jEdit').find('.jHide').show().siblings('.jSave').hide();
+                            _this.parents('.jEdit').siblings('.jEditDetails').attr('readonly', true).removeClass('edittxt');
+                            InitEvent.postparams($PAGE_DATA['noteSave'], { 'id': id, 'context': context }, '保存成功！')
+                            isDeleting = false;
+                        }
+                    })
+                    body.on('click', '.jEdit .jDel', function() {
+                        var _this = $(this);
+                        var id = _this.parents('.jEdit').attr('data-id');
+                        if (!isDeleting) {
+                            box.confirm('确定删除吗？', function() {
+                                InitEvent.postparams($PAGE_DATA['noteDel'], { 'id': id }, '删除成功！', pager)
+                            }, function() {
+
+                            });
+                        } else {
+                            box.ok('请先保存')
+                        }
+                    })
                 }
+            },
+            postparams: function(url, data, tips, pager) {
+                io.get(url, data, function(res) {
+                    box.ok(tips)
+                    pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                }, function(res) {
+                    box.error(res.msg || '网络错误,请重试');
+                }, this)
             }
         }
-    }
-    function postparams(url, data, tips) {
-        io.get(url, data , function (res) {
-            box.ok(tips)
-        }, function (res) {
-            box.error(res.msg || '网络错误,请重试');
-        }, this)
     }
     ifmTab.on('change', function(el) {
         var id = el.body.attr('data-id');
         tabsCallback['callback' + id] && tabsCallback['callback' + id](el.body);
     });
+
 
     ifmTab.setCurrent();
 

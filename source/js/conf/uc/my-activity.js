@@ -103,6 +103,7 @@ define(function(require, exports, module) {
                                 box.error(res.msg || '网络错误,请重试');
                             }, this)
                         })
+                        
                     })
                }
             }

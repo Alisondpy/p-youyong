@@ -2,13 +2,12 @@
 <html>
 
 <head>
-    <title>首页</title>
+    <title>我的学习</title>
     <!--#include file="./common/meta.html"-->
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/uc/my-study.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
-    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
-    $PAGE_DATA['currentPage'] = '1';
+        $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/study.json';
     </script>
 </head>
 
@@ -23,14 +22,15 @@
                     <div class="ifm-hd clearfix">
                         <!-- tab 头部 start -->
                         <ul class="clearfix ifm-tab-hd" node-type="hd">
-                            <li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的账户</a></li>
+                            <li class="ifm-tab-item current" node-type="hdItem" data-target="1">
+                                <a href="javascript:;">我的学习</a>
+                            </li>
                         </ul>
                         <!-- tab 头部 end -->
-                       
                     </div>
                     <div class="ifm-tab-bd" node-type="bd">
                         <!-- tab内容区域-1 start-->
-                        <div class="ifm-tab-container" node-type="container" data-id="1">
+                        <div class="ifm-tab-container current" node-type="container" data-id="1">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
                                 <div node-type="jContainer">
@@ -63,53 +63,57 @@
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->
-	 <script type="text/html" id="jModule">
-		
-			    <div class="mod-contain ">
-				    <div class="btn clearfix">
-				    	<button class="ui-btn jBtn">管理</button>
-				    	<button class="ui-btn t-btn jTbtn">完成</button>
-				    </div>
-			{{each resultList as value i}}
-			    <div class="mod-item">
-			    	<ul>
-			    		<li class="item clearfix">
-			    			<div class="picture f-l">
-			    				<img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-			    			</div>
-			    			<div class="contain f-l">
-			    				<div class="title clearfix">
-			    					<h3 class="hit f-l">教农产品电商认识京东平台</h3>
-			    					<span class="describe">农村电商</span>
-			    				</div>
-			    				<div class="contain-down">
-			    					<div class="dis teacher">
-			    						<span>讲师</span><em>姜凯城</em>
-			    					</div>
-			    					<div class="dis study-num">
-			    						<span>讲师</span><em>姜凯城</em>
-			    					</div>
-			    					<div class="dis study-time">
-			    						<span>上次学习的时间</span><em>2016-05</em><strong>13:30</strong>
-			    					</div>
-			    				</div>
-			    			</div>
-			    			<div class="d-zone">
-			    				<div class="load f-r jLoad">
-			    					<p class="num">50%</p>
-			    					<p class="txt">学习进度</p>
-			    				</div>
-			    				<div class="dele f-r jDele">
-			    					<i class="iyoyo iyoyo-del jDel"></i>
-			    				</div>
-			    			</div>
-			    		</li>
-			    	</ul>
-			    </div>
-		 	{{/each}}
-			  </div>
-		
-	 </script>
+    <script type="text/html" id="jModule">
+        <div class="mod-contain ">
+             <div class="btn clearfix">
+                <button class="ui-btn jBtnManage {{deletingClass}}">{{deletingTxt}}</button>
+            </div>
+            {{each resultList as value i}}
+            <div class="jItem mod-item {{deletingClass}}">
+                <ul>
+                    <li class="item clearfix jItem">
+                        <div class="picture f-l">
+                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src={{value.resourceUrl}} alt="系列课" class="jImg img-error">
+                        </div>
+                        <div class="contain f-l">
+                            <div class="title clearfix">
+                                <h3 class="hit f-l">{{value.title}}</h3>
+                                <span class="describe">{{value.tag}}</span>
+                            </div>
+                            <div class="contain-down">
+                                <div class="dis teacher">
+                                    <span>讲师</span><em>{{value.teacherName}}</em>
+                                </div>
+                                <div class="dis study-num">
+                                    <span>学习人数</span><em>{{value.studentNum}}</em>
+                                </div>
+                                <div class="dis study-time">
+                                    <span>上次学习的时间</span>
+                                    <em>{{value.preStudyTime}}</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-zone jControl">
+                            <div class="load f-r jLoad jAplly">
+                                <p class="num">{{value.studyRate}}%</p>
+                                <p class="txt">学习进度</p>
+                            </div>
+                            <div class="dele f-r jDel" data-id={{value.id}}>
+                                <i class="iyoyo iyoyo-del"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            {{/each}}
+        </div>
+    </script>
+    <script type="text/html" id="tEmpty">
+        <div class="ui-empty-list">
+            <div class="iyoyo iyoyo-box"></div>
+            <div class="txt">暂无内容</div>
+        </div>
+    </script>
 </body>
 
 </html>

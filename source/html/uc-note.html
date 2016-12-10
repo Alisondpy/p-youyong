@@ -39,7 +39,7 @@
                     </div>
                     <div class="ifm-tab-bd" node-type="bd">
                         <!-- tab内容区域-1 start-->
-                        <div class="ifm-tab-container" node-type="container" data-id="1">
+                        <div class="ifm-tab-container current" node-type="container" data-id="1">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
                                 <div node-type="jContainer" id="jContainer">
@@ -54,7 +54,7 @@
                             </div>
                             <div class="ifm-bottom-bar">
                                 <!-- 底部工具栏 start -->
-                                <div id="jPagination" class="pager"></div>
+                                <div node-type="jPagination" id="jPagination" class="pager"></div>
                                 <!-- 底部工具栏 end -->
                             </div>
                         </div>
@@ -74,20 +74,20 @@
         <div class="mod-note">
             <ul class="note-list">
             {{each resultList as item i}}
-                <li class="item jEdit {{if i=='0'}}first{{/if}}" data-id={{item.id}}>
+                <li class="item {{if i=='0'}}first{{/if}}" >
                     <p class="title">
                         <span class="course-title">课程名称:</span>
-                        <a href="javascript:;" class="topic">{{item.courseName}}</a>
+                        <a href="/course/detail?courseId={{item.courseId}}" class="topic">{{item.courseName}}</a>
                     </p>
                     <textarea class="details jEditDetails" readonly="readonly">{{item.content}}</textarea>
-                    <div class="control clearfix">
+                    <div class="control clearfix jEdit" data-id={{item.id}}>
                         <div class="creat-time f-l">
                             <span class="creat">创建时间 :</span>
-                            <span class="time">{{item.createTime}}</span>
+                            <span class="time">{{item.createTime}}{{item.pariseNum}}</span>
                         </div>
                         <div class="edit f-r">
                             <span class="secret jHide">
-                                {{if item.isProvite==1}}
+                                {{if item.isProvite=="1"}}
                                     <i class="iyoyo iyoyo-key"></i>
                                     <em class="normal">私密</em>
                                 {{else}}

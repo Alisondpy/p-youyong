@@ -9,24 +9,24 @@
                 "courseId":"课程id",
                 "courseName":"PSD",
                 "content":"内容",
-                "pariseNum":"点赞数",
-                "isProvite":1
+                "pariseNum":"1231",
+                "isProvite":"0"
             },
             {
                 "id":"123456",
                 "courseId":"课程id",
                 "courseName":"课程名称",
                 "content":"内容",
-                "pariseNum":"点赞数",
-                "isProvite":0
+                "pariseNum":"1231",
+                "isProvite":"0"
             },
             {
                 "id":"123456",
                 "courseId":"课程id",
                 "courseName":"课程名称",
                 "content":"内容",
-                "pariseNum":"点赞数",
-                "isProvite":1
+                "pariseNum":"1231",
+                "isProvite":"1"
             }
         ]
     },

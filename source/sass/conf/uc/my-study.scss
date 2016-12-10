@@ -7,149 +7,130 @@
 body {
     background-color: #eee;
 }
-.mod-page{
-    .top {
-        width: 864px;
-        height: 52px;
-        background-color: #eee;
-        font-size: 16px;
-        /*px*/
-        .study,
-        .complete {
-            width: 180px;
-            height: 52px;
-            line-height: 52px;
-            text-align: center;
-            background-color: #fff;
-        }
-        .search {
-            line-height: 40px;
-            width: 252px;
-            height: 40px;
-            padding-left: 18px;
-            border-radius: 40px;
-            border: 1px solid #8195a4;
-            input[type="text"] {
-                padding: 0;
-                width: 220px;
-                height: 40px;
-                line-height: 40px;
-                border: none;
+
+.mod-page {
+    .mod-contain {
+        padding: 0 24px 20px 24px;
+        .btn {
+            .ui-btn {
+                width: 96px;
+                height: 31px;
+                background: #f00;
+                color: #fff;
+                line-height: 31px;
+                text-align: center;
                 font-size: 14px;
-                /*px*/
-                background-color: #eee;
-            }
-            .iyoyo {
-                font-weight: bold;
-                font-size: 16px;
-                /*px*/
-                &:hover {
-                    cursor: pointer;
+                float: right;
+                &.deleting {
+                    background-color: #fff;
+                    color: #f00;
+                    border: 1px solid #f00;
                 }
             }
         }
-     }
-     .mod-contain{
-     	padding:0 24px 20px 24px ;
-     .btn{
-		.ui-btn{
-			width:96px;
-			height:31px;
-			background:#f00;
-			color:#fff;
-			line-height:31px;
-			text-align:center;
-			font-size:14px;
-			float:right;
-			}
-			.t-btn{
-			display:none;
-			width:96px;
-			height:31px;
-			background-color:#fff;
-			color:#f00;
-			border:1px solid #f00;
-			}
-			
-		}
-		.mod-item{
-			ul{
-				.item{
-					padding:25px 0 33px 0;
-					border-bottom:1px solid #eee;
-					.picture{
-						width:176px;
-						height:105px;
-						img{
-							width:176px;
-						}
-					}
-					.contain{
-						padding-left:20px;
-						.title{
-							.hit{
-								font-size:16px;
-							}
-							.describe{
-								display:inline-block;
-								padding:0 1px;
-								color:#44687d;
-								border:1px solid #44687d;
-								font-size:12px;
-								margin:2px 0 0 10px;
-							}
-						}
-						.contain-down{
-							margin-top:15px;
-							.dis{
-								margin-top:2px;
-								span{
-									color:#95aab8;
-								}
-								em{
-									font-style:normal;
-									margin-left:10px;
-									color:#44687d;
-								}
-								strong{
-									margin-left:8px;
-									font-weight:normal;
-									color:#44687d;
-								}
-							}
-						}
-					}
-					.d-zone{
-						.load{
-							// display:none;
-							margin-top:45px;
-							text-align:right;
-							.ui-btn{
-								width:110px;
-								height:38px;
-								background-color:#f00;
-							}
-							.num{
-								color:#44687d;
-							}
-							.txt{
-								color:#aaaaaa;
-							}
-						}
-						.dele{
-							display:none;
-							margin-top:45px;
-							.iyoyo-del{
-								font-size:26px;
-								color:#f00;
-							}
-						}
-					}
-				}
-			}
-		}
+        .mod-item {
+        	&.deleting {
+                .item {
+                    .d-zone {
+                        .load {
+                            display: none;
+                        }
+                        .dele {
+                            display: block;
+                        }
+                    }
+                }
+            }
+            .item {
+                padding: 28px 0 30px 0;
+                border-bottom: 1px solid #eee;
+                .picture {
+                    width: 176px;
+                    height: 105px;
+                    line-height: 105px;
+                    text-align: center;
+                    overflow: hidden;
+                    img {
+                        max-width: 176px;
+                        max-height: 105px;
+                    }
+                }
+                .contain {
+                    padding-left: 20px;
+                    .title {
+                        .hit {
+                            font-size: 16px;
+                        }
+                        .describe {
+                            display: inline-block;
+                            padding: 0 1px;
+                            color: #44687d;
+                            border: 1px solid #44687d;
+                            font-size: 12px;
+                            margin: 2px 0 0 10px;
+                        }
+                    }
+                    .contain-down {
+                        margin-top: 15px;
+                        .dis {
+                            margin-top: 2px;
+                            span {
+                                color: #44687d;
+                            }
+                            em {
+                                font-style: normal;
+                                margin-left: 10px;
+                                color: #44687d;
+                                font-weight: 600;
+                            }
+                            strong {
+                                margin-left: 8px;
+                                font-weight: normal;
+                                color: #44687d;
+                            }
+                        }
+                    }
+                }
+                .d-zone {
+                    .load {
+                        // display:none;
+                        margin-top: 45px;
+                        text-align: right;
+                        .ui-btn {
+                            width: 110px;
+                            height: 38px;
+                            background-color: #f00;
+                        }
+                        .num {
+                            color: #44687d;
+                            font-weight:600;
+                        }
+                        .txt {
+                            color: #aaaaaa;
+                        }
+                    }
+                    .dele {
+                        display: none;
+                        margin-top: 45px;
+                        cursor: pointer;
+                        .iyoyo-del {
+                            font-size: 26px;
+                            color: #f00;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
 
-     }
+.ui-empty-list {
+    padding: 100px 0;
+    .txt {
+        font-size: 30px;
+    }
+}
 
-
+.ui-loading-list {
+    padding: 100px 0;
 }

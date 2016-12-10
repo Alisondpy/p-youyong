@@ -1,0 +1,40 @@
+{
+    "code": 0,
+    "msg": "牛逼，你已经到后台了！",
+    "data": {
+        "records":100,
+        "resultList":[
+            {
+                "id":123456,
+                "title":"标题1",
+                "resourceUrl":"http://pic.58pic.com/58pic/15/12/58/03a58PICJ3y_1024.jpg",
+                "startTime":"2014",
+                "endTime":"2014",
+                "address":"地址",
+                "signupNum":546,
+                "organizer":"主办方"
+            },
+            {
+                "id":123456,
+                "title":"标题2",
+                "resourceUrl":"http://pic.58pic.com/58pic/15/12/58/03a58PICJ3y_1024.jpg",
+                "startTime":"2015",
+                "endTime":"2015",
+                "address":"海创基地",
+                "signupNum":13123,
+                "organizer":"主办方"
+            },
+            {
+                "id":123456,
+                "title":"标题3",
+                "resourceUrl":"http://pic.58pic.com/58pic/15/12/58/03a58PICJ3y_1024.jpg",
+                "startTime":"2016",
+                "endTime":"2017",
+                "address":"地址",
+                "signupNum":222,
+                "organizer":"主办方"
+            }
+        ]
+    },
+    "ver": "1.0"
+}
