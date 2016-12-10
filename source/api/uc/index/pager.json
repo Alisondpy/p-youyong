@@ -1,11 +1,24 @@
 {
-"error": 0,
+"code": 0,
 "msg": "服务器错误",
 "data": {
 "pageNo": 4,
 "pageSize": 12,
 "records": 200,
-"resultList": [1, 2],
+"resultList":[
+	{
+		"nickName":"来来来给你看一个宝贝",
+		"avatarUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
+		"createTime":"3",
+		"userId":1025,
+		"praiseCount":12122,
+		"answer":{
+			"userId":1288,
+			"nickName":"哈哈哈我也有个宝贝",
+			"content":"首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，通过打倒萨倒萨陪配咖啡首先将PS CC编译，"
+		}
+	}
+],
 "total": 2
 },
 "ver": "1.0"

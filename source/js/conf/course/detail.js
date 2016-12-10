@@ -42,7 +42,11 @@ define(function(require, exports, module) {
         }
         pager = new Pager(pagEl, {
             url:url,
-            data:data
+            data:data,
+            options:{
+                pageSize: 10,
+                currentPage: 1
+            }
         });
 
         var loading = null;
@@ -97,42 +101,45 @@ define(function(require, exports, module) {
     /*tab页切换*/
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
+    var sourceType,showType,
+        sourceId = $PAGE_DATA['sourceId'];
     tab.on('change', function(el) {
-        var type = el.hd.attr('data-value');
-        console.log(type);
+        var type = el.hd.attr('data-target');
+        sourceType = el.hd.attr('data-type');
+        showType = el.hd.attr('show-type');
         switch (type){
-            case '0':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':type},'jWrap0','jWrap0Box',jPagination);
-                break;
             case '1':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':type},'jWrap1','jWrap1Box',jPagination);
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'sourceType':sourceType,"sourceId":sourceId},'jWrap0','jWrap0Box',jPagination);
                 break;
             case '2':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':type},'jWrap2','jWrap2Box',jPagination);
+                renderList($PAGE_DATA['commentUrl'],{'sourceType':sourceType,"sourceId":sourceId},'jWrap1','jWrap1Box',jPagination);
                 break;
             case '3':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':type},'jWrap3','jWrap3Box',jPagination);
+                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'sourceType':sourceType,"sourceId":sourceId},'jWrap2','jWrap2Box',jPagination);
+                break;
+            case '4':
+                renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":showType,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);
                 break;
         }
     });
 
     /*导航菜单切换*/
-    var nav1 = new navigation('.jWrap2',{
-        currentClass:'active',//当前样式
-        navSelector:['#jSubNav'],//导航栏dom选择器
-        navItemSlect:'.bar-left'
-    });
-    nav1.on('change',function(data){
-        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap2','jWrap2Box',jPagination);
-    });
-    var nav2 = new navigation('.jWrap3',{
-        currentClass:'active',//当前样式
-        navSelector:['#jSubNav'],//导航栏dom选择器
-        navItemSlect:'.bar-left'
-    });
-    nav2.on('change',function(data){
-        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap3','jWrap3Box',jPagination);
-    });
+    //var nav1 = new navigation('.jWrap2',{
+    //    currentClass:'active',//当前样式
+    //    navSelector:['#jSubNav'],//导航栏dom选择器
+    //    navItemSlect:'.bar-left'
+    //});
+    //nav1.on('change',function(data){
+    //    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap2','jWrap2Box',jPagination);
+    //});
+    //var nav2 = new navigation('.jWrap3',{
+    //    currentClass:'active',//当前样式
+    //    navSelector:['#jSubNav'],//导航栏dom选择器
+    //    navItemSlect:'.bar-left'
+    //});
+    //nav2.on('change',function(data){
+    //    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap3','jWrap3Box',jPagination);
+    //});
 
     /*评论交互*/
     //评论字数限制
@@ -164,10 +171,12 @@ define(function(require, exports, module) {
             box.error('请输入发表内容');
         }else {
             if(!$(this).hasClass('publish-error')){
-                io.get($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'content':content},function(res){
+                io.get($PAGE_DATA['commentPostUrl'],{'sourceType':sourceType,"sourceId":sourceId,'content':content},function(res){
                     if(res){
                         if(res.code == 0){
                             box.ok('发表成功');
+                            txt.val('');
+                            pager.pagination.selectPage(pager.pagination.get('currentPage'));
                         }else {
                             box.error(res.msg || '发表失败');
                         }
@@ -202,6 +211,7 @@ define(function(require, exports, module) {
             if(res){
                 if(res.code == 0){
                     box.ok(msg+'成功');
+                    pager.pagination.selectPage(pager.pagination.get('currentPage'));
                 }else {
                     box.error(res.msg || msg+'失败');
                 }
@@ -215,23 +225,25 @@ define(function(require, exports, module) {
 
     //点赞
     $('#jWrap1Box,#jWrap3Box').on('click','.mod-item .like',function(){
-        var id = $(this).attr('data-id');
+        var dataType = $(this).attr('data-dataType');
+        var type = $(this).attr('data-type');
+        var id = $(this).attr('data-value');
         var data;
         if($(this).hasClass("activeLike")){
             data = {
-                "dataType":1,
-                "type":1,
+                "dataType":dataType,
+                "type":type,
                 "id":id
             }
-            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',data,'取消点赞');
+            clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
             $(this).removeClass('activeLike');
         }else {
             data = {
-                "dataType":1,
-                "type":2,
+                "dataType":dataType,
+                "type":type,
                 "id":id
             }
-            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',data,'点赞');
+            clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
             $(this).addClass('activeLike');
         }
     });
@@ -249,7 +261,7 @@ define(function(require, exports, module) {
             $(this).addClass('picked');
         }
     });
-    
+
     //只看我的
     $('.jWrap3').on('click','.bar-right',function(){
         if($(this).text() === '只看我的'){

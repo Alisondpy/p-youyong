@@ -25,15 +25,15 @@
                 </div>
                 <div class="opation clearfix">
                     <div class="change clearfix">
-                        <div class="arrow-l">
+                        <a href="javascript:;" class="arrow-l">
                             <em class="line"></em>
                             <i class="iyoyo iyoyo-arrow-left-sm"></i>
-                        </div>
+                        </a>
 
-                        <div class="arrow-r">
+                        <a href="javascript:;" class="arrow-r">
                             <em class="line"></em>
                             <i class="iyoyo iyoyo-arrow-right-sm"></i>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -113,114 +113,61 @@
                 </div>
                 <!-- 目录tab切换  end -->
 
-            <!-- tab切换笔记部分 -->
-                <div class="mod-note jMod-note" data-id="2" node-type="container">
+                <!-- tab切换笔记部分 -->
+                <div class="mod-note jMod-note jNoteTap" data-id="2" node-type="container">
                     <div class="title">
-                        <a href="" class="m-answer tab-q"> 我的问答</a>
-                        <a href="" class="all-answer tab-q">全部问答</a>
+                        <a href="javascript:;" class="m-answer tab-q ui-current jSubNav" data-type="0">我的笔记</a>
+                        <a href="javascript:;" class="all-answer tab-q jSubNav" data-type="1">全部笔记</a>
                     </div>
-                    <div class="contain clearfix">
-                        <div class="avater">
-                            <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-                        </div>
-                        <div class="text clearfix">
-                            <div class="cname">花村抗靶子</div>
-               
-                            <p>的分厘卡但是jfk了大家分k大家分k大家分k大家分k大家分k大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方<a href="" class="all">[显示全部]</a>
-                            </p>
-                            <div class="contain-down">
-                                <span class="time"><em>时间:</em><i>一分钟前</i></span>
-                                <span class="answer">
-                                <a class="sure gather"><em>已采集</em><strong>90</strong></a>
-                                <a class="admit"><i class="iyoyo iyoyo-favour"></i><strong>121</strong></a>
-                                </span>
+                    <div id="jAnswerTab" class="ui-answer-box">
+                        <div class="ui-loading-list">
+                            <div class="img-loading"></div>
+                            <div class="txt">
+                                正在卖力加载，请稍后
                             </div>
                         </div>
                     </div>
-
-                     <div class="contain clearfix">
-                        <div class="avater">
-                            <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-                        </div>
-                        <div class="text clearfix">
-                            <div class="cname">花村抗靶子</div>
-               
-                            <p>的分厘卡但是jfk了大家分k了大家分k了大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方<a href="" class="all">[显示全部]</a>
-                            </p>
-                            <div class="contain-down line-none">
-                                <span class="time"><em>时间:</em><i>一分钟前</i></span>
-                                <span class="answer">
-                                <a class="sure gather"><em>已采集</em><strong>90</strong></a>
-                                <a class="admit"><i class="iyoyo iyoyo-favour"></i><strong>121</strong></a>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="square">
-                        <textarea class="textarea" placeholder="有疑问?快来记录吧~(限500字)"></textarea>
-                        <div class="line">
+                    <div class="square jAnswerSquare">
+                            <textarea class="textarea jTxtA jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea>
+                            <div class="line">
                             <span>
-                            <input type="radio" id="male">
-                            <label for="male">公开</label>
+                            <input type="checkbox" id="jAnswer" name="show-type">
+                            <label for="jAnswer">公开</label>
                             </span>
-                            <p><em class="num">0</em>/500</p>
-                        </div>
-                        
+                                <p class="jTxtNumA"><em class="num">0</em>/500</p>
+                            </div>
+                            <button class="publish jPublishA">提交</button>
                     </div>
-
-                    <button class="ui-btn">提交</button>
-
                 </div>
-                    <!-- tab切换笔记部分结束 -->
+                <!-- tab切换笔记部分结束 -->
 
                 <!-- tab切换问答部分 start-->
-
-                <div class="mod-question tab-question jMod-question" data-id="3" node-type="container">
-                        <div class="title">
-                            <a href="" class="m-answer tab-q"> 我的问答</a>
-                            <a href="" class="all-answer tab-q">全部问答</a>
-                        </div>
-                        <div class="contain clearfix">
-                            <div class="avater">
-                                <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
-                            </div>
-                            <div class="text clearfix">
-                                <div class="cname">花村抗靶子</div>
-                   
-                                <p>的分厘卡但是jfk了大家分k大家分k大家分k大家分k大家分k大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方<a href="" class="all">[显示全部]</a>
-                                </p>
-                                <div class="contain-down">
-                                    <span class="time"><em>时间:</em><i>一分钟前</i></span>
-                                    <span class="answer"><em>0</em>回答<i>10</i>浏览</span>
-                                </div>
+                <div class="mod-note jMod-note jNoteTap question" data-id="3" node-type="container">
+                    <div class="title">
+                        <a href="javascript:;" class="m-answer tab-q ui-current jSubNav" data-type="2">我的问答</a>
+                        <a href="javascript:;" class="all-answer tab-q jSubNav" data-type="3">全部问答</a>
+                    </div>
+                    <div id="jQuestionTab" class="ui-answer-box">
+                        <div class="ui-loading-list">
+                            <div class="img-loading"></div>
+                            <div class="txt">
+                                正在卖力加载，请稍后
                             </div>
                         </div>
-
-                         <div class="contain clearfix">
-                            <div class="avater">
-                                <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
+                    </div>
+                    <div class="square jQuestionSquare">
+                            <textarea class="textarea jTxtQ jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea>
+                            <div class="line">
+                            <span>
+                            <input type="checkbox" id="jQues" name="show-type">
+                            <label for="jQues">公开</label>
+                            </span>
+                                <p class="jTxtNumQ"><em class="num">0</em>/500</p>
                             </div>
-                            <div class="text clearfix">
-                                <div class="cname">花村抗靶子</div>
-                   
-                                <p>的分厘卡但是jfk了大家分k了大家分k了大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方<a href="" class="all">[显示全部]</a>
-                                </p>
-                                <div class="contain-down line-none">
-                                    <span class="time"><em>时间:</em><i>一分钟前</i></span>
-                                    <span class="answer"><em>0</em>回答<i>10</i>浏览</span>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="square">
-                            <textarea class="textarea" placeholder="有疑问?让大家解答一下吧~(限500字)"></textarea>
-                            <p><em class="num">0</em>/500</p>
-                        </div>
-
-                        <button class="ui-btn">提交</button>
+                            <button class="publish jPublishQ">提交</button>
+                    </div>
                 </div>
-                    <!-- tab切换问答部分 end -->
+                <!-- tab切换问答部分 end -->
                 </div>
             </div>
         </div>
@@ -229,6 +176,49 @@
     <!--#include file="./common/js.html"-->
     <script type="text/javascript">
     require(['conf/play'], function() {});
+    </script>
+    <script id="tAnswer" type="text/html">
+        {{each resultList as value i}}
+        <div class="contain clearfix">
+            <div class="avater">
+                <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
+            </div>
+            <div class="text clearfix">
+                <div class="cname">花村抗靶子</div>
+                <p>的分厘卡但是jfk了大家分k大家分k大家分k大家分k大家分k大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方</p>
+                <div class="contain-down">
+                    <span class="time"><em>时间:</em><i>一分钟前</i></span>
+                    <span class="answer">
+                        <a class="sure gather pick"><em>采集</em><strong>90</strong></a>
+                        <a class="admit like"><i class="iyoyo iyoyo-favour"></i><strong>121</strong></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <script id="tQuestion" type="text/html">
+        {{each resultList as value i}}
+        <div class="contain clearfix">
+            <div class="avater">
+                <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
+            </div>
+            <div class="text clearfix">
+                <div class="cname">花村抗靶子</div>
+                <p>的分厘卡但是jfk了大家分k大家分k大家分k大家分k大家分k大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方</p>
+                <div class="contain-down">
+                    <span class="time"><em>时间:</em><i>一分钟前</i></span>
+                    <span class="answer"><em>0</em>回答<i>10</i>浏览</span>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </script>
+    <script id="tEmpty" type="text/html">
+        <div class="ui-empty-list">
+            <div class="iyoyo iyoyo-box"></div>
+            <div class="txt">暂无数据</div>
+        </div>
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->

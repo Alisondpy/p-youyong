@@ -29,7 +29,7 @@ define(function(require, exports, module) {
     * */
     var lazy,pager;
     function renderList(url,data,tmpEl,htmEl,pagEl){
-        if(typeof pager !== 'undefined'){
+        if(pager){
             pager.destroy();
         }
         pager = new Pager(pagEl, {
@@ -46,8 +46,9 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxSuccess', function(res, callback) {
-            if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
+            if(res && res.data && res.data.resultList && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
+                console.log(tmpEl,htmEl,pagEl);
                 document.getElementById(htmEl).innerHTML = html;
                 //图片懒加载
                 lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
@@ -112,7 +113,7 @@ define(function(require, exports, module) {
         var name = jNavType.attr('name');
         var val = jNavType.find('.current').attr('data-value');
         data[name] = val;
-        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'data':data},'tab0','jTab0',jPagination);
+        renderList($PAGE_DATA['courseIndex'],data,'tab0','jTab0',jPagination);
     }
     init();
 
@@ -120,17 +121,19 @@ define(function(require, exports, module) {
        currentClass:'current',//当前样式
        navSelector:['#jNavType','#jNavClassify','#jNavStatus','#jNavSubClassify']//导航栏dom选择器
     });
+    var jNavType = $('#jNavType');
     nav.on('change',function(data){
-        var type = data.type;
+        var type = jNavType.find('.current').attr('data-target');
+        console.log(type);
         switch (type){
-            case '0':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab0.json',{'data':data},'tab0','jTab0',jPagination);
-                break;
             case '1':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab1.json',{'data':data},'tab1','jTab1',jPagination);
+                renderList($PAGE_DATA['courseIndex'],data,'tab0','jTab0',jPagination);
                 break;
             case '2':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/tab2.json',{'data':data},'tab2','jTab2',jPagination);
+                renderList($PAGE_DATA['courseIndex'],data,'tab1','jTab1',jPagination);
+                break;
+            case '3':
+                renderList($PAGE_DATA['courseIndex'],data,'tab2','jTab2',jPagination);
                 break;
         }
     });

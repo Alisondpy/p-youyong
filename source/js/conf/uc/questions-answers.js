@@ -13,106 +13,166 @@ define(function(require, exports, module) {
     var jIfmTab = $('#jMain');
     var isEdit = false;
     var pager;
+    var jContainer = $('#jContainer');
+    var jPagination = $('#jPagination');
 
     lazy = new Lazyload($('.jImg'), {
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true
     });
-    call();
-    function call(data) { 
-        var jContainer = $('#jContainer');
-        var jPagination = $('#jPagination');
-        if(typeof pager != 'undefined'){
+    /* 渲染分页列表 */
+    function renderList(url,data,tmpEl,htmEl,pagEl){
+        if(typeof pager !== 'undefined'){
             pager.destroy();
         }
-        pager = new Pager(jPagination, {
-            url: $PAGE_DATA['getPager'],
-            data: data,
+        pager = new Pager(pagEl, {
+            url:url,
+            data:data
         });
 
         var loading = null;
+
         pager.on('ajaxStart', function() {
             loading = box.loading('正在加载...', {
                 modal: false
             });
         });
-        
-        pager.on('ajaxSuccess', function(data, callback) {
-            if (!$.isEmptyObject(data) ) {
-                jContainer.html(template('jPage', data.data));
-            } else if (res.error < 0) {
-                box.warn('有问题');
-            } else {
-                document.getElementById(htmEl).innerHTML = '<div class="ui-empty-list"><div class="isema isema-box"></div><div class="txt">暂时没有相关内容</div></div>';
+        pager.on('ajaxSuccess', function(res, callback) {
+            if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
+                var html = template(tmpEl,res.data);
+                document.getElementById(htmEl).innerHTML = html;
+                //图片懒加载
+                lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
+                    mouseWheel: true,
+                    effect: 'fadeIn',
+                    snap: true
+                });
+                callback && callback(res.data.records);
+            }else {
+                var html = template('tEmpty',1);
+                document.getElementById(htmEl).innerHTML = html;
+                pagEl.hide();
             }
-            //发表评论
-            $('#jPublish').on('click', function(e) {
-                var jTxt = $(this).find('.jTxt');
-                var $target = $(e.target);
-                var txtcontent = jTxt.val();
-                if($target.is('.jBtn')&&jTxt.val()!='') {
-                    call({
-                        'txt':txtcontent
-                    });
-                    box.ok('评论成功');
-                } else if($target.is('.jBtn')&&jTxt.val()==='') {
-                     box.warn('请填写内容');
-                }
-            });
-            //赞和回复
-            $('.jClkRefavour').on('click', function(e) {
-                if ($(e.target).is('.jClkFavour')) {
-                    call({
-                        'favour':1
-                    });
-                    $(e.target).addClass('favour');
-                } 
-            })
-            
-            lazy = new Lazyload($('.jImg'), {
-                mouseWheel: true,
-                effect: 'fadeIn',
-                snap: true
-            });
-            callback && callback(data.data.records);
             loading && loading.hide();
         });
+
         pager.on('ajaxError', function(data) {
-            jContainer.html('网络错误，请重试！');
+            document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
             loading && loading.hide();
         });
 
-        pager.on('change', function(pageNum, e) {
-            $('#jCurrentPage').html(pageNum)
-        });
-    }
+        pager.on('change', function(pageNum, e) {});
+    };
 
+    function init(){
+        var id = jContainer.attr('data-id');
+        renderList($PAGE_DATA['getPager'],{'type':id},'jPage','jContainer',jPagination);
+    }
+    init();
+
+    /*评论交互*/
     //评论字数限制
-    $('.jTxt').keyup(function(){
-        var txtLen = $('.jTxt').val().length;
+    var main = $('#jMain');
+    var publish = $('.jPublish');
+    var arrow = $('.jArrow');
+    var txtNum = $('.jTxtNum');
+    var txt = $('.jTxt');
+    main.on('keyup','.jTxt',function(){
+        var txtLen = txt.val().length;
         if(txtLen > 300){
             $(this).addClass('text-error');
-            $('.jPublish').addClass('publish-error');
-            $('.jArrow').addClass('arrow-error');
-            $('.jTxtNum').css({'color':'red'});
+            publish.addClass('publish-error');
+            arrow.addClass('arrow-error');
+            txtNum.css({'color':'red'});
         }else {
             $(this).removeClass('text-error');
-            $('.jPublish').removeClass('publish-error');
-            $('.jArrow').removeClass('arrow-error');
-            $('.jTxtNum').css({'color':'#666'});
+            publish.removeClass('publish-error');
+            arrow.removeClass('arrow-error');
+            txtNum.css({'color':'#666'});
         }
-        $('.jTxtNum').children('i').text(txtLen);
+        txtNum.children('i').text(txtLen);
+    });
+
+    //发表评论
+    main.on('click','.jPublish',function(){
+        var content = txt.val();
+        if(content == ''){
+            box.error('请输入发表内容');
+        }else {
+            if(!$(this).hasClass('publish-error')){
+                io.get($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'content':content},function(res){
+                    if(res){
+                        if(res.code == 0){
+                            box.ok('发表成功');
+                            txt.val('');
+                            pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                        }else {
+                            box.error(res.msg || '发表失败');
+                        }
+                    }else {
+                        box.error('发表失败，请重试');
+                    }
+                },function(res){
+                    box.error(res.msg || '网络错误,请重试');
+                });
+            }
+        }
     });
 
     //评论focus效果
-    $('.jTxt').focus(function(){
+    main.on('focus','.jTxt',function(){
         $('.jArrow').addClass('arrow-focus');
         $(this).addClass('text-focus').attr('placeholder','');
-    }).blur(function(){
+        $(this).css('color','#333');
+    }).on('blur','.jTxt',function(){
         if($(this).val() === ''){
             $(this).removeClass('text-focus').attr('placeholder','看点糟点，不吐不快！别憋着，马上大声说出来吧！');
             $('.jArrow').removeClass('arrow-focus');
+            $(this).css('color','#ccc');
+        }
+    });
+
+
+    /*点赞交互*/
+    //点赞和采集的接口处理
+    function clickInterface(url,data,msg){
+        io.get(url,data,function(res){
+            if(res){
+                if(res.code == 0){
+                    box.ok(msg+'成功');
+                    pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                }else {
+                    box.error(res.msg || msg+'失败');
+                }
+            }else {
+                box.error(msg+'失败，请重试');
+            }
+        },function(res){
+            box.error(res.msg || '网络错误,请重试');
+        });
+    };
+
+    //点赞
+    main.on('click','#jLike',function(){
+        var id = $(this).attr('data-id');
+        var data;
+        if($(this).hasClass("activeLike")){
+            data = {
+                "dataType":1,
+                "type":1,
+                "id":id
+            }
+            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',data,'取消点赞');
+            $(this).removeClass('activeLike');
+        }else {
+            data = {
+                "dataType":1,
+                "type":2,
+                "id":id
+            }
+            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',data,'点赞');
+            $(this).addClass('activeLike');
         }
     });
 });
