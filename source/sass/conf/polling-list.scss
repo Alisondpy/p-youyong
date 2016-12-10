@@ -1,0 +1,25 @@
+@charset "UTF-8";
+// 图片根目录、字体目录配置参数，轻放在顶部
+@import "../common/config/level-1";
+@import "../common/common";
+body {
+    background-color: #eee;
+}
+
+.mod-page{
+	width: 610px;
+	margin: 0 auto;
+	padding:50px;
+}
+
+.ui-polling-list {
+    width: 300px;
+    height: 400px;
+    border: 1px solid red;
+    overflow-y:auto; 
+
+    .item{
+    	padding: 20px;
+    	border-top: 1px solid #ddd;
+    }
+}

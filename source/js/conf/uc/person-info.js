@@ -17,6 +17,10 @@ define(function(require, exports, module) {
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Uploader = require('lib/plugins/uploader/1.0.1/uploader');
 
+    //左侧菜单
+    var LeftMenu = require('module/uc/left-menu/left-menu');
+    var searchBar = new LeftMenu();
+
     //图片上传插件
     var jAvater = $('#jAvater');
     //三级联动
