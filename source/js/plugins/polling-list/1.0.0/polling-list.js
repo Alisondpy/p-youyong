@@ -58,6 +58,12 @@ define(function(require, exports, module) {
         });
     }
 
+    //动态设置ajax data
+    Polling.prototype.setData = function(data) {
+        var _this = this;
+        _this.polling.setData(data);
+    }
+
     //销毁
     PollingList.prototype.destroy = function() {
         var _this = this;
