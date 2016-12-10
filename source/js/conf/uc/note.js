@@ -2,13 +2,7 @@ define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     /*顶部搜索、登录状态、底部、右侧在线客服 start*/
-    var TopSearch = require('module/top-search/1.0.0/top-search');
-    var LoginStatus = require('module/login-status/1.0.0/login-status');
-    var Footer = require('module/footer/1.0.0/footer');
-    var template = require('template');
-    var topSearch = new TopSearch();
-    var loginStatus = new LoginStatus();
-    var footer = new Footer();
+    require('./common');
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     var box = require('lib/ui/box/1.0.1/box');
@@ -16,7 +10,7 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
-
+    var template = require('template');
 
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
@@ -26,7 +20,6 @@ define(function(require, exports, module) {
     var lazy;
     //tab body data-id="1"
     tabsCallback.callback1 = function(body) {
-        var isDeleting = false;
         if (!tabsCallback.callback1.isInited) {
             tabsCallback.callback1.isInited = true;
             var builder = build.build(body, false);
@@ -34,8 +27,7 @@ define(function(require, exports, module) {
             var jContainer = builder.get('jContainer');
             var pager = new Pager(jPagination, {
                 url: $PAGE_DATA['noteInfo'],
-                data: {
-                }
+                data: {}
             });
             var loading = null;
             pager.on('ajaxStart', function() {
@@ -45,7 +37,6 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxSuccess', function(data, callback) {
-                
                 if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
                     jContainer.html(template('tNote', data.data));
                     InitEvent.init(body, pager);
@@ -69,37 +60,26 @@ define(function(require, exports, module) {
                     InitEvent.inited = true;
                     body.on('click', '.jEdit .jEditTxt', function() {
                         var _this = $(this);
-                        if (!isDeleting) {
-                            isDeleting = true;
-                            _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('readonly').addClass('edittxt');
-                            _this.parents('.jEdit').find('.jHide').hide().siblings('.jSave').show();
-                        } else {
-                            box.ok('请先保存')
-                        }
+                        _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('readonly').addClass('edittxt');
+                        _this.parents('.jEdit').find('.jHide').hide().siblings('.jSave').show();
+
                     })
                     body.on('click', '.jEdit .jSave', function() {
                         var _this = $(this);
-                        if (isDeleting) {
-                            var context = _this.parents('.jEdit').siblings('.jEditDetails').val();
-                            var id = _this.parents('.jEdit').attr('data-id');
-                            _this.parents('.jEdit').find('.jHide').show().siblings('.jSave').hide();
-                            _this.parents('.jEdit').siblings('.jEditDetails').attr('readonly', true).removeClass('edittxt');
-                            InitEvent.postparams($PAGE_DATA['noteSave'], { 'id': id, 'context': context }, '保存成功！')
-                            isDeleting = false;
-                        }
+                        var context = _this.parents('.jEdit').siblings('.jEditDetails').val();
+                        var id = _this.parents('.jEdit').attr('data-id');
+                        _this.parents('.jEdit').find('.jHide').show().siblings('.jSave').hide();
+                        _this.parents('.jEdit').siblings('.jEditDetails').attr('readonly', true).removeClass('edittxt');
+                        InitEvent.postparams($PAGE_DATA['noteSave'], { 'id': id, 'context': context }, '保存成功！')
+
                     })
                     body.on('click', '.jEdit .jDel', function() {
                         var _this = $(this);
                         var id = _this.parents('.jEdit').attr('data-id');
-                        if (!isDeleting) {
-                            box.confirm('确定删除吗？', function() {
-                                InitEvent.postparams($PAGE_DATA['noteDel'], { 'id': id }, '删除成功！', pager)
-                            }, function() {
+                        box.confirm('确定删除吗？', function() {
+                            InitEvent.postparams($PAGE_DATA['noteDel'], { 'id': id }, '删除成功！', pager)
+                        }, function() {})
 
-                            });
-                        } else {
-                            box.ok('请先保存')
-                        }
                     })
                 }
             },

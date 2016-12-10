@@ -2,13 +2,7 @@ define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     /*顶部搜索、登录状态、底部、右侧在线客服 start*/
-    var TopSearch = require('module/top-search/1.0.0/top-search');
-    var LoginStatus = require('module/login-status/1.0.0/login-status');
-    var Footer = require('module/footer/1.0.0/footer');
-    var template = require('template');
-    var topSearch = new TopSearch();
-    var loginStatus = new LoginStatus();
-    var footer = new Footer();
+    require('./common');
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     var box = require('lib/ui/box/1.0.1/box');
@@ -16,7 +10,7 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
-
+    var template = require('template');
     
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
