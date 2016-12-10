@@ -237,6 +237,11 @@ a {
                         background: #eee;
                         z-index: 0;
                     }
+                    &:first-child{
+                        .ui-line{
+                            width: 0
+                        }
+                    }
                 }
                 .course-name {
                     position: relative;
@@ -262,7 +267,7 @@ a {
                 .iyoyo-play{
                     position: absolute;
                     top:-3px;
-                    right: 26px;
+                    right: 30px;
                     padding-right: 10px;
                     font-size: 18px;
                     color: #1f2c35;
@@ -295,13 +300,10 @@ a {
                 .ui-line{
                     position: absolute;
                     width: 1px;
-                    top: 19px;
-                    bottom: -2px;
+                    top: -32px;
+                    bottom: 50px;
                     left: -18px;
                     background: #bcc7d3;
-                }
-                .ui-line-none{
-                    width: 0;
                 }
             }
         }

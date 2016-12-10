@@ -1,5 +1,5 @@
 {
-	"error":0,
+	"code":0,
 	"msg":"服务器错误",
 	"data":{
 		"pageNo": 1,
@@ -7,7 +7,7 @@
 		"records": 300,
 		"resultList":[
 			{
-				"id":1344,
+				"id":1001,
 				"userId":1108,
 				"avatarUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
 				"title":"Mac装PS CC如何破解？",
@@ -27,7 +27,7 @@
 				"studyState":3
 			},
 			{
-				"id":1344,
+				"id":1002,
 				"userId":1108,
 				"avatarUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
 				"title":"Mac装PS CC如何破解？",
@@ -47,7 +47,7 @@
 				"studyState":2
 			},
 			{
-				"id":1344,
+				"id":1003,
 				"userId":1108,
 				"avatarUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
 				"title":"Mac装PS CC如何破解？",
@@ -67,7 +67,7 @@
 				"studyState":1
 			},
 			{
-				"id":1344,
+				"id":1004,
 				"userId":1108,
 				"avatarUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
 				"title":"Mac装PS CC如何破解？",
@@ -87,7 +87,7 @@
 				"studyState":2
 			},
 			{
-				"id":1344,
+				"id":1005,
 				"userId":1108,
 				"avatarUrl":"http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg",
 				"title":"Mac装PS CC如何破解？",
