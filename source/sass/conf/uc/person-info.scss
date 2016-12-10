@@ -85,9 +85,10 @@ body {
     }
     .zpassword {
         input {
-            width: 341px;
+            width: 331px;
             height: 34px;
             line-height: 34px;
+            padding-left:10px;
             margin: 20px 0 0 10px;
         }
 
@@ -115,9 +116,10 @@ body {
     .info {
         // padding-right: 376px;
         input {
-            width: 341px;
+            width: 331px;
             height: 34px;
             line-height: 34px;
+            padding-left:10px;
             margin: 20px 0 0 10px;
         }
         input.error{

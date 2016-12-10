@@ -8,7 +8,8 @@ body {
     background-color: #eee;
 }
 .mod-answer{
-	padding:0 20px;
+	padding:0 20px;		
+	
 	.line{
 		.manage{
 			.ui-btn{
@@ -20,10 +21,24 @@ body {
 				font-size:14px;
 				border-radius:5px;
 				background-color:#ea3e48;
+				&.deleting{
+					background-color:#fff;
+					color:#f00;
+					border:1px solid #f00;
+				}
 			}
+			
 		}
 	}
 	.mod-question{
+		&.deleting{
+			.question {
+				.del{
+			    display:block;
+			}
+			}
+			
+		}
 		ul{
 			.question{
 				.first{
@@ -90,22 +105,26 @@ body {
 						font-style:normal;
 					}
 				}
-								.other-time{
+				.other-time{
 					margin:0 10px;
 				}
 				}
-			
-
 			}
-			.del{
-				i{
-					font-size:26px;
-					color:#f00;
+				.del{
+			  		display:none;
+					.iyoyo-del{
+						font-size:26px;
+						color:#f00;
+					}
 				}
-			}
-			}
-
 			
+			}	
 		}
 	}
+	// &.deleting{
+	// 		.del{
+	// 			display:none;
+	// 		}
+			
+	// 	}
 }

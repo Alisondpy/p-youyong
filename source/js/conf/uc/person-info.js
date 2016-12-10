@@ -1,28 +1,18 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    require('plugins/validator/1.0.0/validator'); 
     var jFormPwd = $('#jFormPwd');
-    /*顶部搜索、登录状态、底部、右侧在线客服 start*/
-    var TopSearch = require('module/top-search/1.0.0/top-search');
-    var LoginStatus = require('module/login-status/1.0.0/login-status');
-    var Footer = require('module/footer/1.0.0/footer');
-    var Io = require('lib/core/1.0.0/io/request');
-    var loginStatus = new LoginStatus();
-    var footer = new Footer();
+     require('./common');
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     var form = require('lib/core/1.0.0/utils/form');
     var box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Uploader = require('lib/plugins/uploader/1.0.1/uploader');
-
-    //左侧菜单
-    var LeftMenu = require('module/uc/left-menu/left-menu');
-    var searchBar = new LeftMenu();
-
+    require('plugins/validator/1.0.0/validator'); 
     //图片上传插件
     var jAvater = $('#jAvater');
+    var jImg = $('.jImg');
     //三级联动
     var location = require();
     jAvater.on('click', function() {
@@ -32,8 +22,8 @@ define(function(require, exports, module) {
                 options: {
                     uploadLimit: 1,
                     fileObjName: 'file_data',
-                    swf: $PAGE_DATA['swfUrl'], //swf的路径
-                    uploader: $PAGE_DATA['uploadImgUrl'], //后台存放图片的地址
+                    swf: $PAGE_DATA['swf'], //swf的路径
+                    uploader: $PAGE_DATA['uploader'], //后台存放图片的地址
                     formData: $.extend(true, {}, $PAGE_DATA['uploadData'])
                 }
             }],
@@ -41,9 +31,13 @@ define(function(require, exports, module) {
             selected: [] //选种的图片
         });
         uploader.on('ok', function(urls) {
+            console.log(urls);
             var str = '';
             if (urls.length > 0) {
                 jImg.attr('src', urls[0]);
+                jAvater.val(urls[0]);
+                $("#avatarUrl").val(urls[0]);
+
             }
             this.hide();
         });
@@ -56,8 +50,9 @@ define(function(require, exports, module) {
                 $(element).valid();
             },
              submitHandler: function(formRes){
+
                 var formData = form.serializeForm(formRes);
-                Io.get($PAGE_DATA['getPager'],formData,function(data){
+                Io.post($PAGE_DATA['submit'],formData,function(data){
                     box.ok("保存成功");
                 },function(data){
                     box.error((data && data.msg) || '保存失败');
@@ -68,11 +63,11 @@ define(function(require, exports, module) {
                     minlength:2,
                     maxlength:12
                 },
-                nickname:{
+                nickName:{
                     minlength:2,
                     maxlength:12
                 },
-                realname:{
+                realName:{
                     required:true,
                     realname:true
                 },
@@ -85,12 +80,12 @@ define(function(require, exports, module) {
                     required:true,
                     email:true
                 },
-                occupation:{
+                job:{
                     required:true,
                     minlength:2,
                     maxlength:12
                 },
-                companyName:{
+                unit:{
                     required:true,
                     minlength:2,
                     maxlength:20
@@ -104,7 +99,7 @@ define(function(require, exports, module) {
                 }
             },
             messages:{
-                companyName:{
+                unit:{
                     required:"请填写公司的名称"
                 }
             }
@@ -120,13 +115,12 @@ define(function(require, exports, module) {
             },
             submitHandler: function(formRes){
                 var formData = form.serializeForm(formRes);
-                Io.get($PAGE_DATA['getPager'],formData,function(data){
-                    console.log(data);
+                Io.post($PAGE_DATA['editInfo'],formData,function(data){
                     box.ok("保存成功");
-                    },function(data){
+                },function(data){
                         box.error(data.msg || '保存失败了');
-                    });
-                },
+                });
+            },
             rules:{
                 oldPassword:{
                     required:true,
@@ -137,7 +131,6 @@ define(function(require, exports, module) {
                     required:true,
                     minlength:6,
                     maxlength:16,
-                    equalTo:'#sure'
                 },
                 rePassword:{
                     required:true,
@@ -236,8 +229,10 @@ define(function(require, exports, module) {
                     }
                 });
                 var province_change = $(this).val();
-                var cityMap = loadArea($PAGE_DATA['location']);
+               
+                var cityMap = loadArea($PAGE_DATA['location'] + province_change);
                 if (cityMap != 0) {
+
                     $.each(cityMap, function(i, n) {
                         city.append("<option value='" + n.id + "'>" + n.name + "</option>");
                     });
@@ -248,7 +243,7 @@ define(function(require, exports, module) {
             var city = element.find("select").eq(1);
             if (province_val != null && typeof (province_val) != "undefined" && province_val != '') {
                 province.val(province_val);
-                var city_change_Map = loadArea($PAGE_DATA['location']);
+                var city_change_Map = loadArea($PAGE_DATA['location'] + province_val);
                 city.empty();
                 city.append("<option value='0'>请选择市</option>");
                 if (city_change_Map != 0) {

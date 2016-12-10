@@ -1,0 +1,23 @@
+{
+    "code": 0,
+    "msg": "牛逼，你已经到后台了！",
+    "data": {
+        "records":"123",
+        "resultList":[
+            {
+                "questionId":"13213",
+                "title":"标题",
+                "answerNum":"123",
+                "createTime":"1231564",
+                "questioner":"提问者",
+                "questionId":"13213",
+                "title":"标题",
+                "answerCenten":"12dsadsadasdsadsad3",
+                "answerId":"124",
+                "answerTime":"提问者"
+            }
+        ]
+
+    },
+    "ver": "1.0"
+}

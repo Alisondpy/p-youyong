@@ -7,7 +7,7 @@
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/uc/my-answer.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
-    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
+    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/answer.json';
     $PAGE_DATA['currentPage'] = '1';
     </script>
 </head>
@@ -32,7 +32,7 @@
                     </div>
                     <div class="ifm-tab-bd" node-type="bd">
                         <!-- tab内容区域-1 start-->
-                        <div class="ifm-tab-container" node-type="container" data-id="1">
+                        <div class="ifm-tab-container current" node-type="container" data-id="1">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
                                 <div node-type="jContainer">
@@ -93,29 +93,33 @@
                     <div>
                     </div>
                     <div class="f-r manage">
-                        <button class="ui-btn jBtnManage">管理</button>
+                        <button class="ui-btn jBtnManage {{deletingClass}}">{{deletingTxt}}</button>
                     </div>
                 </div>
-                <div class="mod-question">
+                {{each resultList as value i}}
+                <div class="mod-question jItem {{deletingClass}}">
                     <ul>
                         <li class="question clearfix">
                             <div class="answer-num f-l">
-                                <em>2</em>
+                                <em>{{value.answer}}</em>
                                 <span>回答</span>
                             </div>
                             <div class="question-r f-l">
-                                <h2 class="title"><a href="javascript:void(0);">标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试</a></h2>
+                                <h2 class="title">
+                                <a href="javascript:void(0);">{{value.title}}</a>
+                                </h2>
                                 <div class="ques-time">
-                                    <span>提问时间</span>
-                                    <em>2016-11-10 12：00</em>
+                                    <span>提问时间 </span>
+                                    <em>{{value.createTime}}</em>
                                 </div>
                             </div>
-                            <div class="del f-r">
+                            <div class="del f-r jDel" data-id={{value.questionId}}>
                                 <i class="iyoyo iyoyo-del"></i>
                             </div>
                         </li>
                     </ul>
                 </div>
+              {{/each}}
             </div>
         </div>
     </script>
@@ -126,32 +130,34 @@
                     <div>
                     </div>
                     <div class="f-r manage">
-                        <button class="ui-btn jBtnManage">管理</button>
+                        <button class="ui-btn jBtnManage {{deletingClass}}">{{deletingTxt}}</button>
                     </div>
                 </div>
-                <div class="mod-question">
+                {{each resultList as value i}}
+                <div class="mod-question jItem {{deletingClass}}">
                     <ul>
                         <li class="question clearfix">
                             <div class="question-r f-l">
-                                <h2 class="title"><a href="javascript:void(0);">这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试这是标题测试</a></h2>
-                                <p class="auther">这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答这是作者的回答</p>
+                                <h2 class="title"><a href="javascript:void(0);">{{value.title}}</a></h2>
+                                <p class="auther">{{value.answerCenten}}</p>
                                 <div class="contain-down clearfix">
                                     <div class="ques-person f-l">
                                         <span class="f-l">提问者</span>
-                                        <em class="f-l">探长探长探长探长探长探长探长探长探长探长探长</em>
+                                        <em class="f-l">{{value.questioner}}</em>
                                     </div>
                                     <div class="ques-time f-l other-time">
                                         <span>回答时间</span>
-                                        <em>2016-11-10 12：00</em>
+                                        <em>{{value.answerTime}}</em>
                                     </div>
                                 </div>
                             </div>
-                            <div class="del f-r">
+                            <div class="del f-r jDel" data-id={{value.answerId}}>
                                 <i class="iyoyo iyoyo-del"></i>
                             </div>
                         </li>
                     </ul>
                 </div>
+                {{/each}}
             </div>
         </div>
     </script>
