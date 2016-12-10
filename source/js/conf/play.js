@@ -217,7 +217,8 @@ define(function(require, exports, module) {
 
     /*实时监听*/
     function monitor(htmlEl,url){
-        var Question = require('plugins/polling-list/1.0.0/question');
+        var Question = require('module/monitor/1.0.0/question');
+        var Answer = require('module/monitor/1.0.0/note');
         var question = new Question(htmlEl, {
             pollingAjax: {
                 url: url

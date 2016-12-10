@@ -13,7 +13,7 @@ define(function(require, exports, module) {
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
-    var Question = require('plugins/polling-list/1.0.0/question');
+    var Question = require('module/monitor/1.0.0/question');
     var question = new Question('#jPollingList1', {
         pollingAjax: {
             url: $PAGE_DATA['baseStaticUrl'] + '/source/api/demo/demo.json'

@@ -2,7 +2,7 @@ define(function(require, exports, module) {
     'use strict';
 
     var $ = require('jquery');
-    var PollingList = require('./polling-list');
+    var PollingList = require('./../../../plugins/polling-list/1.0.0/polling-list');
     var IO = require('lib/core/1.0.0/io/request');
     var EventEmitter = require('lib/core/1.0.0/event/emitter');
     var Util = require('lib/core/1.0.0/utils/util');
