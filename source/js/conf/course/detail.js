@@ -23,6 +23,9 @@ define(function(require, exports, module) {
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
+    /*后台全局变量*/
+    var sourceId = $PAGE_DATA['sourceId'];
+
     var jPagination = $('#jPagination');
 
     /*提问弹窗*/
@@ -93,23 +96,22 @@ define(function(require, exports, module) {
 
     /*首屏默认加载*/
     function init(){
-        var data = $('#jSubNav').find('.current').attr("data-value");
-        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'type':data},'jWrap0','jWrap0Box',jPagination);
+        var data = $('#jSubNav').find('.current').attr("data-type");
+        renderList($PAGE_DATA['LessonUrl'],{'type':data,"id":sourceId},'jWrap0','jWrap0Box',jPagination);
     }
     init();
 
     /*tab页切换*/
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
-    var sourceType,showType,
-        sourceId = $PAGE_DATA['sourceId'];
+    var sourceType,showType;
     tab.on('change', function(el) {
         var type = el.hd.attr('data-target');
         sourceType = el.hd.attr('data-type');
         showType = el.hd.attr('show-type');
         switch (type){
             case '1':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'sourceType':sourceType,"sourceId":sourceId},'jWrap0','jWrap0Box',jPagination);
+                renderList($PAGE_DATA['LessonUrl'],{'type':sourceType,"id":sourceId},'jWrap0','jWrap0Box',jPagination);
                 break;
             case '2':
                 renderList($PAGE_DATA['commentUrl'],{'sourceType':sourceType,"sourceId":sourceId},'jWrap1','jWrap1Box',jPagination);
@@ -265,10 +267,10 @@ define(function(require, exports, module) {
     //只看我的
     $('.jWrap3').on('click','.bar-right',function(){
         if($(this).text() === '只看我的'){
-            renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'showType':1},'jWrap3','jWrap3Box',jPagination);
+            renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":1,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);
             $(this).text('取消只看我的');
         }else {
-            renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'showType':0},'jWrap3','jWrap3Box',jPagination);
+            renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":0,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);
             $(this).text('只看我的');
         }
     });

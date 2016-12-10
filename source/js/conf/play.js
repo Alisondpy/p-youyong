@@ -214,4 +214,26 @@ define(function(require, exports, module) {
         var type = el.body.find('.ui-current').attr('data-type');
         init(type);
     });
+
+    /*实时监听*/
+    function monitor(htmlEl,url){
+        var Question = require('plugins/polling-list/1.0.0/question');
+        var question = new Question(htmlEl, {
+            pollingAjax: {
+                url: url
+            },
+            pagerAjax: {
+                url: url
+            }
+        });
+        question.on('error',function(data){
+            console.log(data);
+        });
+        question.on('success',function(data){
+            console.log(data);
+        });
+        question.start();
+    };
+    monitor('#jAnswerTab',$PAGE_DATA['baseStaticUrl'] + '/source/api/demo/demo.json');
+    monitor('#jQuestionTab',$PAGE_DATA['baseStaticUrl'] + '/source/api/demo/demo.json');
 });

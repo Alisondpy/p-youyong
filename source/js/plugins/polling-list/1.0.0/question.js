@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     function Question(el, options) {
         var _this = this;
         _this.el = $(el);
-        if (_this.el.lenght == 0) {
+        if (_this.el.length == 0) {
             throw new Error('the param [el] is required.');
         }
         var defaults = {
@@ -31,6 +31,7 @@ define(function(require, exports, module) {
         _this._isPulling = false;
         _this._init();
         _this._initEvent();
+        _this.max = 0;
     }
 
     //继承自定义事件
@@ -39,7 +40,10 @@ define(function(require, exports, module) {
     Question.prototype._init = function() {
         var _this = this;
         _this.pollingList = new PollingList(_this.el, {
-            ajax: _this.options.pollingAjax
+            ajax: _this.options.pollingAjax,
+            data : {
+                max : _this.max
+            }
         });
     }
 
@@ -77,6 +81,7 @@ define(function(require, exports, module) {
                 });
             }
         });
+        _this.el.on('click','')
     }
 
     //开始拉新
