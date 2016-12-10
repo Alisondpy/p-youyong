@@ -48,10 +48,10 @@ define(function(require, exports, module) {
 
     LeftMenu.prototype._init = function() {
         var _this = this;
-        _this.menuLevel2s.each(function() {
+        _this.el.find('.jItemLevel2').each(function() {
             var self = $(this);
             if (self.hasClass('active')) {
-                self.parent('.has-child').addClass('active');
+                self.parent().parent('.jItemLevel1').addClass('active');
             }
         });
     }
