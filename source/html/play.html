@@ -89,12 +89,12 @@
                         </div>
                     </div>
                     <div id="jNoteTab2" class="ui-answer-box">
-                        <div class="ui-loading-list">
-                            <div class="img-loading"></div>
-                            <div class="txt">
-                                正在卖力加载，请稍后
-                            </div>
-                        </div>
+                        <!--<div class="ui-loading-list">-->
+                            <!--<div class="img-loading"></div>-->
+                            <!--<div class="txt">-->
+                                <!--正在卖力加载，请稍后-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                     <div class="square jAnswerSquare">
                             <textarea class="textarea jTxtA jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea>
@@ -125,12 +125,12 @@
                         </div>
                     </div>
                     <div id="jQuestionTab2" class="ui-answer-box">
-                        <div class="ui-loading-list">
-                            <div class="img-loading"></div>
-                            <div class="txt">
-                                正在卖力加载，请稍后
-                            </div>
-                        </div>
+                        <!--<div class="ui-loading-list">-->
+                            <!--<div class="img-loading"></div>-->
+                            <!--<div class="txt">-->
+                                <!--正在卖力加载，请稍后-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                     <div class="square jQuestionSquare">
                             <textarea class="textarea jTxtQ jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea>
@@ -166,28 +166,30 @@
             {{if value.studyState == 1}}
             <i class="iyoyo iyoyo-circle"></i>
             {{/if}}
-            <a href="">
-                <em>课时{{i}}</em>
+            <a href="xx.html?{{value.id}}">
+                <em>课时{{i+1}}</em>
                 <span class="tool">{{value.title}}</span>
             </a>
         </div>
+        {{if i != resultList.length-1}}
         <div class="line"></div>
+        {{/if}}
         {{/each}}
     </script>
     <script id="tAnswer" type="text/html">
         {{each resultList as value i}}
         <div class="contain clearfix">
             <div class="avater">
-                <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
+                <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="{{value.avatarUrl}}" alt="笔记" class="jImg img-error">
             </div>
             <div class="text clearfix">
-                <div class="cname">花村抗靶子</div>
-                <p>的分厘卡但是jfk了大家分k大家分k大家分k大家分k大家分k大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方</p>
+                <div class="cname">{{value.nickName}}</div>
+                <p>{{value.content}}</p>
                 <div class="contain-down">
-                    <span class="time"><em>时间:</em><i>一分钟前</i></span>
+                    <span class="time"><em>时间:</em><i>{{value.createTime}}</i></span>
                     <span class="answer">
-                        <a class="sure gather pick"><em>采集</em><strong>90</strong></a>
-                        <a class="admit like"><i class="iyoyo iyoyo-favour"></i><strong>121</strong></a>
+                        <a class="sure gather pick" data-id="{{value.id}}"><em>采集</em><strong>{{value.collectCount}}</strong></a>
+                        <a class="admit like" data-id="{{value.id}}"><i class="iyoyo iyoyo-favour"></i><strong>{{value.praiseCount}}</strong></a>
                     </span>
                 </div>
             </div>
@@ -198,14 +200,14 @@
         {{each resultList as value i}}
         <div class="contain clearfix">
             <div class="avater">
-                <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="系列课" class="jImg img-error">
+                <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="{{value.avatarUrl}}" alt="问答" class="jImg img-error">
             </div>
             <div class="text clearfix">
-                <div class="cname">花村抗靶子</div>
-                <p>的分厘卡但是jfk了大家分k大家分k大家分k大家分k大家分k大家分k了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视厘卡但是jfk了大家分厘卡电视机分厘卡了可见度见度分厘卡机立刻地方</p>
+                <div class="cname">{{value.nickName}}</div>
+                <p>{{value.content}}</p>
                 <div class="contain-down">
-                    <span class="time"><em>时间:</em><i>一分钟前</i></span>
-                    <span class="answer"><em>0</em>回答<i>10</i>浏览</span>
+                    <span class="time"><em>时间:</em><i>{{value.createTime}}</i></span>
+                    <span class="answer"><em>{{value.answerNum}}</em>回答<i>10</i>浏览</span>
                 </div>
             </div>
         </div>

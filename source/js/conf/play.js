@@ -7,10 +7,9 @@ define(function(require, exports, module) {
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var template=require("template");
     var Question = require('module/monitor/1.0.0/question');
-    //var Note = require('module/monitor/1.0.0/note');
+    var Note = require('module/monitor/1.0.0/note');
     var catlog = $('.jMod-catlog');
     var note = $('.jMod-note');
-    //var question = $('.jMod-question');
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
     var lazy,question,note;
@@ -36,14 +35,14 @@ define(function(require, exports, module) {
         }
     });
 
-    //answer = new Note('#jNoteTab', {
-    //    pollingAjax: {
-    //        url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
-    //    },
-    //    pagerAjax: {
-    //        url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
-    //    }
-    //});
+    note = new Note('#jNoteTab2', {
+        pollingAjax: {
+            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
+        },
+        pagerAjax: {
+            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
+        }
+    });
 
     /*交互*/
     //字数限制
@@ -215,34 +214,39 @@ define(function(require, exports, module) {
     }
     function init(type){
         switch (type){
-            case '0':
+            case '0'://笔记我的
                 jNoteTab1.show();
                 jNoteTab2.hide();
                 jQuestionTab1.hide();
                 jQuestionTab2.hide();
+                question.stop();
+                note.stop();
                 renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tAnswer','jNoteTab1');
                 break;
-            case '1':
+            case '1'://笔记全部
                 jNoteTab1.hide();
                 jNoteTab2.show();
                 jQuestionTab1.hide();
                 jQuestionTab2.hide();
-                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tAnswer','jNoteTab2');
+                question.stop();
+                note.start();
                 break;
-            case '2':
+            case '2'://问答我的
                 jNoteTab1.hide();
                 jNoteTab2.hide();
                 jQuestionTab1.show();
                 jQuestionTab2.hide();
+                note.stop();
                 question.stop();
                 renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tQuestion','jQuestionTab1');
                 break;
-            case '3':
+            case '3'://问答全部
                 jNoteTab1.hide();
                 jNoteTab2.hide();
                 jQuestionTab1.hide();
                 jQuestionTab2.show();
                 question.start();
+                note.stop();
                 break;
         }
     };
@@ -252,10 +256,14 @@ define(function(require, exports, module) {
         init(type);
     });
 
+    renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',1,'tDir','jDir');
     tab.on('change', function(el) {
         var type = el.body.find('.ui-current').attr('data-type');
         init(type);
-        var target = el.hd.find('current');
+        var target = el.body.attr('data-id');
+        if(target == "1"){
+            renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',target,'tDir','jDir');
+        }
         lazy.update();
     });
 });
