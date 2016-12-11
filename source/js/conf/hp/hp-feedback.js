@@ -63,7 +63,7 @@ var define2 = define(function(require, exports, module) {
                     formRes.reset();
                 },3000)
             },function(){
-                box.error('提交意见反馈失败');
+                box.error(data.msg||'提交意见反馈失败');
             });
         },
         //失去焦点校验

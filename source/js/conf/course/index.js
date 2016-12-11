@@ -136,7 +136,7 @@ define(function(require, exports, module) {
     var jNavType = $('#jNavType');
     nav.on('change',function(data){
         var type = jNavType.find('.current').attr('data-target');
-        console.log(type);
+        // console.log(type);
         switch (type){
             case '1':
                 renderList($PAGE_DATA['courseIndex'],data,'tab0','jTab0',jPagination);

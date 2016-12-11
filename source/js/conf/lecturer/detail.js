@@ -77,12 +77,12 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxError', function(data) {
-                jContainer.html('网络错误，请重试！');
+                box.error(data.msg||'网络错误，请重试！');
                 loading && loading.hide();
             });
 
             pager.on('change', function(pageNum, e) {
-                console.log('pageNum', pageNum, e);
+                // console.log('pageNum', pageNum, e);
                 $('#jCurrentPage').html(pageNum)
             });
         }
