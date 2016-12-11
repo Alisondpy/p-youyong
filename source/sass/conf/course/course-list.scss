@@ -10,13 +10,13 @@
 .header .search input{box-sizing:border-box;border:1px solid #d7d7d7;width: 149px;height: 36px;border-radius: 5px;padding:0 41px 0 15px;position: absolute;top:50%;left:-162px;margin-top: -16px;}
 .header .search input:focus{border: 1px solid #53be45;border-radius: 5px;}
 .header .login{width: 120px; text-align: center;padding: 28px 0px;}
-.header .login span{display: inline-block;width: 16px;height: 9px;background: url("../image/arrowD-icon.png")no-repeat;margin-left: 10px;}
+.header .login span{display: inline-block;width: 16px;height: 9px;background: url("../../../images/course/arrowD-icon.png")no-repeat;margin-left: 10px;}
 .header .login img{width: 43px;height: 43px;border-radius: 100%;}
 .header .login-pop{width:120px;display: none;position: absolute; top:100%;left:0;text-align: center;background: #fcfcfc;}
 .header .login-pop a{display: block;line-height: 46px;}
 .header .login-pop a:hover{background: #f4f4f4;}
 .header .login:hover{background: #fcfcfc;}
-.header .login:hover span{background: url("../image/arrowD-hover.png") no-repeat;}
+.header .login:hover span{background: url("../../../images/course/arrowD-hover.png") no-repeat;}
 .header .login:hover .login-pop{display: block;}
 
 /*暴走大学样式by dpy*/
@@ -31,7 +31,7 @@
 .shadow{box-shadow:0 0 30px rgba(17,5,10,.5);}
 .wrap{width:1200px;margin:0 auto;}
 .collegeHeader{height:80px;line-height:80px;background:#fff;}
-.collegeHeader h1{font-size:36px;padding-left:60px;background:url(../image/collegeIconList.png)no-repeat 0 12px;}
+.collegeHeader h1{font-size:36px;padding-left:60px;background:url(../../../images/course/collegeIconList.png)no-repeat 0 12px;}
 .collegeHeader span{font-size:18px;margin-left:10px;}
 .collegeHeader span.active{color:#fa694e;}
 .collegeHeader img{width:50px;height:50px;border-radius:50%;background:#ccc;}
@@ -41,7 +41,7 @@
 .videoIntr{position:absolute;height:200PX;background:rgba(255,255,255,.8);bottom:0;padding:30px 70px;box-sizing:border-box;}
 .videoIntr h1{font-size:20px;}
 .videoIntr p{color:#666;line-height:24px;}
-.watchVideo{font-size:16px;padding-left:40px;background:url(../image/collegeIconList.png)no-repeat 0 -137px;line-height: 35px;}
+.watchVideo{font-size:16px;padding-left:40px;background:url(../../../images/course/collegeIconList.png)no-repeat 0 -137px;line-height: 35px;}
 .watchVideo:hover{color:#fa694e;background-position:-2px -214px;}
 .videoList li img{width:219px;height:117px;}
 .videoList li{position:relative;margin-bottom:16px;}
@@ -72,7 +72,7 @@
 .companytIntr{width:12000px;position:absolute;height:200px;z-index:20;}
 .companytIntr li{width:285px;height:200px;float:left;text-align: center;line-height:200px;overflow: hidden;}
 .companytIntr img{width:auto;height:auto;}
-.companyWrap span{position:absolute;display:none;width:36px;height:64px;z-index:30;background:rgba(0,0,0,.5) url(../image/collegeIconList.png)no-repeat -4px -284px;top:48px;}
+.companyWrap span{position:absolute;display:none;width:36px;height:64px;z-index:30;background:rgba(0,0,0,.5) url(../../../images/course/collegeIconList.png)no-repeat -4px -284px;top:48px;}
 .companyWrap .backward{background-position:3px -370px;}
 .forward{right:0;}
 .companyList  li:hover .companyWrap span{display:block;}
@@ -80,8 +80,8 @@
 .courseTitle{background:#fff;padding:25px 40px;}
 .courseTitle h2{font-size:30px;color:#fa694e;}
 .courseTitle p{line-height:20px;color:#666;}
-.courseLabel span{color:#999;margin-right:40px;padding-left:35px;line-height:25px;background:url(../image/collegeIconList.png)no-repeat 0 -743px;}
-.studentCount{padding-left: 34px;background: url(../image/collegeIconList.png)no-repeat 10px -557px/36px auto;}
+.courseLabel span{color:#999;margin-right:40px;padding-left:35px;line-height:25px;background:url(../../../images/course/collegeIconList.png)no-repeat 0 -743px;}
+.studentCount{padding-left: 34px;background: url(../../../images/course/collegeIconList.png)no-repeat 10px -557px/36px auto;}
 .courseLabel span:first-child{background-position:0 -635px;}
 
 .stageShow{background:#fff;padding:50px 40px 30px 70px;}
@@ -106,19 +106,19 @@
 .courseContainer li{float:left;margin-right:20px;background:#f2f2f2;padding-bottom:5px;margin-bottom:20px;position:relative;width: 265px;overflow: hidden;}
 .courseContainer h2{font-size:16px;color:#666;line-height:1;padding-left:10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width:90%;}
 .courseContainer li:hover{box-shadow:0 0 10px rgba(17,5,10,.3);}
-.locked{position:absolute;width:100%;top:0;left:0;height:144px;background:rgba(255,255,255,.9) url(../image/collegeIconList.png)no-repeat 103px -439px;}
+.locked{position:absolute;width:100%;top:0;left:0;height:144px;background:rgba(255,255,255,.9) url(../../../images/course/collegeIconList.png)no-repeat 103px -439px;}
 .lockedCourse h2{color:#999;}
 .courseContainer li>a{width:100%;height: 140px;position:relative;}
 .courseContainer li>a:after{content:'';position:absolute;bottom:0;width:100%;height:40px;background: linear-gradient(transparent,rgba(0,0,0,.1) 25%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.55) 75%,rgba(0,0,0,0.8));}
 .collegeBanner li{float:left;}
 .collegeBanner{width:calc(100% + 17px);height:800px;overflow: hidden;position:relative;}
 .collegeBanner ul{width:99999px;position:absolute;}
-.pagenation span{width:22px;height:22px;background: url(../image/collegeIconList.png)no-repeat 0 -808px;margin-right:20px;cursor:pointer;font-size:0;}
+.pagenation span{width:22px;height:22px;background: url(../../../images/course/collegeIconList.png)no-repeat 0 -808px;margin-right:20px;cursor:pointer;font-size:0;}
 .pagenation{position: absolute;bottom: 30px;width: 100%;text-align: center;}
 .pagenation span.current{background-position:0 -880px;}
 
 .loadMore{height:40px;background:#fff;text-align: center;line-height: 40px;color:#999;}
-.loadMore span{padding-left:24px;background:url(../image/collegeIconList.png)no-repeat 0 -922px;    cursor: pointer;}
+.loadMore span{padding-left:24px;background:url(../../../images/course/collegeIconList.png)no-repeat 0 -922px;    cursor: pointer;}
 .loadMore:hover{background:#e8e8e8;}
 .loadMore:hover span{background-position:0 -971px;color:#fa874d;}
 .loadMore.active span{background-position:0 -1022px;}
