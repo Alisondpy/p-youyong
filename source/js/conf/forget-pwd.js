@@ -27,6 +27,14 @@ define(function(require, exports, module) {
 
     }, $.validator.format("请输入正确的手机号"));
 
+    //临时代码,触发初始化,修改无法初始验证手机号,触发验证码按钮的bug
+    //setTimeout(function(){
+    //    $(".submit").trigger("click");
+    //    $("label.error").hide();
+    //    $(".item.error").removeClass("error");
+    //},0);
+
+    //表单提交
     $("#jsForgetPwd").validate({
         rules: {
             mobile:{
@@ -34,32 +42,54 @@ define(function(require, exports, module) {
                 required: true,
                 mobile:true
             },
-            dynamic: {
-                required: true
-            },
+            //vierfyCode: {
+            //    required: true
+            //},
             password : {
                 required : true,
                 minlength : 6
             }
         },
         messages: {
+            mobile:{
+                required: "请输入手机号码",
+                mobile:"请正确的输入手机号码"
+            },
             password: {
                 required: "请输入密码",
                 minlength: "密码长度不能小于6个字母,不允许包含空格"
             },
         },
+        errorPlacement : function(error,element){
+            //console.log(error,element);
+            console.log(element);
+            error.appendTo(element.parent());
+            $(element).parent().addClass("error");
+            //debugger;
+        },
+        success: function(label) {
+            // set &nbsp; as text for IE
+            label.html("&nbsp;").addClass("checked");
+            label.parent().removeClass("error");
+        },
         submitHandler: function(formRes){
             //判断jNextStep是否提交,没有可以提交
             if(!$("#jNextStep").hasClass("jNextStep")){
                 var formData = form.serializeForm(formRes);
-                io.get($PAGE_DATA['login'],formData,function(data){
+                var refer = document.referrer;
+                var locationUrl = "";//业务指定跳转的链接
+                formData.returnUrl = encodeURI(refer);
+                io.get($PAGE_DATA['forgetPwd'],formData,function(res){
                     box.ok("修改密码成功");
-                    var refer = document.referrer;
-                    //等待两秒跳转页面
-                    //是否跳转
+                    //等待1秒跳转页面
                     setTimeout(function(){
-                        //location.href = "./login.html";
-                    },2000);
+                        if(locationUrl){
+                            location.href = locationUrl;
+                        }else{
+                            //否则跳回referrer
+                            location.href = decodeURI(res.data.returnUrl);
+                        }
+                    },1000);
                 },function(res){
                     if(res.msg){
                         box.error(res.msg);
@@ -72,25 +102,22 @@ define(function(require, exports, module) {
         }
     });
 
-    //成功点击获取,出现新密码框,移除class--jNextStep允许提交
-    $(".jsVerifyCode").on("click",function(){
-        if(!$(this).hasClass("ui-btn-disable")){
-            $(".jnewPwd").show();
-            $("#jNextStep").removeClass("jNextStep");
-        }
-    })
+
     //获取验证码
-        .on("click",function(){
+    $(".jsVerifyCode").on("click",function(){
         var verifyCode = $(this);
         //获取阶段直接返回
+            //ui-btn-disable判断是否
         if(verifyCode.hasClass("ui-btn-disable")){
             return false;
-        }
+        };
+        //成功点击获取,1出现新密码框,2移除class--jNextStep允许提交,3修改提交input的文字
+        $(".jnewPwd").show();
+        $("#jNextStep").removeClass("jNextStep").val("提交");
         //发送ajax请求
         io.get($PAGE_DATA['code'],{mobile : $("#jName").val()},
             function(res){
                 //成功后的回调
-
             },function(res){
                 //fail
                 if(res.msg){

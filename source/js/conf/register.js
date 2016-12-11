@@ -13,37 +13,82 @@ define(function(require, exports, module) {
     //白名单
     var allowerList = [
         "www.baidu.com",
-        "www.google.com"
+        "www.google.com",
+        "index.html"
     ];
+
+    //临时代码,触发初始化,修改无法初始验证手机号,触发验证码按钮的bug
+    //setTimeout(function(){
+    //    $(".submit").trigger("click");
+    //    $("label.error").hide();
+    //    $(".error-red").removeClass("error-red");
+    //},0);
 
     //手机号正确才允许点击验证码
     $.validator.addMethod("lms", function(value, element, param) {
         var mobile = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
         if(mobile.test(value)){
             //修改点击提交触发验证,恢复验证码按钮色彩的功能
-            if($(".jsVerifyCode").hasClass("change")){
+            //change修改提交时触发验证手机号的bug
+            if($(".jsVerifyCode").hasClass("change")) {
+
             }else{
                 $(param).removeClass("ui-btn-disable");
             }
             return this.optional(element) || true;
         }else{
             $(param).addClass("ui-btn-disable");
-            return false
+            return false;
         }
 
     }, $.validator.format("请输入正确的手机号"));
 
+    // 手机动态码
+    $.validator.addMethod("vierfyCode", function(value, element) {
+        var code = /^\d{4}$/;
+        return this.optional(element) || (code.test(value));
+    }, "请输入动态码");
 
-    setTimeout(function(){
-        $(".submit").trigger("click");
-    },2000);
+    //验证成功时执行方法
+    function validateSuccess(url,formRes){
+        var formData = form.serializeForm(formRes);
+        var refer = document.referrer;//来源页面
+        formData.returnUrl = encodeURI(refer);
+        io.get(url,formData,function(res){
+            box.ok("注册成功");
+            refer = decodeURI(res.data.returnUrl);
+            alert(refer);
+            //等待1秒跳转页面
+            setTimeout(function(){
+                //注册成功,返回来源页面或登陆页面
+                //登陆页url
+                location.href = refer;
+            },1000);
+        },function(res){
+            if(res.msg){
+                box.error(res.msg);
+            }else{
+                box.error('网络错误');
+            }
 
+        });
+    }
+
+    //验证refer是否属于白名单里面
+    function includeUrl(refer){
+        for(var i = 0;i < allowerList.length;i ++){
+            if(refer.indexOf(allowerList[i]) >= 0){
+                return true
+            }
+        }
+        return false;
+    }
 
     //注册页面验证
     $("#jsRightSignin").validate({
         rules: {
             mobile:{
-                lms : ".jsVerifyCode",
+                lms: ".jsVerifyCode",
                 required: true,
                 mobile:true
             },
@@ -51,40 +96,62 @@ define(function(require, exports, module) {
                 required: true,
                 email:true
             },
-            //dynamic : {
-            //    require : true,
-            //    minlength : 4
-            //},
+            vierfyCode : {
+                required : true,
+                minlength : 4
+            },
             password : {
                 required : true,
                 minlength : 6
             }
         },
-        submitHandler: function(formRes){
-            alert(1);
-            var formData = form.serializeForm(formRes);
-            io.get($PAGE_DATA['login'],formData,function(data){
-                box.ok("注册成功");
-                var refer = document.referrer;
-                //等待两秒跳转页面
-                setTimeout(function(){
-                    //如果来源是zzh或白名单,返回refer
-                    if(refer.indexOf("zhongzhihui.com") || includeUrl(refer)){
-                        location.href = refer;
-                    }else{
-                        //否则返回到指定域名
-                        location.href = "www.zhongzhihui.com";
-                    }
-                },2000);
-            },function(res){
-                if(res.msg){
-                    box.error(res.msg);
-                }else{
-                    box.error('网络错误');
-                }
-
-            });
+        messages : {
+            mobile:{
+                required: "请输入手机号",
+                mobile:"请输入正确的手机号码"
+            },
+            vierfyCode : {
+                required : "请输入动态码",
+                minlength : ""
+            },
+            email:{
+                required: "请输入邮箱",
+                email:"请输入正确的邮箱"
+            },
+            password : {
+                required : "请输入密码",
+                minlength : "密码长度不小于6位,且不包含空格"
+            }
         },
+        errorPlacement : function(error,element){
+            //验证码特殊结构,修改错误信息放置位置
+            //debugger;
+            console.log(element);
+            if(element.attr("id") === "jDynamic"){
+                error.appendTo(element.parents(".item"));
+                $(element).parent().addClass("error-red");
+                $(element).parents(".item").addClass("error-red");
+            }else {
+                error.appendTo(element.parent());
+                $(element).parent().addClass("error-red");
+            }
+        },
+        success: function(label) {
+            //验证码特殊结构,修改错误信息放置位置
+            if(label.attr("id") === "jDynamic-error"){
+                label.html("&nbsp;").addClass("checked");
+                $(label).parent().removeClass("error-red");
+                $(label).siblings().children("label").removeClass("error-red");
+            }else {
+                label.html("&nbsp;").addClass("checked");
+                label.parent().removeClass("error-red");
+            }
+        },
+        submitHandler: function(formRes) {
+            debugger;
+            //验证成功时执行方法
+            validateSuccess($PAGE_DATA['register'], formRes)
+        }
     });
 
     //获取验证码
@@ -98,6 +165,7 @@ define(function(require, exports, module) {
         io.get($PAGE_DATA['code'],{mobile : $("#jName").val()},
             function(res){
                 //成功后的回调
+                console.log({mobile : $("#jName").val()});
 
             },function(res){
                 //fail
@@ -109,6 +177,7 @@ define(function(require, exports, module) {
             });
         //验证码循环
         var count = 60;
+        //class:change ==== 修改点击提交触发验证,触发验证手机号,恢复验证码按钮色彩的bug
         verifyCode.val(count).addClass("ui-btn-disable change");
         var time = setInterval(function(){
             if(count > 1){
@@ -120,4 +189,5 @@ define(function(require, exports, module) {
             }
         },1000);
     });
+
 })

@@ -64,6 +64,12 @@ body{
         border: 1px solid #e4ebf0;
         border-radius: 4px;
         background-color: #fff;
+        &.error{
+          border:1px solid #ec3b45;
+          .iyoyo{
+            color: #ec3b45;
+          }
+        }
         .ui-input{
           padding: 0;
           width: 230px;
@@ -71,10 +77,10 @@ body{
           border: none;
           color: #95aab8;
           &.error + label{
-            display: inline-block;
-            color: #ec3b45;
-            margin-top: 3px;
-          }
+             display: inline-block;
+             color: #ec3b45;
+             margin-top: 3px;
+           }
         }
         .code{
           display: inline-block;

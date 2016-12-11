@@ -62,6 +62,9 @@ body{
 				border-radius: 4px;
 				&.error{
 					border: 1px solid #ec3b45;
+					.iyoyo:before{
+						color: #ec3b45;
+					}
 				}
 				.ui-input{
 					padding: 0;
@@ -114,8 +117,15 @@ body{
 				height: 46px;
 				border: 1px solid #e4ebf0;
 				border-radius: 4px;
-				&.error{
+				&.error-red,&.error{
 					border:1px solid #ec3b45;
+					color: #ec3b45;
+					.iyoyo{
+						color: #ec3b45;
+					}
+					label.error-red{
+						border: 1px solid #ec3b45;
+					}
 				}
 				.ui-input{
 					padding: 0;
@@ -142,6 +152,9 @@ body{
 					line-height: 48px;
 					border: 1px solid #e4ebf0;
 					border-radius: 4px;
+					&.error{
+						border: 1px solid #ec3b45 ;
+					}
 				}
 				.ui-btn{
 					display: inline-block;

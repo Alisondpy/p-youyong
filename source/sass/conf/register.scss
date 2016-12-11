@@ -52,12 +52,27 @@ body{
 			width: 280px;
 			background-color: #fff;
 			.item{
+				position: relative;
 				margin-top: 20px;
 				padding: 2px 0;
 				width: 280px;
 				height: 46px;
 				border: 1px solid #e4ebf0;
 				border-radius: 4px;
+				&.error-red{
+					border:1px solid #ec3b45;
+					.iyoyo{
+						color: #ec3b45;
+					}
+				}
+				label.error-red{
+					border:1px solid #ec3b45;
+				}
+				label.error{
+					display: inline-block;
+					margin-top: 3px;
+					color: #ec3b45;
+				}
 				.ui-input{
 					padding: 0;
 					width: 230px;
@@ -69,6 +84,9 @@ body{
 						margin-top: 3px;
 						color: #ec3b45;
 					}
+					//&[name = vierfyCode]{
+					//	position: absolute;
+					//}
 				}
 				.code{
 					display: inline-block;
@@ -96,6 +114,7 @@ body{
 					color: #95aab8;
 				}
 				&.no-border{
+					height: 52px;
 					border: none;
 					.ui-input{
 						width: 100px;

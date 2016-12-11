@@ -2,7 +2,7 @@ define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     var jFormPwd = $('#jFormPwd');
-     require('./common');
+    require('./common');
 
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
@@ -10,7 +10,7 @@ define(function(require, exports, module) {
     var box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Uploader = require('lib/plugins/uploader/1.0.1/uploader');
-    require('plugins/validator/1.0.0/validator'); 
+    require('plugins/validator/1.0.0/validator');
     //图片上传插件
     var jAvater = $('#jAvater');
     var jImg = $('.jImg');
@@ -45,12 +45,12 @@ define(function(require, exports, module) {
         uploader.show();
     });
 
-     function infoForm(){
+    function infoForm(){
         $('#jInfoForm').validate({
-             onfocusout: function(element){
+            onfocusout: function(element){
                 $(element).valid();
             },
-             submitHandler: function(formRes){
+            submitHandler: function(formRes){
 
                 var formData = form.serializeForm(formRes);
                 Io.post($PAGE_DATA['submit'],formData,function(data){
@@ -104,14 +104,14 @@ define(function(require, exports, module) {
                     required:"请填写公司的名称"
                 }
             }
-        }) 
+        })
     };
- 
+
     infoForm();
 
     function subForm(){
         jFormPwd.validate({
-             onfocusout: function(element){
+            onfocusout: function(element){
                 $(element).valid();
             },
             submitHandler: function(formRes){
@@ -119,7 +119,7 @@ define(function(require, exports, module) {
                 Io.post($PAGE_DATA['editInfo'],formData,function(data){
                     box.ok("保存成功");
                 },function(data){
-                        box.error(data.msg || '保存失败了');
+                    box.error(data.msg || '保存失败了');
                 });
             },
             rules:{
@@ -230,7 +230,7 @@ define(function(require, exports, module) {
                     }
                 });
                 var province_change = $(this).val();
-               
+
                 var cityMap = loadArea($PAGE_DATA['location'] + province_change);
                 if (cityMap != 0) {
 
