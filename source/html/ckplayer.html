@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <title>提问</title>
+    <!--#include file="./common/meta.html"-->
+    <!--#include file="./common/css.html"-->
+    <link rel="stylesheet" href="/css/conf/course/ask-pop.css" type="text/css" charset="utf-8">
+    <script type="text/javascript">
+        $PAGE_DATA['m3u8'] = 'http://localhost:3000/p-youyong/source/js/plugins/ckplayer6.7/m3u8.swf';
+        $PAGE_DATA['ckplayer'] = $PAGE_DATA['baseStaticUrl'] + 'source/js/plugins/ckplayer6.7/ckplayer.swf';
+        $PAGE_DATA['play'] = 'http://n03.wbc.zhongzhihui.com/data/client/courseware/0/2016/6/2016-06-06/06c8932e48ca3fe0d9894dec3f4d7a43/t/playlist.m3u8';
+    </script>
+    <style>
+        .div{
+            position: relative;
+            top: 122px;
+        }
+    </style>
+</head>
+
+<body>
+<!-- 我是注释 -->
+<!-- 主要内容 start-->
+<div id="video" style="position:relative;z-index: 100;width:600px;height:400px;float: left;">
+    <div id="a1"></div>
+</div>
+<div class="div">
+    <a class="start" href="javascript:;">播放</a>
+    <a class="pause" href="javascript:;">暂停</a>
+    <a class="resize" href="javascript:;">调整宽高</a>
+    <a class="time" href="javascript:;">输出时间参数</a>
+    <a class="next" href="javascript:;">下一个</a>
+    <a class="continue" href="javascript:;">持续</a>
+</div>
+<!-- 主要内容 end-->
+<!--#include file="./common/js.html"-->
+<script type="text/javascript">
+    require(['conf/ckplayer'], function () {
+    });
+</script>
+<!--#include file="./common/tj.html"-->
+<!--#include file="./common/statistics.html"-->
+</body>
+
+</html>
+
