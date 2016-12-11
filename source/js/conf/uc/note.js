@@ -61,6 +61,7 @@ define(function(require, exports, module) {
                     body.on('click', '.jEdit .jEditTxt', function() {
                         var _this = $(this);
                         _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('readonly').addClass('edittxt');
+                        _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('unselectable');
                         _this.parents('.jEdit').find('.jHide').hide().siblings('.jSave').show();
 
                     })
@@ -70,7 +71,8 @@ define(function(require, exports, module) {
                         var id = _this.parents('.jEdit').attr('data-id');
                         _this.parents('.jEdit').find('.jHide').show().siblings('.jSave').hide();
                         _this.parents('.jEdit').siblings('.jEditDetails').attr('readonly', true).removeClass('edittxt');
-                        InitEvent.postparams($PAGE_DATA['noteSave'], { 'id': id, 'context': context }, '保存成功！')
+                        _this.parents('.jEdit').siblings('.jEditDetails').attr('unselectable', 'on');
+                        InitEvent.postparams($PAGE_DATA['noteSave'], { 'id': id, 'context': context }, '保存成功！');
 
                     })
                     body.on('click', '.jEdit .jDel', function() {

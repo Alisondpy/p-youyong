@@ -99,7 +99,7 @@ define(function(require, exports, module) {
         postparams: function(url, data, tips, pager) {
             io.get(url, data, function(res) {
                 pager.pagination.selectPage(pager.pagination.get('currentPage'));
-                box.ok(tips)
+                box.ok(tips);
             }, function(res) {
                 box.error(res.msg || '网络错误,请重试');
             }, this)

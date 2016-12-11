@@ -96,6 +96,8 @@ define(function(require, exports, module) {
                             }, function (res) {
                                 box.error(res.msg || '网络错误,请重试');
                             }, this)
+                        }, function(){
+                            // box.tips('已取消')
                         })
                     })
                }
