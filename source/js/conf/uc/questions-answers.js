@@ -4,6 +4,7 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
+    require('./common');
     var box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Pager = require('plugins/pager/1.0.0/pager');
@@ -168,7 +169,6 @@ define(function(require, exports, module) {
                 "id":id
             }
             clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
-            $(this).removeClass('activeLike');
         }else {
             data = {
                 "dataType":dataType,
@@ -176,7 +176,6 @@ define(function(require, exports, module) {
                 "id":id
             }
             clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
-            $(this).addClass('activeLike');
         }
     });
 });

@@ -2,9 +2,6 @@ define(function (require, exports, module) {
     'use strict';
     var $ = require('jquery');
     require('./common');
-    /*顶部搜索、登录状态、底部、右侧在线客服 end*/
-
-    //左侧菜单栏
 
     var template = require("template");
     var io = require('lib/core/1.0.0/io/request');

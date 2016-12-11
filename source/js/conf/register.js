@@ -4,11 +4,21 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var box = require('lib/ui/box/1.0.1/box');
+    var box = require('lib/ui/box/1.0.1/crossbox');
     var io = require('lib/core/1.0.0/io/request');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var validate = require('plugins/validator/1.0.0/validator');
     var form = require("lib/core/1.0.0/utils/form");
+    /*顶部搜索、登录状态、底部、右侧在线客服 start*/
+    var TopSearch = require('module/top-search/1.0.0/top-search');
+    var LoginStatus = require('module/login-status/1.0.0/login-status');
+    var FixBar = require('module/fix-bar/1.0.0/fix-bar');
+    var Footer = require('module/footer/1.0.0/footer');
+    var topSearch = new TopSearch();
+    var loginStatus = new LoginStatus();
+    var fixBar = new FixBar();
+    var footer = new Footer();
+    /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     //白名单
     var allowerList = [
@@ -189,5 +199,12 @@ define(function(require, exports, module) {
             }
         },1000);
     });
+    $(".jPopBtn").on("click",function(){
+        box.loadUrl($PAGE_DATA['popUrl'], {
+            title: '个人注册协议',
+            autoRelease: false,
+            modal: true //是否有遮罩层
+        });
+    })
 
 })

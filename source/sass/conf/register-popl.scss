@@ -1,0 +1,34 @@
+@charset "UTF-8";
+@import "../common/config/level-1";
+@import "../common/common";
+body{
+  width: 675px;
+  height: 340px;
+  min-width:675px;
+}
+p{
+  margin:0;
+}
+.mod-protocol{
+  background:#fff;
+  width:675px;
+  box-sizing:border-box;
+  padding:20px;
+  p{
+    font-size:14px;
+    color:#aaa;
+    line-height:22px;
+  }
+  .ui-close-btn{
+    width:130px;
+    height:40px;
+    line-height:40px;
+    text-align:center;
+    background:#ff1c41;
+    color:#fff;
+    display:block;
+    font-size:14px;
+    border-radius:3px;
+    margin:25px auto 0;
+  }
+}
