@@ -25,12 +25,14 @@ define(function(require, exports, module) {
 
     /*后台全局变量*/
     var sourceId = $PAGE_DATA['sourceId'];
+    var toQuestionPage = $PAGE_DATA['toQuestionPage'];
 
     var jPagination = $('#jPagination');
 
     /*提问弹窗*/
     $('.jWrap2').on('click','#jQuestion',function(){
-        box.loadUrl($PAGE_DATA['submitQuestionUrl'], {
+
+        box.loadUrl(toQuestionPage+"?id="+sourceId, {
             title: '提问页面',
             autoRelease: true,
             modal: false

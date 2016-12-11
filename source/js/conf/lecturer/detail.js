@@ -8,9 +8,18 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
-    var build = require('lib/core/1.0.0/dom/build');
     var template = require('template');
     var form = require('lib/core/1.0.0/utils/form');
+    /*顶部搜索、登录状态、底部、右侧在线客服 start*/
+    var TopSearch = require('module/top-search/1.0.0/top-search');
+    var LoginStatus = require('module/login-status/1.0.0/login-status');
+    var FixBar = require('module/fix-bar/1.0.0/fix-bar');
+    var Footer = require('module/footer/1.0.0/footer');
+    var topSearch = new TopSearch();
+    var loginStatus = new LoginStatus();
+    var fixBar = new FixBar();
+    var footer = new Footer();
+    /*顶部搜索、登录状态、底部、右侧在线客服 end*/
     var jTinfo = $('.jTinfo');
     var tab1 = $('.jTab-l');
     var tab2 = $('.jTab-r');
