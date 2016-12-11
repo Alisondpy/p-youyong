@@ -30,7 +30,7 @@ define(function(require, exports, module) {
 
     /*提问弹窗*/
     $('.jWrap2').on('click','#jQuestion',function(){
-        box.loadUrl('/p-youyong/dist/html/ask-pop.html', {
+        box.loadUrl($PAGE_DATA['submitQuestionUrl'], {
             title: '提问页面',
             autoRelease: true,
             modal: false
@@ -117,7 +117,7 @@ define(function(require, exports, module) {
                 renderList($PAGE_DATA['commentUrl'],{'sourceType':sourceType,"sourceId":sourceId},'jWrap1','jWrap1Box',jPagination);
                 break;
             case '3':
-                renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'sourceType':sourceType,"sourceId":sourceId},'jWrap2','jWrap2Box',jPagination);
+                renderList($PAGE_DATA['loadQuestionUrl'],{'id':sourceId},'jWrap2','jWrap2Box',jPagination);
                 break;
             case '4':
                 renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":showType,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);

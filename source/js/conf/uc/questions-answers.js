@@ -41,6 +41,7 @@ define(function(require, exports, module) {
         pager.on('ajaxSuccess', function(res, callback) {
             if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
+                console.log(html);
                 document.getElementById(htmEl).innerHTML = html;
                 //图片懒加载
                 lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
@@ -65,9 +66,10 @@ define(function(require, exports, module) {
         pager.on('change', function(pageNum, e) {});
     };
 
+    var questionId
     function init(){
-        var id = jContainer.attr('data-id');
-        renderList($PAGE_DATA['getPager'],{'type':id},'jPage','jContainer',jPagination);
+        questionId = jContainer.attr('data-id');
+        renderList($PAGE_DATA['pagerAnswers'],{'questionId':questionId},'jPage','jContainer',jPagination);
     }
     init();
 
@@ -78,7 +80,7 @@ define(function(require, exports, module) {
     var arrow = $('.jArrow');
     var txtNum = $('.jTxtNum');
     var txt = $('.jTxt');
-    main.on('keyup','.jTxt',function(){
+    main.on('input propertychange','.jTxt',function(){
         var txtLen = txt.val().length;
         if(txtLen > 300){
             $(this).addClass('text-error');
@@ -101,7 +103,7 @@ define(function(require, exports, module) {
             box.error('请输入发表内容');
         }else {
             if(!$(this).hasClass('publish-error')){
-                io.get($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'content':content},function(res){
+                io.get($PAGE_DATA['submitAnswer'],{'questionId':questionId,'answerId':0,'content':content},function(res){
                     if(res){
                         if(res.code == 0){
                             box.ok('发表成功');
@@ -155,23 +157,25 @@ define(function(require, exports, module) {
 
     //点赞
     main.on('click','#jLike',function(){
+        var dataType = $(this).attr('data-dataType');
+        var type = $(this).attr('data-type');
         var id = $(this).attr('data-id');
         var data;
         if($(this).hasClass("activeLike")){
             data = {
-                "dataType":1,
-                "type":1,
+                "dataType":dataType,
+                "type":type,
                 "id":id
             }
-            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',data,'取消点赞');
+            clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
             $(this).removeClass('activeLike');
         }else {
             data = {
-                "dataType":1,
-                "type":2,
+                "dataType":dataType,
+                "type":type,
                 "id":id
             }
-            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',data,'点赞');
+            clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
             $(this).addClass('activeLike');
         }
     });

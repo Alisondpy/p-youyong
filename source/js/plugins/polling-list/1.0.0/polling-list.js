@@ -14,8 +14,7 @@ define(function(require, exports, module) {
             throw new Error('the param [el] is required.');
         }
         _this.container = $('<div node-type="container"></div>');
-        _this.el.append(_this.container );
-        console.log(_this.container ,'dddss');
+        _this.el.append(_this.container);
         var defaults = {
             ajax: {
                 url: null,
@@ -47,7 +46,6 @@ define(function(require, exports, module) {
         //数据获取失败
         _this.polling.on('success', function(data) {
             _this.emit('success', data, _this.container);
-            _this.scrollTo(0);
         });
 
         //鼠标滚动事件

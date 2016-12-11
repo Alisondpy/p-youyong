@@ -14,7 +14,7 @@ define(function(require, exports, module) {
 	var handshake = {
 		handle:function () {
 			var ucData = form.serializeForm('#jSigninForm');
-			io.get($PAGE_DATA['getInfo'], ucData ,function(res){
+			io.get($PAGE_DATA['submitQuestionUrl'], ucData ,function(res){
 				if(res){
 					var topBox = box.get(window);
 					topBox.hide();

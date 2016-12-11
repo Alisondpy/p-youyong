@@ -1,15 +1,16 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    /*¶¥²¿ËÑË÷¡¢µÇÂ¼×´Ì¬¡¢µ×²¿¡¢ÓÒ²àÔÚÏß¿Í·ş start*/
+    /*é¡¶éƒ¨æœç´¢ã€ç™»å½•çŠ¶æ€ã€åº•éƒ¨ã€å³ä¾§åœ¨çº¿å®¢æœ start*/
     var TopSearch = require('module/top-search/1.0.0/top-search');
     var LoginStatus = require('module/login-status/1.0.0/login-status');
+    var FixBar = require('module/fix-bar/1.0.0/fix-bar');
     var Footer = require('module/footer/1.0.0/footer');
-    var template = require('template');
     var topSearch = new TopSearch();
     var loginStatus = new LoginStatus();
+    var fixBar = new FixBar();
     var footer = new Footer();
-    /*¶¥²¿ËÑË÷¡¢µÇÂ¼×´Ì¬¡¢µ×²¿¡¢ÓÒ²àÔÚÏß¿Í·ş end*/
+    /*é¡¶éƒ¨æœç´¢ã€ç™»å½•çŠ¶æ€ã€åº•éƒ¨ã€å³ä¾§åœ¨çº¿å®¢æœ end*/
 
 
 /*$("#jTest").on("click",".answer span",function(){

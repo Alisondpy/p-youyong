@@ -57,8 +57,7 @@ define(function(require, exports, module) {
         //数据获取失败
         _this.pollingList.on('success', function(data) {
             //如果刷新成功，并且有更新，直接用html替换
-            console.log(data,'ddd');
-             if (data && data.resultList && data.resultList.length > 0) {
+             if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
                 _this.pollingList.html(_this.template(data.data));
              }
             _this.scrollTo(0);
@@ -114,15 +113,8 @@ define(function(require, exports, module) {
         _this.pollingList.scrollTo(top);
     }
 
-    var count = 1;
     Question.prototype.template = function(data) {
-        var str = '';
-        for(var i=0;i<count+10;i++){
-
-            str+='<div style="height:50px;border:1px solid red;"></div>';
-        }
-        count = count+10;
-        return str;
+        return template('tQuestion',data);
     }
 
     module.exports = Question;

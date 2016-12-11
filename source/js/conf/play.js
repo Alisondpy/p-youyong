@@ -7,13 +7,18 @@ define(function(require, exports, module) {
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var template=require("template");
     var Question = require('module/monitor/1.0.0/question');
-    var Note = require('module/monitor/1.0.0/note');
+    //var Note = require('module/monitor/1.0.0/note');
     var catlog = $('.jMod-catlog');
     var note = $('.jMod-note');
     //var question = $('.jMod-question');
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
     var lazy,question,note;
+
+    var jQuestionTab1 = $('#jQuestionTab1');
+    var jQuestionTab2 = $('#jQuestionTab2');
+    var jNoteTab1 = $('#jNoteTab1');
+    var jNoteTab2 = $('#jNoteTab2');
     //图片懒加载
     lazy = new Lazyload($('.jImg'), {
         mouseWheel: true,
@@ -21,8 +26,8 @@ define(function(require, exports, module) {
         snap: true
     });
 
-    /*实时监听*/
-    var question = new Question('#jQuestionTab', {
+    /*问答实时监听*/
+    question = new Question('#jQuestionTab2', {
         pollingAjax: {
             url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
         },
@@ -31,14 +36,14 @@ define(function(require, exports, module) {
         }
     });
 
-    answer = new Note('#jNoteTab', {
-        pollingAjax: {
-            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
-        },
-        pagerAjax: {
-            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
-        }
-    });
+    //answer = new Note('#jNoteTab', {
+    //    pollingAjax: {
+    //        url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
+    //    },
+    //    pagerAjax: {
+    //        url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
+    //    }
+    //});
 
     /*交互*/
     //字数限制
@@ -208,20 +213,35 @@ define(function(require, exports, module) {
             loading && loading.hide();
         });
     }
-
     function init(type){
         switch (type){
             case '0':
-                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tAnswer','jAnswerTab');
+                jNoteTab1.show();
+                jNoteTab2.hide();
+                jQuestionTab1.hide();
+                jQuestionTab2.hide();
+                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tAnswer','jNoteTab1');
                 break;
             case '1':
-                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tAnswer','jAnswerTab');
+                jNoteTab1.hide();
+                jNoteTab2.show();
+                jQuestionTab1.hide();
+                jQuestionTab2.hide();
+                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tAnswer','jNoteTab2');
                 break;
             case '2':
+                jNoteTab1.hide();
+                jNoteTab2.hide();
+                jQuestionTab1.show();
+                jQuestionTab2.hide();
                 question.stop();
-                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tQuestion','jQuestionTab');
+                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tQuestion','jQuestionTab1');
                 break;
             case '3':
+                jNoteTab1.hide();
+                jNoteTab2.hide();
+                jQuestionTab1.hide();
+                jQuestionTab2.show();
                 question.start();
                 break;
         }
@@ -235,5 +255,7 @@ define(function(require, exports, module) {
     tab.on('change', function(el) {
         var type = el.body.find('.ui-current').attr('data-type');
         init(type);
+        var target = el.hd.find('current');
+        lazy.update();
     });
 });

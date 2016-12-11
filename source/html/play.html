@@ -62,53 +62,14 @@
 
             <div node-type="bd">
                  <!-- 目录tab切换 start-->
-                <div class="mod-catlog jMod-catlog current" node-type="container" data-id="1">  
-                    <div class="status">
-                        <i class="iyoyo iyoyo-ok"></i>
-                        <a href="">
-                        <em>课时1</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-pause"></i>
-                        <a href="">
-                        <em>课时2</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-half-circle"></i>
-                        <a href="">
-                        <em>课时3</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-circle"></i>
-                        <a href="">
-                        <em>课时4</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-circle"></i>
-                        <a href="">
-                        <em>课时5</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
-                    </div>
-                    <div class="line"></div>
-                    <div class="status">
-                        <i class="iyoyo iyoyo-circle"></i>
-                        <a href="">
-                        <em>课时6</em>
-                        <span class="tool">PS基础工具使用</span>
-                        </a>
+                <div class="mod-catlog jMod-catlog current" node-type="container" data-id="1">
+                    <div id="jDir">
+                        <div class="ui-loading-list">
+                            <div class="img-loading"></div>
+                            <div class="txt">
+                                正在卖力加载，请稍后
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <!-- 目录tab切换  end -->
@@ -119,7 +80,15 @@
                         <a href="javascript:;" class="m-answer tab-q ui-current jSubNav" data-type="0">我的笔记</a>
                         <a href="javascript:;" class="all-answer tab-q jSubNav" data-type="1">全部笔记</a>
                     </div>
-                    <div id="jNoteTab" class="ui-answer-box">
+                    <div id="jNoteTab1" class="ui-answer-box">
+                        <div class="ui-loading-list">
+                            <div class="img-loading"></div>
+                            <div class="txt">
+                                正在卖力加载，请稍后
+                            </div>
+                        </div>
+                    </div>
+                    <div id="jNoteTab2" class="ui-answer-box">
                         <div class="ui-loading-list">
                             <div class="img-loading"></div>
                             <div class="txt">
@@ -147,7 +116,15 @@
                         <a href="javascript:;" class="m-answer tab-q ui-current jSubNav" data-type="2">我的问答</a>
                         <a href="javascript:;" class="all-answer tab-q jSubNav" data-type="3">全部问答</a>
                     </div>
-                    <div id="jQuestionTab" class="ui-answer-box">
+                    <div id="jQuestionTab1" class="ui-answer-box">
+                        <div class="ui-loading-list">
+                            <div class="img-loading"></div>
+                            <div class="txt">
+                                正在卖力加载，请稍后
+                            </div>
+                        </div>
+                    </div>
+                    <div id="jQuestionTab2" class="ui-answer-box">
                         <div class="ui-loading-list">
                             <div class="img-loading"></div>
                             <div class="txt">
@@ -176,6 +153,26 @@
     <!--#include file="./common/js.html"-->
     <script type="text/javascript">
     require(['conf/play'], function() {});
+    </script>
+    <script id="tDir" type="text/html">
+        {{each resultList as value i}}
+        <div class="status">
+            {{if value.studyState == 3}}
+            <i class="iyoyo iyoyo-ok"></i>
+            {{/if}}
+            {{if value.studyState == 2}}
+            <i class="iyoyo iyoyo-half-circle"></i>
+            {{/if}}
+            {{if value.studyState == 1}}
+            <i class="iyoyo iyoyo-circle"></i>
+            {{/if}}
+            <a href="">
+                <em>课时{{i}}</em>
+                <span class="tool">{{value.title}}</span>
+            </a>
+        </div>
+        <div class="line"></div>
+        {{/each}}
     </script>
     <script id="tAnswer" type="text/html">
         {{each resultList as value i}}
