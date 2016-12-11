@@ -89,7 +89,7 @@ define(function(require, exports, module) {
                     body.on('click', '.jControl .jDel', function () {
                         var delId = $(this).attr('data-id');
                         box.confirm('确定删除吗？', function(){
-                            io.get($PAGE_DATA['getPager'], {'id':delId} , function (res) {
+                            io.get($PAGE_DATA['delInfo'], {'id':delId} , function (res) {
                                 isDeleting = true;
                                 box.ok('删除成功!');
                                 pager.pagination.selectPage(pager.pagination.get('currentPage'));
