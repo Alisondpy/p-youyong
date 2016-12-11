@@ -31,11 +31,10 @@ define(function(require, exports, module) {
 
     /*提问弹窗*/
     $('.jWrap2').on('click','#jQuestion',function(){
-
         box.loadUrl(toQuestionPage+"?id="+sourceId, {
             title: '提问页面',
             autoRelease: true,
-            modal: false
+            modal: false,
         });
     });
 
@@ -240,7 +239,6 @@ define(function(require, exports, module) {
                 "id":id
             }
             clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
-            $(this).removeClass('activeLike');
         }else {
             data = {
                 "dataType":dataType,
@@ -248,7 +246,6 @@ define(function(require, exports, module) {
                 "id":id
             }
             clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
-            $(this).addClass('activeLike');
         }
     });
 

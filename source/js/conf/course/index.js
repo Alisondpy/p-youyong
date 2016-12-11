@@ -82,6 +82,9 @@ define(function(require, exports, module) {
     var jNavClassify = $('#jNavClassify');
     var jNavStatus = $('#jNavStatus');
     var jNavSubClassify = $('#jNavSubClassify');
+    var jClassNav1 = $('.jClassNav1');
+    var jClassNav2 = $('.jClassNav2');
+    var jStatusNav2 = $('.jStatusNav2');
     tab.on('change', function(el) {
         type = el.body.attr('data-id');
         switch (type){
@@ -90,18 +93,27 @@ define(function(require, exports, module) {
                 jNavClassify.hide().removeClass('ui-nav-border');
                 jNavStatus.hide().removeClass('ui-nav-border');
                 jNavSubClassify.hide();
+                jClassNav1.hide();
+                jClassNav2.hide();
+                jStatusNav2.hide();
                 break;
             case '2':
                 jNavType.addClass('ui-nav-border');
-                jNavClassify.show().addClass('ui-nav-border');
+                jNavClassify.show();
                 jNavStatus.show();
                 jNavSubClassify.show();
+                jClassNav1.show();
+                jClassNav2.hide();
+                jStatusNav2.hide();
                 break;
             case '3':
                 jNavType.addClass('ui-nav-border');
                 jNavClassify.show().addClass('ui-nav-border');
                 jNavStatus.show();
                 jNavSubClassify.hide();
+                jClassNav1.hide();
+                jClassNav2.show();
+                jStatusNav2.show();
                 break;
         }
     });
