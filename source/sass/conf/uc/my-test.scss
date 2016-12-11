@@ -77,6 +77,15 @@ span, i, em, label, b {
 
   .mod-item {
     margin-top:30px;
+    .exam-restart{
+      margin-left:50px;
+      font-size:14px;
+      text-align:right;
+      color:#44687d;
+      .join-exam{
+        margin-bottom:5px;
+      }
+    }
     .item {
       position: relative;
       border-bottom: 1px solid #eef3f7;
@@ -103,7 +112,7 @@ span, i, em, label, b {
     .contain {
       .title {
         h3 {
-          width: 550px;
+          width: 200px;
           overflow: hidden;
           text-overflow: ellipsis;
           white-space: nowrap;
@@ -170,6 +179,7 @@ span, i, em, label, b {
         margin-top: 30px;
       }
       .has-join {
+        text-align: center;
         &.mod-fail-exam {
           span {
             color: #ff1c41;
@@ -192,7 +202,7 @@ span, i, em, label, b {
           color: #44687d;
           font-size: 12px;
           display:block;
-          margin-top: 15px;
+          margin-top: 27px;
           line-height:1;
           &:hover {
             text-decoration: underline;

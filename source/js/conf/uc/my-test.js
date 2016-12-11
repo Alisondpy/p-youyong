@@ -8,7 +8,7 @@ define(function (require, exports, module) {
 
     var template = require("template");
     var io = require('lib/core/1.0.0/io/request');
-    var Box = require('lib/ui/box/1.0.1/box');
+    var Box = require('lib/ui/box/1.0.1/crossbox');;
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Pager = require('plugins/pager/1.0.0/pager');
     var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
@@ -18,6 +18,7 @@ define(function (require, exports, module) {
 
     //考试接口
     var loadTest = $PAGE_DATA['loadTest'];
+    var analysisUrl= $PAGE_DATA['analysisUrl'];
 
 
     var jTestModule = $("#jTestModule"); /*模板*/
@@ -122,18 +123,35 @@ define(function (require, exports, module) {
                             Box.error(res.msg || '网络失败，请重试');
                         }, this)
                 })
+
+                elem.on("click",".jViewPage",function(){
+                    var _this = $(this);
+                    var examId = _this.parents(".jExamList").attr("data-value");
+                    io.get(analysisUrl,{"examId":examId},function(resData){
+                        if(resData.code == 200){
+                            Box.loadUrl(resData.msg, {
+                                title: '答卷详情',
+                                autoRelease: false,
+                                modal: true //是否有遮罩层
+                            });
+                        }else{
+                            Box.error(resData.msg || '网络失败，请重试');
+                        }
+                    })
+
+                })
             }
         }
     };
 
     //时间转换方法
     var TimeConver = function(data){
-        var minutes = data/1000/60;
+        var minutes = parseInt(data/1000/60);
         var str;
-        var ss = minutes%60>0?minutes%60+'分':'';//分钟
+        var ss = parseInt(minutes%60)>0?(parseInt(minutes%60))+'分':'';//分钟
         var aa = parseInt(minutes/60);//总共小时数
-        var hh = aa%24>0? aa%24+'时':'';//小时
-        var dd = parseInt(aa/24)>0?parseInt(aa/24)+'天':"";//总共天数
+        var hh = aa%24>0? (aa%24+'时'):'';//小时
+        var dd = parseInt(aa/24)>0?(parseInt(aa/24)+'天'):"";//总共天数
 
        str = dd+hh+ss
         return str;
