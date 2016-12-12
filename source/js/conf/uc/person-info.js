@@ -11,6 +11,7 @@ define(function(require, exports, module) {
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Uploader = require('lib/plugins/uploader/1.0.1/uploader');
     require('plugins/validator/1.0.0/validator');
+    var Io = require('lib/core/1.0.0/io/request');
     //图片上传插件
     var jAvater = $('#jAvater');
     var jImg = $('.jImg');
@@ -32,12 +33,12 @@ define(function(require, exports, module) {
             selected: [] //选种的图片
         });
         uploader.on('ok', function(urls) {
-            console.log(urls);
             var str = '';
             if (urls.length > 0) {
                 jImg.attr('src', urls[0]);
                 jAvater.val(urls[0]);
                 $("#avatarUrl").val(urls[0]);
+
             }
             this.hide();
         });
@@ -49,15 +50,14 @@ define(function(require, exports, module) {
             onfocusout: function(element){
                 $(element).valid();
             },
-<<<<<<< 40ab732ac4868530aca94e447433e97889a6f60d
             submitHandler: function(formRes){
 
-=======
-             submitHandler: function(formRes){
->>>>>>> donkey201612121110
+
                 var formData = form.serializeForm(formRes);
                 Io.post($PAGE_DATA['submit'],formData,function(data){
-                    box.ok("保存成功");
+                    box.alert("保存成功", function(){
+                          window.location.reload();
+                    });
                 },function(data){
                     box.error((data && data.msg) || '保存失败');
                 });
@@ -68,6 +68,7 @@ define(function(require, exports, module) {
                     maxlength:12
                 },
                 nickName:{
+                    required:true,
                     minlength:2,
                     maxlength:12
                 },
@@ -104,7 +105,22 @@ define(function(require, exports, module) {
             },
             messages:{
                 unit:{
-                    required:"请填写公司的名称"
+                    required:"请输入您所属的公司名字"
+                },
+                email:{
+                    required:"请输入您的邮箱"
+                },
+                realName:{
+                    required:"请输入您的真实姓名"
+                },
+                mobile:{
+                    required:"请输入您的手机号码"
+                },
+                job:{
+                    required:"请输入您的职业"
+                },
+                nickName:{
+                    required:"请输入您的昵称"
                 }
             }
         })
@@ -120,7 +136,10 @@ define(function(require, exports, module) {
             submitHandler: function(formRes){
                 var formData = form.serializeForm(formRes);
                 Io.post($PAGE_DATA['editInfo'],formData,function(data){
-                    box.ok("保存成功");
+                    box.alert("密码修改成功",function(){
+                        window.location.reload();
+                    });
+
                 },function(data){
                     box.error(data.msg || '保存失败了');
                 });
@@ -179,11 +198,11 @@ define(function(require, exports, module) {
             var provinceMap = loadArea($PAGE_DATA['location']);
             province.empty();
             province.append("<option value='0'>请选择省</option>");
-
             if (provinceMap != null) {
                 $.each(provinceMap, function(i, n) {
                     province.append("<option value='" + n.id + "'>" + n.name + "</option>");
                 });
+            
                 var provinceValue = $("input[name='" + provinceName + "_hide']").val();
                 if (typeof (provinceValue) != "undefined" && provinceValue != "" && provinceValue != null && provinceValue != "0") {
                     province.val(provinceValue);

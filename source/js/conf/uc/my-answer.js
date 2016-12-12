@@ -2,14 +2,23 @@ define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     require('./common');
+    /*顶部搜索、登录状态、底部、右侧在线客服 start*/
+    var TopSearch = require('module/top-search/1.0.0/top-search');
+    var LoginStatus = require('module/login-status/1.0.0/login-status');
+    var Footer = require('module/footer/1.0.0/footer');
+    var template = require('template');
+    var topSearch = new TopSearch();
+    var loginStatus = new LoginStatus();
+    var footer = new Footer();
+    var isDeleting = false;
+    /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     var box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
-
-
+    
 
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
@@ -41,7 +50,7 @@ define(function(require, exports, module) {
                     var delId = $(this).attr('data-id');
                     box.confirm('是否删除',function(data) {
                         if(data==true) {
-                            InitEvent1.postparams($PAGE_DATA['noteDel'], { 'id': delId }, '删除成功！', pager);
+                            InitEvent1.postparams($PAGE_DATA['delQusetion'], { 'id': delId }, '删除成功！', pager);
                         }
                     }, function() {
 
@@ -79,7 +88,7 @@ define(function(require, exports, module) {
                 body.on('click', '.jDel', function () {
                     var delId = $(this).attr('data-id');
                     box.confirm('是否删除',function() {
-                        InitEvent2.postparams($PAGE_DATA['noteDel'], { 'id': delId }, '删除成功！', pager)
+                        InitEvent2.postparams($PAGE_DATA['delAnswer'], { 'id': delId }, '删除成功！', pager)
                     }, function() {
 
                     });
@@ -107,9 +116,8 @@ define(function(require, exports, module) {
             var builder = build.build(body, false);
             var jPagination = builder.get('jPagination');
             var jContainer = builder.get('jContainer');
-
             var pager = new Pager(jPagination, {
-                url: $PAGE_DATA['getPager'],
+                url: $PAGE_DATA['pagerQusetion'],
                 data: {}
             });
 
@@ -141,6 +149,7 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxError', function(data) {
+                console.log(1);
                 jContainer.html('网络错误，请重试！');
                 loading && loading.hide();
             });
@@ -161,7 +170,7 @@ define(function(require, exports, module) {
             var jPagination = builder.get('jPagination');
             var jContainer = builder.get('jContainer');
             var pager = new Pager(jPagination, {
-                url: $PAGE_DATA['getPager'],
+                url: $PAGE_DATA['pagerAnswer'],
                 data: {}
             });
 
