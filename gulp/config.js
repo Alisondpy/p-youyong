@@ -101,7 +101,7 @@ var CONFIG = {
         //公共配置
         common: {
             findNestedDependencies: true,
-            baseUrl: 'http://s1.zhongzhihui.com/p-youyong/dist/js/',
+            // baseUrl: 'http://s1.zhongzhihui.com/p-youyong/dist/js/',
             paths: {
                 // 'lib': 'http://s1.zhongzhihui.com/lib',
                 'template': 'lib/template/3.0/template-simple',

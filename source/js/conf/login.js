@@ -34,7 +34,7 @@ define(function(require, exports, module) {
             }
             return this.optional(element) || true;
         } else {
-            $('#jDynamic').attr("disabled","disabled");
+            $('#jDynamic').attr("disabled", "disabled");
             $(param).addClass("ui-btn-disable");
             return false
         }
@@ -167,7 +167,7 @@ define(function(require, exports, module) {
             return false;
         }
         //发送ajax请求
-        io.get($PAGE_DATA['code'], { mobile: $("#jMobile").val() },
+        io.post($PAGE_DATA['code'], { mobile: $("#jMobile").val() },
             function(res) {
                 //成功后的回调
 
@@ -198,12 +198,12 @@ define(function(require, exports, module) {
     function validateSuccess(url, formRes) {
         var formData = form.serializeForm(formRes);
         formData.returnUrl = getReturnUrl();
-        io.get(url, formData, function(res) {
+        io.post(url, formData, function(res) {
             box.ok("登陆成功");
             //等待1秒跳转页面
             refer = res.data.returnUrl;
             cookie.set('__returnUrl', null);
-            if(refer){
+            if (refer) {
                 refer = decodeURIComponent(refer);
                 setTimeout(function() {
                     window.location.href = refer;
@@ -222,31 +222,30 @@ define(function(require, exports, module) {
         ];
         var defaultReturnUrl = $PAGE_DATA && $PAGE_DATA['defaultReturnUrl'] || 'http://www.yonghou.com';
         var params = Utils.parseQuery(window.location.search);
-
         //从哪里来到哪里去
         //如果url带有returnUrl，优先跳转
         //如果url没有就从cookie去取，
         //如果cookie没有就从document.referrer
         //如果document.referrer没有就用默认
-        var returnUrl = params.get('returnUrl');    
-        if(returnUrl){
+        var returnUrl = params && params['returnUrl'];
+        if (returnUrl) {
             returnUrl = decodeURIComponent(returnUrl);
-        }else{
+        } else {
             returnUrl = cookie.get('__returnUrl');
-            if(returnUrl){
+            if (returnUrl) {
                 returnUrl = decodeURIComponent(returnUrl)
-            }else{
+            } else {
                 returnUrl = document.referrer;
-                if(!returnUrl){
+                if (!returnUrl) {
                     returnUrl = defaultReturnUrls;
                 }
             }
         }
 
-        if(returnUrl){
+        if (returnUrl) {
             returnUrl = encodeURIComponent(returnUrl);
-            cookie.set('__returnUrl', returnUrl, {expires: 0.04});
-            for (var i = 0; i < allowerList.length; i++) {         
+            cookie.set('__returnUrl', returnUrl, { expires: 0.04 });
+            for (var i = 0; i < allowerList.length; i++) {
                 if (allowerList[i].test(returnUrl)) {
                     return returnUrl;
                 }
