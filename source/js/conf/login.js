@@ -73,7 +73,18 @@ define(function(require, exports, module) {
         },
         //失去焦点校验
         onfocusout: function(element) {
-            $(element).valid();
+            if($(element).valid()){
+                $(element).parent(".item").removeClass("error");
+            }else{
+                $(element).parent(".item").addClass("error");
+            }
+        },
+        onkeyup: function(element) {
+            if($(element).valid()){
+                $(element).parent(".item").removeClass("error");
+            }else{
+                $(element).parent(".item").addClass("error");
+            }
         },
         success: function(label) {
             //验证码特殊结构,修改错误信息放置位置
@@ -93,7 +104,7 @@ define(function(require, exports, module) {
                 mobile: true
             },
             vierfyCode: {
-                required: true,
+                required: true
             }
         },
         messages: {
@@ -121,7 +132,18 @@ define(function(require, exports, module) {
         },
         //失去焦点校验
         onfocusout: function(element) {
-            $(element).valid();
+            if($(element).valid()){
+                $(element).parent(".item").removeClass("error");
+            }else{
+                $(element).parent(".item").addClass("error");
+            }
+        },
+        onkeyup: function(element) {
+            if($(element).valid()){
+                $(element).parent(".item").removeClass("error");
+            }else{
+                $(element).parent(".item").addClass("error");
+            }
         },
         errorPlacement: function(error, element) {
             //console.log(error,element);
@@ -148,7 +170,12 @@ define(function(require, exports, module) {
             validateSuccess($PAGE_DATA['normalLogin'], formRes);
         }
     });
-
+    $(".jMSubBtn").click(function(){
+        $("#jLoginForm").submit();
+    })
+    $(".jSubBtn").click(function(){
+        $("#jRightLoginMobile").submit();
+    })
     //登陆页面切换登陆形态
     $(".jsTab").on("click", "span", function() {
         if ($(this).hasClass("active")) {
@@ -166,25 +193,25 @@ define(function(require, exports, module) {
             return false;
         }
         //发送ajax请求
-        io.get($PAGE_DATA['code'], { mobile: $("#jMobile").val() }, function(res) {
-            //验证码发送成功
-            var count = 60;
-            verifyCode.val(count).addClass("ui-btn-disable change");
-            var time = setInterval(function() {
-                if (count > 1) {
-                    count--;
-                    verifyCode.val(count);
-                } else {
-                    verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
-                    clearInterval(time);
-                }
-            }, 1000);
-        },
-        function(res) {
-            //验证码发送失败
-            verifyCode.removeClass("ui-btn-disable change").val("重新获取");
-            box.error((res && res.msg) || '获取验证失败，请重试！', verifyCode[0]);
-        });
+        io.post($PAGE_DATA['code'], { mobile: $("#jMobile").val() }, function(res) {
+                //验证码发送成功
+                var count = 60;
+                verifyCode.val(count).addClass("ui-btn-disable change");
+                var time = setInterval(function() {
+                    if (count > 1) {
+                        count--;
+                        verifyCode.val(count);
+                    } else {
+                        verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
+                        clearInterval(time);
+                    }
+                }, 1000);
+            },
+            function(res) {
+                //验证码发送失败
+                verifyCode.removeClass("ui-btn-disable change").val("重新获取");
+                box.error((res && res.msg) || '获取验证失败，请重试！', verifyCode[0]);
+            });
     });
 
     //验证成功时执行方法
@@ -231,6 +258,7 @@ define(function(require, exports, module) {
                 returnUrl = document.referrer;
                 if (!returnUrl) {
                     returnUrl = defaultReturnUrl;
+
                 }
             }
         }

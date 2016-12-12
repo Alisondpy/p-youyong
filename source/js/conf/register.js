@@ -107,7 +107,18 @@ define(function(require, exports, module) {
         },
         //失去焦点校验
         onfocusout: function(element) {
-            $(element).valid();
+            if($(element).valid()){
+                $(element).parent(".item").removeClass("error-red");
+            }else{
+                $(element).parent(".item").addClass("error-red");
+            }
+        },
+        onkeyup: function(element) {
+            if($(element).valid()){
+                $(element).parent(".item").removeClass("error-red");
+            }else{
+                $(element).parent(".item").addClass("error-red");
+            }
         },
         errorPlacement: function(error, element) {
             //验证码特殊结构,修改错误信息放置位置
@@ -132,11 +143,14 @@ define(function(require, exports, module) {
             }
         },
         submitHandler: function(formRes) {
-            debugger;
             //验证成功时执行方法
             validateSuccess($PAGE_DATA['register'], formRes)
         }
     });
+    $(".jSubBtn").click(function(){
+        $("#jsRightSignin").submit();
+    })
+
 
     //获取验证码
     $(".jsVerifyCode").on("click", function() {

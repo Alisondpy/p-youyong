@@ -70,10 +70,15 @@ define(function (require, exports, module) {
             }
             loading && loading.hide();
         });
-        pager.on('ajaxError', function (res, callback) {
+        pager.on('ajaxError', function(data) {
+            Box.error(data.msg || '网络错误，请重试！');
+            loading && loading.hide();
         });
-        pager.on('change', function (pageNum, e) {
+
+        pager.on('change', function(pageNum, e) {
+            $('#jCurrentPage').html(pageNum)
         });
+
     }
 
     renderList(loadTest, {"status": 0});
