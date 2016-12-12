@@ -230,7 +230,7 @@ define(function(require, exports, module) {
             } else {
                 returnUrl = document.referrer;
                 if (!returnUrl) {
-                    returnUrl = defaultReturnUrls;
+                    returnUrl = defaultReturnUrl;
                 }
             }
         }
@@ -244,7 +244,7 @@ define(function(require, exports, module) {
                 }
             }
         }
-        return encodeURIComponent(defaultReturnUrls);
+        return encodeURIComponent(defaultReturnUrl);
     }
 
 });
