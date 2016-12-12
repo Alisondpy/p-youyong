@@ -143,6 +143,9 @@ body{
 							color: #ec3b45;
 						}
 					}
+					&[disabled]{
+						background: transparent;
+					}
 					&.error + label {
 						color: #ec3b45;
 					}

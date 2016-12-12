@@ -5,6 +5,7 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var validate = require('plugins/validator/1.0.0/validator');
     var form = require("lib/core/1.0.0/utils/form");
+    var Utils = require("lib/core/1.0.0/utils/utils");
     var cookie = require("lib/core/1.0.0/io/cookie");
     /*底部 start*/
     var Footer = require('module/footer/1.0.0/footer');
@@ -20,16 +21,6 @@ define(function(require, exports, module) {
     });
     /*底部 start*/
 
-    //白名单
-    var allowerList = [
-        /zhongzhihui.com/
-    ];
-    //存储cookie
-    var refer = document.referrer;
-    var exp = new Date();
-    exp.setTime(exp.getTime() + 0.5 * 24 * 60 * 60 * 1000);
-    cookie.set("returnUrl", refer + ";expires=" + exp.toGMTString());
-
     //页面进入先失去焦点
     //$("#jMobile").blur();
     // 实时检测恢复验证码
@@ -39,9 +30,11 @@ define(function(require, exports, module) {
             //修改点击提交触发验证,恢复验证码按钮色彩的功能
             if ($(".jsVerifyCode").hasClass("change")) {} else {
                 $(param).removeClass("ui-btn-disable");
+                $('#jDynamic').removeAttr("disabled");
             }
             return this.optional(element) || true;
         } else {
+            $('#jDynamic').attr("disabled","disabled");
             $(param).addClass("ui-btn-disable");
             return false
         }
@@ -204,36 +197,62 @@ define(function(require, exports, module) {
     //验证成功时执行方法
     function validateSuccess(url, formRes) {
         var formData = form.serializeForm(formRes);
-        formData.returnUrl = refer;
+        formData.returnUrl = getReturnUrl();
         io.get(url, formData, function(res) {
-                box.ok("登陆成功");
-                //等待1秒跳转页面
-                refer = res.data.returnUrl;
-                var locationUrl = ""; //业务指定跳转的链接
-                var returnUrl = encodeURI(cookie.get("returnUrl"))
+            box.ok("登陆成功");
+            //等待1秒跳转页面
+            refer = res.data.returnUrl;
+            cookie.set('__returnUrl', null);
+            if(refer){
+                refer = decodeURIComponent(refer);
                 setTimeout(function() {
-                    if (locationUrl) {}
-                    //如果来源域名是zzh或白名单,返回refer
-                    else if (includeUrl(refer)) {
-                        location.href = refer;
-                    } else {
-                        //否则返回到指定域名
-                        location.href = "http://www.zhongzhihui.com";
-                    }
+                    window.location.href = refer;
                 }, 1000);
-            }, function(res) {
-                box.error((res && res.msg) || '网络错误，请重试！');
             }
+        }, function(res) {
+            box.error((res && res.msg) || '网络错误，请重试！');
         });
+    }
 
     //验证refer是否属于白名单里面
-    function includeUrl(refer) {
-        for (var i = 0; i < allowerList.length; i++) {
-            if (allowerList[i].test(refer)) {
-                return true;
+    function getReturnUrl() {
+        //白名单
+        var allowerList = [
+            /zhongzhihui.com/
+        ];
+        var defaultReturnUrl = $PAGE_DATA && $PAGE_DATA['defaultReturnUrl'] || 'http://www.yonghou.com';
+        var params = Utils.parseQuery(window.location.search);
+
+        //从哪里来到哪里去
+        //如果url带有returnUrl，优先跳转
+        //如果url没有就从cookie去取，
+        //如果cookie没有就从document.referrer
+        //如果document.referrer没有就用默认
+        var returnUrl = params.get('returnUrl');    
+        if(returnUrl){
+            returnUrl = decodeURIComponent(returnUrl);
+        }else{
+            returnUrl = cookie.get('__returnUrl');
+            if(returnUrl){
+                returnUrl = decodeURIComponent(returnUrl)
+            }else{
+                returnUrl = document.referrer;
+                if(!returnUrl){
+                    returnUrl = defaultReturnUrls;
+                }
             }
         }
-        return false;
+
+        if(returnUrl){
+            returnUrl = encodeURIComponent(returnUrl);
+            cookie.set('__returnUrl', returnUrl, {expires: 0.04});
+            for (var i = 0; i < allowerList.length; i++) {         
+                if (allowerList[i].test(returnUrl)) {
+                    return returnUrl;
+                }
+            }
+        }
+        return encodeURIComponent(defaultReturnUrls);
     }
 
 });
