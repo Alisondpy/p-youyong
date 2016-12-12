@@ -28,30 +28,49 @@ define(function(require, exports, module) {
     var jQuestionTab2 = $('#jQuestionTab2');
     var jNoteTab1 = $('#jNoteTab1');
     var jNoteTab2 = $('#jNoteTab2');
+
+    //====================播放器 start
+    var Player = require('plugins/ckplayer/6.7.0/player');
+
+    var player = new Player('#jAudio', {
+        swfPlayer: $PAGE_DATA['ckplayer'],
+        embed: {
+            width: '871',
+            height: '655'
+        },
+        flash: {
+            g:$PAGE_DATA['startTime'] || 0,
+            f: $PAGE_DATA['m3u8'], //必填 请别跨域 要播放文件的路径
+            a: $PAGE_DATA['play'] //必填 请别跨域 如果要调用m3u8格式的文件，必须要用到的播放插件【调用时的参数，只有当s>0的时候有效】
+        }
+    });
+
+    var isSendPlayTime = true;
+    //if(player.getTotalTime()){
+    //    var playDuration =  player.getTotalTime();
+    //}
+    //监听当前播放器进度
+    player.on('time', function(seconds) {
+        if(isSendPlayTime && seconds >0){
+            isSendPlayTime = false;
+            var _params = $.extend(true,{},$PAGE_DATA['setPlayTimeParams'], {
+                playTime: seconds,
+                duration: playDuration
+            });
+            io.get($PAGE_DATA['setPlayTime'],_params,function(data){
+                isSendPlayTime = true;
+            },function(data){
+                isSendPlayTime = true;
+            });
+        }
+    });
+    //====================播放器 end
+
     //图片懒加载
     lazy = new Lazyload($('.jImg'), {
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true
-    });
-
-    /*问答实时监听*/
-    question = new Question('#jQuestionTab2', {
-        pollingAjax: {
-            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
-        },
-        pagerAjax: {
-            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
-        }
-    });
-
-    note = new Note('#jNoteTab2', {
-        pollingAjax: {
-            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
-        },
-        pagerAjax: {
-            url: $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
-        }
     });
 
     /*交互*/
@@ -117,7 +136,7 @@ define(function(require, exports, module) {
         }else {
             showType = 2;
         }
-        pubAjax(content,$(this),$PAGE_DATA['commentPostUrl'],{"content":content,"showType":showType},txtA);
+        pubAjax(content,$(this),$PAGE_DATA['note'].publish,{"content":content,"showType":showType},txtA);
     });
     jTab.on('click','.jPublishQ',function(){
         var content = txtQ.val();
@@ -126,7 +145,7 @@ define(function(require, exports, module) {
         }else {
             showType = 2;
         }
-        pubAjax(content,$(this),$PAGE_DATA['commentPostUrl'],{"content":content,"showType":showType},txtQ);
+        pubAjax(content,$(this),$PAGE_DATA['question'].publish,{"content":content,"showType":showType},txtQ);
     });
 
     //评论focus效果
@@ -170,7 +189,7 @@ define(function(require, exports, module) {
                 "type":type,
                 "id":id
             }
-            clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
+            clickInterface($PAGE_DATA['note'].like,data,'取消点赞');
             $(this).removeClass('activeLike');
         }else {
             data = {
@@ -178,7 +197,7 @@ define(function(require, exports, module) {
                 "type":type,
                 "id":id
             }
-            clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
+            clickInterface($PAGE_DATA['question'].like,data,'点赞');
             $(this).addClass('activeLike');
         }
     });
@@ -187,11 +206,11 @@ define(function(require, exports, module) {
     jTab.on('click','.pick',function(){
         var id = $(this).attr('data-id');
         if($(this).hasClass("picked")){
-            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',id,'取消采集');
+            clickInterface($PAGE_DATA['note'].picked,id,'取消采集');
             $(this).find('em').text('采集');
             $(this).removeClass('picked');
         }else {
-            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',id,'采集');
+            clickInterface($PAGE_DATA['note'].picked,id,'采集');
             $(this).find('em').text('已采集');
             $(this).addClass('picked');
         }
@@ -229,16 +248,30 @@ define(function(require, exports, module) {
                 jNoteTab2.hide();
                 jQuestionTab1.hide();
                 jQuestionTab2.hide();
-                question.stop();
-                note.stop();
-                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tAnswer','jNoteTab1');
+                if(question){
+                    question.stop();
+                }
+                if(note){
+                    note.stop();
+                }
+                renderTemp($PAGE_DATA['note'].note,type,'tAnswer','jNoteTab1');
                 break;
             case '1'://笔记全部
                 jNoteTab1.hide();
                 jNoteTab2.show();
                 jQuestionTab1.hide();
                 jQuestionTab2.hide();
-                question.stop();
+                note = new Note('#jNoteTab2', {
+                    pollingAjax: {
+                        url: $PAGE_DATA['note'].note
+                    },
+                    pagerAjax: {
+                        url: $PAGE_DATA['note'].note
+                    }
+                });
+                if(question){
+                    question.stop();
+                }
                 note.start();
                 break;
             case '2'://问答我的
@@ -246,17 +279,32 @@ define(function(require, exports, module) {
                 jNoteTab2.hide();
                 jQuestionTab1.show();
                 jQuestionTab2.hide();
-                note.stop();
-                question.stop();
-                renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',type,'tQuestion','jQuestionTab1');
+                if(question){
+                    question.stop();
+                }
+                if(note){
+                    note.stop();
+                }
+                renderTemp($PAGE_DATA['question'].question,type,'tQuestion','jQuestionTab1');
                 break;
             case '3'://问答全部
                 jNoteTab1.hide();
                 jNoteTab2.hide();
                 jQuestionTab1.hide();
                 jQuestionTab2.show();
+                /*问答实时监听*/
+                question = new Question('#jQuestionTab2', {
+                    pollingAjax: {
+                        url: $PAGE_DATA['question'].question
+                    },
+                    pagerAjax: {
+                        url: $PAGE_DATA['question'].question
+                    }
+                });
                 question.start();
-                note.stop();
+                if(note){
+                    note.stop();
+                }
                 break;
         }
     };
@@ -266,13 +314,13 @@ define(function(require, exports, module) {
         init(type);
     });
 
-    renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',1,'tDir','jDir');
+    renderTemp($PAGE_DATA['dirUrl'],1,'tDir','jDir');
     tab.on('change', function(el) {
         var type = el.body.find('.ui-current').attr('data-type');
         init(type);
         var target = el.body.attr('data-id');
         if(target == "1"){
-            renderTemp($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',target,'tDir','jDir');
+            renderTemp($PAGE_DATA['dirUrl'],target,'tDir','jDir');
         }
         lazy.update();
     });

@@ -14,7 +14,7 @@ define(function(require, exports, module) {
             throw new Error('the param [el] is required.');
         }
         _this.container = $('<div node-type="container"></div>');
-        _this.el.append(_this.container);
+        _this.el.html(_this.container);
         var defaults = {
             ajax: {
                 url: null,

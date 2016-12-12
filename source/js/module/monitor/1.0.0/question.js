@@ -46,6 +46,7 @@ define(function(require, exports, module) {
                 max : _this.max
             }
         });
+        _this._loadingHtml();
     }
 
     Question.prototype._initEvent = function() {
@@ -83,6 +84,19 @@ define(function(require, exports, module) {
             }
         });
     }
+
+    //开始拉新
+    Question.prototype._loadingHtml = function() {
+        var _this = this;
+        var str = '';
+        str+='<div class="ui-loading-list">';
+        str+='<div class="img-loading"></div>';
+        str+='	<div class="txt">';
+        str+='	正在卖力加载，请稍后';
+        str+='  </div>';
+        str+='</div>';
+        _this.pollingList.html(str);
+    };
 
     //开始拉新
     Question.prototype.start = function() {
