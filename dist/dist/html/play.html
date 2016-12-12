@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><title>播放详情页</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/play.css?v=bfbf0b72a2" charset="utf-8"></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><!-- 上部标题 --><div class="mod-up"><h2 class="title"><span><a href="">首页</a></span><em>&gt</em><span><a href="">课程中心</a></span><em>&gt</em><span><a href="">ps的工具使用</a></span></h2></div><!-- 内容的部分 --><div class="mod-contain clearfix"><div class="mod-l"><div class="audio"></div><div class="opation clearfix"><div class="change clearfix"><a href="javascript:;" class="arrow-l"><em class="line"></em> <i class="iyoyo iyoyo-arrow-left-sm"></i> </a><a href="javascript:;" class="arrow-r"><em class="line"></em> <i class="iyoyo iyoyo-arrow-right-sm"></i></a></div></div></div><div class="mod-r" id="jTab"><div class="up clearfix jUp" node-type="hd"><li node-type="hdItem" data-target="1" 
+class="current"><a href="javascript:void(0)" class="catlog jCatlog t"><i class="iyoyo iyoyo-catalog"></i> <span>目录</span></a></li><li node-type="hdItem" data-target="2"><a href="javascript:void(0)" class="note jNote t"><i class="iyoyo iyoyo-note"></i> <span>笔记</span></a></li><li node-type="hdItem" data-target="3"><a href="javascript:void(0)" class="question jQuestion t"><i class="iyoyo iyoyo-question-3"></i> <span>问答</span></a></li></div><div node-type="bd"><!-- 目录tab切换 start--><div class="mod-catlog jMod-catlog current" node-type="container" data-id="1"><div id="jDir"><div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后</div></div></div></div><!-- 目录tab切换  end --><!-- tab切换笔记部分 --><div class="mod-note jMod-note jNoteTap" data-id="2" node-type="container"><div class="title"><a href="javascript:;" class="m-answer tab-q ui-current jSubNav" data-type="0">我的笔记</a> <a href="javascript:;" class="all-answer tab-q jSubNav" data-type="1">全部笔记</a></div><div id="jNoteTab1" 
+class="ui-answer-box"><div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后</div></div></div><div id="jNoteTab2" class="ui-answer-box"><!--<div class="ui-loading-list">--><!--<div class="img-loading"></div>--><!--<div class="txt">--><!--正在卖力加载，请稍后--><!--</div>--><!--</div>--></div><div class="square jAnswerSquare"><textarea class="textarea jTxtA jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea><div class="line"><span><input type="checkbox" id="jAnswer" name="show-type"><label for="jAnswer">公开</label></span><p class="jTxtNumA"><em class="num">0</em>/500</p></div><button class="publish jPublishA">提交</button></div></div><!-- tab切换笔记部分结束 --><!-- tab切换问答部分 start--><div class="mod-note jMod-note jNoteTap question" data-id="3" node-type="container"><div class="title"><a href="javascript:;" class="m-answer tab-q ui-current jSubNav" data-type="2">我的问答</a> <a href="javascript:;" class="all-answer tab-q jSubNav" data-type="3">全部问答</a></div><div id="jQuestionTab1" class="ui-answer-box">
+<div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后</div></div></div><div id="jQuestionTab2" class="ui-answer-box"><!--<div class="ui-loading-list">--><!--<div class="img-loading"></div>--><!--<div class="txt">--><!--正在卖力加载，请稍后--><!--</div>--><!--</div>--></div><div class="square jQuestionSquare"><textarea class="textarea jTxtQ jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea><div class="line"><span><input type="checkbox" id="jQues" name="show-type"><label for="jQues">公开</label></span><p class="jTxtNumQ"><em class="num">0</em>/500</p></div><button class="publish jPublishQ">提交</button></div></div><!-- tab切换问答部分 end --></div></div></div></div><!--#include file="./common/footer.html"--><!--#include file="./common/js.html"--><script>require(["conf/play"],function(){})</script><script id="tDir" type="text/html">
+{{each resultList as value i}}
+        <div class="status">
+            {{if value.studyState == 3}}
+            <i class="iyoyo iyoyo-ok"></i>
+            {{/if}}
+            {{if value.studyState == 2}}
+            <i class="iyoyo iyoyo-half-circle"></i>
+            {{/if}}
+            {{if value.studyState == 1}}
+            <i class="iyoyo iyoyo-circle"></i>
+            {{/if}}
+            <a href="xx.html?{{value.id}}">
+                <em>课时{{i+1}}</em>
+                <span class="tool">{{value.title}}</span>
+            </a>
+        </div>
+        {{if i != resultList.length-1}}
+        <div class="line"></div>
+        {{/if}}
+        {{/each}}</script><script id="tAnswer" type="text/html">
+{{each resultList as value i}}
+        <div class="contain clearfix">
+            <div class="avater">
+                <img src="{{value.avatarUrl}}" alt="笔记" class="img-error">
+            </div>
+            <div class="text clearfix">
+                <div class="cname">{{value.nickName}}</div>
+                <p>{{value.content}}</p>
+                <div class="contain-down">
+                    <span class="time"><em>时间:</em><i>{{value.createTime}}</i></span>
+                    <span class="answer">
+                        <a class="sure gather pick" data-id="{{value.id}}"><em>采集</em><strong>{{value.collectCount}}</strong></a>
+                        <a class="admit like" data-id="{{value.id}}"><i class="iyoyo iyoyo-favour"></i><strong>{{value.praiseCount}}</strong></a>
+                    </span>
+                </div>
+            </div>
+        </div>
+        {{/each}}</script><script id="tQuestion" type="text/html">
+{{each resultList as value i}}
+        <div class="contain clearfix">
+            <div class="avater">
+                <img src="{{value.avatarUrl}}" alt="问答" class="img-error">
+            </div>
+            <div class="text clearfix">
+                <div class="cname">{{value.nickName}}</div>
+                <p>{{value.content}}</p>
+                <div class="contain-down">
+                    <span class="time"><em>时间:</em><i>{{value.createTime}}</i></span>
+                    <span class="answer"><em>{{value.answerNum}}</em>回答<i>10</i>浏览</span>
+                </div>
+            </div>
+        </div>
+        {{/each}}</script><script id="tEmpty" type="text/html"><div class="ui-empty-list">
+            <div class="iyoyo iyoyo-box"></div>
+            <div class="txt">暂无数据</div>
+        </div></script><!--#include file="./common/tj.html"--><!--#include file="./common/statistics.html"--></body></html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html><html><head><title>我的学习</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/my-study.css?v=d7d7292bc9" charset="utf-8"><script>$PAGE_DATA.getPager=$PAGE_DATA.baseStaticUrl+"/source/api/uc/study.json"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><div id="jIfmTab" class="ifm-tab"><div class="ifm-hd clearfix"><!-- tab 头部 start --><ul class="clearfix ifm-tab-hd" node-type="hd"><li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的学习</a></li></ul><!-- tab 头部 end --></div><div class="ifm-tab-bd" node-type="bd"><!-- tab内容区域-1 start--><div class="ifm-tab-container current" node-type="container" data-id="1"><div class="ifm-main-container"><!-- 页面主内容 start --><div node-type="jContainer"><div 
+class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后...</div></div></div><!-- 页面主内容 end --></div><div class="ifm-bottom-bar"><!-- 底部工具栏 start --><div node-type="jPagination" class="pager"></div><!-- 底部工具栏 end --></div></div><!-- tab内容区域-1 end--></div></div></div></div><!--#include file="./module/uc/right-container.html"--></div><!--#include file="./common/footer.html"--><!--#include file="./common/js.html"--><script>require(["conf/uc/my-study"],function(){})</script><!--#include file="./common/tj.html"--><!--#include file="./common/statistics.html"--><script type="text/html" id="jModule">
+<div class="mod-contain ">
+             <div class="btn clearfix">
+                <button class="ui-btn jBtnManage {{deletingClass}}">{{deletingTxt}}</button>
+            </div>
+            {{each resultList as value i}}
+            <div class="jItem mod-item {{deletingClass}}">
+                <ul>
+                    <li class="item clearfix jItem">
+                        <div class="picture f-l">
+                            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src={{value.resourceUrl}} alt="系列课" class="jImg img-error">
+                        </div>
+                        <div class="contain f-l">
+                            <div class="title clearfix">
+                                <h3 class="hit f-l">{{value.title}}</h3>
+                                <span class="describe">{{value.tag}}</span>
+                            </div>
+                            <div class="contain-down">
+                                <div class="dis teacher">
+                                    <span>讲师</span><em>{{value.teacherName}}</em>
+                                </div>
+                                <div class="dis study-num">
+                                    <span>学习人数</span><em>{{value.studentNum}}</em>
+                                </div>
+                                <div class="dis study-time">
+                                    <span>上次学习的时间</span>
+                                    <em>{{value.preStudyTime}}</em>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-zone jControl">
+                            <div class="load f-r jLoad jAplly">
+                                <p class="num">{{value.studyRate}}%</p>
+                                <p class="txt">学习进度</p>
+                            </div>
+                            <div class="dele f-r jDel" data-id={{value.id}}>
+                                <i class="iyoyo iyoyo-del"></i>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            {{/each}}
+        </div>
+</script><script type="text/html" id="tEmpty"><div class="ui-empty-list">
+            <div class="iyoyo iyoyo-box"></div>
+            <div class="txt">暂无内容</div>
+        </div></script></body></html>

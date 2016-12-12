@@ -1,0 +1,41 @@
+<!DOCTYPE html><html><head><title>我的笔记</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/note.css?v=da3c3133d3" charset="utf-8"><script>$PAGE_DATA.noteInfo=$PAGE_DATA.baseStaticUrl+"/source/api/uc/note.json"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><div id="jIfmTab" class="ifm-tab"><div class="ifm-hd clearfix"><!-- tab 头部 start --><ul class="clearfix ifm-tab-hd" node-type="hd"><li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的笔记</a></li></ul><!-- tab 头部 end --><div class="ifm-top-bar"><!-- tab右侧工具栏 start -->
+<!-- <div class="ui-uc-search-bar" id="jUcSearchBar">
+                                <label class="lbl" for="_ucSearchBar">按考试名称模糊搜索</label>
+                                <input class="txt" id="_ucSearchBar" node-type="ipt" type="text" data-id="key">
+                                <button node-type="btn" class="iyoyo iyoyo-search"></button>
+                            </div> --><!-- tab右侧工具栏 end --></div></div><div class="ifm-tab-bd" node-type="bd"><!-- tab内容区域-1 start--><div class="ifm-tab-container current" node-type="container" data-id="1"><div class="ifm-main-container"><!-- 页面主内容 start --><div node-type="jContainer" id="jContainer"><div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后...</div></div></div><!-- 页面主内容 end --></div><div class="ifm-bottom-bar"><!-- 底部工具栏 start --><div node-type="jPagination" id="jPagination" class="pager"></div><!-- 底部工具栏 end --></div></div><!-- tab内容区域-1 end--></div></div></div></div>
+<!--#include file="./module/uc/right-container.html"--></div><!--#include file="./common/footer.html"--><!--#include file="./common/js.html"--><script>require(["conf/uc/note"],function(){})</script><script type="text/html" id="tNote">
+<div class="mod-note">
+            <ul class="note-list">
+            {{each resultList as item i}}
+                <li class="item {{if i=='0'}}first{{/if}}" >
+                    <p class="title">
+                        <span class="course-title">课程名称:</span>
+                        <a href="/course/detail?courseId={{item.courseId}}" class="topic">{{item.courseName}}</a>
+                    </p>
+                    <textarea class="details jEditDetails" readonly="readonly">{{item.content}}</textarea>
+                    <div class="control clearfix jEdit" data-id={{item.id}}>
+                        <div class="creat-time f-l">
+                            <span class="creat">创建时间 :</span>
+                            <span class="time">{{item.createTime}}{{item.pariseNum}}</span>
+                        </div>
+                        <div class="edit f-r">
+                            <span class="secret jHide">
+                                {{if item.isProvite=="1"}}
+                                    <i class="iyoyo iyoyo-key"></i>
+                                    <em class="normal">私密</em>
+                                {{else}}
+                                    <i class="iyoyo iyoyo-favour"></i>
+                                    <em class="normal">{{item.pariseNum}}</em>
+                                {{/if}}
+                                <i class="iyoyo iyoyo-note jEditTxt"></i>
+                                <i class="iyoyo iyoyo-del jDel"></i>
+                            </span>
+                            <button class="ui-btn ui-btn-danger jSave">保存</button>
+                        </div>
+                    </div>
+                </li>
+            {{/each}}
+            </ul>
+        </div>
+</script><script type="text/html" id="tEmpty"><div class="ui-empty-list"><div class="iyoyo iyoyo-box"></div><div class="txt">暂无笔记</div></div></script><!--#include file="./common/tj.html"--><!--#include file="./common/statistics.html"--></body></html>
