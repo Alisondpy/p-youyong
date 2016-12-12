@@ -64,6 +64,11 @@ body{
         border: 1px solid #e4ebf0;
         border-radius: 4px;
         background-color: #fff;
+        .submit{
+            &:hover{
+                color: #fff;
+            }
+        }
         &.error{
           border:1px solid #ec3b45;
           .iyoyo{
@@ -77,6 +82,9 @@ body{
           height: 20px;
           border: none;
           color: #95aab8;
+          &[disabled]{
+            background: transparent;
+          }
           &.error + label{
              display: inline-block;
              color: #ec3b45;

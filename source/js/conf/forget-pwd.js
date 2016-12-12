@@ -33,7 +33,9 @@ define(function(require, exports, module) {
     //    $("label.error").hide();
     //    $(".item.error").removeClass("error");
     //},0);
-
+    $(".jMSubBtn").click(function(){
+        $("#jsForgetPwd").submit();
+    })
     //表单提交
     $("#jsForgetPwd").validate({
         rules: {
@@ -66,6 +68,20 @@ define(function(require, exports, module) {
             error.appendTo(element.parent());
             $(element).parent().addClass("error");
             //debugger;
+        },
+        onfocusout: function(element) {
+            if($(element).valid()){
+                $(element).parent(".item").removeClass("error");
+            }else{
+                $(element).parent(".item").addClass("error");
+            }
+        },
+        onkeyup: function(element) {
+            if($(element).valid()){
+                $(element).parent(".item").removeClass("error");
+            }else{
+                $(element).parent(".item").addClass("error");
+            }
         },
         success: function(label) {
             // set &nbsp; as text for IE
@@ -114,6 +130,7 @@ define(function(require, exports, module) {
         //成功点击获取,1出现新密码框,2移除class--jNextStep允许提交,3修改提交input的文字
         $(".jnewPwd").show();
         $("#jNextStep").removeClass("jNextStep").val("提交");
+        $('#jDynamic').removeAttr("disabled");
         //发送ajax请求
         io.get($PAGE_DATA['code'],{mobile : $("#jName").val()},
             function(res){

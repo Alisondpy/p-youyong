@@ -22,6 +22,9 @@ define(function(require, exports, module) {
             }, this)
         }
     };
+    $(".jMSubBtn").click(function(){
+        $("#jSigninForm").submit();
+    })
     //handshake.init();
     $('#jSigninForm').validate({
         rules: {
