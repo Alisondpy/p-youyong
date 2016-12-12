@@ -10,13 +10,9 @@ define(function(require, exports, module) {
     var validate = require('plugins/validator/1.0.0/validator');
     var form = require("lib/core/1.0.0/utils/form");
     /*顶部搜索、登录状态、底部、右侧在线客服 start*/
-    var TopSearch = require('module/top-search/1.0.0/top-search');
     var LoginStatus = require('module/login-status/1.0.0/login-status');
-    var FixBar = require('module/fix-bar/1.0.0/fix-bar');
     var Footer = require('module/footer/1.0.0/footer');
-    var topSearch = new TopSearch();
     var loginStatus = new LoginStatus();
-    var fixBar = new FixBar();
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
@@ -133,10 +129,12 @@ define(function(require, exports, module) {
                 minlength : "密码长度不小于6位,且不包含空格"
             }
         },
+        //失去焦点校验
+        onfocusout: function(element){
+            $(element).valid();
+        },
         errorPlacement : function(error,element){
             //验证码特殊结构,修改错误信息放置位置
-            //debugger;
-            console.log(element);
             if(element.attr("id") === "jDynamic"){
                 error.appendTo(element.parents(".item"));
                 $(element).parent().addClass("error-red");

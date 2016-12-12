@@ -70,6 +70,10 @@ define(function(require, exports, module) {
             }
 
         },
+        //失去焦点校验
+        onfocusout: function(element){
+            $(element).valid();
+        },
         success: function(label) {
             //验证码特殊结构,修改错误信息放置位置
             if(label.attr("id") === "jDynamic-error"){
@@ -113,6 +117,10 @@ define(function(require, exports, module) {
                 required: true,
                 minlength: 6
             }
+        },
+        //失去焦点校验
+        onfocusout: function(element){
+            $(element).valid();
         },
         errorPlacement : function(error,element){
             //console.log(error,element);
