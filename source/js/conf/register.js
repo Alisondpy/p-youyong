@@ -14,12 +14,6 @@ define(function(require, exports, module) {
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
-    //白名单
-    var allowerList = [
-        "www.baidu.com",
-        "www.google.com",
-        "index.html"
-    ];
 
     //临时代码,触发初始化,修改无法初始验证手机号,触发验证码按钮的bug
     //setTimeout(function(){
@@ -76,16 +70,6 @@ define(function(require, exports, module) {
             }
 
         });
-    }
-
-    //验证refer是否属于白名单里面
-    function includeUrl(refer){
-        for(var i = 0;i < allowerList.length;i ++){
-            if(refer.indexOf(allowerList[i]) >= 0){
-                return true
-            }
-        }
-        return false;
     }
 
     //注册页面验证
