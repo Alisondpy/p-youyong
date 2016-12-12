@@ -43,7 +43,7 @@ define(function(require, exports, module) {
         _this.pollingList = new PollingList(_this.el, {
             ajax: _this.options.pollingAjax,
             data : {
-                max : _this.max
+                id : _this.max
             }
         });
         _this._loadingHtml();
@@ -60,6 +60,11 @@ define(function(require, exports, module) {
             //如果刷新成功，并且有更新，直接用html替换
              if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
                 _this.pollingList.html(_this.template(data.data));
+                 _this.max = data.data.records;
+             }else {
+                 var html = template('tEmpty',1);
+                 console.log(html);
+                 _this.pollingList.html(html);
              }
             _this.scrollTo(0);
         });

@@ -29,6 +29,10 @@ define(function(require, exports, module) {
     var jNoteTab2 = $('#jNoteTab2');//全部笔记容器
 
     //====================播放器 start
+
+    //获取参数
+    var sourceId = $PAGE_DATA['courseId'];
+
     var Player = require('plugins/ckplayer/6.7.0/player');
 
     var player = new Player('#jAudio', {
@@ -239,6 +243,14 @@ define(function(require, exports, module) {
     function init(type){
         switch (type){
             case '0'://笔记我的
+                var reqNoteData = {
+                    id:0,
+                    pageSize:20,
+                    sortType:1,
+                    showType:1,
+                    sourceType:2,
+                    sourceId:sourceId
+                }
                 jNoteTab1.show();
                 jNoteTab2.hide();
                 jQuestionTab1.hide();
@@ -249,19 +261,29 @@ define(function(require, exports, module) {
                 if(note){
                     note.stop();
                 }
-                renderTemp($PAGE_DATA['note'].note,type,'tAnswer','jNoteTab1');
+                renderTemp($PAGE_DATA['note'].note,reqNoteData,'tAnswer','jNoteTab1');
                 break;
             case '1'://笔记全部
+                var reqNoteData = {
+                    id:0,
+                    pageSize:20,
+                    sortType:1,
+                    showType:1,
+                    sourceType:2,
+                    sourceId:sourceId
+                }
                 jNoteTab1.hide();
                 jNoteTab2.show();
                 jQuestionTab1.hide();
                 jQuestionTab2.hide();
                 note = new Note('#jNoteTab2', {
                     pollingAjax: {
-                        url: $PAGE_DATA['note'].note
+                        url: $PAGE_DATA['note'].note,
+                        data:reqNoteData
                     },
                     pagerAjax: {
-                        url: $PAGE_DATA['note'].note
+                        url: $PAGE_DATA['note'].note,
+                        data:reqNoteData
                     }
                 });
                 if(question){
@@ -270,6 +292,14 @@ define(function(require, exports, module) {
                 note.start();
                 break;
             case '2'://问答我的
+                var reqNoteData = {
+                    id:0,
+                    pageSize:20,
+                    sortType:1,
+                    showType:1,
+                    sourceType:2,
+                    sourceId:sourceId
+                }
                 jNoteTab1.hide();
                 jNoteTab2.hide();
                 jQuestionTab1.show();
@@ -280,9 +310,17 @@ define(function(require, exports, module) {
                 if(note){
                     note.stop();
                 }
-                renderTemp($PAGE_DATA['question'].question,type,'tQuestion','jQuestionTab1');
+                renderTemp($PAGE_DATA['question'].question,reqNoteData,'tQuestion','jQuestionTab1');
                 break;
             case '3'://问答全部
+                var reqNoteData = {
+                    id:0,
+                    pageSize:20,
+                    sortType:1,
+                    showType:1,
+                    sourceType:2,
+                    sourceId:sourceId
+                }
                 jNoteTab1.hide();
                 jNoteTab2.hide();
                 jQuestionTab1.hide();
@@ -290,10 +328,12 @@ define(function(require, exports, module) {
                 /*问答实时监听*/
                 question = new Question('#jQuestionTab2', {
                     pollingAjax: {
-                        url: $PAGE_DATA['question'].question
+                        url: $PAGE_DATA['question'].question,
+                        data:reqNoteData
                     },
                     pagerAjax: {
-                        url: $PAGE_DATA['question'].question
+                        url: $PAGE_DATA['question'].question,
+                        data:reqNoteData
                     }
                 });
                 question.start();
@@ -303,6 +343,7 @@ define(function(require, exports, module) {
                 break;
         }
     };
+
     jTab.on('click','.jSubNav',function(){
         $(this).addClass('ui-current').siblings().removeClass('ui-current');
         var type = $(this).attr('data-type');
@@ -310,7 +351,7 @@ define(function(require, exports, module) {
     });
 
     var reqDirData = {
-        id:2002,
+        id:sourceId,
         sourceType:2
     };
     renderTemp($PAGE_DATA['dirUrl'],reqDirData,'tDir','jDir');

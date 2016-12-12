@@ -32,11 +32,15 @@ define(function(require, exports, module) {
 
     /*提问弹窗*/
     $('.jWrap2').on('click','#jQuestion',function(){
-        box.loadUrl(toQuestionPage+"?id="+sourceId, {
-            title: '提问页面',
-            autoRelease: true,
-            modal: false,
-        });
+        if(Login.isLogin()){
+            box.loadUrl(toQuestionPage+"?id="+sourceId, {
+                title: '提问页面',
+                autoRelease: true,
+                modal: false,
+            });
+        }else {
+            Login.login(window.location.href);
+        }
     });
 
     /* 渲染分页列表 */

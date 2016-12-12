@@ -18,9 +18,9 @@ define(function(require, exports, module) {
 	var jFrame = $('#jFrame');
 	var id = jFrame.attr('data-id');
 	io.get($PAGE_DATA['LiveShowUrl'],{courseId:id},function(res){
-		if(res && res.data && res.data.url){
+		if(res && res.data && res.data.liveshowUrl){
 			console.log(id);
-			jFrame.find('iframe').attr('src',res.data.url);
+			jFrame.find('iframe').attr('src',res.data.liveshowUrl);
 		}else {
 			box.error('服务器错误,请重试');
 		}

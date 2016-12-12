@@ -57,7 +57,7 @@ define(function(require, exports, module) {
     }
 
     //动态设置ajax data
-    Polling.prototype.setData = function(data) {
+    PollingList.prototype.setData = function(data) {
         var _this = this;
         _this.polling.setData(data);
     }
