@@ -54,7 +54,6 @@ define(function(require, exports, module) {
         io.get(url, formData, function(res) {
             box.ok("注册成功");
             refer = decodeURI(res.data.returnUrl);
-            alert(refer);
             //等待1秒跳转页面
             setTimeout(function() {
                 //注册成功,返回来源页面或登陆页面
@@ -163,7 +162,6 @@ define(function(require, exports, module) {
         io.get($PAGE_DATA['code'], { mobile: $("#jName").val() },
             function(res) {
                 //成功后的回调
-                console.log({ mobile: $("#jName").val() });
 
             },
             function(res) {

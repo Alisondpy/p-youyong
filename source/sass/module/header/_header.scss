@@ -87,10 +87,7 @@
     }
     .login-box {
         .btn {
-            display: inline-block;
-            padding: 0 18px;
-            height: 36px;
-            line-height: 36px;
+            padding: 5px 18px;
             border: 1px solid $grayColor;
             border-radius: 3px;
             &:hover {
@@ -115,6 +112,11 @@
             .item {
                 float: left;
                 font-size: 18px;
+                &.current{
+                    a{
+                        color:#ea3e48;
+                    }
+                }
             }
             .tips-menu-box {
                 position: relative;

@@ -102,4 +102,7 @@ var define2 = define(function(require, exports, module) {
         var contact = /(\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14})|(^\d{5,10}$)/;
         return this.optional(element) || (contact.test(value));
     }, "");
+    $("#jSubForm").click(function(){
+        $("#jViewSub").submit();
+    })
 });
