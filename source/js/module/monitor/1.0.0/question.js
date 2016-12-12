@@ -61,12 +61,8 @@ define(function(require, exports, module) {
              if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
                 _this.pollingList.html(_this.template(data.data));
                  _this.pollingList.setData({
-                     id:data.data.resultList[0].id + 9
+                     id:data.data.resultList[0].id
                  });
-             }else {
-                 var html = template('tEmpty',1);
-                 console.log(html);
-                 _this.pollingList.html(html);
              }
             _this.scrollTo(0);
         });

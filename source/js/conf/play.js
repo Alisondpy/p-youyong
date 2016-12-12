@@ -32,6 +32,7 @@ define(function(require, exports, module) {
 
     //获取参数
     var sourceId = $PAGE_DATA['courseId'];
+    var lessonId = $PAGE_DATA['lessonId'];
 
     var Player = require('plugins/ckplayer/6.7.0/player');
 
@@ -265,6 +266,7 @@ define(function(require, exports, module) {
                 break;
             case '1'://笔记全部
                 var reqNoteData = {
+                    id:0,
                     pageSize:20,
                     sortType:1,
                     showType:0,
@@ -313,6 +315,7 @@ define(function(require, exports, module) {
                 break;
             case '3'://问答全部
                 var reqNoteData = {
+                    id:0,
                     pageSize:20,
                     sortType:1,
                     showType:0,
@@ -349,8 +352,10 @@ define(function(require, exports, module) {
     });
 
     var reqDirData = {
-        id:sourceId,
-        sourceType:2
+        id:lessonId,
+        type:2,
+        pageNo:1,
+        pageSize:20
     };
     renderTemp($PAGE_DATA['dirUrl'],reqDirData,'tDir','jDir');
     tab.on('change', function(el) {

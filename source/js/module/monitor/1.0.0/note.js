@@ -73,6 +73,9 @@ define(function(require, exports, module) {
 			//如果刷新成功，并且有更新，直接用html替换
 			if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
 				_this.pollingList.html(_this.template(data.data));
+				_this.pollingList.setData({
+					id:data.data.resultList[0].id
+				});
 			}
 			_this.scrollTo(0);
 		});

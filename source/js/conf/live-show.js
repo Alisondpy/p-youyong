@@ -4,6 +4,7 @@ define(function(require, exports, module) {
 	var box = require('lib/ui/box/1.0.1/box');
 	var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
 	var io = require('lib/core/1.0.0/io/request');
+	require('plugins/layer/layer');
 
 	//图片懒加载
 	//var lazy = new Lazyload($('.jImg'), {
