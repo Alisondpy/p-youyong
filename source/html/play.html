@@ -221,8 +221,12 @@
                 <div class="contain-down">
                     <span class="time"><em>时间:</em><i>{{value.createTime}}</i></span>
                     <span class="answer">
-                        <a class="sure gather pick" data-id="{{value.id}}"><em>采集</em><strong>{{value.collectCount}}</strong></a>
+                        {{if value.isPraised == 0}}
                         <a class="admit like" data-id="{{value.id}}"><i class="iyoyo iyoyo-favour"></i><strong>{{value.praiseCount}}</strong></a>
+                        {{/if}}
+                        {{if value.isPraised == 1}}
+                        <a class="admit like activeLike" data-id="{{value.id}}"><i class="iyoyo iyoyo-favour"></i><strong>{{value.praiseCount}}</strong></a>
+                        {{/if}}
                     </span>
                 </div>
             </div>

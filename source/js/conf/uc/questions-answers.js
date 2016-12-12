@@ -4,10 +4,10 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    require('./common');
     var box = require('lib/ui/box/1.0.1/box');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Pager = require('plugins/pager/1.0.0/pager');
+    var Login = require('module/login-status/1.0.0/login');
     var io = require('lib/core/1.0.0/io/request');
     var template = require("template");
     var lazy;
@@ -99,27 +99,31 @@ define(function(require, exports, module) {
 
     //发表评论
     main.on('click','.jPublish',function(){
-        var content = txt.val();
-        if(content == ''){
-            box.error('请输入发表内容');
-        }else {
-            if(!$(this).hasClass('publish-error')){
-                io.get($PAGE_DATA['submitAnswer'],{'questionId':questionId,'answerId':0,'content':content},function(res){
-                    if(res){
-                        if(res.code == 0){
-                            box.ok('发表成功');
-                            txt.val('');
-                            pager.pagination.selectPage(pager.pagination.get('currentPage'));
+        if(Login.isLogin()){
+            var content = txt.val();
+            if(content == ''){
+                box.error('请输入发表内容');
+            }else {
+                if(!$(this).hasClass('publish-error')){
+                    io.get($PAGE_DATA['submitAnswer'],{'questionId':questionId,'answerId':0,'content':content},function(res){
+                        if(res){
+                            if(res.code == 0){
+                                box.ok('发表成功');
+                                txt.val('');
+                                pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                            }else {
+                                box.error(res.msg || '发表失败');
+                            }
                         }else {
-                            box.error(res.msg || '发表失败');
+                            box.error('发表失败，请重试');
                         }
-                    }else {
-                        box.error('发表失败，请重试');
-                    }
-                },function(res){
-                    box.error(res.msg || '网络错误,请重试');
-                });
+                    },function(res){
+                        box.error(res.msg || '网络错误,请重试');
+                    });
+                }
             }
+        }else {
+            Login.login(window.location.href);
         }
     });
 
@@ -158,24 +162,28 @@ define(function(require, exports, module) {
 
     //点赞
     main.on('click','#jLike',function(){
-        var dataType = $(this).attr('data-dataType');
-        var type = $(this).attr('data-type');
-        var id = $(this).attr('data-id');
-        var data;
-        if($(this).hasClass("activeLike")){
-            data = {
-                "dataType":dataType,
-                "type":type,
-                "id":id
+        if(Login.isLogin()){
+            var dataType = $(this).attr('data-dataType');
+            var type = $(this).attr('data-type');
+            var id = $(this).attr('data-id');
+            var data;
+            if($(this).hasClass("activeLike")){
+                data = {
+                    "dataType":dataType,
+                    "type":type,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
+            }else {
+                data = {
+                    "dataType":dataType,
+                    "type":type,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
             }
-            clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
         }else {
-            data = {
-                "dataType":dataType,
-                "type":type,
-                "id":id
-            }
-            clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
+            Login.login(window.location.href);
         }
     });
 });

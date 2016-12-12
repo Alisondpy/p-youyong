@@ -5,6 +5,7 @@
 		"pageNo": 1,
 		"pageSize": 8,
 		"records": 300,
+		"url":"http://192.168.1.76:3000/p-youyong/dist/html/course-index.html",
 		"resultList":[
 			{
 				"id":1001,

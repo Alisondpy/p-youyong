@@ -43,16 +43,14 @@ define(function(require, exports, module) {
             a: $PAGE_DATA['play'] //必填 请别跨域 如果要调用m3u8格式的文件，必须要用到的播放插件【调用时的参数，只有当s>0的时候有效】
         }
     });
-
     var isSendPlayTime = true;
-    var playDuration =  player.getTotalTime();
     //监听当前播放器进度
     player.on('time', function(seconds) {
         if(isSendPlayTime && seconds >0){
             isSendPlayTime = false;
             var _params = $.extend(true,{},$PAGE_DATA['setPlayTimeParams'], {
                 playTime: seconds,
-                duration: playDuration
+                duration: player.getTotalTime()
             });
             io.get($PAGE_DATA['setPlayTime'],_params,function(data){
                 isSendPlayTime = true;
@@ -118,24 +116,31 @@ define(function(require, exports, module) {
     }
     var answer = $('#jAnswer');
     var ques = $('#jQues');
-    var showType;
+    var publishData = {
+        sourceType:200,
+        sourceId:10,
+        content:"",
+        showType:1
+    }
     jTab.on('click','.jPublishA',function(){
         var content = txtA.val();
+        publishData.content = content;
         if(answer.is(':checked')){
-            showType = 1;
+            publishData.showType = 1;
         }else {
-            showType = 2;
+            publishData.showType = 2;
         }
-        pubAjax(content,$(this),$PAGE_DATA['note'].publish,{"content":content,"showType":showType},txtA);
+        pubAjax(content,$(this),$PAGE_DATA['note'].publish,publishData,txtA);
     });
     jTab.on('click','.jPublishQ',function(){
         var content = txtQ.val();
+        publishData.content = content;
         if(ques.is(':checked')){
-            showType = 1;
+            publishData.showType = 1;
         }else {
-            showType = 2;
+            publishData.showType = 2;
         }
-        pubAjax(content,$(this),$PAGE_DATA['question'].publish,{"content":content,"showType":showType},txtQ);
+        pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishData,txtQ);
     });
     //====================发布按钮 end
 
@@ -192,19 +197,19 @@ define(function(require, exports, module) {
         }
     });
 
-    //采集
-    jTab.on('click','.pick',function(){
-        var id = $(this).attr('data-id');
-        if($(this).hasClass("picked")){
-            clickInterface($PAGE_DATA['note'].picked,id,'取消采集');
-            $(this).find('em').text('采集');
-            $(this).removeClass('picked');
-        }else {
-            clickInterface($PAGE_DATA['note'].picked,id,'采集');
-            $(this).find('em').text('已采集');
-            $(this).addClass('picked');
-        }
-    });
+    ////采集
+    //jTab.on('click','.pick',function(){
+    //    var id = $(this).attr('data-id');
+    //    if($(this).hasClass("picked")){
+    //        clickInterface($PAGE_DATA['note'].picked,id,'取消采集');
+    //        $(this).find('em').text('采集');
+    //        $(this).removeClass('picked');
+    //    }else {
+    //        clickInterface($PAGE_DATA['note'].picked,id,'采集');
+    //        $(this).find('em').text('已采集');
+    //        $(this).addClass('picked');
+    //    }
+    //});
 
     /*模板渲染*/
     function renderTemp(url,data,temEl,htmlEl){
@@ -304,13 +309,17 @@ define(function(require, exports, module) {
         init(type);
     });
 
-    renderTemp($PAGE_DATA['dirUrl'],1,'tDir','jDir');
+    var reqDirData = {
+        id:2002,
+        sourceType:2
+    };
+    renderTemp($PAGE_DATA['dirUrl'],reqDirData,'tDir','jDir');
     tab.on('change', function(el) {
         var type = el.body.find('.ui-current').attr('data-type');
         init(type);
         var target = el.body.attr('data-id');
         if(target == "1"){
-            renderTemp($PAGE_DATA['dirUrl'],target,'tDir','jDir');
+            renderTemp($PAGE_DATA['dirUrl'],reqDirData,'tDir','jDir');
         }
         lazy.update();
     });
