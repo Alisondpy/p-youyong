@@ -5,7 +5,7 @@ define(function(require, exports, module) {
     var io = require('lib/core/1.0.0/io/request');
     var validate = require('plugins/validator/1.0.0/validator');
     var form = require("lib/core/1.0.0/utils/form");
-    var Utils = require("lib/core/1.0.0/utils/utils");
+    var Utils = require("lib/core/1.0.0/utils/util");
     var cookie = require("lib/core/1.0.0/io/cookie");
     /*底部 start*/
     var Footer = require('module/footer/1.0.0/footer');
