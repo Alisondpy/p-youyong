@@ -86,14 +86,17 @@ body {
                 }
             }
             .sub-img {
+                display: block;
                 width: 260px;
                 height: 140px;
                 line-height: 140px;
                 border: 1px solid #ccc;
-            }
-            img {
-                width: 100%;
-                height: auto;
+                overflow: hidden;
+                text-align: center;
+                img {
+                    vertical-align: middle;
+                    height: 140px;
+                }
             }
             .sub-info {
                 width: 500px;
@@ -120,8 +123,14 @@ body {
             }
         }
     }
-    .ui-pager{
-        margin-top:20px;
+    .ui-pager {
+        margin-top: 20px;
     }
 }
 
+.ui-empty-list {
+    padding: 100px;
+    .txt {
+        font-size: 22px;
+    }
+}
