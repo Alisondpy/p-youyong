@@ -167,31 +167,25 @@ define(function(require, exports, module) {
             return false;
         }
         //发送ajax请求
-        io.post($PAGE_DATA['code'], { mobile: $("#jMobile").val() },
-            function(res) {
-                //成功后的回调
-
+        io.post($PAGE_DATA['code'], { mobile: $("#jMobile").val() }, function(res) {
+                //验证码发送成功
+                var count = 60;
+                verifyCode.val(count).addClass("ui-btn-disable change");
+                var time = setInterval(function() {
+                    if (count > 1) {
+                        count--;
+                        verifyCode.val(count);
+                    } else {
+                        verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
+                        clearInterval(time);
+                    }
+                }, 1000);
             },
             function(res) {
-                //fail
-                if (res.msg) {
-                    box.error(res.msg);
-                } else {
-                    box.error('网络错误');
-                }
+                //验证码发送失败
+                verifyCode.removeClass("ui-btn-disable change").val("重新获取");
+                box.error((res && res.msg) || '获取验证失败，请重试！', verifyCode[0]);
             });
-        //验证码循环
-        var count = 60;
-        verifyCode.val(count).addClass("ui-btn-disable change");
-        var time = setInterval(function() {
-            if (count > 1) {
-                count--;
-                verifyCode.val(count);
-            } else {
-                verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
-                clearInterval(time);
-            }
-        }, 1000);
     });
 
     //验证成功时执行方法
