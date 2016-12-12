@@ -1,5 +1,5 @@
 {
-  "app.js": "app-bcaf2b145b.js",
+  "app.js": "app-6db38d17ae.js",
   "conf/404.js": "conf/404-4da9850ce4.js",
   "conf/500.js": "conf/500-931b9a8fe6.js",
   "conf/apply.js": "conf/apply-035046d3bd.js",
@@ -38,5 +38,5 @@
   "conf/uc/news.js": "conf/uc/news-abb079d29d.js",
   "conf/uc/note.js": "conf/uc/note-b8521521ed.js",
   "conf/uc/person-info.js": "conf/uc/person-info-85044bce47.js",
-  "conf/uc/questions-answers.js": "conf/uc/questions-answers-f2aefe277f.js"
+  "conf/uc/questions-answers.js": "conf/uc/questions-answers-ec9fa4a7b4.js"
 }
