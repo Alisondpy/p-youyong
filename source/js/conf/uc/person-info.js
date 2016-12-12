@@ -38,7 +38,6 @@ define(function(require, exports, module) {
                 jImg.attr('src', urls[0]);
                 jAvater.val(urls[0]);
                 $("#avatarUrl").val(urls[0]);
-
             }
             this.hide();
         });
@@ -50,8 +49,12 @@ define(function(require, exports, module) {
             onfocusout: function(element){
                 $(element).valid();
             },
+<<<<<<< 40ab732ac4868530aca94e447433e97889a6f60d
             submitHandler: function(formRes){
 
+=======
+             submitHandler: function(formRes){
+>>>>>>> donkey201612121110
                 var formData = form.serializeForm(formRes);
                 Io.post($PAGE_DATA['submit'],formData,function(data){
                     box.ok("保存成功");
