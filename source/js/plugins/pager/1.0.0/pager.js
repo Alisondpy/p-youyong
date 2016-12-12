@@ -89,6 +89,7 @@ define(function(require, exports, module) {
                     });
                     deferred.resolve(data);
                 }, function(data) {
+                    _this.pagination.hide();
                     _this.emit('ajaxError', data);
                     deferred.reject(data);
                 });
