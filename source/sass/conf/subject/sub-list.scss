@@ -2,6 +2,7 @@
 @import "../../common/config/level-2";
 @import "../../common/common";
 @import "../../module/mod-hot";
+@import "../../module/mod-empty";
 @import "../../common/pager/pager";
 h1,
 h2,
@@ -123,9 +124,4 @@ body {
         margin-top:20px;
     }
 }
-.ui-empty-list{
-    padding:100px;
-    .txt{
-        font-size:22px;
-    }
-}
+

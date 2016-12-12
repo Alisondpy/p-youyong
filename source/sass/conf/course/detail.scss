@@ -1,6 +1,7 @@
 @charset "UTF-8";
 @import "../../common/config/level-2";
 @import "../../common/common";
+@import "../../module/mod-empty";
 @import "../../common/pager/pager";
 h1,
 h2,
@@ -605,13 +606,4 @@ a {
             }
         }
     }
-}
-.ui-empty-list{
-    padding: 100px 0;
-    .txt{
-        font-size: 30px;
-    }
-}
-.ui-loading-list{
-    padding: 100px 0;
 }

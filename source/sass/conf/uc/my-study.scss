@@ -2,7 +2,8 @@
 @import "../../common/config/level-2";
 @import "../../common/common";
 @import "../../module/uc/common";
-// @import "../../module/uc/search-bar/search-bar";
+@import "../../module/uc/search-bar/search-bar";
+@import "../../module/mod-empty";
 @import "../../common/pager/pager";
 body {
     background-color: #eee;
@@ -126,13 +127,3 @@ body {
     }
 }
 
-.ui-empty-list {
-    padding: 100px 0;
-    .txt {
-        font-size: 30px;
-    }
-}
-
-.ui-loading-list {
-    padding: 100px 0;
-}

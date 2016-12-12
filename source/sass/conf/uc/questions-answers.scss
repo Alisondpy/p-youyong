@@ -2,6 +2,7 @@
 @import "../../common/config/level-2";
 @import "../../common/common";
 @import "../../common/slider/slider";
+@import "../../module/mod-empty";
 @import "../../common/pager/pager";
 
 body {
@@ -17,9 +18,6 @@ body {
         width: 840px;
         background-color: #fff;
         //我的问题
-        .ui-loading-list{
-            padding: 100px 0;
-        }
         .mod-my-questions {
             width: 780px;
             padding-top: 30px;

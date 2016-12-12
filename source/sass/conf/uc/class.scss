@@ -2,6 +2,7 @@
 @import "../../common/config/level-2";
 @import "../../common/common";
 @import "../../module/uc/common";
+@import "../../module/mod-empty";
 // @import "../../module/uc/search-bar/search-bar";
 @import "../../common/pager/pager";
 
@@ -144,13 +145,4 @@
             }
         }
     }
-}
-.ui-empty-list{
-    padding: 100px 0;
-    .txt{
-        font-size: 30px;
-    }
-}
-.ui-loading-list{
-    padding: 100px 0;
 }
