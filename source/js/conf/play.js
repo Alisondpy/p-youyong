@@ -265,10 +265,9 @@ define(function(require, exports, module) {
                 break;
             case '1'://笔记全部
                 var reqNoteData = {
-                    id:0,
                     pageSize:20,
                     sortType:1,
-                    showType:1,
+                    showType:0,
                     sourceType:2,
                     sourceId:sourceId
                 }
@@ -314,10 +313,9 @@ define(function(require, exports, module) {
                 break;
             case '3'://问答全部
                 var reqNoteData = {
-                    id:0,
                     pageSize:20,
                     sortType:1,
-                    showType:1,
+                    showType:0,
                     sourceType:2,
                     sourceId:sourceId
                 }

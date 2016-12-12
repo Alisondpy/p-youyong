@@ -1,5 +1,5 @@
 {
-	"code":0,
+	"error":0,
 	"msg":"服务器错误",
 	"data":{
 		"pageNo": 1,
