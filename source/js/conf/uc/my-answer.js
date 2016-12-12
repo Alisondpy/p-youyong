@@ -28,7 +28,6 @@ define(function(require, exports, module) {
 
     var isDeleting1 = false;
     var isDeleting2 = false;
-
     var InitEvent1 = {
         init:function (body,pager) {
             if (!InitEvent1.inited) {
@@ -149,8 +148,7 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxError', function(data) {
-                console.log(1);
-                jContainer.html('网络错误，请重试！');
+                box.error(data.msg || '网络错误，请重试！');
                 loading && loading.hide();
             });
 
@@ -201,7 +199,7 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxError', function(data) {
-                jContainer.html('网络错误，请重试！');
+                box.error(data.msg ||'网络错误，请重试！');
                 loading && loading.hide();
             });
             pager.on('change', function(pageNum, e) {
