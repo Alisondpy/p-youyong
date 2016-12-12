@@ -48,7 +48,6 @@ define(function(require, exports, module) {
         pager.on('ajaxSuccess', function(res, callback) {
             if(res && res.data && res.data.resultList && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
-                console.log(tmpEl,htmEl,pagEl);
                 document.getElementById(htmEl).innerHTML = html;
                 //图片懒加载
                 lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
@@ -57,6 +56,7 @@ define(function(require, exports, module) {
                     snap: true
                 });
                 callback && callback(res.data.records);
+                //pagEl.show();
             }else {
                 var html = template('tEmpty',1);
                 document.getElementById(htmEl).innerHTML = html;
@@ -82,9 +82,9 @@ define(function(require, exports, module) {
     var jNavClassify = $('#jNavClassify');
     var jNavStatus = $('#jNavStatus');
     var jNavSubClassify = $('#jNavSubClassify');
-    var jClassNav1 = $('.jClassNav1');
-    var jClassNav2 = $('.jClassNav2');
-    var jStatusNav2 = $('.jStatusNav2');
+    var jClassNav1 = $('#jClassNav1');
+    var jClassNav2 = $('#jClassNav2');
+    var jStatusNav2 = $('#jStatusNav2');
     tab.on('change', function(el) {
         type = el.body.attr('data-id');
         switch (type){
@@ -99,8 +99,8 @@ define(function(require, exports, module) {
                 break;
             case '2':
                 jNavType.addClass('ui-nav-border');
-                jNavClassify.show();
-                jNavStatus.show();
+                jNavClassify.show().removeClass('ui-nav-border');
+                jNavStatus.hide();
                 jNavSubClassify.show();
                 jClassNav1.show();
                 jClassNav2.hide();
@@ -119,24 +119,8 @@ define(function(require, exports, module) {
     });
     tab.setCurrent();
 
-    function init(){
-        var data = {};
-        var jNavType = $('#jNavType');
-        var name = jNavType.attr('name');
-        var val = jNavType.find('.current').attr('data-value');
-        data[name] = val;
-        renderList($PAGE_DATA['courseIndex'],data,'tab0','jTab0',jPagination);
-    }
-    init();
-
-   var nav = new navigation('#jCourseNav',{
-       currentClass:'current',//当前样式
-       navSelector:['#jNavType','#jNavClassify','#jNavStatus','#jNavSubClassify']//导航栏dom选择器
-    });
-    var jNavType = $('#jNavType');
-    nav.on('change',function(data){
+    function init(data){
         var type = jNavType.find('.current').attr('data-target');
-        // console.log(type);
         switch (type){
             case '1':
                 renderList($PAGE_DATA['courseIndex'],data,'tab0','jTab0',jPagination);
@@ -148,5 +132,15 @@ define(function(require, exports, module) {
                 renderList($PAGE_DATA['courseIndex'],data,'tab2','jTab2',jPagination);
                 break;
         }
+    }
+
+   var nav = new navigation('#jCourseNav',{
+       currentClass:'current',//当前样式
+       navSelector:['#jNavType','#jClassNav1','#jClassNav2','#jStatusNav2','#jNavSubClassify']//导航栏dom选择器
+    });
+    var initData = nav.get();
+    init(initData);
+    nav.on('change',function(data){
+        init(data);
     });
 });

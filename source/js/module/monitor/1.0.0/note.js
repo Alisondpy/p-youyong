@@ -49,7 +49,7 @@ define(function(require, exports, module) {
 		_this._loadingHtml();
 	}
 
-	//开始拉新
+	//开始加载
 	Question.prototype._loadingHtml = function() {
 		var _this = this;
 		var str = '';

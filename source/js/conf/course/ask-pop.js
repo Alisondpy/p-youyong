@@ -18,11 +18,13 @@ define(function(require, exports, module) {
 		handle:function () {
 			var ucData = form.serializeForm('#jSigninForm');
 			io.get(submitQuestionUrl, $.extend({},ucData,{"sourceId":sourceId}),function(res){
-				console.log(res);
 				if(res){
 					var topBox = box.get(window);
 					topBox.hide();
 					box.ok('提问成功');
+					if(window.top && window.top.window.pager){
+						window.top.window.pager();
+					}
 				}else {
 					box.error(res.msg || '提问失败');
 				}

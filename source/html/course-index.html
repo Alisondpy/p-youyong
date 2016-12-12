@@ -7,6 +7,9 @@
     <!--#include file="./common/meta.html"-->
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/course/index.css" type="text/css" charset="utf-8">
+    <script>
+        $PAGE_DATA['courseIndex'] = $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json';
+    </script>
 </head>
 
 <body>
@@ -14,18 +17,18 @@
 <!--#include file="./common/header.html"-->
 <div class="mod-course">
     <div class="mod-container" id="jCourseType">
-        <div class="mod-nav" id="jCourseNav">
+        <div class="mod-nav" id="jCourseNav" data-name="sss">
             <div class="common-nav" id="jNavType" name="type">
                 <span class="type">课程类型</span>
                 <ul class="clearfix nav jNav" node-type="hd">
-                    <li node-type="hdItem" data-target="1" data-value="0" class="f-l current"><a href="javascript:void(0);">系列课</a></li>
-                    <li node-type="hdItem" data-target="2" data-value="1" class="f-l"><a href="javascript:void(0);">点播课</a></li>
+                    <li node-type="hdItem" data-target="1" data-value="0" class="f-l"><a href="javascript:void(0);">系列课</a></li>
+                    <li node-type="hdItem" data-target="2" data-value="1" class="f-l current"><a href="javascript:void(0);">点播课</a></li>
                     <li node-type="hdItem" data-target="3" data-value="2" class="f-l"><a href="javascript:void(0);">直播课</a></li>
                 </ul>
             </div>
-            <div class="common-nav ui-hid" id="jNavClassify" name="classify">
+            <div class="common-nav ui-hid" id="jNavClassify">
                 <span class="type">课程分类</span>
-                <ul class="clearfix nav ui-hid jNav jClassNav1" node-type="nav">
+                <ul class="clearfix nav ui-hid jNav" id="jClassNav1" node-type="nav" name="classify">
                     <li class="f-l current" data-value="0"><a href="javascript:void(0);">全部</a></li>
                     <li class="f-l" data-value="10080"><a href="javascript:void(0);">客服1</a></li>
                     <li class="f-l" data-value="10081"><a href="javascript:void(0);">运营1</a></li>
@@ -33,7 +36,7 @@
                     <li class="f-l" data-value="10083"><a href="javascript:void(0);">物流1</a></li>
                     <li class="f-l" data-value="10084"><a href="javascript:void(0);">创业1</a></li>
                 </ul>
-                <ul class="clearfix nav ui-hid jNav jClassNav2" node-type="nav">
+                <ul class="clearfix nav ui-hid jNav" id="jClassNav2" node-type="nav" name="classify">
                     <li class="f-l current" data-value="0"><a href="javascript:void(0);">全部</a></li>
                     <li class="f-l" data-value="10080"><a href="javascript:void(0);">客服2</a></li>
                     <li class="f-l" data-value="10081"><a href="javascript:void(0);">运营2</a></li>
@@ -42,9 +45,9 @@
                     <li class="f-l" data-value="10084"><a href="javascript:void(0);">创业2</a></li>
                 </ul>
             </div>
-            <div class="common-nav ui-hid" id="jNavStatus" name="status">
+            <div class="common-nav ui-hid" id="jNavStatus">
                 <span class="type">课程状态</span>
-                <ul class="clearfix nav ui-hid jNav jStatusNav2" node-type="nav">
+                <ul class="clearfix nav ui-hid jNav" id="jStatusNav2" node-type="nav" name="status">
                     <li class="f-l current" data-value="0"><a href="javascript:void(0);">全部</a></li>
                     <li class="f-l" data-value="10085"><a href="javascript:void(0);">直播预告</a></li>
                     <li class="f-l" data-value="10086"><a href="javascript:void(0);">进行中</a></li>

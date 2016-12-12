@@ -11,7 +11,8 @@ define(function(require, exports, module) {
     var template=require("template");
     var Pager = require('plugins/pager/1.0.0/pager');
     var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
-
+    var cookie = require("lib/core/1.0.0/io/cookie");
+    var Login = require('module/login-status/1.0.0/login');
     /*顶部搜索、登录状态、底部、右侧在线客服 start*/
     var TopSearch = require('module/top-search/1.0.0/top-search');
     var LoginStatus = require('module/login-status/1.0.0/login-status');
@@ -56,7 +57,7 @@ define(function(require, exports, module) {
         var loading = null;
 
         pager.on('ajaxStart', function() {
-            loading = Box.loading('正在加载...', {
+            loading = box.loading('正在加载...', {
                 modal: false
             });
         });
@@ -169,27 +170,31 @@ define(function(require, exports, module) {
 
     //发表评论
     wrap1.on('click','.jPublish',function(){
-        var content = txt.val();
-        if(content == ''){
-            box.error('请输入发表内容');
-        }else {
-            if(!$(this).hasClass('publish-error')){
-                io.get($PAGE_DATA['commentPostUrl'],{'sourceType':sourceType,"sourceId":sourceId,'content':content},function(res){
-                    if(res){
-                        if(res.code == 0){
-                            box.ok('发表成功');
-                            txt.val('');
-                            pager.pagination.selectPage(pager.pagination.get('currentPage'));
+        if(Login.isLogin()){
+            var content = txt.val();
+            if(content == ''){
+                box.error('请输入发表内容');
+            }else {
+                if(!$(this).hasClass('publish-error')){
+                    io.get($PAGE_DATA['commentPostUrl'],{'sourceType':sourceType,"sourceId":sourceId,'content':content},function(res){
+                        if(res){
+                            if(res.code == 0){
+                                box.ok('发表成功');
+                                txt.val('');
+                                pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                            }else {
+                                box.error(res.msg || '发表失败');
+                            }
                         }else {
-                            box.error(res.msg || '发表失败');
+                            box.error('发表失败，请重试');
                         }
-                    }else {
-                        box.error('发表失败，请重试');
-                    }
-                },function(res){
-                    box.error(res.msg || '网络错误,请重试');
-                });
+                    },function(res){
+                        box.error(res.msg || '网络错误,请重试');
+                    });
+                }
             }
+        }else {
+            Login.login(window.location.href);
         }
     });
 
@@ -228,61 +233,66 @@ define(function(require, exports, module) {
 
     //点赞
     $('#jWrap1Box,#jWrap3Box').on('click','.mod-item .like',function(){
-        var dataType = $(this).attr('data-dataType');
-        var type = $(this).attr('data-type');
-        var id = $(this).attr('data-value');
-        var data;
-        if($(this).hasClass("activeLike")){
-            data = {
-                "dataType":dataType,
-                "type":type,
-                "id":id
+        if(Login.isLogin()){
+            var dataType = $(this).attr('data-dataType');
+            var type = $(this).attr('data-type');
+            var id = $(this).attr('data-value');
+            var data;
+            if($(this).hasClass("activeLike")){
+                data = {
+                    "dataType":dataType,
+                    "type":type,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
+            }else {
+                data = {
+                    "dataType":dataType,
+                    "type":type,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
             }
-            clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
         }else {
-            data = {
-                "dataType":dataType,
-                "type":type,
-                "id":id
-            }
-            clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
+            Login.login(window.location.href);
         }
     });
 
     //采集
     $('#jWrap3Box').on('click','.mod-item .pick',function(){
-        var id = $(this).attr('data-id');
-        if($(this).hasClass("picked")){
-            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',id,'取消采集');
-            $(this).find('i').text('采集');
-            $(this).removeClass('picked');
+        if(Login.isLogin()){
+            var id = $(this).attr('data-id');
+            if($(this).hasClass("picked")){
+                clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',id,'取消采集');
+                $(this).find('i').text('采集');
+                $(this).removeClass('picked');
+            }else {
+                clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',id,'采集');
+                $(this).find('i').text('已采集');
+                $(this).addClass('picked');
+            }
         }else {
-            clickInterface($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',id,'采集');
-            $(this).find('i').text('已采集');
-            $(this).addClass('picked');
+            Login.login(window.location.href);
         }
+
     });
 
     //只看我的
     $('.jWrap3').on('click','.bar-right',function(){
-        if($(this).text() === '只看我的'){
-            renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":1,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);
-            $(this).text('取消只看我的');
+        if(Login.isLogin()){
+            if($(this).text() === '只看我的'){
+                renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":1,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);
+                $(this).text('取消只看我的');
+            }else {
+                renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":0,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);
+                $(this).text('只看我的');
+            }
         }else {
-            renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":0,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);
-            $(this).text('只看我的');
+            Login.login(window.location.href);
         }
     });
 
-    ////查看全文
-    //$('.jViewAll').click(function(){
-    //    if($(this).text() !== "收起"){
-    //        $(this).parent().parent().siblings('.jWrap3P').css({"overflow":"visible","display":"block"});
-    //        $(this).html('<i class="view-up"></i>收起');
-    //    }else {
-    //        $(this).parent().parent().siblings('.jWrap3P').css({"overflow":"hidden","display":"-webkit-box"});
-    //        $(this).html('<i class="view-down"></i>查看全文');
-    //    }
-    //});
-
+    window.pager = function(){
+        pager.pagination.selectPage(pager.pagination.get('currentPage'));
+    };
 });

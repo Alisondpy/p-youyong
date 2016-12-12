@@ -19,15 +19,14 @@ define(function(require, exports, module) {
     var Question = require('module/monitor/1.0.0/question');
     var Note = require('module/monitor/1.0.0/note');
     var catlog = $('.jMod-catlog');
-    var note = $('.jMod-note');
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
     var lazy,question,note;
 
-    var jQuestionTab1 = $('#jQuestionTab1');
-    var jQuestionTab2 = $('#jQuestionTab2');
-    var jNoteTab1 = $('#jNoteTab1');
-    var jNoteTab2 = $('#jNoteTab2');
+    var jQuestionTab1 = $('#jQuestionTab1');//我的问答容器
+    var jQuestionTab2 = $('#jQuestionTab2');//全部问答容器
+    var jNoteTab1 = $('#jNoteTab1');//我的笔记容器
+    var jNoteTab2 = $('#jNoteTab2');//全部笔记容器
 
     //====================播放器 start
     var Player = require('plugins/ckplayer/6.7.0/player');
@@ -46,9 +45,7 @@ define(function(require, exports, module) {
     });
 
     var isSendPlayTime = true;
-    //if(player.getTotalTime()){
-    //    var playDuration =  player.getTotalTime();
-    //}
+    var playDuration =  player.getTotalTime();
     //监听当前播放器进度
     player.on('time', function(seconds) {
         if(isSendPlayTime && seconds >0){
@@ -66,21 +63,14 @@ define(function(require, exports, module) {
     });
     //====================播放器 end
 
-    //图片懒加载
-    lazy = new Lazyload($('.jImg'), {
-        mouseWheel: true,
-        effect: 'fadeIn',
-        snap: true
-    });
 
-    /*交互*/
-    //字数限制
-    var publishA = $('.jPublishA');
-    var publishQ = $('.jPublishQ');
-    var txtNumA = $('.jTxtNumA');
-    var txtNumQ = $('.jTxtNumQ');
-    var txtA = $('.jTxtA');
-    var txtQ = $('.jTxtQ');
+    //====================字数限制 start
+    var publishA = $('.jPublishA');//发布笔记
+    var publishQ = $('.jPublishQ');//发布问答
+    var txtNumA = $('.jTxtNumA');//笔记字数
+    var txtNumQ = $('.jTxtNumQ');//问答字数
+    var txtA = $('.jTxtA');//笔记输入框
+    var txtQ = $('.jTxtQ');//问答输入框
     function limit(txtLen,num,_this,publish,txtNum){
         if(txtLen > num){
             _this.addClass('text-error');
@@ -102,8 +92,8 @@ define(function(require, exports, module) {
         var txtLen = $(this).val().length;
         limit(txtLen,500,$(this),publishQ,txtNumQ);
     });
-
-    //发表
+    //====================字数限制 end
+    //====================发布按钮 start
     function pubAjax(content,_this,url,data,txt){
         if(content == ''){
             box.error('请输入发表内容');
@@ -147,6 +137,7 @@ define(function(require, exports, module) {
         }
         pubAjax(content,$(this),$PAGE_DATA['question'].publish,{"content":content,"showType":showType},txtQ);
     });
+    //====================发布按钮 end
 
     //评论focus效果
     jTab.on('focus','.jTxt',function(){
@@ -159,7 +150,6 @@ define(function(require, exports, module) {
         }
     });
 
-    /*点赞交互*/
     //点赞和采集的接口处理
     function clickInterface(url,data,msg){
         io.get(url,data,function(res){

@@ -19,10 +19,15 @@ define(function(require, exports, module) {
 		_this.options = $.extend(true,{},defaults,options);
 
 		_this._initEvent();
+		_this._init();
+
 	};
 
 	//继承自定义事件
 	Util.inherits(NavigationBar, EventEmitter);
+
+	NavigationBar.prototype._init = function(){};
+
 	NavigationBar.prototype._initEvent = function() {
 		var _this = this;
 		_this.el.on('click',_this.options.navItemSlect,function() {
@@ -30,9 +35,9 @@ define(function(require, exports, module) {
 			if (!$li.hasClass(_this.options.currentClass)) {
 				$li.addClass(_this.options.currentClass).siblings().removeClass(_this.options.currentClass);
 			}
-			_this._get();
+			_this.emit('change',_this._get());
 		});
-	}
+	};
 
 	NavigationBar.prototype._get = function(){
 		var _this = this;
@@ -44,8 +49,22 @@ define(function(require, exports, module) {
 				typeData[name] = val;
 			}
 		});
-		_this.emit('change',typeData);
+		return typeData;
 	};
+
+	NavigationBar.prototype.get = function(){
+		var _this = this;
+		var name;
+		var data = _this._get();
+		if(_this.el.attr('data-name')){
+			name = _this.el.attr('data-name');
+		}
+		if(name){
+			data.name = name;
+		}
+		return data;
+	};
+
 	module.exports = NavigationBar;
 
 });
