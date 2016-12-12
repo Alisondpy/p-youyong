@@ -5,7 +5,8 @@ define(function (require, exports, module) {
 
     var template = require("template");
     var io = require('lib/core/1.0.0/io/request');
-    var Box = require('lib/ui/box/1.0.1/crossbox');;
+    var Box = require('lib/ui/box/1.0.1/crossbox');
+    ;
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Pager = require('plugins/pager/1.0.0/pager');
     var navigation = require('module/navigation-bar/1.0.0/navigation-bar');
@@ -15,10 +16,11 @@ define(function (require, exports, module) {
 
     //考试接口
     var loadTest = $PAGE_DATA['loadTest'];
-    var analysisUrl= $PAGE_DATA['analysisUrl'];
+    var analysisUrl = $PAGE_DATA['analysisUrl'];
 
 
-    var jTestModule = $("#jTestModule"); /*模板*/
+    var jTestModule = $("#jTestModule");
+    /*模板*/
     var pager;
     var isDeleting = false;
     var renderList = function (url, data) {
@@ -48,10 +50,10 @@ define(function (require, exports, module) {
                     res.data.deletingTxt = '管理';
                 }
                 //转换时间
-                $.each(res.data.resultList,function(i,n){
-                    $.each(n,function(j,m){
-                        if (j == "intervalExamMinute" || j == "intervalExamEndMinute"){
-                            n[j] =  TimeConver(n[j]);
+                $.each(res.data.resultList, function (i, n) {
+                    $.each(n, function (j, m) {
+                        if (j == "intervalExamMinute" || j == "intervalExamEndMinute") {
+                            n[j] = TimeConver(n[j]);
                         }
                     })
                 })
@@ -70,12 +72,12 @@ define(function (require, exports, module) {
             }
             loading && loading.hide();
         });
-        pager.on('ajaxError', function(data) {
+        pager.on('ajaxError', function (data) {
             Box.error(data.msg || '网络错误，请重试！');
             loading && loading.hide();
         });
 
-        pager.on('change', function(pageNum, e) {
+        pager.on('change', function (pageNum, e) {
             $('#jCurrentPage').html(pageNum)
         });
 
@@ -114,8 +116,8 @@ define(function (require, exports, module) {
                     var status = $(".ifm-tab-item.active").attr("data-value");
                     io.get(loadTest, {"id": id}, function (res) {
                             isDeleting = true;
-                            Box.confirm("确认删除？",function(data){
-                                if(data == true){
+                            Box.confirm("确认删除？", function (data) {
+                                if (data == true) {
                                     Box.ok("删除成功");
                                     pager.pagination.selectPage(pager.pagination.get('currentPage'));
                                 }
@@ -126,17 +128,17 @@ define(function (require, exports, module) {
                         }, this)
                 })
 
-                elem.on("click",".jViewPage",function(){
+                elem.on("click", ".jViewPage", function () {
                     var _this = $(this);
                     var examId = _this.parents(".jExamList").attr("data-value");
-                    io.get(analysisUrl,{"examId":examId},function(resData){
-                        if(resData.code == 200){
+                    io.get(analysisUrl, {"examId": examId}, function (resData) {
+                        if (resData.code == 200) {
                             Box.loadUrl(resData.msg, {
                                 title: '答卷详情',
                                 autoRelease: false,
                                 modal: true //是否有遮罩层
                             });
-                        }else{
+                        } else {
                             Box.error(resData.msg || '网络失败，请重试');
                         }
                     })
@@ -147,15 +149,15 @@ define(function (require, exports, module) {
     };
 
     //时间转换方法
-    var TimeConver = function(data){
-        var minutes = parseInt(data/1000/60);
+    var TimeConver = function (data) {
+        var minutes = parseInt(data / 1000 / 60);
         var str;
-        var ss = parseInt(minutes%60)>0?(parseInt(minutes%60))+'分':'';//分钟
-        var aa = parseInt(minutes/60);//总共小时数
-        var hh = aa%24>0? (aa%24+'时'):'';//小时
-        var dd = parseInt(aa/24)>0?(parseInt(aa/24)+'天'):"";//总共天数
+        var ss = parseInt(minutes % 60) > 0 ? (parseInt(minutes % 60)) + '分' : '';//分钟
+        var aa = parseInt(minutes / 60);//总共小时数
+        var hh = aa % 24 > 0 ? (aa % 24 + '时') : '';//小时
+        var dd = parseInt(aa / 24) > 0 ? (parseInt(aa / 24) + '天') : "";//总共天数
 
-       str = dd+hh+ss
+        str = dd + hh + ss
         return str;
     }
     InitEvent.init(jContainer, pager);
