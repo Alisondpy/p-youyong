@@ -201,7 +201,7 @@ define(function(require, exports, module) {
         io.post(url, formData, function(res) {
             box.ok("登陆成功");
             //等待1秒跳转页面
-            refer = res.data.returnUrl;
+            var refer = res.data.returnUrl;
             cookie.set('__returnUrl', null);
             if (refer) {
                 refer = decodeURIComponent(refer);
