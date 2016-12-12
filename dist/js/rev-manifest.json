@@ -1,5 +1,7 @@
 {
-  "app.js": "app-3f2cdd2a00.js",
+  "app.js": "app-48aebd141e.js",
+  "conf/404.js": "conf/404-8ea9976755.js",
+  "conf/500.js": "conf/500-709721d6d2.js",
   "conf/apply.js": "conf/apply-035046d3bd.js",
   "conf/ckplayer.js": "conf/ckplayer-0e6dc8579f.js",
   "conf/course/ask-pop.js": "conf/course/ask-pop-9bf697c107.js",
@@ -29,7 +31,7 @@
   "conf/uc/common.js": "conf/uc/common-bd4c574027.js",
   "conf/uc/index.js": "conf/uc/index-409df8a347.js",
   "conf/uc/my-activity.js": "conf/uc/my-activity-9b3dbfcff6.js",
-  "conf/uc/my-answer.js": "conf/uc/my-answer-cd83267f0f.js",
+  "conf/uc/my-answer.js": "conf/uc/my-answer-9bcebec840.js",
   "conf/uc/my-collection.js": "conf/uc/my-collection-f7c0c2485f.js",
   "conf/uc/my-study.js": "conf/uc/my-study-fea7b5edb2.js",
   "conf/uc/my-test.js": "conf/uc/my-test-f58c3af40a.js",

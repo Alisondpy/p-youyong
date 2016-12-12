@@ -1,12 +1,12 @@
 {
   "conf/404.css": "conf/404-4d8594339d.css",
+  "conf/500.css": "conf/500-e5df55b937.css",
   "conf/apply.css": "conf/apply-e66149d44e.css",
   "conf/course/ask-pop.css": "conf/course/ask-pop-410141b0d8.css",
   "conf/course/course-list.css": "conf/course/course-list-c0e3398bd1.css",
   "conf/course/detail.css": "conf/course/detail-ff4b661c8e.css",
   "conf/course/index.css": "conf/course/index-05083ea628.css",
   "conf/demo.css": "conf/demo-46188d0f0c.css",
-  "conf/fix.css": "conf/fix-e5df55b937.css",
   "conf/forget-pwd.css": "conf/forget-pwd-8d7b8a207a.css",
   "conf/hp/hp-center.css": "conf/hp/hp-center-237f3fd554.css",
   "conf/hp/hp-feedback.css": "conf/hp/hp-feedback-f9fcc69ae1.css",
