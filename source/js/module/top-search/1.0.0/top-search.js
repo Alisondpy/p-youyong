@@ -11,7 +11,7 @@ define(function(require, exports, module) {
             selector: '#jTopSearch', //容器选择器
             url: ($PAGE_DATA && $PAGE_DATA['topSearchUrl']) || '', //要跳转的url
             data: {}, //跳转url需要额外参数
-            alias: 'key' //搜索关键词默认参数,如果input data-id 优先级更高
+            alias: 'name' //搜索关键词默认参数,如果input data-id 优先级更高
         };
         _this.options = $.extend(true, {}, defaults, options);
         if (_this.options.url == '') {
