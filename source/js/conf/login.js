@@ -220,7 +220,7 @@ define(function(require, exports, module) {
         var allowerList = [
             /zhongzhihui.com/
         ];
-        var defaultReturnUrl = $PAGE_DATA && $PAGE_DATA['defaultReturnUrl'] || 'http://www.zhongzhihui.com';
+        var defaultReturnUrl = ($PAGE_DATA && $PAGE_DATA['defaultReturnUrl']) || 'http://www.zhongzhihui.com';
         var params = Utils.parseQuery(window.location.search);
         //从哪里来到哪里去
         //如果url带有returnUrl，优先跳转
