@@ -80,11 +80,14 @@ define(function(require, exports, module) {
                 IO[options.ajaxType](options.url, $.extend({}, params, options.data), function(data) {
                     _this.emit('ajaxSuccess', data, function(totalCount) {
                         if (totalCount > 1) {
-                            _this.pagination.show();
                             _this.pagination.setTotalCount(totalCount);
                         } else {
-                            _this.pagination.hide();
                             _this.pagination.setTotalCount(1);
+                        }
+                        if(_this.pagination.get('currentPage') > 1){
+                            _this.pagination.show();
+                        }else{
+                            _this.pagination.hide();
                         }
                     });
                     deferred.resolve(data);
