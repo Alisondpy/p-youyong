@@ -84,7 +84,7 @@ define(function(require, exports, module) {
                         } else {
                             _this.pagination.setTotalCount(1);
                         }
-                        if(_this.pagination.get('currentPage') > 1){
+                        if(_this.pagination.get('pageCount') > 1){
                             _this.pagination.show();
                         }else{
                             _this.pagination.hide();
