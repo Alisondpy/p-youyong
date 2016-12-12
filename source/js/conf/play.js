@@ -18,6 +18,7 @@ define(function(require, exports, module) {
     var template=require("template");
     var Question = require('module/monitor/1.0.0/question');
     var Note = require('module/monitor/1.0.0/note');
+    var Login = require('module/login-status/1.0.0/login');
     var catlog = $('.jMod-catlog');
     var jTab = $('#jTab');
     var tab = new Tab(jTab);
@@ -122,30 +123,38 @@ define(function(require, exports, module) {
     var answer = $('#jAnswer');
     var ques = $('#jQues');
     var publishData = {
-        sourceType:200,
-        sourceId:10,
+        sourceType:2,
+        sourceId:lessonId,
         content:"",
         showType:1
     }
     jTab.on('click','.jPublishA',function(){
-        var content = txtA.val();
-        publishData.content = content;
-        if(answer.is(':checked')){
-            publishData.showType = 1;
+        if(Login.isLogin()){
+            var content = txtA.val();
+            publishData.content = content;
+            if(answer.is(':checked')){
+                publishData.showType = 1;
+            }else {
+                publishData.showType = 2;
+            }
+            pubAjax(content,$(this),$PAGE_DATA['note'].publish,publishData,txtA);
         }else {
-            publishData.showType = 2;
+            Login.login(window.location.href);
         }
-        pubAjax(content,$(this),$PAGE_DATA['note'].publish,publishData,txtA);
     });
     jTab.on('click','.jPublishQ',function(){
-        var content = txtQ.val();
-        publishData.content = content;
-        if(ques.is(':checked')){
-            publishData.showType = 1;
+        if(Login.isLogin()){
+            var content = txtQ.val();
+            publishData.content = content;
+            if(ques.is(':checked')){
+                publishData.showType = 1;
+            }else {
+                publishData.showType = 2;
+            }
+            pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishData,txtQ);
         }else {
-            publishData.showType = 2;
+            Login.login(window.location.href);
         }
-        pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishData,txtQ);
     });
     //====================发布按钮 end
 
@@ -179,26 +188,30 @@ define(function(require, exports, module) {
 
     //点赞
     jTab.on('click','.like',function(){
-        var dataType = $(this).attr('data-dataType');
-        var type = $(this).attr('data-type');
-        var id = $(this).attr('data-value');
-        var data;
-        if($(this).hasClass("activeLike")){
-            data = {
-                "dataType":dataType,
-                "type":type,
-                "id":id
+        if(Login.isLogin()){
+            var dataType = $(this).attr('data-dataType');
+            var type = $(this).attr('data-type');
+            var id = $(this).attr('data-value');
+            var data;
+            if($(this).hasClass("activeLike")){
+                data = {
+                    "dataType":dataType,
+                    "type":type,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['note'].like,data,'取消点赞');
+                $(this).removeClass('activeLike');
+            }else {
+                data = {
+                    "dataType":dataType,
+                    "type":type,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['question'].like,data,'点赞');
+                $(this).addClass('activeLike');
             }
-            clickInterface($PAGE_DATA['note'].like,data,'取消点赞');
-            $(this).removeClass('activeLike');
         }else {
-            data = {
-                "dataType":dataType,
-                "type":type,
-                "id":id
-            }
-            clickInterface($PAGE_DATA['question'].like,data,'点赞');
-            $(this).addClass('activeLike');
+            Login.login(window.location.href);
         }
     });
 
@@ -250,7 +263,7 @@ define(function(require, exports, module) {
                     sortType:1,
                     showType:1,
                     sourceType:2,
-                    sourceId:sourceId
+                    sourceId:lessonId
                 }
                 jNoteTab1.show();
                 jNoteTab2.hide();
@@ -271,7 +284,7 @@ define(function(require, exports, module) {
                     sortType:1,
                     showType:0,
                     sourceType:2,
-                    sourceId:sourceId
+                    sourceId:lessonId
                 }
                 jNoteTab1.hide();
                 jNoteTab2.show();
@@ -299,7 +312,7 @@ define(function(require, exports, module) {
                     sortType:1,
                     showType:1,
                     sourceType:2,
-                    sourceId:sourceId
+                    sourceId:lessonId
                 }
                 jNoteTab1.hide();
                 jNoteTab2.hide();
@@ -320,7 +333,7 @@ define(function(require, exports, module) {
                     sortType:1,
                     showType:0,
                     sourceType:2,
-                    sourceId:sourceId
+                    sourceId:lessonId
                 }
                 jNoteTab1.hide();
                 jNoteTab2.hide();
