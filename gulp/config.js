@@ -101,9 +101,9 @@ var CONFIG = {
         //公共配置
         common: {
             findNestedDependencies: true,
-            // baseUrl: '//s1.zhongzhihui.com/p-youyong/dist/js/',
+            baseUrl: 'http://s1.zhongzhihui.com/p-youyong/dist/js/',
             paths: {
-                // 'lib': '//s1.zhongzhihui.com/lib',
+                // 'lib': 'http://s1.zhongzhihui.com/lib',
                 'template': 'lib/template/3.0/template-simple',
                 'css': 'lib/require/2.1/plugins/css/css', // or whatever the path to require-css is
                 'text': 'lib/require/2.1/plugins/text/text', // or whatever the path to require-css is
