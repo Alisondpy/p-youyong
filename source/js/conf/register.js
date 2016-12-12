@@ -10,9 +10,7 @@ define(function(require, exports, module) {
     var validate = require('plugins/validator/1.0.0/validator');
     var form = require("lib/core/1.0.0/utils/form");
     /*顶部搜索、登录状态、底部、右侧在线客服 start*/
-    var LoginStatus = require('module/login-status/1.0.0/login-status');
     var Footer = require('module/footer/1.0.0/footer');
-    var loginStatus = new LoginStatus();
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
