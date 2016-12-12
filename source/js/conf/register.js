@@ -6,13 +6,12 @@ define(function(require, exports, module) {
     var $ = require('jquery');
     var box = require('lib/ui/box/1.0.1/crossbox');
     var io = require('lib/core/1.0.0/io/request');
-    var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var validate = require('plugins/validator/1.0.0/validator');
     var form = require("lib/core/1.0.0/utils/form");
-    /*顶部搜索、登录状态、底部、右侧在线客服 start*/
+    /*底部 start*/
     var Footer = require('module/footer/1.0.0/footer');
     var footer = new Footer();
-    /*顶部搜索、登录状态、底部、右侧在线客服 end*/
+    /*底部 end*/
 
 
     //临时代码,触发初始化,修改无法初始验证手机号,触发验证码按钮的bug

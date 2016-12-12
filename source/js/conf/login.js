@@ -6,6 +6,20 @@ define(function(require, exports, module) {
     var validate = require('plugins/validator/1.0.0/validator');
     var form = require("lib/core/1.0.0/utils/form");
     var cookie = require("lib/core/1.0.0/io/cookie");
+    /*底部 start*/
+    var Footer = require('module/footer/1.0.0/footer');
+    var footer = new Footer();
+    /*底部 end*/
+
+    /*图片懒加载 start*/
+    var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
+    var lazy = new Lazyload($('.jImg'), {
+        mouseWheel: true,
+        effect: 'fadeIn',
+        snap: true
+    });
+    /*底部 start*/
+
     //白名单
     var allowerList = [
         /zhongzhihui.com/
@@ -140,8 +154,7 @@ define(function(require, exports, module) {
             //验证成功时执行方法
             console.log(document.referrer);
             validateSuccess($PAGE_DATA['normalLogin'], formRes);
-        },
-
+        }
     });
 
     //登陆页面切换登陆形态
@@ -216,8 +229,8 @@ define(function(require, exports, module) {
     //验证refer是否属于白名单里面
     function includeUrl(refer) {
         for (var i = 0; i < allowerList.length; i++) {
-            if (allowerList[i].test(refer) >= 0) {
-                return true
+            if (allowerList[i].test(refer)) {
+                return true;
             }
         }
         return false;
