@@ -31,8 +31,8 @@ define(function(require, exports, module) {
 
     LoginStatus.prototype._init = function() {
         var _this = this;
-        var nick = login.getNick();
-        if (nick) {
+        if(login.isLogin()){
+            var nick = login.getNick();
             _this.el.html(_this._getLoginedHtml(nick));
             _this._initEvent();
         }
