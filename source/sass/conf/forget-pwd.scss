@@ -71,9 +71,10 @@ body{
           }
         }
         .ui-input{
-          padding: 0;
+          padding: 15px 0 10px 0;
           width: 230px;
-          line-height: 46px;
+          // line-height: 46px;
+          height: 20px;
           border: none;
           color: #95aab8;
           &.error + label{

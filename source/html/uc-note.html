@@ -77,7 +77,7 @@
                 <li class="item {{if i=='0'}}first{{/if}}" >
                     <p class="title">
                         <span class="course-title">课程名称:</span>
-                        <a href="/course/detail?courseId={{item.courseId}}" class="topic">{{item.courseName}}</a>
+                        <a href="/course/detail?courseId={{item.courseId}}" class="topic" title={{item.courseName}}>{{item.courseName}}</a>
                     </p>
                     <textarea class="details jEditDetails" readonly="readonly" unselectable="on">{{item.content}}</textarea>
                     <div class="control clearfix jEdit" data-id={{item.id}}>

@@ -19,9 +19,12 @@
 				font-size: 16px;
 				.course-title{
 					color: #999;
+					vertical-align: middle;
 				}
 				.topic{
 					display: inline-block;
+					width: 120px;
+					vertical-align: middle;
 					font-weight: 700;
 					color: #1c2c36;
 					cursor: pointer;
