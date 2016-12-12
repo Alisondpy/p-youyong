@@ -180,6 +180,13 @@ define(function(require, exports, module) {
 
     subForm();
 
+    $(".jMSubBtn").click(function(){
+        $("#jInfoForm").submit();
+    })
+    $(".jSubBtn").click(function(){
+        $("#jFormPwd").submit();
+    })
+
     var Tab = require('lib/ui/tab/1.0.0/tab');
     var jIfmTab = $('#jIfmTab');
     var ifmTab = new Tab(jIfmTab);
