@@ -1,5 +1,6 @@
 #!/bin/bash
 echo 'start copy dist'
+rm -rf /app/data/www/working/s1.zzhstatic.com-release/p-youyong/dist/
 cp -r /app/data/www/working/s1.zzhstatic.com/p-youyong/dist/ /app/data/www/working/s1.zzhstatic.com-release/p-youyong/dist/ 
 echo 'start release';
 git add .
