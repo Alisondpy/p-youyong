@@ -147,7 +147,7 @@ define(function(require, exports, module) {
             rules:{
                 oldPassword:{
                     required:true,
-                     Password:true,
+                    Password:true,
                     minlength:6,
                     maxlength:16
                 },
