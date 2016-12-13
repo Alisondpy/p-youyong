@@ -999,17 +999,17 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = E(), h = k(), g = z(r), m = q(r), b = P(e), x = z(a), _ = q(a), C = b.left, T = b.top, j = d ? C - h.x : C, $ = d ? T - h.y : T, I = d ? 0 : h.x, S = d ? 0 : h.y, D = I + p.w - g, L = S + p.h - m, M = {
+            var d = i.fixed, p = E(), h = k(), g = z(r), m = q(r), b = P(e), x = z(a), _ = q(a), C = b.left, T = b.top, j = d ? C - h.x : C, $ = d ? T - h.y : T, I = d ? 0 : h.x, S = d ? 0 : h.y, D = I + p.w - g, L = S + p.h - m, U = {
                 t: "b",
                 b: "t",
                 l: "r",
                 r: "l"
-            }, O = {
+            }, M = {
                 t: "top",
                 b: "top",
                 l: "left",
                 r: "left"
-            }, U = {}, R = [ {
+            }, O = {}, R = [ {
                 t: $ - m,
                 b: $ + _,
                 l: j - g,
@@ -1019,34 +1019,34 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 b: $ - m + _,
                 l: j,
                 r: j - g + x
-            } ], W = {
+            } ], G = {
                 l: j + y((x - g) / 2),
                 t: $ + y((_ - m) / 2)
-            }, G = {
+            }, W = {
                 left: [ I, D ],
                 top: [ S, L ]
             };
             c || w(l, function(e, t) {
-                R[t][e] > G[O[e]][1] && (e = l[t] = M[e]);
-                R[t][e] < G[O[e]][0] && (l[t] = M[e]);
+                R[t][e] > W[M[e]][1] && (e = l[t] = U[e]);
+                R[t][e] < W[M[e]][0] && (l[t] = U[e]);
             });
             var B = l[0];
             if (!l[1]) {
-                l[1] = "left" === O[B] ? "t" : "l";
-                R[1][l[1]] = W[l[1]];
+                l[1] = "left" === M[B] ? "t" : "l";
+                R[1][l[1]] = G[l[1]];
             }
             R[0][B] = R[0][B] + 10 * ("tl".indexOf(B) !== -1 ? -1 : 1);
-            U[O[l[0]]] = A(R[0][l[0]]);
-            U[O[l[1]]] = A(R[1][l[1]]);
+            O[M[l[0]]] = A(R[0][l[0]]);
+            O[M[l[1]]] = A(R[1][l[1]]);
             var F = v + "-" + B;
-            r.css(U).addClass(F);
+            r.css(O).addClass(F);
             n._dirClass = F;
             var H = n.$("arrow", 1), V = n.$("inner", 1);
             if (!H) {
                 if (!V) return n;
                 H = o('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(V);
             }
-            var Q, Y, X = "top" !== O[B], J = [ "v", "h" ][1 ^ X], Z = z(H), K = q(H), ee = {}, te = X ? "left" : "top";
+            var Q, Y, X = "top" !== M[B], J = [ "v", "h" ][1 ^ X], Z = z(H), K = q(H), ee = {}, te = X ? "left" : "top";
             switch (J) {
               case "h":
                 Q = y(C + (x - Z) / 2);
@@ -1611,6 +1611,41 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
     h.get = i.get;
     h.config = i.config;
     n.exports = h;
+});
+
+define("lib/ui/box/1.0.1/crossbox", [ "require", "exports", "module", "./box" ], function(e, t, n) {
+    "use strict";
+    function i(e, t) {
+        for (var n in t) t.hasOwnProperty(n) && (e[n] = t[n]);
+        return e;
+    }
+    function o(e) {
+        d.push(e);
+    }
+    function r(e) {
+        for (var t = -1, n = d.length; ++t < n; ) d[t](e);
+    }
+    function a(e) {
+        f ? e(s || l) : o(e);
+    }
+    var s, u = window, l = i({}, e("./box")), c = window.top, f = !1, d = [];
+    if (u !== c) try {
+        c.require([ "lib/ui/box/1.0.1/crossbox" ], function(e) {
+            i(n.exports, e);
+            f = !0;
+            s = e;
+            r(e);
+        });
+    } catch (p) {
+        setTimeout(function() {
+            console.warn("Initialize crossbox failed, use inner box instead.");
+        }, 1);
+    } else {
+        f = !0;
+        s = l;
+    }
+    t = n.exports = l;
+    t.ready = a;
 });
 
 !function(e, t, n) {
@@ -3077,23 +3112,23 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
     n.exports = i;
 });
 
-define("conf/course/index", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0.1/box", "lib/plugins/lazyload/1.9.3/lazyload", "lib/core/1.0.0/io/request", "template", "plugins/pager/1.0.0/pager", "lib/ui/tab/1.0.0/tab", "module/navigation-bar/1.0.0/navigation-bar", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer" ], function(e, t, n) {
+define("conf/course/index", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0.1/crossbox", "lib/plugins/lazyload/1.9.3/lazyload", "lib/core/1.0.0/io/request", "template", "plugins/pager/1.0.0/pager", "lib/ui/tab/1.0.0/tab", "module/navigation-bar/1.0.0/navigation-bar", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer" ], function(e, t, n) {
     "use strict";
     function i(e, t, n, i, o) {
         a && a.destroy();
-        a = new d(o, {
+        a = new p(o, {
             url: e,
             data: t
         });
         var s = null;
         a.on("ajaxStart", function() {
-            s = l.loading("正在加载...", {
+            s = Box.loading("正在加载...", {
                 modal: !1
             });
         });
         a.on("ajaxSuccess", function(e, t) {
             if (e && e.data && e.data.resultList && e.data.resultList.length > 0) {
-                var a = f(n, e.data);
+                var a = d(n, e.data);
                 document.getElementById(i).innerHTML = a;
                 r = new c(u("#" + i).find(".jImg"), {
                     mouseWheel: !0,
@@ -3102,7 +3137,7 @@ define("conf/course/index", [ "require", "exports", "module", "jquery", "lib/ui/
                 });
                 t && t(e.data.records);
             } else {
-                var a = f("tEmpty", 1);
+                var a = d("tEmpty", 1);
                 document.getElementById(i).innerHTML = a;
                 o.hide();
             }
@@ -3115,63 +3150,79 @@ define("conf/course/index", [ "require", "exports", "module", "jquery", "lib/ui/
         a.on("change", function(e, t) {});
     }
     function o(e) {
-        var t = _.find(".current").attr("data-target");
+        var t = C.find(".current").attr("data-target");
         switch (t) {
           case "1":
-            i($PAGE_DATA.courseIndex, e, "tab0", "jTab0", b);
+            i($PAGE_DATA.courseIndex, e, "tab0", "jTab0", x);
             break;
 
           case "2":
-            i($PAGE_DATA.courseIndex, e, "tab1", "jTab1", b);
+            i($PAGE_DATA.courseIndex, e, "tab1", "jTab1", x);
             break;
 
           case "3":
-            i($PAGE_DATA.courseIndex, e, "tab2", "jTab2", b);
+            i($PAGE_DATA.courseIndex, e, "tab2", "jTab2", x);
         }
     }
-    var r, a, s, u = e("jquery"), l = e("lib/ui/box/1.0.1/box"), c = e("lib/plugins/lazyload/1.9.3/lazyload"), f = (e("lib/core/1.0.0/io/request"), 
-    e("template")), d = e("plugins/pager/1.0.0/pager"), p = e("lib/ui/tab/1.0.0/tab"), h = e("module/navigation-bar/1.0.0/navigation-bar"), v = e("module/top-search/1.0.0/top-search"), g = e("module/login-status/1.0.0/login-status"), m = e("module/fix-bar/1.0.0/fix-bar"), y = e("module/footer/1.0.0/footer"), b = (new v(), 
-    new g(), new m(), new y(), u("#jPagination")), x = u("#jCourseType"), w = new p(x), _ = u("#jNavType"), C = u("#jNavClassify"), A = u("#jNavStatus"), T = u("#jNavSubClassify"), j = u("#jClassNav1"), k = u("#jClassNav2"), $ = u("#jStatusNav2");
-    w.on("change", function(e) {
+    var r, a, s, u = e("jquery"), l = e("lib/ui/box/1.0.1/crossbox"), c = e("lib/plugins/lazyload/1.9.3/lazyload"), f = e("lib/core/1.0.0/io/request"), d = e("template"), p = e("plugins/pager/1.0.0/pager"), h = e("lib/ui/tab/1.0.0/tab"), v = e("module/navigation-bar/1.0.0/navigation-bar"), g = e("module/top-search/1.0.0/top-search"), m = e("module/login-status/1.0.0/login-status"), y = e("module/fix-bar/1.0.0/fix-bar"), b = e("module/footer/1.0.0/footer"), x = (new g(), 
+    new m(), new y(), new b(), u("#jPagination")), w = u("#jCourseType"), _ = new h(w), C = u("#jNavType"), A = u("#jNavClassify"), T = u("#jNavStatus"), j = u("#jNavSubClassify"), k = u("#jClassNav1"), $ = u("#jClassNav2"), E = u("#jStatusNav2");
+    _.on("change", function(e) {
         s = e.body.attr("data-id");
         switch (s) {
           case "1":
-            _.removeClass("ui-nav-border");
-            C.hide().removeClass("ui-nav-border");
+            C.removeClass("ui-nav-border");
             A.hide().removeClass("ui-nav-border");
-            T.hide();
+            T.hide().removeClass("ui-nav-border");
             j.hide();
             k.hide();
             $.hide();
+            E.hide();
             break;
 
           case "2":
-            _.addClass("ui-nav-border");
-            C.show().removeClass("ui-nav-border");
-            A.hide();
-            T.show();
+            C.addClass("ui-nav-border");
+            A.show().removeClass("ui-nav-border");
+            T.hide();
             j.show();
-            k.hide();
+            k.show();
             $.hide();
+            E.hide();
             break;
 
           case "3":
-            _.addClass("ui-nav-border");
-            C.show().addClass("ui-nav-border");
-            A.show();
-            T.hide();
+            C.addClass("ui-nav-border");
+            A.show().addClass("ui-nav-border");
+            T.show();
             j.hide();
-            k.show();
+            k.hide();
             $.show();
+            E.show();
         }
     });
-    w.setCurrent();
-    var E = new h("#jCourseNav", {
+    _.setCurrent();
+    var P = new v("#jCourseNav", {
         currentClass: "current",
         navSelector: [ "#jNavType", "#jClassNav1", "#jClassNav2", "#jStatusNav2", "#jNavSubClassify" ]
-    }), P = E.get();
-    o(P);
-    E.on("change", function(e) {
+    }), I = P.get();
+    o(I);
+    P.on("change", function(e) {
         o(e);
+    });
+    var z = u("#jTab2");
+    z.on("click", ".jLive", function() {
+        var e = u(this).attr("data-id");
+        f.get($PAGE_DATA.LiveShowUrl, {
+            courseId: e
+        }, function(e) {
+            e && e.data && e.data.liveshowUrl ? l.loadUrl(e.data.liveshowUrl, {
+                title: "直播",
+                className: "ui-test-box",
+                fixed: !0,
+                width: u(window).width(),
+                height: u(window).height()
+            }) : l.error("服务器错误,请重试");
+        }, function(e) {
+            l.error(e.msg || "网络错误,请重试");
+        });
     });
 });

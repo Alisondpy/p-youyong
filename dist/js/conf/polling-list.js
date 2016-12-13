@@ -1550,14 +1550,16 @@ define("module/monitor/1.0.0/question", [ "require", "exports", "module", "jquer
     };
     i.prototype._initEvent = function() {
         var t = this, e = (t.options, t.options.pagerAjax);
-        t.pollingList.on("error", function(t) {});
+        t.pollingList.on("error", function(e) {
+            t.pollingList.html(u("tEmpty", 1));
+        });
         t.pollingList.on("success", function(e) {
             if (e && e.data && e.data.resultList && e.data.resultList.length > 0) {
                 t.pollingList.html(t.template(e.data));
                 t.pollingList.setData({
                     id: e.data.resultList[0].id
                 });
-            }
+            } else t.pollingList.html(u("tEmpty", 1));
             t.scrollTo(0);
         });
         t.el.on("mouseenter", function() {
@@ -1574,6 +1576,7 @@ define("module/monitor/1.0.0/question", [ "require", "exports", "module", "jquer
                     t.pollingList.append(t.template(e.data));
                 }, function(e) {
                     t._isPulling = !1;
+                    t.pollingList.html(u("tEmpty", 1));
                 });
             }
         });

@@ -760,9 +760,9 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                 n(e, function(e, t) {
                     q(t);
                 });
-                v._inited || z(v);
+                v._inited || P(v);
             }
-        }, z = function(t) {
+        }, P = function(t) {
             if (!t._inited) {
                 var i = o(E, 30);
                 t._inited = !0;
@@ -781,20 +781,20 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                 }
                 t.once("reset", function() {
                     n(t._list, function(e, t) {
-                        P(t);
+                        z(t);
                     });
                     j && k.off(C, i);
                     s.off("resize", i);
                 });
                 e(document).ready(E);
             }
-        }, P = function(t) {
+        }, z = function(t) {
             var n = e(t);
             n.off("appear", I);
             j || n.off(C, $);
         };
         v.on("lazyItemReady", function(e) {
-            P(e);
+            z(e);
         });
         v.once("destroy", function() {
             S = null;
@@ -1518,12 +1518,12 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         return $(e, "width");
     }, S = function(e) {
         return $(e, "height");
-    }, z = function() {
+    }, P = function() {
         try {
             var e = u.activeElement, t = e.contentDocument;
             return t && t.activeElement || e;
         } catch (n) {}
-    }, P = function(e) {
+    }, z = function(e) {
         e = e || "";
         var t = {
             auto: !0
@@ -1587,7 +1587,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             }
             i.open = !0;
             i.anchor = s;
-            i._activeElement = z();
+            i._activeElement = P();
             i.emit("beforeShow", t);
             u.appendTo(t.appendTo).css("display", "block");
             i.emit("show", t);
@@ -1657,7 +1657,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         focus: function(e) {
             var t = this._, n = this.node, r = this._popup, a = i.current, s = t.zIndex;
             a && a !== this && a.blur(!1);
-            if (!o.contains(n, z())) {
+            if (!o.contains(n, P())) {
                 var l = r.find("[autofocus]")[0];
                 !t.focusing && l ? t.focusing = !0 : l = n;
                 this._focus(l);
@@ -1700,21 +1700,21 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var s = a.offset();
             if (s.left * s.top < 0) return n.center();
             t = t || i.align;
-            var l = P(t), u = l.align, c = !l.auto;
+            var l = z(t), u = l.align, c = !l.auto;
             u && u.length || (u = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = L(), h = k(), v = q(r), y = S(r), _ = I(e), b = q(a), w = S(a), T = _.left, C = _.top, j = d ? T - h.x : T, E = d ? C - h.y : C, $ = d ? 0 : h.x, z = d ? 0 : h.y, O = $ + p.w - v, D = z + p.h - y, H = {
+            var d = i.fixed, p = L(), h = k(), v = q(r), y = S(r), _ = I(e), b = q(a), w = S(a), T = _.left, C = _.top, j = d ? T - h.x : T, E = d ? C - h.y : C, $ = d ? 0 : h.x, P = d ? 0 : h.y, O = $ + p.w - v, D = P + p.h - y, H = {
                 t: "b",
                 b: "t",
                 l: "r",
                 r: "l"
-            }, F = {
+            }, N = {
                 t: "top",
                 b: "top",
                 l: "left",
                 r: "left"
-            }, N = {}, V = [ {
+            }, F = {}, V = [ {
                 t: E - y,
                 b: E + w,
                 l: j - v,
@@ -1729,29 +1729,29 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 t: E + g((w - y) / 2)
             }, G = {
                 left: [ $, O ],
-                top: [ z, D ]
+                top: [ P, D ]
             };
             c || x(u, function(e, t) {
-                V[t][e] > G[F[e]][1] && (e = u[t] = H[e]);
-                V[t][e] < G[F[e]][0] && (u[t] = H[e]);
+                V[t][e] > G[N[e]][1] && (e = u[t] = H[e]);
+                V[t][e] < G[N[e]][0] && (u[t] = H[e]);
             });
             var W = u[0];
             if (!u[1]) {
-                u[1] = "left" === F[W] ? "t" : "l";
+                u[1] = "left" === N[W] ? "t" : "l";
                 V[1][u[1]] = M[u[1]];
             }
             V[0][W] = V[0][W] + 10 * ("tl".indexOf(W) !== -1 ? -1 : 1);
-            N[F[u[0]]] = A(V[0][u[0]]);
-            N[F[u[1]]] = A(V[1][u[1]]);
+            F[N[u[0]]] = A(V[0][u[0]]);
+            F[N[u[1]]] = A(V[1][u[1]]);
             var U = m + "-" + W;
-            r.css(N).addClass(U);
+            r.css(F).addClass(U);
             n._dirClass = U;
             var B = n.$("arrow", 1), K = n.$("inner", 1);
             if (!B) {
                 if (!K) return n;
                 B = o('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(K);
             }
-            var R, X, Q = "top" !== F[W], Y = [ "v", "h" ][1 ^ Q], J = q(B), Z = S(B), ee = {}, te = Q ? "left" : "top";
+            var R, X, Q = "top" !== N[W], Y = [ "v", "h" ][1 ^ Q], J = q(B), Z = S(B), ee = {}, te = Q ? "left" : "top";
             switch (Y) {
               case "h":
                 R = g(T + (b - J) / 2);
@@ -2944,14 +2944,16 @@ define("module/monitor/1.0.0/question", [ "require", "exports", "module", "jquer
     };
     i.prototype._initEvent = function() {
         var e = this, t = (e.options, e.options.pagerAjax);
-        e.pollingList.on("error", function(e) {});
+        e.pollingList.on("error", function(t) {
+            e.pollingList.html(u("tEmpty", 1));
+        });
         e.pollingList.on("success", function(t) {
             if (t && t.data && t.data.resultList && t.data.resultList.length > 0) {
                 e.pollingList.html(e.template(t.data));
                 e.pollingList.setData({
                     id: t.data.resultList[0].id
                 });
-            }
+            } else e.pollingList.html(u("tEmpty", 1));
             e.scrollTo(0);
         });
         e.el.on("mouseenter", function() {
@@ -2968,6 +2970,7 @@ define("module/monitor/1.0.0/question", [ "require", "exports", "module", "jquer
                     e.pollingList.append(e.template(t.data));
                 }, function(t) {
                     e._isPulling = !1;
+                    e.pollingList.html(u("tEmpty", 1));
                 });
             }
         });
@@ -3054,14 +3057,16 @@ define("module/monitor/1.0.0/note", [ "require", "exports", "module", "jquery", 
     };
     i.prototype._initEvent = function() {
         var e = this, t = (e.options, e.options.pagerAjax);
-        e.pollingList.on("error", function(e) {});
+        e.pollingList.on("error", function(t) {
+            e.pollingList.html(u("tEmpty", 1));
+        });
         e.pollingList.on("success", function(t) {
             if (t && t.data && t.data.resultList && t.data.resultList.length > 0) {
                 e.pollingList.html(e.template(t.data));
                 e.pollingList.setData({
                     id: t.data.resultList[0].id
                 });
-            }
+            } else e.pollingList.html(u("tEmpty", 1));
             e.scrollTo(0);
         });
         e.el.on("mouseenter", function() {
@@ -3078,6 +3083,7 @@ define("module/monitor/1.0.0/note", [ "require", "exports", "module", "jquery", 
                     e.pollingList.append(e.template(t.data));
                 }, function(t) {
                     e._isPulling = !1;
+                    e.pollingList.html(u("tEmpty", 1));
                 });
             }
         });
@@ -4582,10 +4588,11 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
         }
         o.children(".num").text(e);
     }
-    function o(e, t, n, i, o) {
+    function o(e, t, n, i, o, r) {
         "" == e ? p.error("请输入内容") : t.hasClass("publish-error") || m.get(n, i, function(e) {
             p.ok("发表成功");
             o.val("");
+            r.children(".num").text("0");
         }, function(e) {
             p.error(e.msg || "网络错误,请重试");
         });
@@ -4616,21 +4623,14 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             }
             o && o.hide();
         }, function(e) {
-            document.getElementById(i).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
+            var t = y("tEmpty", 1);
+            document.getElementById(i).innerHTML = t;
             o && o.hide();
         });
     }
     function s(e) {
         switch (e) {
           case "0":
-            var t = {
-                id: 0,
-                pageSize: 20,
-                sortType: 1,
-                showType: 1,
-                sourceType: 2,
-                sourceId: $
-            };
             E.show();
             L.hide();
             j.hide();
@@ -4668,21 +4668,13 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             break;
 
           case "2":
-            var t = {
-                id: 0,
-                pageSize: 20,
-                sortType: 1,
-                showType: 1,
-                sourceType: 2,
-                sourceId: $
-            };
             E.hide();
             L.hide();
             j.show();
             k.hide();
             T && T.stop();
             A && A.stop();
-            a($PAGE_DATA.question.question, t, "tQuestion", "jQuestionTab1");
+            a($PAGE_DATA.question.question, X, "tQuestion", "jQuestionTab1");
             break;
 
           case "3":
@@ -4716,7 +4708,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     new c(), new f(), new d(), e("lib/ui/box/1.0.1/crossbox")), h = e("lib/plugins/lazyload/1.9.3/lazyload"), m = e("lib/core/1.0.0/io/request"), v = e("lib/ui/tab/1.0.0/tab"), y = e("template"), g = e("module/monitor/1.0.0/question"), _ = e("module/monitor/1.0.0/note"), b = e("module/login-status/1.0.0/login"), x = (l(".jMod-catlog"), 
     l("#jTab"));
     e("plugins/layer/layer");
-    var w, T, A, C = new v(x), j = l("#jQuestionTab1"), k = l("#jQuestionTab2"), E = l("#jNoteTab1"), L = l("#jNoteTab2"), I = $PAGE_DATA.courseId, $ = $PAGE_DATA.lessonId, q = $PAGE_DATA.examId, S = e("plugins/ckplayer/6.7.0/player"), z = new S("#jAudio", {
+    var w, T, A, C = new v(x), j = l("#jQuestionTab1"), k = l("#jQuestionTab2"), E = l("#jNoteTab1"), L = l("#jNoteTab2"), I = $PAGE_DATA.courseId, $ = $PAGE_DATA.lessonId, q = $PAGE_DATA.examId, S = e("plugins/ckplayer/6.7.0/player"), P = new S("#jAudio", {
         swfPlayer: $PAGE_DATA.ckplayer,
         embed: {
             width: "871",
@@ -4728,23 +4720,23 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             f: $PAGE_DATA.m3u8,
             a: $PAGE_DATA.play
         }
-    }), P = !0, O = !1, D = !1;
-    z.on("time", function(e) {
-        if (P && e > 0) {
-            P = !1;
+    }), z = !0, O = !1, D = !1;
+    P.on("time", function(e) {
+        if (z && e > 0) {
+            z = !1;
             var t = l.extend(!0, {}, $PAGE_DATA.setPlayTimeParams, {
                 playTime: e,
-                duration: z.getTotalTime(),
+                duration: P.getTotalTime(),
                 courseId: I,
                 lessonId: $
             });
             m.get($PAGE_DATA.setPlayTime, t, function(e) {
-                P = !0;
+                z = !0;
             }, function(e) {
-                P = !0;
+                z = !0;
             });
         }
-        if (e == z.getTotalTime() && 0 != z.getTotalTime() && "" != q && 0 != e && !O) {
+        if (P.getTotalTime() && e == P.getTotalTime() && 0 != P.getTotalTime() && "" != q && 0 != e && !O) {
             p.confirm("是否进入考试页面？", function() {
                 p.loadUrl($PAGE_DATA.examUrl + "?examId=" + q + "?prepare&bizType=0&bizId=" + $ + "&courseId=" + I, {
                     title: "考试",
@@ -4757,21 +4749,21 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             O = !0;
         }
         if (!D && e > 60 && !b.isLogin()) {
-            z.pause();
+            P.pause();
             p.confirm("游客只能观看一分钟,是否前往登录？", function() {
                 b.login(window.location.href);
             }, function() {}, this);
             D = !0;
         }
     });
-    var H = l(".jPublishA"), F = l(".jPublishQ"), N = l(".jTxtNumA"), V = l(".jTxtNumQ"), M = l(".jTxtA"), G = l(".jTxtQ");
+    var H = l(".jPublishA"), N = l(".jPublishQ"), F = l(".jTxtNumA"), V = l(".jTxtNumQ"), M = l(".jTxtA"), G = l(".jTxtQ");
     x.on("input propertychange", ".jTxtA", function() {
         var e = l(this).val().length;
-        i(e, 500, l(this), H, N);
+        i(e, 500, l(this), H, F);
     });
     x.on("input propertychange", ".jTxtQ", function() {
         var e = l(this).val().length;
-        i(e, 500, l(this), F, V);
+        i(e, 500, l(this), N, V);
     });
     var W = l("#jAnswer"), U = {
         sourceType: 2,
@@ -4784,7 +4776,8 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             var e = M.val();
             U.content = e;
             W.is(":checked") ? U.showType = 1 : U.showType = 2;
-            o(e, l(this), $PAGE_DATA.note.publish, U, M);
+            o(e, l(this), $PAGE_DATA.note.publish, U, M, F);
+            a($PAGE_DATA.note.note, R, "tAnswer", "jNoteTab1");
         } else b.login(window.location.href);
     });
     var B = l("#jQuesTitle");
@@ -4805,7 +4798,9 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             } else {
                 K.title = e;
                 K.content = t;
-                o(t, l(this), $PAGE_DATA.question.publish, K, G);
+                o(t, l(this), $PAGE_DATA.question.publish, K, G, V);
+                B.val("");
+                a($PAGE_DATA.question.question, X, "tQuestion", "jQuestionTab1");
             }
         } else b.login(window.location.href);
     });
@@ -4820,43 +4815,58 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     });
     x.on("click", ".like", function() {
         if (b.isLogin()) {
-            var e, t = l(this).attr("data-dataType"), n = l(this).attr("data-type"), i = l(this).attr("data-value");
+            var e, t = l(this).attr("data-id");
             if (l(this).hasClass("activeLike")) {
                 e = {
-                    dataType: t,
-                    type: n,
-                    id: i
+                    dataType: 4,
+                    type: 1,
+                    id: t
                 };
                 r($PAGE_DATA.note.like, e, "取消点赞");
-                l(this).removeClass("activeLike");
+                a($PAGE_DATA.note.note, R, "tAnswer", "jNoteTab1");
             } else {
                 e = {
-                    dataType: t,
-                    type: n,
-                    id: i
+                    dataType: 4,
+                    type: 2,
+                    id: t
                 };
-                r($PAGE_DATA.question.like, e, "点赞");
-                l(this).addClass("activeLike");
+                r($PAGE_DATA.note.like, e, "点赞");
+                a($PAGE_DATA.note.note, R, "tAnswer", "jNoteTab1");
             }
         } else b.login(window.location.href);
     });
+    var R = {
+        id: 0,
+        pageSize: 20,
+        sortType: 1,
+        showType: 1,
+        sourceType: 2,
+        sourceId: $
+    }, X = {
+        id: 0,
+        pageSize: 20,
+        sortType: 1,
+        showType: 1,
+        sourceType: 2,
+        sourceId: $
+    };
     x.on("click", ".jSubNav", function() {
         l(this).addClass("ui-current").siblings().removeClass("ui-current");
         var e = l(this).attr("data-type");
         s(e);
     });
-    var R = {
+    var Q = {
         id: $,
         type: 2,
         pageNo: 1,
         pageSize: 20
     };
-    a($PAGE_DATA.dirUrl, R, "tDir", "jDir");
+    a($PAGE_DATA.dirUrl, Q, "tDir", "jDir");
     C.on("change", function(e) {
         var t = e.body.find(".ui-current").attr("data-type");
         s(t);
         var n = e.body.attr("data-id");
-        "1" == n && a($PAGE_DATA.dirUrl, R, "tDir", "jDir");
+        "1" == n && a($PAGE_DATA.dirUrl, Q, "tDir", "jDir");
         w.update();
     });
 });

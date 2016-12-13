@@ -1809,12 +1809,12 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             u && u.length || (u = [ "b" ]);
             var c = n._dirClass;
             c && r.removeClass(c);
-            var p = i.fixed, f = D(), h = A(), g = L(r), v = R(r), y = k(e), _ = L(a), w = R(a), E = y.left, S = y.top, q = p ? E - h.x : E, T = p ? S - h.y : S, I = p ? 0 : h.x, U = p ? 0 : h.y, O = I + f.w - g, N = U + f.h - v, j = {
+            var p = i.fixed, f = D(), h = A(), g = L(r), v = R(r), y = k(e), _ = L(a), w = R(a), E = y.left, S = y.top, q = p ? E - h.x : E, T = p ? S - h.y : S, I = p ? 0 : h.x, U = p ? 0 : h.y, O = I + f.w - g, P = U + f.h - v, N = {
                 t: "b",
                 b: "t",
                 l: "r",
                 r: "l"
-            }, P = {
+            }, j = {
                 t: "top",
                 b: "top",
                 l: "left",
@@ -1834,20 +1834,20 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 t: T + b((w - v) / 2)
             }, $ = {
                 left: [ I, O ],
-                top: [ U, N ]
+                top: [ U, P ]
             };
             d || x(u, function(e, t) {
-                M[t][e] > $[P[e]][1] && (e = u[t] = j[e]);
-                M[t][e] < $[P[e]][0] && (u[t] = j[e]);
+                M[t][e] > $[j[e]][1] && (e = u[t] = N[e]);
+                M[t][e] < $[j[e]][0] && (u[t] = N[e]);
             });
             var Q = u[0];
             if (!u[1]) {
-                u[1] = "left" === P[Q] ? "t" : "l";
+                u[1] = "left" === j[Q] ? "t" : "l";
                 M[1][u[1]] = B[u[1]];
             }
             M[0][Q] = M[0][Q] + 10 * ("tl".indexOf(Q) !== -1 ? -1 : 1);
-            z[P[u[0]]] = C(M[0][u[0]]);
-            z[P[u[1]]] = C(M[1][u[1]]);
+            z[j[u[0]]] = C(M[0][u[0]]);
+            z[j[u[1]]] = C(M[1][u[1]]);
             var W = m + "-" + Q;
             r.css(z).addClass(W);
             n._dirClass = W;
@@ -1856,7 +1856,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!G) return n;
                 H = o('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(G);
             }
-            var V, X, Z = "top" !== P[Q], Y = [ "v", "h" ][1 ^ Z], J = L(H), K = R(H), ee = {}, te = Z ? "left" : "top";
+            var V, X, Z = "top" !== j[Q], Y = [ "v", "h" ][1 ^ Z], J = L(H), K = R(H), ee = {}, te = Z ? "left" : "top";
             switch (Y) {
               case "h":
                 V = b(E + (_ - J) / 2);
@@ -2603,7 +2603,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 try {
                     var e, t = b("span");
                     t.style.display = "none";
-                    e = P.getElementsByTagName("body")[0].appendChild(t);
+                    e = j.getElementsByTagName("body")[0].appendChild(t);
                     e.parentNode.removeChild(e);
                     e = null;
                     t = null;
@@ -2618,16 +2618,16 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             H ? e() : B[B.length] = e;
         }
         function n(e) {
-            if (typeof j.addEventListener != I) j.addEventListener("load", e, !1); else if (typeof P.addEventListener != I) P.addEventListener("load", e, !1); else if (typeof j.attachEvent != I) _(j, "onload", e); else if ("function" == typeof j.onload) {
-                var t = j.onload;
-                j.onload = function() {
+            if (typeof N.addEventListener != I) N.addEventListener("load", e, !1); else if (typeof j.addEventListener != I) j.addEventListener("load", e, !1); else if (typeof N.attachEvent != I) _(N, "onload", e); else if ("function" == typeof N.onload) {
+                var t = N.onload;
+                N.onload = function() {
                     t();
                     e();
                 };
-            } else j.onload = e;
+            } else N.onload = e;
         }
         function o() {
-            var e = P.getElementsByTagName("body")[0], t = b(L);
+            var e = j.getElementsByTagName("body")[0], t = b(L);
             t.setAttribute("style", "visibility: hidden;");
             t.setAttribute("type", F);
             var n = e.appendChild(t);
@@ -2725,7 +2725,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 e.id = O;
                 (typeof e.width == I || !/%$/.test(e.width) && y(e.width) < 310) && (e.width = "310");
                 (typeof e.height == I || !/%$/.test(e.height) && y(e.height) < 137) && (e.height = "137");
-                var r = Z.ie ? "ActiveX" : "PlugIn", a = "MMredirectURL=" + encodeURIComponent(j.location.toString().replace(/&/g, "%26")) + "&MMplayerType=" + r + "&MMdoctitle=" + encodeURIComponent(P.title.slice(0, 47) + " - Flash Player Installation");
+                var r = Z.ie ? "ActiveX" : "PlugIn", a = "MMredirectURL=" + encodeURIComponent(N.location.toString().replace(/&/g, "%26")) + "&MMplayerType=" + r + "&MMdoctitle=" + encodeURIComponent(j.title.slice(0, 47) + " - Flash Player Installation");
                 typeof t.flashvars != I ? t.flashvars += "&" + a : t.flashvars = a;
                 if (Z.ie && 4 != o.readyState) {
                     var s = b("div");
@@ -2813,12 +2813,12 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             if (m(e)) return e;
             var t = null;
             try {
-                t = P.getElementById(e);
+                t = j.getElementById(e);
             } catch (n) {}
             return t;
         }
         function b(e) {
-            return P.createElement(e);
+            return j.createElement(e);
         }
         function y(e) {
             return parseInt(e, 10);
@@ -2836,7 +2836,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             return t[0] > n[0] || t[0] == n[0] && t[1] > n[1] || t[0] == n[0] && t[1] == n[1] && t[2] >= n[2];
         }
         function w(e, t, n, i) {
-            var o = P.getElementsByTagName("head")[0];
+            var o = j.getElementsByTagName("head")[0];
             if (o) {
                 var r = "string" == typeof n ? n : "screen";
                 if (i) {
@@ -2848,10 +2848,10 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                     a.setAttribute("type", "text/css");
                     a.setAttribute("media", r);
                     D = o.appendChild(a);
-                    Z.ie && typeof P.styleSheets != I && P.styleSheets.length > 0 && (D = P.styleSheets[P.styleSheets.length - 1]);
+                    Z.ie && typeof j.styleSheets != I && j.styleSheets.length > 0 && (D = j.styleSheets[j.styleSheets.length - 1]);
                     k = r;
                 }
-                D && (typeof D.addRule != I ? D.addRule(e, t) : typeof P.createTextNode != I && D.appendChild(P.createTextNode(e + " {" + t + "}")));
+                D && (typeof D.addRule != I ? D.addRule(e, t) : typeof j.createTextNode != I && D.appendChild(j.createTextNode(e + " {" + t + "}")));
             }
         }
         function E(e, t) {
@@ -2864,8 +2864,8 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             var t = /[\\\"<>\.;]/, n = null != t.exec(e);
             return n && typeof encodeURIComponent != I ? encodeURIComponent(e) : e;
         }
-        var S, q, A, T, D, k, I = "undefined", L = "object", R = "Shockwave Flash", U = "ShockwaveFlash.ShockwaveFlash", F = "application/x-shockwave-flash", O = "SWFObjectExprInst", N = "onreadystatechange", j = window, P = document, z = navigator, M = !1, B = [], $ = [], Q = [], W = [], H = !1, G = !1, V = !0, X = !1, Z = function() {
-            var e = typeof P.getElementById != I && typeof P.getElementsByTagName != I && typeof P.createElement != I, t = z.userAgent.toLowerCase(), n = z.platform.toLowerCase(), i = n ? /win/.test(n) : /win/.test(t), o = n ? /mac/.test(n) : /mac/.test(t), r = !!/webkit/.test(t) && parseFloat(t.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")), a = "Microsoft Internet Explorer" === z.appName, s = [ 0, 0, 0 ], l = null;
+        var S, q, A, T, D, k, I = "undefined", L = "object", R = "Shockwave Flash", U = "ShockwaveFlash.ShockwaveFlash", F = "application/x-shockwave-flash", O = "SWFObjectExprInst", P = "onreadystatechange", N = window, j = document, z = navigator, M = !1, B = [], $ = [], Q = [], W = [], H = !1, G = !1, V = !0, X = !1, Z = function() {
+            var e = typeof j.getElementById != I && typeof j.getElementsByTagName != I && typeof j.createElement != I, t = z.userAgent.toLowerCase(), n = z.platform.toLowerCase(), i = n ? /win/.test(n) : /win/.test(t), o = n ? /mac/.test(n) : /mac/.test(t), r = !!/webkit/.test(t) && parseFloat(t.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")), a = "Microsoft Internet Explorer" === z.appName, s = [ 0, 0, 0 ], l = null;
             if (typeof z.plugins != I && typeof z.plugins[R] == L) {
                 l = z.plugins[R].description;
                 if (l && typeof z.mimeTypes != I && z.mimeTypes[F] && z.mimeTypes[F].enabledPlugin) {
@@ -2876,7 +2876,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                     s[1] = y(l.replace(/^.*\.(.*)\s.*$/, "$1"));
                     s[2] = /[a-zA-Z]/.test(l) ? y(l.replace(/^.*[a-zA-Z]+(.*)$/, "$1")) : 0;
                 }
-            } else if (typeof j.ActiveXObject != I) try {
+            } else if (typeof N.ActiveXObject != I) try {
                 var u = new ActiveXObject(U);
                 if (u) {
                     l = u.GetVariable("$version");
@@ -2898,20 +2898,20 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
         }();
         (function() {
             if (Z.w3) {
-                (typeof P.readyState != I && ("complete" === P.readyState || "interactive" === P.readyState) || typeof P.readyState == I && (P.getElementsByTagName("body")[0] || P.body)) && e();
+                (typeof j.readyState != I && ("complete" === j.readyState || "interactive" === j.readyState) || typeof j.readyState == I && (j.getElementsByTagName("body")[0] || j.body)) && e();
                 if (!H) {
-                    typeof P.addEventListener != I && P.addEventListener("DOMContentLoaded", e, !1);
+                    typeof j.addEventListener != I && j.addEventListener("DOMContentLoaded", e, !1);
                     if (Z.ie) {
-                        P.attachEvent(N, function t() {
-                            if ("complete" == P.readyState) {
-                                P.detachEvent(N, t);
+                        j.attachEvent(P, function t() {
+                            if ("complete" == j.readyState) {
+                                j.detachEvent(P, t);
                                 e();
                             }
                         });
-                        j == top && !function n() {
+                        N == top && !function n() {
                             if (!H) {
                                 try {
-                                    P.documentElement.doScroll("left");
+                                    j.documentElement.doScroll("left");
                                 } catch (t) {
                                     setTimeout(n, 0);
                                     return;
@@ -2921,7 +2921,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                         }();
                     }
                     Z.wk && !function i() {
-                        H || (/loaded|complete/.test(P.readyState) ? e() : setTimeout(i, 0));
+                        H || (/loaded|complete/.test(j.readyState) ? e() : setTimeout(i, 0));
                     }();
                 }
             }
@@ -3026,7 +3026,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             addDomLoadEvent: t,
             addLoadEvent: n,
             getQueryParamValue: function(e) {
-                var t = P.location.search || P.location.hash;
+                var t = j.location.search || j.location.hash;
                 if (t) {
                     /\?/.test(t) && (t = t.split("?")[1]);
                     if (null == e) return C(t);
@@ -5672,9 +5672,9 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         }
     }, {
         name: "password",
-        text: "请输入正确的密码",
+        text: "请输入6-16位密码，区分大小写，不能使用空格！",
         func: function(e, t) {
-            return this.optional(t) || /^(?=.{6,16}$)(?![0-9]+$)(?!.*(.).*\1)[0-9a-zA-Z]+$/;
+            return this.optional(t) || /^[\S]{6,16}$/.test(e);
         }
     } ];
     o.each(u, function(e, t) {
@@ -6006,11 +6006,13 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
             rules: {
                 oldPassword: {
                     required: !0,
+                    Password: !0,
                     minlength: 6,
                     maxlength: 16
                 },
                 newPassword: {
                     required: !0,
+                    Password: !0,
                     minlength: 6,
                     maxlength: 16
                 },
@@ -6018,23 +6020,28 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
                     required: !0,
                     minlength: 6,
                     maxlength: 16,
-                    equalTo: "#nepassword"
+                    equalTo: "#nepassword",
+                    Password: !0
                 }
             },
             messages: {
-                password: {
+                oldPassword: {
                     required: "密码格式不正确"
                 },
-                nepassword: {
+                newPassword: {
                     required: "密码格式不正确",
                     equalTo: "密码输入不一致"
                 },
-                snewpassword: {
+                rePassword: {
                     required: "密码格式不正确",
                     equalTo: "密码输入不一致"
                 }
             }
         });
+        a.validator.addMethod("Password", function(e, t) {
+            var n = /^(?!\d{1,8}$)\S{6,16}$/;
+            return this.optional(t) || n.test(e);
+        }, "密码格式不正确");
     }
     function r(e) {
         var t;

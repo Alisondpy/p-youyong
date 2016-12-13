@@ -820,9 +820,9 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             return n;
         }
         return 0;
-    }, L = function(e) {
-        return A(e, "width");
     }, S = function(e) {
+        return A(e, "width");
+    }, L = function(e) {
         return A(e, "height");
     }, N = function() {
         try {
@@ -1010,7 +1010,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && o.removeClass(f);
-            var d = i.fixed, h = E(), p = T(), v = L(o), g = S(o), b = z(e), x = L(s), C = S(s), k = b.left, $ = b.top, q = d ? k - p.x : k, j = d ? $ - p.y : $, A = d ? 0 : p.x, N = d ? 0 : p.y, F = A + h.w - v, I = N + h.h - g, M = {
+            var d = i.fixed, h = E(), p = T(), v = S(o), g = L(o), b = z(e), x = S(s), C = L(s), k = b.left, $ = b.top, q = d ? k - p.x : k, j = d ? $ - p.y : $, A = d ? 0 : p.x, N = d ? 0 : p.y, F = A + h.w - v, I = N + h.h - g, M = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1052,23 +1052,23 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var V = m + "-" + W;
             o.css(P).addClass(V);
             n._dirClass = V;
-            var Z = n.$("arrow", 1), U = n.$("inner", 1);
-            if (!Z) {
-                if (!U) return n;
-                Z = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(U);
+            var U = n.$("arrow", 1), Y = n.$("inner", 1);
+            if (!U) {
+                if (!Y) return n;
+                U = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Y);
             }
-            var Y, X, Q = "top" !== O[W], G = [ "v", "h" ][1 ^ Q], J = L(Z), K = S(Z), ee = {}, te = Q ? "left" : "top";
+            var Z, X, Q = "top" !== O[W], G = [ "v", "h" ][1 ^ Q], J = S(U), K = L(U), ee = {}, te = Q ? "left" : "top";
             switch (G) {
               case "h":
-                Y = y(k + (x - J) / 2);
-                ee.left = Y;
+                Z = y(k + (x - J) / 2);
+                ee.left = Z;
                 break;
 
               case "v":
                 X = y($ + (C - K) / 2);
                 ee.top = X;
             }
-            Z.offset(ee).css(te, "");
+            U.offset(ee).css(te, "");
             return n;
         }
     });
@@ -2844,9 +2844,9 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         }
     }, {
         name: "password",
-        text: "请输入正确的密码",
+        text: "请输入6-16位密码，区分大小写，不能使用空格！",
         func: function(e, t) {
-            return this.optional(t) || /^(?=.{6,16}$)(?![0-9]+$)(?!.*(.).*\1)[0-9a-zA-Z]+$/;
+            return this.optional(t) || /^[\S]{6,16}$/.test(e);
         }
     } ];
     r.each(l, function(e, t) {

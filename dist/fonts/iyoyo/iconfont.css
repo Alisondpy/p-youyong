@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iyoyo";
-  src: url('iconfont.eot?t=1481596940580'); /* IE9*/
-  src: url('iconfont.eot?t=1481596940580#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1481596940580') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1481596940580') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1481596940580#iyoyo') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1481633011099'); /* IE9*/
+  src: url('iconfont.eot?t=1481633011099#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1481633011099') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1481633011099') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1481633011099#iyoyo') format('svg'); /* iOS 4.1- */
 }
 
 .iyoyo {
@@ -67,6 +67,8 @@
 
 .iyoyo-teacher:before { content: "\e613"; }
 
+.iyoyo-iyoyo-circle:before { content: "\e63e"; }
+
 .iyoyo-service:before { content: "\e61c"; }
 
 .iyoyo-box:before { content: "\e62c"; }
@@ -88,8 +90,6 @@
 .iyoyo-people:before { content: "\e6b6"; }
 
 .iyoyo-discuss:before { content: "\e737"; }
-
-.iyoyo-circle:before { content: "\e612"; }
 
 .iyoyo-location:before { content: "\e607"; }
 

@@ -3077,6 +3077,7 @@ define("conf/uc/questions-answers", [ "require", "exports", "module", "jquery", 
             }, function(e) {
                 h.ok("发表成功");
                 j.val("");
+                T.children("i").text("0");
                 s.pagination.selectPage(s.pagination.get("currentPage"));
             }, function(e) {
                 h.error(e.msg || "网络错误,请重试");

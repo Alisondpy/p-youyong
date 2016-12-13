@@ -2842,9 +2842,9 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         }
     }, {
         name: "password",
-        text: "请输入正确的密码",
+        text: "请输入6-16位密码，区分大小写，不能使用空格！",
         func: function(e, t) {
-            return this.optional(t) || /^(?=.{6,16}$)(?![0-9]+$)(?!.*(.).*\1)[0-9a-zA-Z]+$/;
+            return this.optional(t) || /^[\S]{6,16}$/.test(e);
         }
     } ];
     r.each(l, function(e, t) {
@@ -3401,6 +3401,7 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
             },
             password: {
                 required: !0,
+                password: !0,
                 minlength: 6,
                 maxlength: 16
             }
@@ -3412,7 +3413,7 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
             },
             vierfyCode: {
                 required: "请输入动态码",
-                minlength: ""
+                minlength: "请输入您获取的动态码"
             },
             email: {
                 required: "请输入您的邮箱",
@@ -3448,16 +3449,6 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
                 r(t).parent().addClass("error-red");
             }
         },
-        success: function(e) {
-            if ("jDynamic-error" === e.attr("id")) {
-                e.html("&nbsp;").addClass("checked");
-                r(e).parent().removeClass("error-red");
-                r(e).siblings().children("label").removeClass("error-red");
-            } else {
-                e.html("&nbsp;").addClass("checked");
-                e.parent().removeClass("error-red");
-            }
-        },
         submitHandler: function(e) {
             i($PAGE_DATA.register, e);
         }
@@ -3467,6 +3458,7 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
     });
     r(".jsVerifyCode").on("click", function() {
         var e = r(this);
+        r("#jDynamic").removeAttr("disabled");
         if (e.hasClass("ui-btn-disable")) return !1;
         s.get($PAGE_DATA.code, {
             mobile: r("#jName").val()
@@ -3482,6 +3474,7 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
             } else {
                 e.removeClass("ui-btn-disable change").val("获取验证码");
                 clearInterval(n);
+                r("#jDynamic").attr("disabled", "disabled");
             }
         }, 1e3);
     });

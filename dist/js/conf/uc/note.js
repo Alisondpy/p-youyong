@@ -662,9 +662,9 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
                 n(e, function(e, t) {
                     z(t);
                 });
-                g._inited || D(g);
+                g._inited || S(g);
             }
-        }, D = function(t) {
+        }, S = function(t) {
             if (!t._inited) {
                 var i = o(E, 30);
                 t._inited = !0;
@@ -683,20 +683,20 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
                 }
                 t.once("reset", function() {
                     n(t._list, function(e, t) {
-                        S(t);
+                        D(t);
                     });
                     T && k.off(j, i);
                     s.off("resize", i);
                 });
                 e(document).ready(E);
             }
-        }, S = function(t) {
+        }, D = function(t) {
             var n = e(t);
             n.off("appear", P);
             T || n.off(j, I);
         };
         g.on("lazyItemReady", function(e) {
-            S(e);
+            D(e);
         });
         g.once("destroy", function() {
             q = null;
@@ -1470,12 +1470,12 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         return I(e, "width");
     }, q = function(e) {
         return I(e, "height");
-    }, D = function() {
+    }, S = function() {
         try {
             var e = l.activeElement, t = e.contentDocument;
             return t && t.activeElement || e;
         } catch (n) {}
-    }, S = function(e) {
+    }, D = function(e) {
         e = e || "";
         var t = {
             auto: !0
@@ -1539,7 +1539,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             }
             i.open = !0;
             i.anchor = s;
-            i._activeElement = D();
+            i._activeElement = S();
             i.emit("beforeShow", t);
             l.appendTo(t.appendTo).css("display", "block");
             i.emit("show", t);
@@ -1609,7 +1609,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         focus: function(e) {
             var t = this._, n = this.node, r = this._popup, a = i.current, s = t.zIndex;
             a && a !== this && a.blur(!1);
-            if (!o.contains(n, D())) {
+            if (!o.contains(n, S())) {
                 var u = r.find("[autofocus]")[0];
                 !t.focusing && u ? t.focusing = !0 : u = n;
                 this._focus(u);
@@ -1652,11 +1652,11 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var s = a.offset();
             if (s.left * s.top < 0) return n.center();
             t = t || i.align;
-            var u = S(t), l = u.align, c = !u.auto;
+            var u = D(t), l = u.align, c = !u.auto;
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = $(), h = k(), g = z(r), m = q(r), b = P(e), x = z(a), _ = q(a), C = b.left, j = b.top, T = d ? C - h.x : C, E = d ? j - h.y : j, I = d ? 0 : h.x, D = d ? 0 : h.y, L = I + p.w - g, N = D + p.h - m, M = {
+            var d = i.fixed, p = $(), h = k(), g = z(r), m = q(r), b = P(e), x = z(a), _ = q(a), C = b.left, j = b.top, T = d ? C - h.x : C, E = d ? j - h.y : j, I = d ? 0 : h.x, S = d ? 0 : h.y, L = I + p.w - g, N = S + p.h - m, M = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1681,7 +1681,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 t: E + y((_ - m) / 2)
             }, W = {
                 left: [ I, L ],
-                top: [ D, N ]
+                top: [ S, N ]
             };
             c || w(l, function(e, t) {
                 R[t][e] > W[O[e]][1] && (e = l[t] = M[e]);
@@ -3073,15 +3073,14 @@ define("conf/uc/note", [ "require", "exports", "module", "jquery", "./common", "
                     p.inited = !0;
                     e.on("click", ".jEdit .jEditTxt", function() {
                         var e = i(this);
-                        e.parents(".jEdit").siblings(".jEditDetails").removeAttr("readonly").addClass("edittxt");
-                        e.parents(".jEdit").siblings(".jEditDetails").removeAttr("unselectable");
+                        e.parents(".jEdit").siblings(".jEditDetails").addClass("edittxt");
+                        e.parents(".jEdit").siblings(".jEditDetails").attr("contenteditable", "true");
                         e.parents(".jEdit").find(".jHide").hide().siblings(".jSave").show();
                     });
                     e.on("click", ".jEdit .jSave", function() {
-                        var e = i(this), t = e.parents(".jEdit").siblings(".jEditDetails").val(), n = e.parents(".jEdit").attr("data-id");
+                        var e = i(this), t = e.parents(".jEdit").siblings(".jEditDetails").text(), n = e.parents(".jEdit").attr("data-id");
                         e.parents(".jEdit").find(".jHide").show().siblings(".jSave").hide();
-                        e.parents(".jEdit").siblings(".jEditDetails").attr("readonly", !0).removeClass("edittxt");
-                        e.parents(".jEdit").siblings(".jEditDetails").attr("unselectable", "on");
+                        e.parents(".jEdit").siblings(".jEditDetails").removeAttr("contenteditable").removeClass("edittxt");
                         p.postparams($PAGE_DATA.noteSave, {
                             id: n,
                             context: t

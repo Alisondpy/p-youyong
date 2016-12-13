@@ -3249,6 +3249,7 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
             }, function(e) {
                 s.ok("发表成功");
                 z.val("");
+                I.children("i").text("0");
                 _.pagination.selectPage(_.pagination.get("currentPage"));
             }, function(e) {
                 s.error(e.msg || "网络错误,请重试");
@@ -3320,4 +3321,13 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
     window.pager = function() {
         _.pagination.selectPage(_.pagination.get("currentPage"));
     };
+    var q = a("#jWrap0Box"), S = a("#jSubNav"), D = a("#jWrap0BoxDetail"), L = a("#jWrap0Box").find(".dir").length;
+    if (1 == L || 0 == L) {
+        q.html(D.clone());
+        S.find("a").each(function() {
+            "1" == a(this).attr("data-target") && a(this).text("详情");
+        });
+    } else S.find("a").each(function() {
+        "1" == a(this).attr("data-target") && a(this).text("目录");
+    });
 });

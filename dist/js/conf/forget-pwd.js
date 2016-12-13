@@ -1050,16 +1050,16 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var V = m + "-" + U;
             o.css(P).addClass(V);
             n._dirClass = V;
-            var W = n.$("arrow", 1), Z = n.$("inner", 1);
+            var W = n.$("arrow", 1), Y = n.$("inner", 1);
             if (!W) {
-                if (!Z) return n;
-                W = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Z);
+                if (!Y) return n;
+                W = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Y);
             }
-            var Y, Q, X = "top" !== O[U], G = [ "v", "h" ][1 ^ X], J = L(W), K = S(W), ee = {}, te = X ? "left" : "top";
+            var Z, Q, X = "top" !== O[U], G = [ "v", "h" ][1 ^ X], J = L(W), K = S(W), ee = {}, te = X ? "left" : "top";
             switch (G) {
               case "h":
-                Y = y(_ + (x - J) / 2);
-                ee.left = Y;
+                Z = y(_ + (x - J) / 2);
+                ee.left = Z;
                 break;
 
               case "v":
@@ -3080,9 +3080,9 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         }
     }, {
         name: "password",
-        text: "请输入正确的密码",
+        text: "请输入6-16位密码，区分大小写，不能使用空格！",
         func: function(e, t) {
-            return this.optional(t) || /^(?=.{6,16}$)(?![0-9]+$)(?!.*(.).*\1)[0-9a-zA-Z]+$/;
+            return this.optional(t) || /^[\S]{6,16}$/.test(e);
         }
     } ];
     r.each(l, function(e, t) {

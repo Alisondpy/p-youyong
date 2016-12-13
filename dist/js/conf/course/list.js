@@ -22,14 +22,14 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         for (var n = -1, i = t.length, o = Array(i); ++n < i; ) o[n] = e(t[n], n, t);
         return o;
     }
-    function l(t, e) {
+    function c(t, e) {
         var n = [];
         u(t, function(t, i, o) {
             n.push(e(t, i, o));
         });
         return n;
     }
-    function c(t, e) {
+    function l(t, e) {
         if (!e || !i(e)) return t;
         for (var n = m(e), o = n.length; o--; ) t[n[o]] = e[n[o]];
         return t;
@@ -79,12 +79,12 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         g[t] || (g[t] = o);
     });
     e.extend = function(t, e) {
-        for (var n = [].slice.call(arguments, 1), i = n.length, o = -1; ++o < i; ) c(t, n[o]);
+        for (var n = [].slice.call(arguments, 1), i = n.length, o = -1; ++o < i; ) l(t, n[o]);
         return t;
     };
     e.inherits = function(t, e, n) {
         y(t, e);
-        n && c(t.prototype, n);
+        n && l(t.prototype, n);
     };
     e.impls = function(t, n) {
         n = "function" == typeof n ? n.prototype : n;
@@ -95,7 +95,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
     e.parseParams = f;
     e.each = u;
     e.map = function(t, e) {
-        var n = h(t) ? a : l;
+        var n = h(t) ? a : c;
         return n(t, e);
     };
     e.filter = function(t, e) {
@@ -180,11 +180,11 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
 define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" ], function(t, e, n) {
     "use strict";
     function i(t) {
-        return t.replace(u, "ms-").replace(a, l);
+        return t.replace(u, "ms-").replace(a, c);
     }
     function o(t) {
         try {
-            return "true" === t || "false" !== t && ("null" === t ? null : +t + "" === t ? +t : c.test(t) ? s.parseJSON(t) : t);
+            return "true" === t || "false" !== t && ("null" === t ? null : +t + "" === t ? +t : l.test(t) ? s.parseJSON(t) : t);
         } catch (e) {}
     }
     function r(t, e, n) {
@@ -196,28 +196,28 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
         }
         return n;
     }
-    var s = (window.document, t("jquery")), u = /^-ms-/, a = /-([\da-z])/gi, l = function(t, e) {
+    var s = (window.document, t("jquery")), u = /^-ms-/, a = /-([\da-z])/gi, c = function(t, e) {
         return e.toUpperCase();
-    }, c = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/, f = /[A-Z]/g, d = function(t, e, n) {
+    }, l = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/, f = /[A-Z]/g, d = function(t, e, n) {
         if (!t || 1 !== t.nodeType) throw new TypeError("dataset(): Not a valid DOM element.");
-        var s, u, a, l;
+        var s, u, a, c;
         if (1 === arguments.length) {
             if (a = t.dataset) {
-                l = {};
-                for (u in a) a.hasOwnProperty(u) && (l[u] = o(a[u]));
-                return l;
+                c = {};
+                for (u in a) a.hasOwnProperty(u) && (c[u] = o(a[u]));
+                return c;
             }
             a = t.attributes;
             s = a.length;
-            l = {};
+            c = {};
             for (;s--; ) if (a[s]) {
                 u = a[s].name;
                 if (0 === u.indexOf("data-")) {
                     u = i(u.slice(5));
-                    l[u] = o(r(t, u));
+                    c[u] = o(r(t, u));
                 }
             }
-            return l;
+            return c;
         }
     };
     n.exports = d;
@@ -229,12 +229,12 @@ define("lib/core/1.0.0/dom/build", [ "require", "exports", "module", "jquery", "
         i ? t[e] || (t[e] = n) : t[e] ? t[e] = t[e].add(n) : t[e] = r(n);
     }
     var o = window.document, r = t("jquery"), s = function(t, e, n) {
-        var s, u, a, l, c, f = function(t) {
+        var s, u, a, c, l, f = function(t) {
             if (n) for (var o in n) a[o] = r(n[o].toString(), t); else {
                 a = {};
-                l = r("[node-type]", t);
-                for (var s, u = -1, c = l.length; ++u < c; ) {
-                    s = l[u];
+                c = r("[node-type]", t);
+                for (var s, u = -1, l = c.length; ++u < l; ) {
+                    s = c[u];
                     o = s.getAttribute("node-type");
                     i(a, o, s, e);
                 }
@@ -254,7 +254,7 @@ define("lib/core/1.0.0/dom/build", [ "require", "exports", "module", "jquery", "
             s = o.createElement("div");
             s.innerHTML = t;
             u = o.createDocumentFragment();
-            for (;c = s.firsChild; ) u.appendChild(c);
+            for (;l = s.firsChild; ) u.appendChild(l);
         } else {
             s = r(t);
             u = s[0];
@@ -379,12 +379,12 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
             };
             return i.cookie = [ a(t), "=", a(e), n.expires ? "; expires=" + n.expires.toUTCString() : "", n.path ? "; path=" + n.path : "", n.domain ? "; domain=" + n.domain : "", n.secure ? "; secure" : "" ].join("");
         }
-        for (var e = null, l = i.cookie, c = function(t) {
+        for (var e = null, c = i.cookie, l = function(t) {
             return n.raw ? t : decodeURIComponent(t);
-        }, f = l ? l.split("; ") : [], d = -1, p = f.length, h = t.length + 1; ++d < p; ) {
-            l = o(f[d]);
-            if (l.substring(0, h) === t + "=") {
-                e = c(l.substring(h));
+        }, f = c ? c.split("; ") : [], d = -1, p = f.length, h = t.length + 1; ++d < p; ) {
+            c = o(f[d]);
+            if (c.substring(0, h) === t + "=") {
+                e = l(c.substring(h));
                 break;
             }
         }
@@ -584,8 +584,8 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             };
         });
         return e;
-    }, s = window, u = t(s), a = s.Image, l = /(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion), c = "__lazy_status__", f = 0, d = 1, p = 2, h = function(t) {
-        return t[c] === e;
+    }, s = window, u = t(s), a = s.Image, c = /(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion), l = "__lazy_status__", f = 0, d = 1, p = 2, h = function(t) {
+        return t[l] === e;
     }, v = function() {
         var t = {}, e = function(e, n) {
             "function" == typeof n && (t[e] = n);
@@ -645,7 +645,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
         if ("function" != typeof A) throw "Error, cannot found the specific type loader (type: `" + _ + "`)";
         "html" === _ && (w.placeholder = "");
         a && t.extend(w, a);
-        var T = w.container, C = w.event, k = 0 === C.indexOf("scroll"), j = T && T !== s ? t(T) : u, E = function(e) {
+        var C = w.container, T = w.event, k = 0 === T.indexOf("scroll"), j = C && C !== s ? t(C) : u, E = function(e) {
             var i = m._list;
             if (i.length > 0) {
                 var o = 0;
@@ -661,12 +661,12 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             } else m.reset();
         }, z = function() {
             m._list = i(m._list, function(t) {
-                return !t[c];
+                return !t[l];
             });
         }, q = function() {
-            var e = this, n = t(e), i = n.attr("data-" + w.dataAttribute), o = w.sourceMaker, r = w.appear, s = w.loadingClass, u = e[c];
+            var e = this, n = t(e), i = n.attr("data-" + w.dataAttribute), o = w.sourceMaker, r = w.appear, s = w.loadingClass, u = e[l];
             if (u === f) {
-                e[c] = d;
+                e[l] = d;
                 s && n.addClass(s);
                 o && (i = o(i, e));
                 r && r.apply(m, [ e, i ]);
@@ -674,11 +674,11 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                     if (!m._destroyed) {
                         s && n.removeClass(s);
                         if (t) setTimeout(function() {
-                            e[c] = f;
+                            e[l] = f;
                             m.emit("lazyItemError", e, i, t);
                             e = null;
                         }, 300); else {
-                            e[c] = p;
+                            e[l] = p;
                             z();
                             m.emit("lazyItemReady", e, i, o);
                             var r = w.load;
@@ -693,33 +693,33 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                 m.emit("lazyItemReady", e, i);
             }
         }, I = function() {
-            this[c] || t(this).trigger("appear");
+            this[l] || t(this).trigger("appear");
         }, L = function(e) {
             var n = t(e);
-            e[c] = f;
+            e[l] = f;
             var i = w.placeholder;
             if (i) if (n.is("img")) {
                 var o = n.attr("src");
                 o || n.attr("src", i);
             } else "image" === m._.type || n.children()[0] || n.html(i);
             n.on("appear", q);
-            k || n.on(C, I);
+            k || n.on(T, I);
             m._list.push(e);
-        }, $ = function(t) {
+        }, N = function(t) {
             t = i(t || [], h);
             if (t.length) {
                 n(t, function(t, e) {
                     L(e);
                 });
-                m._inited || N(m);
+                m._inited || $(m);
             }
-        }, N = function(e) {
+        }, $ = function(e) {
             if (!e._inited) {
                 var i = o(E, 30);
                 e._inited = !0;
-                k && j.on(C, i);
+                k && j.on(T, i);
                 u.on("resize", i);
-                if (l) {
+                if (c) {
                     var r = function(i) {
                         i.originalEvent && i.originalEvent.persisted && n(e._list, function(e, n) {
                             t(n).trigger("appear");
@@ -734,7 +734,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                     n(e._list, function(t, e) {
                         D(e);
                     });
-                    k && j.off(C, i);
+                    k && j.off(T, i);
                     u.off("resize", i);
                 });
                 t(document).ready(E);
@@ -742,13 +742,13 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
         }, D = function(e) {
             var n = t(e);
             n.off("appear", q);
-            k || n.off(C, I);
+            k || n.off(T, I);
         };
         m.on("lazyItemReady", function(t) {
             D(t);
         });
         m.once("destroy", function() {
-            $ = null;
+            N = null;
             E = null;
             z = null;
             q = null;
@@ -758,10 +758,10 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
         m._list = [];
         m.add = function(e) {
             var n = t(e);
-            n.length > 0 && $(n);
+            n.length > 0 && N(n);
         };
         m.update = E;
-        $(e);
+        N(e);
     };
     m.prototype = {
         constructor: m,
@@ -848,14 +848,14 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
     function i() {}
     function o(t, e, n, i) {
         var o = !0;
-        if (e) for (var r, s, u, a = -1, l = {
+        if (e) for (var r, s, u, a = -1, c = {
             type: t,
-            timeStamp: c()
+            timeStamp: l()
         }; r = e[++a]; ) {
             s = r[v];
             u = r[m] || i;
             try {
-                o = r[y] === h ? s.call(u, l, n) !== !1 && o : s.apply(u, n) !== !1 && o;
+                o = r[y] === h ? s.call(u, c, n) !== !1 && o : s.apply(u, n) !== !1 && o;
             } catch (f) {
                 setTimeout(function() {
                     console.error(f);
@@ -883,10 +883,10 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
             for (var n = -1, i = t.length; ++n < i; ) e(t[n], n);
         }(t);
     }
-    var l = /\s+/, c = Date.now || function() {
+    var c = /\s+/, l = Date.now || function() {
         return +new Date();
     }, f = function() {
-        return c() * Math.random() & 65535;
+        return l() * Math.random() & 65535;
     }(), d = function() {
         var t, e, n;
         return "function" == typeof WeakMap && (WeakMap.prototype || 0).set ? (t = new WeakMap(), 
@@ -894,7 +894,7 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
             var i = t.get(e);
             return null === n ? void 0 !== i && t["delete"](e) : !i && n ? (t.set(e, i = {}), 
             i) : i;
-        }) : (e = c(), n = "__$widΦ" + e.toString(36), t = {}, function(i, o) {
+        }) : (e = l(), n = "__$widΦ" + e.toString(36), t = {}, function(i, o) {
             if (!i || "object" != typeof i) throw TypeError("Invalid value used as weak map key");
             var r;
             return null === o ? i[n] && (delete t[i[n]], delete i[n]) : (r = i[n] || o && (r = ++e, 
@@ -916,7 +916,7 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
         }
         if (!e) return this;
         o = d(this, 1);
-        t = t.split(l);
+        t = t.split(c);
         for (;r = t.shift(); ) {
             s = !i && o[r] || (o[r] = []);
             s.push(g(e, n, u));
@@ -936,7 +936,7 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
         return this.on(t, o);
     };
     b.removeListener = function(t, e, n) {
-        var i, o, r, s, a, c;
+        var i, o, r, s, a, l;
         if (e && "object" == typeof e) {
             n = e;
             e = n.handleEvent;
@@ -949,13 +949,13 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
             d(this, null);
             return this;
         }
-        t = t ? t.split(l) : x(i);
+        t = t ? t.split(c) : x(i);
         for (;o = t.shift(); ) {
             r = i[o];
             if (r) if (e || n) for (s = r.length; --s >= 0; ) {
                 a = r[s];
-                c = a[v];
-                e && c !== e && (void 0 === c.guid || c.guid !== e.guid) || n && a[m] !== n || r.splice(s, 1);
+                l = a[v];
+                e && l !== e && (void 0 === l.guid || l.guid !== e.guid) || n && a[m] !== n || r.splice(s, 1);
             } else delete i[o];
         }
         return this;
@@ -965,17 +965,17 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
         return this.removeListener(t);
     };
     b.emit = function(t) {
-        var e, n, i, r, s, u, a = [], c = !0;
+        var e, n, i, r, s, u, a = [], l = !0;
         if (!(e = d(this))) return this;
-        t = t.split(l);
+        t = t.split(c);
         for (s = 1, u = arguments.length; s < u; s++) a[s - 1] = arguments[s];
         for (;n = t.shift(); ) {
             (i = e.all) && (i = i.slice());
             (r = e[n]) && (r = r.slice());
-            "all" !== n && (c = o(n, r, a, this) && c);
-            c = o(n, i, [ n ].concat(a), this) && c;
+            "all" !== n && (l = o(n, r, a, this) && l);
+            l = o(n, i, [ n ].concat(a), this) && l;
         }
-        return c;
+        return l;
     };
     i.applyTo = function(t) {
         function e(e, i) {
@@ -1007,7 +1007,7 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
 
 define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", "../utils/util", "../event/emitter" ], function(t, e, n) {
     "use strict";
-    var i = t("jquery"), o = t("../utils/util"), r = t("../event/emitter"), s = o.setImmediate, u = o.noop, a = o.extend, l = i.trim, c = i.parseJSON, f = function(t, e, n) {
+    var i = t("jquery"), o = t("../utils/util"), r = t("../event/emitter"), s = o.setImmediate, u = o.noop, a = o.extend, c = i.trim, l = i.parseJSON, f = function(t, e, n) {
         return function(i, o) {
             try {
                 return t.apply(e, arguments);
@@ -1062,9 +1062,9 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
                     msg: "Request error (status: " + (o || s) + ")"
                 }, f = 200 === s || "success" === o;
                 if (!i && !u) {
-                    u = l(n.responseText);
+                    u = c(n.responseText);
                     if (u && "<" !== u.charAt(0)) try {
-                        u = c(u);
+                        u = l(u);
                     } catch (d) {}
                 }
                 f || (u = u || a);
@@ -1119,20 +1119,20 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
             s(function() {
                 console.log("%c " + i, "color:#ae0000");
             }, 1);
-        }, a = f(e.error || u, null, r), l = f(e.success || u, null, r);
+        }, a = f(e.error || u, null, r), c = f(e.success || u, null, r);
         if (d("request", o, n) !== !1) {
             if (n && (n = i(n))) {
-                var c, p, v = "data-async-lock";
+                var l, p, v = "data-async-lock";
                 if (1 === +n.attr(v)) return;
                 if (p = n.attr("data-async-text")) {
-                    c = n.html();
+                    l = n.html();
                     n.html(p);
                 }
                 n.attr(v, 1);
                 o.once("response error", function() {
                     if (n) {
                         n.attr(v, 0);
-                        p && n.html(c);
+                        p && n.html(l);
                         n = null;
                     }
                 });
@@ -1149,7 +1149,7 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
             });
             o.on("response", function(t, e) {
                 e = e.data;
-                d("response", e) !== !1 && (t ? a(t) : e && 0 === +(e.error || 0) ? l(e) : a(e));
+                d("response", e) !== !1 && (t ? a(t) : e && 0 === +(e.error || 0) ? c(e) : a(e));
             });
             return o.send();
         }
@@ -1172,12 +1172,12 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
                 error: r || o
             };
             "string" == typeof t ? u.url = t : a(u, t);
-            var l = n;
+            var c = n;
             if ("jsonp" === n) {
-                l = "get";
+                c = "get";
                 u.dataType = "jsonp";
             }
-            u.type = l;
+            u.type = c;
             return e.ajax(u, s);
         };
     });
@@ -1185,7 +1185,7 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
 
 define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(t) {
     "use strict";
-    var e = t("jquery"), n = e(window), i = e(document), o = "createTouch" in document, r = document.documentElement, s = !("minWidth" in r.style), u = !s && "onlosecapture" in r, a = "setCapture" in r, l = e.noop, c = {
+    var e = t("jquery"), n = e(window), i = e(document), o = "createTouch" in document, r = document.documentElement, s = !("minWidth" in r.style), u = !s && "onlosecapture" in r, a = "setCapture" in r, c = e.noop, l = {
         start: o ? "touchstart" : "mousedown",
         over: o ? "touchmove" : "mousemove",
         end: o ? "touchend" : "mouseup"
@@ -1198,13 +1198,13 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(t) {
         this.start = e.proxy(this.start, this);
         this.over = e.proxy(this.over, this);
         this.end = e.proxy(this.end, this);
-        this.onstart = this.onover = this.onend = l;
+        this.onstart = this.onover = this.onend = c;
     };
-    d.types = c;
+    d.types = l;
     d.prototype = {
         start: function(t) {
             t = this.startFix(t);
-            i.on(c.over, this.over).on(c.end, this.end);
+            i.on(l.over, this.over).on(l.end, this.end);
             this.onstart(t);
             return !1;
         },
@@ -1215,7 +1215,7 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(t) {
         },
         end: function(t) {
             t = this.endFix(t);
-            i.off(c.over, this.over).off(c.end, this.end);
+            i.off(l.over, this.over).off(l.end, this.end);
             this.onend(t);
             return !1;
         },
@@ -1245,22 +1245,22 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(t) {
     d.create = function(t, o, r) {
         r = e.extend({
             hook: null,
-            onstart: l,
-            onover: l,
-            onend: l
+            onstart: c,
+            onover: c,
+            onend: c
         }, r);
-        var s, u, a, c, f = e(t), p = r.hook ? e(r.hook) : f, h = new d(), v = d.types.start, m = t.className.replace(/^\s|\s.*/g, "") + "-drag-start", y = {
+        var s, u, a, l, f = e(t), p = r.hook ? e(r.hook) : f, h = new d(), v = d.types.start, m = t.className.replace(/^\s|\s.*/g, "") + "-drag-start", y = {
             off: function() {
                 p.off(v, h.start);
             }
         };
         h.onstart = function(e) {
-            var o = "fixed" === f.css("position"), l = i.scrollLeft(), d = i.scrollTop(), p = f.width(), h = f.height();
+            var o = "fixed" === f.css("position"), c = i.scrollLeft(), d = i.scrollTop(), p = f.width(), h = f.height();
             s = 0;
             u = 0;
             a = o ? n.width() - p + s : i.width() - p;
-            c = o ? n.height() - h + u : i.height() - h;
-            var v = f.offset(), y = this.startLeft = o ? v.left - l : v.left, g = this.startTop = o ? v.top - d : v.top;
+            l = o ? n.height() - h + u : i.height() - h;
+            var v = f.offset(), y = this.startLeft = o ? v.left - c : v.left, g = this.startTop = o ? v.top - d : v.top;
             this.clientX = e.clientX;
             this.clientY = e.clientY;
             f.addClass(m);
@@ -1269,7 +1269,7 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(t) {
         h.onover = function(e) {
             var n = e.clientX - this.clientX + this.startLeft, i = e.clientY - this.clientY + this.startTop, o = f[0].style;
             n = Math.max(s, Math.min(a, n));
-            i = Math.max(u, Math.min(c, i));
+            i = Math.max(u, Math.min(l, i));
             o.left = n + "px";
             o.top = i + "px";
             r.onover.call(t, e, n, i);
@@ -1297,7 +1297,7 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
                 i = u.attr("action-data");
                 e.action = n;
                 e.data = i;
-                r = t.e.emit(a + l + n, e, s);
+                r = t.e.emit(a + c + n, e, s);
                 e.actionValue = r;
                 if (r === !1) {
                     e.preventDefault();
@@ -1308,10 +1308,10 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
             return r;
         }
     }
-    var o = t("jquery"), r = t("../event/emitter"), s = /\S+/g, u = -1, a = (+new Date()).toString(36), l = "/", c = function() {
+    var o = t("jquery"), r = t("../event/emitter"), s = /\S+/g, u = -1, a = (+new Date()).toString(36), c = "/", l = function() {
         return a + ++u;
     }, f = function(t, e) {
-        var n = t.guid || (t.guid = c()), i = function(n, i) {
+        var n = t.guid || (t.guid = l()), i = function(n, i) {
             return t.call(e || i, n);
         };
         i.guid = n;
@@ -1321,7 +1321,7 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
     }, h = function(t, e) {
         e = e || {};
         "string" == typeof t && (t = o(t)[0]);
-        var n = {}, u = {}, a = new r(), c = e.context, h = {
+        var n = {}, u = {}, a = new r(), l = e.context, h = {
             o: n,
             opts: e,
             e: a
@@ -1342,7 +1342,7 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
                     u[e] = 1;
                     o(t).on(e, "[action-type]", v);
                 }
-                a.on(e + l + n[r], f(i, c));
+                a.on(e + c + n[r], f(i, l));
             }
             return this;
         };
@@ -1355,7 +1355,7 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
             n = (n || "").match(s) || [];
             var r, u = n.length;
             for (o(t); u--; ) {
-                r = e + l + n[u];
+                r = e + c + n[u];
                 a.un(r, i);
             }
             return this;
@@ -1367,7 +1367,7 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
             }
             var i = o('[action-type="' + n + '"]', t)[0] || document, r = new o.Event(e);
             r.currentTarget = r.target = i;
-            a.emit(e + l + n, r, i);
+            a.emit(e + c + n, r, i);
         };
         n.destroy = function() {
             var i = o(t);
@@ -1390,7 +1390,7 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
 define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "./util" ], function(t, e, n) {
     "use strict";
     function i(t) {
-        return l("<" + t + "/>")[0];
+        return c("<" + t + "/>")[0];
     }
     function o(t, e, n) {
         t.insertRule ? t.insertRule(e + " {" + n + "}", 0) : t.addRule(e, n, 1);
@@ -1426,7 +1426,7 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
         }[t] || 500;
     }
     function a(t, e, n, i, o) {
-        var r, s, a = l(t), c = arguments, o = "boolean" == typeof c[c.length - 1] && c[c.length - 1], h = !1, v = function() {
+        var r, s, a = c(t), l = arguments, o = "boolean" == typeof l[l.length - 1] && l[l.length - 1], h = !1, v = function() {
             m();
         }, m = function(t) {
             h || y(!0);
@@ -1468,7 +1468,7 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
             }
         };
     }
-    var l = t("jquery"), c = t("./util"), f = (c.each, c.noop), d = c.setImmediate, p = s(), h = /\-v\-/g, v = document.getElementsByTagName("head")[0].appendChild(i("style")), m = v.sheet || v.styleSheet, y = {
+    var c = t("jquery"), l = t("./util"), f = (l.each, l.noop), d = l.setImmediate, p = s(), h = /\-v\-/g, v = document.getElementsByTagName("head")[0].appendChild(i("style")), m = v.sheet || v.styleSheet, y = {
         ".ui-animated": "-v-animation-fill-mode: both;",
         ".ui-animated.ui-speed-normal": "-v-animation-duration: 0.5s;",
         ".ui-animated.ui-speed-fast": "-v-animation-duration: 0.2s;",
@@ -1480,7 +1480,7 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
         "-ms-": "msAnimationEnd",
         "": "animationend"
     }[p];
-    c.each(y, function(t, e) {
+    l.each(y, function(t, e) {
         t && o(m, e, t.replace(h, p));
     });
     e.effect = a;
@@ -1536,7 +1536,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 };
                 k() || x(n, {
                     position: "absolute",
-                    width: c.width() + "px",
+                    width: l.width() + "px",
                     height: f.height() + "px"
                 });
                 s.attr("tabIndex", 0).on("focus", _(e.focus, e));
@@ -1573,28 +1573,28 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         if (!h) {
             var u = _(e.resize, e);
             e.on("render", function() {
-                c.on("resize", u);
+                l.on("resize", u);
             });
             e.on("destroy", function() {
-                c.off("resize", u);
+                l.off("resize", u);
             });
         }
         e.destroyed = !1;
         e.initialized = !0;
     }
-    var o = t("jquery"), r = t("../../../core/1.0.0/utils/util"), s = t("../../../core/1.0.0/utils/css"), u = t("../../../core/1.0.0/event/emitter"), a = window, l = a.document, c = o(a), f = o(l), d = l.documentElement, p = /\S+/g, h = !("minWidth" in d.style), v = "ui-layer", m = a.Math, y = m.max, g = m.ceil, b = r.guid, x = r.extend, w = r.each, _ = function(t, e) {
+    var o = t("jquery"), r = t("../../../core/1.0.0/utils/util"), s = t("../../../core/1.0.0/utils/css"), u = t("../../../core/1.0.0/event/emitter"), a = window, c = a.document, l = o(a), f = o(c), d = c.documentElement, p = /\S+/g, h = !("minWidth" in d.style), v = "ui-layer", m = a.Math, y = m.max, g = m.ceil, b = r.guid, x = r.extend, w = r.each, _ = function(t, e) {
         return t.bind ? t.bind(e) : function() {
             return t.apply(e, arguments);
         };
-    }, A = r.setImmediate, T = function(t) {
+    }, A = r.setImmediate, C = function(t) {
         return a.parseInt(t, 10) || 0;
-    }, C = function(t) {
+    }, T = function(t) {
         return t && 1 === t.nodeType;
     }, k = function() {
         return k._ || (k._ = function() {
-            var t = l.createElement("div"), e = t.cloneNode(!1), n = !1, i = l.body || function() {
+            var t = c.createElement("div"), e = t.cloneNode(!1), n = !1, i = c.body || function() {
                 n = !0;
-                return d.appendChild(l.createElement("body"));
+                return d.appendChild(c.createElement("body"));
             }();
             t.style.cssText = "position:fixed;top:42px";
             i.appendChild(t);
@@ -1617,39 +1617,39 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             h: t.height()
         };
     }, z = function() {
-        return E(c);
+        return E(l);
     }, q = function(t) {
-        var e = C(t), n = e ? o(t).offset() : {
+        var e = T(t), n = e ? o(t).offset() : {
             left: t.pageX,
             top: t.pageY
         };
         t = e ? t : t.target;
         var i = t.ownerDocument;
         if (i === a.document) return n;
-        var r = i.defaultView || i.parentWindow, s = r.frameElement, u = j(), l = o(s).offset();
+        var r = i.defaultView || i.parentWindow, s = r.frameElement, u = j(), c = o(s).offset();
         return {
-            left: n.left + l.left - u.x,
-            top: n.top + l.top - u.y
+            left: n.left + c.left - u.x,
+            top: n.top + c.top - u.y
         };
     }, I = function(t, e) {
         if (t.length) {
-            var n = T(t.css(e)) || t[0]["offset" + e.charAt(0).toUpperCase() + e.slice(1)], i = {
+            var n = C(t.css(e)) || t[0]["offset" + e.charAt(0).toUpperCase() + e.slice(1)], i = {
                 width: [ "left", "right" ],
                 height: [ "top", "bottom" ]
             };
             w(i[e], function(e, i) {
-                n += T(t.css("margin-" + e), 10) || 0;
+                n += C(t.css("margin-" + e), 10) || 0;
             });
             return n;
         }
         return 0;
     }, L = function(t) {
         return I(t, "width");
-    }, $ = function(t) {
+    }, N = function(t) {
         return I(t, "height");
-    }, N = function() {
+    }, $ = function() {
         try {
-            var t = l.activeElement, e = t.contentDocument;
+            var t = c.activeElement, e = t.contentDocument;
             return e && e.activeElement || t;
         } catch (n) {}
     }, D = function(t) {
@@ -1704,9 +1704,9 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             e = x({}, i._, e);
             if (void 0 !== r) {
                 n = typeof r;
-                "boolean" === n ? e.modal = r : r && "object" === n && (C(r) || C(r.target) ? u = r : x(e, r));
+                "boolean" === n ? e.modal = r : r && "object" === n && (T(r) || T(r.target) ? u = r : x(e, r));
             }
-            var l = i._popup, c = e.showWithAni, f = function() {
+            var c = i._popup, l = e.showWithAni, f = function() {
                 delete o.showing;
                 i.emit("shown");
             };
@@ -1716,13 +1716,13 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             }
             i.open = !0;
             i.anchor = u;
-            i._activeElement = N();
+            i._activeElement = $();
             i.emit("beforeShow", e);
-            l.appendTo(e.appendTo).css("display", "block");
+            c.appendTo(e.appendTo).css("display", "block");
             i.emit("show", e);
             o.showing = !0;
-            if (c && "none" !== c) {
-                var d = c.split(":");
+            if (l && "none" !== l) {
+                var d = l.split(":");
                 i._anim = s.effect(i.node, d[0], d[1], f);
             } else f();
             return i;
@@ -1786,7 +1786,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         focus: function(t) {
             var e = this._, n = this.node, r = this._popup, s = i.current, u = e.zIndex;
             s && s !== this && s.blur(!1);
-            if (!o.contains(n, N())) {
+            if (!o.contains(n, $())) {
                 var a = r.find("[autofocus]")[0];
                 !e.focusing && a ? e.focusing = !0 : a = n;
                 this._focus(a);
@@ -1818,8 +1818,8 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         center: function() {
             var t = this._popup, e = this._.fixed, n = j(), i = z(), o = E(t), r = e ? 0 : n.x, s = e ? 0 : n.y, u = (i.w - o.w) / 2 + r, a = .382 * (i.h - o.h) + s;
             t.css({
-                left: y(T(u), r),
-                top: y(T(a), s)
+                left: y(C(u), r),
+                top: y(C(a), s)
             });
             return this;
         },
@@ -1829,11 +1829,11 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var u = s.offset();
             if (u.left * u.top < 0) return n.center();
             e = e || i.align;
-            var a = D(e), l = a.align, c = !a.auto;
-            l && l.length || (l = [ "b" ]);
+            var a = D(e), c = a.align, l = !a.auto;
+            c && c.length || (c = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = z(), h = j(), m = L(r), y = $(r), b = q(t), x = L(s), _ = $(s), A = b.left, C = b.top, k = d ? A - h.x : A, E = d ? C - h.y : C, I = d ? 0 : h.x, N = d ? 0 : h.y, U = I + p.w - m, O = N + p.h - y, S = {
+            var d = i.fixed, p = z(), h = j(), m = L(r), y = N(r), b = q(t), x = L(s), _ = N(s), A = b.left, T = b.top, k = d ? A - h.x : A, E = d ? T - h.y : T, I = d ? 0 : h.x, $ = d ? 0 : h.y, U = I + p.w - m, O = $ + p.h - y, S = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1843,7 +1843,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 b: "top",
                 l: "left",
                 r: "left"
-            }, R = {}, G = [ {
+            }, R = {}, M = [ {
                 t: E - y,
                 b: E + _,
                 l: k - m,
@@ -1853,25 +1853,25 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 b: E - y + _,
                 l: k,
                 r: k - m + x
-            } ], M = {
+            } ], G = {
                 l: k + g((x - m) / 2),
                 t: E + g((_ - y) / 2)
             }, W = {
                 left: [ I, U ],
-                top: [ N, O ]
+                top: [ $, O ]
             };
-            c || w(l, function(t, e) {
-                G[e][t] > W[P[t]][1] && (t = l[e] = S[t]);
-                G[e][t] < W[P[t]][0] && (l[e] = S[t]);
+            l || w(c, function(t, e) {
+                M[e][t] > W[P[t]][1] && (t = c[e] = S[t]);
+                M[e][t] < W[P[t]][0] && (c[e] = S[t]);
             });
-            var F = l[0];
-            if (!l[1]) {
-                l[1] = "left" === P[F] ? "t" : "l";
-                G[1][l[1]] = M[l[1]];
+            var F = c[0];
+            if (!c[1]) {
+                c[1] = "left" === P[F] ? "t" : "l";
+                M[1][c[1]] = G[c[1]];
             }
-            G[0][F] = G[0][F] + 10 * ("tl".indexOf(F) !== -1 ? -1 : 1);
-            R[P[l[0]]] = T(G[0][l[0]]);
-            R[P[l[1]]] = T(G[1][l[1]]);
+            M[0][F] = M[0][F] + 10 * ("tl".indexOf(F) !== -1 ? -1 : 1);
+            R[P[c[0]]] = C(M[0][c[0]]);
+            R[P[c[1]]] = C(M[1][c[1]]);
             var B = v + "-" + F;
             r.css(R).addClass(B);
             n._dirClass = B;
@@ -1880,7 +1880,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!V) return n;
                 H = o('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(V);
             }
-            var Y, Q, X = "top" !== P[F], J = [ "v", "h" ][1 ^ X], Z = L(H), K = $(H), tt = {}, et = X ? "left" : "top";
+            var Y, Q, X = "top" !== P[F], J = [ "v", "h" ][1 ^ X], Z = L(H), K = N(H), tt = {}, et = X ? "left" : "top";
             switch (J) {
               case "h":
                 Y = g(A + (x - Z) / 2);
@@ -1888,7 +1888,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 break;
 
               case "v":
-                Q = g(C + (_ - K) / 2);
+                Q = g(T + (_ - K) / 2);
                 tt.top = Q;
             }
             H.offset(tt).css(et, "");
@@ -1902,7 +1902,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
 
 define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", "../../../core/1.0.0/utils/util", "../../../core/1.0.0/dom/delegator", "./popup" ], function(t, e, n) {
     "use strict";
-    var i = t("jquery"), o = t("../../../core/1.0.0/utils/util"), r = t("../../../core/1.0.0/dom/delegator"), s = t("./popup"), u = o.extend, a = o.guid, l = o.each, c = window.document, f = {
+    var i = t("jquery"), o = t("../../../core/1.0.0/utils/util"), r = t("../../../core/1.0.0/dom/delegator"), s = t("./popup"), u = o.extend, a = o.guid, c = o.each, l = window.document, f = {
         zIndex: 1024,
         title: "",
         close: !0,
@@ -1925,21 +1925,21 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
         var r, s = t.button || (t.button = []);
         if (!i.isArray(r = s)) {
             r = [];
-            s && "object" == typeof s && l(s, function(t, e) {
+            s && "object" == typeof s && c(s, function(t, e) {
                 t.id = e;
                 r.push(t);
             });
             s = t.button = r;
         }
         if (s.length > 0) {
-            var c = !1;
-            l(s, function(e, n) {
+            var l = !1;
+            c(s, function(e, n) {
                 var i = e.id || a();
-                e.autofocus && (c = !0);
+                e.autofocus && (l = !0);
                 t[i] && u(e, t[i]);
                 e.index = n;
             });
-            c || (s[s.length - 1].autofocus = !0);
+            l || (s[s.length - 1].autofocus = !0);
         }
         o.emit("init", t);
         o.initialized ? o.options(t).focus() : o.init(t);
@@ -1970,7 +1970,7 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
         options: function(t) {
             var e = this, t = u(e._, t);
             e._freeze(!0);
-            l([ "title", "content", "width", "height", "action", "button" ], function(n, i) {
+            c([ "title", "content", "width", "height", "action", "button" ], function(n, i) {
                 i = t[n];
                 null != i && "function" == typeof e[n] && e[n](i);
             });
@@ -1984,7 +1984,7 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
             t.$("footer").hide();
             t.options();
             e.close || t.$("close").css("display", "none");
-            e.clickBlankToHide && i(t.mask).on("onmousedown" in c ? "mousedown" : "click", function() {
+            e.clickBlankToHide && i(t.mask).on("onmousedown" in l ? "mousedown" : "click", function() {
                 t.hide();
                 return !1;
             });
@@ -1992,9 +1992,9 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
                 var n = e.target, i = n.nodeName, o = /^input|textarea$/i, r = s.current === t, u = e.keyCode;
                 !r || o.test(i) && "button" !== n.type || 27 === u && t.hide();
             };
-            i(c).on("keydown", n);
+            i(l).on("keydown", n);
             t.on("destroy", function() {
-                i(c).off("keydown", n);
+                i(l).off("keydown", n);
             });
         },
         delegate: function(t, e, n) {
@@ -2010,7 +2010,7 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
         content: function(t) {
             var e = this.$("content");
             if (t && t.nodeType) {
-                i.contains(c, t) && this.on("beforeremove", function() {
+                i.contains(l, t) && this.on("beforeremove", function() {
                     i("body").append(t.hide());
                 });
                 t = i(t);
@@ -2043,12 +2043,12 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
             if ("string" == typeof t) {
                 i = t;
                 o++;
-            } else l(t, function(t, s) {
-                var u = t.id, a = t.fn || t.callback, l = t.display !== !1, c = t.className || r, f = [ c ];
+            } else c(t, function(t, s) {
+                var u = t.id, a = t.fn || t.callback, c = t.display !== !1, l = t.className || r, f = [ l ];
                 t.autofocus && f.push(n.buttonClassLight);
                 "function" == typeof a && e.delegate(u, a);
-                l && o++;
-                i += '<button type="button" action-type="' + u + '"' + (l ? "" : ' style="display:none"') + (' class="' + f.join(" ") + '"') + (t.disabled ? " disabled" : "") + ">" + (t.text || t.value) + "</button>";
+                c && o++;
+                i += '<button type="button" action-type="' + u + '"' + (c ? "" : ' style="display:none"') + (' class="' + f.join(" ") + '"') + (t.disabled ? " disabled" : "") + ">" + (t.text || t.value) + "</button>";
             });
             e.$("button").html(i);
             e.$("footer")[o ? "show" : "hide"]();
@@ -2057,7 +2057,7 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
         },
         action: function(t) {
             var e = this;
-            l(t, function(t, n) {
+            c(t, function(t, n) {
                 e.delegate(n, t);
             });
             return e;
@@ -2077,9 +2077,9 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
 
 define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery", "../../../core/1.0.0/utils/util", "./drag", "./dialog" ], function(t, e, n) {
     "use strict";
-    var i = t("jquery"), o = t("../../../core/1.0.0/utils/util"), r = t("./drag"), s = t("./dialog"), u = o.each, a = o.extend, l = window.clearTimeout, c = "//s1.zhongzhihui.com/lib/assets/images/loading/loading32x32.gif";
+    var i = t("jquery"), o = t("../../../core/1.0.0/utils/util"), r = t("./drag"), s = t("./dialog"), u = o.each, a = o.extend, c = window.clearTimeout, l = "//s1.zhongzhihui.com/lib/assets/images/loading/loading32x32.gif";
     !function() {
-        var t = i('<i class="ui-box-iconf" style="position:absolute;left:-999em;top:-999em;">x<img src="' + c + '"</i>').appendTo("body");
+        var t = i('<i class="ui-box-iconf" style="position:absolute;left:-999em;top:-999em;">x<img src="' + l + '"</i>').appendTo("body");
         setTimeout(function() {
             t.remove();
             t = null;
@@ -2091,7 +2091,7 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
         confirm: "&#x3f;",
         ok: "&#x2714;",
         error: "&#x2718;",
-        loading: '<img src="' + c + '" />'
+        loading: '<img src="' + l + '" />'
     }, d = function(t) {
         var e = f[t];
         return e ? '<i node-type="icon" class="x-icon ui-box-iconf">' + e + "</i>" : "";
@@ -2166,15 +2166,15 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
             n.showing ? t.once("shown", e) : e();
         };
         if (!r.length) {
-            var l = /(msie) ([\w.]+)/.test(navigator.userAgent.toLowerCase()), c = '<iframe id="{id}-iframe" name="{id}-iframe" class="iframe" frameborder="0" hspace="0"' + (l ? ' allowtransparency="true"' : "") + ' scrolling="' + n.scrolling + '" style="position:absolute;left:-9999em;top:-9999em;" src="' + e + '"></iframe>';
-            r = i(c.replace(/{id}/g, n.id)).appendTo(o);
+            var c = /(msie) ([\w.]+)/.test(navigator.userAgent.toLowerCase()), l = '<iframe id="{id}-iframe" name="{id}-iframe" class="iframe" frameborder="0" hspace="0"' + (c ? ' allowtransparency="true"' : "") + ' scrolling="' + n.scrolling + '" style="position:absolute;left:-9999em;top:-9999em;" src="' + e + '"></iframe>';
+            r = i(l.replace(/{id}/g, n.id)).appendTo(o);
             s = r[0];
             n.autoSize ? r.one("load", function() {
-                var t, e, n, o = m(s), l = o && i(o);
-                if (l) {
-                    t = l.width();
+                var t, e, n, o = m(s), c = o && i(o);
+                if (c) {
+                    t = c.width();
                     r.width(t);
-                    e = l.height();
+                    e = c.height();
                     n = {
                         width: t,
                         height: e
@@ -2206,9 +2206,9 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
             t.content = v(t.content, t);
             "none" !== o && (t.className = (t.className || "") + " ui-box-x-" + o);
         } else {
-            var l = t.url;
-            if (l) {
-                var c = t.close !== !1;
+            var c = t.url;
+            if (c) {
+                var l = t.close !== !1;
                 t = a({
                     modal: !0,
                     close: !1,
@@ -2224,7 +2224,7 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
                 e.once("load", function() {
                     f.remove();
                     f = null;
-                    c && e.$("close").show();
+                    l && e.$("close").show();
                 });
                 e.on("hidden", function() {
                     e.destroy();
@@ -2249,23 +2249,23 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
     }, x = "__showDelay", w = "__hideTimer";
     o.inherits(b, s, {
         show: function(t, e) {
-            var n = this, i = n._, r = [].slice.call(arguments), e = a({}, i, e), s = e.duration || 0, u = e.delay || 0, c = function() {
+            var n = this, i = n._, r = [].slice.call(arguments), e = a({}, i, e), s = e.duration || 0, u = e.delay || 0, l = function() {
                 o.each([ x, w ], function(t, e) {
                     e = i[t];
                     delete i[t];
-                    e && l(e);
+                    e && c(e);
                 });
             }, f = function() {
                 if (s > 0) {
                     i[w] = setTimeout(function() {
-                        c();
+                        l();
                         n.hide();
                     }, s);
-                    n.once("hide", c);
+                    n.once("hide", l);
                 }
                 b.__super__.show.apply(n, r);
             };
-            c();
+            l();
             u > 0 ? i[x] = setTimeout(f, u) : f();
             return n;
         },
@@ -2274,7 +2274,7 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
             e && o.each([ x, w ], function(t, n) {
                 n = e[t];
                 delete e[t];
-                n && l(n);
+                n && c(n);
             });
             b.__super__.hide.apply(t, arguments);
             return t;
@@ -2305,8 +2305,8 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
         };
     }(), a = function(t) {
         return !!(t && t.nodeType && t.tagName);
-    }, l = o.guid, c = function() {
-        return l("__0x$");
+    }, c = o.guid, l = function() {
+        return c("__0x$");
     }, f = function(t) {
         var e, n = t[1] || {};
         e = t[0];
@@ -2333,7 +2333,7 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
         });
         e = e || {};
         var i = d(u({
-            id: c(),
+            id: l(),
             content: t,
             className: "ui-bubble",
             autofocus: !1,
@@ -2359,7 +2359,7 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
             var n = d(u({
                 autofocus: !0,
                 autoRelease: !0,
-                id: c(),
+                id: l(),
                 modal: !0,
                 close: !1,
                 xtype: "loading",
@@ -2378,7 +2378,7 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
                 xtype: "info",
                 className: "ui-box-alert",
                 autofocus: !0,
-                id: c(),
+                id: l(),
                 modal: !0,
                 autoRelease: !0,
                 content: "<div>" + t + "</div>",
@@ -2404,10 +2404,10 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
                 t ? e(t) : n(t);
             };
             o && (i = i || o.sender);
-            var l = d(u({
+            var c = d(u({
                 xtype: "confirm",
                 autofocus: !0,
-                id: c(),
+                id: l(),
                 modal: !i,
                 autoRelease: !0,
                 content: "<div>" + t + "</div>",
@@ -2425,7 +2425,7 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
                     }
                 }
             }, o));
-            return l.show(i);
+            return c.show(i);
         },
         bubble: p
     };
@@ -2460,11 +2460,11 @@ define("lib/ui/box/1.0.1/crossbox", [ "require", "exports", "module", "./box" ],
         for (var e = -1, n = d.length; ++e < n; ) d[e](t);
     }
     function s(t) {
-        f ? t(u || l) : o(t);
+        f ? t(u || c) : o(t);
     }
-    var u, a = window, l = i({}, t("./box")), c = window.top, f = !1, d = [];
-    if (a !== c) try {
-        c.require([ "lib/ui/box/1.0.1/crossbox" ], function(t) {
+    var u, a = window, c = i({}, t("./box")), l = window.top, f = !1, d = [];
+    if (a !== l) try {
+        l.require([ "lib/ui/box/1.0.1/crossbox" ], function(t) {
             i(n.exports, t);
             f = !0;
             u = t;
@@ -2476,21 +2476,15 @@ define("lib/ui/box/1.0.1/crossbox", [ "require", "exports", "module", "./box" ],
         }, 1);
     } else {
         f = !0;
-        u = l;
+        u = c;
     }
-    e = n.exports = l;
+    e = n.exports = c;
     e.ready = s;
 });
 
 define("conf/course/list", [ "require", "exports", "module", "jquery", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/login-status/1.0.0/login", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer", "lib/core/1.0.0/io/request", "lib/ui/box/1.0.1/crossbox" ], function(t, e, n) {
     "use strict";
-    var i = t("jquery"), o = t("module/top-search/1.0.0/top-search"), r = t("module/login-status/1.0.0/login-status"), s = t("module/login-status/1.0.0/login"), u = t("module/fix-bar/1.0.0/fix-bar"), a = t("module/footer/1.0.0/footer"), l = (new o(), 
-    new r(), new u(), new a(), s.isLogin()), c = (t("lib/core/1.0.0/io/request"), t("lib/ui/box/1.0.1/crossbox"));
-    i("#jReport").on("click", function() {
-        l ? c.loadUrl($PAGE_DATA.applyUrl, {
-            title: "报名详情",
-            autoRelease: !1,
-            modal: !0
-        }) : s.login();
-    });
+    var i = (t("jquery"), t("module/top-search/1.0.0/top-search")), o = t("module/login-status/1.0.0/login-status"), r = t("module/login-status/1.0.0/login"), s = t("module/fix-bar/1.0.0/fix-bar"), u = t("module/footer/1.0.0/footer");
+    new i(), new o(), new s(), new u(), r.isLogin(), t("lib/core/1.0.0/io/request"), 
+    t("lib/ui/box/1.0.1/crossbox");
 });
