@@ -3425,13 +3425,9 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
         },
         onfocusout: function(e) {
             if (r(e).valid()) {
-                console.log("focus", r(e).valid());
                 r(e).parents(".item").removeClass("error-red");
                 r(e).parent().removeClass("error-red");
-            } else {
-                console.log("focus", r(e).valid(), "");
-                r(e).parents(".item").addClass("error-red");
-            }
+            } else r(e).parents(".item").addClass("error-red");
         },
         onkeyup: function(e) {
             if (r(e).valid()) {

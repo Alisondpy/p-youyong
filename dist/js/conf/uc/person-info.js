@@ -6061,7 +6061,6 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
             tabs: [ {
                 type: "local",
                 options: {
-                    uploadLimit: 1,
                     fileObjName: "file_data",
                     swf: $PAGE_DATA.swf,
                     uploader: $PAGE_DATA.uploader,

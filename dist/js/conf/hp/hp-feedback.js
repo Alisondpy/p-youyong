@@ -5872,7 +5872,6 @@ var define2 = define("conf/hp/hp-feedback", [ "require", "exports", "module", "j
             tabs: [ {
                 type: "local",
                 options: {
-                    uploadLimit: 1,
                     fileObjName: "file_data",
                     swf: $PAGE_DATA.swfUrl,
                     uploader: $PAGE_DATA.uploadImgUrl,
