@@ -63,7 +63,6 @@ define(function(require, exports, module) {
             //验证码特殊结构,修改错误信息放置位置
             if (element.attr("id") === "jDynamic") {
                 error.appendTo(element.parents(".item"));
-                $(element).parent().addClass("error-red");
                 $(element).parents(".item").addClass("error-red");
             } else {
                 error.appendTo(element.parent());
@@ -75,15 +74,20 @@ define(function(require, exports, module) {
         onfocusout: function(element) {
             if($(element).valid()){
                 $(element).parent(".item").removeClass("error");
+                $(element).parents(".item").removeClass("error-red");
             }else{
                 $(element).parent(".item").addClass("error");
+                $(element).parent().addClass("error-red");
+                $(element).parents(".item").addClass("error-red");
             }
         },
         onkeyup: function(element) {
             if($(element).valid()){
                 $(element).parent(".item").removeClass("error");
+                $(element).parents(".item").removeClass("error-red");
             }else{
                 $(element).parent(".item").addClass("error");
+                $(element).parents(".item").addClass("error-red");
             }
         },
         success: function(label) {
@@ -109,8 +113,8 @@ define(function(require, exports, module) {
         },
         messages: {
             mobile: {
-                required: "请输入手机号",
-                mobile: "请正确地填写你的手机号"
+                required: "请输入您的手机号",
+                mobile: "请正确填写您的手机号"
             },
             vierfyCode: {
                 required: "请输入动态码"
@@ -156,12 +160,12 @@ define(function(require, exports, module) {
         },
         messages: {
             username: {
-                required: "请输入手机或邮箱",
-                mobile: "请输入正确的手机号或邮箱地址"
+                required: "请输入您的手机或邮箱",
+                mobile: "请正确填写您的手机号或邮箱地址"
             },
             password: {
-                required: "请输入密码",
-                minlength: "密码长度不能小于6个字符"
+                required: "请输入您的密码",
+                minlength: "您输入的密码和账户名不匹配"
             }
         },
         submitHandler: function(formRes) {

@@ -38,7 +38,7 @@ define(function(require, exports, module) {
             return false;
         }
 
-    }, $.validator.format("请输入正确的手机号"));
+    }, $.validator.format("请正确填写您的手机号"));
 
     // 手机动态码
     $.validator.addMethod("vierfyCode", function(value, element) {
@@ -83,7 +83,8 @@ define(function(require, exports, module) {
             },
             password: {
                 required: true,
-                minlength: 6
+                minlength: 6,
+                maxlength:16
             }
         },
         messages: {
@@ -96,27 +97,32 @@ define(function(require, exports, module) {
                 minlength: ""
             },
             email: {
-                required: "请输入邮箱",
-                email: "请输入正确的邮箱"
+                required: "请输入您的邮箱",
+                email: "请正确填写您的邮箱地址"
             },
             password: {
-                required: "请输入密码",
-                minlength: "密码长度不小于6位,且不包含空格"
+                required: "请设置您的登录密码",
+                minlength: "请输入6-16位密码，区分大小写，不能使用空格！"
             }
         },
         //失去焦点校验
         onfocusout: function(element) {
             if($(element).valid()){
-                $(element).parent(".item").removeClass("error-red");
+                console.log('focus',$(element).valid())
+                $(element).parents(".item").removeClass("error-red");
+                $(element).parent().removeClass("error-red");
             }else{
-                $(element).parent(".item").addClass("error-red");
+                console.log('focus',$(element).valid(),'')
+                $(element).parents(".item").addClass("error-red");
             }
         },
         onkeyup: function(element) {
             if($(element).valid()){
-                $(element).parent(".item").removeClass("error-red");
+                $(element).parents(".item").removeClass("error-red");
+                $(element).removeClass("error");
             }else{
-                $(element).parent(".item").addClass("error-red");
+                $(element).parents(".item").addClass("error-red");
+                $(element).addClass("error");
             }
         },
         errorPlacement: function(error, element) {
