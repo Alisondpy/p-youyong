@@ -55,15 +55,15 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         return "object" == typeof e && null !== e;
     }
     function o() {}
-    function a(e, t) {
+    function r(e, t) {
         for (var n = e.length, i = -1; ++i < n; ) t(e[i], i);
     }
-    function r(e, t) {
+    function a(e, t) {
         for (var n in e) f.call(e, n) && t(e[n], n, e);
     }
     function s(e, t) {
         if (e && e.forEach) return e.forEach(t);
-        h(e) ? a(e, t) : r(e, t);
+        h(e) ? r(e, t) : a(e, t);
     }
     function l(e, t) {
         for (var n = -1, i = e.length, o = Array(i); ++n < i; ) o[n] = t(e[n], n, e);
@@ -83,7 +83,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
     }
     function c(e) {
         "?" === e.charAt(0) && (e = e.substr(1));
-        for (var t, n = {}, i = e.split("&"), o = -1, a = i.length; ++o < a; ) {
+        for (var t, n = {}, i = e.split("&"), o = -1, r = i.length; ++o < r; ) {
             t = i[o].split("=");
             n[decodeURIComponent(t[0])] = decodeURIComponent(t[1]);
         }
@@ -98,7 +98,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         };
     }(), g = Object.keys || function(e) {
         var t = [];
-        r(e, function(e, n) {
+        a(e, function(e, n) {
             t.push(n);
         });
         return t;
@@ -122,7 +122,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
             t.prototype = new e(t);
         };
     }(), b = p.console || (p.console = {});
-    a([ "log", "error", "trace", "warn", "info" ], function(e) {
+    r([ "log", "error", "trace", "warn", "info" ], function(e) {
         b[e] || (b[e] = o);
     });
     t.extend = function(e, t) {
@@ -146,9 +146,9 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         return n(e, t);
     };
     t.filter = function(e, t) {
-        var n, i, o = h(e) ? (n = a, i = function(e, t) {
+        var n, i, o = h(e) ? (n = r, i = function(e, t) {
             o.push(t);
-        }, []) : (n = r, i = function(e, t) {
+        }, []) : (n = a, i = function(e, t) {
             o[e] = t;
         }, {});
         n(e, function(e, n) {
@@ -157,7 +157,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         return o;
     };
     t.mix = function y(e, t, n, i, o) {
-        for (var a in t) t.hasOwnProperty(a) && (t[a] && e[a] && n && "object" == typeof t[a] ? y(e[a], t[a], n, i, o) : (void 0 === e[a] || i) && (o && !o(e[a], t[a]) || (e[a] = t[a])));
+        for (var r in t) t.hasOwnProperty(r) && (t[r] && e[r] && n && "object" == typeof t[r] ? y(e[r], t[r], n, i, o) : (void 0 === e[r] || i) && (o && !o(e[r], t[r]) || (e[r] = t[r])));
         return e;
     };
     t.guid = m;
@@ -204,13 +204,13 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
     t.debounce = function(e, t, n, i) {
         var o;
         return function() {
-            var a = i || this, r = arguments, s = function() {
+            var r = i || this, a = arguments, s = function() {
                 o = null;
-                n || e.apply(a, r);
+                n || e.apply(r, a);
             }, l = n && !o;
             clearTimeout(o);
             o = setTimeout(s, t);
-            l && e.apply(a, r);
+            l && e.apply(r, a);
         };
     };
     t.deprecate = function(e, t) {
@@ -231,10 +231,10 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
     }
     function o(e) {
         try {
-            return "true" === e || "false" !== e && ("null" === e ? null : +e + "" === e ? +e : d.test(e) ? r.parseJSON(e) : e);
+            return "true" === e || "false" !== e && ("null" === e ? null : +e + "" === e ? +e : d.test(e) ? a.parseJSON(e) : e);
         } catch (t) {}
     }
-    function a(e, t, n) {
+    function r(e, t, n) {
         var i;
         if (void 0 === n && 1 === e.nodeType) {
             i = "data-" + t.replace(c, "-$&").toLowerCase();
@@ -243,11 +243,11 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
         }
         return n;
     }
-    var r = (window.document, e("jquery")), s = /^-ms-/, l = /-([\da-z])/gi, u = function(e, t) {
+    var a = (window.document, e("jquery")), s = /^-ms-/, l = /-([\da-z])/gi, u = function(e, t) {
         return t.toUpperCase();
     }, d = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/, c = /[A-Z]/g, p = function(e, t, n) {
         if (!e || 1 !== e.nodeType) throw new TypeError("dataset(): Not a valid DOM element.");
-        var r, s, l, u;
+        var a, s, l, u;
         if (1 === arguments.length) {
             if (l = e.dataset) {
                 u = {};
@@ -255,13 +255,13 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
                 return u;
             }
             l = e.attributes;
-            r = l.length;
+            a = l.length;
             u = {};
-            for (;r--; ) if (l[r]) {
-                s = l[r].name;
+            for (;a--; ) if (l[a]) {
+                s = l[a].name;
                 if (0 === s.indexOf("data-")) {
                     s = i(s.slice(5));
-                    u[s] = o(a(e, s));
+                    u[s] = o(r(e, s));
                 }
             }
             return u;
@@ -273,54 +273,54 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
 define("lib/core/1.0.0/dom/build", [ "require", "exports", "module", "jquery", "./dataset" ], function(e, t, n) {
     "use strict";
     function i(e, t, n, i) {
-        i ? e[t] || (e[t] = n) : e[t] ? e[t] = e[t].add(n) : e[t] = a(n);
+        i ? e[t] || (e[t] = n) : e[t] ? e[t] = e[t].add(n) : e[t] = r(n);
     }
-    var o = window.document, a = e("jquery"), r = function(e, t, n) {
-        var r, s, l, u, d, c = function(e) {
-            if (n) for (var o in n) l[o] = a(n[o].toString(), e); else {
+    var o = window.document, r = e("jquery"), a = function(e, t, n) {
+        var a, s, l, u, d, c = function(e) {
+            if (n) for (var o in n) l[o] = r(n[o].toString(), e); else {
                 l = {};
-                u = a("[node-type]", e);
-                for (var r, s = -1, d = u.length; ++s < d; ) {
-                    r = u[s];
-                    o = r.getAttribute("node-type");
-                    i(l, o, r, t);
+                u = r("[node-type]", e);
+                for (var a, s = -1, d = u.length; ++s < d; ) {
+                    a = u[s];
+                    o = a.getAttribute("node-type");
+                    i(l, o, a, t);
                 }
             }
         }, p = function(e) {
             var n, o = l[e];
             if (!o || 0 === o.length) {
-                n = a('[node-type="' + e + '"]', r);
+                n = r('[node-type="' + e + '"]', a);
                 n.length && i(l, e, n, t);
                 o = l[e];
             }
             return o;
         };
         void 0 === t && (t = !0);
-        r = e;
+        a = e;
         if ("string" == typeof e && "<" === e.charAt(0)) {
-            r = o.createElement("div");
-            r.innerHTML = e;
+            a = o.createElement("div");
+            a.innerHTML = e;
             s = o.createDocumentFragment();
-            for (;d = r.firsChild; ) s.appendChild(d);
+            for (;d = a.firsChild; ) s.appendChild(d);
         } else {
-            r = a(e);
-            s = r[0];
+            a = r(e);
+            s = a[0];
         }
-        c(r);
+        c(a);
         return {
             get: p,
             box: s,
             list: l
         };
     };
-    t.build = r, t.parse = function(e, t, n) {
+    t.build = a, t.parse = function(e, t, n) {
         "object" == typeof e && e.length > 0 && (e = e[0]);
         if (!e || 1 !== e.nodeType) throw TypeError("parse error, not a valid html element");
         if ("boolean" == typeof n) {
             t = n;
             n = null;
         }
-        return r(e, t, n).list;
+        return a(e, t, n).list;
     };
     t.dataset = e("./dataset");
 });
@@ -338,14 +338,14 @@ define("module/top-search/1.0.0/top-search", [ "require", "exports", "module", "
         t.options = o.extend(!0, {}, n, e);
         if ("" == t.options.url) throw new Error("the params options.url is required");
         t.el = o(t.options.selector);
-        var i = a.build(t.el[0], !1);
+        var i = r.build(t.el[0], !1);
         t.ipt = i.get("ipt");
         t.btn = i.get("btn");
         t.lbl = i.get("lbl");
         t._init();
         t._initEvent();
     }
-    var o = e("jquery"), a = (e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build"));
+    var o = e("jquery"), r = (e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build"));
     i.prototype._initEvent = function() {
         var e = this;
         e.ipt.on("focus", function() {
@@ -402,21 +402,21 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
         for (var t = e.length, n = 0, i = t - 1, o = /(\u3000|\s|\t|\u00A0)/; n < t && o.test(e.charAt(n)); ) ++n;
         for (;i >= 0 && o.test(e.charAt(i)); ) --i;
         return e.substring(n, i + 1);
-    }, a = function(e) {
+    }, r = function(e) {
         var t = {};
         for (var n in e) e.hasOwnProperty(n) && (t[n] = e[n]);
         return t;
-    }, r = function(e, t, n) {
+    }, a = function(e, t, n) {
         n = n || {};
         if (void 0 !== t) {
-            n = a(n);
+            n = r(n);
             if (null === t) {
                 t = "";
                 n.expires = -1;
             }
             if ("number" == typeof n.expires) {
-                var r = n.expires, s = n.expires = new Date();
-                s.setTime(s.getTime() + 864e5 * r);
+                var a = n.expires, s = n.expires = new Date();
+                s.setTime(s.getTime() + 864e5 * a);
             }
             var l = function(e) {
                 try {
@@ -437,28 +437,28 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
         }
         return t;
     };
-    r.set = function(e, t, n) {
-        return r(e, t, n);
+    a.set = function(e, t, n) {
+        return a(e, t, n);
     };
-    r.get = function(e) {
-        return r(e);
+    a.get = function(e) {
+        return a(e);
     };
-    n.exports = r;
+    n.exports = a;
 });
 
 define("module/login-status/1.0.0/login", [ "require", "exports", "module", "lib/core/1.0.0/io/cookie" ], function(e, t, n) {
     "use strict";
-    var i = e("lib/core/1.0.0/io/cookie"), o = "_nick", a = "_ui_", r = $PAGE_DATA && $PAGE_DATA.LOGIN_URL || "", s = $PAGE_DATA && $PAGE_DATA[o] || null;
+    var i = e("lib/core/1.0.0/io/cookie"), o = "_nick", r = "_ui_", a = $PAGE_DATA && $PAGE_DATA.LOGIN_URL || "", s = $PAGE_DATA && $PAGE_DATA[o] || null;
     t.getNick = function() {
         return s;
     };
     t.isLogin = function() {
-        return !!i(a);
+        return !!i(r);
     };
     t.login = function(e) {
-        if (r) {
+        if (a) {
             e = e ? "?returnUrl=" + decodeURIComponent(e) : "";
-            window.location.href = r + e;
+            window.location.href = a + e;
         }
     };
 });
@@ -482,17 +482,17 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
         t.el = o(t.options.selector);
         t._init();
     }
-    var o = e("jquery"), a = e("lib/core/1.0.0/dom/build"), r = e("./login");
+    var o = e("jquery"), r = e("lib/core/1.0.0/dom/build"), a = e("./login");
     i.prototype._init = function() {
         var e = this;
-        if (r.isLogin()) {
-            var t = r.getNick();
+        if (a.isLogin()) {
+            var t = a.getNick();
             e.el.html(e._getLoginedHtml(t));
             e._initEvent();
         }
     };
     i.prototype._initEvent = function() {
-        var e = this, t = !1, n = a.build(e.el[0], !1), i = n.get("userName"), o = n.get("tipsMenu");
+        var e = this, t = !1, n = r.build(e.el[0], !1), i = n.get("userName"), o = n.get("tipsMenu");
         i.on("mouseenter", function() {
             t = !0;
             o.stop().fadeIn(500, function() {
@@ -526,7 +526,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
         o += '        <div class="tips-menu" node-type="tipsMenu">';
         o += '            <div class="arrow"><i></i><b></b></div>';
         o += '            <ul class="tips-menu-list">';
-        for (var a = 0, r = i.length; a < r; a++) o += '            <li class="tips-menu-item"><a href="' + i[a].url + '">' + i[a].title + "</a></li>";
+        for (var r = 0, a = i.length; r < a; r++) o += '            <li class="tips-menu-item"><a href="' + i[r].url + '">' + i[r].title + "</a></li>";
         o += "            </ul>";
         o += "        </div>";
         o += "    </li>";
@@ -551,15 +551,15 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
     }, o = function(e, t, n, i) {
         var o;
         return function() {
-            var a = i || this, r = arguments, s = function() {
+            var r = i || this, a = arguments, s = function() {
                 o = null;
-                n || e.apply(a, r);
+                n || e.apply(r, a);
             }, l = n && !o;
             clearTimeout(o);
             o = setTimeout(s, t);
-            l && e.apply(a, r);
+            l && e.apply(r, a);
         };
-    }, a = function(t, n) {
+    }, r = function(t, n) {
         t = t || {};
         var i = e(t), o = Array.prototype.slice;
         n = n || t.name;
@@ -568,19 +568,19 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
             un: "off",
             once: "one",
             emit: "trigger"
-        }, function(e, a) {
+        }, function(e, r) {
             t[e] = function(t) {
-                var r = o.call(arguments, 0), s = r[1];
-                n && !~t.indexOf(".") && (r[0] = t + "." + n);
-                "function" == typeof s && ("on" === e || "once" === e ? r[1] = s.__ || (s.__ = function(e) {
+                var a = o.call(arguments, 0), s = a[1];
+                n && !~t.indexOf(".") && (a[0] = t + "." + n);
+                "function" == typeof s && ("on" === e || "once" === e ? a[1] = s.__ || (s.__ = function(e) {
                     e.preventDefault();
                     return s.apply(this, o.call(arguments, 1));
-                }) : "un" === e && (r[1] = s.__));
-                return i[a].apply(i, r);
+                }) : "un" === e && (a[1] = s.__));
+                return i[r].apply(i, a);
             };
         });
         return t;
-    }, r = window, s = e(r), l = r.Image, u = /(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion), d = "__lazy_status__", c = 0, p = 1, f = 2, h = function(e) {
+    }, a = window, s = e(a), l = a.Image, u = /(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion), d = "__lazy_status__", c = 0, p = 1, f = 2, h = function(e) {
         return e[d] === t;
     }, m = function() {
         var e = {}, t = function(t, n) {
@@ -593,27 +593,27 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
             get: n
         };
     }();
-    m.define("image", function(n, i, o, a) {
+    m.define("image", function(n, i, o, r) {
         if (i) {
-            var r = new l(), s = function() {
-                r.onload = r.onerror = null;
-                r = i = n = a = s = t;
+            var a = new l(), s = function() {
+                a.onload = a.onerror = null;
+                a = i = n = r = s = t;
             };
-            r.onload = function() {
-                var t = e(n), r = o.effect;
-                "function" != typeof t[r] && (r = "show");
+            a.onload = function() {
+                var t = e(n), a = o.effect;
+                "function" != typeof t[a] && (a = "show");
                 t.hide();
                 "IMG" === n.nodeName.toUpperCase() ? t.attr("src", i) : t.css("background-image", 'url("' + i + '")');
-                t[r](o.effectSpeed);
-                a(null, "load");
+                t[a](o.effectSpeed);
+                r(null, "load");
                 s();
             };
-            r.onerror = function(e) {
-                a(e);
+            a.onerror = function(e) {
+                r(e);
                 s();
             };
-            r.src = i;
-        } else a("error");
+            a.src = i;
+        } else r("error");
     });
     m.define("html", function(e, t, n, i) {
         i();
@@ -627,7 +627,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
             failureLimit: 0,
             event: "scroll",
             effect: "show",
-            container: r,
+            container: a,
             dataAttribute: "src",
             sourceMaker: null,
             skipInvisible: !0,
@@ -636,12 +636,12 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
             loadingClass: "",
             placeholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
         };
-        a(g);
+        r(g);
         var w = l.type || x.type, E = m.get(w);
         if ("function" != typeof E) throw "Error, cannot found the specific type loader (type: `" + w + "`)";
         "html" === w && (x.placeholder = "");
         l && e.extend(x, l);
-        var C = x.container, S = x.event, q = 0 === S.indexOf("scroll"), A = C && C !== r ? e(C) : s, T = function(t) {
+        var C = x.container, S = x.event, q = 0 === S.indexOf("scroll"), A = C && C !== a ? e(C) : s, T = function(t) {
             var i = g._list;
             if (i.length > 0) {
                 var o = 0;
@@ -660,15 +660,15 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
                 return !e[d];
             });
         }, k = function() {
-            var t = this, n = e(t), i = n.attr("data-" + x.dataAttribute), o = x.sourceMaker, a = x.appear, r = x.loadingClass, s = t[d];
+            var t = this, n = e(t), i = n.attr("data-" + x.dataAttribute), o = x.sourceMaker, r = x.appear, a = x.loadingClass, s = t[d];
             if (s === c) {
                 t[d] = p;
-                r && n.addClass(r);
+                a && n.addClass(a);
                 o && (i = o(i, t));
-                a && a.apply(g, [ t, i ]);
+                r && r.apply(g, [ t, i ]);
                 E.call(g, t, i, x, function(e, o) {
                     if (!g._destroyed) {
-                        r && n.removeClass(r);
+                        a && n.removeClass(a);
                         if (e) setTimeout(function() {
                             t[d] = c;
                             g.emit("lazyItemError", t, i, e);
@@ -677,8 +677,8 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
                             t[d] = f;
                             D();
                             g.emit("lazyItemReady", t, i, o);
-                            var a = x.load;
-                            a && a.apply(g, [ t, i, o ]);
+                            var r = x.load;
+                            r && r.apply(g, [ t, i, o ]);
                             t = null;
                         }
                         n = null;
@@ -716,14 +716,14 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
                 q && A.on(S, i);
                 s.on("resize", i);
                 if (u) {
-                    var a = function(i) {
+                    var r = function(i) {
                         i.originalEvent && i.originalEvent.persisted && n(t._list, function(t, n) {
                             e(n).trigger("appear");
                         });
                     };
-                    s.on("pageshow", a);
+                    s.on("pageshow", r);
                     t.once("reset", function() {
-                        s.off("pageshow", a);
+                        s.off("pageshow", r);
                     });
                 }
                 t.once("reset", function() {
@@ -787,19 +787,19 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
     };
     var v = function(t, n) {
         var i, o = n.container;
-        i = o && o !== r ? e(o).offset().top + e(o).height() : (r.innerHeight ? r.innerHeight : s.height()) + s.scrollTop();
+        i = o && o !== a ? e(o).offset().top + e(o).height() : (a.innerHeight ? a.innerHeight : s.height()) + s.scrollTop();
         return i <= e(t).offset().top - n.threshold;
     }, b = function(t, n) {
         var i, o = n.container;
-        i = o && o !== r ? e(o).offset().left + e(o).width() : s.width() + s.scrollLeft();
+        i = o && o !== a ? e(o).offset().left + e(o).width() : s.width() + s.scrollLeft();
         return i <= e(t).offset().left - n.threshold;
     }, y = function(t, n) {
         var i, o = n.container;
-        i = o && o !== r ? e(o).offset().top : s.scrollTop();
+        i = o && o !== a ? e(o).offset().top : s.scrollTop();
         return i >= e(t).offset().top + n.threshold + e(t).height();
     }, _ = function(t, n) {
         var i, o = n.container;
-        i = o && o !== r ? e(o).offset().left : s.scrollLeft();
+        i = o && o !== a ? e(o).offset().left : s.scrollLeft();
         return i >= e(t).offset().left + n.threshold + e(t).width();
     }, x = function(e, t) {
         return !(b(e, t) || _(e, t) || v(e, t) || y(e, t));
@@ -823,10 +823,10 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
         if (0 == t.el.length) throw new Error("the params [optins.selector] is required or the [el] is not exist.");
         t._init();
     }
-    var o = e("jquery"), a = e("lib/plugins/lazyload/1.9.3/lazyload"), r = e("lib/core/1.0.0/dom/build");
+    var o = e("jquery"), r = e("lib/plugins/lazyload/1.9.3/lazyload"), a = e("lib/core/1.0.0/dom/build");
     i.prototype._init = function() {
-        var e = this, t = r.build(e.el[0], !1), n = t.get("footerImg");
-        new a(n);
+        var e = this, t = a.build(e.el[0], !1), n = t.get("footerImg");
+        new r(n);
     };
     n.exports = i;
 });
@@ -840,19 +840,19 @@ define("module/uc/left-menu/left-menu", [ "require", "exports", "module", "jquer
         };
         t.options = o.extend(!0, {}, n, e);
         t.el = o(t.options.selector);
-        var i = a.build(t.el, !1);
+        var i = r.build(t.el, !1);
         t.itemLevel1s = i.get("itemLevel1");
         t.txtLevel1s = i.get("txtLevel1");
         t.menuLevel2s = i.get("menuLevel2");
         t._init();
         t._initEvent();
     }
-    var o = e("jquery"), a = e("lib/core/1.0.0/dom/build");
+    var o = e("jquery"), r = e("lib/core/1.0.0/dom/build");
     i.prototype._initEvent = function() {
         var e = this;
         e.txtLevel1s.on("click", function(t) {
             t.preventDefault();
-            var n = o(this), i = n.parent(), r = a.build(i, !1), s = r.get("menuLevel2");
+            var n = o(this), i = n.parent(), a = r.build(i, !1), s = a.get("menuLevel2");
             if (s) if (i.hasClass("active")) s.slideUp(function() {
                 i.removeClass("active");
             }); else {
@@ -876,9 +876,9 @@ define("module/uc/left-menu/left-menu", [ "require", "exports", "module", "jquer
 
 define("conf/uc/common", [ "require", "exports", "module", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/footer/1.0.0/footer", "module/uc/left-menu/left-menu" ], function(e, t, n) {
     "use strict";
-    var i = e("module/top-search/1.0.0/top-search"), o = e("module/login-status/1.0.0/login-status"), a = e("module/footer/1.0.0/footer"), r = (new i(), 
-    new o(), new a(), e("module/uc/left-menu/left-menu"));
-    new r();
+    var i = e("module/top-search/1.0.0/top-search"), o = e("module/login-status/1.0.0/login-status"), r = e("module/footer/1.0.0/footer"), a = (new i(), 
+    new o(), new r(), e("module/uc/left-menu/left-menu"));
+    new a();
 });
 
 define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ], function(e, t, n) {
@@ -889,7 +889,7 @@ define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ]
     function o(e) {
         return "number" == typeof e || "string" == typeof e && isNaN(parseFloat(e));
     }
-    function a(e, t) {
+    function r(e, t) {
         var n = typeof e;
         switch (n) {
           case "number":
@@ -903,15 +903,15 @@ define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ]
             return n && (!t || "" !== e);
         }
     }
-    function r(e) {
-        var t = r.d || (r.d = i("i"));
+    function a(e) {
+        var t = a.d || (a.d = i("i"));
         t.innerHTML = e;
         return t.innerText || t.textContent;
     }
     function s(e) {
         for (var t, n = e.length; n--; ) {
             t = e[n];
-            a(t) || e.splice(n, 1);
+            r(t) || e.splice(n, 1);
         }
         return e;
     }
@@ -929,11 +929,11 @@ define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ]
                     s = s[d];
                 }
             }
-            if (!a(s)) {
+            if (!r(s)) {
                 if (n !== !0) return;
                 s = "";
             }
-            "string" == typeof s && s.indexOf("&") > -1 && (s = r(s));
+            "string" == typeof s && s.indexOf("&") > -1 && (s = a(s));
             s = String(s);
             if ("radio" === i.type) i.checked = i.value === s; else if ("checkbox" === i.type) i.checked = s; else if (c) i.value = s; else {
                 var p = l(i);
@@ -942,9 +942,9 @@ define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ]
             }
         });
     }, m = function(e, t) {
-        var n = {}, i = !1, a = l(e).get(), r = a[0];
-        if (!r) return n;
-        "FORM" === r.nodeName && (a = r.elements);
+        var n = {}, i = !1, r = l(e).get(), a = r[0];
+        if (!a) return n;
+        "FORM" === a.nodeName && (r = a.elements);
         if ("boolean" == typeof t) {
             i = t;
             t = {};
@@ -953,14 +953,14 @@ define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ]
             i = t.convert;
             i = void 0 !== i && i;
         }
-        t.semantic && (a = r.getElementsByTagName("*"));
-        if (!a.length) return n;
-        l.each(a, function(e, a) {
-            var r = a.type && a.type.toLowerCase();
-            if ("submit" !== r && a.name && !a.disabled) {
-                var u = l(a), c = a.name, h = f.test(a.tagName) ? u.val() : u.attr("value") || "";
-                if ("radio" !== a.type || a.checked) {
-                    "checkbox" === a.type && (h = a.checked);
+        t.semantic && (r = a.getElementsByTagName("*"));
+        if (!r.length) return n;
+        l.each(r, function(e, r) {
+            var a = r.type && r.type.toLowerCase();
+            if ("submit" !== a && r.name && !r.disabled) {
+                var u = l(r), c = r.name, h = f.test(r.tagName) ? u.val() : u.attr("value") || "";
+                if ("radio" !== r.type || r.checked) {
+                    "checkbox" === r.type && (h = r.checked);
                     u.data("changed") !== !0 && h === u.attr("placeholder") && (h = "");
                     if (i) {
                         if (o(h)) {
@@ -991,7 +991,7 @@ define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ]
 
 define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
     "use strict";
-    var t = e("jquery"), n = t(window), i = t(document), o = "createTouch" in document, a = document.documentElement, r = !("minWidth" in a.style), s = !r && "onlosecapture" in a, l = "setCapture" in a, u = t.noop, d = {
+    var t = e("jquery"), n = t(window), i = t(document), o = "createTouch" in document, r = document.documentElement, a = !("minWidth" in r.style), s = !a && "onlosecapture" in r, l = "setCapture" in r, u = t.noop, d = {
         start: o ? "touchstart" : "mousedown",
         over: o ? "touchmove" : "mousemove",
         end: o ? "touchend" : "mouseup"
@@ -1048,42 +1048,42 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
             return e;
         }
     };
-    p.create = function(e, o, a) {
-        a = t.extend({
+    p.create = function(e, o, r) {
+        r = t.extend({
             hook: null,
             onstart: u,
             onover: u,
             onend: u
-        }, a);
-        var r, s, l, d, c = t(e), f = a.hook ? t(a.hook) : c, h = new p(), m = p.types.start, g = e.className.replace(/^\s|\s.*/g, "") + "-drag-start", v = {
+        }, r);
+        var a, s, l, d, c = t(e), f = r.hook ? t(r.hook) : c, h = new p(), m = p.types.start, g = e.className.replace(/^\s|\s.*/g, "") + "-drag-start", v = {
             off: function() {
                 f.off(m, h.start);
             }
         };
         h.onstart = function(t) {
             var o = "fixed" === c.css("position"), u = i.scrollLeft(), p = i.scrollTop(), f = c.width(), h = c.height();
-            r = 0;
+            a = 0;
             s = 0;
-            l = o ? n.width() - f + r : i.width() - f;
+            l = o ? n.width() - f + a : i.width() - f;
             d = o ? n.height() - h + s : i.height() - h;
             var m = c.offset(), v = this.startLeft = o ? m.left - u : m.left, b = this.startTop = o ? m.top - p : m.top;
             this.clientX = t.clientX;
             this.clientY = t.clientY;
             c.addClass(g);
-            a.onstart.call(e, t, v, b);
+            r.onstart.call(e, t, v, b);
         };
         h.onover = function(t) {
             var n = t.clientX - this.clientX + this.startLeft, i = t.clientY - this.clientY + this.startTop, o = c[0].style;
-            n = Math.max(r, Math.min(l, n));
+            n = Math.max(a, Math.min(l, n));
             i = Math.max(s, Math.min(d, i));
             o.left = n + "px";
             o.top = i + "px";
-            a.onover.call(e, t, n, i);
+            r.onover.call(e, t, n, i);
         };
         h.onend = function(t) {
             var n = c.position(), i = n.left, o = n.top;
             c.removeClass(g);
-            a.onend.call(e, t, i, o);
+            r.onend.call(e, t, i, o);
         };
         h.off = function() {
             f.off(m, h.start);
@@ -1107,14 +1107,14 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
     function i() {}
     function o(e, t, n, i) {
         var o = !0;
-        if (t) for (var a, r, s, l = -1, u = {
+        if (t) for (var r, a, s, l = -1, u = {
             type: e,
             timeStamp: d()
-        }; a = t[++l]; ) {
-            r = a[m];
-            s = a[g] || i;
+        }; r = t[++l]; ) {
+            a = r[m];
+            s = r[g] || i;
             try {
-                o = a[v] === h ? r.call(s, u, n) !== !1 && o : r.apply(s, n) !== !1 && o;
+                o = r[v] === h ? a.call(s, u, n) !== !1 && o : a.apply(s, n) !== !1 && o;
             } catch (c) {
                 setTimeout(function() {
                     console.error(c);
@@ -1123,7 +1123,7 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
         }
         return o;
     }
-    function a(e) {
+    function r(e) {
         var t, n = p(this);
         if (n) {
             t = n[e];
@@ -1131,7 +1131,7 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
         }
         return 0;
     }
-    function r(e) {
+    function a(e) {
         return "[object Function]" === Object.prototype.toString.call(e);
     }
     function s(e, t) {
@@ -1155,9 +1155,9 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
             i) : i;
         }) : (t = d(), n = "__$widΦ" + t.toString(36), e = {}, function(i, o) {
             if (!i || "object" != typeof i) throw TypeError("Invalid value used as weak map key");
-            var a;
-            return null === o ? i[n] && (delete e[i[n]], delete i[n]) : (a = i[n] || o && (a = ++t, 
-            e[a] = {}, i[n] = a), a && e[a]);
+            var r;
+            return null === o ? i[n] && (delete e[i[n]], delete i[n]) : (r = i[n] || o && (r = ++t, 
+            e[r] = {}, i[n] = r), r && e[r]);
         });
     }(), f = 1, h = 2, m = 0, g = 1, v = 2, b = function(e, t, n) {
         var i = [];
@@ -1167,7 +1167,7 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
         return i;
     }, y = i.prototype;
     y.addListener = function(e, t, n, i) {
-        var o, a, r, s = f;
+        var o, r, a, s = f;
         if (t && "object" == typeof t) {
             n = t;
             t = n.handleEvent;
@@ -1176,9 +1176,9 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
         if (!t) return this;
         o = p(this, 1);
         e = e.split(u);
-        for (;a = e.shift(); ) {
-            r = !i && o[a] || (o[a] = []);
-            r.push(b(t, n, s));
+        for (;r = e.shift(); ) {
+            a = !i && o[r] || (o[r] = []);
+            a.push(b(t, n, s));
         }
         return this;
     };
@@ -1195,7 +1195,7 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
         return this.on(e, o);
     };
     y.removeListener = function(e, t, n) {
-        var i, o, a, r, l, d;
+        var i, o, r, a, l, d;
         if (t && "object" == typeof t) {
             n = t;
             t = n.handleEvent;
@@ -1210,11 +1210,11 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
         }
         e = e ? e.split(u) : _(i);
         for (;o = e.shift(); ) {
-            a = i[o];
-            if (a) if (t || n) for (r = a.length; --r >= 0; ) {
-                l = a[r];
+            r = i[o];
+            if (r) if (t || n) for (a = r.length; --a >= 0; ) {
+                l = r[a];
                 d = l[m];
-                t && d !== t && (void 0 === d.guid || d.guid !== t.guid) || n && l[g] !== n || a.splice(r, 1);
+                t && d !== t && (void 0 === d.guid || d.guid !== t.guid) || n && l[g] !== n || r.splice(a, 1);
             } else delete i[o];
         }
         return this;
@@ -1224,14 +1224,14 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
         return this.removeListener(e);
     };
     y.emit = function(e) {
-        var t, n, i, a, r, s, l = [], d = !0;
+        var t, n, i, r, a, s, l = [], d = !0;
         if (!(t = p(this))) return this;
         e = e.split(u);
-        for (r = 1, s = arguments.length; r < s; r++) l[r - 1] = arguments[r];
+        for (a = 1, s = arguments.length; a < s; a++) l[a - 1] = arguments[a];
         for (;n = e.shift(); ) {
             (i = t.all) && (i = i.slice());
-            (a = t[n]) && (a = a.slice());
-            "all" !== n && (d = o(n, a, l, this) && d);
+            (r = t[n]) && (r = r.slice());
+            "all" !== n && (d = o(n, r, l, this) && d);
             d = o(n, i, [ n ].concat(l), this) && d;
         }
         return d;
@@ -1244,16 +1244,16 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
             };
         }
         var n = y, i = _(n);
-        r(e) ? l(i, function(t) {
+        a(e) ? l(i, function(t) {
             e.prototype[t] = n[t];
         }) : l(i, function(e) {
             t(e);
         });
     };
     i.listenerCount = function(e, t) {
-        return "function" == typeof e.listenerCount ? e.listenerCount(t) : a.call(e, t);
+        return "function" == typeof e.listenerCount ? e.listenerCount(t) : r.call(e, t);
     };
-    y.listenerCount = a;
+    y.listenerCount = r;
     var _ = Object.keys || function(e) {
         var t = [];
         s(e, function(e, n) {
@@ -1267,24 +1267,24 @@ define("lib/ui/box/1.0.1/drag", [ "require", "jquery" ], function(e) {
 define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery", "../event/emitter" ], function(e, t, n) {
     "use strict";
     function i(e, t) {
-        var n, i, a, r = t.currentTarget, s = o(r), l = (t.handleObj || 0).origType || t.type;
+        var n, i, r, a = t.currentTarget, s = o(a), l = (t.handleObj || 0).origType || t.type;
         if (!t.isPropagationStopped()) {
             if (!s.attr("disabled") && (n = s.attr("action-type"))) {
                 i = s.attr("action-data");
                 t.action = n;
                 t.data = i;
-                a = e.e.emit(l + u + n, t, r);
-                t.actionValue = a;
-                if (a === !1) {
+                r = e.e.emit(l + u + n, t, a);
+                t.actionValue = r;
+                if (r === !1) {
                     t.preventDefault();
                     t.stopPropagation();
                 }
             }
             e.opts.onDelegate(t);
-            return a;
+            return r;
         }
     }
-    var o = e("jquery"), a = e("../event/emitter"), r = /\S+/g, s = -1, l = (+new Date()).toString(36), u = "/", d = function() {
+    var o = e("jquery"), r = e("../event/emitter"), a = /\S+/g, s = -1, l = (+new Date()).toString(36), u = "/", d = function() {
         return l + ++s;
     }, c = function(e, t) {
         var n = e.guid || (e.guid = d()), i = function(n, i) {
@@ -1297,7 +1297,7 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
     }, h = function(e, t) {
         t = t || {};
         "string" == typeof e && (e = o(e)[0]);
-        var n = {}, s = {}, l = new a(), d = t.context, h = {
+        var n = {}, s = {}, l = new r(), d = t.context, h = {
             o: n,
             opts: t,
             e: l
@@ -1312,13 +1312,13 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
                 t = "click";
             }
             if ("function" != typeof i) throw Error("The delegate handler should be a valid function");
-            n = (n || "").match(r) || [];
-            for (var a = n.length; a--; ) {
+            n = (n || "").match(a) || [];
+            for (var r = n.length; r--; ) {
                 if (!s[t]) {
                     s[t] = 1;
                     o(e).on(t, "[action-type]", m);
                 }
-                l.on(t + u + n[a], c(i, d));
+                l.on(t + u + n[r], c(i, d));
             }
             return this;
         };
@@ -1328,11 +1328,11 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
                 n = t;
                 t = "click";
             }
-            n = (n || "").match(r) || [];
-            var a, s = n.length;
+            n = (n || "").match(a) || [];
+            var r, s = n.length;
             for (o(e); s--; ) {
-                a = t + u + n[s];
-                l.un(a, i);
+                r = t + u + n[s];
+                l.un(r, i);
             }
             return this;
         };
@@ -1341,9 +1341,9 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
                 n = t;
                 t = "click";
             }
-            var i = o('[action-type="' + n + '"]', e)[0] || document, a = new o.Event(t);
-            a.currentTarget = a.target = i;
-            l.emit(t + u + n, a, i);
+            var i = o('[action-type="' + n + '"]', e)[0] || document, r = new o.Event(t);
+            r.currentTarget = r.target = i;
+            l.emit(t + u + n, r, i);
         };
         n.destroy = function() {
             var i = o(e);
@@ -1352,7 +1352,7 @@ define("lib/core/1.0.0/dom/delegator", [ "require", "exports", "module", "jquery
                 i.off(e, "[action-type]", m);
             });
             l.un();
-            for (var a in n) delete n[a];
+            for (var r in n) delete n[r];
             l = void 0;
             t = void 0;
             s = i = e = void 0;
@@ -1371,8 +1371,8 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
     function o(e, t, n) {
         e.insertRule ? e.insertRule(t + " {" + n + "}", 0) : e.addRule(t, n, 1);
     }
-    function a() {
-        var e, t, n, i, o, r = "";
+    function r() {
+        var e, t, n, i, o, a = "";
         e = document.body || document.documentElement;
         n = e.style;
         i = "Transition";
@@ -1380,18 +1380,18 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
         t = 0;
         for (;t < o.length; ) {
             if (void 0 !== n[o[t] + i]) {
-                r = o[t];
+                a = o[t];
                 break;
             }
             t++;
         }
-        a = function() {
-            return r;
+        r = function() {
+            return a;
         };
-        return r;
+        return a;
     }
-    function r() {
-        var e = a();
+    function a() {
+        var e = r();
         return e ? "-v-".replace("v", e.toLowerCase()) : "";
     }
     function s(e) {
@@ -1402,7 +1402,7 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
         }[e] || 500;
     }
     function l(e, t, n, i, o) {
-        var a, r, l = u(e), d = arguments, o = "boolean" == typeof d[d.length - 1] && d[d.length - 1], h = !1, m = function() {
+        var r, a, l = u(e), d = arguments, o = "boolean" == typeof d[d.length - 1] && d[d.length - 1], h = !1, m = function() {
             g();
         }, g = function(e) {
             h || v(!0);
@@ -1411,11 +1411,11 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
                 h = !0;
                 g = c;
                 l.off(b, m);
-                if (a) {
-                    clearTimeout(a);
-                    a = null;
+                if (r) {
+                    clearTimeout(r);
+                    r = null;
                 }
-                l.removeClass(r);
+                l.removeClass(a);
                 e && i();
                 l = null;
             }
@@ -1428,12 +1428,12 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
         if (f) {
             n = n || "normal";
             t = t || "shake";
-            r = [ "ui-animated", "ui-speed-" + n, "ui-ani-" + t ].join(" ");
+            a = [ "ui-animated", "ui-speed-" + n, "ui-ani-" + t ].join(" ");
             l.on(b, m);
-            a = setTimeout(m, s(n) + 100);
+            r = setTimeout(m, s(n) + 100);
             o === !0 ? p(function() {
-                l.addClass(r);
-            }) : l.addClass(r);
+                l.addClass(a);
+            }) : l.addClass(a);
         } else p(function() {
             i && i();
         });
@@ -1444,7 +1444,7 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
             }
         };
     }
-    var u = e("jquery"), d = e("./util"), c = (d.each, d.noop), p = d.setImmediate, f = r(), h = /\-v\-/g, m = document.getElementsByTagName("head")[0].appendChild(i("style")), g = m.sheet || m.styleSheet, v = {
+    var u = e("jquery"), d = e("./util"), c = (d.each, d.noop), p = d.setImmediate, f = a(), h = /\-v\-/g, m = document.getElementsByTagName("head")[0].appendChild(i("style")), g = m.sheet || m.styleSheet, v = {
         ".ui-animated": "-v-animation-fill-mode: both;",
         ".ui-animated.ui-speed-normal": "-v-animation-duration: 0.5s;",
         ".ui-animated.ui-speed-fast": "-v-animation-duration: 0.2s;",
@@ -1460,7 +1460,7 @@ define("lib/core/1.0.0/utils/css", [ "require", "exports", "module", "jquery", "
         e && o(g, t, e.replace(h, f));
     });
     t.effect = l;
-    t.getVendorPrefix = a;
+    t.getVendorPrefix = r;
 });
 
 define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "../../../core/1.0.0/utils/util", "../../../core/1.0.0/utils/css", "../../../core/1.0.0/event/emitter" ], function(e, t, n) {
@@ -1481,23 +1481,23 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         };
         t._ = e = _(n, e);
         e.fixed = !!e.fixed && q();
-        var a = o('<div class="' + m + '" id="' + (e.id || y()) + '" />').css({
+        var r = o('<div class="' + m + '" id="' + (e.id || y()) + '" />').css({
             display: "none",
             position: "absolute",
             outline: 0
-        }).attr("tabindex", "-1").html(e.html), r = o("<div />");
-        t._popup = a;
-        t._mask = t._shadow = r;
-        t.node = a[0];
-        t.mask = r[0];
+        }).attr("tabindex", "-1").html(e.html), a = o("<div />");
+        t._popup = r;
+        t._mask = t._shadow = a;
+        t.node = r[0];
+        t.mask = a[0];
         t.on("render", function(e) {
-            var n, o = e.className, r = t._mask, s = e.zIndex;
-            a.html() || a.html(e.html);
-            o && a.addClass(o);
-            a.css("position", e.fixed ? "fixed" : "absolute");
-            s && a.css("zIndex", s);
+            var n, o = e.className, a = t._mask, s = e.zIndex;
+            r.html() || r.html(e.html);
+            o && r.addClass(o);
+            r.css("position", e.fixed ? "fixed" : "absolute");
+            s && r.css("zIndex", s);
             if (e.modal) {
-                a.addClass(m + "-modal");
+                r.addClass(m + "-modal");
                 n = {
                     position: "fixed",
                     left: 0,
@@ -1515,23 +1515,23 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                     width: d.width() + "px",
                     height: c.height() + "px"
                 });
-                r.attr("tabIndex", 0).on("focus", w(t.focus, t));
-                t._shadow = r.clone(!0);
-                r.css(n).addClass(m + "-mask");
+                a.attr("tabIndex", 0).on("focus", w(t.focus, t));
+                t._shadow = a.clone(!0);
+                a.css(n).addClass(m + "-mask");
             }
         });
         t.on("beforeShow", function(e) {
             var n = t.anchor, i = t._dirClass;
             if (!n && i) {
-                a.removeClass(i);
+                r.removeClass(i);
                 delete t._dirClass;
             }
         });
         t.on("show", function(e) {
             t.resize();
             if (e.modal) {
-                t._mask.insertBefore(a).css("display", "block");
-                t._shadow.insertAfter(a);
+                t._mask.insertBefore(r).css("display", "block");
+                t._shadow.insertAfter(r);
             }
             e.autofocus && t.focus();
         });
@@ -1541,8 +1541,8 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             t.blur();
         });
         t.once("destroy", function() {
-            a.off();
-            a = null;
+            r.off();
+            r = null;
             t._mask.off();
             t._shadow.off();
         });
@@ -1558,11 +1558,11 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         t.destroyed = !1;
         t.initialized = !0;
     }
-    var o = e("jquery"), a = e("../../../core/1.0.0/utils/util"), r = e("../../../core/1.0.0/utils/css"), s = e("../../../core/1.0.0/event/emitter"), l = window, u = l.document, d = o(l), c = o(u), p = u.documentElement, f = /\S+/g, h = !("minWidth" in p.style), m = "ui-layer", g = l.Math, v = g.max, b = g.ceil, y = a.guid, _ = a.extend, x = a.each, w = function(e, t) {
+    var o = e("jquery"), r = e("../../../core/1.0.0/utils/util"), a = e("../../../core/1.0.0/utils/css"), s = e("../../../core/1.0.0/event/emitter"), l = window, u = l.document, d = o(l), c = o(u), p = u.documentElement, f = /\S+/g, h = !("minWidth" in p.style), m = "ui-layer", g = l.Math, v = g.max, b = g.ceil, y = r.guid, _ = r.extend, x = r.each, w = function(e, t) {
         return e.bind ? e.bind(t) : function() {
             return e.apply(t, arguments);
         };
-    }, E = a.setImmediate, C = function(e) {
+    }, E = r.setImmediate, C = function(e) {
         return l.parseInt(e, 10) || 0;
     }, S = function(e) {
         return e && 1 === e.nodeType;
@@ -1602,7 +1602,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         e = t ? e : e.target;
         var i = e.ownerDocument;
         if (i === l.document) return n;
-        var a = i.defaultView || i.parentWindow, r = a.frameElement, s = A(), u = o(r).offset();
+        var r = i.defaultView || i.parentWindow, a = r.frameElement, s = A(), u = o(a).offset();
         return {
             left: n.left + u.left - s.x,
             top: n.top + u.top - s.y
@@ -1637,31 +1637,31 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             t.auto = !1;
             e = e.slice(0, -1);
         }
-        for (var i, e = e.length <= 2 ? e.split("") : e.replace(/^\s+|\s+$/g, "").split(" ").slice(0, 2), o = {}, a = {
+        for (var i, e = e.length <= 2 ? e.split("") : e.replace(/^\s+|\s+$/g, "").split(" ").slice(0, 2), o = {}, r = {
             t: "t",
             b: "t",
             l: "l",
             r: "l"
-        }, r = -1, s = e.length; ++r < s; ) {
-            i = e[r].charAt(0);
-            if (!i || o[a[i]]) e.splice(r, 1); else {
-                e[r] = i;
-                o[a[i]] = 1;
+        }, a = -1, s = e.length; ++a < s; ) {
+            i = e[a].charAt(0);
+            if (!i || o[r[i]]) e.splice(a, 1); else {
+                e[a] = i;
+                o[r[i]] = 1;
             }
         }
         2 === e.length && e[0] === e[1] && e.pop();
         t.align = e;
         return t;
     };
-    a.inherits(i, s, {
+    r.inherits(i, s, {
         open: !1,
         destroyed: !0,
         node: null,
         mask: null,
         emit: function(e) {
             for (var t = (e || "").match(f) || [], n = t.length; n--; ) {
-                var o = this["on" + t[n]], a = Array.prototype.slice.call(arguments, 1);
-                "function" == typeof o && o.apply(this, a);
+                var o = this["on" + t[n]], r = Array.prototype.slice.call(arguments, 1);
+                "function" == typeof o && o.apply(this, r);
             }
             i.__super__.emit.apply(this, arguments);
         },
@@ -1674,13 +1674,13 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             return !t || i.length ? i : null;
         },
         show: function(e, t) {
-            var n, i = this, o = i._, a = e, s = null, l = i._anim;
+            var n, i = this, o = i._, r = e, s = null, l = i._anim;
             l && l.stop(!0);
             if (i.destroyed || o.showing || i.open) return i;
             t = _({}, i._, t);
-            if (void 0 !== a) {
-                n = typeof a;
-                "boolean" === n ? t.modal = a : a && "object" === n && (S(a) || S(a.target) ? s = a : _(t, a));
+            if (void 0 !== r) {
+                n = typeof r;
+                "boolean" === n ? t.modal = r : r && "object" === n && (S(r) || S(r.target) ? s = r : _(t, r));
             }
             var u = i._popup, d = t.showWithAni, c = function() {
                 delete o.showing;
@@ -1699,12 +1699,12 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             o.showing = !0;
             if (d && "none" !== d) {
                 var p = d.split(":");
-                i._anim = r.effect(i.node, p[0], p[1], c);
+                i._anim = a.effect(i.node, p[0], p[1], c);
             } else c();
             return i;
         },
         hide: function(e) {
-            var t, n = this, i = n._, o = n.node, a = i.hideWithAni, s = n._anim;
+            var t, n = this, i = n._, o = n.node, r = i.hideWithAni, s = n._anim;
             s && s.stop(!0);
             if (n.destroyed || i.hidding || !n.open) return n;
             n.emit("beforeHide");
@@ -1719,9 +1719,9 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                     (e || i.autoRelease) && n.destroy();
                 }
             };
-            if (a && "none" !== a) {
-                var l = a.split(":");
-                n._anim = r.effect(o, l[0], l[1], t);
+            if (r && "none" !== r) {
+                var l = r.split(":");
+                n._anim = a.effect(o, l[0], l[1], t);
                 n.emit("hide");
             } else {
                 n.emit("hide");
@@ -1760,17 +1760,17 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             return this;
         },
         focus: function(e) {
-            var t = this._, n = this.node, a = this._popup, r = i.current, s = t.zIndex;
-            r && r !== this && r.blur(!1);
+            var t = this._, n = this.node, r = this._popup, a = i.current, s = t.zIndex;
+            a && a !== this && a.blur(!1);
             if (!o.contains(n, U())) {
-                var l = a.find("[autofocus]")[0];
+                var l = r.find("[autofocus]")[0];
                 !t.focusing && l ? t.focusing = !0 : l = n;
                 this._focus(l);
             }
             if (void 0 === s) {
                 s = t.zIndex = i.zIndex++;
-                a.css("zIndex", s);
-                a.addClass(m + "-focus");
+                r.css("zIndex", s);
+                r.addClass(m + "-focus");
             }
             i.current = this;
             this.emit("focus");
@@ -1792,24 +1792,24 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             } catch (t) {}
         },
         center: function() {
-            var e = this._popup, t = this._.fixed, n = A(), i = D(), o = T(e), a = t ? 0 : n.x, r = t ? 0 : n.y, s = (i.w - o.w) / 2 + a, l = .382 * (i.h - o.h) + r;
+            var e = this._popup, t = this._.fixed, n = A(), i = D(), o = T(e), r = t ? 0 : n.x, a = t ? 0 : n.y, s = (i.w - o.w) / 2 + r, l = .382 * (i.h - o.h) + a;
             e.css({
-                left: v(C(s), a),
-                top: v(C(l), r)
+                left: v(C(s), r),
+                top: v(C(l), a)
             });
             return this;
         },
         alignTo: function(e, t) {
-            var n = this, i = n._, a = n._popup, r = e.parentNode && o(e);
-            if (!r) return n;
-            var s = r.offset();
+            var n = this, i = n._, r = n._popup, a = e.parentNode && o(e);
+            if (!a) return n;
+            var s = a.offset();
             if (s.left * s.top < 0) return n.center();
             t = t || i.align;
             var l = F(t), u = l.align, d = !l.auto;
             u && u.length || (u = [ "b" ]);
             var c = n._dirClass;
-            c && a.removeClass(c);
-            var p = i.fixed, f = D(), h = A(), g = L(a), v = R(a), y = k(e), _ = L(r), w = R(r), E = y.left, S = y.top, q = p ? E - h.x : E, T = p ? S - h.y : S, I = p ? 0 : h.x, U = p ? 0 : h.y, O = I + f.w - g, N = U + f.h - v, j = {
+            c && r.removeClass(c);
+            var p = i.fixed, f = D(), h = A(), g = L(r), v = R(r), y = k(e), _ = L(a), w = R(a), E = y.left, S = y.top, q = p ? E - h.x : E, T = p ? S - h.y : S, I = p ? 0 : h.x, U = p ? 0 : h.y, O = I + f.w - g, N = U + f.h - v, j = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1849,7 +1849,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             z[P[u[0]]] = C(M[0][u[0]]);
             z[P[u[1]]] = C(M[1][u[1]]);
             var W = m + "-" + Q;
-            a.css(z).addClass(W);
+            r.css(z).addClass(W);
             n._dirClass = W;
             var H = n.$("arrow", 1), G = n.$("inner", 1);
             if (!H) {
@@ -1878,7 +1878,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
 
 define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", "../../../core/1.0.0/utils/util", "../../../core/1.0.0/dom/delegator", "./popup" ], function(e, t, n) {
     "use strict";
-    var i = e("jquery"), o = e("../../../core/1.0.0/utils/util"), a = e("../../../core/1.0.0/dom/delegator"), r = e("./popup"), s = o.extend, l = o.guid, u = o.each, d = window.document, c = {
+    var i = e("jquery"), o = e("../../../core/1.0.0/utils/util"), r = e("../../../core/1.0.0/dom/delegator"), a = e("./popup"), s = o.extend, l = o.guid, u = o.each, d = window.document, c = {
         zIndex: 1024,
         title: "",
         close: !0,
@@ -1898,39 +1898,39 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
         });
         e = s({}, c, e);
         e.original = t;
-        var a, r = e.button || (e.button = []);
-        if (!i.isArray(a = r)) {
-            a = [];
-            r && "object" == typeof r && u(r, function(e, t) {
+        var r, a = e.button || (e.button = []);
+        if (!i.isArray(r = a)) {
+            r = [];
+            a && "object" == typeof a && u(a, function(e, t) {
                 e.id = t;
-                a.push(e);
+                r.push(e);
             });
-            r = e.button = a;
+            a = e.button = r;
         }
-        if (r.length > 0) {
+        if (a.length > 0) {
             var d = !1;
-            u(r, function(t, n) {
+            u(a, function(t, n) {
                 var i = t.id || l();
                 t.autofocus && (d = !0);
                 e[i] && s(t, e[i]);
                 t.index = n;
             });
-            d || (r[r.length - 1].autofocus = !0);
+            d || (a[a.length - 1].autofocus = !0);
         }
         o.emit("init", e);
         o.initialized ? o.options(e).focus() : o.init(e);
         p[n] = o;
         return o;
     };
-    o.inherits(f, r, {
+    o.inherits(f, a, {
         init: function(e) {
             var t = this;
-            r.call(t, e);
+            a.call(t, e);
             var n = function(e) {
                 var n = e.actionValue === !1 || e.isDefaultPrevented();
                 n || t.hide();
             };
-            t._delegator = new a(t.node, {
+            t._delegator = new r(t.node, {
                 context: t,
                 onDelegate: n
             });
@@ -1951,7 +1951,7 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
                 null != i && "function" == typeof t[n] && t[n](i);
             });
             t._freeze(!1).resize();
-            e.zIndex && (r.zIndex = e.zIndex);
+            e.zIndex && (a.zIndex = e.zIndex);
             return t;
         },
         initComponents: function() {
@@ -1965,8 +1965,8 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
                 return !1;
             });
             var n = function(t) {
-                var n = t.target, i = n.nodeName, o = /^input|textarea$/i, a = r.current === e, s = t.keyCode;
-                !a || o.test(i) && "button" !== n.type || 27 === s && e.hide();
+                var n = t.target, i = n.nodeName, o = /^input|textarea$/i, r = a.current === e, s = t.keyCode;
+                !r || o.test(i) && "button" !== n.type || 27 === s && e.hide();
             };
             i(d).on("keydown", n);
             e.on("destroy", function() {
@@ -2015,12 +2015,12 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
         },
         button: function(e) {
             e = e || [];
-            var t = this, n = t._, i = "", o = 0, a = n.buttonClass;
+            var t = this, n = t._, i = "", o = 0, r = n.buttonClass;
             if ("string" == typeof e) {
                 i = e;
                 o++;
-            } else u(e, function(e, r) {
-                var s = e.id, l = e.fn || e.callback, u = e.display !== !1, d = e.className || a, c = [ d ];
+            } else u(e, function(e, a) {
+                var s = e.id, l = e.fn || e.callback, u = e.display !== !1, d = e.className || r, c = [ d ];
                 e.autofocus && c.push(n.buttonClassLight);
                 "function" == typeof l && t.delegate(s, l);
                 u && o++;
@@ -2040,7 +2040,7 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
         }
     });
     f.getCurrent = function() {
-        return r.current;
+        return a.current;
     };
     f.get = function(e) {
         return void 0 === e ? p : p[e];
@@ -2053,7 +2053,7 @@ define("lib/ui/box/1.0.1/dialog", [ "require", "exports", "module", "jquery", ".
 
 define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery", "../../../core/1.0.0/utils/util", "./drag", "./dialog" ], function(e, t, n) {
     "use strict";
-    var i = e("jquery"), o = e("../../../core/1.0.0/utils/util"), a = e("./drag"), r = e("./dialog"), s = o.each, l = o.extend, u = window.clearTimeout, d = "//s1.zhongzhihui.com/lib/assets/images/loading/loading32x32.gif";
+    var i = e("jquery"), o = e("../../../core/1.0.0/utils/util"), r = e("./drag"), a = e("./dialog"), s = o.each, l = o.extend, u = window.clearTimeout, d = "//s1.zhongzhihui.com/lib/assets/images/loading/loading32x32.gif";
     !function() {
         var e = i('<i class="ui-box-iconf" style="position:absolute;left:-999em;top:-999em;">x<img src="' + d + '"</i>').appendTo("body");
         setTimeout(function() {
@@ -2101,7 +2101,7 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
                     if (i) if ("title" === o) {
                         if ("auto" === i) try {
                             i = t.contentWindow.document.title || "";
-                        } catch (a) {
+                        } catch (r) {
                             i = "";
                         }
                         i && e.title(i);
@@ -2115,11 +2115,11 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
                 e.iframeNode = t;
             }, 30);
             var o = n.original;
-            if (!(o instanceof Object)) for (var a = function() {
+            if (!(o instanceof Object)) for (var r = function() {
                 e.hide().destroy();
-            }, r = 0; r < frames.length; r++) try {
-                if (o instanceof frames[r].Object) {
-                    i(frames[r]).one("unload", a);
+            }, a = 0; a < frames.length; a++) try {
+                if (o instanceof frames[a].Object) {
+                    i(frames[a]).one("unload", r);
                     break;
                 }
             } catch (s) {}
@@ -2127,7 +2127,7 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
             i(t).attr("src", "about:blank").remove();
         }, !1);
     }, b = function(e, t) {
-        var n = e._, o = e.$("content"), a = o.find("iframe"), r = a && a[0], s = function(t) {
+        var n = e._, o = e.$("content"), r = o.find("iframe"), a = r && r[0], s = function(t) {
             e._freeze(!0);
             if (t) {
                 n.width || e.width(t.width);
@@ -2136,20 +2136,20 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
             e.emit("load");
             e._freeze(!1).resize();
             s = null;
-            a.removeAttr("style");
-            a = r = null;
+            r.removeAttr("style");
+            r = a = null;
         }, l = function(t) {
             n.showing ? e.once("shown", t) : t();
         };
-        if (!a.length) {
+        if (!r.length) {
             var u = /(msie) ([\w.]+)/.test(navigator.userAgent.toLowerCase()), d = '<iframe id="{id}-iframe" name="{id}-iframe" class="iframe" frameborder="0" hspace="0"' + (u ? ' allowtransparency="true"' : "") + ' scrolling="' + n.scrolling + '" style="position:absolute;left:-9999em;top:-9999em;" src="' + t + '"></iframe>';
-            a = i(d.replace(/{id}/g, n.id)).appendTo(o);
-            r = a[0];
-            n.autoSize ? a.one("load", function() {
-                var e, t, n, o = g(r), u = o && i(o);
+            r = i(d.replace(/{id}/g, n.id)).appendTo(o);
+            a = r[0];
+            n.autoSize ? r.one("load", function() {
+                var e, t, n, o = g(a), u = o && i(o);
                 if (u) {
                     e = u.width();
-                    a.width(e);
+                    r.width(e);
                     t = u.height();
                     n = {
                         width: e,
@@ -2163,7 +2163,7 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
                 s();
             });
         }
-        return r;
+        return a;
     }, y = function(e) {
         var t = this;
         e = l({}, e);
@@ -2208,12 +2208,12 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
                 v(t);
             }
         }
-        t = r.call(t, e) || t;
+        t = a.call(t, e) || t;
         t._ready || t.once("render", function() {
             var n = t.$("title");
             if (n.length && e.drag !== !1) {
                 n.css("cursor", "move");
-                a.create(t.node, null, {
+                r.create(t.node, null, {
                     hook: n,
                     onstart: function() {
                         t.anchor || t.focus();
@@ -2223,23 +2223,23 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
         });
         return t;
     }, _ = "__showDelay", x = "__hideTimer";
-    o.inherits(y, r, {
+    o.inherits(y, a, {
         show: function(e, t) {
-            var n = this, i = n._, a = [].slice.call(arguments), t = l({}, i, t), r = t.duration || 0, s = t.delay || 0, d = function() {
+            var n = this, i = n._, r = [].slice.call(arguments), t = l({}, i, t), a = t.duration || 0, s = t.delay || 0, d = function() {
                 o.each([ _, x ], function(e, t) {
                     t = i[e];
                     delete i[e];
                     t && u(t);
                 });
             }, c = function() {
-                if (r > 0) {
+                if (a > 0) {
                     i[x] = setTimeout(function() {
                         d();
                         n.hide();
-                    }, r);
+                    }, a);
                     n.once("hide", d);
                 }
-                y.__super__.show.apply(n, a);
+                y.__super__.show.apply(n, r);
             };
             d();
             s > 0 ? i[_] = setTimeout(c, s) : c();
@@ -2256,10 +2256,10 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
             return e;
         }
     });
-    y.config = r.config;
+    y.config = a.config;
     y.get = function(e) {
         if (e) {
-            var t, n, i = r.get();
+            var t, n, i = a.get();
             if (e && (t = e.frameElement)) for (var o in i) if (i.hasOwnProperty(o)) {
                 n = i[o];
                 if (n.iframeNode === t) return n;
@@ -2272,12 +2272,12 @@ define("lib/ui/box/1.0.1/messagebox", [ "require", "exports", "module", "jquery"
 
 define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox", "../../../core/1.0.0/utils/util" ], function(e, t, n) {
     "use strict";
-    var i = e("./messagebox"), o = e("../../../core/1.0.0/utils/util"), a = function() {}, r = o.mix, s = function(e, t) {
+    var i = e("./messagebox"), o = e("../../../core/1.0.0/utils/util"), r = function() {}, a = o.mix, s = function(e, t) {
         var n = function(e, t) {
             return void 0 !== t && null !== t && "" !== t && !("number" == typeof t && isNaN(t));
         };
         return function(e, t) {
-            return r(e, t, !0, !0, n);
+            return a(e, t, !0, !0, n);
         };
     }(), l = function(e) {
         return !!(e && e.nodeType && e.tagName);
@@ -2373,10 +2373,10 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
             }
             if ("function" != typeof t) {
                 o = t;
-                t = a;
+                t = r;
             }
             "function" != typeof n && (n = t);
-            var r = function(e) {
+            var a = function(e) {
                 e ? t(e) : n(e);
             };
             o && (i = i || o.sender);
@@ -2391,13 +2391,13 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
                 ok: {
                     text: "确定",
                     fn: function() {
-                        r(!0);
+                        a(!0);
                     }
                 },
                 cancel: {
                     text: "取消",
                     fn: function() {
-                        r(!1);
+                        a(!1);
                     }
                 }
             }, o));
@@ -2426,16 +2426,16 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
 define("css", [ "module" ], function(e) {
     "use strict";
     function t(e) {
-        var t, n, i, o = !1, a = e.lastIndexOf("."), r = 0 === e.indexOf("./") || 0 === e.indexOf("../");
-        if (a !== -1 && (!r || a > 1)) {
-            t = e.substring(0, a);
-            n = e.substring(a + 1);
+        var t, n, i, o = !1, r = e.lastIndexOf("."), a = 0 === e.indexOf("./") || 0 === e.indexOf("../");
+        if (r !== -1 && (!a || r > 1)) {
+            t = e.substring(0, r);
+            n = e.substring(r + 1);
         } else t = e;
         i = n || t;
-        a = i.indexOf("!");
-        if (a !== -1) {
-            o = "strip" === i.substring(a + 1);
-            i = i.substring(0, a);
+        r = i.indexOf("!");
+        if (r !== -1) {
+            o = "strip" === i.substring(r + 1);
+            i = i.substring(0, r);
             n ? n = i : t = i;
         }
         return {
@@ -2450,16 +2450,16 @@ define("css", [ "module" ], function(e) {
     function i(e) {
         return e;
     }
-    var o, a, r, s = e.config && e.config() || {}, l = "undefined" != typeof location && location.href, u = "function(c){var d=document,a='appendChild',i='styleSheet',s=d.createElement('style');s.type='text/css';d.getElementsByTagName('head')[0][a](s);s[i]?s[i].cssText=c:s[a](d.createTextNode(c));return s}", d = "define('__writecss', function(){return " + u + "});", c = {}, p = [], f = !0, h = function() {};
+    var o, r, a, s = e.config && e.config() || {}, l = "undefined" != typeof location && location.href, u = "function(c){var d=document,a='appendChild',i='styleSheet',s=d.createElement('style');s.type='text/css';d.getElementsByTagName('head')[0][a](s);s[i]?s[i].cssText=c:s[a](d.createTextNode(c));return s}", d = "define('__writecss', function(){return " + u + "});", c = {}, p = [], f = !0, h = function() {};
     o = {
         finishLoad: function(e, t, n) {
             s.isBuild && (c[e] = t);
             n(t);
         },
-        load: function(e, n, i, a) {
-            r = r || a;
-            if (a && a.isBuild && !a.inlineText) i(); else {
-                s.isBuild = a && a.isBuild;
+        load: function(e, n, i, r) {
+            a = a || r;
+            if (r && r.isBuild && !r.inlineText) i(); else {
+                s.isBuild = r && r.isBuild;
                 var l = t(e), u = l.name + (l.ext ? "." + l.ext : ""), d = n.toUrl(u);
                 0 !== d.indexOf("empty:") ? o.get(d, function(t) {
                     o.finishLoad(e, t, i);
@@ -2468,13 +2468,13 @@ define("css", [ "module" ], function(e) {
                 }) : i();
             }
         },
-        write: function(e, t, o, a) {
-            a = a || r;
+        write: function(e, t, o, r) {
+            r = r || a;
             var s, l = c[t];
             if (l) {
                 p.push(l);
-                if (a.buildCSS !== !1) {
-                    if (a.writeCSSModule && l) {
+                if (r.buildCSS !== !1) {
+                    if (r.writeCSSModule && l) {
                         if (f) {
                             f = !1;
                             o(d);
@@ -2485,22 +2485,22 @@ define("css", [ "module" ], function(e) {
                 }
             }
         },
-        writeFile: function(e, n, i, a, r) {
+        writeFile: function(e, n, i, r, a) {
             var s = t(n), l = s.ext ? "." + s.ext : "", u = s.name + l, d = i.toUrl(s.name + l) + ".js";
             o.load(u, i, function(t) {
                 var n = function(e) {
-                    return a(d, e);
+                    return r(d, e);
                 };
                 n.asModule = function(e, t) {
-                    return a.asModule(e, d, t);
+                    return r.asModule(e, d, t);
                 };
-                o.write(e, u, n, r);
-            }, r);
+                o.write(e, u, n, a);
+            }, a);
         },
         onLayerEnd: function(e, t) {
-            var o, a = r;
-            if (a.buildCSS !== !1 && !a.writeCSSModule) {
-                o = a.IESelectorLimit ? p : [ p.join("") ];
+            var o, r = a;
+            if (r.buildCSS !== !1 && !r.writeCSSModule) {
+                o = r.IESelectorLimit ? p : [ p.join("") ];
                 for (var s = 0; s < o.length; s++) o[s] && e("(" + u + "('" + n(i(o[s])) + "'));\n");
             }
             p = [];
@@ -2555,8 +2555,8 @@ define("css", [ "module" ], function(e) {
                 setTimeout(t, 7);
             }; else var i = setInterval(function() {
                 for (var e = 0, o = m.styleSheets; e < o.length; e++) {
-                    var a = m.styleSheets[e];
-                    if (a.href == n.href) {
+                    var r = m.styleSheets[e];
+                    if (r.href == n.href) {
                         clearInterval(i);
                         return t();
                     }
@@ -2570,13 +2570,13 @@ define("css", [ "module" ], function(e) {
         };
     }
     if ("node" === s.env || !s.env && "undefined" != typeof process && process.versions && process.versions.node && !process.versions["node-webkit"] && !process.versions["atom-shell"]) {
-        a = require.nodeRequire("fs");
+        r = require.nodeRequire("fs");
         h = function(e, t) {
-            a.writeFileSync(e, t, "utf8");
+            r.writeFileSync(e, t, "utf8");
         };
         o.get = function(e, t, n) {
             try {
-                var i = a.readFileSync(e, "utf8");
+                var i = r.readFileSync(e, "utf8");
                 "\ufeff" === i[0] && (i = i.substring(1));
                 t(i);
             } catch (o) {
@@ -2635,10 +2635,10 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 var i = 0;
                 !function o() {
                     if (typeof n.GetVariable != I) try {
-                        var r = n.GetVariable("$version");
-                        if (r) {
-                            r = r.split(" ")[1].split(",");
-                            Z.pv = [ y(r[0]), y(r[1]), y(r[2]) ];
+                        var a = n.GetVariable("$version");
+                        if (a) {
+                            a = a.split(" ")[1].split(",");
+                            Z.pv = [ y(a[0]), y(a[1]), y(a[2]) ];
                         }
                     } catch (s) {
                         Z.pv = [ 8, 0, 0 ];
@@ -2649,11 +2649,11 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                     }
                     e.removeChild(t);
                     n = null;
-                    a();
+                    r();
                 }();
-            } else a();
+            } else r();
         }
-        function a() {
+        function r() {
             var e = $.length;
             if (e > 0) for (var t = 0; t < e; t++) {
                 var n = $[t].id, i = $[t].callbackFn, o = {
@@ -2661,24 +2661,24 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                     id: n
                 };
                 if (Z.pv[0] > 0) {
-                    var a = v(n);
-                    if (a) if (!x($[t].swfVersion) || Z.wk && Z.wk < 312) if ($[t].expressInstall && s()) {
+                    var r = v(n);
+                    if (r) if (!x($[t].swfVersion) || Z.wk && Z.wk < 312) if ($[t].expressInstall && s()) {
                         var d = {};
                         d.data = $[t].expressInstall;
-                        d.width = a.getAttribute("width") || "0";
-                        d.height = a.getAttribute("height") || "0";
-                        a.getAttribute("class") && (d.styleclass = a.getAttribute("class"));
-                        a.getAttribute("align") && (d.align = a.getAttribute("align"));
-                        for (var c = {}, p = a.getElementsByTagName("param"), f = p.length, h = 0; h < f; h++) "movie" != p[h].getAttribute("name").toLowerCase() && (c[p[h].getAttribute("name")] = p[h].getAttribute("value"));
+                        d.width = r.getAttribute("width") || "0";
+                        d.height = r.getAttribute("height") || "0";
+                        r.getAttribute("class") && (d.styleclass = r.getAttribute("class"));
+                        r.getAttribute("align") && (d.align = r.getAttribute("align"));
+                        for (var c = {}, p = r.getElementsByTagName("param"), f = p.length, h = 0; h < f; h++) "movie" != p[h].getAttribute("name").toLowerCase() && (c[p[h].getAttribute("name")] = p[h].getAttribute("value"));
                         l(d, c, n, i);
                     } else {
-                        u(a);
+                        u(r);
                         i && i(o);
                     } else {
                         E(n, !0);
                         if (i) {
                             o.success = !0;
-                            o.ref = r(n);
+                            o.ref = a(n);
                             o.id = n;
                             i(o);
                         }
@@ -2686,7 +2686,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 } else {
                     E(n, !0);
                     if (i) {
-                        var m = r(n);
+                        var m = a(n);
                         if (m && typeof m.SetVariable != I) {
                             o.success = !0;
                             o.ref = m;
@@ -2697,7 +2697,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 }
             }
         }
-        function r(e) {
+        function a(e) {
             var t = null, n = v(e);
             n && "OBJECT" === n.nodeName.toUpperCase() && (t = typeof n.SetVariable !== I ? n : n.getElementsByTagName(L)[0] || n);
             return t;
@@ -2725,8 +2725,8 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 e.id = O;
                 (typeof e.width == I || !/%$/.test(e.width) && y(e.width) < 310) && (e.width = "310");
                 (typeof e.height == I || !/%$/.test(e.height) && y(e.height) < 137) && (e.height = "137");
-                var a = Z.ie ? "ActiveX" : "PlugIn", r = "MMredirectURL=" + encodeURIComponent(j.location.toString().replace(/&/g, "%26")) + "&MMplayerType=" + a + "&MMdoctitle=" + encodeURIComponent(P.title.slice(0, 47) + " - Flash Player Installation");
-                typeof t.flashvars != I ? t.flashvars += "&" + r : t.flashvars = r;
+                var r = Z.ie ? "ActiveX" : "PlugIn", a = "MMredirectURL=" + encodeURIComponent(j.location.toString().replace(/&/g, "%26")) + "&MMplayerType=" + r + "&MMdoctitle=" + encodeURIComponent(P.title.slice(0, 47) + " - Flash Player Installation");
+                typeof t.flashvars != I ? t.flashvars += "&" + a : t.flashvars = a;
                 if (Z.ie && 4 != o.readyState) {
                     var s = b("div");
                     n += "SWFObjectNew";
@@ -2753,7 +2753,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 var n = e.getElementsByTagName(L)[0];
                 if (n) {
                     var i = n.childNodes;
-                    if (i) for (var o = i.length, a = 0; a < o; a++) 1 == i[a].nodeType && "PARAM" == i[a].nodeName || 8 == i[a].nodeType || t.appendChild(i[a].cloneNode(!0));
+                    if (i) for (var o = i.length, r = 0; r < o; r++) 1 == i[r].nodeType && "PARAM" == i[r].nodeName || 8 == i[r].nodeType || t.appendChild(i[r].cloneNode(!0));
                 }
             }
             return t;
@@ -2768,13 +2768,13 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             n = g(n);
             if (Z.wk && Z.wk < 312) return i;
             if (o) {
-                var a, r, s, l = b(Z.ie ? "div" : L);
+                var r, a, s, l = b(Z.ie ? "div" : L);
                 typeof e.id == I && (e.id = n);
                 for (s in t) t.hasOwnProperty(s) && "movie" !== s.toLowerCase() && f(l, s, t[s]);
                 Z.ie && (l = c(e.data, l.innerHTML));
-                for (a in e) if (e.hasOwnProperty(a)) {
-                    r = a.toLowerCase();
-                    "styleclass" === r ? l.setAttribute("class", e[a]) : "classid" !== r && "data" !== r && l.setAttribute(a, e[a]);
+                for (r in e) if (e.hasOwnProperty(r)) {
+                    a = r.toLowerCase();
+                    "styleclass" === a ? l.setAttribute("class", e[r]) : "classid" !== a && "data" !== a && l.setAttribute(r, e[r]);
                 }
                 if (Z.ie) Q[Q.length] = e.id; else {
                     l.setAttribute("type", F);
@@ -2838,18 +2838,18 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
         function w(e, t, n, i) {
             var o = P.getElementsByTagName("head")[0];
             if (o) {
-                var a = "string" == typeof n ? n : "screen";
+                var r = "string" == typeof n ? n : "screen";
                 if (i) {
                     D = null;
                     k = null;
                 }
-                if (!D || k != a) {
-                    var r = b("style");
-                    r.setAttribute("type", "text/css");
-                    r.setAttribute("media", a);
-                    D = o.appendChild(r);
+                if (!D || k != r) {
+                    var a = b("style");
+                    a.setAttribute("type", "text/css");
+                    a.setAttribute("media", r);
+                    D = o.appendChild(a);
                     Z.ie && typeof P.styleSheets != I && P.styleSheets.length > 0 && (D = P.styleSheets[P.styleSheets.length - 1]);
-                    k = a;
+                    k = r;
                 }
                 D && (typeof D.addRule != I ? D.addRule(e, t) : typeof P.createTextNode != I && D.appendChild(P.createTextNode(e + " {" + t + "}")));
             }
@@ -2865,12 +2865,12 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             return n && typeof encodeURIComponent != I ? encodeURIComponent(e) : e;
         }
         var S, q, A, T, D, k, I = "undefined", L = "object", R = "Shockwave Flash", U = "ShockwaveFlash.ShockwaveFlash", F = "application/x-shockwave-flash", O = "SWFObjectExprInst", N = "onreadystatechange", j = window, P = document, z = navigator, M = !1, B = [], $ = [], Q = [], W = [], H = !1, G = !1, V = !0, X = !1, Z = function() {
-            var e = typeof P.getElementById != I && typeof P.getElementsByTagName != I && typeof P.createElement != I, t = z.userAgent.toLowerCase(), n = z.platform.toLowerCase(), i = n ? /win/.test(n) : /win/.test(t), o = n ? /mac/.test(n) : /mac/.test(t), a = !!/webkit/.test(t) && parseFloat(t.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")), r = "Microsoft Internet Explorer" === z.appName, s = [ 0, 0, 0 ], l = null;
+            var e = typeof P.getElementById != I && typeof P.getElementsByTagName != I && typeof P.createElement != I, t = z.userAgent.toLowerCase(), n = z.platform.toLowerCase(), i = n ? /win/.test(n) : /win/.test(t), o = n ? /mac/.test(n) : /mac/.test(t), r = !!/webkit/.test(t) && parseFloat(t.replace(/^.*webkit\/(\d+(\.\d+)?).*$/, "$1")), a = "Microsoft Internet Explorer" === z.appName, s = [ 0, 0, 0 ], l = null;
             if (typeof z.plugins != I && typeof z.plugins[R] == L) {
                 l = z.plugins[R].description;
                 if (l && typeof z.mimeTypes != I && z.mimeTypes[F] && z.mimeTypes[F].enabledPlugin) {
                     M = !0;
-                    r = !1;
+                    a = !1;
                     l = l.replace(/^.*\s+(\S+\s+\S+$)/, "$1");
                     s[0] = y(l.replace(/^(.*)\..*$/, "$1"));
                     s[1] = y(l.replace(/^.*\.(.*)\s.*$/, "$1"));
@@ -2881,7 +2881,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 if (u) {
                     l = u.GetVariable("$version");
                     if (l) {
-                        r = !0;
+                        a = !0;
                         l = l.split(" ")[1].split(",");
                         s = [ y(l[0]), y(l[1]), y(l[2]) ];
                     }
@@ -2890,8 +2890,8 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             return {
                 w3: e,
                 pv: s,
-                wk: a,
-                ie: r,
+                wk: r,
+                ie: a,
                 win: i,
                 mac: o
             };
@@ -2927,15 +2927,15 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             }
         })();
         B[0] = function() {
-            M ? o() : a();
+            M ? o() : r();
         };
         (function() {
             Z.ie && window.attachEvent("onunload", function() {
                 for (var e = W.length, t = 0; t < e; t++) W[t][0].detachEvent(W[t][1], W[t][2]);
                 for (var n = Q.length, o = 0; o < n; o++) h(Q[o]);
-                for (var a in Z) Z[a] = null;
+                for (var r in Z) Z[r] = null;
                 Z = null;
-                for (var r in i) i[r] = null;
+                for (var a in i) i[a] = null;
                 i = null;
             });
         })();
@@ -2955,14 +2955,14 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                 });
             },
             getObjectById: function(e) {
-                if (Z.w3) return r(e);
+                if (Z.w3) return a(e);
             },
-            embedSWF: function(e, n, i, o, a, r, u, d, c, f) {
+            embedSWF: function(e, n, i, o, r, a, u, d, c, f) {
                 var h = g(n), m = {
                     success: !1,
                     id: h
                 };
-                if (Z.w3 && !(Z.wk && Z.wk < 312) && e && n && i && o && a) {
+                if (Z.w3 && !(Z.wk && Z.wk < 312) && e && n && i && o && r) {
                     E(h, !1);
                     t(function() {
                         i += "";
@@ -2978,15 +2978,15 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                             var _ = X ? encodeURIComponent(y) : y, w = X ? encodeURIComponent(u[y]) : u[y];
                             typeof v.flashvars != I ? v.flashvars += "&" + _ + "=" + w : v.flashvars = _ + "=" + w;
                         }
-                        if (x(a)) {
+                        if (x(r)) {
                             var C = p(t, v, n);
                             t.id == h && E(h, !0);
                             m.success = !0;
                             m.ref = C;
                             m.id = C.id;
                         } else {
-                            if (r && s()) {
-                                t.data = r;
+                            if (a && s()) {
+                                t.data = a;
                                 l(t, v, n, f);
                                 return;
                             }
@@ -3173,12 +3173,12 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
                     } catch (o) {}
                     try {
                         i.parentNode.removeChild(i);
-                    } catch (a) {}
+                    } catch (r) {}
                 }
                 return e[this.movieName] = null, delete e[this.movieName], n.instances[this.movieName] = null, 
                 delete n.instances[this.movieName], this.movieName = this.eventQueue = this.customSettings = this.settings = this.movieElement = null, 
                 !0;
-            } catch (r) {
+            } catch (a) {
                 return !1;
             }
         }, n.prototype.displayDebugInfo = function() {
@@ -3193,7 +3193,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             try {
                 i = o.CallFunction('<invoke name="' + e + '" returntype="javascript">' + __flash__argumentsToXML(t, 0) + "</invoke>"), 
                 n = (0, eval)(i);
-            } catch (a) {
+            } catch (r) {
                 throw "Call to " + e + " failed";
             }
             return void 0 != n && "object" == typeof n.post && (n = this.unescapeFilePostParams(n)), 
@@ -3282,7 +3282,7 @@ define("css!lib/plugins/uploader/1.0.1/css/uploader.css", [], function() {});
             if (void 0 != e) {
                 for (var o in e.post) if (e.post.hasOwnProperty(o)) {
                     t = o;
-                    for (var a; null !== (a = n.exec(t)); ) t = t.replace(a[0], String.fromCharCode(parseInt("0x" + a[1], 16)));
+                    for (var r; null !== (r = n.exec(t)); ) t = t.replace(r[0], String.fromCharCode(parseInt("0x" + r[1], 16)));
                     i[t] = e.post[o];
                 }
                 e.post = i;
@@ -3375,18 +3375,18 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
             width: [ "left", "right" ],
             height: [ "top", "bottom" ]
         }, o = u(e);
-        i(t, function(e, a) {
-            i(n[a], function(t, n) {
+        i(t, function(e, r) {
+            i(n[r], function(t, n) {
                 e -= parseInt(o.css("border-" + t + "-width"), 10) || 0;
             });
-            t[a] = e;
+            t[r] = e;
         });
         return t;
     }
-    function a(e) {
+    function r(e) {
         return e = e || "", e + (++h).toString(32);
     }
-    function r(e, t) {
+    function a(e, t) {
         e = e || {};
         var n = u(e), i = Array.prototype.slice;
         return t = t || e.name, u.each({
@@ -3394,12 +3394,12 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
             un: "off",
             once: "one",
             emit: "trigger"
-        }, function(o, a) {
+        }, function(o, r) {
             e[o] = function(e) {
-                var r = i.call(arguments, 0), s = r[1];
-                return t && !~e.indexOf(".") && (r[0] = e + "." + t), "function" == typeof s && ("on" === o || "once" === o ? r[1] = s.__ || (s.__ = function(e) {
+                var a = i.call(arguments, 0), s = a[1];
+                return t && !~e.indexOf(".") && (a[0] = e + "." + t), "function" == typeof s && ("on" === o || "once" === o ? a[1] = s.__ || (s.__ = function(e) {
                     return e.preventDefault(), s.apply(this, i.call(arguments, 1));
-                }) : "un" === o && (r[1] = s.__)), n[a].apply(n, r);
+                }) : "un" === o && (a[1] = s.__)), n[r].apply(n, a);
             };
         }), e;
     }
@@ -3412,15 +3412,15 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
         var i = this, o = u.extend({}, t), l = u(e);
         if (!l[0]) throw Error("Initialize flash upload error, invalid holder node.");
         o.uploader = o.endpoint || o.uploader;
-        o.id || (o.id = a("__file__"));
-        r(i);
+        o.id || (o.id = r("__file__"));
+        a(i);
         var d = [ "cancel", "clearQueue", "destroy", "dialogClose", "dialogOpen", "disable", "enable", "initError", "fallback", "queueComplete", "selectError", "select", "SWFReady", "uploadComplete", "uploadError", "uploadSuccess", "uploadProgress", "uploadStart" ];
-        u.each(d, function(e, n, a) {
-            a = "on" + s(n);
-            o[a] = function() {
+        u.each(d, function(e, n, r) {
+            r = "on" + s(n);
+            o[r] = function() {
                 i.handleEvent(n, Array.prototype.slice.call(arguments));
             };
-            t[a] && i.on(n, t[a]);
+            t[r] && i.on(n, t[r]);
         });
         o.showPreview && i.on("uploadSuccess", function(e, t, n) {
             i.showPreview((t.data || 0).url);
@@ -3441,8 +3441,8 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
     var u = e("jquery"), d = e("../../swfobject/2.3/swfobject"), c = e("../../swfupload/2.2/swfupload"), p = {
         init: function(e, t) {
             return this.each(function(n, i) {
-                var a = u(i), r = a.clone(), s = u.extend({
-                    id: a.attr("id"),
+                var r = u(i), a = r.clone(), s = u.extend({
+                    id: r.attr("id"),
                     swf: "uploadify.swf",
                     uploader: "uploadify.php",
                     auto: !0,
@@ -3518,14 +3518,14 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                         var v = ".uploadify-button-wrapper{position:absolute;top:0;left:0;}";
                         u("head").append('<style type="text/css" id="uploadify-css">' + (s.css || v) + (s.cssAddon || "") + "</style>");
                     }
-                    "static" === a.css("position") && a.css("position", "relative");
-                    var b = o(i), y = a, _ = u('<div class="uploadify-button-wrapper"><div id="' + g + '"></div></div>').appendTo(a);
+                    "static" === r.css("position") && r.css("position", "relative");
+                    var b = o(i), y = r, _ = u('<div class="uploadify-button-wrapper"><div id="' + g + '"></div></div>').appendTo(r);
                     _.css(b);
                     var x = new c(u.extend(p, {
                         button_width: b.width,
                         button_height: b.height
                     }));
-                    a.data("uploadify", x);
+                    r.data("uploadify", x);
                     _.attr("id", g).data("uploadify", x).delegate(".cancel a", "click", function(e) {
                         var t = u(e.target).data("file-id");
                         t && l.call(g, "cancel", t);
@@ -3556,12 +3556,12 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                         uploadQueue: [],
                         errorMsg: "Some files were not added to the queue:"
                     };
-                    x.original = r;
+                    x.original = a;
                     x.wrapper = _;
                     x.button = y;
                     x.queue = w;
-                    s.onInit && s.onInit.call(a, x);
-                } else s.onFallback && s.onFallback.call(a);
+                    s.onInit && s.onInit.call(r, x);
+                } else s.onFallback && s.onFallback.call(r);
             });
         },
         cancel: function(e, t) {
@@ -3569,7 +3569,7 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
             this.each(function() {
                 var e = u(this), t = e.data("uploadify"), i = t.settings, o = -1;
                 if (n[0]) if ("*" == n[0]) {
-                    var a = t.queueData.queueLength;
+                    var r = t.queueData.queueLength;
                     u("#" + i.queueID).find(".uploadify-queue-item").each(function() {
                         o++;
                         n[1] === !0 ? t.cancelUpload(u(this).attr("id"), !1) : t.cancelUpload(u(this).attr("id"));
@@ -3581,12 +3581,12 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                     });
                     t.queueData.queueSize = 0;
                     t.queueData.queueLength = 0;
-                    i.onClearQueue && i.onClearQueue.call(e, a);
-                } else for (var r = 0; r < n.length; r++) {
-                    t.cancelUpload(n[r]);
-                    u("#" + n[r]).find(".data").removeClass("data").html(" - Cancelled");
-                    u("#" + n[r]).find(".uploadify-progress-bar").remove();
-                    u("#" + n[r]).delay(1e3 + 100 * r).fadeOut(500, function() {
+                    i.onClearQueue && i.onClearQueue.call(e, r);
+                } else for (var a = 0; a < n.length; a++) {
+                    t.cancelUpload(n[a]);
+                    u("#" + n[a]).find(".data").removeClass("data").html(" - Cancelled");
+                    u("#" + n[a]).find(".uploadify-progress-bar").remove();
+                    u("#" + n[a]).delay(1e3 + 100 * a).fadeOut(500, function() {
                         u(this).remove();
                     });
                 } else {
@@ -3627,53 +3627,53 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
         settings: function(e, t, n) {
             var i = arguments, o = t;
             this.each(function() {
-                var a = u(this), r = a.data("uploadify"), s = r.settings;
+                var r = u(this), a = r.data("uploadify"), s = a.settings;
                 if ("object" == typeof i[0]) for (var l in t) setData(l, t[l]);
                 if (1 === i.length) o = s[e]; else {
                     switch (e) {
                       case "uploader":
-                        r.setUploadURL(t);
+                        a.setUploadURL(t);
                         break;
 
                       case "formData":
                         n || (t = u.extend(s.formData, t));
-                        r.setPostParams(s.formData);
+                        a.setPostParams(s.formData);
                         break;
 
                       case "method":
-                        "get" == t ? r.setUseQueryString(!0) : r.setUseQueryString(!1);
+                        "get" == t ? a.setUseQueryString(!0) : a.setUseQueryString(!1);
                         break;
 
                       case "fileObjName":
-                        r.setFilePostName(t);
+                        a.setFilePostName(t);
                         break;
 
                       case "fileTypeExts":
-                        r.setFileTypes(t, s.fileTypeDesc);
+                        a.setFileTypes(t, s.fileTypeDesc);
                         break;
 
                       case "fileTypeDesc":
-                        r.setFileTypes(s.fileTypeExts, t);
+                        a.setFileTypes(s.fileTypeExts, t);
                         break;
 
                       case "fileSizeLimit":
-                        r.setFileSizeLimit(t);
+                        a.setFileSizeLimit(t);
                         break;
 
                       case "uploadLimit":
-                        r.setFileUploadLimit(t);
+                        a.setFileUploadLimit(t);
                         break;
 
                       case "queueSizeLimit":
-                        r.setFileQueueLimit(t);
+                        a.setFileQueueLimit(t);
                         break;
 
                       case "buttonImage":
-                        r.button.css("background-image", settingValue);
+                        a.button.css("background-image", settingValue);
                         break;
 
                       case "buttonCursor":
-                        "arrow" == t ? r.setButtonCursor(c.CURSOR.ARROW) : r.setButtonCursor(c.CURSOR.HAND);
+                        "arrow" == t ? a.setButtonCursor(c.CURSOR.ARROW) : a.setButtonCursor(c.CURSOR.HAND);
                         break;
 
                       case "buttonText":
@@ -3681,15 +3681,15 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                         break;
 
                       case "width":
-                        r.setButtonDimensions(t, s.height);
+                        a.setButtonDimensions(t, s.height);
                         break;
 
                       case "height":
-                        r.setButtonDimensions(s.width, t);
+                        a.setButtonDimensions(s.width, t);
                         break;
 
                       case "multi":
-                        t ? r.setButtonAction(c.BUTTON_ACTION.SELECT_FILES) : r.setButtonAction(c.BUTTON_ACTION.SELECT_FILE);
+                        t ? a.setButtonAction(c.BUTTON_ACTION.SELECT_FILES) : a.setButtonAction(c.BUTTON_ACTION.SELECT_FILE);
                     }
                     s[e] = t;
                 }
@@ -3761,22 +3761,22 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                     this.queueData.filesReplaced++;
                 }
             }
-            var a = Math.round(e.size / 1024), r = "KB";
-            if (a > 1e3) {
-                a = Math.round(a / 1e3);
-                r = "MB";
+            var r = Math.round(e.size / 1024), a = "KB";
+            if (r > 1e3) {
+                r = Math.round(r / 1e3);
+                a = "MB";
             }
-            var s = a.toString().split(".");
-            a = s[0];
-            s.length > 1 && (a += "." + s[1].substr(0, 2));
-            a += r;
+            var s = r.toString().split(".");
+            r = s[0];
+            s.length > 1 && (r += "." + s[1].substr(0, 2));
+            r += a;
             var l = e.name;
             l.length > 25 && (l = l.substr(0, 25) + "...");
             var d = {
                 fileID: e.id,
                 instanceID: t.id,
                 fileName: l,
-                fileSize: a
+                fileSize: r
             }, c = t.itemTemplate;
             0 == c && (c = [ '<div id="${fileID}" class="uploadify-queue-item">', '<div class="cancel">', '<a href="javascript:;" data-file-id="${fileID}">X</a>', "</div>", '<span class="fileName">${fileName} (${fileSize})</span><span class="data"></span>', '<div class="uploadify-progress">', '<div class="uploadify-progress-bar"><!--Progress Bar--></div>', "</div>", "</div>" ].join(""));
             if (c && u.inArray("onSelect", t.overrideEvents) < 0) {
@@ -3903,16 +3903,16 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                 u("#" + e.id).find(".uploadify-progress-bar").css("width", "1px");
                 t != c.UPLOAD_ERROR.SPECIFIED_FILE_ID_NOT_FOUND && e.status != c.FILE_STATUS.COMPLETE && u("#" + e.id).find(".data").html(" - " + o);
             }
-            var a = this.getStats();
-            this.queueData.uploadsErrored = a.upload_errors;
+            var r = this.getStats();
+            this.queueData.uploadsErrored = r.upload_errors;
             i.onUploadError && i.onUploadError.call(this, e, t, n, o);
         },
         onUploadProgress: function(e, t, n) {
-            var i = this.settings, o = new Date(), a = o.getTime(), r = a - this.timer;
-            r > 500 && (this.timer = a);
+            var i = this.settings, o = new Date(), r = o.getTime(), a = r - this.timer;
+            a > 500 && (this.timer = r);
             var s = t - this.bytesLoaded;
             this.bytesLoaded = t;
-            var l = this.queueData.queueBytesUploaded + t, d = Math.round(t / n * 100), c = "KB/s", p = 0, f = s / 1024 / (r / 1e3);
+            var l = this.queueData.queueBytesUploaded + t, d = Math.round(t / n * 100), c = "KB/s", p = 0, f = s / 1024 / (a / 1e3);
             f = Math.floor(10 * f) / 10;
             this.queueData.averageSpeed > 0 ? this.queueData.averageSpeed = Math.floor((this.queueData.averageSpeed + f) / 2) : this.queueData.averageSpeed = Math.floor(f);
             if (f > 1e3) {
@@ -3921,7 +3921,7 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                 c = "MB/s";
             }
             if (u.inArray("onUploadProgress", i.overrideEvents) < 0) {
-                "percentage" == i.progressData ? u("#" + e.id).find(".data").html(" - " + d + "%") : "speed" == i.progressData && r > 500 && u("#" + e.id).find(".data").html(" - " + this.queueData.averageSpeed + c);
+                "percentage" == i.progressData ? u("#" + e.id).find(".data").html(" - " + d + "%") : "speed" == i.progressData && a > 500 && u("#" + e.id).find(".data").html(" - " + this.queueData.averageSpeed + c);
                 u("#" + e.id).find(".uploadify-progress-bar").css("width", d + "%");
             }
             i.onUploadProgress && i.onUploadProgress.call(this, e, t, n, l, this.queueData.uploadSize);
@@ -3959,7 +3959,7 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
             try {
                 t = t.replace(/\/\*[\s\S]*?\*\//g, "");
                 t = u.parseJSON(t);
-            } catch (a) {}
+            } catch (r) {}
             i.onUploadSuccess && i.onUploadSuccess.call(this, e, t, n);
         }
     }, h = 65536 * (1 + Math.random()) | 0;
@@ -3972,8 +3972,8 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
             var n = this;
             switch (e) {
               case "uploadSuccess":
-                var i = t[0], o = t[1], a = +o.error, r = isNaN(a) || a;
-                if (r) {
+                var i = t[0], o = t[1], r = +o.error, a = isNaN(r) || r;
+                if (a) {
                     t[2] = !1;
                     e = "uploadError";
                     n.cancel(i.id);
@@ -4013,10 +4013,10 @@ define("lib/plugins/uploader/1.0.1/tabs/widget", [ "require", "exports", "module
         t.container = o(t._makeContainer());
         t.container.hide();
         t.title = o(t._makeTitle());
-        t._nodes = r.parse(t.container, !1);
+        t._nodes = a.parse(t.container, !1);
     }
-    var o = e("jquery"), a = e("lib/core/1.0.0/event/emitter"), r = e("lib/core/1.0.0/dom/build"), s = e("lib/core/1.0.0/utils/util");
-    s.inherits(i, a);
+    var o = e("jquery"), r = e("lib/core/1.0.0/event/emitter"), a = e("lib/core/1.0.0/dom/build"), s = e("lib/core/1.0.0/utils/util");
+    s.inherits(i, r);
     i.prototype.$ = function(e, t) {
         var n = this._nodes || (this._nodes = {}), i = n[e];
         if (!i || t && 0 === i.length) {
@@ -4075,8 +4075,8 @@ define("lib/plugins/uploader/1.0.1/tabs/local/item", [ "require", "exports", "mo
         t._nodes = s.parse(t.el, !1);
         t._onEvent();
     }
-    var o = e("jquery"), a = e("lib/core/1.0.0/event/emitter"), r = e("lib/core/1.0.0/utils/util"), s = e("lib/core/1.0.0/dom/build"), l = {};
-    r.inherits(i, a);
+    var o = e("jquery"), r = e("lib/core/1.0.0/event/emitter"), a = e("lib/core/1.0.0/utils/util"), s = e("lib/core/1.0.0/dom/build"), l = {};
+    a.inherits(i, r);
     i.prototype.$ = function(e, t) {
         var n = this._nodes || (this._nodes = {}), i = n[e];
         if (!i || t && 0 === i.length) {
@@ -4160,16 +4160,16 @@ define("lib/plugins/uploader/1.0.1/tabs/local/local", [ "require", "exports", "m
                 t.uploading(!1);
             },
             onFallback: function() {
-                a.error("sorry,flash不兼容！");
+                r.error("sorry,flash不兼容！");
             }
         };
         t._options = e = o.extend({}, n, e);
         t._items = [];
         l.apply(t, [ t._options ]);
     }
-    var o = e("jquery"), a = (e("lib/core/1.0.0/event/emitter"), e("lib/ui/box/1.0.1/box")), r = e("lib/core/1.0.0/utils/util"), s = (e("lib/core/1.0.0/dom/build"), 
+    var o = e("jquery"), r = (e("lib/core/1.0.0/event/emitter"), e("lib/ui/box/1.0.1/box")), a = e("lib/core/1.0.0/utils/util"), s = (e("lib/core/1.0.0/dom/build"), 
     e("lib/plugins/uploadify/3.2.2/uploadify")), l = e("../widget"), u = e("./item");
-    r.inherits(i, l);
+    a.inherits(i, l);
     i.prototype._init = function() {
         var e = this;
         e.uploader = s.uploadify(e._nodes["btn-upload"][0], e._options);
@@ -4256,9 +4256,9 @@ define("lib/plugins/uploader/1.0.1/tabs/network/network", [ "require", "exports"
         t._options = e = o.extend({}, n, e);
         s.apply(t, [ t._options ]);
     }
-    var o = e("jquery"), a = (e("lib/core/1.0.0/event/emitter"), e("lib/ui/box/1.0.1/box")), r = e("lib/core/1.0.0/utils/util"), s = (e("lib/core/1.0.0/dom/build"), 
+    var o = e("jquery"), r = (e("lib/core/1.0.0/event/emitter"), e("lib/ui/box/1.0.1/box")), a = e("lib/core/1.0.0/utils/util"), s = (e("lib/core/1.0.0/dom/build"), 
     e("../widget"));
-    r.inherits(i, s);
+    a.inherits(i, s);
     i.prototype._init = function() {
         var e = this;
         e._onEvent();
@@ -4279,7 +4279,7 @@ define("lib/plugins/uploader/1.0.1/tabs/network/network", [ "require", "exports"
         var e = this;
         e._nodes.add.on("click", function() {
             var t = e._nodes["ipt-url"].val();
-            e._options.pattern.test(t) ? e.emit("add", t) : a.error("网络图片的URL不符合要求，换一个试试！", e._nodes["ipt-url"][0]);
+            e._options.pattern.test(t) ? e.emit("add", t) : r.error("网络图片的URL不符合要求，换一个试试！", e._nodes["ipt-url"][0]);
         });
     };
     i.prototype._offEvent = function() {
@@ -4297,11 +4297,11 @@ define("lib/plugins/uploader/1.0.1/tabs/album/album", [ "require", "exports", "m
             title: "相册选择"
         };
         t._options = e = o.extend({}, n, e);
-        r.apply(t, [ t._options ]);
+        a.apply(t, [ t._options ]);
     }
-    var o = e("jquery"), a = (e("lib/core/1.0.0/event/emitter"), e("lib/core/1.0.0/utils/util")), r = (e("lib/core/1.0.0/dom/build"), 
+    var o = e("jquery"), r = (e("lib/core/1.0.0/event/emitter"), e("lib/core/1.0.0/utils/util")), a = (e("lib/core/1.0.0/dom/build"), 
     e("../widget"));
-    a.inherits(i, r);
+    r.inherits(i, a);
     i.prototype._init = function() {
         return this;
     };
@@ -4333,9 +4333,9 @@ define("lib/plugins/uploader/1.0.1/selected/item", [ "require", "exports", "modu
         n._nodes = s.parse(n.el, !1);
         n._initEvent();
     }
-    var o = e("jquery"), a = e("lib/core/1.0.0/event/emitter"), r = (e("lib/ui/box/1.0.1/box"), 
+    var o = e("jquery"), r = e("lib/core/1.0.0/event/emitter"), a = (e("lib/ui/box/1.0.1/box"), 
     e("lib/core/1.0.0/utils/util")), s = e("lib/core/1.0.0/dom/build"), l = {};
-    r.inherits(i, a);
+    a.inherits(i, r);
     i.prototype.$ = function(e, t) {
         var n = this._nodes || (this._nodes = {}), i = n[e];
         if (!i || t && 0 === i.length) {
@@ -4400,16 +4400,16 @@ define("lib/plugins/uploader/1.0.1/selected/selected", [ "require", "exports", "
         t._items = [];
         t._activeItem = null;
         for (var i = 0; i < n; i++) {
-            var a = new u(t._options.selected[i]);
-            t.add(a);
+            var r = new u(t._options.selected[i]);
+            t.add(r);
         }
         t._onEvent();
     }
-    var o = e("jquery"), a = e("lib/core/1.0.0/event/emitter"), r = e("lib/ui/box/1.0.1/box"), s = e("lib/core/1.0.0/utils/util"), l = e("lib/core/1.0.0/dom/build"), u = e("./item"), d = {
+    var o = e("jquery"), r = e("lib/core/1.0.0/event/emitter"), a = e("lib/ui/box/1.0.1/box"), s = e("lib/core/1.0.0/utils/util"), l = e("lib/core/1.0.0/dom/build"), u = e("./item"), d = {
         limit: 0,
         selected: []
     };
-    s.inherits(i, a);
+    s.inherits(i, r);
     i.prototype.$ = function(e, t) {
         var n = this._nodes || (this._nodes = {}), i = n[e];
         if (!i || t && 0 === i.length) {
@@ -4445,19 +4445,19 @@ define("lib/plugins/uploader/1.0.1/selected/selected", [ "require", "exports", "
     i.prototype._order = function(e, t) {
         var n, i = this, o = i._items;
         if (!e) return this;
-        for (var a = 0, r = o.length; a < r; a++) if (e === o[a]) {
-            n = o[a];
+        for (var r = 0, a = o.length; r < a; r++) if (e === o[r]) {
+            n = o[r];
             if ("moveup" === t) {
-                if (a > 0) {
-                    o[a] = o[a - 1];
-                    o[a - 1] = n;
-                    o[a - 1].el.insertBefore(o[a].el);
+                if (r > 0) {
+                    o[r] = o[r - 1];
+                    o[r - 1] = n;
+                    o[r - 1].el.insertBefore(o[r].el);
                     break;
                 }
-            } else if (a < r - 1) {
-                o[a] = o[a + 1];
-                o[a + 1] = n;
-                o[a].el.insertBefore(o[a + 1].el);
+            } else if (r < a - 1) {
+                o[r] = o[r + 1];
+                o[r + 1] = n;
+                o[r].el.insertBefore(o[r + 1].el);
                 break;
             }
         }
@@ -4466,7 +4466,7 @@ define("lib/plugins/uploader/1.0.1/selected/selected", [ "require", "exports", "
     i.prototype.add = function(e) {
         if (void 0 === e) throw new Error("the param [item] is require.");
         var t = this, n = t._items;
-        if (0 != t._options.limit && n.length >= t._options.limit) r.error("超过最大数量（" + t._options.limit + "）限制"); else {
+        if (0 != t._options.limit && n.length >= t._options.limit) a.error("超过最大数量（" + t._options.limit + "）限制"); else {
             "string" == typeof e && (e = new u(e));
             if (!t._isExistItem(e)) {
                 t._nodes["selected-images"].append(e.el);
@@ -4543,7 +4543,7 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
         };
         t._options = e = o.extend({}, n, e);
         t.el = o(t._make());
-        var i = r.create({
+        var i = a.create({
             content: t.el[0],
             className: "ui-uploader-box",
             title: "图片选择"
@@ -4555,21 +4555,21 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
         t._nodes = l.parse(t.el, !1);
         t.tabs = [];
         t._initTabs();
-        var a = new d({
+        var r = new d({
             limit: t._options.limit,
             selected: t._options.selected
         });
-        t._nodes.selected.append(a.el);
-        t.selected = a;
+        t._nodes.selected.append(r.el);
+        t.selected = r;
         t._onEvent();
     }
     e("css!./css/uploader.css");
-    var o = e("jquery"), a = e("lib/core/1.0.0/event/emitter"), r = e("lib/ui/box/1.0.1/box"), s = e("lib/core/1.0.0/utils/util"), l = e("lib/core/1.0.0/dom/build"), u = {};
+    var o = e("jquery"), r = e("lib/core/1.0.0/event/emitter"), a = e("lib/ui/box/1.0.1/box"), s = e("lib/core/1.0.0/utils/util"), l = e("lib/core/1.0.0/dom/build"), u = {};
     u.local = e("./tabs/local/local");
     u.network = e("./tabs/network/network");
     u.album = e("./tabs/album/album");
     var d = e("./selected/selected");
-    s.inherits(i, a);
+    s.inherits(i, r);
     i._id = 0;
     i.prototype.activateTab = function(e) {
         for (var t = this, n = t.tabs, i = 0, o = n.length; i < o; i++) e === n[i] ? t.tabs[i].activate() : t.tabs[i].deactivate();
@@ -4728,51 +4728,51 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
             return t;
         },
         rules: function(t, n) {
-            var i, o, a, r, s, l, u = this[0];
+            var i, o, r, a, s, l, u = this[0];
             if (null != u && null != u.form) {
                 if (t) {
                     i = e.data(u.form, "validator").settings;
                     o = i.rules;
-                    a = e.validator.staticRules(u);
+                    r = e.validator.staticRules(u);
                     switch (t) {
                       case "add":
-                        e.extend(a, e.validator.normalizeRule(n));
-                        delete a.messages;
-                        o[u.name] = a;
+                        e.extend(r, e.validator.normalizeRule(n));
+                        delete r.messages;
+                        o[u.name] = r;
                         n.messages && (i.messages[u.name] = e.extend(i.messages[u.name], n.messages));
                         break;
 
                       case "remove":
                         if (!n) {
                             delete o[u.name];
-                            return a;
+                            return r;
                         }
                         l = {};
                         e.each(n.split(/\s/), function(t, n) {
-                            l[n] = a[n];
-                            delete a[n];
+                            l[n] = r[n];
+                            delete r[n];
                             "required" === n && e(u).removeAttr("aria-required");
                         });
                         return l;
                     }
                 }
-                r = e.validator.normalizeRules(e.extend({}, e.validator.classRules(u), e.validator.attributeRules(u), e.validator.dataRules(u), e.validator.staticRules(u)), u);
-                if (r.required) {
-                    s = r.required;
-                    delete r.required;
-                    r = e.extend({
+                a = e.validator.normalizeRules(e.extend({}, e.validator.classRules(u), e.validator.attributeRules(u), e.validator.dataRules(u), e.validator.staticRules(u)), u);
+                if (a.required) {
+                    s = a.required;
+                    delete a.required;
+                    a = e.extend({
                         required: s
-                    }, r);
+                    }, a);
                     e(u).attr("aria-required", "true");
                 }
-                if (r.remote) {
-                    s = r.remote;
-                    delete r.remote;
-                    r = e.extend(r, {
+                if (a.remote) {
+                    s = a.remote;
+                    delete a.remote;
+                    a = e.extend(a, {
                         remote: s
                     });
                 }
-                return r;
+                return a;
             }
         }
     });
@@ -4916,23 +4916,23 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
                 return this.valid();
             },
             element: function(t) {
-                var n, i, o = this.clean(t), a = this.validationTargetFor(o), r = this, s = !0;
-                if (void 0 === a) delete this.invalid[o.name]; else {
-                    this.prepareElement(a);
-                    this.currentElements = e(a);
-                    i = this.groups[a.name];
+                var n, i, o = this.clean(t), r = this.validationTargetFor(o), a = this, s = !0;
+                if (void 0 === r) delete this.invalid[o.name]; else {
+                    this.prepareElement(r);
+                    this.currentElements = e(r);
+                    i = this.groups[r.name];
                     i && e.each(this.groups, function(e, t) {
-                        if (t === i && e !== a.name) {
-                            o = r.validationTargetFor(r.clean(r.findByName(e)));
-                            if (o && o.name in r.invalid) {
-                                r.currentElements.push(o);
-                                s = r.check(o) && s;
+                        if (t === i && e !== r.name) {
+                            o = a.validationTargetFor(a.clean(a.findByName(e)));
+                            if (o && o.name in a.invalid) {
+                                a.currentElements.push(o);
+                                s = a.check(o) && s;
                             }
                         }
                     });
-                    n = this.check(a) !== !1;
+                    n = this.check(r) !== !1;
                     s = s && n;
-                    n ? this.invalid[a.name] = !1 : this.invalid[a.name] = !0;
+                    n ? this.invalid[r.name] = !1 : this.invalid[r.name] = !0;
                     this.numberOfInvalids() || (this.toHide = this.toHide.add(this.containers));
                     this.showErrors();
                     e(t).attr("aria-invalid", !n);
@@ -5041,11 +5041,11 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
                 this.toHide = this.errorsFor(e);
             },
             elementValue: function(t) {
-                var n, i, o = e(t), a = t.type;
-                if ("radio" === a || "checkbox" === a) return this.findByName(t.name).filter(":checked").val();
-                if ("number" === a && "undefined" != typeof t.validity) return t.validity.badInput ? "NaN" : o.val();
+                var n, i, o = e(t), r = t.type;
+                if ("radio" === r || "checkbox" === r) return this.findByName(t.name).filter(":checked").val();
+                if ("number" === r && "undefined" != typeof t.validity) return t.validity.badInput ? "NaN" : o.val();
                 n = t.hasAttribute("contenteditable") ? o.text() : o.val();
-                if ("file" === a) {
+                if ("file" === r) {
                     if ("C:\\fakepath\\" === n.substr(0, 12)) return n.substr(12);
                     i = n.lastIndexOf("/");
                     if (i >= 0) return n.substr(i + 1);
@@ -5056,22 +5056,22 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
             },
             check: function(t) {
                 t = this.validationTargetFor(this.clean(t));
-                var n, i, o, a = e(t).rules(), r = e.map(a, function(e, t) {
+                var n, i, o, r = e(t).rules(), a = e.map(r, function(e, t) {
                     return t;
                 }).length, s = !1, l = this.elementValue(t);
-                if ("function" == typeof a.normalizer) {
-                    l = a.normalizer.call(t, l);
+                if ("function" == typeof r.normalizer) {
+                    l = r.normalizer.call(t, l);
                     if ("string" != typeof l) throw new TypeError("The normalizer should return a string value.");
-                    delete a.normalizer;
+                    delete r.normalizer;
                 }
-                for (i in a) {
+                for (i in r) {
                     o = {
                         method: i,
-                        parameters: a[i]
+                        parameters: r[i]
                     };
                     try {
                         n = e.validator.methods[i].call(this, l, t, o.parameters);
-                        if ("dependency-mismatch" === n && 1 === r) {
+                        if ("dependency-mismatch" === n && 1 === a) {
                             s = !0;
                             continue;
                         }
@@ -5091,7 +5091,7 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
                     }
                 }
                 if (!s) {
-                    this.objectLength(a) && this.successList.push(t);
+                    this.objectLength(r) && this.successList.push(t);
                     return !0;
                 }
             },
@@ -5150,7 +5150,7 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
                 });
             },
             showLabel: function(t, n) {
-                var i, o, a, r, s = this.errorsFor(t), l = this.idOrName(t), u = e(t).attr("aria-describedby");
+                var i, o, r, a, s = this.errorsFor(t), l = this.idOrName(t), u = e(t).attr("aria-describedby");
                 if (s.length) {
                     s.removeClass(this.settings.validClass).addClass(this.settings.errorClass);
                     s.html(n);
@@ -5160,14 +5160,14 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
                     this.settings.wrapper && (i = s.hide().show().wrap("<" + this.settings.wrapper + "/>").parent());
                     this.labelContainer.length ? this.labelContainer.append(i) : this.settings.errorPlacement ? this.settings.errorPlacement.call(this, i, e(t)) : i.insertAfter(t);
                     if (s.is("label")) s.attr("for", l); else if (0 === s.parents("label[for='" + this.escapeCssMeta(l) + "']").length) {
-                        a = s.attr("id");
-                        u ? u.match(new RegExp("\\b" + this.escapeCssMeta(a) + "\\b")) || (u += " " + a) : u = a;
+                        r = s.attr("id");
+                        u ? u.match(new RegExp("\\b" + this.escapeCssMeta(r) + "\\b")) || (u += " " + r) : u = r;
                         e(t).attr("aria-describedby", u);
                         o = this.groups[t.name];
                         if (o) {
-                            r = this;
-                            e.each(r.groups, function(t, n) {
-                                n === o && e("[name='" + r.escapeCssMeta(t) + "']", r.currentForm).attr("aria-describedby", s.attr("id"));
+                            a = this;
+                            e.each(a.groups, function(t, n) {
+                                n === o && e("[name='" + a.escapeCssMeta(t) + "']", a.currentForm).attr("aria-describedby", s.attr("id"));
                             });
                         }
                     }
@@ -5306,23 +5306,23 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
             i || 0 === i ? e[n] = i : t === n && "range" !== t && (e[n] = !0);
         },
         attributeRules: function(t) {
-            var n, i, o = {}, a = e(t), r = t.getAttribute("type");
+            var n, i, o = {}, r = e(t), a = t.getAttribute("type");
             for (n in e.validator.methods) {
                 if ("required" === n) {
                     i = t.getAttribute(n);
                     "" === i && (i = !0);
                     i = !!i;
-                } else i = a.attr(n);
-                this.normalizeAttributeRule(o, r, n, i);
+                } else i = r.attr(n);
+                this.normalizeAttributeRule(o, a, n, i);
             }
             o.maxlength && /-1|2147483647|524288/.test(o.maxlength) && delete o.maxlength;
             return o;
         },
         dataRules: function(t) {
-            var n, i, o = {}, a = e(t), r = t.getAttribute("type");
+            var n, i, o = {}, r = e(t), a = t.getAttribute("type");
             for (n in e.validator.methods) {
-                i = a.data("rule" + n.charAt(0).toUpperCase() + n.substring(1).toLowerCase());
-                this.normalizeAttributeRule(o, r, n, i);
+                i = r.data("rule" + n.charAt(0).toUpperCase() + n.substring(1).toLowerCase());
+                this.normalizeAttributeRule(o, a, n, i);
             }
             return o;
         },
@@ -5335,16 +5335,16 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
             e.each(t, function(i, o) {
                 if (o !== !1) {
                     if (o.param || o.depends) {
-                        var a = !0;
+                        var r = !0;
                         switch (typeof o.depends) {
                           case "string":
-                            a = !!e(o.depends, n.form).length;
+                            r = !!e(o.depends, n.form).length;
                             break;
 
                           case "function":
-                            a = o.depends.call(n, n);
+                            r = o.depends.call(n, n);
                         }
-                        if (a) t[i] = void 0 === o.param || o.param; else {
+                        if (r) t[i] = void 0 === o.param || o.param; else {
                             e.data(n.form, "validator").resetElements(e(n));
                             delete t[i];
                         }
@@ -5442,13 +5442,13 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
                 return this.optional(t) || e >= n[0] && e <= n[1];
             },
             step: function(t, n, i) {
-                var o, a = e(n).attr("type"), r = "Step attribute on input type " + a + " is not supported.", s = [ "text", "number", "range" ], l = new RegExp("\\b" + a + "\\b"), u = a && !l.test(s.join()), d = function(e) {
+                var o, r = e(n).attr("type"), a = "Step attribute on input type " + r + " is not supported.", s = [ "text", "number", "range" ], l = new RegExp("\\b" + r + "\\b"), u = r && !l.test(s.join()), d = function(e) {
                     var t = ("" + e).match(/(?:\.(\d+))?$/);
                     return t && t[1] ? t[1].length : 0;
                 }, c = function(e) {
                     return Math.round(e * Math.pow(10, o));
                 }, p = !0;
-                if (u) throw new Error(r);
+                if (u) throw new Error(a);
                 o = d(i);
                 (d(t) > o || c(t) % c(i) !== 0) && (p = !1);
                 return this.optional(n) || p;
@@ -5463,7 +5463,7 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
             remote: function(t, n, i, o) {
                 if (this.optional(n)) return "dependency-mismatch";
                 o = "string" == typeof o && o || "remote";
-                var a, r, s, l = this.previousValue(n, o);
+                var r, a, s, l = this.previousValue(n, o);
                 this.settings.messages[n.name] || (this.settings.messages[n.name] = {});
                 l.originalMessage = l.originalMessage || this.settings.messages[n.name][o];
                 this.settings.messages[n.name][o] = l.message;
@@ -5475,39 +5475,39 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
                 }, i.data));
                 if (l.old === s) return l.valid;
                 l.old = s;
-                a = this;
+                r = this;
                 this.startRequest(n);
-                r = {};
-                r[n.name] = t;
+                a = {};
+                a[n.name] = t;
                 e.ajax(e.extend(!0, {
                     mode: "abort",
                     port: "validate" + n.name,
                     dataType: "json",
-                    data: r,
-                    context: a.currentForm,
+                    data: a,
+                    context: r.currentForm,
                     success: function(e) {
-                        var i, r, s, u = e === !0 || "true" === e;
-                        a.settings.messages[n.name][o] = l.originalMessage;
+                        var i, a, s, u = e === !0 || "true" === e;
+                        r.settings.messages[n.name][o] = l.originalMessage;
                         if (u) {
-                            s = a.formSubmitted;
-                            a.resetInternals();
-                            a.toHide = a.errorsFor(n);
-                            a.formSubmitted = s;
-                            a.successList.push(n);
-                            a.invalid[n.name] = !1;
-                            a.showErrors();
+                            s = r.formSubmitted;
+                            r.resetInternals();
+                            r.toHide = r.errorsFor(n);
+                            r.formSubmitted = s;
+                            r.successList.push(n);
+                            r.invalid[n.name] = !1;
+                            r.showErrors();
                         } else {
                             i = {};
-                            r = e || a.defaultMessage(n, {
+                            a = e || r.defaultMessage(n, {
                                 method: o,
                                 parameters: t
                             });
-                            i[n.name] = l.message = r;
-                            a.invalid[n.name] = !0;
-                            a.showErrors(i);
+                            i[n.name] = l.message = a;
+                            r.invalid[n.name] = !0;
+                            r.showErrors(i);
                         }
                         l.valid = u;
-                        a.stopRequest(n, u);
+                        r.stopRequest(n, u);
                     }
                 }, i));
                 return "pending";
@@ -5524,11 +5524,11 @@ define("lib/plugins/uploader/1.0.1/uploader", [ "require", "exports", "module", 
     }); else {
         t = e.ajax;
         e.ajax = function(i) {
-            var o = ("mode" in i ? i : e.ajaxSettings).mode, a = ("port" in i ? i : e.ajaxSettings).port;
+            var o = ("mode" in i ? i : e.ajaxSettings).mode, r = ("port" in i ? i : e.ajaxSettings).port;
             if ("abort" === o) {
-                n[a] && n[a].abort();
-                n[a] = t.apply(this, arguments);
-                return n[a];
+                n[r] && n[r].abort();
+                n[r] = t.apply(this, arguments);
+                return n[r];
             }
             return t.apply(this, arguments);
         };
@@ -5602,13 +5602,13 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         if (e && /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[012])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i.test(e)) if (n[e.substr(0, 2)]) {
             if (18 == e.length) {
                 e = e.split("");
-                for (var i = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ], o = [ 1, 0, "X", 9, 8, 7, 6, 5, 4, 3, 2 ], a = 0, r = 0, s = 0, l = 0; l < 17; l++) {
-                    r = e[l];
+                for (var i = [ 7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2 ], o = [ 1, 0, "X", 9, 8, 7, 6, 5, 4, 3, 2 ], r = 0, a = 0, s = 0, l = 0; l < 17; l++) {
+                    a = e[l];
                     s = i[l];
-                    a += r * s;
+                    r += a * s;
                 }
-                o[a % 11];
-                o[a % 11] != e[17] && (t = !1);
+                o[r % 11];
+                o[r % 11] != e[17] && (t = !1);
             }
         } else t = !1; else t = !1;
         return t;
@@ -5616,23 +5616,23 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
     var o = e("jquery");
     e("lib/plugins/validation/1.15.1/jquery-validate");
     e("lib/plugins/validation/1.15.1/localization/messages_zh");
-    var a = /^(\d{3,4}-?)?\d{7,9}$/, r = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/, s = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, l = /^\d{5,20}$/, u = [ {
+    var r = /^(\d{3,4}-?)?\d{7,9}$/, a = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/, s = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, l = /^\d{5,20}$/, u = [ {
         name: "email",
-        text: o.validator.messages.email,
+        text: "请正确填写您的邮箱地址",
         func: function(e, t) {
             return this.optional(t) || s.test(e);
         }
     }, {
         name: "mobile",
-        text: "请正确输入您的手机号码",
+        text: "请正确填写您的手机号码",
         func: function(e, t) {
-            return this.optional(t) || r.test(e);
+            return this.optional(t) || a.test(e);
         }
     }, {
         name: "phone",
         text: "请正确输入您的电话号码",
         func: function(e, t) {
-            return this.optional(t) || a.test(e) || r.test(e);
+            return this.optional(t) || r.test(e) || a.test(e);
         }
     }, {
         name: "isIdCardNo",
@@ -5684,38 +5684,38 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
 
 define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", "../utils/util", "../event/emitter" ], function(e, t, n) {
     "use strict";
-    var i = e("jquery"), o = e("../utils/util"), a = e("../event/emitter"), r = o.setImmediate, s = o.noop, l = o.extend, u = i.trim, d = i.parseJSON, c = function(e, t, n) {
+    var i = e("jquery"), o = e("../utils/util"), r = e("../event/emitter"), a = o.setImmediate, s = o.noop, l = o.extend, u = i.trim, d = i.parseJSON, c = function(e, t, n) {
         return function(i, o) {
             try {
                 return e.apply(t, arguments);
-            } catch (a) {
-                n && n(a, i, o);
+            } catch (r) {
+                n && n(r, i, o);
             }
         };
     }, p = function(e) {
         return t.emit.apply(t, arguments);
     };
-    a.applyTo(t);
+    r.applyTo(t);
     var f = function() {
         var e = 5, t = 0, n = [], o = function() {
-            r(function() {
+            a(function() {
                 --t;
-                a();
+                r();
             });
-        }, a = function() {
+        }, r = function() {
             if (n.length > 0 && t < e) {
-                var a = n.shift(), r = a[0], s = a[1];
+                var r = n.shift(), a = r[0], s = r[1];
                 ++t;
-                r.always(o);
+                a.always(o);
                 i.ajax(s);
             }
         };
         return function(e, t) {
             n.push([ e, t ]);
-            a();
+            r();
         };
     }(), h = function(e) {
-        a.applyTo(this);
+        r.applyTo(this);
         var t = {
             url: "",
             type: "GET",
@@ -5734,10 +5734,10 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
             var e = this, t = this._opts, n = l({}, t), i = "jsonp" === n.dataType;
             i && (n.crossDomain = !0);
             n.complete = function(n, o) {
-                var a, r = +n.status, s = n.responseJSON, l = {
+                var r, a = +n.status, s = n.responseJSON, l = {
                     error: "1",
-                    msg: "Request error (status: " + (o || r) + ")"
-                }, c = 200 === r || "success" === o;
+                    msg: "Request error (status: " + (o || a) + ")"
+                }, c = 200 === a || "success" === o;
                 if (!i && !s) {
                     s = u(n.responseText);
                     if (s && "<" !== s.charAt(0)) try {
@@ -5745,14 +5745,14 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
                     } catch (p) {}
                 }
                 c || (s = s || l);
-                a = {
+                r = {
                     data: s,
                     xhr: n,
                     origin: t,
-                    status: r || o
+                    status: a || o
                 };
-                c ? e.emit("response", null, a) : e.emit("error", s, a);
-                e.emit("end", a);
+                c ? e.emit("response", null, r) : e.emit("error", s, r);
+                e.emit("end", r);
                 e.destroy();
             };
             f(e, n);
@@ -5786,17 +5786,17 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
         }
         t = t || {};
         e && (t.url = e);
-        var o = new h(t), a = function(e, n) {
+        var o = new h(t), r = function(e, n) {
             var i = e.stack && e.stack.split("\n").slice(0, 2).join("\n") || e, o = {
                 stack: i,
                 origin: t,
                 response: n
             };
             p("error", o, n);
-            r(function() {
+            a(function() {
                 console.log("%c " + i, "color:#ae0000");
             }, 1);
-        }, l = c(t.error || s, null, a), u = c(t.success || s, null, a);
+        }, l = c(t.error || s, null, r), u = c(t.success || s, null, r);
         if (p("request", o, n) !== !1) {
             if (n && (n = i(n))) {
                 var d, f, m = "data-async-lock";
@@ -5832,21 +5832,21 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
         }
     };
     i.each([ "get", "post", "jsonp" ], function(e, n) {
-        t[n] = function(e, i, o, a, r) {
+        t[n] = function(e, i, o, r, a) {
             if ("function" == typeof i) {
-                r = r || a;
-                a = o;
+                a = a || r;
+                r = o;
                 o = i;
                 i = void 0;
             }
-            if (a && "function" != typeof a) {
-                r = a;
-                a = void 0;
+            if (r && "function" != typeof r) {
+                a = r;
+                r = void 0;
             }
             var s = {
                 data: i,
                 success: o,
-                error: a || o
+                error: r || o
             };
             "string" == typeof e ? s.url = e : l(s, e);
             var u = n;
@@ -5855,7 +5855,7 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
                 s.dataType = "jsonp";
             }
             s.type = u;
-            return t.ajax(s, r);
+            return t.ajax(s, a);
         };
     });
 });
@@ -5868,16 +5868,16 @@ define("lib/ui/tab/1.0.0/tab", [ "require", "exports", "module", "jquery", "lib/
         };
         n.el = o(e);
         n.options = o.extend(!0, {}, i, t);
-        var a = s.build(e, !1);
-        n.hd = a.get("hd");
-        n.bd = a.get("bd");
-        n.hdItems = a.get("hdItem");
-        n.containers = a.get("container");
+        var r = s.build(e, !1);
+        n.hd = r.get("hd");
+        n.bd = r.get("bd");
+        n.hdItems = r.get("hdItem");
+        n.containers = r.get("container");
         n._initEvent();
         n._init();
     }
-    var o = e("jquery"), a = e("lib/core/1.0.0/event/emitter"), r = e("lib/core/1.0.0/utils/util"), s = e("lib/core/1.0.0/dom/build");
-    r.inherits(i, a);
+    var o = e("jquery"), r = e("lib/core/1.0.0/event/emitter"), a = e("lib/core/1.0.0/utils/util"), s = e("lib/core/1.0.0/dom/build");
+    a.inherits(i, r);
     i.prototype._initEvent = function() {
         var e = this;
         e.hdItems.on(e.options.event, function(t) {
@@ -5911,9 +5911,9 @@ define("lib/ui/tab/1.0.0/tab", [ "require", "exports", "module", "jquery", "lib/
 define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./common", "lib/core/1.0.0/utils/form", "lib/ui/box/1.0.1/box", "lib/plugins/lazyload/1.9.3/lazyload", "lib/plugins/uploader/1.0.1/uploader", "plugins/validator/1.0.0/validator", "lib/core/1.0.0/io/request", "lib/ui/tab/1.0.0/tab" ], function(e, t, n) {
     "use strict";
     function i() {
-        r("#jInfoForm").validate({
+        a("#jInfoForm").validate({
             onfocusout: function(e) {
-                r(e).valid();
+                a(e).valid();
             },
             submitHandler: function(e) {
                 var t = l.serializeForm(e);
@@ -5941,8 +5941,8 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
                 },
                 mobile: {
                     required: !0,
-                    minlength: 11,
-                    mobile: !0
+                    mobile: !0,
+                    minlength: 11
                 },
                 email: {
                     required: !0,
@@ -5991,7 +5991,7 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
     function o() {
         s.validate({
             onfocusout: function(e) {
-                r(e).valid();
+                a(e).valid();
             },
             submitHandler: function(e) {
                 var t = l.serializeForm(e);
@@ -6036,9 +6036,9 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
             }
         });
     }
-    function a(e) {
+    function r(e) {
         var t;
-        r.ajax({
+        a.ajax({
             url: e,
             dataType: "json",
             type: "POST",
@@ -6049,12 +6049,12 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
         });
         return t;
     }
-    var r = e("jquery"), s = r("#jFormPwd");
+    var a = e("jquery"), s = a("#jFormPwd");
     e("./common");
     var l = e("lib/core/1.0.0/utils/form"), u = e("lib/ui/box/1.0.1/box"), d = (e("lib/plugins/lazyload/1.9.3/lazyload"), 
     e("lib/plugins/uploader/1.0.1/uploader"));
     e("plugins/validator/1.0.0/validator");
-    var c = e("lib/core/1.0.0/io/request"), p = r("#jAvater"), f = r(".jImg");
+    var c = e("lib/core/1.0.0/io/request"), p = a("#jAvater"), f = a(".jImg");
     e();
     p.on("click", function() {
         var e = new d({
@@ -6065,7 +6065,7 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
                     fileObjName: "file_data",
                     swf: $PAGE_DATA.swf,
                     uploader: $PAGE_DATA.uploader,
-                    formData: r.extend(!0, {}, $PAGE_DATA.uploadData)
+                    formData: a.extend(!0, {}, $PAGE_DATA.uploadData)
                 }
             } ],
             limit: 1,
@@ -6075,7 +6075,7 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
             if (e.length > 0) {
                 f.attr("src", e[0]);
                 p.val(e[0]);
-                r("#avatarUrl").val(e[0]);
+                a("#avatarUrl").val(e[0]);
             }
             this.hide();
         });
@@ -6083,43 +6083,43 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
     });
     i();
     o();
-    r(".jMSubBtn").click(function() {
-        r("#jInfoForm").submit();
+    a(".jMSubBtn").click(function() {
+        a("#jInfoForm").submit();
     });
-    r(".jSubBtn").click(function() {
-        r("#jFormPwd").submit();
+    a(".jSubBtn").click(function() {
+        a("#jFormPwd").submit();
     });
-    var h = e("lib/ui/tab/1.0.0/tab"), m = r("#jIfmTab"), g = new h(m);
+    var h = e("lib/ui/tab/1.0.0/tab"), m = a("#jIfmTab"), g = new h(m);
     g.setCurrent();
-    r("base").attr("href");
-    r.extend({
+    a("base").attr("href");
+    a.extend({
         loadAreaSelect: function(e) {
-            var t = r("#" + e), n = t.find("select").eq(0), i = n.attr("name"), o = a($PAGE_DATA.location);
+            var t = a("#" + e), n = t.find("select").eq(0), i = n.attr("name"), o = r($PAGE_DATA.location);
             n.empty();
             n.append("<option value='0'>请选择省</option>");
             if (null != o) {
-                r.each(o, function(e, t) {
+                a.each(o, function(e, t) {
                     n.append("<option value='" + t.id + "'>" + t.name + "</option>");
                 });
-                var s = r("input[name='" + i + "_hide']").val();
+                var s = a("input[name='" + i + "_hide']").val();
                 if ("undefined" != typeof s && "" != s && null != s && "0" != s) {
                     n.val(s);
                     var l = t.find("select").eq(1), u = l.attr("name");
                     l.empty();
                     l.append("<option value='0'>请选择市</option>");
-                    var d = a($PAGE_DATA.location + s);
+                    var d = r($PAGE_DATA.location + s);
                     if (0 != d) {
-                        r.each(d, function(e, t) {
+                        a.each(d, function(e, t) {
                             l.append("<option value='" + t.id + "'>" + t.name + "</option>");
                         });
-                        var c = r("input[name='" + u + "_hide']").val();
+                        var c = a("input[name='" + u + "_hide']").val();
                         if ("" != c && "undefined" != typeof c && null != c && "0" != c) {
                             l.val(c);
-                            var p = t.find("select").eq(2), f = p.attr("name"), h = r("input[name='" + f + "_hide']").val(), m = a($PAGE_DATA.location + c);
+                            var p = t.find("select").eq(2), f = p.attr("name"), h = a("input[name='" + f + "_hide']").val(), m = r($PAGE_DATA.location + c);
                             p.empty();
                             p.append("<option value='0'>请选择县/区</option>");
                             if (null != m) {
-                                r.each(m, function(e, t) {
+                                a.each(m, function(e, t) {
                                     p.append("<option value='" + t.id + "'>" + t.name + "</option>");
                                 });
                                 "" != h && "undefined" != typeof h && null != h && "0" != h && p.val(h);
@@ -6132,53 +6132,53 @@ define("conf/uc/person-info", [ "require", "exports", "module", "jquery", "./com
                 t.find("select").each(function(e) {
                     switch (e) {
                       case 1:
-                        r(this).empty();
-                        r(this).append("<option value='0'>请选择市</option>");
+                        a(this).empty();
+                        a(this).append("<option value='0'>请选择市</option>");
                         break;
 
                       case 2:
-                        r(this).empty();
-                        r(this).append("<option value='0'>请选择区/县</option>");
+                        a(this).empty();
+                        a(this).append("<option value='0'>请选择区/县</option>");
                     }
                 });
-                var e = r(this).val(), n = a($PAGE_DATA.location + e);
-                0 != n && r.each(n, function(e, t) {
+                var e = a(this).val(), n = r($PAGE_DATA.location + e);
+                0 != n && a.each(n, function(e, t) {
                     l.append("<option value='" + t.id + "'>" + t.name + "</option>");
                 });
             });
-            var g = r("#" + n.attr("name") + "_hid").val(), l = t.find("select").eq(1);
+            var g = a("#" + n.attr("name") + "_hid").val(), l = t.find("select").eq(1);
             if (null != g && "undefined" != typeof g && "" != g) {
                 n.val(g);
-                var v = a($PAGE_DATA.location + g);
+                var v = r($PAGE_DATA.location + g);
                 l.empty();
                 l.append("<option value='0'>请选择市</option>");
-                0 != v && r.each(v, function(e, t) {
+                0 != v && a.each(v, function(e, t) {
                     l.append("<option value='" + t.id + "'>" + t.name + "</option>");
                 });
             }
             l.change(function() {
-                var e = r(this).val(), t = a($PAGE_DATA.location + e);
+                var e = a(this).val(), t = r($PAGE_DATA.location + e);
                 p.empty();
                 p.append("<option value='0'>请选择县/区</option>");
-                null != t && r.each(t, function(e, t) {
+                null != t && a.each(t, function(e, t) {
                     p.append("<option value='" + t.id + "'>" + t.name + "</option>");
                 });
             });
-            var b = r("#" + l.attr("name") + "_hid").val(), p = t.find("select").eq(2);
+            var b = a("#" + l.attr("name") + "_hid").val(), p = t.find("select").eq(2);
             if (null != b && "undefined" != typeof b && "" != b) {
                 l.val(b);
-                var m = a($PAGE_DATA.location + b);
+                var m = r($PAGE_DATA.location + b);
                 p.empty();
                 p.append("<option value='0'>请选择县/区</option>");
-                null != m && r.each(m, function(e, t) {
+                null != m && a.each(m, function(e, t) {
                     p.append("<option value='" + t.id + "'>" + t.name + "</option>");
                 });
             }
-            var y = r("#" + p.attr("name") + "_hid").val();
+            var y = a("#" + p.attr("name") + "_hid").val();
             null != y && "undefined" != typeof y && "" != y && p.val(y);
         }
     });
-    r.loadAreaSelect("areaSelect");
+    a.loadAreaSelect("areaSelect");
 });
 
 !function(e) {

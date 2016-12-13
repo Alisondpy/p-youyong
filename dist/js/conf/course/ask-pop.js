@@ -783,18 +783,18 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             e = t = null;
             return r;
         }());
-    }, q = function() {
+    }, j = function() {
         return {
             x: d.scrollLeft(),
             y: d.scrollTop()
         };
-    }, j = function(e) {
+    }, q = function(e) {
         return {
             w: e.width(),
             h: e.height()
         };
     }, E = function() {
-        return j(c);
+        return q(c);
     }, z = function(e) {
         var t = $(e), n = t ? r(e).offset() : {
             left: e.pageX,
@@ -803,7 +803,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         e = t ? e : e.target;
         var i = e.ownerDocument;
         if (i === u.document) return n;
-        var o = i.defaultView || i.parentWindow, s = o.frameElement, a = q(), l = r(s).offset();
+        var o = i.defaultView || i.parentWindow, s = o.frameElement, a = j(), l = r(s).offset();
         return {
             left: n.left + l.left - a.x,
             top: n.top + l.top - a.y
@@ -822,9 +822,9 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         return 0;
     }, L = function(e) {
         return A(e, "width");
-    }, N = function(e) {
+    }, S = function(e) {
         return A(e, "height");
-    }, S = function() {
+    }, N = function() {
         try {
             var e = l.activeElement, t = e.contentDocument;
             return t && t.activeElement || e;
@@ -893,7 +893,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             }
             i.open = !0;
             i.anchor = a;
-            i._activeElement = S();
+            i._activeElement = N();
             i.emit("beforeShow", t);
             l.appendTo(t.appendTo).css("display", "block");
             i.emit("show", t);
@@ -963,7 +963,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         focus: function(e) {
             var t = this._, n = this.node, o = this._popup, s = i.current, a = t.zIndex;
             s && s !== this && s.blur(!1);
-            if (!r.contains(n, S())) {
+            if (!r.contains(n, N())) {
                 var u = o.find("[autofocus]")[0];
                 !t.focusing && u ? t.focusing = !0 : u = n;
                 this._focus(u);
@@ -993,7 +993,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             } catch (t) {}
         },
         center: function() {
-            var e = this._popup, t = this._.fixed, n = q(), i = E(), r = j(e), o = t ? 0 : n.x, s = t ? 0 : n.y, a = (i.w - r.w) / 2 + o, u = .382 * (i.h - r.h) + s;
+            var e = this._popup, t = this._.fixed, n = j(), i = E(), r = q(e), o = t ? 0 : n.x, s = t ? 0 : n.y, a = (i.w - r.w) / 2 + o, u = .382 * (i.h - r.h) + s;
             e.css({
                 left: g(_(a), o),
                 top: g(_(u), s)
@@ -1010,7 +1010,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             l && l.length || (l = [ "b" ]);
             var d = n._dirClass;
             d && o.removeClass(d);
-            var f = i.fixed, h = E(), p = q(), v = L(o), g = N(o), b = z(e), x = L(s), C = N(s), k = b.left, $ = b.top, T = f ? k - p.x : k, j = f ? $ - p.y : $, A = f ? 0 : p.x, S = f ? 0 : p.y, F = A + h.w - v, I = S + h.h - g, M = {
+            var f = i.fixed, h = E(), p = j(), v = L(o), g = S(o), b = z(e), x = L(s), C = S(s), k = b.left, $ = b.top, T = f ? k - p.x : k, q = f ? $ - p.y : $, A = f ? 0 : p.x, N = f ? 0 : p.y, F = A + h.w - v, I = N + h.h - g, M = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1021,21 +1021,21 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 l: "left",
                 r: "left"
             }, P = {}, D = [ {
-                t: j - g,
-                b: j + C,
+                t: q - g,
+                b: q + C,
                 l: T - v,
                 r: T + x
             }, {
-                t: j,
-                b: j - g + C,
+                t: q,
+                b: q - g + C,
                 l: T,
                 r: T - v + x
             } ], H = {
                 l: T + y((x - v) / 2),
-                t: j + y((C - g) / 2)
+                t: q + y((C - g) / 2)
             }, W = {
                 left: [ A, F ],
-                top: [ S, I ]
+                top: [ N, I ]
             };
             c || w(l, function(e, t) {
                 D[t][e] > W[O[e]][1] && (e = l[t] = M[e]);
@@ -1057,7 +1057,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!Z) return n;
                 U = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Z);
             }
-            var Y, X, Q = "top" !== O[B], G = [ "v", "h" ][1 ^ Q], J = L(U), K = N(U), ee = {}, te = Q ? "left" : "top";
+            var Y, X, Q = "top" !== O[B], G = [ "v", "h" ][1 ^ Q], J = L(U), K = S(U), ee = {}, te = Q ? "left" : "top";
             switch (G) {
               case "h":
                 Y = y(k + (x - J) / 2);
@@ -2790,13 +2790,13 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
     e("lib/plugins/validation/1.15.1/localization/messages_zh");
     var o = /^(\d{3,4}-?)?\d{7,9}$/, s = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/, a = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, u = /^\d{5,20}$/, l = [ {
         name: "email",
-        text: r.validator.messages.email,
+        text: "请正确填写您的邮箱地址",
         func: function(e, t) {
             return this.optional(t) || a.test(e);
         }
     }, {
         name: "mobile",
-        text: "请正确输入您的手机号码",
+        text: "请正确填写您的手机号码",
         func: function(e, t) {
             return this.optional(t) || s.test(e);
         }
@@ -2904,8 +2904,8 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         try {
             var T = new Function("$data", "$filename", $);
             return T.prototype = h, T;
-        } catch (q) {
-            throw q.temp = "function anonymous($data,$filename) {" + $ + "}", q;
+        } catch (j) {
+            throw j.temp = "function anonymous($data,$filename) {" + $ + "}", j;
         }
     }
     var i = function(e, t) {
@@ -3211,7 +3211,10 @@ define("conf/course/ask-pop", [ "require", "exports", "module", "jquery", "lib/u
             i(e).valid();
         }
     });
-    s.on("keyup", "#jContent", function() {
+    i(".jAskSub").click(function() {
+        i("#jSigninForm").submit();
+    });
+    s.on("input propertychange", "#jContent", function() {
         var e = i("#jContent").val().length;
         if (e > 100) {
             i(this).addClass("text-error");

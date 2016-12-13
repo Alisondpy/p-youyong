@@ -2850,13 +2850,13 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
     e("lib/plugins/validation/1.15.1/localization/messages_zh");
     var o = /^(\d{3,4}-?)?\d{7,9}$/, a = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/, s = /^\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/, u = /^\d{5,20}$/, l = [ {
         name: "email",
-        text: r.validator.messages.email,
+        text: "请正确填写您的邮箱地址",
         func: function(e, t) {
             return this.optional(t) || s.test(e);
         }
     }, {
         name: "mobile",
-        text: "请正确输入您的手机号码",
+        text: "请正确填写您的手机号码",
         func: function(e, t) {
             return this.optional(t) || a.test(e);
         }
@@ -3542,7 +3542,7 @@ define("plugins/pager/1.0.0/pager", [ "require", "exports", "module", "jquery", 
             var o = r.Deferred();
             a[t.ajaxType](t.url, r.extend({}, i, t.data), function(t) {
                 e.emit("ajaxSuccess", t, function(t) {
-                    if (t > 1) {
+                    if (t > 0) {
                         e.pagination.setTotalCount(t);
                         e.pagination.show();
                     } else {

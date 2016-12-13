@@ -2754,7 +2754,7 @@ define("plugins/pager/1.0.0/pager", [ "require", "exports", "module", "jquery", 
             var r = o.Deferred();
             a[t.ajaxType](t.url, o.extend({}, i, t.data), function(t) {
                 e.emit("ajaxSuccess", t, function(t) {
-                    if (t > 1) {
+                    if (t > 0) {
                         e.pagination.setTotalCount(t);
                         e.pagination.show();
                     } else {
@@ -3222,7 +3222,7 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
         }
     });
     var k = a(".jWrap1"), P = a(".jPublish"), $ = a(".jArrow"), E = a(".jTxtNum"), I = a(".jTxt");
-    k.on("keyup", ".jTxt", function() {
+    k.on("input propertychange", ".jTxt", function() {
         var e = I.val().length;
         if (e > 300) {
             a(this).addClass("text-error");

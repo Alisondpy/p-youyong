@@ -2570,7 +2570,7 @@ define("plugins/pager/1.0.0/pager", [ "require", "exports", "module", "jquery", 
             var r = o.Deferred();
             a[t.ajaxType](t.url, o.extend({}, i, t.data), function(t) {
                 e.emit("ajaxSuccess", t, function(t) {
-                    if (t > 1) {
+                    if (t > 0) {
                         e.pagination.setTotalCount(t);
                         e.pagination.show();
                     } else {
