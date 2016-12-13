@@ -13,6 +13,9 @@ body {
 	height: 440px;
 	overflow-y:auto;
 }
+.ui-question-box{
+	height: 392px;
+}
 .ui-hide{
 	display: none;
 }
@@ -304,11 +307,10 @@ em{
 					.square{
 						padding-top: 20px;
 						.textarea{
-							width: 243px;
+							width: 213px;
 							height:60px;
 							border: 1px solid #ddd;
 							resize:none;
-							padding: 5px;
 						}
 						p{
 							font-style:normal;
@@ -321,6 +323,17 @@ em{
 								float:right;
 								font-style:normal;
 							}
+						}
+					}
+					.questionSquare{
+						.line{
+							p{
+								float: left;
+							}
+						}
+						.question-input{
+							width: 213px;
+							margin-bottom: 10px;
 						}
 					}
 				}

@@ -44,7 +44,8 @@ define(function(require, exports, module) {
             height: '655'
         },
         flash: {
-            g:$PAGE_DATA['startTime'] || 0,
+            i: '', //初始图片地址
+            g: $PAGE_DATA['startTime'] || 0,
             f: $PAGE_DATA['m3u8'], //必填 请别跨域 要播放文件的路径
             a: $PAGE_DATA['play'] //必填 请别跨域 如果要调用m3u8格式的文件，必须要用到的播放插件【调用时的参数，只有当s>0的时候有效】
         }
@@ -56,13 +57,18 @@ define(function(require, exports, module) {
             isSendPlayTime = false;
             var _params = $.extend(true,{},$PAGE_DATA['setPlayTimeParams'], {
                 playTime: seconds,
-                duration: player.getTotalTime()
+                duration: player.getTotalTime(),
+                courseId:sourceId,
+                lessonId:lessonId
             });
             io.get($PAGE_DATA['setPlayTime'],_params,function(data){
                 isSendPlayTime = true;
             },function(data){
                 isSendPlayTime = true;
             });
+        }
+        if(seconds == player.getTotalTime()){
+
         }
     });
     //====================播放器 end

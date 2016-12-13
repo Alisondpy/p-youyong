@@ -97,4 +97,9 @@ define(function(require, exports, module) {
         renderList($PAGE_DATA['loadNews'],{'type':id},'jWrap','jWrapBox',jPagination);
     });
 
+    lazy = new Lazyload($('.mod-slider').find('.jImg'), {
+        mouseWheel: true,
+        effect: 'fadeIn',
+        snap: true
+    });
 });

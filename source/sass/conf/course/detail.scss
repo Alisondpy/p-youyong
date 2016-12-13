@@ -363,12 +363,12 @@ a {
                 }
                 .arrow {
                     position: absolute;
-                    top: 42px;
+                    top: 40px;
                     left: -19px;
                     display: inline-block;
                     font-size: 28px;
                     color: #ccc;
-                    line-height: 22px;
+                    line-height: 24px;
                     background-color: #fff;
                 }
                 .arrow-disabled {
@@ -386,12 +386,9 @@ a {
                     width: 540px;
                     height: 60px;
                     margin-top: 10px;
-                    padding: 10px;
-                    border: 1px solid #ccc;
                     outline: none;
                     resize: none;
                     font-size: 14px;
-                    color: #ccc;
                 }
                 .text-disabled {
                     border: 1px solid #eef3f7;

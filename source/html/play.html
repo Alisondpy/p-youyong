@@ -130,7 +130,7 @@
                         </div>
                     </div>
                     <div class="square jAnswerSquare">
-                            <textarea class="textarea jTxtA jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea>
+                            <textarea class="textarea ui-input jTxtA jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea>
                             <div class="line">
                             <span>
                             <input type="checkbox" id="jAnswer" name="show-type">
@@ -149,7 +149,7 @@
                         <a href="javascript:;" class="m-answer tab-q ui-current jSubNav" data-type="2">我的问答</a>
                         <a href="javascript:;" class="all-answer tab-q jSubNav" data-type="3">全部问答</a>
                     </div>
-                    <div id="jQuestionTab1" class="ui-answer-box">
+                    <div id="jQuestionTab1" class="ui-answer-box ui-question-box">
                         <div class="ui-loading-list">
                             <div class="img-loading"></div>
                             <div class="txt">
@@ -157,7 +157,7 @@
                             </div>
                         </div>
                     </div>
-                    <div id="jQuestionTab2" class="ui-answer-box">
+                    <div id="jQuestionTab2" class="ui-answer-box ui-question-box">
                         <div class="ui-loading-list">
                             <div class="img-loading"></div>
                             <div class="txt">
@@ -165,12 +165,10 @@
                             </div>
                         </div>
                     </div>
-                    <div class="square jQuestionSquare">
-                            <textarea class="textarea jTxtQ jTxt" placeholder="有疑问?快来记录吧~(限500字)"></textarea>
+                    <div class="square jQuestionSquare questionSquare">
+                            <input type="text" class="ui-input question-input" placeholder="想问点什么？">
+                            <textarea class="textarea ui-input jTxtQ jTxt" placeholder="解释下你的问题吧 (限500字)"></textarea>
                             <div class="line">
-                            <span>
-                            <input type="checkbox" id="jQues" name="show-type">
-                            <label for="jQues">公开</label>
                             </span>
                                 <p class="jTxtNumQ"><em class="num">0</em>/500</p>
                             </div>
