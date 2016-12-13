@@ -62,6 +62,9 @@ define(function(require, exports, module) {
 		}
 	})
 
+	$(".jAskSub").click(function(){
+		$('#jSigninForm').submit();
+	})
 	//评论字数限制
 	jContainer.on('input propertychange','#jContent',function(){
 		var txtLen = $('#jContent').val().length;
