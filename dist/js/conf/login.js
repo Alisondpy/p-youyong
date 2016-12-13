@@ -3446,7 +3446,6 @@ define("conf/login", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
         errorPlacement: function(e, t) {
             if ("jDynamic" === t.attr("id")) {
                 e.appendTo(t.parents(".item"));
-                s(t).parent().addClass("error-red");
                 s(t).parents(".item").addClass("error-red");
             } else {
                 e.appendTo(t.parent());
@@ -3454,10 +3453,23 @@ define("conf/login", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
             }
         },
         onfocusout: function(e) {
-            s(e).valid() ? s(e).parent(".item").removeClass("error") : s(e).parent(".item").addClass("error");
+            if (s(e).valid()) {
+                s(e).parent(".item").removeClass("error");
+                s(e).parents(".item").removeClass("error-red");
+            } else {
+                s(e).parent(".item").addClass("error");
+                s(e).parent().addClass("error-red");
+                s(e).parents(".item").addClass("error-red");
+            }
         },
         onkeyup: function(e) {
-            s(e).valid() ? s(e).parent(".item").removeClass("error") : s(e).parent(".item").addClass("error");
+            if (s(e).valid()) {
+                s(e).parent(".item").removeClass("error");
+                s(e).parents(".item").removeClass("error-red");
+            } else {
+                s(e).parent(".item").addClass("error");
+                s(e).parents(".item").addClass("error-red");
+            }
         },
         success: function(e) {
             if ("jDynamic-error" === e.attr("id")) {
@@ -3481,8 +3493,8 @@ define("conf/login", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
         },
         messages: {
             mobile: {
-                required: "请输入手机号",
-                mobile: "请正确地填写你的手机号"
+                required: "请输入您的手机号",
+                mobile: "请正确填写您的手机号"
             },
             vierfyCode: {
                 required: "请输入动态码"
@@ -3516,12 +3528,12 @@ define("conf/login", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
         },
         messages: {
             username: {
-                required: "请输入手机或邮箱",
-                mobile: "请输入正确的手机号或邮箱地址"
+                required: "请输入您的手机或邮箱",
+                mobile: "请正确填写您的手机号或邮箱地址"
             },
             password: {
-                required: "请输入密码",
-                minlength: "密码长度不能小于6个字符"
+                required: "请输入您的密码",
+                minlength: "您输入的密码和账户名不匹配"
             }
         },
         submitHandler: function(e) {

@@ -3,13 +3,13 @@
 /*! Based on work by Simon Willison: http://gist.github.com/292562 */
 
 function ckcpt() {
-    var t = "";
-    t += "drift.swf,0,0,0,0,2,0|";
-    return t;
+    var e = "";
+    e += "drift.swf,0,0,0,0,2,0|";
+    return e;
 }
 
 function ckstyle() {
-    var t = {
+    var e = {
         cpath: "style_ex.swf",
         language: "",
         flashvars: "",
@@ -44,13 +44,13 @@ function ckstyle() {
         drift_html: '{font color="#d9d6c3" size="20px"}[$drift]{/font}',
         drift_time: 3e5
     };
-    return t;
+    return e;
 }
 
 !function() {
     var CKobject = {
-        _K_: function(t) {
-            return document.getElementById(t);
+        _K_: function(e) {
+            return document.getElementById(e);
         },
         _T_: !1,
         _M_: !1,
@@ -59,43 +59,43 @@ function ckstyle() {
         _I_: null,
         _J_: 0,
         _O_: {},
-        uaMatch: function(t, e, n, i, r, a, o, s, l) {
-            var c = e.exec(t);
+        uaMatch: function(e, t, n, i, r, a, o, s, l) {
+            var c = t.exec(e);
             if (null != c) return {
                 b: "IE",
                 v: c[2] || "0"
             };
-            c = n.exec(t);
+            c = n.exec(e);
             if (null != c) return {
                 b: c[1] || "",
                 v: c[2] || "0"
             };
-            c = i.exec(t);
+            c = i.exec(e);
             if (null != c) return {
                 b: c[1] || "",
                 v: c[2] || "0"
             };
-            c = r.exec(t);
+            c = r.exec(e);
             if (null != c) return {
                 b: c[1] || "",
                 v: c[2] || "0"
             };
-            c = a.exec(t);
+            c = a.exec(e);
             if (null != c) return {
                 b: c[2] || "",
                 v: c[1] || "0"
             };
-            c = o.exec(t);
+            c = o.exec(e);
             if (null != c) return {
                 b: c[1] || "",
                 v: c[2] || "0"
             };
-            c = s.exec(t);
+            c = s.exec(e);
             if (null != c) return {
                 b: c[1] || "",
                 v: c[2] || "0"
             };
-            c = l.exec(t);
+            c = l.exec(e);
             return null != c ? {
                 b: c[1] || "",
                 v: c[2] || "0"
@@ -105,7 +105,7 @@ function ckstyle() {
             };
         },
         browser: function() {
-            var t = navigator.userAgent, e = /(msie\s|trident.*rv:)([\w.]+)/, n = /(firefox)\/([\w.]+)/, i = /(opera).+version\/([\w.]+)/, r = /(chrome)\/([\w.]+)/, a = /version\/([\w.]+).*(safari)/, o = /(safari)\/([\w.]+)/, s = /(mozilla)\/([\w.]+)/, l = /(mobile)\/([\w.]+)/, c = t.toLowerCase(), u = this.uaMatch(c, e, n, i, r, a, o, s, l);
+            var e = navigator.userAgent, t = /(msie\s|trident.*rv:)([\w.]+)/, n = /(firefox)\/([\w.]+)/, i = /(opera).+version\/([\w.]+)/, r = /(chrome)\/([\w.]+)/, a = /version\/([\w.]+).*(safari)/, o = /(safari)\/([\w.]+)/, s = /(mozilla)\/([\w.]+)/, l = /(mobile)\/([\w.]+)/, c = e.toLowerCase(), u = this.uaMatch(c, t, n, i, r, a, o, s, l);
             if (u.b) {
                 b = u.b;
                 v = u.v;
@@ -116,23 +116,23 @@ function ckstyle() {
             };
         },
         Platform: function() {
-            var t = "", e = navigator.userAgent, n = (navigator.appVersion, {
-                iPhone: e.indexOf("iPhone") > -1 || e.indexOf("Mac") > -1,
-                iPad: e.indexOf("iPad") > -1,
-                ios: !!e.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
-                android: e.indexOf("Android") > -1 || e.indexOf("Linux") > -1,
-                webKit: e.indexOf("AppleWebKit") > -1,
-                trident: e.indexOf("Trident") > -1,
-                gecko: e.indexOf("Gecko") > -1 && e.indexOf("KHTML") == -1,
-                presto: e.indexOf("Presto") > -1,
-                mobile: !!e.match(/AppleWebKit.*Mobile.*/) || !!e.match(/AppleWebKit/),
-                webApp: e.indexOf("Safari") == -1
+            var e = "", t = navigator.userAgent, n = (navigator.appVersion, {
+                iPhone: t.indexOf("iPhone") > -1 || t.indexOf("Mac") > -1,
+                iPad: t.indexOf("iPad") > -1,
+                ios: !!t.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
+                android: t.indexOf("Android") > -1 || t.indexOf("Linux") > -1,
+                webKit: t.indexOf("AppleWebKit") > -1,
+                trident: t.indexOf("Trident") > -1,
+                gecko: t.indexOf("Gecko") > -1 && t.indexOf("KHTML") == -1,
+                presto: t.indexOf("Presto") > -1,
+                mobile: !!t.match(/AppleWebKit.*Mobile.*/) || !!t.match(/AppleWebKit/),
+                webApp: t.indexOf("Safari") == -1
             });
             for (var i in n) if (n[i]) {
-                t = i;
+                e = i;
                 break;
             }
-            return t;
+            return e;
         },
         isHTML5: function() {
             return !!document.createElement("video").canPlayType;
@@ -141,33 +141,33 @@ function ckstyle() {
             return this._T_;
         },
         getVideo: function() {
-            var t = "", e = this._E_.v;
-            if (e && e.length > 1) for (var n = 0; n < e.length; n++) {
-                var i = e[n].split("->");
-                i.length >= 1 && "" != i[0] && (t += '<source src="' + i[0] + '"');
-                i.length >= 2 && "" != i[1] && (t += ' type="' + i[1] + '"');
-                t += ">";
+            var e = "", t = this._E_.v;
+            if (t && t.length > 1) for (var n = 0; n < t.length; n++) {
+                var i = t[n].split("->");
+                i.length >= 1 && "" != i[0] && (e += '<source src="' + i[0] + '"');
+                i.length >= 2 && "" != i[1] && (e += ' type="' + i[1] + '"');
+                e += ">";
             }
-            return t;
+            return e;
         },
-        getVars: function(t) {
-            var e = this._A_;
-            return "undefined" == typeof e ? null : t in e ? e[t] : null;
+        getVars: function(e) {
+            var t = this._A_;
+            return "undefined" == typeof t ? null : e in t ? t[e] : null;
         },
         getParams: function() {
-            var t = "";
+            var e = "";
             if (this._A_) {
-                1 == parseInt(this.getVars("p")) && (t += ' autoplay="autoplay"');
-                1 == parseInt(this.getVars("e")) && (t += ' loop="loop"');
-                2 == parseInt(this.getVars("p")) && (t += ' preload="metadata"');
-                this.getVars("i") && (t += ' poster="' + this.getVars("i") + '"');
+                1 == parseInt(this.getVars("p")) && (e += ' autoplay="autoplay"');
+                1 == parseInt(this.getVars("e")) && (e += ' loop="loop"');
+                2 == parseInt(this.getVars("p")) && (e += ' preload="metadata"');
+                this.getVars("i") && (e += ' poster="' + this.getVars("i") + '"');
             }
-            return t;
+            return e;
         },
-        getpath: function(t) {
-            var e = "CDEFGHIJKLMNOPQRSTUVWXYZcdefghijklmnopqrstuvwxyz", n = t.substr(0, 1);
-            if (e.indexOf(n) > -1 && (t.substr(0, 4) == n + "://" || t.substr(0, 4) == n + ":\\")) return t;
-            var r = unescape(window.location.href).replace("file:///", ""), a = parseInt(document.location.port), o = document.location.protocol + "//" + document.location.hostname, s = "", l = "", c = "", u = 0, f = unescape(t).split("//");
+        getpath: function(e) {
+            var t = "CDEFGHIJKLMNOPQRSTUVWXYZcdefghijklmnopqrstuvwxyz", n = e.substr(0, 1);
+            if (t.indexOf(n) > -1 && (e.substr(0, 4) == n + "://" || e.substr(0, 4) == n + ":\\")) return e;
+            var r = unescape(window.location.href).replace("file:///", ""), a = parseInt(document.location.port), o = document.location.protocol + "//" + document.location.hostname, s = "", l = "", c = "", u = 0, f = unescape(e).split("//");
             f.length > 0 && (s = f[0] + "//");
             var p = "http|https|ftp|rtsp|mms|ftp|rtmp|file", h = p.split("|");
             80 != a && a && (o += ":" + a);
@@ -175,27 +175,27 @@ function ckstyle() {
                 u = 1;
                 break;
             }
-            if (0 == u) if ("/" == t.substr(0, 1)) c = o + t; else {
+            if (0 == u) if ("/" == e.substr(0, 1)) c = o + e; else {
                 l = r.substring(0, r.lastIndexOf("/") + 1).replace("\\", "/");
-                var n = t.replace("../", "./"), o = n.split("./"), _ = o.length, f = n.replace("./", ""), d = l.split("/"), v = d.length - _;
+                var n = e.replace("../", "./"), o = n.split("./"), _ = o.length, f = n.replace("./", ""), d = l.split("/"), v = d.length - _;
                 for (i = 0; i < v; i++) c += d[i] + "/";
                 c += f;
-            } else c = t;
+            } else c = e;
             return c;
         },
         getXhr: function() {
-            var t;
+            var e;
             try {
-                t = new ActiveXObject("Msxml2.XMLHTTP");
-            } catch (e) {
+                e = new ActiveXObject("Msxml2.XMLHTTP");
+            } catch (t) {
                 try {
-                    t = new ActiveXObject("Microsoft.XMLHTTP");
-                } catch (e) {
-                    t = !1;
+                    e = new ActiveXObject("Microsoft.XMLHTTP");
+                } catch (t) {
+                    e = !1;
                 }
             }
-            t || "undefined" == typeof XMLHttpRequest || (t = new XMLHttpRequest());
-            return t;
+            e || "undefined" == typeof XMLHttpRequest || (e = new XMLHttpRequest());
+            return e;
         },
         getX: function() {
             var f = "ckstyle()";
@@ -210,21 +210,21 @@ function ckstyle() {
                 }
             }
         },
-        getSn: function(t, e) {
-            return e >= 0 ? this._X_[t].split(",")[e] : this._X_[t];
+        getSn: function(e, t) {
+            return t >= 0 ? this._X_[e].split(",")[t] : this._X_[e];
         },
-        getUrl: function(t, e) {
+        getUrl: function(e, t) {
             var n = [ "get", "utf-8" ];
-            if (t && 2 == t.length) {
-                var i = t[0], r = t[1].split("/");
+            if (e && 2 == e.length) {
+                var i = e[0], r = e[1].split("/");
                 r.length >= 2 && (n[0] = r[1]);
                 r.length >= 3 && (n[1] = r[2]);
-                this.ajax(n[0], n[1], i, function(t) {
+                this.ajax(n[0], n[1], i, function(e) {
                     var n = CKobject;
-                    if (t && "error" != t) {
-                        var i = "", r = t;
-                        if (t.indexOf("}") > -1) {
-                            for (var a = t.split("}"), o = 0; o < a.length - 1; o++) {
+                    if (e && "error" != e) {
+                        var i = "", r = e;
+                        if (e.indexOf("}") > -1) {
+                            for (var a = e.split("}"), o = 0; o < a.length - 1; o++) {
                                 i += a[o] + "}";
                                 var s = a[o].replace("{", "").split("->");
                                 2 == s.length && (n._A_[s[0]] = s[1]);
@@ -232,7 +232,7 @@ function ckstyle() {
                             r = a[a.length - 1];
                         }
                         n._E_.v = r.split(",");
-                        if (e) n.showHtml5(); else {
+                        if (t) n.showHtml5(); else {
                             n.changeParams(i);
                             n.newAdr();
                         }
@@ -240,50 +240,50 @@ function ckstyle() {
                 });
             }
         },
-        getflashvars: function(t) {
-            var e = "", n = 0;
-            if (t) for (var i in t) {
-                n > 0 && (e += "&");
-                if ("f" == i && t[i] && !this.getSn("pm_repc", -1)) {
-                    t[i] = this.getpath(t[i]);
-                    t[i].indexOf("&") > -1 && (t[i] = encodeURIComponent(t[i]));
+        getflashvars: function(e) {
+            var t = "", n = 0;
+            if (e) for (var i in e) {
+                n > 0 && (t += "&");
+                if ("f" == i && e[i] && !this.getSn("pm_repc", -1)) {
+                    e[i] = this.getpath(e[i]);
+                    e[i].indexOf("&") > -1 && (e[i] = encodeURIComponent(e[i]));
                 }
-                "y" == i && t[i] && (t[i] = this.getpath(t[i]));
-                e += i + "=" + t[i];
+                "y" == i && e[i] && (e[i] = this.getpath(e[i]));
+                t += i + "=" + e[i];
                 n++;
             }
-            return e;
+            return t;
         },
-        getparam: function(t) {
-            var e = "", n = "", i = {
+        getparam: function(e) {
+            var t = "", n = "", i = {
                 allowScriptAccess: "always",
                 allowFullScreen: !0,
                 quality: "high",
                 bgcolor: "#000"
             };
-            if (t) for (var r in t) i[r] = t[r];
+            if (e) for (var r in e) i[r] = e[r];
             for (var a in i) {
-                e += a + '="' + i[a] + '" ';
+                t += a + '="' + i[a] + '" ';
                 n += '<param name="' + a + '" value="' + i[a] + '" />';
             }
-            e = e.replace("movie=", "src=");
+            t = t.replace("movie=", "src=");
             return {
-                w: e,
+                w: t,
                 v: n
             };
         },
-        getObjectById: function(t) {
+        getObjectById: function(e) {
             if (this._T_) return this;
-            var e = null, n = this._K_(t), i = "embed";
-            if (n && "OBJECT" == n.nodeName) if ("undefined" != typeof n.SetVariable) e = n; else {
+            var t = null, n = this._K_(e), i = "embed";
+            if (n && "OBJECT" == n.nodeName) if ("undefined" != typeof n.SetVariable) t = n; else {
                 var r = n.getElementsByTagName(i)[0];
-                r && (e = r);
+                r && (t = r);
             }
-            return e;
+            return t;
         },
-        ajax: function(t, e, n, i) {
+        ajax: function(e, t, n, i) {
             var r = this.getXhr(), a = [], o = "";
-            if ("get" == t) {
+            if ("get" == e) {
                 o = n.indexOf("?") > -1 ? n + "&t=" + new Date().getTime() : n + "?t=" + new Date().getTime();
                 r.open("get", o);
             } else {
@@ -292,63 +292,63 @@ function ckstyle() {
                 r.open("post", n, !0);
             }
             r.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            r.setRequestHeader("charset", e);
-            "post" == t ? r.send(o) : r.send(null);
+            r.setRequestHeader("charset", t);
+            "post" == e ? r.send(o) : r.send(null);
             r.onreadystatechange = function() {
                 if (4 == r.readyState) {
-                    var t = r.responseText;
-                    i("" != t ? t : null);
+                    var e = r.responseText;
+                    i("" != e ? e : null);
                 }
             };
         },
-        addListener: function(t, e) {
+        addListener: function(e, t) {
             var n = CKobject._V_;
             if (n.addEventListener) try {
-                n.addEventListener(t, e, !1);
-            } catch (t) {
+                n.addEventListener(e, t, !1);
+            } catch (e) {
                 this.getNot();
             } else if (n.attachEvent) try {
-                n.attachEvent("on" + t, e);
-            } catch (t) {
+                n.attachEvent("on" + e, t);
+            } catch (e) {
                 this.getNot();
-            } else n["on" + t] = e;
+            } else n["on" + e] = t;
         },
-        removeListener: function(t, e) {
+        removeListener: function(e, t) {
             var n = CKobject._V_;
             if (n.removeEventListener) try {
-                n.removeEventListener(t, e, !1);
-            } catch (t) {
+                n.removeEventListener(e, t, !1);
+            } catch (e) {
                 this.getNot();
             } else if (n.detachEvent) try {
-                n.detachEvent("on" + t, e);
-            } catch (t) {
+                n.detachEvent("on" + e, t);
+            } catch (e) {
                 this.getNot();
-            } else n["on" + t] = null;
+            } else n["on" + e] = null;
         },
         Flash: function() {
-            var t = !1, e = 0;
+            var e = !1, t = 0;
             if (document.all || this.browser().B.toLowerCase().indexOf("ie") > -1) try {
                 var n = new ActiveXObject("ShockwaveFlash.ShockwaveFlash");
-                t = !0;
+                e = !0;
                 var i = n.GetVariable("$version");
-                e = parseInt(i.split(" ")[1].split(",")[0]);
+                t = parseInt(i.split(" ")[1].split(",")[0]);
             } catch (r) {} else if (navigator.plugins && navigator.plugins.length > 0) {
                 var n = navigator.plugins["Shockwave Flash"];
                 if (n) {
-                    t = !0;
-                    for (var a = n.description.split(" "), o = 0; o < a.length; ++o) isNaN(parseInt(a[o])) || (e = parseInt(a[o]));
+                    e = !0;
+                    for (var a = n.description.split(" "), o = 0; o < a.length; ++o) isNaN(parseInt(a[o])) || (t = parseInt(a[o]));
                 }
             }
             return {
-                f: t,
-                v: e
+                f: e,
+                v: t
             };
         },
-        embed: function(t, e, n, i, r, a, o, s, l, c) {
+        embed: function(e, t, n, i, r, a, o, s, l, c) {
             var u = [ "all" ];
-            a ? this.isHTML5() ? this.embedHTML5(e, n, i, r, s, o, u, c) : this.embedSWF(t, e, n, i, r, o, l) : this.Flash().f && parseInt(this.Flash().v) > 10 ? this.embedSWF(t, e, n, i, r, o, l) : this.isHTML5() ? this.embedHTML5(e, n, i, r, s, o, u, c) : this.embedSWF(t, e, n, i, r, o, l);
+            a ? this.isHTML5() ? this.embedHTML5(t, n, i, r, s, o, u, c) : this.embedSWF(e, t, n, i, r, o, l) : this.Flash().f && parseInt(this.Flash().v) > 10 ? this.embedSWF(e, t, n, i, r, o, l) : this.isHTML5() ? this.embedHTML5(t, n, i, r, s, o, u, c) : this.embedSWF(e, t, n, i, r, o, l);
         },
-        embedSWF: function(t, e, n, i, r, a, o) {
+        embedSWF: function(e, t, n, i, r, a, o) {
             n || (n = "ckplayer_a1");
             o || (o = {
                 bgcolor: "#FFF",
@@ -363,11 +363,11 @@ function ckstyle() {
                 f: "您没有安装flash插件，无法播放视频，" + f,
                 v: "您的flash插件版本过低，无法播放视频，" + f
             }, h = typeof c.getElementById != s && typeof c.getElementsByTagName != s && typeof c.createElement != s, _ = 'id="' + n + '" name="' + n + '" ', v = "", m = "";
-            o.movie = t;
+            o.movie = e;
             o.flashvars = this.getflashvars(a);
             if (i == -1) {
                 d = !0;
-                this._K_(e).style.width = "100%";
+                this._K_(t).style.width = "100%";
                 i = "100%";
             }
             v += '<object pluginspage="http://www.macromedia.com/go/getflashplayer" ';
@@ -396,11 +396,11 @@ function ckstyle() {
                 m = p.w;
                 l = !0;
             }
-            m && (this._K_(e).innerHTML = m);
+            m && (this._K_(t).innerHTML = m);
             if (l) {
-                this._K_(e).style.color = "#0066cc";
-                this._K_(e).style.lineHeight = this._K_(e).style.height;
-                this._K_(e).style.textAlign = "center";
+                this._K_(t).style.color = "#0066cc";
+                this._K_(t).style.lineHeight = this._K_(t).style.height;
+                this._K_(t).style.textAlign = "center";
             }
         },
         embedHTML5: function(e, i, r, o, l, c, u, p) {
@@ -534,24 +534,24 @@ function ckstyle() {
         fastBack: function() {
             this._T_ && (this._V_.currentTime = this._V_.currentTime - 10);
         },
-        changeVolume: function(t) {
-            this._T_ && (this._V_.volume = .01 * t);
+        changeVolume: function(e) {
+            this._T_ && (this._V_.volume = .01 * e);
         },
-        videoSeek: function(t) {
-            this._T_ && (this._V_.currentTime = t);
+        videoSeek: function(e) {
+            this._T_ && (this._V_.currentTime = e);
         },
-        newAddress: function(t) {
-            var e = [];
-            if (t) {
-                e = this.isHtml5New(t);
-                if (e && this._T_) {
-                    this.changeParams(t);
-                    var n = e[0].split("->");
+        newAddress: function(e) {
+            var t = [];
+            if (e) {
+                t = this.isHtml5New(e);
+                if (t && this._T_) {
+                    this.changeParams(e);
+                    var n = t[0].split("->");
                     if (n && 2 == n.length && n[1].indexOf("ajax") > -1) {
                         this.getUrl(n, !1);
                         return;
                     }
-                    this._E_.v = e;
+                    this._E_.v = t;
                     this.newAdr();
                 }
             }
@@ -559,25 +559,25 @@ function ckstyle() {
         quitFullScreen: function() {
             document.cancelFullScreen ? document.cancelFullScreen() : document.mozCancelFullScreen ? document.mozCancelFullScreen() : document.webkitCancelFullScreen && document.webkitCancelFullScreen();
         },
-        changeStatus: function(t) {
-            this._H_ = t;
+        changeStatus: function(e) {
+            this._H_ = e;
         },
         newAdr: function() {
-            var t = this._E_.v;
+            var e = this._E_.v;
             this._V_.pause();
-            1 == t.length ? this._V_.src = t[0].split("->")[0] : this._V_.innerHTML = this.getVideo();
+            1 == e.length ? this._V_.src = e[0].split("->")[0] : this._V_.innerHTML = this.getVideo();
             this._V_.load();
         },
-        isHtml5New: function(t) {
-            if (t.indexOf("html5") == -1) return !1;
-            for (var e = t.replace(/{/g, ""), n = e.split("}"), i = "", r = 0; r < n.length; r++) if (n[r].indexOf("html5") > -1) {
+        isHtml5New: function(e) {
+            if (e.indexOf("html5") == -1) return !1;
+            for (var t = e.replace(/{/g, ""), n = t.split("}"), i = "", r = 0; r < n.length; r++) if (n[r].indexOf("html5") > -1) {
                 i = n[r].replace("html5->", "").split(",");
                 break;
             }
             return i;
         },
-        changeParams: function(t) {
-            if (t) for (var e = t.replace(/{/g, ""), n = e.split("}"), i = 0; i < n.length; i++) {
+        changeParams: function(e) {
+            if (e) for (var t = e.replace(/{/g, ""), n = t.split("}"), i = 0; i < n.length; i++) {
                 var r = n[i].split("->");
                 if (2 == r.length) switch (r[0]) {
                   case "p":
@@ -599,52 +599,52 @@ function ckstyle() {
                 }
             }
         },
-        frontAdPause: function(t) {
+        frontAdPause: function(e) {
             this.getNot();
         },
         frontAdUnload: function() {
             this.getNot();
         },
-        changeFace: function(t) {
+        changeFace: function(e) {
             this.getNot();
         },
-        plugin: function(t, e, n, i, r, a, o) {
+        plugin: function(e, t, n, i, r, a, o) {
             this.getNot();
         },
         videoClear: function() {
             this.getNot();
         },
-        videoBrightness: function(t) {
+        videoBrightness: function(e) {
             this.getNot();
         },
-        videoContrast: function(t) {
+        videoContrast: function(e) {
             this.getNot();
         },
-        videoSaturation: function(t) {
+        videoSaturation: function(e) {
             this.getNot();
         },
-        videoSetHue: function(t) {
+        videoSetHue: function(e) {
             this.getNot();
         },
-        videoWAndH: function(t, e) {
+        videoWAndH: function(e, t) {
             this.getNot();
         },
-        videoWHXY: function(t, e, n, i) {
+        videoWHXY: function(e, t, n, i) {
             this.getNot();
         },
-        changeFlashvars: function(t) {
+        changeFlashvars: function(e) {
             this.getNot();
         },
-        changeMyObject: function(t, e) {
+        changeMyObject: function(e, t) {
             this.getNot();
         },
-        getMyObject: function(t, e) {
+        getMyObject: function(e, t) {
             this.getNot();
         },
         changeeFace: function() {
             this.getNot();
         },
-        changeStyle: function(t, e) {
+        changeStyle: function(e, t) {
             this.getNot();
         },
         promptLoad: function() {
@@ -653,26 +653,26 @@ function ckstyle() {
         promptUnload: function() {
             this.getNot();
         },
-        marqueeLoad: function(t, e) {
+        marqueeLoad: function(e, t) {
             this.getNot();
         },
-        marqueeClose: function(t) {
+        marqueeClose: function(e) {
             this.getNot();
         },
         getNot: function() {
-            var t = "The ckplayer's API for HTML5 does not exist";
-            return t;
+            var e = "The ckplayer's API for HTML5 does not exist";
+            return e;
         },
         volumeChangeHandler: function() {
-            var t = CKobject;
-            if (t._V_.muted) {
-                t.returnStatus("volumechange:0", 1);
-                t._O_.volume = 0;
-                t._O_.mute = !0;
+            var e = CKobject;
+            if (e._V_.muted) {
+                e.returnStatus("volumechange:0", 1);
+                e._O_.volume = 0;
+                e._O_.mute = !0;
             } else {
-                t._O_.mute = !1;
-                t._O_.volume = 100 * t._V_.volume;
-                t.returnStatus("volumechange:" + 100 * t._V_.volume, 1);
+                e._O_.mute = !1;
+                e._O_.volume = 100 * e._V_.volume;
+                e.returnStatus("volumechange:" + 100 * e._V_.volume, 1);
             }
         },
         endedHandler: function() {
@@ -704,83 +704,83 @@ function ckstyle() {
             }
         },
         loadedMetadataHandler: function() {
-            var t = CKobject;
-            t.returnStatus("loadedmetadata", 1);
-            t._O_.totaltime = t._V_.duration;
-            t._O_.width = t._V_.width;
-            t._O_.height = t._V_.height;
-            t._O_.awidth = t._V_.videoWidth;
-            t._O_.aheight = t._V_.videoHeight;
-            if (t._V_.defaultMuted) {
-                t.returnStatus("volumechange:0", 1);
-                t._O_.mute = !0;
-                t._O_.volume = 0;
+            var e = CKobject;
+            e.returnStatus("loadedmetadata", 1);
+            e._O_.totaltime = e._V_.duration;
+            e._O_.width = e._V_.width;
+            e._O_.height = e._V_.height;
+            e._O_.awidth = e._V_.videoWidth;
+            e._O_.aheight = e._V_.videoHeight;
+            if (e._V_.defaultMuted) {
+                e.returnStatus("volumechange:0", 1);
+                e._O_.mute = !0;
+                e._O_.volume = 0;
             } else {
-                t._O_.mute = !1;
-                t._O_.volume = 100 * t._V_.volume;
-                t.returnStatus("volumechange:" + 100 * t._V_.volume, 1);
+                e._O_.mute = !1;
+                e._O_.volume = 100 * e._V_.volume;
+                e.returnStatus("volumechange:" + 100 * e._V_.volume, 1);
             }
-            1 == parseInt(t.getVars("p")) && t.playHandler();
+            1 == parseInt(e.getVars("p")) && e.playHandler();
         },
         errorHandler: function() {
             CKobject.returnStatus("error", 1);
         },
         playHandler: function() {
-            var t = CKobject;
-            if (t._V_.paused) {
-                t.returnStatus("pause", 1);
-                t.addO("play", !1);
-                if (null != t._I_) {
-                    clearInterval(t._I_);
-                    t._I_ = null;
+            var e = CKobject;
+            if (e._V_.paused) {
+                e.returnStatus("pause", 1);
+                e.addO("play", !1);
+                if (null != e._I_) {
+                    clearInterval(e._I_);
+                    e._I_ = null;
                 }
             } else {
-                t.returnStatus("play", 1);
-                t.addO("play", !0);
-                if (!t._P_) {
-                    t.returnStatus("play", 1);
-                    t._P_ = !0;
+                e.returnStatus("play", 1);
+                e.addO("play", !0);
+                if (!e._P_) {
+                    e.returnStatus("play", 1);
+                    e._P_ = !0;
                 }
-                t._I_ = setInterval(t.playTime, parseInt(t.getSn("setup", 37)));
-                if (!t._G_) {
-                    t._G_ = !0;
-                    for (var e in t._A_) if ("g" == e && t._A_[e]) {
-                        var n = parseInt(t._A_[e]);
-                        t.videoSeek(n);
+                e._I_ = setInterval(e.playTime, parseInt(e.getSn("setup", 37)));
+                if (!e._G_) {
+                    e._G_ = !0;
+                    for (var t in e._A_) if ("g" == t && e._A_[t]) {
+                        var n = parseInt(e._A_[t]);
+                        e.videoSeek(n);
                     }
                 }
-                if (!t._Y_) {
-                    t._Y_ = !0;
-                    for (var e in t._A_) if ("j" == e && t._A_[e]) {
-                        var i = parseInt(t._A_[e]);
-                        i > 0 ? t._J_ = i : t._J_ = parseInt(t._O_.totaltime) + i;
+                if (!e._Y_) {
+                    e._Y_ = !0;
+                    for (var t in e._A_) if ("j" == t && e._A_[t]) {
+                        var i = parseInt(e._A_[t]);
+                        i > 0 ? e._J_ = i : e._J_ = parseInt(e._O_.totaltime) + i;
                     }
                 }
             }
         },
         html5Click: function() {
-            var t = CKobject;
-            "" != t.getVars("m") && null != t.getVars("m") && window.open(t.getVars("m"));
+            var e = CKobject;
+            "" != e.getVars("m") && null != e.getVars("m") && window.open(e.getVars("m"));
         },
-        returnStatus: function(t, e) {
-            var n = t;
+        returnStatus: function(e, t) {
+            var n = e;
             3 == this._H_ && (n = this._E_.p + "->" + n);
-            this._M_ && e <= this._H_ && this._L_(n);
+            this._M_ && t <= this._H_ && this._L_(n);
         },
-        addO: function(t, e) {
-            this._O_[t] = e;
+        addO: function(e, t) {
+            this._O_[e] = t;
         },
         getStatus: function() {
             return this._O_;
         },
         playTime: function() {
-            var t = CKobject, e = t._V_.currentTime;
-            t._O_.time = e;
-            if (t._J_ > 0 && e > t._J_) {
-                t._J_ = 0;
-                t.videoSeek(t._O_.totaltime);
+            var e = CKobject, t = e._V_.currentTime;
+            e._O_.time = t;
+            if (e._J_ > 0 && t > e._J_) {
+                e._J_ = 0;
+                e.videoSeek(e._O_.totaltime);
             }
-            t.returnStatus("time:" + e, 1);
+            e.returnStatus("time:" + t, 1);
         }
     };
     window.CKobject = CKobject;
@@ -788,23 +788,23 @@ function ckstyle() {
 
 define("plugins/ckplayer/6.7.0/ckplayer", function() {});
 
-!function(t, e) {
-    if ("function" == typeof define && define.amd) define("lib/core/1.0.0/event/emitter", e); else if ("undefined" != typeof module) e(require, module.exports, module); else {
+!function(e, t) {
+    if ("function" == typeof define && define.amd) define("lib/core/1.0.0/event/emitter", t); else if ("undefined" != typeof module) t(require, module.exports, module); else {
         var n = {
             exports: {}
         };
-        e(null, n.exports, n);
-        t.EventEmitter = n.exports;
+        t(null, n.exports, n);
+        e.EventEmitter = n.exports;
     }
-}(this, function(t, e, n) {
+}(this, function(e, t, n) {
     "use strict";
     function i() {}
-    function r(t, e, n, i) {
+    function r(e, t, n, i) {
         var r = !0;
-        if (e) for (var a, o, s, l = -1, c = {
-            type: t,
+        if (t) for (var a, o, s, l = -1, c = {
+            type: e,
             timeStamp: u()
-        }; a = e[++l]; ) {
+        }; a = t[++l]; ) {
             o = a[d];
             s = a[v] || i;
             try {
@@ -817,328 +817,328 @@ define("plugins/ckplayer/6.7.0/ckplayer", function() {});
         }
         return r;
     }
-    function a(t) {
-        var e, n = p(this);
+    function a(e) {
+        var t, n = p(this);
         if (n) {
-            e = n[t];
-            return e.length;
+            t = n[e];
+            return t.length;
         }
         return 0;
     }
-    function o(t) {
-        return "[object Function]" === Object.prototype.toString.call(t);
+    function o(e) {
+        return "[object Function]" === Object.prototype.toString.call(e);
     }
-    function s(t, e) {
-        for (var n in t) t.hasOwnProperty(n) && e(t[n], n);
+    function s(e, t) {
+        for (var n in e) e.hasOwnProperty(n) && t(e[n], n);
     }
-    function l(t, e) {
-        t.forEach ? t.forEach(e) : function(t) {
-            for (var n = -1, i = t.length; ++n < i; ) e(t[n], n);
-        }(t);
+    function l(e, t) {
+        e.forEach ? e.forEach(t) : function(e) {
+            for (var n = -1, i = e.length; ++n < i; ) t(e[n], n);
+        }(e);
     }
     var c = /\s+/, u = Date.now || function() {
         return +new Date();
     }, f = function() {
         return u() * Math.random() & 65535;
     }(), p = function() {
-        var t, e, n;
-        return "function" == typeof WeakMap && (WeakMap.prototype || 0).set ? (t = new WeakMap(), 
-        function(e, n) {
-            var i = t.get(e);
-            return null === n ? void 0 !== i && t["delete"](e) : !i && n ? (t.set(e, i = {}), 
+        var e, t, n;
+        return "function" == typeof WeakMap && (WeakMap.prototype || 0).set ? (e = new WeakMap(), 
+        function(t, n) {
+            var i = e.get(t);
+            return null === n ? void 0 !== i && e["delete"](t) : !i && n ? (e.set(t, i = {}), 
             i) : i;
-        }) : (e = u(), n = "__$widΦ" + e.toString(36), t = {}, function(i, r) {
+        }) : (t = u(), n = "__$widΦ" + t.toString(36), e = {}, function(i, r) {
             if (!i || "object" != typeof i) throw TypeError("Invalid value used as weak map key");
             var a;
-            return null === r ? i[n] && (delete t[i[n]], delete i[n]) : (a = i[n] || r && (a = ++e, 
-            t[a] = {}, i[n] = a), a && t[a]);
+            return null === r ? i[n] && (delete e[i[n]], delete i[n]) : (a = i[n] || r && (a = ++t, 
+            e[a] = {}, i[n] = a), a && e[a]);
         });
-    }(), h = 1, _ = 2, d = 0, v = 1, m = 2, g = function(t, e, n) {
+    }(), h = 1, _ = 2, d = 0, v = 1, m = 2, g = function(e, t, n) {
         var i = [];
-        i[d] = t;
-        i[v] = e;
+        i[d] = e;
+        i[v] = t;
         i[m] = n;
         return i;
     }, y = i.prototype;
-    y.addListener = function(t, e, n, i) {
+    y.addListener = function(e, t, n, i) {
         var r, a, o, s = h;
-        if (e && "object" == typeof e) {
-            n = e;
-            e = n.handleEvent;
+        if (t && "object" == typeof t) {
+            n = t;
+            t = n.handleEvent;
             s = _;
         }
-        if (!e) return this;
+        if (!t) return this;
         r = p(this, 1);
-        t = t.split(c);
-        for (;a = t.shift(); ) {
+        e = e.split(c);
+        for (;a = e.shift(); ) {
             o = !i && r[a] || (r[a] = []);
-            o.push(g(e, n, s));
+            o.push(g(t, n, s));
         }
         return this;
     };
     y.on = y.addListener;
-    y.once = function(t, e, n) {
+    y.once = function(e, t, n) {
         var i = !1, r = function() {
-            this.removeListener(t, r);
+            this.removeListener(e, r);
             if (!i) {
                 i = !0;
-                e.apply(n || this, arguments);
+                t.apply(n || this, arguments);
             }
         };
-        r.guid = e.guid || (e.guid = f++);
-        return this.on(t, r);
+        r.guid = t.guid || (t.guid = f++);
+        return this.on(e, r);
     };
-    y.removeListener = function(t, e, n) {
+    y.removeListener = function(e, t, n) {
         var i, r, a, o, l, u;
-        if (e && "object" == typeof e) {
-            n = e;
-            e = n.handleEvent;
+        if (t && "object" == typeof t) {
+            n = t;
+            t = n.handleEvent;
         }
         if (!(i = p(this))) return this;
-        if (!(t || e || n)) {
-            s(i, function(t, e) {
-                delete i[e];
+        if (!(e || t || n)) {
+            s(i, function(e, t) {
+                delete i[t];
             });
             p(this, null);
             return this;
         }
-        t = t ? t.split(c) : w(i);
-        for (;r = t.shift(); ) {
+        e = e ? e.split(c) : w(i);
+        for (;r = e.shift(); ) {
             a = i[r];
-            if (a) if (e || n) for (o = a.length; --o >= 0; ) {
+            if (a) if (t || n) for (o = a.length; --o >= 0; ) {
                 l = a[o];
                 u = l[d];
-                e && u !== e && (void 0 === u.guid || u.guid !== e.guid) || n && l[v] !== n || a.splice(o, 1);
+                t && u !== t && (void 0 === u.guid || u.guid !== t.guid) || n && l[v] !== n || a.splice(o, 1);
             } else delete i[r];
         }
         return this;
     };
     y.un = y.removeListener;
-    y.removeAllListeners = function(t) {
-        return this.removeListener(t);
+    y.removeAllListeners = function(e) {
+        return this.removeListener(e);
     };
-    y.emit = function(t) {
-        var e, n, i, a, o, s, l = [], u = !0;
-        if (!(e = p(this))) return this;
-        t = t.split(c);
+    y.emit = function(e) {
+        var t, n, i, a, o, s, l = [], u = !0;
+        if (!(t = p(this))) return this;
+        e = e.split(c);
         for (o = 1, s = arguments.length; o < s; o++) l[o - 1] = arguments[o];
-        for (;n = t.shift(); ) {
-            (i = e.all) && (i = i.slice());
-            (a = e[n]) && (a = a.slice());
+        for (;n = e.shift(); ) {
+            (i = t.all) && (i = i.slice());
+            (a = t[n]) && (a = a.slice());
             "all" !== n && (u = r(n, a, l, this) && u);
             u = r(n, i, [ n ].concat(l), this) && u;
         }
         return u;
     };
-    i.applyTo = function(t) {
-        function e(e, i) {
-            t[e] = function() {
-                var r = n[e].apply(i || t, Array.prototype.slice.call(arguments));
+    i.applyTo = function(e) {
+        function t(t, i) {
+            e[t] = function() {
+                var r = n[t].apply(i || e, Array.prototype.slice.call(arguments));
                 return r === i ? this : r;
             };
         }
         var n = y, i = w(n);
-        o(t) ? l(i, function(e) {
-            t.prototype[e] = n[e];
-        }) : l(i, function(t) {
-            e(t);
+        o(e) ? l(i, function(t) {
+            e.prototype[t] = n[t];
+        }) : l(i, function(e) {
+            t(e);
         });
     };
-    i.listenerCount = function(t, e) {
-        return "function" == typeof t.listenerCount ? t.listenerCount(e) : a.call(t, e);
+    i.listenerCount = function(e, t) {
+        return "function" == typeof e.listenerCount ? e.listenerCount(t) : a.call(e, t);
     };
     y.listenerCount = a;
-    var w = Object.keys || function(t) {
-        var e = [];
-        s(t, function(t, n) {
-            e.push(n);
+    var w = Object.keys || function(e) {
+        var t = [];
+        s(e, function(e, n) {
+            t.push(n);
         });
-        return e;
+        return t;
     };
     n.exports = i;
 });
 
-define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function(t, e, n) {
+define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function(e, t, n) {
     "use strict";
-    function i(t) {
-        return "object" == typeof t && null !== t;
+    function i(e) {
+        return "object" == typeof e && null !== e;
     }
     function r() {}
-    function a(t, e) {
-        for (var n = t.length, i = -1; ++i < n; ) e(t[i], i);
+    function a(e, t) {
+        for (var n = e.length, i = -1; ++i < n; ) t(e[i], i);
     }
-    function o(t, e) {
-        for (var n in t) h.call(t, n) && e(t[n], n, t);
+    function o(e, t) {
+        for (var n in e) h.call(e, n) && t(e[n], n, e);
     }
-    function s(t, e) {
-        if (t && t.forEach) return t.forEach(e);
-        _(t) ? a(t, e) : o(t, e);
+    function s(e, t) {
+        if (e && e.forEach) return e.forEach(t);
+        _(e) ? a(e, t) : o(e, t);
     }
-    function l(t, e) {
-        for (var n = -1, i = t.length, r = Array(i); ++n < i; ) r[n] = e(t[n], n, t);
+    function l(e, t) {
+        for (var n = -1, i = e.length, r = Array(i); ++n < i; ) r[n] = t(e[n], n, e);
         return r;
     }
-    function c(t, e) {
+    function c(e, t) {
         var n = [];
-        s(t, function(t, i, r) {
-            n.push(e(t, i, r));
+        s(e, function(e, i, r) {
+            n.push(t(e, i, r));
         });
         return n;
     }
-    function u(t, e) {
-        if (!e || !i(e)) return t;
-        for (var n = v(e), r = n.length; r--; ) t[n[r]] = e[n[r]];
-        return t;
+    function u(e, t) {
+        if (!t || !i(t)) return e;
+        for (var n = v(t), r = n.length; r--; ) e[n[r]] = t[n[r]];
+        return e;
     }
-    function f(t) {
-        "?" === t.charAt(0) && (t = t.substr(1));
-        for (var e, n = {}, i = t.split("&"), r = -1, a = i.length; ++r < a; ) {
-            e = i[r].split("=");
-            n[decodeURIComponent(e[0])] = decodeURIComponent(e[1]);
+    function f(e) {
+        "?" === e.charAt(0) && (e = e.substr(1));
+        for (var t, n = {}, i = e.split("&"), r = -1, a = i.length; ++r < a; ) {
+            t = i[r].split("=");
+            n[decodeURIComponent(t[0])] = decodeURIComponent(t[1]);
         }
         return n;
     }
-    var p = new Function("return this")(), h = Object.prototype.hasOwnProperty, _ = Array.isArray || function(t) {
-        return t && t instanceof Array;
+    var p = new Function("return this")(), h = Object.prototype.hasOwnProperty, _ = Array.isArray || function(e) {
+        return e && e instanceof Array;
     }, d = function() {
-        var t = (+new Date()).toString(36), e = -1;
+        var e = (+new Date()).toString(36), t = -1;
         return function(n) {
-            return (n || "") + t + ++e;
+            return (n || "") + e + ++t;
         };
-    }(), v = Object.keys || function(t) {
-        var e = [];
-        o(t, function(t, n) {
-            e.push(n);
+    }(), v = Object.keys || function(e) {
+        var t = [];
+        o(e, function(e, n) {
+            t.push(n);
         });
-        return e;
-    }, m = "function" == typeof Object.create ? function(t, e) {
-        t.__super__ = e.prototype;
-        t.prototype = Object.create(e.prototype, {
+        return t;
+    }, m = "function" == typeof Object.create ? function(e, t) {
+        e.__super__ = t.prototype;
+        e.prototype = Object.create(t.prototype, {
             constructor: {
-                value: t,
+                value: e,
                 enumerable: !1,
                 writable: !0,
                 configurable: !0
             }
         });
     } : function() {
-        function t(t) {
-            this.constructor = t;
+        function e(e) {
+            this.constructor = e;
         }
-        return function(e, n) {
-            e.__super__ = n.prototype;
-            t.prototype = n.prototype;
-            e.prototype = new t(e);
+        return function(t, n) {
+            t.__super__ = n.prototype;
+            e.prototype = n.prototype;
+            t.prototype = new e(t);
         };
     }(), g = p.console || (p.console = {});
-    a([ "log", "error", "trace", "warn", "info" ], function(t) {
-        g[t] || (g[t] = r);
+    a([ "log", "error", "trace", "warn", "info" ], function(e) {
+        g[e] || (g[e] = r);
     });
-    e.extend = function(t, e) {
-        for (var n = [].slice.call(arguments, 1), i = n.length, r = -1; ++r < i; ) u(t, n[r]);
-        return t;
+    t.extend = function(e, t) {
+        for (var n = [].slice.call(arguments, 1), i = n.length, r = -1; ++r < i; ) u(e, n[r]);
+        return e;
     };
-    e.inherits = function(t, e, n) {
-        m(t, e);
-        n && u(t.prototype, n);
+    t.inherits = function(e, t, n) {
+        m(e, t);
+        n && u(e.prototype, n);
     };
-    e.impls = function(t, n) {
+    t.impls = function(e, n) {
         n = "function" == typeof n ? n.prototype : n;
-        e.mix(t.prototype, n);
-        return t;
+        t.mix(e.prototype, n);
+        return e;
     };
-    e.parseQuery = f;
-    e.parseParams = f;
-    e.each = s;
-    e.map = function(t, e) {
-        var n = _(t) ? l : c;
-        return n(t, e);
+    t.parseQuery = f;
+    t.parseParams = f;
+    t.each = s;
+    t.map = function(e, t) {
+        var n = _(e) ? l : c;
+        return n(e, t);
     };
-    e.filter = function(t, e) {
-        var n, i, r = _(t) ? (n = a, i = function(t, e) {
-            r.push(e);
-        }, []) : (n = o, i = function(t, e) {
-            r[t] = e;
+    t.filter = function(e, t) {
+        var n, i, r = _(e) ? (n = a, i = function(e, t) {
+            r.push(t);
+        }, []) : (n = o, i = function(e, t) {
+            r[e] = t;
         }, {});
-        n(t, function(t, n) {
-            e(t, n) && i(n, t);
+        n(e, function(e, n) {
+            t(e, n) && i(n, e);
         });
         return r;
     };
-    e.mix = function y(t, e, n, i, r) {
-        for (var a in e) e.hasOwnProperty(a) && (e[a] && t[a] && n && "object" == typeof e[a] ? y(t[a], e[a], n, i, r) : (void 0 === t[a] || i) && (r && !r(t[a], e[a]) || (t[a] = e[a])));
-        return t;
+    t.mix = function y(e, t, n, i, r) {
+        for (var a in t) t.hasOwnProperty(a) && (t[a] && e[a] && n && "object" == typeof t[a] ? y(e[a], t[a], n, i, r) : (void 0 === e[a] || i) && (r && !r(e[a], t[a]) || (e[a] = t[a])));
+        return e;
     };
-    e.guid = d;
-    e.setImmediate = function() {
-        var t = p.document, e = p.postMessage, n = p.setImmediate;
-        return n ? n : "onreadystatechange" in t.createElement("script") ? function(e) {
+    t.guid = d;
+    t.setImmediate = function() {
+        var e = p.document, t = p.postMessage, n = p.setImmediate;
+        return n ? n : "onreadystatechange" in e.createElement("script") ? function(t) {
             function n() {
                 i.onreadystatechange = null;
                 i.parentNode.removeChild(i);
-                e();
+                t();
             }
-            var i = t.createElement("script");
+            var i = e.createElement("script");
             i.onreadystatechange = n;
-            t.documentElement.appendChild(i);
-        } : e ? function(t) {
-            function n(e) {
-                if (e.data === i) {
+            e.documentElement.appendChild(i);
+        } : t ? function(e) {
+            function n(t) {
+                if (t.data === i) {
                     p.removeEventListener("message", n, !0);
-                    t();
+                    e();
                 }
             }
             var i = d();
             p.addEventListener("message", n, !0);
-            e(i, "*");
-        } : function(t) {
-            p.setTimeout(t, 0);
+            t(i, "*");
+        } : function(e) {
+            p.setTimeout(e, 0);
         };
     }();
-    e.noop = r;
-    e.throttle = function(t, e) {
-        e = e ? e : 150;
-        if (e === -1) return function() {
-            t.apply(this, arguments);
+    t.noop = r;
+    t.throttle = function(e, t) {
+        t = t ? t : 150;
+        if (t === -1) return function() {
+            e.apply(this, arguments);
         };
         var n;
         return function() {
             var i = +new Date();
-            if (!n || i - n > e) {
+            if (!n || i - n > t) {
                 n = i;
-                t.apply(this, arguments);
+                e.apply(this, arguments);
             }
         };
     };
-    e.debounce = function(t, e, n, i) {
+    t.debounce = function(e, t, n, i) {
         var r;
         return function() {
             var a = i || this, o = arguments, s = function() {
                 r = null;
-                n || t.apply(a, o);
+                n || e.apply(a, o);
             }, l = n && !r;
             clearTimeout(r);
-            r = setTimeout(s, e);
-            l && t.apply(a, o);
+            r = setTimeout(s, t);
+            l && e.apply(a, o);
         };
     };
-    e.deprecate = function(t, e) {
+    t.deprecate = function(e, t) {
         function n() {
             i || (i = !0);
-            return t.apply(this, arguments);
+            return e.apply(this, arguments);
         }
-        if (p.noDeprecation === !0) return t;
+        if (p.noDeprecation === !0) return e;
         var i = !1;
         return n;
     };
 });
 
-define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquery", "./ckplayer", "lib/core/1.0.0/event/emitter", "lib/core/1.0.0/utils/util" ], function(t, e, n) {
+define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquery", "./ckplayer", "lib/core/1.0.0/event/emitter", "lib/core/1.0.0/utils/util" ], function(e, t, n) {
     "use strict";
-    function i(t, e) {
+    function i(e, t) {
         var n = this;
-        if (void 0 === t) throw new Error("the param [selector] is required.");
-        n.el = r(t);
+        if (void 0 === e) throw new Error("the param [selector] is required.");
+        n.el = r(e);
         n._id = n.el.attr("id");
         n._playId = "_player-" + n._id;
         n._gLoadedHandler = "gLoadedHandler-" + n._id;
@@ -1184,91 +1184,91 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
                 my_url: encodeURIComponent(window.location.href)
             }
         };
-        n.options = r.extend(!0, {}, i, e);
+        n.options = r.extend(!0, {}, i, t);
         CKobject.embedSWF(n.options.swfPlayer, n._id, n._playId, n.options.embed.width, n.options.embed.height, n.options.flash, n.options.params);
         n._init();
         n._initEvent();
     }
-    var r = t("jquery");
-    t("./ckplayer");
-    var a = t("lib/core/1.0.0/event/emitter"), o = t("lib/core/1.0.0/utils/util");
+    var r = e("jquery");
+    e("./ckplayer");
+    var a = e("lib/core/1.0.0/event/emitter"), o = e("lib/core/1.0.0/utils/util");
     o.inherits(i, a);
     i.prototype._init = function() {
-        var t = this;
-        t.CKobject = CKobject;
-        t.player = t.get();
-        t._embed = t.el.find("embed");
+        var e = this;
+        e.CKobject = CKobject;
+        e.player = e.get();
+        e._embed = e.el.find("embed");
     };
     i.prototype._initEvent = function() {
-        var t = this;
-        t.options.interval > 0 && setInterval(function() {
-            t.emit("time", t.getStatus().time);
-        }, t.options.interval);
+        var e = this;
+        e.options.interval > 0 && setInterval(function() {
+            e.emit("time", e.getStatus().time);
+        }, e.options.interval);
     };
     i.prototype.play = function() {
-        var t = this;
-        t.player.videoPlay();
+        var e = this;
+        e.player && e.player.videoPlay();
     };
     i.prototype.playOrPause = function() {
-        var t = this;
-        t.player.playOrPause();
+        var e = this;
+        e.player && e.player.playOrPause();
     };
     i.prototype.pause = function() {
+        var e = this;
+        e.player && e.player.videoPause();
+    };
+    i.prototype.jump = function(e) {
         var t = this;
-        t.player.videoPause();
+        e >= 0 && t.player && t.player.videoSeek(e);
     };
-    i.prototype.jump = function(t) {
-        var e = this;
-        t >= 0 && e.player.videoSeek(t);
+    i.prototype.go = function(e) {
+        if (void 0 === e) throw new Error("this params [url] is require.");
+        var t = this;
+        t.options.flash.f = e;
+        t.player && t.player.newAddress(t.options.flash);
     };
-    i.prototype.go = function(t) {
-        if (void 0 === t) throw new Error("this params [url] is require.");
-        var e = this;
-        e.options.flash.f = t;
-        e.player.newAddress(e.options.flash);
+    i.prototype.volume = function(e) {
+        var t = this;
+        0 <= e && e <= 100 && t.player && t.player.changeVolume(e);
     };
-    i.prototype.volume = function(t) {
-        var e = this;
-        0 <= t && t <= 100 && e.player.changeVolume(t);
+    i.prototype.width = function(e) {
+        var t = this;
+        t._embed && t._embed.width(e || t.options.embed.width);
     };
-    i.prototype.width = function(t) {
-        var e = this;
-        e._embed.width(t || e.options.embed.width);
-    };
-    i.prototype.height = function(t) {
-        var e = this;
-        e._embed.width(t || e.options.embed.height);
+    i.prototype.height = function(e) {
+        var t = this;
+        t._embed && t._embed.width(e || t.options.embed.height);
     };
     i.prototype.getTotalTime = function() {
-        var t = this;
-        return t.player.getStatus().totalTime;
+        var e = this;
+        return e.player ? e.player.getStatus().totalTime : 0;
     };
     i.prototype.getCurrentTime = function() {
-        var t = this;
-        return t.player.getStatus().time;
+        var e = this;
+        return e.player ? e.player.getStatus().time : 0;
     };
     i.prototype.getStatus = function() {
-        var t = this;
-        return t.player.getStatus();
+        var e = this;
+        return e.player ? e.player.getStatus() : {};
     };
     i.prototype.get = function() {
-        var t = this;
-        return t.CKobject.getObjectById(t._playId);
+        var e = this;
+        return e.CKobject.getObjectById(e._playId);
     };
     n.exports = i;
 });
 
-define("conf/ckplayer", [ "require", "exports", "module", "jquery", "plugins/ckplayer/6.7.0/player" ], function(t, e, n) {
+define("conf/ckplayer", [ "require", "exports", "module", "jquery", "plugins/ckplayer/6.7.0/player" ], function(e, t, n) {
     "use strict";
-    var i = t("jquery"), r = t("plugins/ckplayer/6.7.0/player"), a = new r("#jVideo", {
+    var i = e("jquery"), r = e("plugins/ckplayer/6.7.0/player"), a = new r("#jVideo", {
         swfPlayer: $PAGE_DATA.ckplayer,
         flash: {
             f: $PAGE_DATA.m3u8,
             a: $PAGE_DATA.play
         }
     });
-    a.on("time", function(t) {
-        console.log(t);
+    a.on("time", function(e) {
+        console.log(e);
     });
     i(".start").on("click", function() {
         a.play();

@@ -743,7 +743,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             }
         }, $ = function() {
             this[c] || e(this).trigger("appear");
-        }, S = function(t) {
+        }, q = function(t) {
             var n = e(t);
             t[c] = f;
             var i = x.placeholder;
@@ -754,11 +754,11 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             n.on("appear", I);
             j || n.on(C, $);
             v._list.push(t);
-        }, q = function(e) {
+        }, S = function(e) {
             e = i(e || [], h);
             if (e.length) {
                 n(e, function(e, t) {
-                    S(t);
+                    q(t);
                 });
                 v._inited || z(v);
             }
@@ -797,7 +797,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             P(e);
         });
         v.once("destroy", function() {
-            q = null;
+            S = null;
             E = null;
             L = null;
             I = null;
@@ -807,10 +807,10 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
         v._list = [];
         v.add = function(t) {
             var n = e(t);
-            n.length > 0 && q(n);
+            n.length > 0 && S(n);
         };
         v.update = E;
-        q(t);
+        S(t);
     };
     v.prototype = {
         constructor: v,
@@ -1514,9 +1514,9 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             return n;
         }
         return 0;
-    }, S = function(e) {
-        return $(e, "width");
     }, q = function(e) {
+        return $(e, "width");
+    }, S = function(e) {
         return $(e, "height");
     }, z = function() {
         try {
@@ -1704,7 +1704,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             u && u.length || (u = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = L(), h = k(), v = S(r), y = q(r), _ = I(e), b = S(a), w = q(a), T = _.left, C = _.top, j = d ? T - h.x : T, E = d ? C - h.y : C, $ = d ? 0 : h.x, z = d ? 0 : h.y, O = $ + p.w - v, D = z + p.h - y, H = {
+            var d = i.fixed, p = L(), h = k(), v = q(r), y = S(r), _ = I(e), b = q(a), w = S(a), T = _.left, C = _.top, j = d ? T - h.x : T, E = d ? C - h.y : C, $ = d ? 0 : h.x, z = d ? 0 : h.y, O = $ + p.w - v, D = z + p.h - y, H = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1751,7 +1751,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!K) return n;
                 B = o('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(K);
             }
-            var R, X, Q = "top" !== F[W], Y = [ "v", "h" ][1 ^ Q], J = S(B), Z = q(B), ee = {}, te = Q ? "left" : "top";
+            var R, X, Q = "top" !== F[W], Y = [ "v", "h" ][1 ^ Q], J = q(B), Z = S(B), ee = {}, te = Q ? "left" : "top";
             switch (Y) {
               case "h":
                 R = g(T + (b - J) / 2);
@@ -2316,6 +2316,41 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
     h.get = i.get;
     h.config = i.config;
     n.exports = h;
+});
+
+define("lib/ui/box/1.0.1/crossbox", [ "require", "exports", "module", "./box" ], function(e, t, n) {
+    "use strict";
+    function i(e, t) {
+        for (var n in t) t.hasOwnProperty(n) && (e[n] = t[n]);
+        return e;
+    }
+    function o(e) {
+        d.push(e);
+    }
+    function r(e) {
+        for (var t = -1, n = d.length; ++t < n; ) d[t](e);
+    }
+    function a(e) {
+        f ? e(s || u) : o(e);
+    }
+    var s, l = window, u = i({}, e("./box")), c = window.top, f = !1, d = [];
+    if (l !== c) try {
+        c.require([ "lib/ui/box/1.0.1/crossbox" ], function(e) {
+            i(n.exports, e);
+            f = !0;
+            s = e;
+            r(e);
+        });
+    } catch (p) {
+        setTimeout(function() {
+            console.warn("Initialize crossbox failed, use inner box instead.");
+        }, 1);
+    } else {
+        f = !0;
+        s = u;
+    }
+    t = n.exports = u;
+    t.ready = a;
 });
 
 define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", "../utils/util", "../event/emitter" ], function(e, t, n) {
@@ -4478,49 +4513,49 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
     };
     i.prototype.play = function() {
         var e = this;
-        e.player.videoPlay();
+        e.player && e.player.videoPlay();
     };
     i.prototype.playOrPause = function() {
         var e = this;
-        e.player.playOrPause();
+        e.player && e.player.playOrPause();
     };
     i.prototype.pause = function() {
         var e = this;
-        e.player.videoPause();
+        e.player && e.player.videoPause();
     };
     i.prototype.jump = function(e) {
         var t = this;
-        e >= 0 && t.player.videoSeek(e);
+        e >= 0 && t.player && t.player.videoSeek(e);
     };
     i.prototype.go = function(e) {
         if (void 0 === e) throw new Error("this params [url] is require.");
         var t = this;
         t.options.flash.f = e;
-        t.player.newAddress(t.options.flash);
+        t.player && t.player.newAddress(t.options.flash);
     };
     i.prototype.volume = function(e) {
         var t = this;
-        0 <= e && e <= 100 && t.player.changeVolume(e);
+        0 <= e && e <= 100 && t.player && t.player.changeVolume(e);
     };
     i.prototype.width = function(e) {
         var t = this;
-        t._embed.width(e || t.options.embed.width);
+        t._embed && t._embed.width(e || t.options.embed.width);
     };
     i.prototype.height = function(e) {
         var t = this;
-        t._embed.width(e || t.options.embed.height);
+        t._embed && t._embed.width(e || t.options.embed.height);
     };
     i.prototype.getTotalTime = function() {
         var e = this;
-        return e.player.getStatus().totalTime;
+        return e.player ? e.player.getStatus().totalTime : 0;
     };
     i.prototype.getCurrentTime = function() {
         var e = this;
-        return e.player.getStatus().time;
+        return e.player ? e.player.getStatus().time : 0;
     };
     i.prototype.getStatus = function() {
         var e = this;
-        return e.player.getStatus();
+        return e.player ? e.player.getStatus() : {};
     };
     i.prototype.get = function() {
         var e = this;
@@ -4529,7 +4564,7 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
     n.exports = i;
 });
 
-define("conf/play", [ "require", "exports", "module", "jquery", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer", "lib/ui/box/1.0.1/box", "lib/plugins/lazyload/1.9.3/lazyload", "lib/core/1.0.0/io/request", "lib/ui/tab/1.0.0/tab", "template", "module/monitor/1.0.0/question", "module/monitor/1.0.0/note", "module/login-status/1.0.0/login", "plugins/layer/layer", "plugins/ckplayer/6.7.0/player" ], function(e, t, n) {
+define("conf/play", [ "require", "exports", "module", "jquery", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer", "lib/ui/box/1.0.1/crossbox", "lib/plugins/lazyload/1.9.3/lazyload", "lib/core/1.0.0/io/request", "lib/ui/tab/1.0.0/tab", "template", "module/monitor/1.0.0/question", "module/monitor/1.0.0/note", "module/login-status/1.0.0/login", "plugins/layer/layer", "plugins/ckplayer/6.7.0/player" ], function(e, t, n) {
     "use strict";
     function i(e, t, n, i, o) {
         if (e > t) {
@@ -4549,17 +4584,15 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     }
     function o(e, t, n, i, o) {
         "" == e ? p.error("请输入内容") : t.hasClass("publish-error") || m.get(n, i, function(e) {
-            if (e) if (0 == e.code) {
-                p.ok("发表成功");
-                o.val("");
-            } else p.error(e.msg || "发表失败"); else p.error("发表失败，请重试");
+            p.ok("发表成功");
+            o.val("");
         }, function(e) {
             p.error(e.msg || "网络错误,请重试");
         });
     }
     function r(e, t, n) {
         m.get(e, t, function(e) {
-            e ? 0 == e.code ? p.ok(n + "成功") : p.error(e.msg || n + "失败") : p.error(n + "失败，请重试");
+            p.ok(n + "成功");
         }, function(e) {
             p.error(e.msg || "网络错误,请重试");
         });
@@ -4680,10 +4713,10 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
         }
     }
     var l = e("jquery"), u = e("module/top-search/1.0.0/top-search"), c = e("module/login-status/1.0.0/login-status"), f = e("module/fix-bar/1.0.0/fix-bar"), d = e("module/footer/1.0.0/footer"), p = (new u(), 
-    new c(), new f(), new d(), e("lib/ui/box/1.0.1/box")), h = e("lib/plugins/lazyload/1.9.3/lazyload"), m = e("lib/core/1.0.0/io/request"), v = e("lib/ui/tab/1.0.0/tab"), y = e("template"), g = e("module/monitor/1.0.0/question"), _ = e("module/monitor/1.0.0/note"), b = e("module/login-status/1.0.0/login"), x = (l(".jMod-catlog"), 
+    new c(), new f(), new d(), e("lib/ui/box/1.0.1/crossbox")), h = e("lib/plugins/lazyload/1.9.3/lazyload"), m = e("lib/core/1.0.0/io/request"), v = e("lib/ui/tab/1.0.0/tab"), y = e("template"), g = e("module/monitor/1.0.0/question"), _ = e("module/monitor/1.0.0/note"), b = e("module/login-status/1.0.0/login"), x = (l(".jMod-catlog"), 
     l("#jTab"));
     e("plugins/layer/layer");
-    var w, T, A, C = new v(x), j = l("#jQuestionTab1"), k = l("#jQuestionTab2"), E = l("#jNoteTab1"), L = l("#jNoteTab2"), I = $PAGE_DATA.courseId, $ = $PAGE_DATA.lessonId, S = $PAGE_DATA.examId, q = e("plugins/ckplayer/6.7.0/player"), z = new q("#jAudio", {
+    var w, T, A, C = new v(x), j = l("#jQuestionTab1"), k = l("#jQuestionTab2"), E = l("#jNoteTab1"), L = l("#jNoteTab2"), I = $PAGE_DATA.courseId, $ = $PAGE_DATA.lessonId, q = $PAGE_DATA.examId, S = e("plugins/ckplayer/6.7.0/player"), z = new S("#jAudio", {
         swfPlayer: $PAGE_DATA.ckplayer,
         embed: {
             width: "871",
@@ -4711,21 +4744,19 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                 P = !0;
             });
         }
-        if (e == z.getTotalTime() && 0 != z.getTotalTime() && "" != S && !O) {
+        if (e == z.getTotalTime() && 0 != z.getTotalTime() && "" != q && 0 != e && !O) {
             p.confirm("是否进入考试页面？", function() {
-                layer.open({
-                    type: 2,
+                p.loadUrl($PAGE_DATA.examUrl + "?examId=" + q + "?prepare&bizType=0&bizId=" + $ + "&courseId=" + I, {
                     title: "考试",
-                    shadeClose: !0,
-                    shade: !1,
-                    maxmin: !0,
-                    area: [ "100%", "100%" ],
-                    content: $PAGE_DATA.examUrl + "?examId=" + S + "?prepare&bizType=0&bizId=" + $ + "&courseId=" + I
+                    className: "ui-test-box",
+                    fixed: !0,
+                    width: l(window).width(),
+                    height: l(window).height()
                 });
             }, function() {}, this);
             O = !0;
         }
-        if (!b.isLogin() && !D && e > 60) {
+        if (!D && e > 60 && !b.isLogin()) {
             z.pause();
             p.confirm("游客只能观看一分钟,是否前往登录？", function() {
                 b.login(window.location.href);
@@ -4756,20 +4787,27 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             o(e, l(this), $PAGE_DATA.note.publish, U, M);
         } else b.login(window.location.href);
     });
-    var B = l("#jQuesTitle"), K = {
+    var B = l("#jQuesTitle");
+    x.on("focus", "#jQuesTitle", function() {
+        B.removeClass("question-input-error");
+    });
+    var K = {
         sourceType: 2,
         sourceId: $,
         content: ""
     };
     x.on("click", ".jPublishQ", function() {
-        if (b.isLogin()) b.login(window.location.href); else {
+        if (b.isLogin()) {
             var e = B.val(), t = G.val();
-            if ("" == e) p.error("请输入问题标题"); else {
+            if ("" == e) {
+                p.error("请输入问题标题");
+                B.addClass("question-input-error");
+            } else {
                 K.title = e;
                 K.content = t;
                 o(t, l(this), $PAGE_DATA.question.publish, K, G);
             }
-        }
+        } else b.login(window.location.href);
     });
     x.on("focus", ".jTxt", function() {
         l(this).addClass("text-focus").attr("placeholder", "");

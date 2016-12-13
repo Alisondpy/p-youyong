@@ -3237,7 +3237,6 @@ define("conf/forget-pwd", [ "require", "exports", "module", "jquery", "lib/ui/bo
             }
         },
         errorPlacement: function(e, t) {
-            console.log(t);
             e.appendTo(t.parent());
             i(t).parent().addClass("error");
         },

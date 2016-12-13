@@ -3379,7 +3379,7 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
         }
         r(n).addClass("ui-btn-disable");
         return !1;
-    }, r.validator.format("请输入正确的手机号"));
+    }, r.validator.format("请正确填写您的手机号"));
     r.validator.addMethod("vierfyCode", function(e, t) {
         var n = /^\d{4}$/;
         return this.optional(t) || n.test(e);
@@ -3401,7 +3401,8 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
             },
             password: {
                 required: !0,
-                minlength: 6
+                minlength: 6,
+                maxlength: 16
             }
         },
         messages: {
@@ -3414,19 +3415,32 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
                 minlength: ""
             },
             email: {
-                required: "请输入邮箱",
-                email: "请输入正确的邮箱"
+                required: "请输入您的邮箱",
+                email: "请正确填写您的邮箱地址"
             },
             password: {
-                required: "请输入密码",
-                minlength: "密码长度不小于6位,且不包含空格"
+                required: "请设置您的登录密码",
+                minlength: "请输入6-16位密码，区分大小写，不能使用空格！"
             }
         },
         onfocusout: function(e) {
-            r(e).valid() ? r(e).parent(".item").removeClass("error-red") : r(e).parent(".item").addClass("error-red");
+            if (r(e).valid()) {
+                console.log("focus", r(e).valid());
+                r(e).parents(".item").removeClass("error-red");
+                r(e).parent().removeClass("error-red");
+            } else {
+                console.log("focus", r(e).valid(), "");
+                r(e).parents(".item").addClass("error-red");
+            }
         },
         onkeyup: function(e) {
-            r(e).valid() ? r(e).parent(".item").removeClass("error-red") : r(e).parent(".item").addClass("error-red");
+            if (r(e).valid()) {
+                r(e).parents(".item").removeClass("error-red");
+                r(e).removeClass("error");
+            } else {
+                r(e).parents(".item").addClass("error-red");
+                r(e).addClass("error");
+            }
         },
         errorPlacement: function(e, t) {
             if ("jDynamic" === t.attr("id")) {

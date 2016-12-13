@@ -3003,7 +3003,6 @@ define("conf/uc/questions-answers", [ "require", "exports", "module", "jquery", 
         s.on("ajaxSuccess", function(e, t) {
             if (!u.isEmptyObject(e.data) && e.data && e.data.resultList && e.data.resultList.length > 0) {
                 var s = y(n, e.data);
-                console.log(s);
                 document.getElementById(i).innerHTML = s;
                 a = new g(u("#" + i).find(".jImg"), {
                     mouseWheel: !0,
@@ -3032,10 +3031,8 @@ define("conf/uc/questions-answers", [ "require", "exports", "module", "jquery", 
     }
     function r(e, t, n) {
         m.get(e, t, function(e) {
-            if (e) if (0 == e.code) {
-                h.ok(n + "成功");
-                s.pagination.selectPage(s.pagination.get("currentPage"));
-            } else h.error(e.msg || n + "失败"); else h.error(n + "失败，请重试");
+            h.ok(n + "成功");
+            s.pagination.selectPage(s.pagination.get("currentPage"));
         }, function(e) {
             h.error(e.msg || "网络错误,请重试");
         });
@@ -3078,11 +3075,9 @@ define("conf/uc/questions-answers", [ "require", "exports", "module", "jquery", 
                 answerId: 0,
                 content: e
             }, function(e) {
-                if (e) if (0 == e.code) {
-                    h.ok("发表成功");
-                    j.val("");
-                    s.pagination.selectPage(s.pagination.get("currentPage"));
-                } else h.error(e.msg || "发表失败"); else h.error("发表失败，请重试");
+                h.ok("发表成功");
+                j.val("");
+                s.pagination.selectPage(s.pagination.get("currentPage"));
             }, function(e) {
                 h.error(e.msg || "网络错误,请重试");
             });

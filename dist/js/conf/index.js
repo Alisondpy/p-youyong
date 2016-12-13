@@ -4911,7 +4911,6 @@ define("conf/index", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
         s.get($PAGE_DATA.loadPicture, {
             pid: e
         }, function(e) {
-            console.log(e);
             if (e.error < 0) r.error(e.msg); else try {
                 var t = e.data, i = t[0].imageName, n = t[0].imageId, a = [];
                 o.each(t, function(e, t) {
@@ -4978,7 +4977,6 @@ define("conf/index", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
     });
     o(".jAlum").on("click", function() {
         var e = o(this).attr("data-id");
-        console.log(e);
         n(e);
     });
 });

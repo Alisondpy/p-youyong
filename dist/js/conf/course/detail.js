@@ -3162,10 +3162,8 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
     }
     function r(e, t, n) {
         l.get(e, t, function(e) {
-            if (e) if (0 == e.code) {
-                s.ok(n + "成功");
-                _.pagination.selectPage(_.pagination.get("currentPage"));
-            } else s.error(e.msg || n + "失败"); else s.error(n + "失败，请重试");
+            s.ok(n + "成功");
+            _.pagination.selectPage(_.pagination.get("currentPage"));
         }, function(e) {
             s.error(e.msg || "网络错误,请重试");
         });
@@ -3180,29 +3178,28 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
             modal: !1
         }) : p.login(window.location.href);
     });
-    var w, _;
-    w = new u(a(".jImg"), {
+    var w, _, A = new u(a(".mod-detail .jImg"), {
         mouseWheel: !0,
         effect: "fadeIn",
         snap: !0
     });
     o();
-    var A, C, T = a("#jTab"), j = new c(T);
-    j.on("change", function(e) {
+    var C, T, j = a("#jTab"), k = new c(j);
+    k.on("change", function(e) {
         var t = e.hd.attr("data-target");
-        A = e.hd.attr("data-type");
-        C = e.hd.attr("show-type");
+        C = e.hd.attr("data-type");
+        T = e.hd.attr("show-type");
         switch (t) {
           case "1":
             i($PAGE_DATA.LessonUrl, {
-                type: A,
+                type: C,
                 id: y
             }, "jWrap0", "jWrap0Box", x);
             break;
 
           case "2":
             i($PAGE_DATA.commentUrl, {
-                sourceType: A,
+                sourceType: C,
                 sourceId: y
             }, "jWrap1", "jWrap1Box", x);
             break;
@@ -3215,51 +3212,50 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
 
           case "4":
             i($PAGE_DATA.loadNoteUrl, {
-                sourceType: A,
-                showType: C,
+                sourceType: C,
+                showType: T,
                 sourceId: y
             }, "jWrap3", "jWrap3Box", x);
         }
+        A.update();
     });
-    var k = a(".jWrap1"), P = a(".jPublish"), $ = a(".jArrow"), E = a(".jTxtNum"), I = a(".jTxt");
-    k.on("input propertychange", ".jTxt", function() {
-        var e = I.val().length;
+    var P = a(".jWrap1"), $ = a(".jPublish"), E = a(".jArrow"), I = a(".jTxtNum"), z = a(".jTxt");
+    P.on("input propertychange", ".jTxt", function() {
+        var e = z.val().length;
         if (e > 300) {
             a(this).addClass("text-error");
-            P.addClass("publish-error");
-            $.addClass("arrow-error");
-            E.css({
+            $.addClass("publish-error");
+            E.addClass("arrow-error");
+            I.css({
                 color: "red"
             });
         } else {
             a(this).removeClass("text-error");
-            P.removeClass("publish-error");
-            $.removeClass("arrow-error");
-            E.css({
+            $.removeClass("publish-error");
+            E.removeClass("arrow-error");
+            I.css({
                 color: "#666"
             });
         }
-        E.children("i").text(e);
+        I.children("i").text(e);
     });
-    k.on("click", ".jPublish", function() {
+    P.on("click", ".jPublish", function() {
         if (p.isLogin()) {
-            var e = I.val();
+            var e = z.val();
             "" == e ? s.error("请输入发表内容") : a(this).hasClass("publish-error") || l.get($PAGE_DATA.commentPostUrl, {
-                sourceType: A,
+                sourceType: C,
                 sourceId: y,
                 content: e
             }, function(e) {
-                if (e) if (0 == e.code) {
-                    s.ok("发表成功");
-                    I.val("");
-                    _.pagination.selectPage(_.pagination.get("currentPage"));
-                } else s.error(e.msg || "发表失败"); else s.error("发表失败，请重试");
+                s.ok("发表成功");
+                z.val("");
+                _.pagination.selectPage(_.pagination.get("currentPage"));
             }, function(e) {
                 s.error(e.msg || "网络错误,请重试");
             });
         } else p.login(window.location.href);
     });
-    k.on("focus", ".jTxt", function() {
+    P.on("focus", ".jTxt", function() {
         a(".jArrow").addClass("arrow-focus");
         a(this).addClass("text-focus").attr("placeholder", "");
         a(this).css("color", "#333");
@@ -3307,14 +3303,14 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
     a(".jWrap3").on("click", ".bar-right", function() {
         if (p.isLogin()) if ("只看我的" === a(this).text()) {
             i($PAGE_DATA.loadNoteUrl, {
-                sourceType: A,
+                sourceType: C,
                 showType: 1,
                 sourceId: y
             }, "jWrap3", "jWrap3Box", x);
             a(this).text("取消只看我的");
         } else {
             i($PAGE_DATA.loadNoteUrl, {
-                sourceType: A,
+                sourceType: C,
                 showType: 0,
                 sourceId: y
             }, "jWrap3", "jWrap3Box", x);

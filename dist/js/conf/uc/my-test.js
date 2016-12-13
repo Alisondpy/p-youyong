@@ -3167,11 +3167,13 @@ define("conf/uc/my-test", [ "require", "exports", "module", "jquery", "./common"
                     s.get(v, {
                         examId: t
                     }, function(e) {
-                        200 == e.code ? u.loadUrl(e.msg, {
+                        u.loadUrl(e.msg, {
                             title: "答卷详情",
                             autoRelease: !1,
                             modal: !0
-                        }) : u.error(e.msg || "网络失败，请重试");
+                        });
+                    }, function(e) {
+                        u.error(e.msg || "网络失败，请重试");
                     });
                 });
             }
