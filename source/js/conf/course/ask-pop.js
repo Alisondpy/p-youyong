@@ -63,7 +63,7 @@ define(function(require, exports, module) {
 	})
 
 	//评论字数限制
-	jContainer.on('keyup','#jContent',function(){
+	jContainer.on('input propertychange','#jContent',function(){
 		var txtLen = $('#jContent').val().length;
 		if(txtLen > 100){
 			$(this).addClass('text-error');

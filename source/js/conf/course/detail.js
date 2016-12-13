@@ -156,7 +156,7 @@ define(function(require, exports, module) {
     var arrow = $('.jArrow');
     var txtNum = $('.jTxtNum');
     var txt = $('.jTxt');
-    wrap1.on('keyup','.jTxt',function(){
+    wrap1.on('input propertychange','.jTxt',function(){
         var txtLen = txt.val().length;
         if(txtLen > 300){
             $(this).addClass('text-error');

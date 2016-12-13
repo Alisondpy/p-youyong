@@ -21,6 +21,7 @@ define(function(require, exports, module) {
     var Login = require('module/login-status/1.0.0/login');
     var catlog = $('.jMod-catlog');
     var jTab = $('#jTab');
+    require('plugins/layer/layer');
     var tab = new Tab(jTab);
     var lazy,question,note;
 
@@ -34,6 +35,7 @@ define(function(require, exports, module) {
     //获取参数
     var sourceId = $PAGE_DATA['courseId'];
     var lessonId = $PAGE_DATA['lessonId'];
+    var examId = $PAGE_DATA['examId'];
 
     var Player = require('plugins/ckplayer/6.7.0/player');
 
@@ -44,13 +46,15 @@ define(function(require, exports, module) {
             height: '655'
         },
         flash: {
-            i: '', //初始图片地址
+            i: $PAGE_DATA['lessonImageUrl'], //初始图片地址
             g: $PAGE_DATA['startTime'] || 0,
             f: $PAGE_DATA['m3u8'], //必填 请别跨域 要播放文件的路径
             a: $PAGE_DATA['play'] //必填 请别跨域 如果要调用m3u8格式的文件，必须要用到的播放插件【调用时的参数，只有当s>0的时候有效】
         }
     });
     var isSendPlayTime = true;
+    var isLayer = false;
+    var isLogin = false;
     //监听当前播放器进度
     player.on('time', function(seconds) {
         if(isSendPlayTime && seconds >0){
@@ -67,12 +71,39 @@ define(function(require, exports, module) {
                 isSendPlayTime = true;
             });
         }
-        if(seconds == player.getTotalTime()){
-
+        if(seconds == player.getTotalTime() && player.getTotalTime() != 0 && examId != ''){
+            if(!isLayer){
+                box.confirm('是否进入考试页面？',
+                    function() {
+                        layer.open({
+                            type: 2,
+                            title: '考试',
+                            shadeClose: true,
+                            shade: false,
+                            maxmin: true, //开启最大化最小化按钮
+                            area: ['100%','100%'],
+                            content: $PAGE_DATA['examUrl']+'?examId='+examId+'?prepare&bizType=0&bizId='+lessonId+'&courseId='+sourceId
+                        });
+                    },
+                    function() {}, this);
+                isLayer = true;
+            }
+        }
+        if(!Login.isLogin()){
+            if(!isLogin){
+                if(seconds > 60){
+                    player.pause();
+                    box.confirm('游客只能观看一分钟,是否前往登录？',
+                        function() {
+                            Login.login(window.location.href);
+                        },
+                        function() {}, this);
+                    isLogin = true;
+                }
+            }
         }
     });
     //====================播放器 end
-
 
     //====================字数限制 start
     var publishA = $('.jPublishA');//发布笔记
@@ -93,20 +124,21 @@ define(function(require, exports, module) {
         }
         txtNum.children('.num').text(txtLen);
     }
-    jTab.on('keyup','.jTxtA',function(){
+    jTab.on('input propertychange','.jTxtA',function(){
         var txtLen = $(this).val().length;
         limit(txtLen,500,$(this),publishA,txtNumA);
     });
 
-    jTab.on('keyup','.jTxtQ',function(){
+    jTab.on('input propertychange','.jTxtQ',function(){
         var txtLen = $(this).val().length;
         limit(txtLen,500,$(this),publishQ,txtNumQ);
     });
+
     //====================字数限制 end
     //====================发布按钮 start
     function pubAjax(content,_this,url,data,txt){
         if(content == ''){
-            box.error('请输入发表内容');
+            box.error('请输入内容');
         }else {
             if(!_this.hasClass('publish-error')){
                 io.get(url,data,function(res){
@@ -127,8 +159,7 @@ define(function(require, exports, module) {
         }
     }
     var answer = $('#jAnswer');
-    var ques = $('#jQues');
-    var publishData = {
+    var publishDataA = {
         sourceType:2,
         sourceId:lessonId,
         content:"",
@@ -137,27 +168,34 @@ define(function(require, exports, module) {
     jTab.on('click','.jPublishA',function(){
         if(Login.isLogin()){
             var content = txtA.val();
-            publishData.content = content;
+            publishDataA.content = content;
             if(answer.is(':checked')){
-                publishData.showType = 1;
+                publishDataA.showType = 1;
             }else {
-                publishData.showType = 2;
+                publishDataA.showType = 2;
             }
-            pubAjax(content,$(this),$PAGE_DATA['note'].publish,publishData,txtA);
+            pubAjax(content,$(this),$PAGE_DATA['note'].publish,publishDataA,txtA);
         }else {
             Login.login(window.location.href);
         }
     });
+    var jQuesTitle = $('#jQuesTitle');
+    var publishDataQ = {
+        sourceType:2,
+        sourceId:lessonId,
+        content:"",
+    }
     jTab.on('click','.jPublishQ',function(){
-        if(Login.isLogin()){
+        if(!Login.isLogin()){
+            var title = jQuesTitle.val();
             var content = txtQ.val();
-            publishData.content = content;
-            if(ques.is(':checked')){
-                publishData.showType = 1;
+            if(title == ''){
+                box.error('请输入问题标题');
             }else {
-                publishData.showType = 2;
+                publishDataQ.title = title;
+                publishDataQ.content = content;
+                pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishDataQ,txtQ);
             }
-            pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishData,txtQ);
         }else {
             Login.login(window.location.href);
         }

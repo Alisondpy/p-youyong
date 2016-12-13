@@ -26,6 +26,7 @@
         };
         //目录请求地址
         $PAGE_DATA['dirUrl'] = $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json';
+        $PAGE_DATA['examUrl'] = $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json';
         //笔记部分请求地址
         $PAGE_DATA['note'] = {
             note:$PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',
@@ -166,7 +167,7 @@
                         </div>
                     </div>
                     <div class="square jQuestionSquare questionSquare">
-                            <input type="text" class="ui-input question-input" placeholder="想问点什么？">
+                            <input type="text" class="ui-input question-input" id="jQuesTitle" placeholder="想问点什么？">
                             <textarea class="textarea ui-input jTxtQ jTxt" placeholder="解释下你的问题吧 (限500字)"></textarea>
                             <div class="line">
                             </span>

@@ -2,6 +2,7 @@
 @import "../common/config/level-1";
 @import "../common/common";
 @import "../common/tab/tab";
+@import "../common/layer/default/layer";
 body {
     background-color: #eee;
 }
@@ -334,6 +335,9 @@ em{
 						.question-input{
 							width: 213px;
 							margin-bottom: 10px;
+						}
+						.question-input-error{
+							border-color: $BgHoverColor;
 						}
 					}
 				}
