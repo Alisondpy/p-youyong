@@ -108,11 +108,9 @@ define(function(require, exports, module) {
         //失去焦点校验
         onfocusout: function(element) {
             if($(element).valid()){
-                console.log('focus',$(element).valid())
                 $(element).parents(".item").removeClass("error-red");
                 $(element).parent().removeClass("error-red");
             }else{
-                console.log('focus',$(element).valid(),'')
                 $(element).parents(".item").addClass("error-red");
             }
         },
