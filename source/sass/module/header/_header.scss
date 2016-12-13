@@ -18,6 +18,11 @@
         .item {
             float: left;
             font-size: 18px;
+            &.current{
+                a{
+                    color:$hoverColor;
+                }
+            }
             a {
                 color: $grayColor;
                 &:hover {
@@ -112,11 +117,6 @@
             .item {
                 float: left;
                 font-size: 18px;
-                &.current{
-                    a{
-                        color:#ea3e48;
-                    }
-                }
             }
             .tips-menu-box {
                 position: relative;
