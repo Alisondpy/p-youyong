@@ -94,7 +94,7 @@ define(function(require, exports, module) {
             },
             vierfyCode: {
                 required: "请输入动态码",
-                minlength: ""
+                minlength: "请输入您获取的动态码"
             },
             email: {
                 required: "请输入您的邮箱",
@@ -134,17 +134,6 @@ define(function(require, exports, module) {
                 $(element).parent().addClass("error-red");
             }
         },
-        success: function(label) {
-            //验证码特殊结构,修改错误信息放置位置
-            if (label.attr("id") === "jDynamic-error") {
-                label.html("&nbsp;").addClass("checked");
-                $(label).parent().removeClass("error-red");
-                $(label).siblings().children("label").removeClass("error-red");
-            } else {
-                label.html("&nbsp;").addClass("checked");
-                label.parent().removeClass("error-red");
-            }
-        },
         submitHandler: function(formRes) {
             //验证成功时执行方法
             validateSuccess($PAGE_DATA['register'], formRes)
@@ -153,12 +142,11 @@ define(function(require, exports, module) {
     $(".jSubBtn").click(function(){
         $("#jsRightSignin").submit();
     })
-
-
     //获取验证码
     $(".jsVerifyCode").on("click", function() {
         var verifyCode = $(this);
         //获取阶段直接返回
+        $('#jDynamic').removeAttr("disabled");
         if (verifyCode.hasClass("ui-btn-disable")) {
             return false;
         }
@@ -182,6 +170,7 @@ define(function(require, exports, module) {
             } else {
                 verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
                 clearInterval(time);
+                $('#jDynamic').attr("disabled", "disabled");
             }
         }, 1000);
     });

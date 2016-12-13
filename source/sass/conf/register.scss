@@ -81,6 +81,9 @@ body {
                         display: inline-block;
                         color: #ec3b45;
                     }
+                    &[disabled]{
+                        background: transparent;
+                    }
                 }
                 .code {
                     display: inline-block;
