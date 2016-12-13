@@ -82,7 +82,6 @@ define(function(require, exports, module) {
             });
 
             pager.on('change', function(pageNum, e) {
-                // console.log('pageNum', pageNum, e);
                 $('#jCurrentPage').html(pageNum)
             });
         }

@@ -146,7 +146,6 @@ define(function(require, exports, module) {
             }
         },
         errorPlacement: function(error, element) {
-            //console.log(error,element);
             error.appendTo(element.parent());
             $(element).parent().addClass("error");
         },
@@ -234,20 +233,27 @@ define(function(require, exports, module) {
         });
     }
 
+    function getQueryString(name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null) return unescape(r[2]); return null;
+    }
+
+
     //验证refer是否属于白名单里面
     function getReturnUrl() {
         //白名单
         var allowerList = [
-            /zhongzhihui.com/
+            /zhongzhihui.com/,
+            /localhost:/
         ];
         var defaultReturnUrl = ($PAGE_DATA && $PAGE_DATA['defaultReturnUrl']) || 'http://www.zhongzhihui.com';
-        var params = Utils.parseQuery(window.location.search);
         //从哪里来到哪里去
         //如果url带有returnUrl，优先跳转
         //如果url没有就从cookie去取，
         //如果cookie没有就从document.referrer
         //如果document.referrer没有就用默认
-        var returnUrl = params && params['returnUrl'];
+        var returnUrl = getQueryString('returnUrl');
         if (returnUrl) {
             returnUrl = decodeURIComponent(returnUrl);
         } else {
@@ -264,10 +270,10 @@ define(function(require, exports, module) {
         }
 
         if (returnUrl) {
-            returnUrl = encodeURIComponent(returnUrl);
-            cookie.set('__returnUrl', returnUrl, { expires: 0.04 });
             for (var i = 0; i < allowerList.length; i++) {
                 if (allowerList[i].test(returnUrl)) {
+                    returnUrl = encodeURIComponent(returnUrl);
+                    cookie.set('__returnUrl', returnUrl, { expires: 0.04 });
                     return returnUrl;
                 }
             }
