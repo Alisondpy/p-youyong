@@ -2,24 +2,6 @@
 @import "../../common/config/level-2";
 @import "../../common/_common";
 @import "../../module/hp/_common";
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: normal;
-    margin: 0;
-}
-
-i,
-a,
-b,
-span {
-    display: inline-block;
-    font-style: normal;
-    font-weight: normal;
-}
 
 @mixin font-nom {
     font-weight: normal;

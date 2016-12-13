@@ -4,22 +4,9 @@
 @import "../../module/mod-hot";
 @import "../../module/mod-empty";
 @import "../../common/pager/pager";
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-weight: normal;
+.inline-block{
+    display:inline-block;
 }
-
-i,
-a,
-b,
-span {
-    display: inline-block;
-}
-
 @mixin ver-align($height) {
     height: $height;
     line-height: $height;
@@ -60,6 +47,7 @@ body {
                     margin-right: 10px;
                     border-radius: 3px;
                     margin-bottom: 10px;
+                    @extend .inline-block;
                 }
                 .active {
                     background: #ea3e48;
@@ -100,6 +88,9 @@ body {
             }
             .sub-info {
                 width: 500px;
+                a{
+                    @extend .inline-block;
+                }
                 h1 {
                     font-size: 20px;
                     line-height: 28px;

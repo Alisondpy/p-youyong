@@ -21,6 +21,7 @@ define(function(require, exports, module) {
     var jContainer = $('#jContainer');
     var jPagination = $('.jPagination');
     var loadActivity = $PAGE_DATA['loadActivity'];
+    //var loadActivity = $PAGE_DATA['baseStaticUrl']+'source/api/sub/sub.json';
     //热门活动列表
    /* new Hot('jHotActive',{
         url:"/p-youyong/source/api/sub/hot-activity.json",

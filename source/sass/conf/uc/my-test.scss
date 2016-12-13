@@ -3,19 +3,10 @@
 @import "../../common/common";
 @import "../../module/uc/common";
 @import "../../common/pager/pager";
-*{
-  margin:0;
-  padding:0;
-}
-h1, h2, h3,h4,h5,h6 {
-  font-weight: normal;
-}
 
-span, i, em, label, b {
+.inline-block {
   display: inline-block;
-  font-style: normal;
 }
-
 .ifm-right-container {
   .mod-test-title {
     width: 188px;
@@ -76,7 +67,6 @@ span, i, em, label, b {
   }
 
   .mod-item {
-    margin-top:30px;
     .exam-restart{
       margin-left:50px;
       font-size:14px;
@@ -142,6 +132,7 @@ span, i, em, label, b {
         em {
           color: #4b677b;
           margin-left: 12px;
+          font-style:normal;
         }
       }
     }
@@ -193,6 +184,8 @@ span, i, em, label, b {
           i {
             font-size: 14px;
             color: #44687d;
+            font-style:normal;
+            @extend .inline-block;
           }
         }
         h6{
@@ -201,9 +194,9 @@ span, i, em, label, b {
         .view-page {
           color: #44687d;
           font-size: 12px;
-          display:block;
-          margin-top: 27px;
+          display:inline-block;
           line-height:1;
+          font-weight: normal;
           &:hover {
             text-decoration: underline;
           }

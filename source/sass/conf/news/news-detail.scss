@@ -3,16 +3,6 @@
 @import "../../common/common";
 @import "../../conf/uc/questions-answers";
 @import "../../module/mod-hot";
-
-h1,h2,h3{
-  margin:0;
-  padding:0;
-  font-weight:normal;
-}
-span,a,i,b{
-  display:inline-block;
-  font-style:normal;
-}
 .mod-main{
   padding:0;
 }
@@ -34,6 +24,7 @@ span,a,i,b{
    h1{
      font-size:24px;
      color:#333;
+     font-weight:normal;
    }
    .news-time{
      font-size:14px;
@@ -232,6 +223,7 @@ span,a,i,b{
       }
     }
     .course-wrap{
+      display:inline-block;
       width:130px;
       height:68px;
       img{
