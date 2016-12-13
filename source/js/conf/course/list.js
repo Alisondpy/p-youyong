@@ -21,9 +21,6 @@ define(function(require, exports, module) {
     var box = require('lib/ui/box/1.0.1/crossbox');
     $("#jReport").on("click",function(){
         if(userLogin){
-
-
-
             box.loadUrl($PAGE_DATA['applyUrl'], {
                 title: '报名详情',
                 autoRelease: false,
