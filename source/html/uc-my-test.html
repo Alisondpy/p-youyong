@@ -91,7 +91,9 @@
                                 {{if value.isExamed == 0}}
                                     <div class="mod-in-exam">
                                         <a href="javascript:;" class="join-exam">参加考试</a>
-                                        <p>{{value.intervalExamEndMinute}}</p>
+                                        {{if value.intervalExamEndMinute != 0}}
+                                            <p>离考试结束还有{{value.intervalExamEndMinute}}天</p>
+                                        {{/if}}
                                     </div>
                                 {{/if}}
                                 <!--已参加过考试-->
@@ -106,7 +108,9 @@
                                             </h6>
                                             <div class="mod-in-exam f-l exam-restart">
                                                 <a href="javascript:;" class="join-exam">重新考试</a>
-                                                <div>{{value.intervalExamEndMinute}}</div>
+                                                 {{if value.intervalExamEndMinute != 0}}
+                                                    <div>离考试结束还有{{value.intervalExamEndMinute}}天</div>
+                                                {{/if}}
                                             </div>
                                         </div>
                                     {{/if}}
@@ -120,7 +124,9 @@
                                             </h6>
                                             <div class="mod-in-exam f-l exam-restart">
                                                 <a href="javascript:;" class="join-exam">重新考试</a>
-                                                <div>{{value.intervalExamEndMinute}}100天</div>
+                                                {{if value.intervalExamEndMinute != 0}}
+                                                        <div>离考试结束还有{{value.intervalExamEndMinute}}天</div>
+                                                {{/if}}
                                             </div>
                                         </div>
                                     {{/if}}
