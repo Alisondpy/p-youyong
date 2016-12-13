@@ -16,18 +16,6 @@ define(function(require, exports, module) {
 
     //判断用户是否登陆
     var userLogin = Login.isLogin();
-
     var io = require('lib/core/1.0.0/io/request');
     var box = require('lib/ui/box/1.0.1/crossbox');
-    $("#jReport").on("click",function(){
-        if(userLogin){
-            box.loadUrl($PAGE_DATA['applyUrl'], {
-                title: '报名详情',
-                autoRelease: false,
-                modal: true //是否有遮罩层
-            });
-        }else{
-            Login.login();
-        }
-    })
 });
