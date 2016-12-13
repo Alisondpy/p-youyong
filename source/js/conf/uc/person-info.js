@@ -147,11 +147,13 @@ define(function(require, exports, module) {
             rules:{
                 oldPassword:{
                     required:true,
+                     Password:true,
                     minlength:6,
                     maxlength:16
                 },
                 newPassword:{
                     required:true,
+                    Password:true,
                     minlength:6,
                     maxlength:16,
                 },
@@ -159,23 +161,29 @@ define(function(require, exports, module) {
                     required:true,
                     minlength:6,
                     maxlength:16,
-                    equalTo:'#nepassword'
+                    equalTo:'#newPassword',
+                    Password:true
                 }
             },
             messages:{
-                password:{
+                oldPassword:{
                     required:"密码格式不正确"
                 },
-                nepassword:{
+                newPassword:{
                     required:"密码格式不正确",
                     equalTo:"密码输入不一致"
                 },
-                snewpassword:{
+                rePassword:{
                     required:"密码格式不正确",
                     equalTo:"密码输入不一致"
                 }
             }
         })
+
+           $.validator.addMethod("Password", function(value, element) {
+                var psw = /^(?!\d{1,8}$)\S{6,16}$/;
+                return this.optional(element) || (psw.test(value));
+            },'密码格式不正确');
     };
 
     subForm();

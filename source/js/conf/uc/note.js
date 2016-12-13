@@ -60,18 +60,17 @@ define(function(require, exports, module) {
                     InitEvent.inited = true;
                     body.on('click', '.jEdit .jEditTxt', function() {
                         var _this = $(this);
-                        _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('readonly').addClass('edittxt');
-                        _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('unselectable');
+                        _this.parents('.jEdit').siblings('.jEditDetails').addClass('edittxt');
+                        _this.parents('.jEdit').siblings('.jEditDetails').attr('contenteditable', 'true');
                         _this.parents('.jEdit').find('.jHide').hide().siblings('.jSave').show();
 
                     })
                     body.on('click', '.jEdit .jSave', function() {
                         var _this = $(this);
-                        var context = _this.parents('.jEdit').siblings('.jEditDetails').val();
+                        var context = _this.parents('.jEdit').siblings('.jEditDetails').text();
                         var id = _this.parents('.jEdit').attr('data-id');
                         _this.parents('.jEdit').find('.jHide').show().siblings('.jSave').hide();
-                        _this.parents('.jEdit').siblings('.jEditDetails').attr('readonly', true).removeClass('edittxt');
-                        _this.parents('.jEdit').siblings('.jEditDetails').attr('unselectable', 'on');
+                        _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('contenteditable').removeClass('edittxt');
                         InitEvent.postparams($PAGE_DATA['noteSave'], { 'id': id, 'context': context }, '保存成功！');
 
                     })
