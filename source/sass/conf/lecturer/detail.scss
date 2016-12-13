@@ -29,7 +29,11 @@ h1 {
             .title {
                 margin: 42px 0 19px 0;
                 font-size: 16px;
-                /*px*/
+                em{
+
+                    font-style:normal;
+                    margin-right:2px;
+                }
             }
             .mod-contain {
                 padding: 32px 40px 30px 40px;

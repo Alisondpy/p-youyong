@@ -78,8 +78,9 @@ define(function(require, exports, module) {
                 },
                 mobile:{
                     required:true,
-                    minlength:11,
-                    mobile:true
+                    mobile:true,
+                    minlength:11
+                    
                 },
                 email:{
                     required:true,

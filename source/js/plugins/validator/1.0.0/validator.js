@@ -52,13 +52,13 @@ define(function(require, exports, module) {
 
     var pattens = [{
         name: 'email',
-        text: $.validator.messages.email,
+        text: '请正确填写您的邮箱地址',
         func: function(v, elem) {
             return this.optional(elem) || rEmail.test(v);
         }
     }, {
         name: 'mobile',
-        text: '请正确输入您的手机号码',
+        text: '请正确填写您的手机号码',
         func: function(v, elem) {
             return this.optional(elem) || rMobile.test(v);
         }
