@@ -35,7 +35,6 @@ define(function(require, exports, module) {
                 });
             });
             pager.on('ajaxSuccess', function(data, callback) {
-                // console.log(data.data, callback);
                 if(data && data.data && data.data.resultList && data.data.resultList.length >0) {
                     jContainer.html(template('tClass1', data.data));
                     callback && callback(data.data.records);
@@ -79,7 +78,6 @@ define(function(require, exports, module) {
             });
 
             pager.on('ajaxSuccess', function(data, callback) {
-                // console.log(data.data, callback);
                 if(data && data.data && data.data.resultList && data.data.resultList.length >0) {
                     jContainer.html(template('tClass2', data.data));
                     callback && callback(data.data.records);
@@ -95,7 +93,6 @@ define(function(require, exports, module) {
             });
 
             pager.on('change', function(pageNum, e) {
-                // console.log('pageNum', pageNum, e);
                 $('#jCurrentPage').html(pageNum)
             });
         }

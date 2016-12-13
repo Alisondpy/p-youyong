@@ -64,7 +64,6 @@ define(function(require, exports, module) {
         },
         errorPlacement : function(error,element){
             //console.log(error,element);
-            console.log(element);
             error.appendTo(element.parent());
             $(element).parent().addClass("error");
             //debugger;

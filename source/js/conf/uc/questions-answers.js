@@ -53,7 +53,6 @@ define(function(require, exports, module) {
         pager.on('ajaxSuccess', function(res, callback) {
             if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
                 var html = template(tmpEl,res.data);
-                console.log(html);
                 document.getElementById(htmEl).innerHTML = html;
                 //图片懒加载
                 lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
