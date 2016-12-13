@@ -290,16 +290,18 @@ define(function(require, exports, module) {
                 jNoteTab2.show();
                 jQuestionTab1.hide();
                 jQuestionTab2.hide();
-                note = new Note('#jNoteTab2', {
-                    pollingAjax: {
-                        url: $PAGE_DATA['note'].note,
-                        data:reqNoteData
-                    },
-                    pagerAjax: {
-                        url: $PAGE_DATA['note'].note,
-                        data:reqNoteData
-                    }
-                });
+                if(!note){
+                    note = new Note('#jNoteTab2', {
+                        pollingAjax: {
+                            url: $PAGE_DATA['note'].note,
+                            data:reqNoteData
+                        },
+                        pagerAjax: {
+                            url: $PAGE_DATA['note'].note,
+                            data:reqNoteData
+                        }
+                    });
+                }
                 if(question){
                     question.stop();
                 }
@@ -340,16 +342,18 @@ define(function(require, exports, module) {
                 jQuestionTab1.hide();
                 jQuestionTab2.show();
                 /*问答实时监听*/
-                question = new Question('#jQuestionTab2', {
-                    pollingAjax: {
-                        url: $PAGE_DATA['question'].question,
-                        data:reqNoteData
-                    },
-                    pagerAjax: {
-                        url: $PAGE_DATA['question'].question,
-                        data:reqNoteData
-                    }
-                });
+                if(!question){
+                    question = new Question('#jQuestionTab2', {
+                        pollingAjax: {
+                            url: $PAGE_DATA['question'].question,
+                            data:reqNoteData
+                        },
+                        pagerAjax: {
+                            url: $PAGE_DATA['question'].question,
+                            data:reqNoteData
+                        }
+                    });
+                }
                 question.start();
                 if(note){
                     note.stop();

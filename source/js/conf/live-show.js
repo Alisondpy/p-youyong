@@ -21,7 +21,16 @@ define(function(require, exports, module) {
 	io.get($PAGE_DATA['LiveShowUrl'],{courseId:id},function(res){
 		if(res && res.data && res.data.liveshowUrl){
 			console.log(id);
-			jFrame.find('iframe').attr('src',res.data.liveshowUrl);
+			//jFrame.find('iframe').attr('src',res.data.liveshowUrl);
+			layer.open({
+				type: 2,
+				title: '很多时候，我们想最大化看，比如像这个页面。',
+				shadeClose: true,
+				shade: false,
+				maxmin: true, //开启最大化最小化按钮
+				area: ['800px','800px'],
+				content: res.data.liveshowUrl
+			});
 		}else {
 			box.error('服务器错误,请重试');
 		}
