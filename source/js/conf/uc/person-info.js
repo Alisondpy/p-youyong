@@ -161,7 +161,7 @@ define(function(require, exports, module) {
                     required:true,
                     minlength:6,
                     maxlength:16,
-                    equalTo:'#newPassword',
+                    equalTo:'#nepassword',
                     Password:true
                 }
             },
