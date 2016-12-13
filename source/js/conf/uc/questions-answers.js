@@ -34,13 +34,13 @@ define(function(require, exports, module) {
         snap: true
     });
     /* 渲染分页列表 */
-    function renderList(url,data,tmpEl,htmEl,pagEl){
-        if(typeof pager !== 'undefined'){
+    function renderList(url, data, tmpEl, htmEl, pagEl) {
+        if (typeof pager !== 'undefined') {
             pager.destroy();
         }
         pager = new Pager(pagEl, {
-            url:url,
-            data:data
+            url: url,
+            data: data
         });
 
         var loading = null;
@@ -51,18 +51,18 @@ define(function(require, exports, module) {
             });
         });
         pager.on('ajaxSuccess', function(res, callback) {
-            if(!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0){
-                var html = template(tmpEl,res.data);
+            if (!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0) {
+                var html = template(tmpEl, res.data);
                 document.getElementById(htmEl).innerHTML = html;
                 //图片懒加载
-                lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
+                lazy = new Lazyload($("#" + htmEl).find('.jImg'), {
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true
                 });
                 callback && callback(res.data.records);
-            }else {
-                var html = template('tEmpty',1);
+            } else {
+                var html = template('tEmpty', 1);
                 document.getElementById(htmEl).innerHTML = html;
                 pagEl.hide();
             }
@@ -78,9 +78,10 @@ define(function(require, exports, module) {
     };
 
     var questionId
-    function init(){
+
+    function init() {
         questionId = jContainer.attr('data-id');
-        renderList($PAGE_DATA['pagerAnswers'],{'questionId':questionId},'jPage','jContainer',jPagination);
+        renderList($PAGE_DATA['pagerAnswers'], { 'questionId': questionId }, 'jPage', 'jContainer', jPagination);
     }
     init();
 
@@ -91,108 +92,92 @@ define(function(require, exports, module) {
     var arrow = $('.jArrow');
     var txtNum = $('.jTxtNum');
     var txt = $('.jTxt');
-    main.on('input propertychange','.jTxt',function(){
+    main.on('input propertychange', '.jTxt', function() {
         var txtLen = txt.val().length;
-        if(txtLen > 300){
+        if (txtLen > 300) {
             $(this).addClass('text-error');
             publish.addClass('publish-error');
             arrow.addClass('arrow-error');
-            txtNum.css({'color':'red'});
-        }else {
+            txtNum.css({ 'color': 'red' });
+        } else {
             $(this).removeClass('text-error');
             publish.removeClass('publish-error');
             arrow.removeClass('arrow-error');
-            txtNum.css({'color':'#666'});
+            txtNum.css({ 'color': '#666' });
         }
         txtNum.children('i').text(txtLen);
     });
 
     //发表评论
-    main.on('click','.jPublish',function(){
-        if(Login.isLogin()){
+    main.on('click', '.jPublish', function() {
+        if (Login.isLogin()) {
             var content = txt.val();
-            if(content == ''){
+            if (content == '') {
                 box.error('请输入发表内容');
-            }else {
-                if(!$(this).hasClass('publish-error')){
-                    io.get($PAGE_DATA['submitAnswer'],{'questionId':questionId,'answerId':0,'content':content},function(res){
-                        if(res){
-                            if(res.code == 0){
-                                box.ok('发表成功');
-                                txt.val('');
-                                pager.pagination.selectPage(pager.pagination.get('currentPage'));
-                            }else {
-                                box.error(res.msg || '发表失败');
-                            }
-                        }else {
-                            box.error('发表失败，请重试');
-                        }
-                    },function(res){
+            } else {
+                if (!$(this).hasClass('publish-error')) {
+                    io.get($PAGE_DATA['submitAnswer'], { 'questionId': questionId, 'answerId': 0, 'content': content }, function(res) {
+                        box.ok('发表成功');
+                        txt.val('');
+                        pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                    }, function(res) {
                         box.error(res.msg || '网络错误,请重试');
                     });
                 }
             }
-        }else {
+        } else {
             Login.login(window.location.href);
         }
     });
 
     //评论focus效果
-    main.on('focus','.jTxt',function(){
+    main.on('focus', '.jTxt', function() {
         $('.jArrow').addClass('arrow-focus');
-        $(this).addClass('text-focus').attr('placeholder','');
-        $(this).css('color','#333');
-    }).on('blur','.jTxt',function(){
-        if($(this).val() === ''){
-            $(this).removeClass('text-focus').attr('placeholder','看点糟点，不吐不快！别憋着，马上大声说出来吧！');
+        $(this).addClass('text-focus').attr('placeholder', '');
+        $(this).css('color', '#333');
+    }).on('blur', '.jTxt', function() {
+        if ($(this).val() === '') {
+            $(this).removeClass('text-focus').attr('placeholder', '看点糟点，不吐不快！别憋着，马上大声说出来吧！');
             $('.jArrow').removeClass('arrow-focus');
-            $(this).css('color','#ccc');
+            $(this).css('color', '#ccc');
         }
     });
 
 
     /*点赞交互*/
     //点赞和采集的接口处理
-    function clickInterface(url,data,msg){
-        io.get(url,data,function(res){
-            if(res){
-                if(res.code == 0){
-                    box.ok(msg+'成功');
-                    pager.pagination.selectPage(pager.pagination.get('currentPage'));
-                }else {
-                    box.error(res.msg || msg+'失败');
-                }
-            }else {
-                box.error(msg+'失败，请重试');
-            }
-        },function(res){
+    function clickInterface(url, data, msg) {
+        io.get(url, data, function(res) {
+            box.ok(msg + '成功');
+            pager.pagination.selectPage(pager.pagination.get('currentPage'));
+        }, function(res) {
             box.error(res.msg || '网络错误,请重试');
         });
     };
 
     //点赞
-    main.on('click','#jLike',function(){
-        if(Login.isLogin()){
+    main.on('click', '#jLike', function() {
+        if (Login.isLogin()) {
             var dataType = $(this).attr('data-dataType');
             var type = $(this).attr('data-type');
             var id = $(this).attr('data-id');
             var data;
-            if($(this).hasClass("activeLike")){
+            if ($(this).hasClass("activeLike")) {
                 data = {
-                    "dataType":dataType,
-                    "type":type,
-                    "id":id
+                    "dataType": dataType,
+                    "type": type,
+                    "id": id
                 }
-                clickInterface($PAGE_DATA['commentClickUrl'],data,'取消点赞');
-            }else {
+                clickInterface($PAGE_DATA['commentClickUrl'], data, '取消点赞');
+            } else {
                 data = {
-                    "dataType":dataType,
-                    "type":type,
-                    "id":id
+                    "dataType": dataType,
+                    "type": type,
+                    "id": id
                 }
-                clickInterface($PAGE_DATA['commentClickUrl'],data,'点赞');
+                clickInterface($PAGE_DATA['commentClickUrl'], data, '点赞');
             }
-        }else {
+        } else {
             Login.login(window.location.href);
         }
     });
