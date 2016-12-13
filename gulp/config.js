@@ -109,7 +109,25 @@ var CONFIG = {
                 'text': 'lib/require/2.1/plugins/text/text', // or whatever the path to require-css is
                 'jquery': 'lib/jquery/1.11.1/jquery'
             },
-            shim: {}
+            shim: {},
+            //打包相关
+            optimize: 'uglify2',
+            uglify2: {
+                mangle: {
+                    screw_ie8: false
+                },
+                compress: {
+                    screw_ie8: false,
+                    sequences: false,
+                    global_defs: {
+                        DEBUG: false
+                    }
+                },
+                output: {
+                    screw_ie8: false,
+                    beautify: true
+                }
+            }
         },
         //app.js配置文件专门入口
         app: {
