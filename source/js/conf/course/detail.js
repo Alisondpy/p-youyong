@@ -179,13 +179,15 @@ define(function(require, exports, module) {
             var content = txt.val();
             if (content == '') {
                 box.error('请输入发表内容');
-            } else {
-                if (!$(this).hasClass('publish-error')) {
-                    io.get($PAGE_DATA['commentPostUrl'], { 'sourceType': sourceType, "sourceId": sourceId, 'content': content }, function(res) {
+
+            }else {
+                if(!$(this).hasClass('publish-error')){
+                    io.get($PAGE_DATA['commentPostUrl'],{'sourceType':sourceType,"sourceId":sourceId,'content':content},function(res){
                         box.ok('发表成功');
                         txt.val('');
+                        txtNum.children('i').text('0');
                         pager.pagination.selectPage(pager.pagination.get('currentPage'));
-                    }, function(res) {
+                    },function(res){
                         box.error(res.msg || '网络错误,请重试');
                     });
                 }
@@ -284,4 +286,23 @@ define(function(require, exports, module) {
     window.pager = function() {
         pager.pagination.selectPage(pager.pagination.get('currentPage'));
     };
+
+    var jWrap0Box = $('#jWrap0Box');
+    var jSubNav = $('#jSubNav');
+    var jWrap0BoxDetail = $('#jWrap0BoxDetail');
+    var dirLen = $('#jWrap0Box').find('.dir').length;
+    if(dirLen == 1 || dirLen == 0){
+        jWrap0Box.html(jWrap0BoxDetail.clone());
+        jSubNav.find('a').each(function(){
+            if($(this).attr('data-target') == '1'){
+                $(this).text('详情');
+            }
+        });
+    }else {
+        jSubNav.find('a').each(function(){
+            if($(this).attr('data-target') == '1'){
+                $(this).text('目录');
+            }
+        });
+    }
 });

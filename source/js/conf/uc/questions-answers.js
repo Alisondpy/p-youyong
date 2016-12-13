@@ -114,13 +114,14 @@ define(function(require, exports, module) {
             var content = txt.val();
             if (content == '') {
                 box.error('请输入发表内容');
-            } else {
-                if (!$(this).hasClass('publish-error')) {
-                    io.get($PAGE_DATA['submitAnswer'], { 'questionId': questionId, 'answerId': 0, 'content': content }, function(res) {
+            }else {
+                if(!$(this).hasClass('publish-error')){
+                    io.get($PAGE_DATA['submitAnswer'],{'questionId':questionId,'answerId':0,'content':content},function(res){
                         box.ok('发表成功');
                         txt.val('');
+                        txtNum.children('i').text('0');
                         pager.pagination.selectPage(pager.pagination.get('currentPage'));
-                    }, function(res) {
+                    },function(res){
                         box.error(res.msg || '网络错误,请重试');
                     });
                 }

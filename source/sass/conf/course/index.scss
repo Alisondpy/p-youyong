@@ -7,7 +7,11 @@
     margin: 0 auto;
     width: $width;
 }
-
+.ui-test-box{
+    .ui-box-hd{
+        background-color: #44687d;
+    }
+}
 .ui-hid {
     display: none;
 }

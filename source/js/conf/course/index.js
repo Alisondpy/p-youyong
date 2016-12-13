@@ -4,7 +4,7 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var Box = require('lib/ui/box/1.0.1/box');
+    var box = require('lib/ui/box/1.0.1/crossbox');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var template=require("template");
@@ -142,5 +142,25 @@ define(function(require, exports, module) {
     init(initData);
     nav.on('change',function(data){
         init(data);
+    });
+
+    var jTab2 = $('#jTab2');
+    jTab2.on('click','.jLive',function(){
+        var id = $(this).attr('data-id');
+        io.get($PAGE_DATA['LiveShowUrl'],{courseId:id},function(res){
+            if(res && res.data && res.data.liveshowUrl){
+                box.loadUrl(res.data.liveshowUrl,{
+                    title:'直播',
+                    className:'ui-test-box',
+                    fixed:true,
+                    width:$(window).width(),
+                    height:$(window).height()
+                });
+            }else {
+                box.error('服务器错误,请重试');
+            }
+        },function(res){
+            box.error(res.msg || '网络错误,请重试');
+        })
     });
 });

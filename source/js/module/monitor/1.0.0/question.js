@@ -54,7 +54,9 @@ define(function(require, exports, module) {
             options = _this.options,
             pagerAjax = _this.options.pagerAjax;
         //数据获取成功
-        _this.pollingList.on('error', function(data) {});
+        _this.pollingList.on('error', function(data){
+            _this.pollingList.html(template('tEmpty',1));
+        });
         //数据获取失败
         _this.pollingList.on('success', function(data) {
             //如果刷新成功，并且有更新，直接用html替换
@@ -63,6 +65,8 @@ define(function(require, exports, module) {
                  _this.pollingList.setData({
                      id:data.data.resultList[0].id
                  });
+             }else {
+                 _this.pollingList.html(template('tEmpty',1));
              }
             _this.scrollTo(0);
         });
@@ -83,6 +87,7 @@ define(function(require, exports, module) {
                     _this.pollingList.append(_this.template(data.data));
                 }, function(data) {
                     _this._isPulling = false;
+                    _this.pollingList.html(template('tEmpty',1));
                 });
             }
         });

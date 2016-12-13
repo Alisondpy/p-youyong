@@ -456,6 +456,8 @@ a {
                 font-size: 16px;
                 color: #333;
                 line-height: 24px;
+                word-break: break-all;
+                overflow: hidden;
             }
             .note p {
                 //overflow: hidden;
@@ -599,5 +601,8 @@ a {
                 }
             }
         }
+    }
+    .ui-hide{
+        display: none;
     }
 }

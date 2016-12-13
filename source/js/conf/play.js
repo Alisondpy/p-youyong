@@ -72,8 +72,8 @@ define(function(require, exports, module) {
                 isSendPlayTime = true;
             });
         }
-        if (seconds == player.getTotalTime() && player.getTotalTime() != 0 && examId != '' && seconds != 0) {
-            if (!isLayer) {
+        if(player.getTotalTime() && (seconds == player.getTotalTime()) && (player.getTotalTime() != 0) && (examId != '') && (seconds != 0)){
+            if(!isLayer){
                 box.confirm('是否进入考试页面？',
                     function() {
                         box.loadUrl($PAGE_DATA['examUrl'] + '?examId=' + examId + '?prepare&bizType=0&bizId=' + lessonId + '&courseId=' + sourceId, {
@@ -135,15 +135,16 @@ define(function(require, exports, module) {
 
     //====================字数限制 end
     //====================发布按钮 start
-    function pubAjax(content, _this, url, data, txt) {
-        if (content == '') {
+    function pubAjax(content,_this,url,data,txt,txtNum){
+        if(content == ''){
             box.error('请输入内容');
-        } else {
-            if (!_this.hasClass('publish-error')) {
-                io.get(url, data, function(res) {
+        }else {
+            if(!_this.hasClass('publish-error')){
+                io.get(url,data,function(res){
                     box.ok('发表成功');
                     txt.val('');
-                }, function(res) {
+                    txtNum.children('.num').text('0');
+                },function(res){
                     box.error(res.msg || '网络错误,请重试');
                 });
             }
@@ -165,8 +166,9 @@ define(function(require, exports, module) {
             } else {
                 publishDataA.showType = 2;
             }
-            pubAjax(content, $(this), $PAGE_DATA['note'].publish, publishDataA, txtA);
-        } else {
+            pubAjax(content,$(this),$PAGE_DATA['note'].publish,publishDataA,txtA,txtNumA);
+            renderTemp($PAGE_DATA['note'].note,reqNoteData,'tAnswer','jNoteTab1');
+        }else {
             Login.login(window.location.href);
         }
     });
@@ -189,7 +191,9 @@ define(function(require, exports, module) {
             } else {
                 publishDataQ.title = title;
                 publishDataQ.content = content;
-                pubAjax(content, $(this), $PAGE_DATA['question'].publish, publishDataQ, txtQ);
+                pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishDataQ,txtQ,txtNumQ);
+                jQuesTitle.val('');
+                renderTemp($PAGE_DATA['question'].question,reqQuesData,'tQuestion','jQuestionTab1');
             }
         } else {
             Login.login(window.location.href);
@@ -217,29 +221,28 @@ define(function(require, exports, module) {
         });
     };
 
-    //点赞
-    jTab.on('click', '.like', function() {
-        if (Login.isLogin()) {
-            var dataType = $(this).attr('data-dataType');
-            var type = $(this).attr('data-type');
-            var id = $(this).attr('data-value');
+    //笔记点赞
+    jTab.on('click','.like',function(){
+        if(Login.isLogin()){
+            var id = $(this).attr('data-id');
+
             var data;
             if ($(this).hasClass("activeLike")) {
                 data = {
-                    "dataType": dataType,
-                    "type": type,
-                    "id": id
+                    "dataType":4,
+                    "type":1,
+                    "id":id
                 }
-                clickInterface($PAGE_DATA['note'].like, data, '取消点赞');
-                $(this).removeClass('activeLike');
-            } else {
+                clickInterface($PAGE_DATA['note'].like,data,'取消点赞');
+                renderTemp($PAGE_DATA['note'].note,reqNoteData,'tAnswer','jNoteTab1');
+            }else {
                 data = {
-                    "dataType": dataType,
-                    "type": type,
-                    "id": id
+                    "dataType":4,
+                    "type":2,
+                    "id":id
                 }
-                clickInterface($PAGE_DATA['question'].like, data, '点赞');
-                $(this).addClass('activeLike');
+                clickInterface($PAGE_DATA['note'].like,data,'点赞');
+                renderTemp($PAGE_DATA['note'].note,reqNoteData,'tAnswer','jNoteTab1');
             }
         } else {
             Login.login(window.location.href);
@@ -280,23 +283,31 @@ define(function(require, exports, module) {
                 document.getElementById(htmlEl).innerHTML = html;
             }
             loading && loading.hide();
-        }, function(res) {
-            document.getElementById(htmlEl).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
+        },function(res){
+            var html = template('tEmpty',1);
+            document.getElementById(htmlEl).innerHTML = html;
             loading && loading.hide();
         });
     }
-
-    function init(type) {
-        switch (type) {
-            case '0': //笔记我的
-                var reqNoteData = {
-                    id: 0,
-                    pageSize: 20,
-                    sortType: 1,
-                    showType: 1,
-                    sourceType: 2,
-                    sourceId: lessonId
-                }
+    var reqNoteData = {
+        id:0,
+        pageSize:20,
+        sortType:1,
+        showType:1,
+        sourceType:2,
+        sourceId:lessonId
+    }
+    var reqQuesData = {
+        id:0,
+        pageSize:20,
+        sortType:1,
+        showType:1,
+        sourceType:2,
+        sourceId:lessonId
+    }
+    function init(type){
+        switch (type){
+            case '0'://笔记我的
                 jNoteTab1.show();
                 jNoteTab2.hide();
                 jQuestionTab1.hide();
@@ -339,15 +350,7 @@ define(function(require, exports, module) {
                 }
                 note.start();
                 break;
-            case '2': //问答我的
-                var reqNoteData = {
-                    id: 0,
-                    pageSize: 20,
-                    sortType: 1,
-                    showType: 1,
-                    sourceType: 2,
-                    sourceId: lessonId
-                }
+            case '2'://问答我的
                 jNoteTab1.hide();
                 jNoteTab2.hide();
                 jQuestionTab1.show();
@@ -358,7 +361,7 @@ define(function(require, exports, module) {
                 if (note) {
                     note.stop();
                 }
-                renderTemp($PAGE_DATA['question'].question, reqNoteData, 'tQuestion', 'jQuestionTab1');
+                renderTemp($PAGE_DATA['question'].question,reqQuesData,'tQuestion','jQuestionTab1');
                 break;
             case '3': //问答全部
                 var reqNoteData = {

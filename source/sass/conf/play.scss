@@ -6,6 +6,9 @@
 body {
     background-color: #eee;
 }
+.ui-empty-list{
+	padding: 100px 0;
+}
 .text-error{
 	border-color: #ec3e48 !important;
 }
@@ -349,6 +352,11 @@ em{
 						//.iyoyo-circle{
 						//	color: #fff;
 						//}
+						.iyoyo-iyoyo-circle{
+							position: relative;
+							font-size: 19px;
+							left: -2px;
+						}
 						i{
 							font-size:16px;
 							color:#44687d;
