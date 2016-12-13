@@ -11,7 +11,7 @@ define(function(require, exports, module) {
     var fixBar = new FixBar();
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
-    var box = require('lib/ui/box/1.0.1/box');
+    var box = require('lib/ui/box/1.0.1/crossbox');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var Tab = require('lib/ui/tab/1.0.0/tab');
@@ -52,9 +52,10 @@ define(function(require, exports, module) {
             a: $PAGE_DATA['play'] //必填 请别跨域 如果要调用m3u8格式的文件，必须要用到的播放插件【调用时的参数，只有当s>0的时候有效】
         }
     });
+
     var isSendPlayTime = true;
     var isLayer = false;
-    var isLogin = false;
+    var isYou = false;
     //监听当前播放器进度
     player.on('time', function(seconds) {
         if(isSendPlayTime && seconds >0){
@@ -71,34 +72,32 @@ define(function(require, exports, module) {
                 isSendPlayTime = true;
             });
         }
-        if(seconds == player.getTotalTime() && player.getTotalTime() != 0 && examId != ''){
+        if(seconds == player.getTotalTime() && player.getTotalTime() != 0 && examId != '' && seconds !=0){
             if(!isLayer){
                 box.confirm('是否进入考试页面？',
                     function() {
-                        layer.open({
-                            type: 2,
-                            title: '考试',
-                            shadeClose: true,
-                            shade: false,
-                            maxmin: true, //开启最大化最小化按钮
-                            area: ['100%','100%'],
-                            content: $PAGE_DATA['examUrl']+'?examId='+examId+'?prepare&bizType=0&bizId='+lessonId+'&courseId='+sourceId
+                        box.loadUrl($PAGE_DATA['examUrl']+'?examId='+examId+'?prepare&bizType=0&bizId='+lessonId+'&courseId='+sourceId,{
+                            title:'考试',
+                            className:'ui-test-box',
+                            fixed:true,
+                            width:$(window).width(),
+                            height:$(window).height()
                         });
                     },
                     function() {}, this);
                 isLayer = true;
             }
         }
-        if(!Login.isLogin()){
-            if(!isLogin){
-                if(seconds > 60){
+        if(!isYou){
+            if(seconds > 60){
+                if(!Login.isLogin()){
                     player.pause();
                     box.confirm('游客只能观看一分钟,是否前往登录？',
                         function() {
                             Login.login(window.location.href);
                         },
                         function() {}, this);
-                    isLogin = true;
+                    isYou = true;
                 }
             }
         }
@@ -180,17 +179,21 @@ define(function(require, exports, module) {
         }
     });
     var jQuesTitle = $('#jQuesTitle');
+    jTab.on('focus','#jQuesTitle',function(){
+        jQuesTitle.removeClass('question-input-error');
+    });
     var publishDataQ = {
         sourceType:2,
         sourceId:lessonId,
         content:"",
     }
     jTab.on('click','.jPublishQ',function(){
-        if(!Login.isLogin()){
+        if(Login.isLogin()){
             var title = jQuesTitle.val();
             var content = txtQ.val();
             if(title == ''){
                 box.error('请输入问题标题');
+                jQuesTitle.addClass('question-input-error');
             }else {
                 publishDataQ.title = title;
                 publishDataQ.content = content;

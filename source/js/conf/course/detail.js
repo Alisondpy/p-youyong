@@ -27,7 +27,6 @@ define(function(require, exports, module) {
     /*后台全局变量*/
     var sourceId = $PAGE_DATA['sourceId'];
     var toQuestionPage = $PAGE_DATA['toQuestionPage'];
-
     var jPagination = $('#jPagination');
 
     /*提问弹窗*/
@@ -36,11 +35,18 @@ define(function(require, exports, module) {
             box.loadUrl(toQuestionPage+"?id="+sourceId, {
                 title: '提问页面',
                 autoRelease: true,
-                modal: false,
+                modal: false
             });
         }else {
             Login.login(window.location.href);
         }
+    });
+
+    //图片懒加载
+    var allLazy = new Lazyload($('.mod-detail .jImg'),{
+        mouseWheel: true,
+        effect: 'fadeIn',
+        snap: true
     });
 
     /* 渲染分页列表 */
@@ -93,13 +99,6 @@ define(function(require, exports, module) {
         pager.on('change', function(pageNum, e) {});
     };
 
-    //图片懒加载
-    lazy = new Lazyload($('.jImg'), {
-        mouseWheel: true,
-        effect: 'fadeIn',
-        snap: true
-    });
-
     /*首屏默认加载*/
     function init(){
         var data = $('#jSubNav').find('.current').attr("data-type");
@@ -129,6 +128,7 @@ define(function(require, exports, module) {
                 renderList($PAGE_DATA['loadNoteUrl'],{'sourceType':sourceType,"showType":showType,"sourceId":sourceId},'jWrap3','jWrap3Box',jPagination);
                 break;
         }
+        allLazy.update();
     });
 
     /*导航菜单切换*/

@@ -85,26 +85,26 @@ define(function(require, exports, module) {
     //播放
     Player.prototype.play = function() {
         var _this = this;
-        _this.player.videoPlay();
+        _this.player && _this.player.videoPlay();
     }
 
     //播放|暂停
     Player.prototype.playOrPause = function() {
         var _this = this;
-        _this.player.playOrPause();
+        _this.player && _this.player.playOrPause();
     }
 
     //暂停
     Player.prototype.pause = function() {
         var _this = this;
-        _this.player.videoPause();
+        _this.player && _this.player.videoPause();
     }
 
     //指定时间播放
     Player.prototype.jump = function(seconds) {
         var _this = this;
         if (seconds >= 0) {
-            _this.player.videoSeek(seconds);
+            _this.player && _this.player.videoSeek(seconds);
         }
     }
 
@@ -115,45 +115,54 @@ define(function(require, exports, module) {
         }
         var _this = this;
         _this.options.flash.f = url;
-        _this.player.newAddress(_this.options.flash);
+        _this.player && _this.player.newAddress(_this.options.flash);
     }
 
     //设置指定音量 
     Player.prototype.volume = function(volume) {
         var _this = this;
         if (0 <= volume && volume <= 100) {
-            _this.player.changeVolume(volume);
+            _this.player && _this.player.changeVolume(volume);
         }
     }
 
     //设置播放器width
     Player.prototype.width = function(width) {
         var _this = this;
-        _this._embed.width(width || _this.options.embed.width);
+        _this._embed && _this._embed.width(width || _this.options.embed.width);
     }
 
     //设置播放器height
     Player.prototype.height = function(height) {
         var _this = this;
-        _this._embed.width(height || _this.options.embed.height);
+        _this._embed && _this._embed.width(height || _this.options.embed.height);
     }
 
     //获取当前视频总时间
     Player.prototype.getTotalTime = function() {
         var _this = this;
-        return _this.player.getStatus().totalTime;
+        if(_this.player){
+            return _this.player.getStatus().totalTime;
+        }
+        return 0;
     }
 
     //获取当前播放时间
     Player.prototype.getCurrentTime = function() {
         var _this = this;
-        return _this.player.getStatus().time;
+        if(_this.player){
+            return _this.player.getStatus().time;
+        }
+        return 0;
     }
 
     //获取当前播放器状态 详情见：http://www.ckplayer.com/manual/13/54.htm
     Player.prototype.getStatus = function() {
         var _this = this;
-        return _this.player.getStatus();
+        if(_this.player){
+            return _this.player.getStatus();
+        }
+        return {};
     }
 
     //得到当前播放器
