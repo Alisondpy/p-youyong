@@ -66,7 +66,7 @@ define(function(require, exports, module) {
             var pager = new Pager(jPagination, {
                 url: $PAGE_DATA['getPager'],
                 data: {
-                    type:2 
+                    type:3 
                 }
             });
 
