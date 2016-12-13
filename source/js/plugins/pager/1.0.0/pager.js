@@ -81,12 +81,9 @@ define(function(require, exports, module) {
                     _this.emit('ajaxSuccess', data, function(totalCount) {
                         if (totalCount > 1) {
                             _this.pagination.setTotalCount(totalCount);
+                            _this.pagination.show();
                         } else {
                             _this.pagination.setTotalCount(1);
-                        }
-                        if(_this.pagination.get('pageCount') > 1){
-                            _this.pagination.show();
-                        }else{
                             _this.pagination.hide();
                         }
                     });
