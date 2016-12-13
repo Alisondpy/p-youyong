@@ -84,10 +84,10 @@ body {
         }
     }
     .zpassword {
-        input {
+        .ui-input {
             width: 331px;
-            height: 34px;
-            line-height: 34px;
+            height: 19px;
+            line-height: 19px;
             padding-left:10px;
             margin: 20px 0 0 10px;
         }
@@ -106,9 +106,9 @@ body {
                 position:absolute;
                 text-align:left;
                 width:200px;
-                left:479px;
+                left:495px;
                 top:27px;
-                color:#f00;
+                color:#ec3b45;
                 font-size:12px;
             } 
         }
@@ -116,20 +116,19 @@ body {
     }
     .info {
         // padding-right: 376px;
-        input {
+        .ui-input{
             width: 331px;
-            height: 34px;
-            line-height: 34px;
+            height: 19px;
+            line-height: 19px;
             padding-left:10px;
             margin: 20px 0 0 10px;
         }
         input.error{
-            border:1px solid #f00;
+            border:1px solid #ec3b45;
         }
          .item{
             position:relative;
             margin-left:30px;
-            height:58px;
             span {
                 color: #f00;
             }
@@ -144,9 +143,9 @@ body {
                 position:absolute;
                 text-align:left;
                 width:200px;
-                left:463px;
+                left:485px;
                 top:27px;
-                color:#f00;
+                color:#ec3b45;
                 font-size:12px;
          } 
         }
@@ -170,9 +169,9 @@ body {
         }
         .check {
             width: 386px;
-            height: 34px;
+            height: 24px;
             font-size: 16px;
-            margin-left:96px;
+            margin:20px 0 0 100px;
             input {
                 width: 28px;
                 height: 14px;

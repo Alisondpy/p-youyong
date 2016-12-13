@@ -95,9 +95,9 @@ define(function(require, exports, module) {
         }
     }, {
         name: 'qq',
-        text: '请输入5-10位QQ号码',
+        text: '请输入5-11位QQ号码',
         func: function(v, elem) {
-            return this.optional(elem) || /^\d{5,10}$/.test(v);
+            return this.optional(elem) || /^\d{5,11}$/.test(v);
         }
     }, {
         name: 'wechat',
