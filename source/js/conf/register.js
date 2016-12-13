@@ -83,6 +83,7 @@ define(function(require, exports, module) {
             },
             password: {
                 required: true,
+                password:true,
                 minlength: 6,
                 maxlength:16
             }
