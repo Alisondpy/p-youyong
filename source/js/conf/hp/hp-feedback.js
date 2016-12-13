@@ -26,7 +26,6 @@ var define2 = define(function(require, exports, module) {
             tabs: [{
                 type: 'local',
                 options: {
-                    uploadLimit: 1,
                     fileObjName:'file_data',
                     swf:$PAGE_DATA['swfUrl'],//swf的路径
                     uploader: $PAGE_DATA['uploadImgUrl'],//后台存放图片的地址
