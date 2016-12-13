@@ -4002,7 +4002,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                 sortType: 1,
                 showType: 1,
                 sourceType: 2,
-                sourceId: $
+                sourceId: I
             };
             E.show();
             L.hide();
@@ -4020,7 +4020,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                 sortType: 1,
                 showType: 0,
                 sourceType: 2,
-                sourceId: $
+                sourceId: I
             };
             E.hide();
             L.show();
@@ -4047,7 +4047,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                 sortType: 1,
                 showType: 1,
                 sourceType: 2,
-                sourceId: $
+                sourceId: I
             };
             E.hide();
             L.hide();
@@ -4065,7 +4065,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                 sortType: 1,
                 showType: 0,
                 sourceType: 2,
-                sourceId: $
+                sourceId: I
             };
             E.hide();
             L.hide();
@@ -4087,62 +4087,65 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     }
     var l, u, c, f = t("jquery"), d = t("module/top-search/1.0.0/top-search"), p = t("module/login-status/1.0.0/login-status"), h = t("module/fix-bar/1.0.0/fix-bar"), v = t("module/footer/1.0.0/footer"), m = (new d(), 
     new p(), new h(), new v(), t("lib/ui/box/1.0.1/box")), g = t("lib/plugins/lazyload/1.9.3/lazyload"), y = t("lib/core/1.0.0/io/request"), _ = t("lib/ui/tab/1.0.0/tab"), b = t("template"), w = t("module/monitor/1.0.0/question"), x = t("module/monitor/1.0.0/note"), A = t("module/login-status/1.0.0/login"), T = (f(".jMod-catlog"), 
-    f("#jTab")), C = new _(T), j = f("#jQuestionTab1"), k = f("#jQuestionTab2"), E = f("#jNoteTab1"), L = f("#jNoteTab2"), $ = ($PAGE_DATA.courseId, 
-    $PAGE_DATA.lessonId), I = t("plugins/ckplayer/6.7.0/player"), q = new I("#jAudio", {
+    f("#jTab")), C = new _(T), j = f("#jQuestionTab1"), k = f("#jQuestionTab2"), E = f("#jNoteTab1"), L = f("#jNoteTab2"), $ = $PAGE_DATA.courseId, I = $PAGE_DATA.lessonId, q = t("plugins/ckplayer/6.7.0/player"), S = new q("#jAudio", {
         swfPlayer: $PAGE_DATA.ckplayer,
         embed: {
             width: "871",
             height: "655"
         },
         flash: {
+            i: "",
             g: $PAGE_DATA.startTime || 0,
             f: $PAGE_DATA.m3u8,
             a: $PAGE_DATA.play
         }
-    }), S = !0;
-    q.on("time", function(t) {
-        if (S && t > 0) {
-            S = !1;
+    }), P = !0;
+    S.on("time", function(t) {
+        if (P && t > 0) {
+            P = !1;
             var e = f.extend(!0, {}, $PAGE_DATA.setPlayTimeParams, {
                 playTime: t,
-                duration: q.getTotalTime()
+                duration: S.getTotalTime(),
+                courseId: $,
+                lessonId: I
             });
             y.get($PAGE_DATA.setPlayTime, e, function(t) {
-                S = !0;
+                P = !0;
             }, function(t) {
-                S = !0;
+                P = !0;
             });
         }
+        t == S.getTotalTime();
     });
-    var P = f(".jPublishA"), O = f(".jPublishQ"), N = f(".jTxtNumA"), V = f(".jTxtNumQ"), z = f(".jTxtA"), D = f(".jTxtQ");
+    var O = f(".jPublishA"), N = f(".jPublishQ"), V = f(".jTxtNumA"), z = f(".jTxtNumQ"), D = f(".jTxtA"), H = f(".jTxtQ");
     T.on("keyup", ".jTxtA", function() {
-        var t = f(this).val().length;
-        i(t, 500, f(this), P, N);
-    });
-    T.on("keyup", ".jTxtQ", function() {
         var t = f(this).val().length;
         i(t, 500, f(this), O, V);
     });
-    var H = f("#jAnswer"), M = f("#jQues"), F = {
+    T.on("keyup", ".jTxtQ", function() {
+        var t = f(this).val().length;
+        i(t, 500, f(this), N, z);
+    });
+    var M = f("#jAnswer"), F = f("#jQues"), G = {
         sourceType: 2,
-        sourceId: $,
+        sourceId: I,
         content: "",
         showType: 1
     };
     T.on("click", ".jPublishA", function() {
         if (A.isLogin()) {
-            var t = z.val();
-            F.content = t;
-            H.is(":checked") ? F.showType = 1 : F.showType = 2;
-            o(t, f(this), $PAGE_DATA.note.publish, F, z);
+            var t = D.val();
+            G.content = t;
+            M.is(":checked") ? G.showType = 1 : G.showType = 2;
+            o(t, f(this), $PAGE_DATA.note.publish, G, D);
         } else A.login(window.location.href);
     });
     T.on("click", ".jPublishQ", function() {
         if (A.isLogin()) {
-            var t = D.val();
-            F.content = t;
-            M.is(":checked") ? F.showType = 1 : F.showType = 2;
-            o(t, f(this), $PAGE_DATA.question.publish, F, D);
+            var t = H.val();
+            G.content = t;
+            F.is(":checked") ? G.showType = 1 : G.showType = 2;
+            o(t, f(this), $PAGE_DATA.question.publish, G, H);
         } else A.login(window.location.href);
     });
     T.on("focus", ".jTxt", function() {
@@ -4181,18 +4184,18 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
         var t = f(this).attr("data-type");
         s(t);
     });
-    var G = {
-        id: $,
+    var U = {
+        id: I,
         type: 2,
         pageNo: 1,
         pageSize: 20
     };
-    a($PAGE_DATA.dirUrl, G, "tDir", "jDir");
+    a($PAGE_DATA.dirUrl, U, "tDir", "jDir");
     C.on("change", function(t) {
         var e = t.body.find(".ui-current").attr("data-type");
         s(e);
         var n = t.body.attr("data-id");
-        "1" == n && a($PAGE_DATA.dirUrl, G, "tDir", "jDir");
+        "1" == n && a($PAGE_DATA.dirUrl, U, "tDir", "jDir");
         l.update();
     });
 });

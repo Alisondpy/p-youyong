@@ -3542,8 +3542,13 @@ define("plugins/pager/1.0.0/pager", [ "require", "exports", "module", "jquery", 
             var o = r.Deferred();
             a[t.ajaxType](t.url, r.extend({}, i, t.data), function(t) {
                 e.emit("ajaxSuccess", t, function(t) {
-                    t > 1 ? e.pagination.setTotalCount(t) : e.pagination.setTotalCount(1);
-                    e.pagination.get("pageCount") > 1 ? e.pagination.show() : e.pagination.hide();
+                    if (t > 1) {
+                        e.pagination.setTotalCount(t);
+                        e.pagination.show();
+                    } else {
+                        e.pagination.setTotalCount(1);
+                        e.pagination.hide();
+                    }
                 });
                 o.resolve(t);
             }, function(t) {

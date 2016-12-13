@@ -2570,8 +2570,13 @@ define("plugins/pager/1.0.0/pager", [ "require", "exports", "module", "jquery", 
             var r = o.Deferred();
             a[t.ajaxType](t.url, o.extend({}, i, t.data), function(t) {
                 e.emit("ajaxSuccess", t, function(t) {
-                    t > 1 ? e.pagination.setTotalCount(t) : e.pagination.setTotalCount(1);
-                    e.pagination.get("pageCount") > 1 ? e.pagination.show() : e.pagination.hide();
+                    if (t > 1) {
+                        e.pagination.setTotalCount(t);
+                        e.pagination.show();
+                    } else {
+                        e.pagination.setTotalCount(1);
+                        e.pagination.hide();
+                    }
                 });
                 r.resolve(t);
             }, function(t) {
@@ -3091,5 +3096,10 @@ define("conf/news/index", [ "require", "exports", "module", "jquery", "lib/ui/bo
         i($PAGE_DATA.loadNews, {
             type: e
         }, "jWrap", "jWrapBox", v);
+    });
+    r = new l(s(".mod-slider").find(".jImg"), {
+        mouseWheel: !0,
+        effect: "fadeIn",
+        snap: !0
     });
 });
