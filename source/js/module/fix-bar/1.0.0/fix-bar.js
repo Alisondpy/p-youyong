@@ -6,6 +6,7 @@ define(function(require, exports, module) {
 
     function FixBar(options) {
         var _this = this;
+        return;
         var defaults = {
             onlineServiceUrl: ''
         };
