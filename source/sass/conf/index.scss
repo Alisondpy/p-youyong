@@ -341,15 +341,22 @@ $height: 172px;
             }
         }
     }
-    .img,
-    img {
+    .img{
         width: 270px;
         height: 180px;
-        transition:1s;
+        display: inline-block;
+        overflow: hidden;
+        img {
+            width: 270px;
+            height: 180px;
+            transition:1s;
+        }
     }
     .img{
-        &:hover{
-            transform:scale(-1,1);
+        img{
+            &:hover{
+                transform:scale(1.1);
+            }
         }
     }
     .img,
