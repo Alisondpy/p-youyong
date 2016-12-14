@@ -121,7 +121,6 @@ define(function(require, exports, module) {
                 var jStatus = $('.jStatus');
                 jStatus.each(function(){
                     if($(this).attr('data-id') == lessonId){
-                        console.log($(this).attr('data-id'),lessonId);
                         $(this).find('.iyoyo').attr('class','').addClass('iyoyo iyoyo-pause');
                     }
                 });
@@ -325,7 +324,6 @@ define(function(require, exports, module) {
                     box.ok('发表成功',_this[0]);
                     txt.val('');
                     txtNum.children('.num').text('0');
-                    console.log(noteCurrent.find('.ui-current').text());
                     if(_this.hasClass('jPublishA') && (noteCurrent.find('.ui-current').text().indexOf('全部笔记') == -1)){
                         renderTemp($PAGE_DATA['note'].note,reqNoteData1,'tAnswer','jNoteTab1');
                     }else if(_this.hasClass('jPublishQ') && (quesCurrent.find('.ui-current').text().indexOf('全部问答') == -1)){
