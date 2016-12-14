@@ -50,6 +50,8 @@ define(function(require, exports, module) {
                 }
                 //转换时间
                 $.each(res.data.resultList, function(i, n) {
+
+                    console.log(res.data.resultList);
                     $.each(n, function(j, m) {
                         if (j == "intervalExamMinute" || j == "intervalExamEndMinute") {
                             n[j] = TimeConver(n[j]);
@@ -134,7 +136,11 @@ define(function(require, exports, module) {
                         Box.loadUrl(resData.msg, {
                             title: '答卷详情',
                             autoRelease: false,
-                            modal: true //是否有遮罩层
+                            modal: true ,//是否有遮罩层
+                            className: 'ui-test-box',
+                            fixed: true,
+                            width: $(window).width() *.8,
+                            height: $(window).height() *.8
                         });
                     }, function(resData) {
                         Box.error(resData.msg || '网络失败，请重试');
@@ -152,8 +158,11 @@ define(function(require, exports, module) {
         var aa = parseInt(minutes / 60); //总共小时数
         var hh = aa % 24 > 0 ? (aa % 24 + '时') : ''; //小时
         var dd = parseInt(aa / 24) > 0 ? (parseInt(aa / 24) + '天') : ""; //总共天数
-
-        str = dd + hh + ss
+        if(parseInt(aa / 24) > 365){
+            str = 0;
+        }else{
+            str = dd + hh + ss;
+        }
         return str;
     }
     InitEvent.init(jContainer, pager);

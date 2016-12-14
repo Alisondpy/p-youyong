@@ -1,8 +1,6 @@
 define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
-    var Io = require('lib/core/1.0.0/io/request');
-    
     var TopSearch = require('module/top-search/1.0.0/top-search');
     var LoginStatus = require('module/login-status/1.0.0/login-status');
     var FixBar = require('module/fix-bar/1.0.0/fix-bar');
@@ -11,5 +9,4 @@ define(function(require, exports, module) {
     var loginStatus = new LoginStatus();
     var fixBar = new FixBar();
     var footer = new Footer();
-
 });
