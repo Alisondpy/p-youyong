@@ -3375,7 +3375,7 @@ define("conf/login", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
         var n = l.serializeForm(t);
         n.returnUrl = o();
         u.post(e, n, function(e) {
-            a.ok("登陆成功");
+            a.ok("登录成功");
             var t = e.data.returnUrl;
             c.set("__returnUrl", null);
             if (t) {

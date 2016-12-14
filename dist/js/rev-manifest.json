@@ -1,5 +1,5 @@
 {
-  "app.js": "app-9480fa421f.js",
+  "app.js": "app-bf9b5ace21.js",
   "conf/404.js": "conf/404-ff7608a412.js",
   "conf/500.js": "conf/500-1eafe63c69.js",
   "conf/apply.js": "conf/apply-7fcd34e541.js",
@@ -16,7 +16,7 @@
   "conf/lecturer/detail.js": "conf/lecturer/detail-6d96cbcfeb.js",
   "conf/lecturer/index.js": "conf/lecturer/index-c220d6c320.js",
   "conf/live-show.js": "conf/live-show-89aae217f0.js",
-  "conf/login.js": "conf/login-6a0fb19b92.js",
+  "conf/login.js": "conf/login-5f59bf7518.js",
   "conf/news/index.js": "conf/news/index-d08ed24c63.js",
   "conf/news/news-detail.js": "conf/news/news-detail-8b817678cd.js",
   "conf/open-class-detail.js": "conf/open-class-detail-0949817748.js",
