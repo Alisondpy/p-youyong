@@ -177,8 +177,8 @@ function ckstyle() {
             }
             if (0 == u) if ("/" == e.substr(0, 1)) c = o + e; else {
                 l = r.substring(0, r.lastIndexOf("/") + 1).replace("\\", "/");
-                var n = e.replace("../", "./"), o = n.split("./"), _ = o.length, f = n.replace("./", ""), d = l.split("/"), v = d.length - _;
-                for (i = 0; i < v; i++) c += d[i] + "/";
+                var n = e.replace("../", "./"), o = n.split("./"), d = o.length, f = n.replace("./", ""), _ = l.split("/"), v = _.length - d;
+                for (i = 0; i < v; i++) c += _[i] + "/";
                 c += f;
             } else c = e;
             return c;
@@ -445,9 +445,9 @@ function ckstyle() {
             }
             if (s) {
                 if (l) {
-                    var _ = l[0].split("->");
-                    if (_ && 2 == _.length && _[1].indexOf("ajax") > -1) {
-                        this.getUrl(_, !0);
+                    var d = l[0].split("->");
+                    if (d && 2 == d.length && d[1].indexOf("ajax") > -1) {
+                        this.getUrl(d, !0);
                         return;
                     }
                 }
@@ -805,10 +805,10 @@ define("plugins/ckplayer/6.7.0/ckplayer", function() {});
             type: e,
             timeStamp: u()
         }; a = t[++l]; ) {
-            o = a[d];
+            o = a[_];
             s = a[v] || i;
             try {
-                r = a[m] === _ ? o.call(s, c, n) !== !1 && r : o.apply(s, n) !== !1 && r;
+                r = a[m] === d ? o.call(s, c, n) !== !1 && r : o.apply(s, n) !== !1 && r;
             } catch (f) {
                 setTimeout(function() {
                     console.error(f);
@@ -853,9 +853,9 @@ define("plugins/ckplayer/6.7.0/ckplayer", function() {});
             return null === r ? i[n] && (delete e[i[n]], delete i[n]) : (a = i[n] || r && (a = ++t, 
             e[a] = {}, i[n] = a), a && e[a]);
         });
-    }(), h = 1, _ = 2, d = 0, v = 1, m = 2, g = function(e, t, n) {
+    }(), h = 1, d = 2, _ = 0, v = 1, m = 2, g = function(e, t, n) {
         var i = [];
-        i[d] = e;
+        i[_] = e;
         i[v] = t;
         i[m] = n;
         return i;
@@ -865,7 +865,7 @@ define("plugins/ckplayer/6.7.0/ckplayer", function() {});
         if (t && "object" == typeof t) {
             n = t;
             t = n.handleEvent;
-            s = _;
+            s = d;
         }
         if (!t) return this;
         r = p(this, 1);
@@ -907,7 +907,7 @@ define("plugins/ckplayer/6.7.0/ckplayer", function() {});
             a = i[r];
             if (a) if (t || n) for (o = a.length; --o >= 0; ) {
                 l = a[o];
-                u = l[d];
+                u = l[_];
                 t && u !== t && (void 0 === u.guid || u.guid !== t.guid) || n && l[v] !== n || a.splice(o, 1);
             } else delete i[r];
         }
@@ -972,7 +972,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
     }
     function s(e, t) {
         if (e && e.forEach) return e.forEach(t);
-        _(e) ? a(e, t) : o(e, t);
+        d(e) ? a(e, t) : o(e, t);
     }
     function l(e, t) {
         for (var n = -1, i = e.length, r = Array(i); ++n < i; ) r[n] = t(e[n], n, e);
@@ -998,9 +998,9 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         }
         return n;
     }
-    var p = new Function("return this")(), h = Object.prototype.hasOwnProperty, _ = Array.isArray || function(e) {
+    var p = new Function("return this")(), h = Object.prototype.hasOwnProperty, d = Array.isArray || function(e) {
         return e && e instanceof Array;
-    }, d = function() {
+    }, _ = function() {
         var e = (+new Date()).toString(36), t = -1;
         return function(n) {
             return (n || "") + e + ++t;
@@ -1051,11 +1051,11 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
     t.parseParams = f;
     t.each = s;
     t.map = function(e, t) {
-        var n = _(e) ? l : c;
+        var n = d(e) ? l : c;
         return n(e, t);
     };
     t.filter = function(e, t) {
-        var n, i, r = _(e) ? (n = a, i = function(e, t) {
+        var n, i, r = d(e) ? (n = a, i = function(e, t) {
             r.push(t);
         }, []) : (n = o, i = function(e, t) {
             r[e] = t;
@@ -1069,7 +1069,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         for (var a in t) t.hasOwnProperty(a) && (t[a] && e[a] && n && "object" == typeof t[a] ? y(e[a], t[a], n, i, r) : (void 0 === e[a] || i) && (r && !r(e[a], t[a]) || (e[a] = t[a])));
         return e;
     };
-    t.guid = d;
+    t.guid = _;
     t.setImmediate = function() {
         var e = p.document, t = p.postMessage, n = p.setImmediate;
         return n ? n : "onreadystatechange" in e.createElement("script") ? function(t) {
@@ -1088,7 +1088,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
                     e();
                 }
             }
-            var i = d();
+            var i = _();
             p.addEventListener("message", n, !0);
             t(i, "*");
         } : function(e) {
@@ -1140,8 +1140,10 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
         if (void 0 === e) throw new Error("the param [selector] is required.");
         n.el = r(e);
         n._id = n.el.attr("id");
-        n._playId = "_player-" + n._id;
-        n._gLoadedHandler = "gLoadedHandler-" + n._id;
+        n._guid = o.guid();
+        n._playId = "_player" + n._guid;
+        n._playing = !1;
+        n._initGlobalEvent();
         var i = {
             interval: 1e3,
             swfPlayer: $PAGE_DATA.ckplayer || "",
@@ -1180,7 +1182,7 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
                 wh: "",
                 ct: "2",
                 drift: "",
-                loaded: n._gLoadedHandler,
+                loaded: n._handlerList.loaded,
                 my_url: encodeURIComponent(window.location.href)
             }
         };
@@ -1195,15 +1197,51 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
     o.inherits(i, a);
     i.prototype._init = function() {
         var e = this;
-        e.CKobject = CKobject;
         e.player = e.get();
         e._embed = e.el.find("embed");
     };
-    i.prototype._initEvent = function() {
+    i.prototype._initHandlerList = function() {
         var e = this;
-        e.options.interval > 0 && setInterval(function() {
-            e.emit("time", e.getStatus().time);
-        }, e.options.interval);
+        e._handlerList = {};
+        for (var t = [ "loaded", "play", "pause", "time", "ended", "error" ], n = 0, i = t.length; n < i; n++) e._handlerList[t[n]] = t[n] + e._guid;
+    };
+    i.prototype._initGlobalEvent = function() {
+        var e = this;
+        e._initHandlerList();
+        var t = e._handlerList;
+        window[t.loaded] = function() {
+            var n = e.get();
+            if (n) {
+                n.addListener("play", t.play);
+                n.addListener("pause", t.pause);
+                n.addListener("time", t.time);
+                n.addListener("ended", t.ended);
+                n.addListener("error", t.error);
+            }
+        };
+        window[t.play] = function() {
+            e._playing = !0;
+            e.emit("play");
+        };
+        window[t.pause] = function() {
+            e._playing = !1;
+            e.emit("pause");
+        };
+        window[t.time] = function(t) {
+            e.options.interval > 0 && !e._interval && (e._interval = setInterval(function(t) {
+                e._playing && e.emit("time", e.getCurrentTime());
+            }, e.options.interval));
+        };
+        window[t.ended] = function() {
+            e._playing = !1;
+            e.emit("ended");
+        };
+        window[t.error] = function() {
+            e._playing = !1;
+            e.emit("initError");
+        };
+    };
+    i.prototype._initEvent = function() {
     };
     i.prototype.play = function() {
         var e = this;
@@ -1253,7 +1291,7 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
     };
     i.prototype.get = function() {
         var e = this;
-        return e.CKobject.getObjectById(e._playId);
+        return CKobject.getObjectById(e._playId);
     };
     n.exports = i;
 });

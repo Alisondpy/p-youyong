@@ -2,7 +2,7 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>
-Created by FontForge 20120731 at Tue Dec 13 20:43:31 2016
+Created by FontForge 20120731 at Wed Dec 14 16:23:59 2016
  By admin
 </metadata>
 <defs>
@@ -19,7 +19,7 @@ Created by FontForge 20120731 at Tue Dec 13 20:43:31 2016
     bbox="0 -128 1350 896.205"
     underline-thickness="0"
     underline-position="0"
-    unicode-range="U+0078-E7E3"
+    unicode-range="U+0078-E7E4"
   />
 <missing-glyph 
  />
@@ -251,5 +251,7 @@ q-44 22 -101 56q-53 30 -69 60q-3 5 -6.5 13t-6 13t-5.5 7q-11 6 -59 -14l-3 26q38 1
 l5 -2l7 -17q-32 -9 -81 -7q4 -6 15 -23l37 -22l-73 -125q-8 -14 -20 -13q-11 1 -41 19q4 9 4 20q6 -3 12.5 -7t11 -6.5t5.5 -3.5q5 -4 8 2l14 26l-49 29l-27 -46l-19 10l27 47l-48 27zM482 554l-15 -24l48 -28l15 25zM491 460l15 27l-48 27l-14 -26zM549 516l-15 -24l50 -29
 l14 25zM560 421l14 26l-49 29l-15 -26zM780 230q2 -3 5.5 -11.5t7.5 -14.5q13 -27 65 -57q58 -33 107 -54q-14 -11 -19 -19q-30 13 -99 53q-54 31 -69 61q-3 5 -6.5 13t-6 13t-5.5 7q-10 7 -58 -15l-3 29q41 12 62 9l43 74l-39 22l12 20l60 -34zM849 370q0 28 -14 73l22 2
 q14 -45 15 -73zM985 286l-109 63l11 21l110 -63l28 50l22 -13l-29 -50l40 -23l-12 -20l-39 23l-65 -113q-12 -19 -28 -15.5t-56 26.5q5 14 5 26q29 -17 46 -27q8 -5 12 2zM893 309q9 -56 9 -79l-24 -1q1 31 -6 80h21z" />
+    <glyph glyph-name="iyoyo-arrow-top-normal" unicode="&#xe7e4;" 
+d="M490 575l-417 -407h-41l445 432h59l456 -432h-41l-429 407h-32z" />
   </font>
 </defs></svg>

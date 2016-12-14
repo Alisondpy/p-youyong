@@ -4451,8 +4451,10 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
         if (void 0 === e) throw new Error("the param [selector] is required.");
         i.el = o(e);
         i._id = i.el.attr("id");
-        i._playId = "_player-" + i._id;
-        i._gLoadedHandler = "gLoadedHandler-" + i._id;
+        i._guid = a.guid();
+        i._playId = "_player" + i._guid;
+        i._playing = !1;
+        i._initGlobalEvent();
         var n = {
             interval: 1e3,
             swfPlayer: $PAGE_DATA.ckplayer || "",
@@ -4491,7 +4493,7 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
                 wh: "",
                 ct: "2",
                 drift: "",
-                loaded: i._gLoadedHandler,
+                loaded: i._handlerList.loaded,
                 my_url: encodeURIComponent(window.location.href)
             }
         };
@@ -4506,15 +4508,51 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
     a.inherits(n, r);
     n.prototype._init = function() {
         var e = this;
-        e.CKobject = CKobject;
         e.player = e.get();
         e._embed = e.el.find("embed");
     };
-    n.prototype._initEvent = function() {
+    n.prototype._initHandlerList = function() {
         var e = this;
-        e.options.interval > 0 && setInterval(function() {
-            e.emit("time", e.getStatus().time);
-        }, e.options.interval);
+        e._handlerList = {};
+        for (var t = [ "loaded", "play", "pause", "time", "ended", "error" ], i = 0, n = t.length; i < n; i++) e._handlerList[t[i]] = t[i] + e._guid;
+    };
+    n.prototype._initGlobalEvent = function() {
+        var e = this;
+        e._initHandlerList();
+        var t = e._handlerList;
+        window[t.loaded] = function() {
+            var i = e.get();
+            if (i) {
+                i.addListener("play", t.play);
+                i.addListener("pause", t.pause);
+                i.addListener("time", t.time);
+                i.addListener("ended", t.ended);
+                i.addListener("error", t.error);
+            }
+        };
+        window[t.play] = function() {
+            e._playing = !0;
+            e.emit("play");
+        };
+        window[t.pause] = function() {
+            e._playing = !1;
+            e.emit("pause");
+        };
+        window[t.time] = function(t) {
+            e.options.interval > 0 && !e._interval && (e._interval = setInterval(function(t) {
+                e._playing && e.emit("time", e.getCurrentTime());
+            }, e.options.interval));
+        };
+        window[t.ended] = function() {
+            e._playing = !1;
+            e.emit("ended");
+        };
+        window[t.error] = function() {
+            e._playing = !1;
+            e.emit("initError");
+        };
+    };
+    n.prototype._initEvent = function() {
     };
     n.prototype.play = function() {
         var e = this;
@@ -4564,7 +4602,7 @@ define("plugins/ckplayer/6.7.0/player", [ "require", "exports", "module", "jquer
     };
     n.prototype.get = function() {
         var e = this;
-        return e.CKobject.getObjectById(e._playId);
+        return CKobject.getObjectById(e._playId);
     };
     i.exports = n;
 });

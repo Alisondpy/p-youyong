@@ -2806,6 +2806,7 @@ define("conf/subject/sub-detail", [ "require", "exports", "module", "jquery", "l
     i("#jCheckIn").on("click", function() {
         o.get($PAGE_DATA.checkIn, function(e) {
             r.ok("签到成功");
+            window.location.reload();
         }, function(e) {
             r.error(e.msg || "网络异常，请重试");
         });
