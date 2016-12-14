@@ -49,9 +49,10 @@ define(function (require, exports, module) {
     $("#jLive").on("click", function () {
         if(userLogin){
             io.get(liveUrl, function (res) {
-                    window.location.href = res.liveshowUrl;
+                    window.location.href = res.data.liveshowUrl;
                 },
                 function (res) {
+                    
                     box.error(res.msg || '网络异常，请重试');
                 }
             )
