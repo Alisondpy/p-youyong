@@ -34,7 +34,9 @@ define(function (require, exports, module) {
     $("#jCheckIn").on("click", function () {
         io.get($PAGE_DATA['checkIn'], function (res) {
                 box.ok("签到成功");
-                window.location.reload();
+                setTimeout(function(){
+                    window.location.reload();
+                },3000)
             },
             function (res) {
                 box.error(res.msg || '网络异常，请重试');
