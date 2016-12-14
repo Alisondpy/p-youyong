@@ -4,7 +4,7 @@
   "conf/apply.css": "conf/apply-3595d1ae3c.css",
   "conf/course/ask-pop.css": "conf/course/ask-pop-de67c70741.css",
   "conf/course/course-list.css": "conf/course/course-list-b387a86a2a.css",
-  "conf/course/detail.css": "conf/course/detail-a468ac1dc2.css",
+  "conf/course/detail.css": "conf/course/detail-d6a5a4be56.css",
   "conf/course/index.css": "conf/course/index-f1dbde5410.css",
   "conf/demo.css": "conf/demo-b160087df4.css",
   "conf/forget-pwd.css": "conf/forget-pwd-c5e9aa4b7e.css",
@@ -16,9 +16,9 @@
   "conf/live-show.css": "conf/live-show-1a587fb831.css",
   "conf/login.css": "conf/login-e2c42f44f5.css",
   "conf/news/index.css": "conf/news/index-04b42a03cb.css",
-  "conf/news/news-detail.css": "conf/news/news-detail-4f5e9a5f48.css",
+  "conf/news/news-detail.css": "conf/news/news-detail-97121fb393.css",
   "conf/open-class-detail.css": "conf/open-class-detail-f5deb1d035.css",
-  "conf/play.css": "conf/play-2e3f0aacbb.css",
+  "conf/play.css": "conf/play-8173652452.css",
   "conf/polling-list.css": "conf/polling-list-ef0c655202.css",
   "conf/register-popl.css": "conf/register-popl-3aa9d40eda.css",
   "conf/register.css": "conf/register-d121bc90cd.css",
@@ -36,5 +36,5 @@
   "conf/uc/news.css": "conf/uc/news-4b3e015001.css",
   "conf/uc/note.css": "conf/uc/note-958d25c62f.css",
   "conf/uc/person-info.css": "conf/uc/person-info-084a819527.css",
-  "conf/uc/questions-answers.css": "conf/uc/questions-answers-63a2aa1118.css"
+  "conf/uc/questions-answers.css": "conf/uc/questions-answers-f671cb1f01.css"
 }

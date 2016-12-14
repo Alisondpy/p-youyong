@@ -4794,7 +4794,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             }, function() {}, this);
             O = !0;
         }
-        if (!D && e > 60 && b.isLogin()) {
+        if (!D && e > 60 && !b.isLogin()) {
             P.pause();
             p.confirm("游客只能观看一分钟,是否前往登录？", function() {
                 b.login(window.location.href);
