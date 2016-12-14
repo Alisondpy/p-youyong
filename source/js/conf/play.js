@@ -349,7 +349,6 @@ define(function(require, exports, module) {
                     if(_this.hasClass('jPublishA') && (noteCurrent.find('.ui-current').text().indexOf('全部笔记') == -1)){
                         renderTemp($PAGE_DATA['note'].note,reqNoteData1,'tAnswer','jNoteTab1');
                     }else if(_this.hasClass('jPublishQ') && (quesCurrent.find('.ui-current').text().indexOf('全部问答') == -1)){
-                        jQuesTitle.val('');
                         renderTemp($PAGE_DATA['question'].question,reqQuesData1,'tQuestion','jQuestionTab1');
                     }
                 },function(res){
@@ -399,6 +398,7 @@ define(function(require, exports, module) {
                 publishDataQ.title = title;
                 publishDataQ.content = content;
                 pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishDataQ,txtQ,txtNumQ);
+                jQuesTitle.val('');
             }
         } else {
             Login.login(window.location.href);
