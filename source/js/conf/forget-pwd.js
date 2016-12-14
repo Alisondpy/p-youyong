@@ -10,6 +10,9 @@ define(function(require, exports, module) {
     var validate = require('plugins/validator/1.0.0/validator');
     var form = require("lib/core/1.0.0/utils/form");
 
+    
+    var Footer = require('module/footer/1.0.0/footer');
+    var footer = new Footer();
     //手机号正确才允许点击验证码
     $.validator.addMethod("lms", function(value, element, param) {
         var mobile = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
