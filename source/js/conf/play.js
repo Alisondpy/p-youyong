@@ -32,10 +32,11 @@ define(function(require, exports, module) {
 
     //====================播放器 start
 
-    //获取参数
+    //====================后台获取参数 start
     var sourceId = $PAGE_DATA['courseId'];
     var lessonId = $PAGE_DATA['lessonId'];
     var examId = $PAGE_DATA['examId'];
+    //====================后台获取参数 end
 
     var Player = require('plugins/ckplayer/6.7.0/player');
 
@@ -104,165 +105,8 @@ define(function(require, exports, module) {
     });
     //====================播放器 end
 
-    //====================字数限制 start
-    var publishA = $('.jPublishA'); //发布笔记
-    var publishQ = $('.jPublishQ'); //发布问答
-    var txtNumA = $('.jTxtNumA'); //笔记字数
-    var txtNumQ = $('.jTxtNumQ'); //问答字数
-    var txtA = $('.jTxtA'); //笔记输入框
-    var txtQ = $('.jTxtQ'); //问答输入框
-    function limit(txtLen, num, _this, publish, txtNum) {
-        if (txtLen > num) {
-            _this.addClass('text-error');
-            publish.addClass('publish-error');
-            txtNum.css({ 'color': 'red' });
-        } else {
-            _this.removeClass('text-error');
-            publish.removeClass('publish-error');
-            txtNum.css({ 'color': '#666' });
-        }
-        txtNum.children('.num').text(txtLen);
-    }
-    jTab.on('input propertychange', '.jTxtA', function() {
-        var txtLen = $(this).val().length;
-        limit(txtLen, 500, $(this), publishA, txtNumA);
-    });
 
-    jTab.on('input propertychange', '.jTxtQ', function() {
-        var txtLen = $(this).val().length;
-        limit(txtLen, 500, $(this), publishQ, txtNumQ);
-    });
-
-    //====================字数限制 end
-    //====================发布按钮 start
-    function pubAjax(content,_this,url,data,txt,txtNum){
-        if(content == ''){
-            box.error('请输入内容');
-        }else {
-            if(!_this.hasClass('publish-error')){
-                io.get(url,data,function(res){
-                    box.ok('发表成功');
-                    txt.val('');
-                    txtNum.children('.num').text('0');
-                },function(res){
-                    box.error(res.msg || '网络错误,请重试');
-                });
-            }
-        }
-    }
-    var answer = $('#jAnswer');
-    var publishDataA = {
-        sourceType: 2,
-        sourceId: lessonId,
-        content: "",
-        showType: 1
-    }
-    jTab.on('click', '.jPublishA', function() {
-        if (Login.isLogin()) {
-            var content = txtA.val();
-            publishDataA.content = content;
-            if (answer.is(':checked')) {
-                publishDataA.showType = 1;
-            } else {
-                publishDataA.showType = 2;
-            }
-            pubAjax(content,$(this),$PAGE_DATA['note'].publish,publishDataA,txtA,txtNumA);
-            renderTemp($PAGE_DATA['note'].note,reqNoteData,'tAnswer','jNoteTab1');
-        }else {
-            Login.login(window.location.href);
-        }
-    });
-    var jQuesTitle = $('#jQuesTitle');
-    jTab.on('focus', '#jQuesTitle', function() {
-        jQuesTitle.removeClass('question-input-error');
-    });
-    var publishDataQ = {
-        sourceType: 2,
-        sourceId: lessonId,
-        content: "",
-    }
-    jTab.on('click', '.jPublishQ', function() {
-        if (Login.isLogin()) {
-            var title = jQuesTitle.val();
-            var content = txtQ.val();
-            if (title == '') {
-                box.error('请输入问题标题');
-                jQuesTitle.addClass('question-input-error');
-            } else {
-                publishDataQ.title = title;
-                publishDataQ.content = content;
-                pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishDataQ,txtQ,txtNumQ);
-                jQuesTitle.val('');
-                renderTemp($PAGE_DATA['question'].question,reqQuesData,'tQuestion','jQuestionTab1');
-            }
-        } else {
-            Login.login(window.location.href);
-        }
-    });
-    //====================发布按钮 end
-
-    //评论focus效果
-    jTab.on('focus', '.jTxt', function() {
-        $(this).addClass('text-focus').attr('placeholder', '');
-        $(this).css('color', '#333');
-    }).on('blur', '.jTxt', function() {
-        if ($(this).val() === '') {
-            $(this).removeClass('text-focus').attr('placeholder', '有疑问?快来记录吧~(限500字)!');
-            $(this).css('color', '#ccc');
-        }
-    });
-
-    //点赞和采集的接口处理
-    function clickInterface(url, data, msg) {
-        io.get(url, data, function(res) {
-            box.ok(msg + '成功');
-        }, function(res) {
-            box.error(res.msg || '网络错误,请重试');
-        });
-    };
-
-    //笔记点赞
-    jTab.on('click','.like',function(){
-        if(Login.isLogin()){
-            var id = $(this).attr('data-id');
-
-            var data;
-            if ($(this).hasClass("activeLike")) {
-                data = {
-                    "dataType":4,
-                    "type":1,
-                    "id":id
-                }
-                clickInterface($PAGE_DATA['note'].like,data,'取消点赞');
-                renderTemp($PAGE_DATA['note'].note,reqNoteData,'tAnswer','jNoteTab1');
-            }else {
-                data = {
-                    "dataType":4,
-                    "type":2,
-                    "id":id
-                }
-                clickInterface($PAGE_DATA['note'].like,data,'点赞');
-                renderTemp($PAGE_DATA['note'].note,reqNoteData,'tAnswer','jNoteTab1');
-            }
-        } else {
-            Login.login(window.location.href);
-        }
-    });
-
-    ////采集
-    //jTab.on('click','.pick',function(){
-    //    var id = $(this).attr('data-id');
-    //    if($(this).hasClass("picked")){
-    //        clickInterface($PAGE_DATA['note'].picked,id,'取消采集');
-    //        $(this).find('em').text('采集');
-    //        $(this).removeClass('picked');
-    //    }else {
-    //        clickInterface($PAGE_DATA['note'].picked,id,'采集');
-    //        $(this).find('em').text('已采集');
-    //        $(this).addClass('picked');
-    //    }
-    //});
-
+    //====================模板渲染 start
     /*模板渲染*/
     function renderTemp(url, data, temEl, htmlEl) {
         var loading = box.loading('正在加载...', {
@@ -298,7 +142,7 @@ define(function(require, exports, module) {
             loading && loading.hide();
         });
     }
-    var reqNoteData = {
+    var reqNoteData1 = {
         id:0,
         pageSize:20,
         sortType:1,
@@ -306,7 +150,7 @@ define(function(require, exports, module) {
         sourceType:2,
         sourceId:lessonId
     }
-    var reqQuesData = {
+    var reqQuesData1 = {
         id:0,
         pageSize:20,
         sortType:1,
@@ -327,10 +171,10 @@ define(function(require, exports, module) {
                 if (note) {
                     note.stop();
                 }
-                renderTemp($PAGE_DATA['note'].note, reqNoteData, 'tAnswer', 'jNoteTab1');
+                renderTemp($PAGE_DATA['note'].note, reqNoteData1, 'tAnswer', 'jNoteTab1');
                 break;
             case '1': //笔记全部
-                var reqNoteData = {
+                var reqNoteData2 = {
                     id: 0,
                     pageSize: 20,
                     sortType: 1,
@@ -346,11 +190,11 @@ define(function(require, exports, module) {
                     note = new Note('#jNoteTab2', {
                         pollingAjax: {
                             url: $PAGE_DATA['note'].note,
-                            data: reqNoteData
+                            data: reqNoteData2
                         },
                         pagerAjax: {
                             url: $PAGE_DATA['note'].note,
-                            data: reqNoteData
+                            data: reqNoteData2
                         }
                     });
                 }
@@ -370,10 +214,10 @@ define(function(require, exports, module) {
                 if (note) {
                     note.stop();
                 }
-                renderTemp($PAGE_DATA['question'].question,reqQuesData,'tQuestion','jQuestionTab1');
+                renderTemp($PAGE_DATA['question'].question,reqQuesData1,'tQuestion','jQuestionTab1');
                 break;
             case '3': //问答全部
-                var reqNoteData = {
+                var reqNoteData2 = {
                     id: 0,
                     pageSize: 20,
                     sortType: 1,
@@ -390,11 +234,11 @@ define(function(require, exports, module) {
                     question = new Question('#jQuestionTab2', {
                         pollingAjax: {
                             url: $PAGE_DATA['question'].question,
-                            data: reqNoteData
+                            data: reqNoteData2
                         },
                         pagerAjax: {
                             url: $PAGE_DATA['question'].question,
-                            data: reqNoteData
+                            data: reqNoteData2
                         }
                     });
                 }
@@ -405,6 +249,8 @@ define(function(require, exports, module) {
                 break;
         }
     };
+
+    //====================模板渲染 end
 
     jTab.on('click', '.jSubNav', function() {
         $(this).addClass('ui-current').siblings().removeClass('ui-current');
@@ -428,4 +274,171 @@ define(function(require, exports, module) {
         }
         lazy.update();
     });
+
+    //====================字数限制 start
+    var publishA = $('.jPublishA'); //发布笔记
+    var publishQ = $('.jPublishQ'); //发布问答
+    var txtNumA = $('.jTxtNumA'); //笔记字数
+    var txtNumQ = $('.jTxtNumQ'); //问答字数
+    var txtA = $('.jTxtA'); //笔记输入框
+    var txtQ = $('.jTxtQ'); //问答输入框
+    function limit(txtLen, num, _this, publish, txtNum) {
+        if (txtLen > num) {
+            _this.addClass('text-error');
+            publish.addClass('publish-error');
+            txtNum.css({ 'color': 'red' });
+        } else {
+            _this.removeClass('text-error');
+            publish.removeClass('publish-error');
+            txtNum.css({ 'color': '#666' });
+        }
+        txtNum.children('.num').text(txtLen);
+    }
+    jTab.on('input propertychange', '.jTxtA', function() {
+        var txtLen = $(this).val().length;
+        limit(txtLen, 500, $(this), publishA, txtNumA);
+    });
+
+    jTab.on('input propertychange', '.jTxtQ', function() {
+        var txtLen = $(this).val().length;
+        limit(txtLen, 500, $(this), publishQ, txtNumQ);
+    });
+
+    //====================字数限制 end
+    //====================发布按钮 start
+    var jQuesTitle = $('#jQuesTitle');
+    var noteCurrent;
+    var quesCurrent;
+    $('.jNoteTap').each(function(){
+        if($(this).attr('data-id') == '2'){
+            noteCurrent = $(this);
+        }else if($(this).attr('data-id') == '3'){
+            quesCurrent = $(this);
+        }
+    });
+    function pubAjax(content,_this,url,data,txt,txtNum){
+        if(content == ''){
+            box.error('请输入内容');
+        }else {
+            if(!_this.hasClass('publish-error')){
+                io.get(url,data,function(res){
+                    box.ok('发表成功',_this[0]);
+                    txt.val('');
+                    txtNum.children('.num').text('0');
+                    console.log(noteCurrent.find('.ui-current').text());
+                    if(_this.hasClass('jPublishA') && (noteCurrent.find('.ui-current').text().indexOf('全部笔记') == -1)){
+                        renderTemp($PAGE_DATA['note'].note,reqNoteData1,'tAnswer','jNoteTab1');
+                    }else if(_this.hasClass('jPublishQ') && (quesCurrent.find('.ui-current').text().indexOf('全部问答') == -1)){
+                        jQuesTitle.val('');
+                        renderTemp($PAGE_DATA['question'].question,reqQuesData1,'tQuestion','jQuestionTab1');
+                    }
+                },function(res){
+                    box.error(res.msg || '网络错误,请重试',_this[0]);
+                });
+            }
+        }
+    }
+    var answer = $('#jAnswer');
+    var publishDataA = {
+        sourceType: 2,
+        sourceId: lessonId,
+        content: "",
+        showType: 1
+    }
+    jTab.on('click', '.jPublishA', function() {
+        if (Login.isLogin()) {//记得清除
+            var content = txtA.val();
+            publishDataA.content = content;
+            if (answer.is(':checked')) {
+                publishDataA.showType = 1;
+            } else {
+                publishDataA.showType = 2;
+            }
+            pubAjax(content,$(this),$PAGE_DATA['note'].publish,publishDataA,txtA,txtNumA);
+        }else {
+            Login.login(window.location.href);
+        }
+    });
+
+    jTab.on('focus', '#jQuesTitle', function() {
+        jQuesTitle.removeClass('question-input-error');
+    });
+    var publishDataQ = {
+        sourceType: 2,
+        sourceId: lessonId,
+        content: "",
+    }
+    jTab.on('click', '.jPublishQ', function() {
+        if (Login.isLogin()) {//记得清除
+            var title = jQuesTitle.val();
+            var content = txtQ.val();
+            if (title == '') {
+                box.error('请输入问题标题');
+                jQuesTitle.addClass('question-input-error');
+            } else {
+                publishDataQ.title = title;
+                publishDataQ.content = content;
+                pubAjax(content,$(this),$PAGE_DATA['question'].publish,publishDataQ,txtQ,txtNumQ);
+            }
+        } else {
+            Login.login(window.location.href);
+        }
+    });
+    //====================发布按钮 end
+
+    //评论focus效果
+    jTab.on('focus', '.jTxt', function() {
+        $(this).addClass('text-focus');
+        $(this).css('color', '#333');
+    }).on('blur', '.jTxt', function() {
+        if ($(this).val() === '') {
+            $(this).removeClass('text-focus');
+            $(this).css('color', '#ccc');
+        }
+    });
+
+    //============================笔记点赞 start
+    //点赞和采集的接口处理
+    function clickInterface(url, data, msg) {
+        io.get(url, data, function(res) {
+            box.ok(msg + '成功');
+            renderTemp($PAGE_DATA['note'].note,reqNoteData1,'tAnswer','jNoteTab1');
+        }, function(res) {
+            box.error(res.msg || '网络错误,请重试');
+        });
+    };
+
+    //笔记点赞
+    jTab.on('click','.like',function(){
+        if(Login.isLogin()){//记得清除
+            var num = $(this).find('strong');
+            var number = parseInt(num.text());
+            var id = $(this).attr('data-id');
+            var data;
+            if ($(this).hasClass("activeLike")) {
+                data = {
+                    "dataType":4,
+                    "type":1,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['note'].like,data,'取消点赞');
+                $(this).removeClass('activeLike');
+                if((number - 1) >= 0){
+                    num.text(number - 1);
+                }
+            }else {
+                data = {
+                    "dataType":4,
+                    "type":2,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['note'].like,data,'点赞');
+                $(this).addClass('activeLike');
+                num.text(number + 1);
+            }
+        } else {
+            Login.login(window.location.href);
+        }
+    });
+    //============================笔记点赞 start
 });

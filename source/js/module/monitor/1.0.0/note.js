@@ -33,6 +33,7 @@ define(function(require, exports, module) {
 		_this._init();
 		_this._initEvent();
 		_this.max = 0;
+		_this.isFist = true;
 	}
 
 	//继承自定义事件
@@ -78,8 +79,11 @@ define(function(require, exports, module) {
 				_this.pollingList.setData({
 					id:data.data.resultList[0].id
 				});
+				_this.isFist = false;
 			}else {
-				_this.pollingList.html(template('tEmpty',1));
+				if(_this.isFist){
+					_this.pollingList.html(template('tEmpty',1));
+				}
 			}
 			_this.scrollTo(0);
 		});
