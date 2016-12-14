@@ -222,7 +222,7 @@ define(function(require, exports, module) {
         var formData = form.serializeForm(formRes);
         formData.returnUrl = getReturnUrl();
         io.post(url, formData, function(res) {
-            box.ok("登陆成功");
+            box.ok("登录成功");
             //等待1秒跳转页面
             var refer = res.data.returnUrl;
             cookie.set('__returnUrl', null);
