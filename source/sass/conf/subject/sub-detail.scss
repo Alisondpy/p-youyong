@@ -30,6 +30,11 @@ body {
             width: 512px;
             height: 278px;
             border: 1px solid #ccc;
+            overflow: hidden;
+            text-align: center;
+            img{
+                height:100%;
+            }
         }
         .sub-content {
             width: 576px;
