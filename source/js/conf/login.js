@@ -30,11 +30,9 @@ define(function(require, exports, module) {
             //修改点击提交触发验证,恢复验证码按钮色彩的功能
             if ($(".jsVerifyCode").hasClass("change")) {} else {
                 $(param).removeClass("ui-btn-disable");
-                $('#jDynamic').removeAttr("disabled");
             }
             return this.optional(element) || true;
         } else {
-            $('#jDynamic').attr("disabled", "disabled");
             $(param).addClass("ui-btn-disable");
             return false
         }

@@ -147,7 +147,6 @@ define(function(require, exports, module) {
     $(".jsVerifyCode").on("click", function() {
         var verifyCode = $(this);
         //获取阶段直接返回
-        $('#jDynamic').removeAttr("disabled");
         if (verifyCode.hasClass("ui-btn-disable")) {
             return false;
         }
@@ -171,7 +170,6 @@ define(function(require, exports, module) {
             } else {
                 verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
                 clearInterval(time);
-                $('#jDynamic').attr("disabled", "disabled");
             }
         }, 1000);
     });
