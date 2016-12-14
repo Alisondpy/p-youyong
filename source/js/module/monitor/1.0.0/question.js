@@ -51,6 +51,21 @@ define(function(require, exports, module) {
         _this._loadingHtml();
     }
 
+    Question.prototype._initMouse = function(){
+        var _this = this;
+        if(!_this._initMouseInited){
+            _this._initMouseInited = true;
+            //鼠标移进容器就暂停刷新
+            _this.el.on('mouseenter', function() {
+                _this.stop();
+            });
+            //鼠标移进容器就立马刷新
+            _this.el.on('mouseleave', function() {
+                _this.start();
+            });
+        }
+    }
+
     Question.prototype._initEvent = function() {
         var _this = this,
             options = _this.options,
@@ -63,6 +78,7 @@ define(function(require, exports, module) {
         _this.pollingList.on('success', function(data) {
             //如果刷新成功，并且有更新，直接用html替换
              if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
+                 _this._initMouse();
                  _this.min = data.data.resultList[data.data.resultList.length - 1].id;
                  _this.pollingList.html(_this.template(data.data));
                  _this.pollingList.setData({
@@ -75,14 +91,6 @@ define(function(require, exports, module) {
                  }
              }
             _this.scrollTo(0);
-        });
-        //鼠标移进容器就暂停刷新
-        _this.el.on('mouseenter', function() {
-            _this.stop();
-        });
-        //鼠标移进容器就立马刷新
-        _this.el.on('mouseleave', function() {
-            _this.start();
         });
         //上拉刷新事件
         _this.pollingList.on('pullup', function(e) {

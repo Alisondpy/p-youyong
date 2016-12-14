@@ -97,7 +97,7 @@ define(function(require, exports, module) {
         if(examId != ''){
             box.confirm('是否进入考试页面？',
                 function() {
-                    box.loadUrl($PAGE_DATA['examUrl'] + '?examId=' + examId + '?prepare&bizType=0&bizId=' + lessonId + '&courseId=' + sourceId, {
+                    box.loadUrl($PAGE_DATA['examUrl'], {
                         title: '考试',
                         className: 'ui-test-box',
                         fixed: true,

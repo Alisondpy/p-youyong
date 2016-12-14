@@ -8,7 +8,7 @@ define(function(require, exports, module) {
 	var Util = require('lib/core/1.0.0/utils/util');
 	var template=require("template");
 
-	function Question(el, options) {
+	function Note(el, options) {
 		var _this = this;
 		_this.el = $(el);
 		if (_this.el.length == 0) {
@@ -38,9 +38,9 @@ define(function(require, exports, module) {
 	}
 
 	//继承自定义事件
-	Util.inherits(Question, EventEmitter);
+	Util.inherits(Note, EventEmitter);
 
-	Question.prototype._init = function() {
+	Note.prototype._init = function() {
 		var _this = this;
 		_this.pollingList = new PollingList(_this.el, {
 			ajax: _this.options.pollingAjax,
@@ -52,7 +52,7 @@ define(function(require, exports, module) {
 	}
 
 	//开始加载
-	Question.prototype._loadingHtml = function() {
+	Note.prototype._loadingHtml = function() {
 		var _this = this;
 		var str = '';
 		str+='<div class="ui-loading-list">';
@@ -64,7 +64,22 @@ define(function(require, exports, module) {
 		_this.pollingList.html(str);
 	};
 
-	Question.prototype._initEvent = function() {
+	Note.prototype._initMouse = function(){
+		var _this = this;
+		if(!_this._initMouseInited){
+			_this._initMouseInited = true;
+			//鼠标移进容器就暂停刷新
+			_this.el.on('mouseenter', function() {
+				_this.stop();
+			});
+			//鼠标移进容器就立马刷新
+			_this.el.on('mouseleave', function() {
+				_this.start();
+			});
+		}
+	}
+
+	Note.prototype._initEvent = function() {
 		var _this = this,
 			options = _this.options,
 			pagerAjax = _this.options.pagerAjax;
@@ -76,6 +91,7 @@ define(function(require, exports, module) {
 		_this.pollingList.on('success', function(data) {
 			//如果刷新成功，并且有更新，直接用html替换
 			if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
+				_this._initMouse();
 				_this.min = data.data.resultList[data.data.resultList.length - 1].id;
 				_this.pollingList.html(_this.template(data.data));
 				_this.pollingList.setData({
@@ -88,14 +104,6 @@ define(function(require, exports, module) {
 				}
 			}
 			_this.scrollTo(0);
-		});
-		//鼠标移进容器就暂停刷新
-		_this.el.on('mouseenter', function() {
-			_this.stop();
-		});
-		//鼠标移进容器就立马刷新
-		_this.el.on('mouseleave', function() {
-			_this.start();
 		});
 		//上拉刷新事件
 		_this.pollingList.on('pullup', function(e) {
@@ -116,37 +124,37 @@ define(function(require, exports, module) {
 	}
 
 	//开始拉新
-	Question.prototype.start = function() {
+	Note.prototype.start = function() {
 		var _this = this;
 		_this.pollingList.start();
 	}
 
 	//停止拉新
-	Question.prototype.stop = function() {
+	Note.prototype.stop = function() {
 		var _this = this;
 		_this.pollingList.stop();
 	}
 
 	//清屏
-	Question.prototype.clear = function() {
+	Note.prototype.clear = function() {
 		var _this = this;
 		_this.pollingList.container.html('');
 	}
 
 	//销毁
-	Question.prototype.destroy = function() {
+	Note.prototype.destroy = function() {
 		var _this = this;
 	}
 
 	//跳转位置
-	Question.prototype.scrollTo = function(top) {
+	Note.prototype.scrollTo = function(top) {
 		var _this = this;
 		_this.pollingList.scrollTo(top);
 	}
 
-	Question.prototype.template = function(data) {
+	Note.prototype.template = function(data) {
 		return template('tAnswer',data);
 	}
 
-	module.exports = Question;
+	module.exports = Note;
 });
