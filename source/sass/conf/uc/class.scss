@@ -5,8 +5,6 @@
 @import "../../module/mod-empty";
 // @import "../../module/uc/search-bar/search-bar";
 @import "../../common/pager/pager";
-
-
 .content {
     width: 840px;
     .item {
@@ -14,78 +12,94 @@
         margin: 0 auto;
         padding: 20px 0;
         border-top: 1px solid #e4ebf0;
-        &.first{
+        &.first {
             border: none;
         }
         .left-title {
             .up {
                 position: relative;
                 line-height: 30px;
-                .name{
-                    vertical-align:middle;
+                .name {
+                    vertical-align: middle;
                     display: inline-block;
                     line-height: 20px;
                     font-size: 18px;
                 }
                 .job {
                     display: inline-block;
-                    vertical-align:middle;
+                    vertical-align: middle;
                     width: 150px;
                     font-size: 20px;
                     /*px*/
                 }
-                .iyoyo {
-                    /* position: relative;
-                    top: -6px; */
-                    margin-left: 10px;
-                    font-size: 20px;
-                    color: #95aab8;
-                    cursor: pointer;
-                }
-                .iyoyo-qq {
-                    &:hover {
-                        color: #3b97ec;
+                .iyo {
+                    display: inline-block;
+                    .iyoyo {
+                        margin-left: 10px;
+                        font-size: 20px;
+                        color: #95aab8;
+                        cursor: pointer;
+                        &.iyoyo-qq {
+                            position: relative;
+                            // z-index: 99;
+                            &:hover {
+                                color: #3b97ec;
+                            }
+                        }
+                        &.iyoyo-talk {
+                            position: relative;
+                            // z-index: 9;
+                            &:hover {
+                                color: #9ac043;
+                            }
+                        }
                     }
-                }
-                .iyoyo-talk{
-                     &:hover {
-                        color: #9ac043;
+                    
+                    .yoqq,
+                    .yotalk {
+                        display: none;
+                        position: absolute;
+                        top: 33px;
+                        z-index: 9;
+                        padding: 11px;
+                        border: 1px solid #e4ebf0;
+                        border-radius: 4px;
+                        background-color: #fff;
+                        text-align: center;
+                        .triangle {
+                            position: absolute;
+                            padding: 1px 0;
+                            margin: 0;
+                            line-height: 10px;
+                            left: 36px;
+                            top: -10px;
+                            z-index: 10;
+                            color: #e4ebf0;
+                            background: #fff;
+                        }
+                        .code {
+                            position: absolute;
+                            left: 10px;
+                            width: 76px;
+                            height: 76px;
+                        }
                     }
-                }
-                .yoqq, .yotalk{
-                    display: none;
-                    position: absolute;
-                    top: 30px;
-                    z-index: 99;
-                    padding: 11px;
-                    border: 1px solid #e4ebf0;
-                    border-radius: 4px;
-                    background-color: #fff;
-                    text-align: center;
-                    .code{
+                    .yotalk {
                         width: 76px;
                         height: 76px;
                     }
-                }
-                .yotalk{
-                    width: 76px;
-                    height: 76px;
-                }
-                .yoqq{
-                    width: 76px;
-                    left: 220px;
-                }
-                .yotalk{
-                    left: 252px;
-                }
-                .iyo{
-                    display: inline-block;
-                    &:hover{
-                        .yoqq{
+                    .yoqq {
+                        width: 76px;
+                        left: 220px;
+                    }
+                    .yotalk {
+                        left: 252px;
+                    }
+                    &:hover {
+                        .yoqq {
                             display: block;
-
                         }
-                        .yotalk{
+                        .yotalk {
                             display: block;
                         }
                     }
@@ -141,14 +155,14 @@
                 height: 40px;
                 line-height: 40px;
                 font-size: 12px;
-                &:hover{
+                &:hover {
                     color: #fff;
                 }
             }
-            .ui-btn-defulat{
+            .ui-btn-defulat {
                 background-color: #d1d7dc;
                 color: #fff;
-                &.active{
+                &.active {
                     background-color: #ff4545;
                 }
             }

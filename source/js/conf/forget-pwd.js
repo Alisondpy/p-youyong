@@ -126,14 +126,14 @@ define(function(require, exports, module) {
         if(verifyCode.hasClass("ui-btn-disable")){
             return false;
         };
-        //成功点击获取,1出现新密码框,2移除class--jNextStep允许提交,3修改提交input的文字
-        $(".jnewPwd").show();
-        $("#jNextStep").removeClass("jNextStep").val("提交");
-        $('#jDynamic').removeAttr("disabled");
         //发送ajax请求
         io.get($PAGE_DATA['code'],{mobile : $("#jName").val(), type:3},
             function(res){
                 //成功后的回调
+                //成功点击获取,1出现新密码框,2移除class--jNextStep允许提交,3修改提交input的文字
+                $(".jnewPwd").show();
+                $("#jNextStep").removeClass("jNextStep").val("提交");
+                $('#jDynamic').removeAttr("disabled");
             },function(res){
                 //fail
                 if(res.msg){
