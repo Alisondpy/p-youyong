@@ -4648,7 +4648,7 @@ define("lib/plugins/uploader/1.0.1/tabs/local/local", [ "require", "exports", "m
         e.uploader.on("dialogClose", function(t) {
             var i = t && t.errorMsg || null;
             /exceeds the size limit/.test(i) && (i = "单个上传图片不能超过" + e._options.fileSizeLimit);
-            i && r.error(i);
+            "Some files were not added to the queue:" != i && i && r.error(i);
         });
     };
     n.prototype.add = function(e) {

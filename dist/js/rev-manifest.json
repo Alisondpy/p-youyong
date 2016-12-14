@@ -1,5 +1,5 @@
 {
-  "app.js": "app-4c73375282.js",
+  "app.js": "app-8c618934ea.js",
   "conf/404.js": "conf/404-ff7608a412.js",
   "conf/500.js": "conf/500-1eafe63c69.js",
   "conf/apply.js": "conf/apply-7fcd34e541.js",
@@ -10,7 +10,7 @@
   "conf/course/list.js": "conf/course/list-3eae4cdbcf.js",
   "conf/demo.js": "conf/demo-736b9ddc18.js",
   "conf/forget-pwd.js": "conf/forget-pwd-bfa7ae691f.js",
-  "conf/hp/hp-feedback.js": "conf/hp/hp-feedback-549dadb80d.js",
+  "conf/hp/hp-feedback.js": "conf/hp/hp-feedback-3bb46f19e7.js",
   "conf/hp/hp-index.js": "conf/hp/hp-index-0af0f255a9.js",
   "conf/index.js": "conf/index-7375142cb1.js",
   "conf/lecturer/detail.js": "conf/lecturer/detail-6d96cbcfeb.js",
@@ -37,6 +37,6 @@
   "conf/uc/my-test.js": "conf/uc/my-test-6a83c5884a.js",
   "conf/uc/news.js": "conf/uc/news-6158fa4f63.js",
   "conf/uc/note.js": "conf/uc/note-54b535d9b1.js",
-  "conf/uc/person-info.js": "conf/uc/person-info-266b0a9f8d.js",
+  "conf/uc/person-info.js": "conf/uc/person-info-fb33e36e5b.js",
   "conf/uc/questions-answers.js": "conf/uc/questions-answers-703a192f64.js"
 }
