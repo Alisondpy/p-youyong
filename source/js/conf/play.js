@@ -57,6 +57,10 @@ define(function(require, exports, module) {
     var isSendPlayTime = true;
     var isLayer = false;
     var isYou = false;
+    //视频加载失败
+    player.on('error',function(){
+        
+    });
     //监听当前播放器进度
     player.on('time', function(seconds) {
         if (isSendPlayTime && seconds > 0) {
