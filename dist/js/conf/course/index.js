@@ -999,12 +999,12 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = E(), h = k(), g = z(r), m = q(r), b = P(e), x = z(a), _ = q(a), C = b.left, T = b.top, j = d ? C - h.x : C, $ = d ? T - h.y : T, I = d ? 0 : h.x, S = d ? 0 : h.y, D = I + p.w - g, L = S + p.h - m, U = {
+            var d = i.fixed, p = E(), h = k(), g = z(r), m = q(r), b = P(e), x = z(a), _ = q(a), C = b.left, T = b.top, j = d ? C - h.x : C, $ = d ? T - h.y : T, I = d ? 0 : h.x, S = d ? 0 : h.y, D = I + p.w - g, L = S + p.h - m, M = {
                 t: "b",
                 b: "t",
                 l: "r",
                 r: "l"
-            }, M = {
+            }, U = {
                 t: "top",
                 b: "top",
                 l: "left",
@@ -1027,17 +1027,17 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 top: [ S, L ]
             };
             c || w(l, function(e, t) {
-                R[t][e] > W[M[e]][1] && (e = l[t] = U[e]);
-                R[t][e] < W[M[e]][0] && (l[t] = U[e]);
+                R[t][e] > W[U[e]][1] && (e = l[t] = M[e]);
+                R[t][e] < W[U[e]][0] && (l[t] = M[e]);
             });
             var B = l[0];
             if (!l[1]) {
-                l[1] = "left" === M[B] ? "t" : "l";
+                l[1] = "left" === U[B] ? "t" : "l";
                 R[1][l[1]] = G[l[1]];
             }
             R[0][B] = R[0][B] + 10 * ("tl".indexOf(B) !== -1 ? -1 : 1);
-            O[M[l[0]]] = A(R[0][l[0]]);
-            O[M[l[1]]] = A(R[1][l[1]]);
+            O[U[l[0]]] = A(R[0][l[0]]);
+            O[U[l[1]]] = A(R[1][l[1]]);
             var F = v + "-" + B;
             r.css(O).addClass(F);
             n._dirClass = F;
@@ -1046,7 +1046,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!V) return n;
                 H = o('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(V);
             }
-            var Q, Y, X = "top" !== M[B], J = [ "v", "h" ][1 ^ X], Z = z(H), K = q(H), ee = {}, te = X ? "left" : "top";
+            var Q, Y, X = "top" !== U[B], J = [ "v", "h" ][1 ^ X], Z = z(H), K = q(H), ee = {}, te = X ? "left" : "top";
             switch (J) {
               case "h":
                 Q = y(C + (x - Z) / 2);
@@ -3045,12 +3045,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
     "use strict";
     function i(e) {
-        var t = this, n = {
-            onlineServiceUrl: ""
-        };
-        t.options = o.extend(!0, {}, n, e);
-        t._init();
-        t._initEvent();
+        return;
     }
     var o = e("jquery");
     e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build");

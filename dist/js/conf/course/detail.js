@@ -3045,12 +3045,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
     "use strict";
     function i(e) {
-        var t = this, n = {
-            onlineServiceUrl: ""
-        };
-        t.options = o.extend(!0, {}, n, e);
-        t._init();
-        t._initEvent();
+        return;
     }
     var o = e("jquery");
     e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build");
@@ -3134,6 +3129,15 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
             if (!a.isEmptyObject(e.data) && e.data && e.data.resultList && e.data.resultList.length > 0) {
                 var s = f(n, e.data);
                 document.getElementById(i).innerHTML = s;
+                var l = a("#jWrap0Box").find(".dir").length;
+                if (1 == l || 0 == l) {
+                    C.html(j.children().clone());
+                    T.find("a").each(function() {
+                        "1" == a(this).attr("data-target") && a(this).text("详情");
+                    });
+                } else T.find("a").each(function() {
+                    "1" == a(this).attr("data-target") && a(this).text("目录");
+                });
                 w = new u(a("#" + i).find(".jImg"), {
                     mouseWheel: !0,
                     effect: "fadeIn",
@@ -3182,24 +3186,24 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
         mouseWheel: !0,
         effect: "fadeIn",
         snap: !0
-    });
+    }), C = a("#jWrap0Box"), T = a("#jSubNav"), j = a("#jWrap0BoxDetail");
     o();
-    var C, T, j = a("#jTab"), k = new c(j);
-    k.on("change", function(e) {
+    var k, P, $ = a("#jTab"), E = new c($);
+    E.on("change", function(e) {
         var t = e.hd.attr("data-target");
-        C = e.hd.attr("data-type");
-        T = e.hd.attr("show-type");
+        k = e.hd.attr("data-type");
+        P = e.hd.attr("show-type");
         switch (t) {
           case "1":
             i($PAGE_DATA.LessonUrl, {
-                type: C,
+                type: k,
                 id: y
             }, "jWrap0", "jWrap0Box", x);
             break;
 
           case "2":
             i($PAGE_DATA.commentUrl, {
-                sourceType: C,
+                sourceType: k,
                 sourceId: y
             }, "jWrap1", "jWrap1Box", x);
             break;
@@ -3212,57 +3216,57 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
 
           case "4":
             i($PAGE_DATA.loadNoteUrl, {
-                sourceType: C,
-                showType: T,
+                sourceType: k,
+                showType: P,
                 sourceId: y
             }, "jWrap3", "jWrap3Box", x);
         }
         A.update();
     });
-    var P = a(".jWrap1"), $ = a(".jPublish"), E = a(".jArrow"), I = a(".jTxtNum"), z = a(".jTxt");
-    P.on("input propertychange", ".jTxt", function() {
-        var e = z.val().length;
+    var I = a(".jWrap1"), z = a(".jPublish"), q = a(".jArrow"), S = a(".jTxtNum"), D = a(".jTxt");
+    I.on("input propertychange", ".jTxt", function() {
+        var e = D.val().length;
         if (e > 300) {
             a(this).addClass("text-error");
-            $.addClass("publish-error");
-            E.addClass("arrow-error");
-            I.css({
+            z.addClass("publish-error");
+            q.addClass("arrow-error");
+            S.css({
                 color: "red"
             });
         } else {
             a(this).removeClass("text-error");
-            $.removeClass("publish-error");
-            E.removeClass("arrow-error");
-            I.css({
+            z.removeClass("publish-error");
+            q.removeClass("arrow-error");
+            S.css({
                 color: "#666"
             });
         }
-        I.children("i").text(e);
+        S.children("i").text(e);
     });
-    P.on("click", ".jPublish", function() {
+    I.on("click", ".jPublish", function() {
         if (p.isLogin()) {
-            var e = z.val();
+            var e = D.val();
             "" == e ? s.error("请输入发表内容") : a(this).hasClass("publish-error") || l.get($PAGE_DATA.commentPostUrl, {
-                sourceType: C,
+                sourceType: k,
                 sourceId: y,
                 content: e
             }, function(e) {
                 s.ok("发表成功");
-                z.val("");
-                I.children("i").text("0");
+                D.val("");
+                S.children("i").text("0");
                 _.pagination.selectPage(_.pagination.get("currentPage"));
             }, function(e) {
                 s.error(e.msg || "网络错误,请重试");
             });
         } else p.login(window.location.href);
     });
-    P.on("focus", ".jTxt", function() {
+    I.on("focus", ".jTxt", function() {
         a(".jArrow").addClass("arrow-focus");
-        a(this).addClass("text-focus").attr("placeholder", "");
+        a(this).addClass("text-focus");
         a(this).css("color", "#333");
     }).on("blur", ".jTxt", function() {
         if ("" === a(this).val()) {
-            a(this).removeClass("text-focus").attr("placeholder", "看点糟点，不吐不快！别憋着，马上大声说出来吧！");
+            a(this).removeClass("text-focus");
             a(".jArrow").removeClass("arrow-focus");
             a(this).css("color", "#ccc");
         }
@@ -3304,14 +3308,14 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
     a(".jWrap3").on("click", ".bar-right", function() {
         if (p.isLogin()) if ("只看我的" === a(this).text()) {
             i($PAGE_DATA.loadNoteUrl, {
-                sourceType: C,
+                sourceType: k,
                 showType: 1,
                 sourceId: y
             }, "jWrap3", "jWrap3Box", x);
             a(this).text("取消只看我的");
         } else {
             i($PAGE_DATA.loadNoteUrl, {
-                sourceType: C,
+                sourceType: k,
                 showType: 0,
                 sourceId: y
             }, "jWrap3", "jWrap3Box", x);
@@ -3321,13 +3325,4 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
     window.pager = function() {
         _.pagination.selectPage(_.pagination.get("currentPage"));
     };
-    var q = a("#jWrap0Box"), S = a("#jSubNav"), D = a("#jWrap0BoxDetail"), L = a("#jWrap0Box").find(".dir").length;
-    if (1 == L || 0 == L) {
-        q.html(D.clone());
-        S.find("a").each(function() {
-            "1" == a(this).attr("data-target") && a(this).text("详情");
-        });
-    } else S.find("a").each(function() {
-        "1" == a(this).attr("data-target") && a(this).text("目录");
-    });
 });

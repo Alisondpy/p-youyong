@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><title>我的考试</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/my-test.css?v=9a5ea5ece3" charset="utf-8"><script>$PAGE_DATA.loadTest=$PAGE_DATA.baseStaticUrl+"/source/api/uc/test.json",$PAGE_DATA.analysisUrl="/userCenter/exam/gotoAnalysis?examId=112"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><h3 class="mod-test-title">我的考试</h3><div class="ifm-tab"><div class="ifm-tab-head clearfix"><!-- tab 头部 start -->
+<!DOCTYPE html><html><head><title>我的考试</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/my-test.css?v=df4e774dd3" charset="utf-8"><script>$PAGE_DATA.loadTest=$PAGE_DATA.baseStaticUrl+"/source/api/uc/test.json",$PAGE_DATA.analysisUrl="/userCenter/exam/gotoAnalysis?examId=112"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><h3 class="mod-test-title">我的考试</h3><div class="ifm-tab"><div class="ifm-tab-head clearfix"><!-- tab 头部 start -->
 <!-- <ul id="jTestStatus" class="clearfix ifm-tab-hd"  name="status">
                         <li class="ifm-tab-item active"  data-value="0"><a href="javascript:;" >全部</a></li>
                         <li class="ifm-tab-item" data-value="1"><a href="javascript:;" >待参加</a></li>
@@ -37,9 +37,12 @@
                             <!--未参加过考试-->
                                 {{if value.isExamed == 0}}
                                     <div class="mod-in-exam">
-                                        <a href="javascript:;" class="join-exam">参加考试</a>
                                         {{if value.intervalExamEndMinute != 0}}
+                                            <a href="javascript:;" class="join-exam">参加考试</a>
                                             <p>离考试结束还有{{value.intervalExamEndMinute}}天</p>
+                                        {{/if}}
+                                        {{if value.intervalExamEndMinute == 0}}
+                                            <a href="javascript:;" class="join-exam mt-20">参加考试</a>
                                         {{/if}}
                                     </div>
                                 {{/if}}
@@ -54,9 +57,12 @@
                                                 <!--<a href="javascript:;" class="view-page">分析报告</a>-->
                                             </h6>
                                             <div class="mod-in-exam f-l exam-restart">
-                                                <a href="javascript:;" class="join-exam">重新考试</a>
                                                  {{if value.intervalExamEndMinute != 0}}
+                                                    <a href="javascript:;" class="join-exam">重新考试</a>
                                                     <div>离考试结束还有{{value.intervalExamEndMinute}}天</div>
+                                                {{/if}}
+                                                {{if value.intervalExamEndMinute == 0}}
+                                                    <a href="javascript:;" class="join-exam mt-20">重新考试</a>
                                                 {{/if}}
                                             </div>
                                         </div>
@@ -70,9 +76,12 @@
                                                 <!--<a href="javascript:;" class="view-page">分析报告</a>-->
                                             </h6>
                                             <div class="mod-in-exam f-l exam-restart">
-                                                <a href="javascript:;" class="join-exam">重新考试</a>
                                                 {{if value.intervalExamEndMinute != 0}}
-                                                        <div>离考试结束还有{{value.intervalExamEndMinute}}天</div>
+                                                    <a href="javascript:;" class="join-exam">重新考试</a>
+                                                    <div>离考试结束还有{{value.intervalExamEndMinute}}天</div>
+                                                {{/if}}
+                                                {{if value.intervalExamEndMinute == 0}}
+                                                    <a href="javascript:;" class="join-exam mt-20">重新考试</a>
                                                 {{/if}}
                                             </div>
                                         </div>

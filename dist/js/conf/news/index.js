@@ -813,12 +813,12 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         return z(e, "width");
     }, q = function(e) {
         return z(e, "height");
-    }, S = function() {
+    }, N = function() {
         try {
             var e = l.activeElement, t = e.contentDocument;
             return t && t.activeElement || e;
         } catch (n) {}
-    }, N = function(e) {
+    }, S = function(e) {
         e = e || "";
         var t = {
             auto: !0
@@ -882,7 +882,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             }
             i.open = !0;
             i.anchor = s;
-            i._activeElement = S();
+            i._activeElement = N();
             i.emit("beforeShow", t);
             l.appendTo(t.appendTo).css("display", "block");
             i.emit("show", t);
@@ -952,7 +952,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         focus: function(e) {
             var t = this._, n = this.node, r = this._popup, a = i.current, s = t.zIndex;
             a && a !== this && a.blur(!1);
-            if (!o.contains(n, S())) {
+            if (!o.contains(n, N())) {
                 var u = r.find("[autofocus]")[0];
                 !t.focusing && u ? t.focusing = !0 : u = n;
                 this._focus(u);
@@ -995,11 +995,11 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var s = a.offset();
             if (s.left * s.top < 0) return n.center();
             t = t || i.align;
-            var u = N(t), l = u.align, c = !u.auto;
+            var u = S(t), l = u.align, c = !u.auto;
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = E(), h = k(), v = I(r), m = q(r), b = P(e), x = I(a), _ = q(a), A = b.left, T = b.top, j = d ? A - h.x : A, $ = d ? T - h.y : T, z = d ? 0 : h.x, S = d ? 0 : h.y, D = z + p.w - v, L = S + p.h - m, M = {
+            var d = i.fixed, p = E(), h = k(), v = I(r), m = q(r), b = P(e), x = I(a), _ = q(a), A = b.left, T = b.top, j = d ? A - h.x : A, $ = d ? T - h.y : T, z = d ? 0 : h.x, N = d ? 0 : h.y, D = z + p.w - v, L = N + p.h - m, M = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1024,7 +1024,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 t: $ + y((_ - m) / 2)
             }, G = {
                 left: [ z, D ],
-                top: [ S, L ]
+                top: [ N, L ]
             };
             c || w(l, function(e, t) {
                 R[t][e] > G[O[e]][1] && (e = l[t] = M[e]);
@@ -1781,9 +1781,9 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
                 n(e, function(e, t) {
                     I(t);
                 });
-                v._inited || S(v);
+                v._inited || N(v);
             }
-        }, S = function(t) {
+        }, N = function(t) {
             if (!t._inited) {
                 var i = o($, 30);
                 t._inited = !0;
@@ -1802,20 +1802,20 @@ define("lib/ui/box/1.0.1/box", [ "require", "exports", "module", "./messagebox",
                 }
                 t.once("reset", function() {
                     n(t._list, function(e, t) {
-                        N(t);
+                        S(t);
                     });
                     j && k.off(T, i);
                     s.off("resize", i);
                 });
                 e(document).ready($);
             }
-        }, N = function(t) {
+        }, S = function(t) {
             var n = e(t);
             n.off("appear", P);
             j || n.off(T, z);
         };
         v.on("lazyItemReady", function(e) {
-            N(e);
+            S(e);
         });
         v.once("destroy", function() {
             q = null;
@@ -2975,12 +2975,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
     "use strict";
     function i(e) {
-        var t = this, n = {
-            onlineServiceUrl: ""
-        };
-        t.options = o.extend(!0, {}, n, e);
-        t._init();
-        t._initEvent();
+        return;
     }
     var o = e("jquery");
     e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build");

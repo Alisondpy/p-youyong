@@ -5,8 +5,8 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
     function i(e) {
         return "object" == typeof e && null !== e;
     }
-    function o() {}
-    function r(e, t) {
+    function r() {}
+    function o(e, t) {
         for (var n = e.length, i = -1; ++i < n; ) t(e[i], i);
     }
     function u(e, t) {
@@ -14,28 +14,28 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
     }
     function a(e, t) {
         if (e && e.forEach) return e.forEach(t);
-        h(e) ? r(e, t) : u(e, t);
+        h(e) ? o(e, t) : u(e, t);
     }
     function s(e, t) {
-        for (var n = -1, i = e.length, o = Array(i); ++n < i; ) o[n] = t(e[n], n, e);
-        return o;
+        for (var n = -1, i = e.length, r = Array(i); ++n < i; ) r[n] = t(e[n], n, e);
+        return r;
     }
     function l(e, t) {
         var n = [];
-        a(e, function(e, i, o) {
-            n.push(t(e, i, o));
+        a(e, function(e, i, r) {
+            n.push(t(e, i, r));
         });
         return n;
     }
     function c(e, t) {
         if (!t || !i(t)) return e;
-        for (var n = m(t), o = n.length; o--; ) e[n[o]] = t[n[o]];
+        for (var n = m(t), r = n.length; r--; ) e[n[r]] = t[n[r]];
         return e;
     }
     function f(e) {
         "?" === e.charAt(0) && (e = e.substr(1));
-        for (var t, n = {}, i = e.split("&"), o = -1, r = i.length; ++o < r; ) {
-            t = i[o].split("=");
+        for (var t, n = {}, i = e.split("&"), r = -1, o = i.length; ++r < o; ) {
+            t = i[r].split("=");
             n[decodeURIComponent(t[0])] = decodeURIComponent(t[1]);
         }
         return n;
@@ -73,11 +73,11 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
             t.prototype = new e(t);
         };
     }(), y = p.console || (p.console = {});
-    r([ "log", "error", "trace", "warn", "info" ], function(e) {
-        y[e] || (y[e] = o);
+    o([ "log", "error", "trace", "warn", "info" ], function(e) {
+        y[e] || (y[e] = r);
     });
     t.extend = function(e, t) {
-        for (var n = [].slice.call(arguments, 1), i = n.length, o = -1; ++o < i; ) c(e, n[o]);
+        for (var n = [].slice.call(arguments, 1), i = n.length, r = -1; ++r < i; ) c(e, n[r]);
         return e;
     };
     t.inherits = function(e, t, n) {
@@ -97,18 +97,18 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         return n(e, t);
     };
     t.filter = function(e, t) {
-        var n, i, o = h(e) ? (n = r, i = function(e, t) {
-            o.push(t);
+        var n, i, r = h(e) ? (n = o, i = function(e, t) {
+            r.push(t);
         }, []) : (n = u, i = function(e, t) {
-            o[e] = t;
+            r[e] = t;
         }, {});
         n(e, function(e, n) {
             t(e, n) && i(n, e);
         });
-        return o;
+        return r;
     };
-    t.mix = function A(e, t, n, i, o) {
-        for (var r in t) t.hasOwnProperty(r) && (t[r] && e[r] && n && "object" == typeof t[r] ? A(e[r], t[r], n, i, o) : (void 0 === e[r] || i) && (o && !o(e[r], t[r]) || (e[r] = t[r])));
+    t.mix = function A(e, t, n, i, r) {
+        for (var o in t) t.hasOwnProperty(o) && (t[o] && e[o] && n && "object" == typeof t[o] ? A(e[o], t[o], n, i, r) : (void 0 === e[o] || i) && (r && !r(e[o], t[o]) || (e[o] = t[o])));
         return e;
     };
     t.guid = v;
@@ -137,7 +137,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
             p.setTimeout(e, 0);
         };
     }();
-    t.noop = o;
+    t.noop = r;
     t.throttle = function(e, t) {
         t = t ? t : 150;
         if (t === -1) return function() {
@@ -153,15 +153,15 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         };
     };
     t.debounce = function(e, t, n, i) {
-        var o;
+        var r;
         return function() {
-            var r = i || this, u = arguments, a = function() {
-                o = null;
-                n || e.apply(r, u);
-            }, s = n && !o;
-            clearTimeout(o);
-            o = setTimeout(a, t);
-            s && e.apply(r, u);
+            var o = i || this, u = arguments, a = function() {
+                r = null;
+                n || e.apply(o, u);
+            }, s = n && !r;
+            clearTimeout(r);
+            r = setTimeout(a, t);
+            s && e.apply(o, u);
         };
     };
     t.deprecate = function(e, t) {
@@ -180,12 +180,12 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
     function i(e) {
         return e.replace(a, "ms-").replace(s, l);
     }
-    function o(e) {
+    function r(e) {
         try {
             return "true" === e || "false" !== e && ("null" === e ? null : +e + "" === e ? +e : c.test(e) ? u.parseJSON(e) : e);
         } catch (t) {}
     }
-    function r(e, t, n) {
+    function o(e, t, n) {
         var i;
         if (void 0 === n && 1 === e.nodeType) {
             i = "data-" + t.replace(f, "-$&").toLowerCase();
@@ -202,7 +202,7 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
         if (1 === arguments.length) {
             if (s = e.dataset) {
                 l = {};
-                for (a in s) s.hasOwnProperty(a) && (l[a] = o(s[a]));
+                for (a in s) s.hasOwnProperty(a) && (l[a] = r(s[a]));
                 return l;
             }
             s = e.attributes;
@@ -212,7 +212,7 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
                 a = s[u].name;
                 if (0 === a.indexOf("data-")) {
                     a = i(a.slice(5));
-                    l[a] = o(r(e, a));
+                    l[a] = r(o(e, a));
                 }
             }
             return l;
@@ -224,37 +224,37 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
 define("lib/core/1.0.0/dom/build", [ "require", "exports", "module", "jquery", "./dataset" ], function(e, t, n) {
     "use strict";
     function i(e, t, n, i) {
-        i ? e[t] || (e[t] = n) : e[t] ? e[t] = e[t].add(n) : e[t] = r(n);
+        i ? e[t] || (e[t] = n) : e[t] ? e[t] = e[t].add(n) : e[t] = o(n);
     }
-    var o = window.document, r = e("jquery"), u = function(e, t, n) {
+    var r = window.document, o = e("jquery"), u = function(e, t, n) {
         var u, a, s, l, c, f = function(e) {
-            if (n) for (var o in n) s[o] = r(n[o].toString(), e); else {
+            if (n) for (var r in n) s[r] = o(n[r].toString(), e); else {
                 s = {};
-                l = r("[node-type]", e);
+                l = o("[node-type]", e);
                 for (var u, a = -1, c = l.length; ++a < c; ) {
                     u = l[a];
-                    o = u.getAttribute("node-type");
-                    i(s, o, u, t);
+                    r = u.getAttribute("node-type");
+                    i(s, r, u, t);
                 }
             }
         }, p = function(e) {
-            var n, o = s[e];
-            if (!o || 0 === o.length) {
-                n = r('[node-type="' + e + '"]', u);
+            var n, r = s[e];
+            if (!r || 0 === r.length) {
+                n = o('[node-type="' + e + '"]', u);
                 n.length && i(s, e, n, t);
-                o = s[e];
+                r = s[e];
             }
-            return o;
+            return r;
         };
         void 0 === t && (t = !0);
         u = e;
         if ("string" == typeof e && "<" === e.charAt(0)) {
-            u = o.createElement("div");
+            u = r.createElement("div");
             u.innerHTML = e;
-            a = o.createDocumentFragment();
+            a = r.createDocumentFragment();
             for (;c = u.firsChild; ) a.appendChild(c);
         } else {
-            u = r(e);
+            u = o(e);
             a = u[0];
         }
         f(u);
@@ -286,17 +286,17 @@ define("module/top-search/1.0.0/top-search", [ "require", "exports", "module", "
             data: {},
             alias: "name"
         };
-        t.options = o.extend(!0, {}, n, e);
+        t.options = r.extend(!0, {}, n, e);
         if ("" == t.options.url) throw new Error("the params options.url is required");
-        t.el = o(t.options.selector);
-        var i = r.build(t.el[0], !1);
+        t.el = r(t.options.selector);
+        var i = o.build(t.el[0], !1);
         t.ipt = i.get("ipt");
         t.btn = i.get("btn");
         t.lbl = i.get("lbl");
         t._init();
         t._initEvent();
     }
-    var o = e("jquery"), r = (e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build"));
+    var r = e("jquery"), o = (e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build"));
     i.prototype._initEvent = function() {
         var e = this;
         e.ipt.on("focus", function() {
@@ -313,10 +313,10 @@ define("module/top-search/1.0.0/top-search", [ "require", "exports", "module", "
         });
     };
     i.prototype._init = function() {
-        var e = this, t = o.trim(e.ipt.val()), n = e.ipt.attr("data-id");
+        var e = this, t = r.trim(e.ipt.val()), n = e.ipt.attr("data-id");
         t.length > 0 && e.focus();
         n && (e.options.alias = n);
-        e.options.data && (e.options.data[e.options.alias] = o.trim(e.ipt.val()));
+        e.options.data && (e.options.data[e.options.alias] = r.trim(e.ipt.val()));
     };
     i.prototype.focus = function() {
         var e = this;
@@ -328,7 +328,7 @@ define("module/top-search/1.0.0/top-search", [ "require", "exports", "module", "
     };
     i.prototype.getValue = function() {
         var e = this;
-        return o.trim(e.ipt.val());
+        return r.trim(e.ipt.val());
     };
     i.prototype.search = function() {
         var e = this;
@@ -348,19 +348,19 @@ define("module/top-search/1.0.0/top-search", [ "require", "exports", "module", "
 
 define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(e, t, n) {
     "use strict";
-    var i = window.document, o = function(e) {
+    var i = window.document, r = function(e) {
         if ("string" != typeof e) throw "trim need a string as parameter";
-        for (var t = e.length, n = 0, i = t - 1, o = /(\u3000|\s|\t|\u00A0)/; n < t && o.test(e.charAt(n)); ) ++n;
-        for (;i >= 0 && o.test(e.charAt(i)); ) --i;
+        for (var t = e.length, n = 0, i = t - 1, r = /(\u3000|\s|\t|\u00A0)/; n < t && r.test(e.charAt(n)); ) ++n;
+        for (;i >= 0 && r.test(e.charAt(i)); ) --i;
         return e.substring(n, i + 1);
-    }, r = function(e) {
+    }, o = function(e) {
         var t = {};
         for (var n in e) e.hasOwnProperty(n) && (t[n] = e[n]);
         return t;
     }, u = function(e, t, n) {
         n = n || {};
         if (void 0 !== t) {
-            n = r(n);
+            n = o(n);
             if (null === t) {
                 t = "";
                 n.expires = -1;
@@ -380,7 +380,7 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
         for (var t = null, l = i.cookie, c = function(e) {
             return n.raw ? e : decodeURIComponent(e);
         }, f = l ? l.split("; ") : [], p = -1, d = f.length, h = e.length + 1; ++p < d; ) {
-            l = o(f[p]);
+            l = r(f[p]);
             if (l.substring(0, h) === e + "=") {
                 t = c(l.substring(h));
                 break;
@@ -399,12 +399,12 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
 
 define("module/login-status/1.0.0/login", [ "require", "exports", "module", "lib/core/1.0.0/io/cookie" ], function(e, t, n) {
     "use strict";
-    var i = e("lib/core/1.0.0/io/cookie"), o = "_nick", r = "_ui_", u = $PAGE_DATA && $PAGE_DATA.LOGIN_URL || "", a = $PAGE_DATA && $PAGE_DATA[o] || null;
+    var i = e("lib/core/1.0.0/io/cookie"), r = "_nick", o = "_ui_", u = $PAGE_DATA && $PAGE_DATA.LOGIN_URL || "", a = $PAGE_DATA && $PAGE_DATA[r] || null;
     t.getNick = function() {
         return a;
     };
     t.isLogin = function() {
-        return !!i(r);
+        return !!i(o);
     };
     t.login = function(e) {
         if (u) {
@@ -429,11 +429,11 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
                 url: $PAGE_DATA && $PAGE_DATA.learningCenterUrl || "javascript:;"
             } ]
         };
-        t.options = o.extend(!0, {}, n, e);
-        t.el = o(t.options.selector);
+        t.options = r.extend(!0, {}, n, e);
+        t.el = r(t.options.selector);
         t._init();
     }
-    var o = e("jquery"), r = e("lib/core/1.0.0/dom/build"), u = e("./login");
+    var r = e("jquery"), o = e("lib/core/1.0.0/dom/build"), u = e("./login");
     i.prototype._init = function() {
         var e = this;
         if (u.isLogin()) {
@@ -443,49 +443,49 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
         }
     };
     i.prototype._initEvent = function() {
-        var e = this, t = !1, n = r.build(e.el[0], !1), i = n.get("userName"), o = n.get("tipsMenu");
+        var e = this, t = !1, n = o.build(e.el[0], !1), i = n.get("userName"), r = n.get("tipsMenu");
         i.on("mouseenter", function() {
             t = !0;
-            o.stop().fadeIn(500, function() {
-                o.addClass("active");
+            r.stop().fadeIn(500, function() {
+                r.addClass("active");
             });
         });
         i.on("mouseleave", function() {
             t = !1;
             setTimeout(function() {
-                t || o.stop().fadeOut(500, function() {
-                    o.removeClass("active");
+                t || r.stop().fadeOut(500, function() {
+                    r.removeClass("active");
                 });
             }, 200);
         });
-        o.on("mouseenter", function() {
+        r.on("mouseenter", function() {
             t = !0;
         });
-        o.on("mouseleave", function() {
+        r.on("mouseleave", function() {
             t = !1;
-            o.removeClass("active");
+            r.removeClass("active");
         });
     };
     i.prototype._getLoginedHtml = function(e) {
-        var t = this, n = t.options, i = n.menuList, o = "";
-        o += '<ul class="logined clearfix" node-type="logined">';
-        o += '    <li class="item">';
-        o += "        <span>您好，</span>";
-        o += "    </li>";
-        o += '    <li class="item tips-menu-box">';
-        o += '        <a href="' + n.userCenterUrl + '" class="user-name txt-overflow" node-type="userName">' + e + "</a>";
-        o += '        <div class="tips-menu" node-type="tipsMenu">';
-        o += '            <div class="arrow"><i></i><b></b></div>';
-        o += '            <ul class="tips-menu-list">';
-        for (var r = 0, u = i.length; r < u; r++) o += '            <li class="tips-menu-item"><a href="' + i[r].url + '">' + i[r].title + "</a></li>";
-        o += "            </ul>";
-        o += "        </div>";
-        o += "    </li>";
-        o += '    <li class="item">';
-        o += '        <a href="' + n.loginOutUrl + '" class="btn">退出</a>';
-        o += "    </li>";
-        o += "</ul>";
-        return o;
+        var t = this, n = t.options, i = n.menuList, r = "";
+        r += '<ul class="logined clearfix" node-type="logined">';
+        r += '    <li class="item">';
+        r += "        <span>您好，</span>";
+        r += "    </li>";
+        r += '    <li class="item tips-menu-box">';
+        r += '        <a href="' + n.userCenterUrl + '" class="user-name txt-overflow" node-type="userName">' + e + "</a>";
+        r += '        <div class="tips-menu" node-type="tipsMenu">';
+        r += '            <div class="arrow"><i></i><b></b></div>';
+        r += '            <ul class="tips-menu-list">';
+        for (var o = 0, u = i.length; o < u; o++) r += '            <li class="tips-menu-item"><a href="' + i[o].url + '">' + i[o].title + "</a></li>";
+        r += "            </ul>";
+        r += "        </div>";
+        r += "    </li>";
+        r += '    <li class="item">';
+        r += '        <a href="' + n.loginOutUrl + '" class="btn">退出</a>';
+        r += "    </li>";
+        r += "</ul>";
+        return r;
     };
     n.exports = i;
 });
@@ -493,30 +493,25 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
     "use strict";
     function i(e) {
-        var t = this, n = {
-            onlineServiceUrl: ""
-        };
-        t.options = o.extend(!0, {}, n, e);
-        t._init();
-        t._initEvent();
+        return;
     }
-    var o = e("jquery");
+    var r = e("jquery");
     e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build");
     i.prototype._init = function() {
         var e = this;
-        e.el = o(e._getTemplete());
-        o(document.body).append(e.el);
+        e.el = r(e._getTemplete());
+        r(document.body).append(e.el);
         e.height = e.el.height();
         e.resize();
     };
     i.prototype._initEvent = function() {
         var e = this;
-        o(window).on("resize", function() {
+        r(window).on("resize", function() {
             e.resize();
         });
     };
     i.prototype.resize = function() {
-        var e = this, t = o(window).height(), n = (t - e.height) / 2;
+        var e = this, t = r(window).height(), n = (t - e.height) / 2;
         if (n >= 0) {
             e.el.css({
                 top: n
@@ -548,37 +543,37 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
     if (!e) throw "Error: jquery api not implements.";
     var n = e.each, i = function(e, t) {
         if (e instanceof Array && e.filter) return e.filter(t);
-        for (var n = [], i = -1, o = e.length; ++i < o; ) t(e[i], i) && n.push(e[i]);
+        for (var n = [], i = -1, r = e.length; ++i < r; ) t(e[i], i) && n.push(e[i]);
         return n;
-    }, o = function(e, t, n, i) {
-        var o;
+    }, r = function(e, t, n, i) {
+        var r;
         return function() {
-            var r = i || this, u = arguments, a = function() {
-                o = null;
-                n || e.apply(r, u);
-            }, s = n && !o;
-            clearTimeout(o);
-            o = setTimeout(a, t);
-            s && e.apply(r, u);
+            var o = i || this, u = arguments, a = function() {
+                r = null;
+                n || e.apply(o, u);
+            }, s = n && !r;
+            clearTimeout(r);
+            r = setTimeout(a, t);
+            s && e.apply(o, u);
         };
-    }, r = function(t, n) {
+    }, o = function(t, n) {
         t = t || {};
-        var i = e(t), o = Array.prototype.slice;
+        var i = e(t), r = Array.prototype.slice;
         n = n || t.name;
         e.each({
             on: "on",
             un: "off",
             once: "one",
             emit: "trigger"
-        }, function(e, r) {
+        }, function(e, o) {
             t[e] = function(t) {
-                var u = o.call(arguments, 0), a = u[1];
+                var u = r.call(arguments, 0), a = u[1];
                 n && !~t.indexOf(".") && (u[0] = t + "." + n);
                 "function" == typeof a && ("on" === e || "once" === e ? u[1] = a.__ || (a.__ = function(e) {
                     e.preventDefault();
-                    return a.apply(this, o.call(arguments, 1));
+                    return a.apply(this, r.call(arguments, 1));
                 }) : "un" === e && (u[1] = a.__));
-                return i[r].apply(i, u);
+                return i[o].apply(i, u);
             };
         });
         return t;
@@ -595,27 +590,27 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             get: n
         };
     }();
-    v.define("image", function(n, i, o, r) {
+    v.define("image", function(n, i, r, o) {
         if (i) {
             var u = new s(), a = function() {
                 u.onload = u.onerror = null;
-                u = i = n = r = a = t;
+                u = i = n = o = a = t;
             };
             u.onload = function() {
-                var t = e(n), u = o.effect;
+                var t = e(n), u = r.effect;
                 "function" != typeof t[u] && (u = "show");
                 t.hide();
                 "IMG" === n.nodeName.toUpperCase() ? t.attr("src", i) : t.css("background-image", 'url("' + i + '")');
-                t[u](o.effectSpeed);
-                r(null, "load");
+                t[u](r.effectSpeed);
+                o(null, "load");
                 a();
             };
             u.onerror = function(e) {
-                r(e);
+                o(e);
                 a();
             };
             u.src = i;
-        } else r("error");
+        } else o("error");
     });
     v.define("html", function(e, t, n, i) {
         i();
@@ -638,7 +633,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             loadingClass: "",
             placeholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
         };
-        r(m);
+        o(m);
         var w = s.type || _.type, x = v.get(w);
         if ("function" != typeof x) throw "Error, cannot found the specific type loader (type: `" + w + "`)";
         "html" === w && (_.placeholder = "");
@@ -646,14 +641,14 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
         var E = _.container, C = _.event, T = 0 === C.indexOf("scroll"), j = E && E !== u ? e(E) : a, U = function(t) {
             var i = m._list;
             if (i.length > 0) {
-                var o = 0;
+                var r = 0;
                 n(i.slice(0), function(t, n) {
                     var i = e(n);
                     if (!_.skipInvisible || i.is(":visible")) if (A(n, _) || b(n, _)) ; else if (g(n, _) || y(n, _)) {
-                        if (++o > _.failureLimit) return !1;
+                        if (++r > _.failureLimit) return !1;
                     } else {
                         i.trigger("appear");
-                        o = 0;
+                        r = 0;
                     }
                 });
             } else m.reset();
@@ -662,13 +657,13 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                 return !e[c];
             });
         }, D = function() {
-            var t = this, n = e(t), i = n.attr("data-" + _.dataAttribute), o = _.sourceMaker, r = _.appear, u = _.loadingClass, a = t[c];
+            var t = this, n = e(t), i = n.attr("data-" + _.dataAttribute), r = _.sourceMaker, o = _.appear, u = _.loadingClass, a = t[c];
             if (a === f) {
                 t[c] = p;
                 u && n.addClass(u);
-                o && (i = o(i, t));
-                r && r.apply(m, [ t, i ]);
-                x.call(m, t, i, _, function(e, o) {
+                r && (i = r(i, t));
+                o && o.apply(m, [ t, i ]);
+                x.call(m, t, i, _, function(e, r) {
                     if (!m._destroyed) {
                         u && n.removeClass(u);
                         if (e) setTimeout(function() {
@@ -678,9 +673,9 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                         }, 300); else {
                             t[c] = d;
                             q();
-                            m.emit("lazyItemReady", t, i, o);
-                            var r = _.load;
-                            r && r.apply(m, [ t, i, o ]);
+                            m.emit("lazyItemReady", t, i, r);
+                            var o = _.load;
+                            o && o.apply(m, [ t, i, r ]);
                             t = null;
                         }
                         n = null;
@@ -697,8 +692,8 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             t[c] = f;
             var i = _.placeholder;
             if (i) if (n.is("img")) {
-                var o = n.attr("src");
-                o || n.attr("src", i);
+                var r = n.attr("src");
+                r || n.attr("src", i);
             } else "image" === m._.type || n.children()[0] || n.html(i);
             n.on("appear", D);
             T || n.on(C, I);
@@ -713,19 +708,19 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             }
         }, z = function(t) {
             if (!t._inited) {
-                var i = o(U, 30);
+                var i = r(U, 30);
                 t._inited = !0;
                 T && j.on(C, i);
                 a.on("resize", i);
                 if (l) {
-                    var r = function(i) {
+                    var o = function(i) {
                         i.originalEvent && i.originalEvent.persisted && n(t._list, function(t, n) {
                             e(n).trigger("appear");
                         });
                     };
-                    a.on("pageshow", r);
+                    a.on("pageshow", o);
                     t.once("reset", function() {
-                        a.off("pageshow", r);
+                        a.off("pageshow", o);
                     });
                 }
                 t.once("reset", function() {
@@ -788,20 +783,20 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
         return v.define(e, t);
     };
     var g = function(t, n) {
-        var i, o = n.container;
-        i = o && o !== u ? e(o).offset().top + e(o).height() : (u.innerHeight ? u.innerHeight : a.height()) + a.scrollTop();
+        var i, r = n.container;
+        i = r && r !== u ? e(r).offset().top + e(r).height() : (u.innerHeight ? u.innerHeight : a.height()) + a.scrollTop();
         return i <= e(t).offset().top - n.threshold;
     }, y = function(t, n) {
-        var i, o = n.container;
-        i = o && o !== u ? e(o).offset().left + e(o).width() : a.width() + a.scrollLeft();
+        var i, r = n.container;
+        i = r && r !== u ? e(r).offset().left + e(r).width() : a.width() + a.scrollLeft();
         return i <= e(t).offset().left - n.threshold;
     }, A = function(t, n) {
-        var i, o = n.container;
-        i = o && o !== u ? e(o).offset().top : a.scrollTop();
+        var i, r = n.container;
+        i = r && r !== u ? e(r).offset().top : a.scrollTop();
         return i >= e(t).offset().top + n.threshold + e(t).height();
     }, b = function(t, n) {
-        var i, o = n.container;
-        i = o && o !== u ? e(o).offset().left : a.scrollLeft();
+        var i, r = n.container;
+        i = r && r !== u ? e(r).offset().left : a.scrollLeft();
         return i >= e(t).offset().left + n.threshold + e(t).width();
     }, _ = function(e, t) {
         return !(y(e, t) || b(e, t) || g(e, t) || A(e, t));
@@ -820,21 +815,21 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
         var t = this, n = {
             selector: "#jFooter"
         };
-        t.options = o.extend(!0, {}, n, e);
-        t.el = o(t.options.selector);
+        t.options = r.extend(!0, {}, n, e);
+        t.el = r(t.options.selector);
         if (0 == t.el.length) throw new Error("the params [optins.selector] is required or the [el] is not exist.");
         t._init();
     }
-    var o = e("jquery"), r = e("lib/plugins/lazyload/1.9.3/lazyload"), u = e("lib/core/1.0.0/dom/build");
+    var r = e("jquery"), o = e("lib/plugins/lazyload/1.9.3/lazyload"), u = e("lib/core/1.0.0/dom/build");
     i.prototype._init = function() {
         var e = this, t = u.build(e.el[0], !1), n = t.get("footerImg");
-        new r(n);
+        new o(n);
     };
     n.exports = i;
 });
 
 define("conf/test/index", [ "require", "exports", "module", "jquery", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer" ], function(e, t, n) {
     "use strict";
-    var i = (e("jquery"), e("module/top-search/1.0.0/top-search")), o = e("module/login-status/1.0.0/login-status"), r = e("module/fix-bar/1.0.0/fix-bar"), u = e("module/footer/1.0.0/footer");
-    new i(), new o(), new r(), new u();
+    var i = (e("jquery"), e("module/top-search/1.0.0/top-search")), r = e("module/login-status/1.0.0/login-status"), o = e("module/fix-bar/1.0.0/fix-bar"), u = e("module/footer/1.0.0/footer");
+    new i(), new r(), new o(), new u();
 });

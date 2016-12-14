@@ -495,12 +495,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(t, e, n) {
     "use strict";
     function i(t) {
-        var e = this, n = {
-            onlineServiceUrl: ""
-        };
-        e.options = o.extend(!0, {}, n, t);
-        e._init();
-        e._initEvent();
+        return;
     }
     var o = t("jquery");
     t("lib/core/1.0.0/utils/util"), t("lib/core/1.0.0/dom/build");
@@ -1833,7 +1828,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             c && c.length || (c = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = z(), h = j(), m = L(r), y = N(r), b = q(t), x = L(s), _ = N(s), A = b.left, T = b.top, k = d ? A - h.x : A, E = d ? T - h.y : T, I = d ? 0 : h.x, $ = d ? 0 : h.y, U = I + p.w - m, O = $ + p.h - y, S = {
+            var d = i.fixed, p = z(), h = j(), m = L(r), y = N(r), b = q(t), x = L(s), _ = N(s), A = b.left, T = b.top, k = d ? A - h.x : A, E = d ? T - h.y : T, I = d ? 0 : h.x, $ = d ? 0 : h.y, O = I + p.w - m, U = $ + p.h - y, S = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1857,8 +1852,8 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 l: k + g((x - m) / 2),
                 t: E + g((_ - y) / 2)
             }, W = {
-                left: [ I, U ],
-                top: [ $, O ]
+                left: [ I, O ],
+                top: [ $, U ]
             };
             l || w(c, function(t, e) {
                 M[e][t] > W[P[t]][1] && (t = c[e] = S[t]);

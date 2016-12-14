@@ -497,12 +497,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(t, e, n) {
     "use strict";
     function i(t) {
-        var e = this, n = {
-            onlineServiceUrl: ""
-        };
-        e.options = r.extend(!0, {}, n, t);
-        e._init();
-        e._initEvent();
+        return;
     }
     var r = t("jquery");
     t("lib/core/1.0.0/utils/util"), t("lib/core/1.0.0/dom/build");
@@ -713,9 +708,9 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                 n(t, function(t, e) {
                     U(e);
                 });
-                m._inited || S(m);
+                m._inited || P(m);
             }
-        }, S = function(e) {
+        }, P = function(e) {
             if (!e._inited) {
                 var i = r(q, 30);
                 e._inited = !0;
@@ -734,20 +729,20 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                 }
                 e.once("reset", function() {
                     n(e._list, function(t, e) {
-                        P(e);
+                        S(e);
                     });
                     E && T.off($, i);
                     l.off("resize", i);
                 });
                 t(document).ready(q);
             }
-        }, P = function(e) {
+        }, S = function(e) {
             var n = t(e);
             n.off("appear", C);
             E || n.off($, k);
         };
         m.on("lazyItemReady", function(t) {
-            P(t);
+            S(t);
         });
         m.once("destroy", function() {
             D = null;
@@ -1535,6 +1530,7 @@ define("module/monitor/1.0.0/question", [ "require", "exports", "module", "jquer
         n._init();
         n._initEvent();
         n.max = 0;
+        n.isFist = !0;
     }
     var r = t("jquery"), o = t("./../../../plugins/polling-list/1.0.0/polling-list"), a = t("lib/core/1.0.0/io/request"), l = t("lib/core/1.0.0/event/emitter"), s = t("lib/core/1.0.0/utils/util"), u = t("template");
     s.inherits(i, l);
@@ -1559,7 +1555,8 @@ define("module/monitor/1.0.0/question", [ "require", "exports", "module", "jquer
                 t.pollingList.setData({
                     id: e.data.resultList[0].id
                 });
-            } else t.pollingList.html(u("tEmpty", 1));
+                t.isFist = !1;
+            } else t.isFist && t.pollingList.html(u("tEmpty", 1));
             t.scrollTo(0);
         });
         t.el.on("mouseenter", function() {

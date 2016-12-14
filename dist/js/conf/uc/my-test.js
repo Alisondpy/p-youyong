@@ -3091,9 +3091,10 @@ define("conf/uc/my-test", [ "require", "exports", "module", "jquery", "./common"
                     e.data.deletingClass = "";
                     e.data.deletingTxt = "管理";
                 }
-                i.each(e.data.resultList, function(e, t) {
-                    i.each(t, function(e, n) {
-                        "intervalExamMinute" != e && "intervalExamEndMinute" != e || (t[e] = x(t[e]));
+                i.each(e.data.resultList, function(t, n) {
+                    console.log(e.data.resultList);
+                    i.each(n, function(e, t) {
+                        "intervalExamMinute" != e && "intervalExamEndMinute" != e || (n[e] = x(n[e]));
                     });
                 });
                 var r = a("jTestModule", e.data);
@@ -3170,7 +3171,11 @@ define("conf/uc/my-test", [ "require", "exports", "module", "jquery", "./common"
                         u.loadUrl(e.msg, {
                             title: "答卷详情",
                             autoRelease: !1,
-                            modal: !0
+                            modal: !0,
+                            className: "ui-test-box",
+                            fixed: !0,
+                            width: .8 * i(window).width(),
+                            height: .8 * i(window).height()
                         });
                     }, function(e) {
                         u.error(e.msg || "网络失败，请重试");
@@ -3180,7 +3185,7 @@ define("conf/uc/my-test", [ "require", "exports", "module", "jquery", "./common"
         }
     }, x = function(e) {
         var t, n = parseInt(e / 1e3 / 60), i = parseInt(n % 60) > 0 ? parseInt(n % 60) + "分" : "", o = parseInt(n / 60), r = o % 24 > 0 ? o % 24 + "时" : "", a = parseInt(o / 24) > 0 ? parseInt(o / 24) + "天" : "";
-        t = a + r + i;
+        t = parseInt(o / 24) > 365 ? 0 : a + r + i;
         return t;
     };
     b.init(d, r);

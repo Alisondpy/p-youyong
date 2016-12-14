@@ -1,43 +1,41 @@
 /*! Based on work by Simon Willison: http://gist.github.com/292562 */
 
-/*! Weakdata - https://gist.github.com/b84827b7af6da78acb67ca75839cf1c6 by @allex | MIT License */
-
 define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function(e, t, n) {
     "use strict";
-    function r(e) {
+    function i(e) {
         return "object" == typeof e && null !== e;
     }
-    function i() {}
+    function r() {}
     function o(e, t) {
-        for (var n = e.length, r = -1; ++r < n; ) t(e[r], r);
+        for (var n = e.length, i = -1; ++i < n; ) t(e[i], i);
     }
     function u(e, t) {
         for (var n in e) d.call(e, n) && t(e[n], n, e);
     }
-    function s(e, t) {
+    function a(e, t) {
         if (e && e.forEach) return e.forEach(t);
         h(e) ? o(e, t) : u(e, t);
     }
-    function a(e, t) {
-        for (var n = -1, r = e.length, i = Array(r); ++n < r; ) i[n] = t(e[n], n, e);
-        return i;
+    function s(e, t) {
+        for (var n = -1, i = e.length, r = Array(i); ++n < i; ) r[n] = t(e[n], n, e);
+        return r;
     }
     function l(e, t) {
         var n = [];
-        s(e, function(e, r, i) {
-            n.push(t(e, r, i));
+        a(e, function(e, i, r) {
+            n.push(t(e, i, r));
         });
         return n;
     }
     function c(e, t) {
-        if (!t || !r(t)) return e;
-        for (var n = m(t), i = n.length; i--; ) e[n[i]] = t[n[i]];
+        if (!t || !i(t)) return e;
+        for (var n = m(t), r = n.length; r--; ) e[n[r]] = t[n[r]];
         return e;
     }
     function f(e) {
         "?" === e.charAt(0) && (e = e.substr(1));
-        for (var t, n = {}, r = e.split("&"), i = -1, o = r.length; ++i < o; ) {
-            t = r[i].split("=");
+        for (var t, n = {}, i = e.split("&"), r = -1, o = i.length; ++r < o; ) {
+            t = i[r].split("=");
             n[decodeURIComponent(t[0])] = decodeURIComponent(t[1]);
         }
         return n;
@@ -55,7 +53,7 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
             t.push(n);
         });
         return t;
-    }, y = "function" == typeof Object.create ? function(e, t) {
+    }, g = "function" == typeof Object.create ? function(e, t) {
         e.__super__ = t.prototype;
         e.prototype = Object.create(t.prototype, {
             constructor: {
@@ -74,16 +72,16 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
             e.prototype = n.prototype;
             t.prototype = new e(t);
         };
-    }(), g = p.console || (p.console = {});
+    }(), y = p.console || (p.console = {});
     o([ "log", "error", "trace", "warn", "info" ], function(e) {
-        g[e] || (g[e] = i);
+        y[e] || (y[e] = r);
     });
     t.extend = function(e, t) {
-        for (var n = [].slice.call(arguments, 1), r = n.length, i = -1; ++i < r; ) c(e, n[i]);
+        for (var n = [].slice.call(arguments, 1), i = n.length, r = -1; ++r < i; ) c(e, n[r]);
         return e;
     };
     t.inherits = function(e, t, n) {
-        y(e, t);
+        g(e, t);
         n && c(e.prototype, n);
     };
     t.impls = function(e, n) {
@@ -93,24 +91,24 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
     };
     t.parseQuery = f;
     t.parseParams = f;
-    t.each = s;
+    t.each = a;
     t.map = function(e, t) {
-        var n = h(e) ? a : l;
+        var n = h(e) ? s : l;
         return n(e, t);
     };
     t.filter = function(e, t) {
-        var n, r, i = h(e) ? (n = o, r = function(e, t) {
-            i.push(t);
-        }, []) : (n = u, r = function(e, t) {
-            i[e] = t;
+        var n, i, r = h(e) ? (n = o, i = function(e, t) {
+            r.push(t);
+        }, []) : (n = u, i = function(e, t) {
+            r[e] = t;
         }, {});
         n(e, function(e, n) {
-            t(e, n) && r(n, e);
+            t(e, n) && i(n, e);
         });
-        return i;
+        return r;
     };
-    t.mix = function A(e, t, n, r, i) {
-        for (var o in t) t.hasOwnProperty(o) && (t[o] && e[o] && n && "object" == typeof t[o] ? A(e[o], t[o], n, r, i) : (void 0 === e[o] || r) && (i && !i(e[o], t[o]) || (e[o] = t[o])));
+    t.mix = function A(e, t, n, i, r) {
+        for (var o in t) t.hasOwnProperty(o) && (t[o] && e[o] && n && "object" == typeof t[o] ? A(e[o], t[o], n, i, r) : (void 0 === e[o] || i) && (r && !r(e[o], t[o]) || (e[o] = t[o])));
         return e;
     };
     t.guid = v;
@@ -118,28 +116,28 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         var e = p.document, t = p.postMessage, n = p.setImmediate;
         return n ? n : "onreadystatechange" in e.createElement("script") ? function(t) {
             function n() {
-                r.onreadystatechange = null;
-                r.parentNode.removeChild(r);
+                i.onreadystatechange = null;
+                i.parentNode.removeChild(i);
                 t();
             }
-            var r = e.createElement("script");
-            r.onreadystatechange = n;
-            e.documentElement.appendChild(r);
+            var i = e.createElement("script");
+            i.onreadystatechange = n;
+            e.documentElement.appendChild(i);
         } : t ? function(e) {
             function n(t) {
-                if (t.data === r) {
+                if (t.data === i) {
                     p.removeEventListener("message", n, !0);
                     e();
                 }
             }
-            var r = v();
+            var i = v();
             p.addEventListener("message", n, !0);
-            t(r, "*");
+            t(i, "*");
         } : function(e) {
             p.setTimeout(e, 0);
         };
     }();
-    t.noop = i;
+    t.noop = r;
     t.throttle = function(e, t) {
         t = t ? t : 150;
         if (t === -1) return function() {
@@ -147,422 +145,74 @@ define("lib/core/1.0.0/utils/util", [ "require", "exports", "module" ], function
         };
         var n;
         return function() {
-            var r = +new Date();
-            if (!n || r - n > t) {
-                n = r;
+            var i = +new Date();
+            if (!n || i - n > t) {
+                n = i;
                 e.apply(this, arguments);
             }
         };
     };
-    t.debounce = function(e, t, n, r) {
-        var i;
+    t.debounce = function(e, t, n, i) {
+        var r;
         return function() {
-            var o = r || this, u = arguments, s = function() {
-                i = null;
+            var o = i || this, u = arguments, a = function() {
+                r = null;
                 n || e.apply(o, u);
-            }, a = n && !i;
-            clearTimeout(i);
-            i = setTimeout(s, t);
-            a && e.apply(o, u);
+            }, s = n && !r;
+            clearTimeout(r);
+            r = setTimeout(a, t);
+            s && e.apply(o, u);
         };
     };
     t.deprecate = function(e, t) {
         function n() {
-            r || (r = !0);
+            i || (i = !0);
             return e.apply(this, arguments);
         }
         if (p.noDeprecation === !0) return e;
-        var r = !1;
+        var i = !1;
         return n;
     };
 });
 
-!function(e, t) {
-    if ("function" == typeof define && define.amd) define("lib/core/1.0.0/event/emitter", t); else if ("undefined" != typeof module) t(require, module.exports, module); else {
-        var n = {
-            exports: {}
-        };
-        t(null, n.exports, n);
-        e.EventEmitter = n.exports;
-    }
-}(this, function(e, t, n) {
-    "use strict";
-    function r() {}
-    function i(e, t, n, r) {
-        var i = !0;
-        if (t) for (var o, u, s, a = -1, l = {
-            type: e,
-            timeStamp: c()
-        }; o = t[++a]; ) {
-            u = o[v];
-            s = o[m] || r;
-            try {
-                i = o[y] === h ? u.call(s, l, n) !== !1 && i : u.apply(s, n) !== !1 && i;
-            } catch (f) {
-                setTimeout(function() {
-                    console.error(f);
-                }, 1);
-            }
-        }
-        return i;
-    }
-    function o(e) {
-        var t, n = p(this);
-        if (n) {
-            t = n[e];
-            return t.length;
-        }
-        return 0;
-    }
-    function u(e) {
-        return "[object Function]" === Object.prototype.toString.call(e);
-    }
-    function s(e, t) {
-        for (var n in e) e.hasOwnProperty(n) && t(e[n], n);
-    }
-    function a(e, t) {
-        e.forEach ? e.forEach(t) : function(e) {
-            for (var n = -1, r = e.length; ++n < r; ) t(e[n], n);
-        }(e);
-    }
-    var l = /\s+/, c = Date.now || function() {
-        return +new Date();
-    }, f = function() {
-        return c() * Math.random() & 65535;
-    }(), p = function() {
-        var e, t, n;
-        return "function" == typeof WeakMap && (WeakMap.prototype || 0).set ? (e = new WeakMap(), 
-        function(t, n) {
-            var r = e.get(t);
-            return null === n ? void 0 !== r && e["delete"](t) : !r && n ? (e.set(t, r = {}), 
-            r) : r;
-        }) : (t = c(), n = "__$widΦ" + t.toString(36), e = {}, function(r, i) {
-            if (!r || "object" != typeof r) throw TypeError("Invalid value used as weak map key");
-            var o;
-            return null === i ? r[n] && (delete e[r[n]], delete r[n]) : (o = r[n] || i && (o = ++t, 
-            e[o] = {}, r[n] = o), o && e[o]);
-        });
-    }(), d = 1, h = 2, v = 0, m = 1, y = 2, g = function(e, t, n) {
-        var r = [];
-        r[v] = e;
-        r[m] = t;
-        r[y] = n;
-        return r;
-    }, A = r.prototype;
-    A.addListener = function(e, t, n, r) {
-        var i, o, u, s = d;
-        if (t && "object" == typeof t) {
-            n = t;
-            t = n.handleEvent;
-            s = h;
-        }
-        if (!t) return this;
-        i = p(this, 1);
-        e = e.split(l);
-        for (;o = e.shift(); ) {
-            u = !r && i[o] || (i[o] = []);
-            u.push(g(t, n, s));
-        }
-        return this;
-    };
-    A.on = A.addListener;
-    A.once = function(e, t, n) {
-        var r = !1, i = function() {
-            this.removeListener(e, i);
-            if (!r) {
-                r = !0;
-                t.apply(n || this, arguments);
-            }
-        };
-        i.guid = t.guid || (t.guid = f++);
-        return this.on(e, i);
-    };
-    A.removeListener = function(e, t, n) {
-        var r, i, o, u, a, c;
-        if (t && "object" == typeof t) {
-            n = t;
-            t = n.handleEvent;
-        }
-        if (!(r = p(this))) return this;
-        if (!(e || t || n)) {
-            s(r, function(e, t) {
-                delete r[t];
-            });
-            p(this, null);
-            return this;
-        }
-        e = e ? e.split(l) : b(r);
-        for (;i = e.shift(); ) {
-            o = r[i];
-            if (o) if (t || n) for (u = o.length; --u >= 0; ) {
-                a = o[u];
-                c = a[v];
-                t && c !== t && (void 0 === c.guid || c.guid !== t.guid) || n && a[m] !== n || o.splice(u, 1);
-            } else delete r[i];
-        }
-        return this;
-    };
-    A.un = A.removeListener;
-    A.removeAllListeners = function(e) {
-        return this.removeListener(e);
-    };
-    A.emit = function(e) {
-        var t, n, r, o, u, s, a = [], c = !0;
-        if (!(t = p(this))) return this;
-        e = e.split(l);
-        for (u = 1, s = arguments.length; u < s; u++) a[u - 1] = arguments[u];
-        for (;n = e.shift(); ) {
-            (r = t.all) && (r = r.slice());
-            (o = t[n]) && (o = o.slice());
-            "all" !== n && (c = i(n, o, a, this) && c);
-            c = i(n, r, [ n ].concat(a), this) && c;
-        }
-        return c;
-    };
-    r.applyTo = function(e) {
-        function t(t, r) {
-            e[t] = function() {
-                var i = n[t].apply(r || e, Array.prototype.slice.call(arguments));
-                return i === r ? this : i;
-            };
-        }
-        var n = A, r = b(n);
-        u(e) ? a(r, function(t) {
-            e.prototype[t] = n[t];
-        }) : a(r, function(e) {
-            t(e);
-        });
-    };
-    r.listenerCount = function(e, t) {
-        return "function" == typeof e.listenerCount ? e.listenerCount(t) : o.call(e, t);
-    };
-    A.listenerCount = o;
-    var b = Object.keys || function(e) {
-        var t = [];
-        s(e, function(e, n) {
-            t.push(n);
-        });
-        return t;
-    };
-    n.exports = r;
-});
-
-define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", "../utils/util", "../event/emitter" ], function(e, t, n) {
-    "use strict";
-    var r = e("jquery"), i = e("../utils/util"), o = e("../event/emitter"), u = i.setImmediate, s = i.noop, a = i.extend, l = r.trim, c = r.parseJSON, f = function(e, t, n) {
-        return function(r, i) {
-            try {
-                return e.apply(t, arguments);
-            } catch (o) {
-                n && n(o, r, i);
-            }
-        };
-    }, p = function(e) {
-        return t.emit.apply(t, arguments);
-    };
-    o.applyTo(t);
-    var d = function() {
-        var e = 5, t = 0, n = [], i = function() {
-            u(function() {
-                --t;
-                o();
-            });
-        }, o = function() {
-            if (n.length > 0 && t < e) {
-                var o = n.shift(), u = o[0], s = o[1];
-                ++t;
-                u.always(i);
-                r.ajax(s);
-            }
-        };
-        return function(e, t) {
-            n.push([ e, t ]);
-            o();
-        };
-    }(), h = function(e) {
-        o.applyTo(this);
-        var t = {
-            url: "",
-            type: "GET",
-            data: {},
-            dataType: "json",
-            timeout: 3e4,
-            cache: !1
-        };
-        e = a(t, e);
-        delete e.error;
-        delete e.success;
-        this._opts = e;
-    };
-    a(h.prototype, {
-        send: function() {
-            var e = this, t = this._opts, n = a({}, t), r = "jsonp" === n.dataType;
-            r && (n.crossDomain = !0);
-            n.complete = function(n, i) {
-                var o, u = +n.status, s = n.responseJSON, a = {
-                    error: "1",
-                    msg: "Request error (status: " + (i || u) + ")"
-                }, f = 200 === u || "success" === i;
-                if (!r && !s) {
-                    s = l(n.responseText);
-                    if (s && "<" !== s.charAt(0)) try {
-                        s = c(s);
-                    } catch (p) {}
-                }
-                f || (s = s || a);
-                o = {
-                    data: s,
-                    xhr: n,
-                    origin: t,
-                    status: u || i
-                };
-                f ? e.emit("response", null, o) : e.emit("error", s, o);
-                e.emit("end", o);
-                e.destroy();
-            };
-            d(e, n);
-            return e;
-        },
-        always: function(e) {
-            "function" == typeof e && this.on("end", e);
-            return this;
-        },
-        destroy: function() {
-            this.un();
-            this._opts = null;
-        }
-    });
-    t.on("request", function(e, t) {
-        t = t && r(t);
-        if (t) {
-            var n = "disabled";
-            t.addClass(n).prop("disabled", !0);
-            e.once("end", function() {
-                t.removeClass(n).prop("disabled", !1);
-                t = null;
-            });
-        }
-    });
-    t.ajax = function(e, t, n) {
-        if ("object" == typeof e) {
-            n = t;
-            t = e;
-            e = void 0;
-        }
-        t = t || {};
-        e && (t.url = e);
-        var i = new h(t), o = function(e, n) {
-            var r = e.stack && e.stack.split("\n").slice(0, 2).join("\n") || e, i = {
-                stack: r,
-                origin: t,
-                response: n
-            };
-            p("error", i, n);
-            u(function() {
-                console.log("%c " + r, "color:#ae0000");
-            }, 1);
-        }, a = f(t.error || s, null, o), l = f(t.success || s, null, o);
-        if (p("request", i, n) !== !1) {
-            if (n && (n = r(n))) {
-                var c, d, v = "data-async-lock";
-                if (1 === +n.attr(v)) return;
-                if (d = n.attr("data-async-text")) {
-                    c = n.html();
-                    n.html(d);
-                }
-                n.attr(v, 1);
-                i.once("response error", function() {
-                    if (n) {
-                        n.attr(v, 0);
-                        d && n.html(c);
-                        n = null;
-                    }
-                });
-            }
-            i.on("error", function(e, t) {
-                var n = {
-                    code: e.error,
-                    message: e.msg,
-                    status: t.status,
-                    origin: t.origin,
-                    response: t.data
-                };
-                p("error", n, t) !== !1 && a(e);
-            });
-            i.on("response", function(e, t) {
-                t = t.data;
-                p("response", t) !== !1 && (e ? a(e) : t && 0 === +(t.error || 0) ? l(t) : a(t));
-            });
-            return i.send();
-        }
-    };
-    r.each([ "get", "post", "jsonp" ], function(e, n) {
-        t[n] = function(e, r, i, o, u) {
-            if ("function" == typeof r) {
-                u = u || o;
-                o = i;
-                i = r;
-                r = void 0;
-            }
-            if (o && "function" != typeof o) {
-                u = o;
-                o = void 0;
-            }
-            var s = {
-                data: r,
-                success: i,
-                error: o || i
-            };
-            "string" == typeof e ? s.url = e : a(s, e);
-            var l = n;
-            if ("jsonp" === n) {
-                l = "get";
-                s.dataType = "jsonp";
-            }
-            s.type = l;
-            return t.ajax(s, u);
-        };
-    });
-});
-
 define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" ], function(e, t, n) {
     "use strict";
-    function r(e) {
-        return e.replace(s, "ms-").replace(a, l);
-    }
     function i(e) {
+        return e.replace(a, "ms-").replace(s, l);
+    }
+    function r(e) {
         try {
             return "true" === e || "false" !== e && ("null" === e ? null : +e + "" === e ? +e : c.test(e) ? u.parseJSON(e) : e);
         } catch (t) {}
     }
     function o(e, t, n) {
-        var r;
+        var i;
         if (void 0 === n && 1 === e.nodeType) {
-            r = "data-" + t.replace(f, "-$&").toLowerCase();
-            n = e.getAttribute(r);
+            i = "data-" + t.replace(f, "-$&").toLowerCase();
+            n = e.getAttribute(i);
             "string" != typeof n && (n = void 0);
         }
         return n;
     }
-    var u = (window.document, e("jquery")), s = /^-ms-/, a = /-([\da-z])/gi, l = function(e, t) {
+    var u = (window.document, e("jquery")), a = /^-ms-/, s = /-([\da-z])/gi, l = function(e, t) {
         return t.toUpperCase();
     }, c = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/, f = /[A-Z]/g, p = function(e, t, n) {
         if (!e || 1 !== e.nodeType) throw new TypeError("dataset(): Not a valid DOM element.");
-        var u, s, a, l;
+        var u, a, s, l;
         if (1 === arguments.length) {
-            if (a = e.dataset) {
+            if (s = e.dataset) {
                 l = {};
-                for (s in a) a.hasOwnProperty(s) && (l[s] = i(a[s]));
+                for (a in s) s.hasOwnProperty(a) && (l[a] = r(s[a]));
                 return l;
             }
-            a = e.attributes;
-            u = a.length;
+            s = e.attributes;
+            u = s.length;
             l = {};
-            for (;u--; ) if (a[u]) {
-                s = a[u].name;
-                if (0 === s.indexOf("data-")) {
-                    s = r(s.slice(5));
-                    l[s] = i(o(e, s));
+            for (;u--; ) if (s[u]) {
+                a = s[u].name;
+                if (0 === a.indexOf("data-")) {
+                    a = i(a.slice(5));
+                    l[a] = r(o(e, a));
                 }
             }
             return l;
@@ -573,45 +223,45 @@ define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" 
 
 define("lib/core/1.0.0/dom/build", [ "require", "exports", "module", "jquery", "./dataset" ], function(e, t, n) {
     "use strict";
-    function r(e, t, n, r) {
-        r ? e[t] || (e[t] = n) : e[t] ? e[t] = e[t].add(n) : e[t] = o(n);
+    function i(e, t, n, i) {
+        i ? e[t] || (e[t] = n) : e[t] ? e[t] = e[t].add(n) : e[t] = o(n);
     }
-    var i = window.document, o = e("jquery"), u = function(e, t, n) {
-        var u, s, a, l, c, f = function(e) {
-            if (n) for (var i in n) a[i] = o(n[i].toString(), e); else {
-                a = {};
+    var r = window.document, o = e("jquery"), u = function(e, t, n) {
+        var u, a, s, l, c, f = function(e) {
+            if (n) for (var r in n) s[r] = o(n[r].toString(), e); else {
+                s = {};
                 l = o("[node-type]", e);
-                for (var u, s = -1, c = l.length; ++s < c; ) {
-                    u = l[s];
-                    i = u.getAttribute("node-type");
-                    r(a, i, u, t);
+                for (var u, a = -1, c = l.length; ++a < c; ) {
+                    u = l[a];
+                    r = u.getAttribute("node-type");
+                    i(s, r, u, t);
                 }
             }
         }, p = function(e) {
-            var n, i = a[e];
-            if (!i || 0 === i.length) {
+            var n, r = s[e];
+            if (!r || 0 === r.length) {
                 n = o('[node-type="' + e + '"]', u);
-                n.length && r(a, e, n, t);
-                i = a[e];
+                n.length && i(s, e, n, t);
+                r = s[e];
             }
-            return i;
+            return r;
         };
         void 0 === t && (t = !0);
         u = e;
         if ("string" == typeof e && "<" === e.charAt(0)) {
-            u = i.createElement("div");
+            u = r.createElement("div");
             u.innerHTML = e;
-            s = i.createDocumentFragment();
-            for (;c = u.firsChild; ) s.appendChild(c);
+            a = r.createDocumentFragment();
+            for (;c = u.firsChild; ) a.appendChild(c);
         } else {
             u = o(e);
-            s = u[0];
+            a = u[0];
         }
         f(u);
         return {
             get: p,
-            box: s,
-            list: a
+            box: a,
+            list: s
         };
     };
     t.build = u, t.parse = function(e, t, n) {
@@ -628,7 +278,7 @@ define("lib/core/1.0.0/dom/build", [ "require", "exports", "module", "jquery", "
 
 define("module/top-search/1.0.0/top-search", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
     "use strict";
-    function r(e) {
+    function i(e) {
         var t = this, n = {
             activeClass: "focus",
             selector: "#jTopSearch",
@@ -636,18 +286,18 @@ define("module/top-search/1.0.0/top-search", [ "require", "exports", "module", "
             data: {},
             alias: "name"
         };
-        t.options = i.extend(!0, {}, n, e);
+        t.options = r.extend(!0, {}, n, e);
         if ("" == t.options.url) throw new Error("the params options.url is required");
-        t.el = i(t.options.selector);
-        var r = o.build(t.el[0], !1);
-        t.ipt = r.get("ipt");
-        t.btn = r.get("btn");
-        t.lbl = r.get("lbl");
+        t.el = r(t.options.selector);
+        var i = o.build(t.el[0], !1);
+        t.ipt = i.get("ipt");
+        t.btn = i.get("btn");
+        t.lbl = i.get("lbl");
         t._init();
         t._initEvent();
     }
-    var i = e("jquery"), o = (e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build"));
-    r.prototype._initEvent = function() {
+    var r = e("jquery"), o = (e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build"));
+    i.prototype._initEvent = function() {
         var e = this;
         e.ipt.on("focus", function() {
             e.focus();
@@ -662,47 +312,47 @@ define("module/top-search/1.0.0/top-search", [ "require", "exports", "module", "
             e.search();
         });
     };
-    r.prototype._init = function() {
-        var e = this, t = i.trim(e.ipt.val()), n = e.ipt.attr("data-id");
+    i.prototype._init = function() {
+        var e = this, t = r.trim(e.ipt.val()), n = e.ipt.attr("data-id");
         t.length > 0 && e.focus();
         n && (e.options.alias = n);
-        e.options.data && (e.options.data[e.options.alias] = i.trim(e.ipt.val()));
+        e.options.data && (e.options.data[e.options.alias] = r.trim(e.ipt.val()));
     };
-    r.prototype.focus = function() {
+    i.prototype.focus = function() {
         var e = this;
         e.el.addClass(e.options.activeClass);
     };
-    r.prototype.blur = function() {
+    i.prototype.blur = function() {
         var e = this;
         e.el.removeClass(e.options.activeClass);
     };
-    r.prototype.getValue = function() {
+    i.prototype.getValue = function() {
         var e = this;
-        return i.trim(e.ipt.val());
+        return r.trim(e.ipt.val());
     };
-    r.prototype.search = function() {
+    i.prototype.search = function() {
         var e = this;
         e.options.data[e.options.alias] = e.getValue();
         window.location.href = e.options.url + "?" + e._getUrlString();
     };
-    r.prototype._getUrlString = function() {
+    i.prototype._getUrlString = function() {
         var e = this, t = "", n = 0;
-        for (var r in e.options.data) {
-            t += 0 == n ? r + "=" + encodeURIComponent(e.options.data[r]) : "&" + r + "=" + encodeURIComponent(e.options.data[r]);
+        for (var i in e.options.data) {
+            t += 0 == n ? i + "=" + encodeURIComponent(e.options.data[i]) : "&" + i + "=" + encodeURIComponent(e.options.data[i]);
             n++;
         }
         return t;
     };
-    n.exports = r;
+    n.exports = i;
 });
 
 define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(e, t, n) {
     "use strict";
-    var r = window.document, i = function(e) {
+    var i = window.document, r = function(e) {
         if ("string" != typeof e) throw "trim need a string as parameter";
-        for (var t = e.length, n = 0, r = t - 1, i = /(\u3000|\s|\t|\u00A0)/; n < t && i.test(e.charAt(n)); ) ++n;
-        for (;r >= 0 && i.test(e.charAt(r)); ) --r;
-        return e.substring(n, r + 1);
+        for (var t = e.length, n = 0, i = t - 1, r = /(\u3000|\s|\t|\u00A0)/; n < t && r.test(e.charAt(n)); ) ++n;
+        for (;i >= 0 && r.test(e.charAt(i)); ) --i;
+        return e.substring(n, i + 1);
     }, o = function(e) {
         var t = {};
         for (var n in e) e.hasOwnProperty(n) && (t[n] = e[n]);
@@ -716,21 +366,21 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
                 n.expires = -1;
             }
             if ("number" == typeof n.expires) {
-                var u = n.expires, s = n.expires = new Date();
-                s.setTime(s.getTime() + 864e5 * u);
+                var u = n.expires, a = n.expires = new Date();
+                a.setTime(a.getTime() + 864e5 * u);
             }
-            var a = function(e) {
+            var s = function(e) {
                 try {
                     return n.raw ? e : encodeURIComponent(e);
                 } catch (t) {}
                 return e;
             };
-            return r.cookie = [ a(e), "=", a(t), n.expires ? "; expires=" + n.expires.toUTCString() : "", n.path ? "; path=" + n.path : "", n.domain ? "; domain=" + n.domain : "", n.secure ? "; secure" : "" ].join("");
+            return i.cookie = [ s(e), "=", s(t), n.expires ? "; expires=" + n.expires.toUTCString() : "", n.path ? "; path=" + n.path : "", n.domain ? "; domain=" + n.domain : "", n.secure ? "; secure" : "" ].join("");
         }
-        for (var t = null, l = r.cookie, c = function(e) {
+        for (var t = null, l = i.cookie, c = function(e) {
             return n.raw ? e : decodeURIComponent(e);
         }, f = l ? l.split("; ") : [], p = -1, d = f.length, h = e.length + 1; ++p < d; ) {
-            l = i(f[p]);
+            l = r(f[p]);
             if (l.substring(0, h) === e + "=") {
                 t = c(l.substring(h));
                 break;
@@ -749,12 +399,12 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
 
 define("module/login-status/1.0.0/login", [ "require", "exports", "module", "lib/core/1.0.0/io/cookie" ], function(e, t, n) {
     "use strict";
-    var r = e("lib/core/1.0.0/io/cookie"), i = "_nick", o = "_ui_", u = $PAGE_DATA && $PAGE_DATA.LOGIN_URL || "", s = $PAGE_DATA && $PAGE_DATA[i] || null;
+    var i = e("lib/core/1.0.0/io/cookie"), r = "_nick", o = "_ui_", u = $PAGE_DATA && $PAGE_DATA.LOGIN_URL || "", a = $PAGE_DATA && $PAGE_DATA[r] || null;
     t.getNick = function() {
-        return s;
+        return a;
     };
     t.isLogin = function() {
-        return !!r(o);
+        return !!i(o);
     };
     t.login = function(e) {
         if (u) {
@@ -766,7 +416,7 @@ define("module/login-status/1.0.0/login", [ "require", "exports", "module", "lib
 
 define("module/login-status/1.0.0/login-status", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/dom/build", "./login" ], function(e, t, n) {
     "use strict";
-    function r(e) {
+    function i(e) {
         var t = this, n = {
             selector: "#jLoginStatus",
             userCenterUrl: $PAGE_DATA && $PAGE_DATA.userCenterUrl || "javascript:;",
@@ -779,12 +429,12 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
                 url: $PAGE_DATA && $PAGE_DATA.learningCenterUrl || "javascript:;"
             } ]
         };
-        t.options = i.extend(!0, {}, n, e);
-        t.el = i(t.options.selector);
+        t.options = r.extend(!0, {}, n, e);
+        t.el = r(t.options.selector);
         t._init();
     }
-    var i = e("jquery"), o = e("lib/core/1.0.0/dom/build"), u = e("./login");
-    r.prototype._init = function() {
+    var r = e("jquery"), o = e("lib/core/1.0.0/dom/build"), u = e("./login");
+    i.prototype._init = function() {
         var e = this;
         if (u.isLogin()) {
             var t = u.getNick();
@@ -792,81 +442,76 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
             e._initEvent();
         }
     };
-    r.prototype._initEvent = function() {
-        var e = this, t = !1, n = o.build(e.el[0], !1), r = n.get("userName"), i = n.get("tipsMenu");
-        r.on("mouseenter", function() {
-            t = !0;
-            i.stop().fadeIn(500, function() {
-                i.addClass("active");
-            });
-        });
-        r.on("mouseleave", function() {
-            t = !1;
-            setTimeout(function() {
-                t || i.stop().fadeOut(500, function() {
-                    i.removeClass("active");
-                });
-            }, 200);
-        });
+    i.prototype._initEvent = function() {
+        var e = this, t = !1, n = o.build(e.el[0], !1), i = n.get("userName"), r = n.get("tipsMenu");
         i.on("mouseenter", function() {
             t = !0;
+            r.stop().fadeIn(500, function() {
+                r.addClass("active");
+            });
         });
         i.on("mouseleave", function() {
             t = !1;
-            i.removeClass("active");
+            setTimeout(function() {
+                t || r.stop().fadeOut(500, function() {
+                    r.removeClass("active");
+                });
+            }, 200);
+        });
+        r.on("mouseenter", function() {
+            t = !0;
+        });
+        r.on("mouseleave", function() {
+            t = !1;
+            r.removeClass("active");
         });
     };
-    r.prototype._getLoginedHtml = function(e) {
-        var t = this, n = t.options, r = n.menuList, i = "";
-        i += '<ul class="logined clearfix" node-type="logined">';
-        i += '    <li class="item">';
-        i += "        <span>您好，</span>";
-        i += "    </li>";
-        i += '    <li class="item tips-menu-box">';
-        i += '        <a href="' + n.userCenterUrl + '" class="user-name txt-overflow" node-type="userName">' + e + "</a>";
-        i += '        <div class="tips-menu" node-type="tipsMenu">';
-        i += '            <div class="arrow"><i></i><b></b></div>';
-        i += '            <ul class="tips-menu-list">';
-        for (var o = 0, u = r.length; o < u; o++) i += '            <li class="tips-menu-item"><a href="' + r[o].url + '">' + r[o].title + "</a></li>";
-        i += "            </ul>";
-        i += "        </div>";
-        i += "    </li>";
-        i += '    <li class="item">';
-        i += '        <a href="' + n.loginOutUrl + '" class="btn">退出</a>';
-        i += "    </li>";
-        i += "</ul>";
-        return i;
+    i.prototype._getLoginedHtml = function(e) {
+        var t = this, n = t.options, i = n.menuList, r = "";
+        r += '<ul class="logined clearfix" node-type="logined">';
+        r += '    <li class="item">';
+        r += "        <span>您好，</span>";
+        r += "    </li>";
+        r += '    <li class="item tips-menu-box">';
+        r += '        <a href="' + n.userCenterUrl + '" class="user-name txt-overflow" node-type="userName">' + e + "</a>";
+        r += '        <div class="tips-menu" node-type="tipsMenu">';
+        r += '            <div class="arrow"><i></i><b></b></div>';
+        r += '            <ul class="tips-menu-list">';
+        for (var o = 0, u = i.length; o < u; o++) r += '            <li class="tips-menu-item"><a href="' + i[o].url + '">' + i[o].title + "</a></li>";
+        r += "            </ul>";
+        r += "        </div>";
+        r += "    </li>";
+        r += '    <li class="item">';
+        r += '        <a href="' + n.loginOutUrl + '" class="btn">退出</a>';
+        r += "    </li>";
+        r += "</ul>";
+        return r;
     };
-    n.exports = r;
+    n.exports = i;
 });
 
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
     "use strict";
-    function r(e) {
-        var t = this, n = {
-            onlineServiceUrl: ""
-        };
-        t.options = i.extend(!0, {}, n, e);
-        t._init();
-        t._initEvent();
+    function i(e) {
+        return;
     }
-    var i = e("jquery");
+    var r = e("jquery");
     e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build");
-    r.prototype._init = function() {
+    i.prototype._init = function() {
         var e = this;
-        e.el = i(e._getTemplete());
-        i(document.body).append(e.el);
+        e.el = r(e._getTemplete());
+        r(document.body).append(e.el);
         e.height = e.el.height();
         e.resize();
     };
-    r.prototype._initEvent = function() {
+    i.prototype._initEvent = function() {
         var e = this;
-        i(window).on("resize", function() {
+        r(window).on("resize", function() {
             e.resize();
         });
     };
-    r.prototype.resize = function() {
-        var e = this, t = i(window).height(), n = (t - e.height) / 2;
+    i.prototype.resize = function() {
+        var e = this, t = r(window).height(), n = (t - e.height) / 2;
         if (n >= 0) {
             e.el.css({
                 top: n
@@ -874,7 +519,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             e.el.addClass("active");
         } else e.el.removeClass("active");
     };
-    r.prototype._getTemplete = function() {
+    i.prototype._getTemplete = function() {
         var e = this, t = "";
         t += '<div class="ui-fix-bar">';
         t += '    <ul class="list clearfix" node-type="list">';
@@ -888,7 +533,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
         t += "</div>";
         return t;
     };
-    n.exports = r;
+    n.exports = i;
 });
 
 !function(e, t, n) {
@@ -896,24 +541,24 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
 }(this, "Lazyload", function(e, t) {
     "use strict";
     if (!e) throw "Error: jquery api not implements.";
-    var n = e.each, r = function(e, t) {
+    var n = e.each, i = function(e, t) {
         if (e instanceof Array && e.filter) return e.filter(t);
-        for (var n = [], r = -1, i = e.length; ++r < i; ) t(e[r], r) && n.push(e[r]);
+        for (var n = [], i = -1, r = e.length; ++i < r; ) t(e[i], i) && n.push(e[i]);
         return n;
-    }, i = function(e, t, n, r) {
-        var i;
+    }, r = function(e, t, n, i) {
+        var r;
         return function() {
-            var o = r || this, u = arguments, s = function() {
-                i = null;
+            var o = i || this, u = arguments, a = function() {
+                r = null;
                 n || e.apply(o, u);
-            }, a = n && !i;
-            clearTimeout(i);
-            i = setTimeout(s, t);
-            a && e.apply(o, u);
+            }, s = n && !r;
+            clearTimeout(r);
+            r = setTimeout(a, t);
+            s && e.apply(o, u);
         };
     }, o = function(t, n) {
         t = t || {};
-        var r = e(t), i = Array.prototype.slice;
+        var i = e(t), r = Array.prototype.slice;
         n = n || t.name;
         e.each({
             on: "on",
@@ -922,17 +567,17 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             emit: "trigger"
         }, function(e, o) {
             t[e] = function(t) {
-                var u = i.call(arguments, 0), s = u[1];
+                var u = r.call(arguments, 0), a = u[1];
                 n && !~t.indexOf(".") && (u[0] = t + "." + n);
-                "function" == typeof s && ("on" === e || "once" === e ? u[1] = s.__ || (s.__ = function(e) {
+                "function" == typeof a && ("on" === e || "once" === e ? u[1] = a.__ || (a.__ = function(e) {
                     e.preventDefault();
-                    return s.apply(this, i.call(arguments, 1));
-                }) : "un" === e && (u[1] = s.__));
-                return r[o].apply(r, u);
+                    return a.apply(this, r.call(arguments, 1));
+                }) : "un" === e && (u[1] = a.__));
+                return i[o].apply(i, u);
             };
         });
         return t;
-    }, u = window, s = e(u), a = u.Image, l = /(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion), c = "__lazy_status__", f = 0, p = 1, d = 2, h = function(e) {
+    }, u = window, a = e(u), s = u.Image, l = /(?:iphone|ipod|ipad).*os 5/gi.test(navigator.appVersion), c = "__lazy_status__", f = 0, p = 1, d = 2, h = function(e) {
         return e[c] === t;
     }, v = function() {
         var e = {}, t = function(t, n) {
@@ -945,33 +590,33 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             get: n
         };
     }();
-    v.define("image", function(n, r, i, o) {
-        if (r) {
-            var u = new a(), s = function() {
+    v.define("image", function(n, i, r, o) {
+        if (i) {
+            var u = new s(), a = function() {
                 u.onload = u.onerror = null;
-                u = r = n = o = s = t;
+                u = i = n = o = a = t;
             };
             u.onload = function() {
-                var t = e(n), u = i.effect;
+                var t = e(n), u = r.effect;
                 "function" != typeof t[u] && (u = "show");
                 t.hide();
-                "IMG" === n.nodeName.toUpperCase() ? t.attr("src", r) : t.css("background-image", 'url("' + r + '")');
-                t[u](i.effectSpeed);
+                "IMG" === n.nodeName.toUpperCase() ? t.attr("src", i) : t.css("background-image", 'url("' + i + '")');
+                t[u](r.effectSpeed);
                 o(null, "load");
-                s();
+                a();
             };
             u.onerror = function(e) {
                 o(e);
-                s();
+                a();
             };
-            u.src = r;
+            u.src = i;
         } else o("error");
     });
-    v.define("html", function(e, t, n, r) {
-        r();
+    v.define("html", function(e, t, n, i) {
+        i();
     });
-    var m = function(t, a) {
-        a = a || {};
+    var m = function(t, s) {
+        s = s || {};
         t = e(t);
         var m = this, _ = {
             type: "image",
@@ -989,127 +634,127 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             placeholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
         };
         o(m);
-        var w = a.type || _.type, x = v.get(w);
+        var w = s.type || _.type, x = v.get(w);
         if ("function" != typeof x) throw "Error, cannot found the specific type loader (type: `" + w + "`)";
         "html" === w && (_.placeholder = "");
-        a && e.extend(_, a);
-        var j = _.container, E = _.event, T = 0 === E.indexOf("scroll"), C = j && j !== u ? e(j) : s, q = function(t) {
-            var r = m._list;
-            if (r.length > 0) {
-                var i = 0;
-                n(r.slice(0), function(t, n) {
-                    var r = e(n);
-                    if (!_.skipInvisible || r.is(":visible")) if (A(n, _) || b(n, _)) ; else if (y(n, _) || g(n, _)) {
-                        if (++i > _.failureLimit) return !1;
+        s && e.extend(_, s);
+        var E = _.container, C = _.event, T = 0 === C.indexOf("scroll"), j = E && E !== u ? e(E) : a, U = function(t) {
+            var i = m._list;
+            if (i.length > 0) {
+                var r = 0;
+                n(i.slice(0), function(t, n) {
+                    var i = e(n);
+                    if (!_.skipInvisible || i.is(":visible")) if (A(n, _) || b(n, _)) ; else if (g(n, _) || y(n, _)) {
+                        if (++r > _.failureLimit) return !1;
                     } else {
-                        r.trigger("appear");
-                        i = 0;
+                        i.trigger("appear");
+                        r = 0;
                     }
                 });
             } else m.reset();
-        }, U = function() {
-            m._list = r(m._list, function(e) {
+        }, q = function() {
+            m._list = i(m._list, function(e) {
                 return !e[c];
             });
-        }, k = function() {
-            var t = this, n = e(t), r = n.attr("data-" + _.dataAttribute), i = _.sourceMaker, o = _.appear, u = _.loadingClass, s = t[c];
-            if (s === f) {
+        }, D = function() {
+            var t = this, n = e(t), i = n.attr("data-" + _.dataAttribute), r = _.sourceMaker, o = _.appear, u = _.loadingClass, a = t[c];
+            if (a === f) {
                 t[c] = p;
                 u && n.addClass(u);
-                i && (r = i(r, t));
-                o && o.apply(m, [ t, r ]);
-                x.call(m, t, r, _, function(e, i) {
+                r && (i = r(i, t));
+                o && o.apply(m, [ t, i ]);
+                x.call(m, t, i, _, function(e, r) {
                     if (!m._destroyed) {
                         u && n.removeClass(u);
                         if (e) setTimeout(function() {
                             t[c] = f;
-                            m.emit("lazyItemError", t, r, e);
+                            m.emit("lazyItemError", t, i, e);
                             t = null;
                         }, 300); else {
                             t[c] = d;
-                            U();
-                            m.emit("lazyItemReady", t, r, i);
+                            q();
+                            m.emit("lazyItemReady", t, i, r);
                             var o = _.load;
-                            o && o.apply(m, [ t, r, i ]);
+                            o && o.apply(m, [ t, i, r ]);
                             t = null;
                         }
                         n = null;
                     }
                 });
-            } else if (s === d) {
-                U();
-                m.emit("lazyItemReady", t, r);
+            } else if (a === d) {
+                q();
+                m.emit("lazyItemReady", t, i);
             }
-        }, D = function() {
+        }, I = function() {
             this[c] || e(this).trigger("appear");
-        }, L = function(t) {
+        }, P = function(t) {
             var n = e(t);
             t[c] = f;
-            var r = _.placeholder;
-            if (r) if (n.is("img")) {
-                var i = n.attr("src");
-                i || n.attr("src", r);
-            } else "image" === m._.type || n.children()[0] || n.html(r);
-            n.on("appear", k);
-            T || n.on(E, D);
+            var i = _.placeholder;
+            if (i) if (n.is("img")) {
+                var r = n.attr("src");
+                r || n.attr("src", i);
+            } else "image" === m._.type || n.children()[0] || n.html(i);
+            n.on("appear", D);
+            T || n.on(C, I);
             m._list.push(t);
-        }, I = function(e) {
-            e = r(e || [], h);
+        }, k = function(e) {
+            e = i(e || [], h);
             if (e.length) {
                 n(e, function(e, t) {
-                    L(t);
+                    P(t);
                 });
-                m._inited || O(m);
+                m._inited || z(m);
             }
-        }, O = function(t) {
+        }, z = function(t) {
             if (!t._inited) {
-                var r = i(q, 30);
+                var i = r(U, 30);
                 t._inited = !0;
-                T && C.on(E, r);
-                s.on("resize", r);
+                T && j.on(C, i);
+                a.on("resize", i);
                 if (l) {
-                    var o = function(r) {
-                        r.originalEvent && r.originalEvent.persisted && n(t._list, function(t, n) {
+                    var o = function(i) {
+                        i.originalEvent && i.originalEvent.persisted && n(t._list, function(t, n) {
                             e(n).trigger("appear");
                         });
                     };
-                    s.on("pageshow", o);
+                    a.on("pageshow", o);
                     t.once("reset", function() {
-                        s.off("pageshow", o);
+                        a.off("pageshow", o);
                     });
                 }
                 t.once("reset", function() {
                     n(t._list, function(e, t) {
-                        P(t);
+                        L(t);
                     });
-                    T && C.off(E, r);
-                    s.off("resize", r);
+                    T && j.off(C, i);
+                    a.off("resize", i);
                 });
-                e(document).ready(q);
+                e(document).ready(U);
             }
-        }, P = function(t) {
+        }, L = function(t) {
             var n = e(t);
-            n.off("appear", k);
-            T || n.off(E, D);
+            n.off("appear", D);
+            T || n.off(C, I);
         };
         m.on("lazyItemReady", function(e) {
-            P(e);
+            L(e);
         });
         m.once("destroy", function() {
-            I = null;
-            q = null;
-            U = null;
             k = null;
+            U = null;
+            q = null;
             D = null;
+            I = null;
         });
         m._ = _;
         m._list = [];
         m.add = function(t) {
             var n = e(t);
-            n.length > 0 && I(n);
+            n.length > 0 && k(n);
         };
-        m.update = q;
-        I(t);
+        m.update = U;
+        k(t);
     };
     m.prototype = {
         constructor: m,
@@ -1137,27 +782,27 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
     m.define = function(e, t) {
         return v.define(e, t);
     };
-    var y = function(t, n) {
-        var r, i = n.container;
-        r = i && i !== u ? e(i).offset().top + e(i).height() : (u.innerHeight ? u.innerHeight : s.height()) + s.scrollTop();
-        return r <= e(t).offset().top - n.threshold;
-    }, g = function(t, n) {
-        var r, i = n.container;
-        r = i && i !== u ? e(i).offset().left + e(i).width() : s.width() + s.scrollLeft();
-        return r <= e(t).offset().left - n.threshold;
+    var g = function(t, n) {
+        var i, r = n.container;
+        i = r && r !== u ? e(r).offset().top + e(r).height() : (u.innerHeight ? u.innerHeight : a.height()) + a.scrollTop();
+        return i <= e(t).offset().top - n.threshold;
+    }, y = function(t, n) {
+        var i, r = n.container;
+        i = r && r !== u ? e(r).offset().left + e(r).width() : a.width() + a.scrollLeft();
+        return i <= e(t).offset().left - n.threshold;
     }, A = function(t, n) {
-        var r, i = n.container;
-        r = i && i !== u ? e(i).offset().top : s.scrollTop();
-        return r >= e(t).offset().top + n.threshold + e(t).height();
+        var i, r = n.container;
+        i = r && r !== u ? e(r).offset().top : a.scrollTop();
+        return i >= e(t).offset().top + n.threshold + e(t).height();
     }, b = function(t, n) {
-        var r, i = n.container;
-        r = i && i !== u ? e(i).offset().left : s.scrollLeft();
-        return r >= e(t).offset().left + n.threshold + e(t).width();
+        var i, r = n.container;
+        i = r && r !== u ? e(r).offset().left : a.scrollLeft();
+        return i >= e(t).offset().left + n.threshold + e(t).width();
     }, _ = function(e, t) {
-        return !(g(e, t) || b(e, t) || y(e, t) || A(e, t));
+        return !(y(e, t) || b(e, t) || g(e, t) || A(e, t));
     };
-    m.belowthefold = y;
-    m.rightoffold = g;
+    m.belowthefold = g;
+    m.rightoffold = y;
     m.abovethetop = A;
     m.leftofbegin = b;
     m.inviewport = _;
@@ -1166,25 +811,25 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
 
 define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery", "lib/plugins/lazyload/1.9.3/lazyload", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
     "use strict";
-    function r(e) {
+    function i(e) {
         var t = this, n = {
             selector: "#jFooter"
         };
-        t.options = i.extend(!0, {}, n, e);
-        t.el = i(t.options.selector);
+        t.options = r.extend(!0, {}, n, e);
+        t.el = r(t.options.selector);
         if (0 == t.el.length) throw new Error("the params [optins.selector] is required or the [el] is not exist.");
         t._init();
     }
-    var i = e("jquery"), o = e("lib/plugins/lazyload/1.9.3/lazyload"), u = e("lib/core/1.0.0/dom/build");
-    r.prototype._init = function() {
+    var r = e("jquery"), o = e("lib/plugins/lazyload/1.9.3/lazyload"), u = e("lib/core/1.0.0/dom/build");
+    i.prototype._init = function() {
         var e = this, t = u.build(e.el[0], !1), n = t.get("footerImg");
         new o(n);
     };
-    n.exports = r;
+    n.exports = i;
 });
 
-define("conf/hp/hp-index", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/io/request", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer" ], function(e, t, n) {
+define("conf/hp/hp-index", [ "require", "exports", "module", "jquery", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer" ], function(e, t, n) {
     "use strict";
-    var r = (e("jquery"), e("lib/core/1.0.0/io/request"), e("module/top-search/1.0.0/top-search")), i = e("module/login-status/1.0.0/login-status"), o = e("module/fix-bar/1.0.0/fix-bar"), u = e("module/footer/1.0.0/footer");
-    new r(), new i(), new o(), new u();
+    var i = (e("jquery"), e("module/top-search/1.0.0/top-search")), r = e("module/login-status/1.0.0/login-status"), o = e("module/fix-bar/1.0.0/fix-bar"), u = e("module/footer/1.0.0/footer");
+    new i(), new r(), new o(), new u();
 });

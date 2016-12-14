@@ -4202,7 +4202,7 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
             this.queueData.filesSelected = e;
             this.queueData.filesQueued = t - this.queueData.filesCancelled;
             this.queueData.queueLength = i;
-            u.inArray("onDialogClose", n.overrideEvents) < 0 && this.queueData.filesErrored > 0 && alert(this.queueData.errorMsg);
+            u.inArray("onDialogClose", n.overrideEvents) < 0 && this.queueData.filesErrored > 0;
             n.onDialogClose && n.onDialogClose.call(this, this.queueData);
             n.auto && l.call(n.id, "upload", "*");
         },
@@ -4332,7 +4332,6 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                 break;
 
               case c.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:
-                alert("The upload limit has been reached (" + i + ").");
                 o = "Exceeds Upload Limit";
                 break;
 
@@ -4588,7 +4587,7 @@ define("lib/plugins/uploader/1.0.1/tabs/local/local", [ "require", "exports", "m
             title: "本地上传",
             fileTypeExts: "*.png;*.jpg;*.gif;*.bmp",
             fileTypeDesc: "图片文件，支持:.png,.jpg,.gif,.bmp",
-            fileSizeLimit: "2048KB",
+            fileSizeLimit: "5120KB",
             formData: {},
             swf: "http://s1.zhongzhihui.com/lib/plugins/uploader/1.0.1/uploadify.swf",
             uploader: "/api/upload.php",
@@ -4634,7 +4633,23 @@ define("lib/plugins/uploader/1.0.1/tabs/local/local", [ "require", "exports", "m
     n.prototype._init = function() {
         var e = this;
         e.uploader = s.uploadify(e._nodes["btn-upload"][0], e._options);
+        e._initEvent();
         e._onEvent();
+    };
+    n.prototype._initEvent = function() {
+        var e = this;
+        e.uploader.on("initError", function(e) {
+            r.error("sorry,flash不兼容或没安装！");
+        });
+        e.uploader.on("uploadError", function(e) {
+            var t = e && e[1] && e[1].errorMsg || null;
+            t && r.error(t);
+        });
+        e.uploader.on("dialogClose", function(t) {
+            var i = t && t.errorMsg || null;
+            /exceeds the size limit/.test(i) && (i = "单个上传图片不能超过" + e._options.fileSizeLimit);
+            i && r.error(i);
+        });
     };
     n.prototype.add = function(e) {
         var t = this;
@@ -5521,12 +5536,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(e, t, i) {
     "use strict";
     function n(e) {
-        var t = this, i = {
-            onlineServiceUrl: ""
-        };
-        t.options = o.extend(!0, {}, i, e);
-        t._init();
-        t._initEvent();
+        return;
     }
     var o = e("jquery");
     e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build");

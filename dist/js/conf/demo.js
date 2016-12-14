@@ -3057,12 +3057,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(t, e, n) {
     "use strict";
     function i(t) {
-        var e = this, n = {
-            onlineServiceUrl: ""
-        };
-        e.options = o.extend(!0, {}, n, t);
-        e._init();
-        e._initEvent();
+        return;
     }
     var o = t("jquery");
     t("lib/core/1.0.0/utils/util"), t("lib/core/1.0.0/dom/build");

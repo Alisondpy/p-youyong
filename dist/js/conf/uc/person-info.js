@@ -3741,7 +3741,7 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
             this.queueData.filesSelected = e;
             this.queueData.filesQueued = t - this.queueData.filesCancelled;
             this.queueData.queueLength = n;
-            u.inArray("onDialogClose", i.overrideEvents) < 0 && this.queueData.filesErrored > 0 && alert(this.queueData.errorMsg);
+            u.inArray("onDialogClose", i.overrideEvents) < 0 && this.queueData.filesErrored > 0;
             i.onDialogClose && i.onDialogClose.call(this, this.queueData);
             i.auto && l.call(i.id, "upload", "*");
         },
@@ -3871,7 +3871,6 @@ define("lib/plugins/uploadify/3.2.2/uploadify", [ "require", "exports", "module"
                 break;
 
               case c.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:
-                alert("The upload limit has been reached (" + n + ").");
                 o = "Exceeds Upload Limit";
                 break;
 
@@ -4127,7 +4126,7 @@ define("lib/plugins/uploader/1.0.1/tabs/local/local", [ "require", "exports", "m
             title: "本地上传",
             fileTypeExts: "*.png;*.jpg;*.gif;*.bmp",
             fileTypeDesc: "图片文件，支持:.png,.jpg,.gif,.bmp",
-            fileSizeLimit: "2048KB",
+            fileSizeLimit: "5120KB",
             formData: {},
             swf: "http://s1.zhongzhihui.com/lib/plugins/uploader/1.0.1/uploadify.swf",
             uploader: "/api/upload.php",
@@ -4173,7 +4172,23 @@ define("lib/plugins/uploader/1.0.1/tabs/local/local", [ "require", "exports", "m
     i.prototype._init = function() {
         var e = this;
         e.uploader = s.uploadify(e._nodes["btn-upload"][0], e._options);
+        e._initEvent();
         e._onEvent();
+    };
+    i.prototype._initEvent = function() {
+        var e = this;
+        e.uploader.on("initError", function(e) {
+            r.error("sorry,flash不兼容或没安装！");
+        });
+        e.uploader.on("uploadError", function(e) {
+            var t = e && e[1] && e[1].errorMsg || null;
+            t && r.error(t);
+        });
+        e.uploader.on("dialogClose", function(t) {
+            var n = t && t.errorMsg || null;
+            /exceeds the size limit/.test(n) && (n = "单个上传图片不能超过" + e._options.fileSizeLimit);
+            n && r.error(n);
+        });
     };
     i.prototype.add = function(e) {
         var t = this;

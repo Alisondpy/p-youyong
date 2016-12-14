@@ -1490,7 +1490,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = E(), h = j(), m = I(r), g = N(r), b = z(e), x = I(a), _ = N(a), A = b.left, k = b.top, $ = d ? A - h.x : A, C = d ? k - h.y : k, q = d ? 0 : h.x, L = d ? 0 : h.y, S = q + p.w - m, D = L + p.h - g, U = {
+            var d = i.fixed, p = E(), h = j(), m = I(r), g = N(r), b = z(e), x = I(a), _ = N(a), A = b.left, k = b.top, $ = d ? A - h.x : A, C = d ? k - h.y : k, q = d ? 0 : h.x, L = d ? 0 : h.y, D = q + p.w - m, S = L + p.h - g, U = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1514,8 +1514,8 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 l: $ + y((x - m) / 2),
                 t: C + y((_ - g) / 2)
             }, W = {
-                left: [ q, S ],
-                top: [ L, D ]
+                left: [ q, D ],
+                top: [ L, S ]
             };
             c || w(l, function(e, t) {
                 M[t][e] > W[R[e]][1] && (e = l[t] = U[e]);
@@ -2457,12 +2457,7 @@ define("module/login-status/1.0.0/login-status", [ "require", "exports", "module
 define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/util", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
     "use strict";
     function i(e) {
-        var t = this, n = {
-            onlineServiceUrl: ""
-        };
-        t.options = o.extend(!0, {}, n, e);
-        t._init();
-        t._initEvent();
+        return;
     }
     var o = e("jquery");
     e("lib/core/1.0.0/utils/util"), e("lib/core/1.0.0/dom/build");
