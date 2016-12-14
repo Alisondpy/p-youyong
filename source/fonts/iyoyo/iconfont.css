@@ -1,10 +1,10 @@
 
 @font-face {font-family: "iyoyo";
-  src: url('iconfont.eot?t=1481633011099'); /* IE9*/
-  src: url('iconfont.eot?t=1481633011099#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('iconfont.woff?t=1481633011099') format('woff'), /* chrome, firefox */
-  url('iconfont.ttf?t=1481633011099') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
-  url('iconfont.svg?t=1481633011099#iyoyo') format('svg'); /* iOS 4.1- */
+  src: url('iconfont.eot?t=1481703839480'); /* IE9*/
+  src: url('iconfont.eot?t=1481703839480#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('iconfont.woff?t=1481703839480') format('woff'), /* chrome, firefox */
+  url('iconfont.ttf?t=1481703839480') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+  url('iconfont.svg?t=1481703839480#iyoyo') format('svg'); /* iOS 4.1- */
 }
 
 .iyoyo {
@@ -112,4 +112,6 @@
 .iyoyo-fail:before { content: "\e609"; }
 
 .iyoyo-pass:before { content: "\e60d"; }
+
+.iyoyo-iyoyo-arrow-top-normal:before { content: "\e7e4"; }
 

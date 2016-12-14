@@ -328,6 +328,12 @@
     '' +
     '</symbol>' +
     '' +
+    '<symbol id="iyoyo-iyoyo-arrow-top-normal" viewBox="0 0 1024 1024">' +
+    '' +
+    '<path d="M490.477 321.367l-417.48 406.548h-40.997l445.494-431.829h58.762l455.744 431.829h-40.997l-429.096-406.548z" fill="" ></path>' +
+    '' +
+    '</symbol>' +
+    '' +
     '</svg>'
   var script = function() {
     var scripts = document.getElementsByTagName('script')
