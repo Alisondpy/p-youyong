@@ -143,6 +143,12 @@ define(function(require, exports, module) {
     $(".jSubBtn").click(function(){
         $("#jsRightSignin").submit();
     })
+    $('body').on('keydown', function (e) {
+        var e = e || window.event;
+        if(e.keyCode == 13) {
+            $("#jsRightSignin").submit();
+        }
+    })
     //获取验证码
     $(".jsVerifyCode").on("click", function() {
         var verifyCode = $(this);

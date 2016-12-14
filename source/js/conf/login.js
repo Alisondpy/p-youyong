@@ -177,6 +177,18 @@ define(function(require, exports, module) {
     $(".jSubBtn").click(function(){
         $("#jRightLoginMobile").submit();
     })
+    $('body').on('keydown', function (e) {
+        var e = e || window.event;
+        if(e.keyCode == 13) {
+            if($('.jsTab').find('.active').index()==0) {
+                $(".jMSubBtn").click();
+            }else if($('.jsTab').find('.active').index()==1){
+                $(".jSubBtn").click();
+            }
+            e.returnValue = false;
+        }
+    })
+
     //登陆页面切换登陆形态
     $(".jsTab").on("click", "span", function() {
         if ($(this).hasClass("active")) {

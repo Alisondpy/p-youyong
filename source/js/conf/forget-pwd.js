@@ -36,6 +36,12 @@ define(function(require, exports, module) {
     $(".jMSubBtn").click(function(){
         $("#jsForgetPwd").submit();
     })
+    $('body').on('keydown', function (e) {
+        var e = e || window.event;
+        if(e.keyCode == 13) {
+           $("#jsForgetPwd").submit();
+        }
+    })
     //表单提交
     $("#jsForgetPwd").validate({
         rules: {
