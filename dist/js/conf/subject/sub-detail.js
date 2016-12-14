@@ -1302,9 +1302,9 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         return 0;
     }, I = function(e) {
         return q(e, "width");
-    }, N = function(e) {
+    }, L = function(e) {
         return q(e, "height");
-    }, L = function() {
+    }, N = function() {
         try {
             var e = l.activeElement, t = e.contentDocument;
             return t && t.activeElement || e;
@@ -1373,7 +1373,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             }
             i.open = !0;
             i.anchor = s;
-            i._activeElement = L();
+            i._activeElement = N();
             i.emit("beforeShow", t);
             l.appendTo(t.appendTo).css("display", "block");
             i.emit("show", t);
@@ -1443,7 +1443,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         focus: function(e) {
             var t = this._, n = this.node, r = this._popup, a = i.current, s = t.zIndex;
             a && a !== this && a.blur(!1);
-            if (!o.contains(n, L())) {
+            if (!o.contains(n, N())) {
                 var u = r.find("[autofocus]")[0];
                 !t.focusing && u ? t.focusing = !0 : u = n;
                 this._focus(u);
@@ -1490,7 +1490,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = E(), h = j(), m = I(r), g = N(r), b = z(e), x = I(a), _ = N(a), A = b.left, k = b.top, $ = d ? A - h.x : A, C = d ? k - h.y : k, q = d ? 0 : h.x, L = d ? 0 : h.y, D = q + p.w - m, S = L + p.h - g, U = {
+            var d = i.fixed, p = E(), h = j(), m = I(r), g = L(r), b = z(e), x = I(a), _ = L(a), A = b.left, k = b.top, $ = d ? A - h.x : A, C = d ? k - h.y : k, q = d ? 0 : h.x, N = d ? 0 : h.y, D = q + p.w - m, S = N + p.h - g, U = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1513,23 +1513,23 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             } ], F = {
                 l: $ + y((x - m) / 2),
                 t: C + y((_ - g) / 2)
-            }, W = {
+            }, G = {
                 left: [ q, D ],
-                top: [ L, S ]
+                top: [ N, S ]
             };
             c || w(l, function(e, t) {
-                M[t][e] > W[R[e]][1] && (e = l[t] = U[e]);
-                M[t][e] < W[R[e]][0] && (l[t] = U[e]);
+                M[t][e] > G[R[e]][1] && (e = l[t] = U[e]);
+                M[t][e] < G[R[e]][0] && (l[t] = U[e]);
             });
-            var G = l[0];
+            var W = l[0];
             if (!l[1]) {
-                l[1] = "left" === R[G] ? "t" : "l";
+                l[1] = "left" === R[W] ? "t" : "l";
                 M[1][l[1]] = F[l[1]];
             }
-            M[0][G] = M[0][G] + 10 * ("tl".indexOf(G) !== -1 ? -1 : 1);
+            M[0][W] = M[0][W] + 10 * ("tl".indexOf(W) !== -1 ? -1 : 1);
             P[R[l[0]]] = T(M[0][l[0]]);
             P[R[l[1]]] = T(M[1][l[1]]);
-            var B = v + "-" + G;
+            var B = v + "-" + W;
             r.css(P).addClass(B);
             n._dirClass = B;
             var H = n.$("arrow", 1), V = n.$("inner", 1);
@@ -1537,7 +1537,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!V) return n;
                 H = o('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(V);
             }
-            var X, Y, Q = "top" !== R[G], J = [ "v", "h" ][1 ^ Q], Z = I(H), K = N(H), ee = {}, te = Q ? "left" : "top";
+            var X, Y, Q = "top" !== R[W], J = [ "v", "h" ][1 ^ Q], Z = I(H), K = L(H), ee = {}, te = Q ? "left" : "top";
             switch (J) {
               case "h":
                 X = y(A + (x - Z) / 2);
@@ -2662,15 +2662,15 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             n.on("appear", z);
             $ || n.on(k, q);
             m._list.push(t);
-        }, N = function(e) {
+        }, L = function(e) {
             e = i(e || [], h);
             if (e.length) {
                 n(e, function(e, t) {
                     I(t);
                 });
-                m._inited || L(m);
+                m._inited || N(m);
             }
-        }, L = function(t) {
+        }, N = function(t) {
             if (!t._inited) {
                 var i = o(C, 30);
                 t._inited = !0;
@@ -2705,7 +2705,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             O(e);
         });
         m.once("destroy", function() {
-            N = null;
+            L = null;
             C = null;
             E = null;
             z = null;
@@ -2715,10 +2715,10 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
         m._list = [];
         m.add = function(t) {
             var n = e(t);
-            n.length > 0 && N(n);
+            n.length > 0 && L(n);
         };
         m.update = C;
-        N(t);
+        L(t);
     };
     m.prototype = {
         constructor: m,
@@ -2795,9 +2795,9 @@ define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery",
 define("conf/subject/sub-detail", [ "require", "exports", "module", "jquery", "lib/core/1.0.0/utils/form", "template", "lib/core/1.0.0/io/request", "lib/ui/box/1.0.1/crossbox", "module/top-search/1.0.0/top-search", "module/login-status/1.0.0/login-status", "module/login-status/1.0.0/login", "module/fix-bar/1.0.0/fix-bar", "module/footer/1.0.0/footer" ], function(e, t, n) {
     "use strict";
     var i = e("jquery"), o = (e("lib/core/1.0.0/utils/form"), e("template"), e("lib/core/1.0.0/io/request")), r = e("lib/ui/box/1.0.1/crossbox"), a = e("module/top-search/1.0.0/top-search"), s = e("module/login-status/1.0.0/login-status"), u = e("module/login-status/1.0.0/login"), l = e("module/fix-bar/1.0.0/fix-bar"), c = e("module/footer/1.0.0/footer"), f = (new a(), 
-    new s(), new l(), new c(), u.isLogin());
+    new s(), new l(), new c(), $PAGE_DATA.liveUrl), d = u.isLogin();
     i("#jReport").on("click", function() {
-        f ? r.loadUrl($PAGE_DATA.applyUrl, {
+        d ? r.loadUrl($PAGE_DATA.applyUrl, {
             title: "报名详情",
             autoRelease: !1,
             modal: !0
@@ -2810,5 +2810,12 @@ define("conf/subject/sub-detail", [ "require", "exports", "module", "jquery", "l
         }, function(e) {
             r.error(e.msg || "网络异常，请重试");
         });
+    });
+    i("#jLive").on("click", function() {
+        d ? o.get(f, function(e) {
+            window.location.href = e.liveshowUrl;
+        }, function(e) {
+            r.error(e.msg || "网络异常，请重试");
+        }) : u.login();
     });
 });

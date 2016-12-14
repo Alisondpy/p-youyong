@@ -3461,7 +3461,8 @@ define("conf/register", [ "require", "exports", "module", "jquery", "lib/ui/box/
         r("#jDynamic").removeAttr("disabled");
         if (e.hasClass("ui-btn-disable")) return !1;
         s.get($PAGE_DATA.code, {
-            mobile: r("#jName").val()
+            mobile: r("#jName").val(),
+            type: 1
         }, function(e) {}, function(e) {
             o.error(e && e.msg || "网络错误，请重试！");
         });

@@ -685,11 +685,11 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
             placeholder: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsQAAA7EAZUrDhsAAAANSURBVBhXYzh8+PB/AAffA0nNPuCLAAAAAElFTkSuQmCC"
         };
         r(v);
-        var w = l.type || x.type, T = m.get(w);
-        if ("function" != typeof T) throw "Error, cannot found the specific type loader (type: `" + w + "`)";
+        var w = l.type || x.type, A = m.get(w);
+        if ("function" != typeof A) throw "Error, cannot found the specific type loader (type: `" + w + "`)";
         "html" === w && (x.placeholder = "");
         l && e.extend(x, l);
-        var A = x.container, C = x.event, j = 0 === C.indexOf("scroll"), k = A && A !== a ? e(A) : s, E = function(t) {
+        var T = x.container, C = x.event, j = 0 === C.indexOf("scroll"), k = T && T !== a ? e(T) : s, E = function(t) {
             var n = v._list;
             if (n.length > 0) {
                 var o = 0;
@@ -714,7 +714,7 @@ define("module/fix-bar/1.0.0/fix-bar", [ "require", "exports", "module", "jquery
                 a && i.addClass(a);
                 o && (n = o(n, t));
                 r && r.apply(v, [ t, n ]);
-                T.call(v, t, n, x, function(e, o) {
+                A.call(v, t, n, x, function(e, o) {
                     if (!v._destroyed) {
                         a && i.removeClass(a);
                         if (e) setTimeout(function() {
@@ -1452,7 +1452,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         return e.bind ? e.bind(t) : function() {
             return e.apply(t, arguments);
         };
-    }, T = r.setImmediate, A = function(e) {
+    }, A = r.setImmediate, T = function(e) {
         return l.parseInt(e, 10) || 0;
     }, C = function(e) {
         return e && 1 === e.nodeType;
@@ -1499,12 +1499,12 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         };
     }, $ = function(e, t) {
         if (e.length) {
-            var i = A(e.css(t)) || e[0]["offset" + t.charAt(0).toUpperCase() + t.slice(1)], n = {
+            var i = T(e.css(t)) || e[0]["offset" + t.charAt(0).toUpperCase() + t.slice(1)], n = {
                 width: [ "left", "right" ],
                 height: [ "top", "bottom" ]
             };
             x(n[t], function(t, n) {
-                i += A(e.css("margin-" + t), 10) || 0;
+                i += T(e.css("margin-" + t), 10) || 0;
             });
             return i;
         }
@@ -1615,7 +1615,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 i.emit("hide");
             } else {
                 i.emit("hide");
-                T(t);
+                A(t);
             }
             return i;
         },
@@ -1684,8 +1684,8 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         center: function() {
             var e = this._popup, t = this._.fixed, i = k(), n = L(), o = E(e), r = t ? 0 : i.x, a = t ? 0 : i.y, s = (n.w - o.w) / 2 + r, l = .382 * (n.h - o.h) + a;
             e.css({
-                left: y(A(s), r),
-                top: y(A(l), a)
+                left: y(T(s), r),
+                top: y(T(l), a)
             });
             return this;
         },
@@ -1699,7 +1699,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             u && u.length || (u = [ "b" ]);
             var f = i._dirClass;
             f && r.removeClass(f);
-            var d = n.fixed, p = L(), h = k(), v = q(r), y = S(r), _ = I(e), b = q(a), w = S(a), T = _.left, C = _.top, j = d ? T - h.x : T, E = d ? C - h.y : C, $ = d ? 0 : h.x, P = d ? 0 : h.y, O = $ + p.w - v, D = P + p.h - y, F = {
+            var d = n.fixed, p = L(), h = k(), v = q(r), y = S(r), _ = I(e), b = q(a), w = S(a), A = _.left, C = _.top, j = d ? A - h.x : A, E = d ? C - h.y : C, $ = d ? 0 : h.x, P = d ? 0 : h.y, O = $ + p.w - v, D = P + p.h - y, F = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1736,8 +1736,8 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 V[1][u[1]] = M[u[1]];
             }
             V[0][W] = V[0][W] + 10 * ("tl".indexOf(W) !== -1 ? -1 : 1);
-            N[H[u[0]]] = A(V[0][u[0]]);
-            N[H[u[1]]] = A(V[1][u[1]]);
+            N[H[u[0]]] = T(V[0][u[0]]);
+            N[H[u[1]]] = T(V[1][u[1]]);
             var U = m + "-" + W;
             r.css(N).addClass(U);
             i._dirClass = U;
@@ -1749,7 +1749,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var R, X, Q = "top" !== H[W], Y = [ "v", "h" ][1 ^ Q], J = q(B), Z = S(B), ee = {}, te = Q ? "left" : "top";
             switch (Y) {
               case "h":
-                R = g(T + (b - J) / 2);
+                R = g(A + (b - J) / 2);
                 ee.left = R;
                 break;
 
@@ -2576,7 +2576,7 @@ define("lib/ui/tab/1.0.0/tab", [ "require", "exports", "module", "jquery", "lib/
 
 !function() {
     function e(e) {
-        return e.replace(_, "").replace(b, ",").replace(x, "").replace(w, "").replace(T, "").split(A);
+        return e.replace(_, "").replace(b, ",").replace(x, "").replace(w, "").replace(A, "").split(T);
     }
     function t(e) {
         return "'" + e.replace(/('|\\)/g, "\\$1").replace(/\r/g, "\\r").replace(/\n/g, "\\n") + "'";
@@ -2613,13 +2613,13 @@ define("lib/ui/tab/1.0.0/tab", [ "require", "exports", "module", "jquery", "lib/
             $helpers: 1,
             $out: 1,
             $line: 1
-        }, v = "".trim, g = v ? [ "$out='';", "$out+=", ";", "$out" ] : [ "$out=[];", "$out.push(", ");", "$out.join('')" ], _ = v ? "$out+=text;return $out;" : "$out.push(text);", b = "function(){var text=''.concat.apply('',arguments);" + _ + "}", x = "function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);" + _ + "}", w = "'use strict';var $utils=this,$helpers=$utils.$helpers," + (a ? "$line=0," : ""), T = g[0], A = "return new String(" + g[3] + ");";
+        }, v = "".trim, g = v ? [ "$out='';", "$out+=", ";", "$out" ] : [ "$out=[];", "$out.push(", ");", "$out.join('')" ], _ = v ? "$out+=text;return $out;" : "$out.push(text);", b = "function(){var text=''.concat.apply('',arguments);" + _ + "}", x = "function(filename,data){data=data||$data;var text=$utils.$include(filename,data,$filename);" + _ + "}", w = "'use strict';var $utils=this,$helpers=$utils.$helpers," + (a ? "$line=0," : ""), A = g[0], T = "return new String(" + g[3] + ");";
         y(i.split(s), function(e) {
             e = e.split(l);
             var t = e[0], i = e[1];
-            1 === e.length ? T += o(t) : (T += r(t), i && (T += o(i)));
+            1 === e.length ? A += o(t) : (A += r(t), i && (A += o(i)));
         });
-        var C = w + T + A;
+        var C = w + A + T;
         a && (C = "try{" + C + "}catch(e){throw {filename:$filename,name:'Render Error',message:e.message,line:$line,source:" + t(i) + ".split(/\\n/)[$line-1].replace(/^\\s+/,'')};}");
         try {
             var j = new Function("$data", "$filename", C);
@@ -2725,7 +2725,7 @@ define("lib/ui/tab/1.0.0/tab", [ "require", "exports", "module", "jquery", "lib/
         return n.prototype = l.prototype, n.toString = function() {
             return l.toString();
         }, s && t.cache && (r[s] = n), n;
-    }, y = p.$each, g = "break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if,in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with,abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto,implements,import,int,interface,long,native,package,private,protected,public,short,static,super,synchronized,throws,transient,volatile,arguments,let,yield,undefined", _ = /\/\*[\w\W]*?\*\/|\/\/[^\n]*\n|\/\/[^\n]*$|"(?:[^"\\]|\\[\w\W])*"|'(?:[^'\\]|\\[\w\W])*'|\s*\.\s*[$\w\.]+/g, b = /[^\w$]+/g, x = new RegExp([ "\\b" + g.replace(/,/g, "\\b|\\b") + "\\b" ].join("|"), "g"), w = /^\d[^,]*|,\d[^,]*/g, T = /^,+|,+$/g, A = /^$|,+/;
+    }, y = p.$each, g = "break,case,catch,continue,debugger,default,delete,do,else,false,finally,for,function,if,in,instanceof,new,null,return,switch,this,throw,true,try,typeof,var,void,while,with,abstract,boolean,byte,char,class,const,double,enum,export,extends,final,float,goto,implements,import,int,interface,long,native,package,private,protected,public,short,static,super,synchronized,throws,transient,volatile,arguments,let,yield,undefined", _ = /\/\*[\w\W]*?\*\/|\/\/[^\n]*\n|\/\/[^\n]*$|"(?:[^"\\]|\\[\w\W])*"|'(?:[^'\\]|\\[\w\W])*'|\s*\.\s*[$\w\.]+/g, b = /[^\w$]+/g, x = new RegExp([ "\\b" + g.replace(/,/g, "\\b|\\b") + "\\b" ].join("|"), "g"), w = /^\d[^,]*|,\d[^,]*/g, A = /^,+|,+$/g, T = /^$|,+/;
     o.openTag = "{{", o.closeTag = "}}";
     var C = function(e, t) {
         var i = t.split(":"), n = i.shift(), o = i.join(":") || "";
@@ -4644,9 +4644,9 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             L.hide();
             j.hide();
             k.hide();
-            T && T.stop();
             A && A.stop();
-            n($PAGE_DATA.note.note, F, "tAnswer", "jNoteTab1");
+            T && T.stop();
+            n($PAGE_DATA.note.note, D, "tAnswer", "jNoteTab1");
             break;
 
           case "1":
@@ -4662,7 +4662,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             L.show();
             j.hide();
             k.hide();
-            A || (A = new _("#jNoteTab2", {
+            T || (T = new _("#jNoteTab2", {
                 pollingAjax: {
                     url: $PAGE_DATA.note.note,
                     data: t
@@ -4672,8 +4672,8 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                     data: t
                 }
             }));
-            T && T.stop();
-            A.start();
+            A && A.stop();
+            T.start();
             break;
 
           case "2":
@@ -4681,9 +4681,9 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             L.hide();
             j.show();
             k.hide();
-            T && T.stop();
             A && A.stop();
-            n($PAGE_DATA.question.question, H, "tQuestion", "jQuestionTab1");
+            T && T.stop();
+            n($PAGE_DATA.question.question, F, "tQuestion", "jQuestionTab1");
             break;
 
           case "3":
@@ -4699,7 +4699,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             L.hide();
             j.hide();
             k.show();
-            T || (T = new g("#jQuestionTab2", {
+            A || (A = new g("#jQuestionTab2", {
                 pollingAjax: {
                     url: $PAGE_DATA.question.question,
                     data: t
@@ -4709,8 +4709,8 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                     data: t
                 }
             }));
-            T.start();
-            A && A.stop();
+            A.start();
+            T && T.stop();
         }
     }
     function r(e, t, i, n, o) {
@@ -4734,9 +4734,9 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             p.ok("发表成功", t[0]);
             r.val("");
             a.children(".num").text("0");
-            if (t.hasClass("jPublishA") && K.find(".ui-current").text().indexOf("全部笔记") == -1) n($PAGE_DATA.note.note, F, "tAnswer", "jNoteTab1"); else if (t.hasClass("jPublishQ") && R.find(".ui-current").text().indexOf("全部问答") == -1) {
-                X.val("");
-                n($PAGE_DATA.question.question, H, "tQuestion", "jQuestionTab1");
+            if (t.hasClass("jPublishA") && B.find(".ui-current").text().indexOf("全部笔记") == -1) n($PAGE_DATA.note.note, D, "tAnswer", "jNoteTab1"); else if (t.hasClass("jPublishQ") && K.find(".ui-current").text().indexOf("全部问答") == -1) {
+                R.val("");
+                n($PAGE_DATA.question.question, F, "tQuestion", "jQuestionTab1");
             }
         }, function(e) {
             p.error(e.msg || "网络错误,请重试", t[0]);
@@ -4745,7 +4745,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     function s(e, t, i) {
         m.get(e, t, function(e) {
             p.ok(i + "成功");
-            n($PAGE_DATA.note.note, F, "tAnswer", "jNoteTab1");
+            n($PAGE_DATA.note.note, D, "tAnswer", "jNoteTab1");
         }, function(e) {
             p.error(e.msg || "网络错误,请重试");
         });
@@ -4754,7 +4754,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     new c(), new f(), new d(), e("lib/ui/box/1.0.1/crossbox")), h = e("lib/plugins/lazyload/1.9.3/lazyload"), m = e("lib/core/1.0.0/io/request"), v = e("lib/ui/tab/1.0.0/tab"), y = e("template"), g = e("module/monitor/1.0.0/question"), _ = e("module/monitor/1.0.0/note"), b = e("module/login-status/1.0.0/login"), x = (l(".jMod-catlog"), 
     l("#jTab"));
     e("plugins/layer/layer");
-    var w, T, A, C = new v(x), j = l("#jQuestionTab1"), k = l("#jQuestionTab2"), E = l("#jNoteTab1"), L = l("#jNoteTab2"), I = $PAGE_DATA.courseId, $ = $PAGE_DATA.lessonId, q = $PAGE_DATA.examId, S = e("plugins/ckplayer/6.7.0/player"), P = new S("#jAudio", {
+    var w, A, T, C = new v(x), j = l("#jQuestionTab1"), k = l("#jQuestionTab2"), E = l("#jNoteTab1"), L = l("#jNoteTab2"), I = $PAGE_DATA.courseId, $ = $PAGE_DATA.lessonId, q = $PAGE_DATA.examId, S = e("plugins/ckplayer/6.7.0/player"), P = new S("#jAudio", {
         swfPlayer: $PAGE_DATA.ckplayer,
         embed: {
             width: "871",
@@ -4766,7 +4766,8 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             f: $PAGE_DATA.m3u8,
             a: $PAGE_DATA.play
         }
-    }), z = !0, O = !1, D = !1;
+    }), z = !0, O = !1;
+    P.on("error", function() {});
     P.on("time", function(e) {
         if (z && e > 0) {
             z = !1;
@@ -4782,34 +4783,34 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                 z = !0;
             });
         }
-        if (P.getTotalTime() && e == P.getTotalTime() && 0 != P.getTotalTime() && "" != q && 0 != e && !O) {
-            p.confirm("是否进入考试页面？", function() {
-                p.loadUrl($PAGE_DATA.examUrl + "?examId=" + q + "?prepare&bizType=0&bizId=" + $ + "&courseId=" + I, {
-                    title: "考试",
-                    className: "ui-test-box",
-                    fixed: !0,
-                    width: l(window).width(),
-                    height: l(window).height()
-                });
-            }, function() {}, this);
-            O = !0;
-        }
-        if (!D && e > 60 && !b.isLogin()) {
+        if (!O && e > 60 && !b.isLogin()) {
             P.pause();
             p.confirm("游客只能观看一分钟,是否前往登录？", function() {
                 b.login(window.location.href);
             }, function() {}, this);
-            D = !0;
+            O = !0;
         }
     });
-    var F = {
+    P.on("ended", function() {
+        console.log(q);
+        "" != q && p.confirm("是否进入考试页面？", function() {
+            p.loadUrl($PAGE_DATA.examUrl + "?examId=" + q + "?prepare&bizType=0&bizId=" + $ + "&courseId=" + I, {
+                title: "考试",
+                className: "ui-test-box",
+                fixed: !0,
+                width: l(window).width(),
+                height: l(window).height()
+            });
+        }, function() {}, this);
+    });
+    var D = {
         id: 0,
         pageSize: 20,
         sortType: 1,
         showType: 1,
         sourceType: 2,
         sourceId: $
-    }, H = {
+    }, F = {
         id: 0,
         pageSize: 20,
         sortType: 1,
@@ -4822,34 +4823,34 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
         var e = l(this).attr("data-type");
         o(e);
     });
-    var N = {
+    var H = {
         id: $,
         type: 2,
         pageNo: 1,
         pageSize: 20
     };
-    n($PAGE_DATA.dirUrl, N, "tDir", "jDir");
+    n($PAGE_DATA.dirUrl, H, "tDir", "jDir");
     C.on("change", function(e) {
         var t = e.body.find(".ui-current").attr("data-type");
         o(t);
         var i = e.body.attr("data-id");
-        "1" == i && n($PAGE_DATA.dirUrl, N, "tDir", "jDir");
+        "1" == i && n($PAGE_DATA.dirUrl, H, "tDir", "jDir");
         w.update();
     });
-    var V = l(".jPublishA"), M = l(".jPublishQ"), G = l(".jTxtNumA"), W = l(".jTxtNumQ"), U = l(".jTxtA"), B = l(".jTxtQ");
+    var N = l(".jPublishA"), V = l(".jPublishQ"), M = l(".jTxtNumA"), G = l(".jTxtNumQ"), W = l(".jTxtA"), U = l(".jTxtQ");
     x.on("input propertychange", ".jTxtA", function() {
         var e = l(this).val().length;
-        r(e, 500, l(this), V, G);
+        r(e, 500, l(this), N, M);
     });
     x.on("input propertychange", ".jTxtQ", function() {
         var e = l(this).val().length;
-        r(e, 500, l(this), M, W);
+        r(e, 500, l(this), V, G);
     });
-    var K, R, X = l("#jQuesTitle");
+    var B, K, R = l("#jQuesTitle");
     l(".jNoteTap").each(function() {
-        "2" == l(this).attr("data-id") ? K = l(this) : "3" == l(this).attr("data-id") && (R = l(this));
+        "2" == l(this).attr("data-id") ? B = l(this) : "3" == l(this).attr("data-id") && (K = l(this));
     });
-    var Q = l("#jAnswer"), Y = {
+    var X = l("#jAnswer"), Q = {
         sourceType: 2,
         sourceId: $,
         content: "",
@@ -4857,41 +4858,37 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     };
     x.on("click", ".jPublishA", function() {
         if (b.isLogin()) {
-            var e = U.val();
-            Y.content = e;
-            Q.is(":checked") ? Y.showType = 1 : Y.showType = 2;
-            a(e, l(this), $PAGE_DATA.note.publish, Y, U, G);
+            var e = W.val();
+            Q.content = e;
+            X.is(":checked") ? Q.showType = 1 : Q.showType = 2;
+            a(e, l(this), $PAGE_DATA.note.publish, Q, W, M);
         } else b.login(window.location.href);
     });
     x.on("focus", "#jQuesTitle", function() {
-        X.removeClass("question-input-error");
+        R.removeClass("question-input-error");
     });
-    var J = {
+    var Y = {
         sourceType: 2,
         sourceId: $,
         content: ""
     };
     x.on("click", ".jPublishQ", function() {
         if (b.isLogin()) {
-            var e = X.val(), t = B.val();
+            var e = R.val(), t = U.val();
             if ("" == e) {
                 p.error("请输入问题标题");
-                X.addClass("question-input-error");
+                R.addClass("question-input-error");
             } else {
-                J.title = e;
-                J.content = t;
-                a(t, l(this), $PAGE_DATA.question.publish, J, B, W);
+                Y.title = e;
+                Y.content = t;
+                a(t, l(this), $PAGE_DATA.question.publish, Y, U, G);
             }
         } else b.login(window.location.href);
     });
     x.on("focus", ".jTxt", function() {
-        l(this).addClass("text-focus");
         l(this).css("color", "#333");
     }).on("blur", ".jTxt", function() {
-        if ("" === l(this).val()) {
-            l(this).removeClass("text-focus");
-            l(this).css("color", "#ccc");
-        }
+        "" === l(this).val() && l(this).css("color", "#ccc");
     });
     x.on("click", ".like", function() {
         if (b.isLogin()) {

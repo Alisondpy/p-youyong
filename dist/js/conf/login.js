@@ -3555,7 +3555,8 @@ define("conf/login", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
         var e = s(this);
         if (e.hasClass("ui-btn-disable")) return !1;
         u.post($PAGE_DATA.code, {
-            mobile: s("#jMobile").val()
+            mobile: s("#jMobile").val(),
+            type: 2
         }, function(t) {
             var n = 60;
             e.val(n).addClass("ui-btn-disable change");

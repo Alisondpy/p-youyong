@@ -3268,12 +3268,14 @@ define("conf/forget-pwd", [ "require", "exports", "module", "jquery", "lib/ui/bo
     i(".jsVerifyCode").on("click", function() {
         var e = i(this);
         if (e.hasClass("ui-btn-disable")) return !1;
-        i(".jnewPwd").show();
-        i("#jNextStep").removeClass("jNextStep").val("提交");
-        i("#jDynamic").removeAttr("disabled");
         o.get($PAGE_DATA.code, {
-            mobile: i("#jName").val()
-        }, function(e) {}, function(e) {
+            mobile: i("#jName").val(),
+            type: 3
+        }, function(e) {
+            i(".jnewPwd").show();
+            i("#jNextStep").removeClass("jNextStep").val("提交");
+            i("#jDynamic").removeAttr("disabled");
+        }, function(e) {
             e.msg ? r.error(e.msg) : r.error("网络错误");
         });
         var t = 60;
