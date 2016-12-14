@@ -181,7 +181,7 @@ define(function(require, exports, module) {
         })
 
            $.validator.addMethod("Password", function(value, element) {
-                var psw = /^(?!\d{1,8}$)\S{6,16}$/;
+                var psw = /^[\S]{6,16}$/;
                 return this.optional(element) || (psw.test(value));
             },'密码格式不正确');
     };
