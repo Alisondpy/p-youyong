@@ -40,8 +40,16 @@
                     margin-left: 10px;
                     font-size: 20px;
                     color: #95aab8;
+                    cursor: pointer;
+                }
+                .iyoyo-qq {
                     &:hover {
-                        color: #000;
+                        color: #3b97ec;
+                    }
+                }
+                .iyoyo-talk{
+                     &:hover {
+                        color: #9ac043;
                     }
                 }
                 .yoqq, .yotalk{
@@ -75,6 +83,7 @@
                     &:hover{
                         .yoqq{
                             display: block;
+
                         }
                         .yotalk{
                             display: block;

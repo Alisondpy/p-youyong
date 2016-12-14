@@ -152,7 +152,7 @@ define(function(require, exports, module) {
             return false;
         }
         //发送ajax请求
-        io.get($PAGE_DATA['code'], { mobile: $("#jName").val() },
+        io.get($PAGE_DATA['code'], { mobile: $("#jName").val() , type:1},
             function(res) {
                 //成功后的回调
 

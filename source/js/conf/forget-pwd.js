@@ -131,7 +131,7 @@ define(function(require, exports, module) {
         $("#jNextStep").removeClass("jNextStep").val("提交");
         $('#jDynamic').removeAttr("disabled");
         //发送ajax请求
-        io.get($PAGE_DATA['code'],{mobile : $("#jName").val()},
+        io.get($PAGE_DATA['code'],{mobile : $("#jName").val(), type:3},
             function(res){
                 //成功后的回调
             },function(res){

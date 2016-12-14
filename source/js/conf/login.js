@@ -196,7 +196,7 @@ define(function(require, exports, module) {
             return false;
         }
         //发送ajax请求
-        io.post($PAGE_DATA['code'], { mobile: $("#jMobile").val() }, function(res) {
+        io.post($PAGE_DATA['code'], { mobile: $("#jMobile").val(), type:2 }, function(res) {
                 //验证码发送成功
                 var count = 60;
                 verifyCode.val(count).addClass("ui-btn-disable change");
