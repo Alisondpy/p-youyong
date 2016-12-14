@@ -22,7 +22,6 @@ body {
             width: 780px;
             padding-top: 30px;
             margin: 0 auto;
-            height: 155px;
             border-bottom: 1px solid #eee;
             /*no*/
             //提问者头像
@@ -41,7 +40,6 @@ body {
                 width: 692px;
                 //提问者名字问题
                 .top {
-                    height: 70px;
                     .title {
                         .name {
                             display: block;
@@ -53,12 +51,13 @@ body {
                         }
                         .questions {
                             display: block;
-                            width: 400px;
                             line-height: 25px;
                             font-size: 16px;
                             /*px*/
                             color: #333;
                             font-weight: bold;
+                            word-break: break-all;
+                            white-space: pre-wrap;
                         }
                     }
                     /* //分享连接
@@ -95,6 +94,7 @@ body {
                 }
                 //提问者具体描述
                 .bottom {
+                    float: left;
                     width: 100%;
                     line-height: 25px;
                     font-size: 16px;
@@ -103,6 +103,8 @@ body {
                     .details {
                         color: #666;
                         line-height: 30px;
+                        white-space: pre-wrap;
+                        word-wrap: break-word;
                     }
                     .info {
                         // margin-top: 20px;

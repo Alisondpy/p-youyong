@@ -91,7 +91,7 @@ define(function(require, exports, module) {
         }
         if (!isYou) {
             if (seconds > 60) {
-                if (Login.isLogin()){
+                if (!Login.isLogin()){
                     player.pause();
                     box.confirm('游客只能观看一分钟,是否前往登录？',
                         function() {

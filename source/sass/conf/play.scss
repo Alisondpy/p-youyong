@@ -13,7 +13,7 @@ body {
 	border-color: #ec3e48 !important;
 }
 .ui-answer-box{
-	width: 289px;
+	width: 271px;
 	height: 440px;
 	overflow-y:auto;
 }
@@ -243,8 +243,10 @@ em{
 								color:#5d7486;
 							}
 							p{
-									margin-top: 10px;
-									line-height: 16px;
+								margin-top: 10px;
+								line-height: 16px;
+								white-space: pre-wrap;
+								word-break: break-all;
 								.all{
 									color:#4c677b;
 									margin-left:10px;
@@ -303,6 +305,18 @@ em{
 									}
 									.activeLike,.picked{
 										color: #ec3e48;
+									}
+								}
+							}
+							.ques-contain{
+								.time{
+									display: block;
+								}
+								.answer{
+									margin-left: 0;
+									em{
+										margin: 0;
+										padding-right: 5px;
 									}
 								}
 							}
