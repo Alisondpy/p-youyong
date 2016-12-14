@@ -525,14 +525,19 @@ $height: 172px;
     .item {
         width: 295px;
         height: 209px;
+        overflow: hidden;
         img {
             width: 295px;
             height: 209px;
+            transition: 0.6s;
+            &:hover{
+                transform: scale(1.1);
+            }
         }
         position: relative;
         &:hover {
             .mask {
-                background: $BgNormalColor;
+                background: $hoverColor;
                 opacity: 1;
                 filter: alpha(opacity=100);
             }
@@ -560,6 +565,7 @@ $height: 172px;
         background: #000;
         opacity: 0.5;
         filter: alpha(opacity=50);
+        transition: all .6s linear;
     }
     .tab-container{
         position: relative;

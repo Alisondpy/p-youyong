@@ -55,7 +55,6 @@ define(function(require, exports, module) {
     });
 
     var isSendPlayTime = true;
-    var isLayer = false;
     var isYou = false;
     //视频加载失败
     player.on('error',function(){
@@ -77,22 +76,6 @@ define(function(require, exports, module) {
                 isSendPlayTime = true;
             });
         }
-        if(player.getTotalTime() && (seconds == player.getTotalTime()) && (player.getTotalTime() != 0) && (examId != '') && (seconds != 0)){
-            if(!isLayer){
-                box.confirm('是否进入考试页面？',
-                    function() {
-                        box.loadUrl($PAGE_DATA['examUrl'] + '?examId=' + examId + '?prepare&bizType=0&bizId=' + lessonId + '&courseId=' + sourceId, {
-                            title: '考试',
-                            className: 'ui-test-box',
-                            fixed: true,
-                            width: $(window).width(),
-                            height: $(window).height()
-                        });
-                    },
-                    function() {}, this);
-                isLayer = true;
-            }
-        }
         if (!isYou) {
             if (seconds > 60) {
                 if (!Login.isLogin()){
@@ -105,6 +88,25 @@ define(function(require, exports, module) {
                     isYou = true;
                 }
             }
+        }
+    });
+    //视频播放结束
+    player.on('ended',function(){
+        console.log(examId);
+        if(examId != ''){
+            box.confirm('是否进入考试页面？',
+                function() {
+                    box.loadUrl($PAGE_DATA['examUrl'] + '?examId=' + examId + '?prepare&bizType=0&bizId=' + lessonId + '&courseId=' + sourceId, {
+                        title: '考试',
+                        className: 'ui-test-box',
+                        fixed: true,
+                        width: $(window).width(),
+                        height: $(window).height()
+                    });
+                },
+                function() {
+
+                }, this);
         }
     });
     //====================播放器 end
@@ -390,11 +392,9 @@ define(function(require, exports, module) {
 
     //评论focus效果
     jTab.on('focus', '.jTxt', function() {
-        $(this).addClass('text-focus');
         $(this).css('color', '#333');
     }).on('blur', '.jTxt', function() {
         if ($(this).val() === '') {
-            $(this).removeClass('text-focus');
             $(this).css('color', '#ccc');
         }
     });
