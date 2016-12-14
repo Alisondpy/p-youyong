@@ -90,9 +90,12 @@
                             <!--未参加过考试-->
                                 {{if value.isExamed == 0}}
                                     <div class="mod-in-exam">
-                                        <a href="javascript:;" class="join-exam">参加考试</a>
                                         {{if value.intervalExamEndMinute != 0}}
+                                            <a href="javascript:;" class="join-exam">参加考试</a>
                                             <p>离考试结束还有{{value.intervalExamEndMinute}}天</p>
+                                        {{/if}}
+                                        {{if value.intervalExamEndMinute == 0}}
+                                            <a href="javascript:;" class="join-exam mt-20">参加考试</a>
                                         {{/if}}
                                     </div>
                                 {{/if}}
@@ -107,9 +110,12 @@
                                                 <!--<a href="javascript:;" class="view-page">分析报告</a>-->
                                             </h6>
                                             <div class="mod-in-exam f-l exam-restart">
-                                                <a href="javascript:;" class="join-exam">重新考试</a>
                                                  {{if value.intervalExamEndMinute != 0}}
+                                                    <a href="javascript:;" class="join-exam">重新考试</a>
                                                     <div>离考试结束还有{{value.intervalExamEndMinute}}天</div>
+                                                {{/if}}
+                                                {{if value.intervalExamEndMinute == 0}}
+                                                    <a href="javascript:;" class="join-exam mt-20">重新考试</a>
                                                 {{/if}}
                                             </div>
                                         </div>
@@ -123,9 +129,12 @@
                                                 <!--<a href="javascript:;" class="view-page">分析报告</a>-->
                                             </h6>
                                             <div class="mod-in-exam f-l exam-restart">
-                                                <a href="javascript:;" class="join-exam">重新考试</a>
                                                 {{if value.intervalExamEndMinute != 0}}
-                                                        <div>离考试结束还有{{value.intervalExamEndMinute}}天</div>
+                                                    <a href="javascript:;" class="join-exam">重新考试</a>
+                                                    <div>离考试结束还有{{value.intervalExamEndMinute}}天</div>
+                                                {{/if}}
+                                                {{if value.intervalExamEndMinute == 0}}
+                                                    <a href="javascript:;" class="join-exam mt-20">重新考试</a>
                                                 {{/if}}
                                             </div>
                                         </div>
