@@ -12,8 +12,10 @@ define(function(require, exports, module) {
         }
         _this.el = $(selector);
         _this._id = _this.el.attr('id');
-        _this._playId = '_player-' + _this._id;
-        _this._gLoadedHandler = 'gLoadedHandler-' + _this._id;
+        _this._guid = Util.guid();
+        _this._playId = '_player' + _this._guid;
+        _this._playing = false;
+        _this._initGlobalEvent();
         var defaults = {
             interval: 1000, //是否需要启动监听，如果大于0就监听，最好大于1000ms
             swfPlayer: $PAGE_DATA['ckplayer'] || '', //必填
@@ -52,12 +54,12 @@ define(function(require, exports, module) {
                 wh: '', //这是6.2新增加的宽高比，可以自己定义视频的宽高或宽高比如：wh:'4:3',或wh:'1080:720'
                 ct: '2', //6.2新增加的参数，主要针对有些视频拖动时时间出错的修正参数，默认是2，自动修正，1是强制修正，0是强制不修正
                 drift: '',
-                loaded: _this._gLoadedHandler,
+                loaded: _this._handlerList.loaded,
                 my_url: encodeURIComponent(window.location.href) //本页面地址
             }
         };
         _this.options = $.extend(true, {}, defaults, options);
-        var _t = CKobject.embedSWF(_this.options.swfPlayer, _this._id, _this._playId, _this.options.embed.width, _this.options.embed.height, _this.options.flash, _this.options.params);
+        CKobject.embedSWF(_this.options.swfPlayer, _this._id, _this._playId, _this.options.embed.width, _this.options.embed.height, _this.options.flash, _this.options.params);
         _this._init();
         _this._initEvent();
     };
@@ -67,19 +69,77 @@ define(function(require, exports, module) {
 
     Player.prototype._init = function() {
         var _this = this;
-        _this.CKobject = CKobject;
         _this.player = _this.get();
         _this._embed = _this.el.find('embed');
+    }
+
+    Player.prototype._initHandlerList = function() {
+        var _this = this;
+        _this._handlerList = {};
+        //http://www.ckplayer.com/manual/9/50.htm
+        var HANDLER_LIST = [
+            'loaded',
+            'play',
+            'pause',
+            'time',
+            'ended',
+            'error'
+        ];
+        for (var i = 0, len = HANDLER_LIST.length; i < len; i++) {
+            _this._handlerList[HANDLER_LIST[i]] = HANDLER_LIST[i] + _this._guid
+        }
+    }
+
+    Player.prototype._initGlobalEvent = function() {
+        var _this = this;
+        _this._initHandlerList();
+        var handlerList = _this._handlerList;
+        //初始化播放
+        window[handlerList.loaded] = function() {
+            var player = _this.get();
+            if (player) {
+                player.addListener('play', handlerList.play);
+                player.addListener('pause', handlerList.pause);
+                player.addListener('time', handlerList.time);
+                player.addListener('ended', handlerList.ended);
+                player.addListener('error', handlerList.error);
+            }
+        };
+        //播放事件
+        window[handlerList.play] = function() {
+            _this._playing = true;
+            _this.emit('play');
+        };
+        //暂停事件
+        window[handlerList.pause] = function() {
+            _this._playing = false;
+            _this.emit('pause');
+        };
+        //播放进度
+        window[handlerList.time] = function(seconds) {
+            if (_this.options.interval > 0 && !_this._interval) {
+                _this._interval = setInterval(function(seconds) {
+                    if (_this._playing) {
+                        _this.emit('time', _this.getCurrentTime());
+                    }
+                }, _this.options.interval);
+            }
+        };
+        //播放结束
+        window[handlerList.ended] = function() {
+            _this._playing = false;
+            _this.emit('ended');
+        };
+        //初始化错误
+        window[handlerList.error] = function() {
+            _this._playing = false;
+            _this.emit('initError');
+        };
     }
 
     Player.prototype._initEvent = function() {
         var _this = this;
         //事件监听
-        if (_this.options.interval > 0) {
-            setInterval(function() {
-                _this.emit('time', _this.getStatus().time);
-            }, _this.options.interval);
-        }
     }
 
     //播放
@@ -141,7 +201,7 @@ define(function(require, exports, module) {
     //获取当前视频总时间
     Player.prototype.getTotalTime = function() {
         var _this = this;
-        if(_this.player){
+        if (_this.player) {
             return _this.player.getStatus().totalTime;
         }
         return 0;
@@ -150,7 +210,7 @@ define(function(require, exports, module) {
     //获取当前播放时间
     Player.prototype.getCurrentTime = function() {
         var _this = this;
-        if(_this.player){
+        if (_this.player) {
             return _this.player.getStatus().time;
         }
         return 0;
@@ -159,7 +219,7 @@ define(function(require, exports, module) {
     //获取当前播放器状态 详情见：http://www.ckplayer.com/manual/13/54.htm
     Player.prototype.getStatus = function() {
         var _this = this;
-        if(_this.player){
+        if (_this.player) {
             return _this.player.getStatus();
         }
         return {};
@@ -168,7 +228,7 @@ define(function(require, exports, module) {
     //得到当前播放器
     Player.prototype.get = function() {
         var _this = this;
-        return _this.CKobject.getObjectById(_this._playId);
+        return CKobject.getObjectById(_this._playId);
     }
 
     module.exports = Player;
