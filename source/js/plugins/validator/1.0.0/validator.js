@@ -107,7 +107,7 @@ define(function(require, exports, module) {
         }
     }, {
         name: 'password',
-        text: '请输入6-16位密码，区分大小写，不能使用空格！',
+        text: '请输入6-16位密码，不能使用空格！',
         func: function(v, elem) {
             return this.optional(elem) ||  /^[\S]{6,16}$/.test(v);
         }
