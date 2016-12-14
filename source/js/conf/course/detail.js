@@ -51,7 +51,9 @@ define(function(require, exports, module) {
 
     /* 渲染分页列表 */
     var lazy, pager;
-
+    var jWrap0Box = $('#jWrap0Box');
+    var jSubNav = $('#jSubNav');
+    var jWrap0BoxDetail = $('#jWrap0BoxDetail');
     function renderList(url, data, tmpEl, htmEl, pagEl) {
         if (typeof pager !== 'undefined') {
             pager.destroy();
@@ -77,6 +79,24 @@ define(function(require, exports, module) {
             if (!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0) {
                 var html = template(tmpEl, res.data);
                 document.getElementById(htmEl).innerHTML = html;
+
+                //判断目录是否大于一条
+                var dirLen = $('#jWrap0Box').find('.dir').length;
+                if(dirLen == 1 || dirLen == 0){
+                    jWrap0Box.html(jWrap0BoxDetail.children().clone());
+                    jSubNav.find('a').each(function(){
+                        if($(this).attr('data-target') == '1'){
+                            $(this).text('详情');
+                        }
+                    });
+                }else {
+                    jSubNav.find('a').each(function(){
+                        if($(this).attr('data-target') == '1'){
+                            $(this).text('目录');
+                        }
+                    });
+                }
+
                 //图片懒加载
                 lazy = new Lazyload($("#" + htmEl).find('.jImg'), {
                     mouseWheel: true,
@@ -200,11 +220,11 @@ define(function(require, exports, module) {
     //评论focus效果
     wrap1.on('focus', '.jTxt', function() {
         $('.jArrow').addClass('arrow-focus');
-        $(this).addClass('text-focus').attr('placeholder', '');
+        $(this).addClass('text-focus');
         $(this).css('color', '#333');
     }).on('blur', '.jTxt', function() {
         if ($(this).val() === '') {
-            $(this).removeClass('text-focus').attr('placeholder', '看点糟点，不吐不快！别憋着，马上大声说出来吧！');
+            $(this).removeClass('text-focus');
             $('.jArrow').removeClass('arrow-focus');
             $(this).css('color', '#ccc');
         }
@@ -286,23 +306,4 @@ define(function(require, exports, module) {
     window.pager = function() {
         pager.pagination.selectPage(pager.pagination.get('currentPage'));
     };
-
-    var jWrap0Box = $('#jWrap0Box');
-    var jSubNav = $('#jSubNav');
-    var jWrap0BoxDetail = $('#jWrap0BoxDetail');
-    var dirLen = $('#jWrap0Box').find('.dir').length;
-    if(dirLen == 1 || dirLen == 0){
-        jWrap0Box.html(jWrap0BoxDetail.clone());
-        jSubNav.find('a').each(function(){
-            if($(this).attr('data-target') == '1'){
-                $(this).text('详情');
-            }
-        });
-    }else {
-        jSubNav.find('a').each(function(){
-            if($(this).attr('data-target') == '1'){
-                $(this).text('目录');
-            }
-        });
-    }
 });

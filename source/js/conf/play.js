@@ -272,6 +272,15 @@ define(function(require, exports, module) {
             if (!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0) {
                 var html = template(temEl, res.data);
                 document.getElementById(htmlEl).innerHTML = html;
+
+                //选中状态
+                var jStatus = $('.jStatus');
+                jStatus.each(function(){
+                    if($(this).attr('data-id') == lessonId){
+                        console.log($(this).attr('data-id'),lessonId);
+                        $(this).find('.iyoyo').attr('class','').addClass('iyoyo iyoyo-pause');
+                    }
+                });
                 //图片懒加载
                 lazy = new Lazyload($("#" + htmlEl).find('.jImg'), {
                     mouseWheel: true,

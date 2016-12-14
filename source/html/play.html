@@ -24,6 +24,7 @@
             courseId: 1,
             lessonId:2
         };
+        $PAGE_DATA['lessonId'] = '1001',
         //目录请求地址
         $PAGE_DATA['dirUrl'] = $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json';
         $PAGE_DATA['examUrl'] = $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json';
@@ -188,7 +189,7 @@
     </script>
     <script id="tDir" type="text/html">
         {{each resultList as value i}}
-        <div class="status">
+        <div class="status jStatus" data-id="{{value.id}}">
             {{if value.studyState == 3}}
             <i class="iyoyo iyoyo-ok"></i>
             {{/if}}
