@@ -540,7 +540,17 @@ a {
                     }
                 }
                 .activeLike {
+                    padding-right: 30px;
+                    position: relative;
                     color: #ea3e48;
+                    i {
+                        position: absolute;
+                        top:-3px;
+                        left: -22px;
+                        font-size: 16px;
+                        margin-right: 8px;
+
+                    }
                 }
             }
         }
