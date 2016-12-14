@@ -3080,7 +3080,7 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         }
     }, {
         name: "password",
-        text: "请输入6-16位密码，区分大小写，不能使用空格！",
+        text: "请输入6-16位密码，不能使用空格！",
         func: function(e, t) {
             return this.optional(t) || /^[\S]{6,16}$/.test(e);
         }
@@ -3274,7 +3274,6 @@ define("conf/forget-pwd", [ "require", "exports", "module", "jquery", "lib/ui/bo
         }, function(e) {
             i(".jnewPwd").show();
             i("#jNextStep").removeClass("jNextStep").val("提交");
-            i("#jDynamic").removeAttr("disabled");
         }, function(e) {
             e.msg ? r.error(e.msg) : r.error("网络错误");
         });

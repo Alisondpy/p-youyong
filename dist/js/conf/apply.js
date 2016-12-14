@@ -2844,7 +2844,7 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         }
     }, {
         name: "password",
-        text: "请输入6-16位密码，区分大小写，不能使用空格！",
+        text: "请输入6-16位密码，不能使用空格！",
         func: function(e, t) {
             return this.optional(t) || /^[\S]{6,16}$/.test(e);
         }
