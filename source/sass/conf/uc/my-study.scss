@@ -30,7 +30,7 @@ body {
             }
         }
         .mod-item {
-        	&.deleting {
+            &.deleting {
                 .item {
                     .d-zone {
                         .load {
@@ -48,12 +48,16 @@ body {
                 .picture {
                     width: 176px;
                     height: 105px;
-                    line-height: 105px;
-                    text-align: center;
                     overflow: hidden;
+                    a{
+                        display: inline-block;
+                        width: 176px;
+                        height: 105px;
+                        line-height: 105px;
+                        text-align: center;
+                    }
                     img {
-                        max-width: 176px;
-                        max-height: 105px;
+                        height: 100%;
                     }
                 }
                 .contain {
@@ -61,16 +65,19 @@ body {
                     .title {
                         .hit {
                             display: inline-block;
-                            max-width: 120px;
+                            vertical-align: middle;
                             font-size: 16px;
+                            font-weight: 700;
+                            max-width: 350px;
                         }
                         .describe {
+                            vertical-align: middle;
                             display: inline-block;
                             padding: 0 1px;
                             color: #44687d;
                             border: 1px solid #44687d;
                             font-size: 12px;
-                            margin: 2px 0 0 10px;
+                            margin-left: 10px;
                         }
                     }
                     .contain-down {
@@ -106,7 +113,7 @@ body {
                         }
                         .num {
                             color: #44687d;
-                            font-weight:600;
+                            font-weight: 600;
                         }
                         .txt {
                             color: #aaaaaa;
@@ -126,4 +133,3 @@ body {
         }
     }
 }
-

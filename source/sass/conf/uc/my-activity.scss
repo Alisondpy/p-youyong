@@ -48,19 +48,26 @@ body {
                 .picture {
                     width: 176px;
                     height: 105px;
-                    line-height: 105px;
-                    text-align: center;
                     overflow: hidden;
+                    a{
+                        display: inline-block;
+                        width: 176px;
+                        height: 105px;
+                        line-height: 105px;
+                        text-align: center;
+                    }
                     img {
-                        max-width: 176px;
-                        max-height: 105px;
+                        height:100%; 
                     }
                 }
                 .contain {
                     padding-left: 20px;
                     .title {
                         .hit {
+                            display: inline-block;
+                            width:500px; 
                             font-size: 16px;
+                            font-weight: 700;
                         }
                     }
                     .contain-down {
