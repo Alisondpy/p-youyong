@@ -16,6 +16,7 @@ define(function (require, exports, module) {
     var fixBar = new FixBar();
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
+    var  liveUrl = $PAGE_DATA['liveUrl'];
     //判断用户是否登录
     var userLogin = Login.isLogin();
     $("#jReport").on("click", function (){
@@ -39,5 +40,21 @@ define(function (require, exports, module) {
                 box.error(res.msg || '网络异常，请重试');
             }
         )
-    })
+    });
+
+    //直播跳转
+
+    $("#jLive").on("click", function () {
+        if(userLogin){
+            io.get(liveUrl, function (res) {
+                    window.location.href = res.liveshowUrl;
+                },
+                function (res) {
+                    box.error(res.msg || '网络异常，请重试');
+                }
+            )
+        }else{
+            Login.login();
+        }
+    });
 });
