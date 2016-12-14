@@ -10,7 +10,7 @@
 .header .nav {position: relative;}
 .header .search input{box-sizing:border-box;border:1px solid #d7d7d7;width: 149px;height: 36px;border-radius: 5px;padding:0 41px 0 15px;position: absolute;top:50%;left:-162px;margin-top: -16px;}
 .header .search input:focus{border: 1px solid #53be45;border-radius: 5px;}
-.header .login{width: 120px; text-align: center;padding: 28px 0px;}
+.header .login{width: 120px; text-align: center;padding: 28px 0;}
 .header .login span{display: inline-block;width: 16px;height: 9px;background: url("../../../images/course/arrowD-icon.png")no-repeat;margin-left: 10px;}
 .header .login img{width: 43px;height: 43px;border-radius: 100%;}
 .header .login-pop{width:120px;display: none;position: absolute; top:100%;left:0;text-align: center;background: #fcfcfc;}
@@ -19,7 +19,7 @@
 .header .login:hover{background: #fcfcfc;}
 .header .login:hover span{background: url("../../../images/course/arrowD-hover.png") no-repeat;}
 .header .login:hover .login-pop{display: block;}
-.mod-header .login-box .btn{display:inline;}
+.mod-header .login-box .btn{display:inline;font-size: 18px;}
   /*暴走大学样式by dpy*/
 h1,h2,h3,h4,h5,h6 {font-size: 100%;font-weight:normal;}
 em, i {  font-style: normal}
