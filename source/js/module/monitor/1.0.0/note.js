@@ -33,6 +33,7 @@ define(function(require, exports, module) {
 		_this._init();
 		_this._initEvent();
 		_this.max = 0;
+		_this.min = 0;
 		_this.isFist = true;
 	}
 
@@ -75,6 +76,7 @@ define(function(require, exports, module) {
 		_this.pollingList.on('success', function(data) {
 			//如果刷新成功，并且有更新，直接用html替换
 			if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
+				_this.min = data.data.resultList[data.data.resultList.length - 1].id;
 				_this.pollingList.html(_this.template(data.data));
 				_this.pollingList.setData({
 					id:data.data.resultList[0].id
@@ -99,9 +101,12 @@ define(function(require, exports, module) {
 		_this.pollingList.on('pullup', function(e) {
 			if (!_this._isPulling) {
 				_this._isPulling = true;
-				IO[pagerAjax.type](pagerAjax.url, pagerAjax.data, function(data) {
-					_this._isPulling = false;
-					_this.pollingList.append(_this.template(data.data));
+				IO[pagerAjax.type](pagerAjax.url, $.extend({},pagerAjax.data,{id:_this.min}), function(data) {
+					if (data && data.data && data.data.resultList && data.data.resultList.length > 0) {
+						_this.min = data.data.resultList[data.data.resultList.length - 1].id;
+						_this._isPulling = false;
+						_this.pollingList.append(_this.template(data.data));
+					}
 				}, function(data) {
 					_this._isPulling = false;
 					_this.pollingList.html(template('tEmpty',1));

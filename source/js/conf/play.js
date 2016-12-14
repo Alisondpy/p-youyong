@@ -47,6 +47,7 @@ define(function(require, exports, module) {
             height: '655'
         },
         flash: {
+            p: 1,
             i: $PAGE_DATA['lessonImageUrl'], //初始图片地址
             g: $PAGE_DATA['startTime'] || 0,
             f: $PAGE_DATA['m3u8'], //必填 请别跨域 要播放文件的路径
@@ -179,10 +180,18 @@ define(function(require, exports, module) {
                 renderTemp($PAGE_DATA['note'].note, reqNoteData1, 'tAnswer', 'jNoteTab1');
                 break;
             case '1': //笔记全部
-                var reqNoteData2 = {
+                var reqNoteData2Max = {
                     id: 0,
                     pageSize: 20,
                     sortType: 1,
+                    showType: 0,
+                    sourceType: 2,
+                    sourceId: lessonId
+                }
+                var reqNoteData2Min = {
+                    id: 0,
+                    pageSize: 20,
+                    sortType: 0,
                     showType: 0,
                     sourceType: 2,
                     sourceId: lessonId
@@ -195,11 +204,11 @@ define(function(require, exports, module) {
                     note = new Note('#jNoteTab2', {
                         pollingAjax: {
                             url: $PAGE_DATA['note'].note,
-                            data: reqNoteData2
+                            data: reqNoteData2Max
                         },
                         pagerAjax: {
                             url: $PAGE_DATA['note'].note,
-                            data: reqNoteData2
+                            data: reqNoteData2Min
                         }
                     });
                 }
@@ -222,10 +231,17 @@ define(function(require, exports, module) {
                 renderTemp($PAGE_DATA['question'].question,reqQuesData1,'tQuestion','jQuestionTab1');
                 break;
             case '3': //问答全部
-                var reqNoteData2 = {
+                var reqQuestionData2Max = {
                     id: 0,
                     pageSize: 20,
                     sortType: 1,
+                    showType: 0,
+                    sourceType: 2,
+                    sourceId: lessonId
+                }
+                var reqQuestionData2Min = {
+                    pageSize: 20,
+                    sortType: 0,
                     showType: 0,
                     sourceType: 2,
                     sourceId: lessonId
@@ -239,11 +255,11 @@ define(function(require, exports, module) {
                     question = new Question('#jQuestionTab2', {
                         pollingAjax: {
                             url: $PAGE_DATA['question'].question,
-                            data: reqNoteData2
+                            data: reqQuestionData2Max
                         },
                         pagerAjax: {
                             url: $PAGE_DATA['question'].question,
-                            data: reqNoteData2
+                            data: reqQuestionData2Min
                         }
                     });
                 }
