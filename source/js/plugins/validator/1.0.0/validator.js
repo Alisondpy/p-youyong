@@ -95,7 +95,7 @@ define(function(require, exports, module) {
         }
     }, {
         name: 'qq',
-        text: '请输入5-11位QQ号码',
+        text: '请正确填写您的QQ号',
         func: function(v, elem) {
             return this.optional(elem) || /^\d{5,11}$/.test(v);
         }
