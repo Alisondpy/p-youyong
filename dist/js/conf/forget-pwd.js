@@ -781,18 +781,18 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             e = t = null;
             return r;
         }());
-    }, T = function() {
+    }, j = function() {
         return {
             x: f.scrollLeft(),
             y: f.scrollTop()
         };
-    }, j = function(e) {
+    }, T = function(e) {
         return {
             w: e.width(),
             h: e.height()
         };
     }, z = function() {
-        return j(c);
+        return T(c);
     }, E = function(e) {
         var t = k(e), n = t ? r(e).offset() : {
             left: e.pageX,
@@ -801,7 +801,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         e = t ? e : e.target;
         var i = e.ownerDocument;
         if (i === u.document) return n;
-        var o = i.defaultView || i.parentWindow, s = o.frameElement, a = T(), l = r(s).offset();
+        var o = i.defaultView || i.parentWindow, s = o.frameElement, a = j(), l = r(s).offset();
         return {
             left: n.left + l.left - a.x,
             top: n.top + l.top - a.y
@@ -827,7 +827,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var e = l.activeElement, t = e.contentDocument;
             return t && t.activeElement || e;
         } catch (n) {}
-    }, I = function(e) {
+    }, F = function(e) {
         e = e || "";
         var t = {
             auto: !0
@@ -991,7 +991,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             } catch (t) {}
         },
         center: function() {
-            var e = this._popup, t = this._.fixed, n = T(), i = z(), r = j(e), o = t ? 0 : n.x, s = t ? 0 : n.y, a = (i.w - r.w) / 2 + o, u = .382 * (i.h - r.h) + s;
+            var e = this._popup, t = this._.fixed, n = j(), i = z(), r = T(e), o = t ? 0 : n.x, s = t ? 0 : n.y, a = (i.w - r.w) / 2 + o, u = .382 * (i.h - r.h) + s;
             e.css({
                 left: g(A(a), o),
                 top: g(A(u), s)
@@ -1004,11 +1004,11 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             var a = s.offset();
             if (a.left * a.top < 0) return n.center();
             t = t || i.align;
-            var u = I(t), l = u.align, c = !u.auto;
+            var u = F(t), l = u.align, c = !u.auto;
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && o.removeClass(f);
-            var d = i.fixed, h = z(), p = T(), v = L(o), g = S(o), b = E(e), x = L(s), C = S(s), _ = b.left, k = b.top, q = d ? _ - p.x : _, j = d ? k - p.y : k, N = d ? 0 : p.x, R = d ? 0 : p.y, F = N + h.w - v, M = R + h.h - g, $ = {
+            var d = i.fixed, h = z(), p = j(), v = L(o), g = S(o), b = E(e), x = L(s), C = S(s), _ = b.left, k = b.top, q = d ? _ - p.x : _, T = d ? k - p.y : k, N = d ? 0 : p.x, R = d ? 0 : p.y, I = N + h.w - v, M = R + h.h - g, $ = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1019,20 +1019,20 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 l: "left",
                 r: "left"
             }, P = {}, D = [ {
-                t: j - g,
-                b: j + C,
+                t: T - g,
+                b: T + C,
                 l: q - v,
                 r: q + x
             }, {
-                t: j,
-                b: j - g + C,
+                t: T,
+                b: T - g + C,
                 l: q,
                 r: q - v + x
             } ], B = {
                 l: q + y((x - v) / 2),
-                t: j + y((C - g) / 2)
+                t: T + y((C - g) / 2)
             }, H = {
-                left: [ N, F ],
+                left: [ N, I ],
                 top: [ R, M ]
             };
             c || w(l, function(e, t) {
@@ -1047,26 +1047,26 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             D[0][U] = D[0][U] + 10 * ("tl".indexOf(U) !== -1 ? -1 : 1);
             P[O[l[0]]] = A(D[0][l[0]]);
             P[O[l[1]]] = A(D[1][l[1]]);
-            var V = m + "-" + U;
-            o.css(P).addClass(V);
-            n._dirClass = V;
-            var W = n.$("arrow", 1), Y = n.$("inner", 1);
-            if (!W) {
-                if (!Y) return n;
-                W = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Y);
+            var W = m + "-" + U;
+            o.css(P).addClass(W);
+            n._dirClass = W;
+            var V = n.$("arrow", 1), Z = n.$("inner", 1);
+            if (!V) {
+                if (!Z) return n;
+                V = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Z);
             }
-            var Z, Q, X = "top" !== O[U], G = [ "v", "h" ][1 ^ X], J = L(W), K = S(W), ee = {}, te = X ? "left" : "top";
+            var Y, Q, X = "top" !== O[U], G = [ "v", "h" ][1 ^ X], J = L(V), K = S(V), ee = {}, te = X ? "left" : "top";
             switch (G) {
               case "h":
-                Z = y(_ + (x - J) / 2);
-                ee.left = Z;
+                Y = y(_ + (x - J) / 2);
+                ee.left = Y;
                 break;
 
               case "v":
                 Q = y(k + (C - K) / 2);
                 ee.top = Q;
             }
-            W.offset(ee).css(te, "");
+            V.offset(ee).css(te, "");
             return n;
         }
     });
@@ -1902,7 +1902,7 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
         if ("function" != typeof _) throw "Error, cannot found the specific type loader (type: `" + C + "`)";
         "html" === C && (w.placeholder = "");
         u && e.extend(w, u);
-        var A = w.container, k = w.event, q = 0 === k.indexOf("scroll"), T = A && A !== s ? e(A) : a, j = function(t) {
+        var A = w.container, k = w.event, q = 0 === k.indexOf("scroll"), j = A && A !== s ? e(A) : a, T = function(t) {
             var i = v._list;
             if (i.length > 0) {
                 var r = 0;
@@ -1972,9 +1972,9 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
             }
         }, R = function(t) {
             if (!t._inited) {
-                var i = r(j, 30);
+                var i = r(T, 30);
                 t._inited = !0;
-                q && T.on(k, i);
+                q && j.on(k, i);
                 a.on("resize", i);
                 if (l) {
                     var o = function(i) {
@@ -1989,24 +1989,24 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
                 }
                 t.once("reset", function() {
                     n(t._list, function(e, t) {
-                        I(t);
+                        F(t);
                     });
-                    q && T.off(k, i);
+                    q && j.off(k, i);
                     a.off("resize", i);
                 });
-                e(document).ready(j);
+                e(document).ready(T);
             }
-        }, I = function(t) {
+        }, F = function(t) {
             var n = e(t);
             n.off("appear", E);
             q || n.off(k, N);
         };
         v.on("lazyItemReady", function(e) {
-            I(e);
+            F(e);
         });
         v.once("destroy", function() {
             S = null;
-            j = null;
+            T = null;
             z = null;
             E = null;
             N = null;
@@ -2017,7 +2017,7 @@ define("lib/core/1.0.0/io/request", [ "require", "exports", "module", "jquery", 
             var n = e(t);
             n.length > 0 && S(n);
         };
-        v.update = j;
+        v.update = T;
         S(t);
     };
     v.prototype = {
@@ -3198,10 +3198,131 @@ define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ]
     t.setFormData = p;
 });
 
-define("conf/forget-pwd", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0.1/box", "lib/core/1.0.0/io/request", "lib/plugins/lazyload/1.9.3/lazyload", "plugins/validator/1.0.0/validator", "lib/core/1.0.0/utils/form" ], function(e, t, n) {
+define("lib/core/1.0.0/dom/dataset", [ "require", "exports", "module", "jquery" ], function(e, t, n) {
+    "use strict";
+    function i(e) {
+        return e.replace(a, "ms-").replace(u, l);
+    }
+    function r(e) {
+        try {
+            return "true" === e || "false" !== e && ("null" === e ? null : +e + "" === e ? +e : c.test(e) ? s.parseJSON(e) : e);
+        } catch (t) {}
+    }
+    function o(e, t, n) {
+        var i;
+        if (void 0 === n && 1 === e.nodeType) {
+            i = "data-" + t.replace(f, "-$&").toLowerCase();
+            n = e.getAttribute(i);
+            "string" != typeof n && (n = void 0);
+        }
+        return n;
+    }
+    var s = (window.document, e("jquery")), a = /^-ms-/, u = /-([\da-z])/gi, l = function(e, t) {
+        return t.toUpperCase();
+    }, c = /^(?:\{[\w\W]*\}|\[[\w\W]*\])$/, f = /[A-Z]/g, d = function(e, t, n) {
+        if (!e || 1 !== e.nodeType) throw new TypeError("dataset(): Not a valid DOM element.");
+        var s, a, u, l;
+        if (1 === arguments.length) {
+            if (u = e.dataset) {
+                l = {};
+                for (a in u) u.hasOwnProperty(a) && (l[a] = r(u[a]));
+                return l;
+            }
+            u = e.attributes;
+            s = u.length;
+            l = {};
+            for (;s--; ) if (u[s]) {
+                a = u[s].name;
+                if (0 === a.indexOf("data-")) {
+                    a = i(a.slice(5));
+                    l[a] = r(o(e, a));
+                }
+            }
+            return l;
+        }
+    };
+    n.exports = d;
+});
+
+define("lib/core/1.0.0/dom/build", [ "require", "exports", "module", "jquery", "./dataset" ], function(e, t, n) {
+    "use strict";
+    function i(e, t, n, i) {
+        i ? e[t] || (e[t] = n) : e[t] ? e[t] = e[t].add(n) : e[t] = o(n);
+    }
+    var r = window.document, o = e("jquery"), s = function(e, t, n) {
+        var s, a, u, l, c, f = function(e) {
+            if (n) for (var r in n) u[r] = o(n[r].toString(), e); else {
+                u = {};
+                l = o("[node-type]", e);
+                for (var s, a = -1, c = l.length; ++a < c; ) {
+                    s = l[a];
+                    r = s.getAttribute("node-type");
+                    i(u, r, s, t);
+                }
+            }
+        }, d = function(e) {
+            var n, r = u[e];
+            if (!r || 0 === r.length) {
+                n = o('[node-type="' + e + '"]', s);
+                n.length && i(u, e, n, t);
+                r = u[e];
+            }
+            return r;
+        };
+        void 0 === t && (t = !0);
+        s = e;
+        if ("string" == typeof e && "<" === e.charAt(0)) {
+            s = r.createElement("div");
+            s.innerHTML = e;
+            a = r.createDocumentFragment();
+            for (;c = s.firsChild; ) a.appendChild(c);
+        } else {
+            s = o(e);
+            a = s[0];
+        }
+        f(s);
+        return {
+            get: d,
+            box: a,
+            list: u
+        };
+    };
+    t.build = s, t.parse = function(e, t, n) {
+        "object" == typeof e && e.length > 0 && (e = e[0]);
+        if (!e || 1 !== e.nodeType) throw TypeError("parse error, not a valid html element");
+        if ("boolean" == typeof n) {
+            t = n;
+            n = null;
+        }
+        return s(e, t, n).list;
+    };
+    t.dataset = e("./dataset");
+});
+
+define("module/footer/1.0.0/footer", [ "require", "exports", "module", "jquery", "lib/plugins/lazyload/1.9.3/lazyload", "lib/core/1.0.0/dom/build" ], function(e, t, n) {
+    "use strict";
+    function i(e) {
+        var t = this, n = {
+            selector: "#jFooter"
+        };
+        t.options = r.extend(!0, {}, n, e);
+        t.el = r(t.options.selector);
+        if (0 == t.el.length) throw new Error("the params [optins.selector] is required or the [el] is not exist.");
+        t._init();
+    }
+    var r = e("jquery"), o = e("lib/plugins/lazyload/1.9.3/lazyload"), s = e("lib/core/1.0.0/dom/build");
+    i.prototype._init = function() {
+        var e = this, t = s.build(e.el[0], !1), n = t.get("footerImg");
+        new o(n);
+    };
+    n.exports = i;
+});
+
+define("conf/forget-pwd", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0.1/box", "lib/core/1.0.0/io/request", "lib/plugins/lazyload/1.9.3/lazyload", "plugins/validator/1.0.0/validator", "lib/core/1.0.0/utils/form", "module/footer/1.0.0/footer" ], function(e, t, n) {
     "use strict";
     var i = e("jquery"), r = e("lib/ui/box/1.0.1/box"), o = e("lib/core/1.0.0/io/request"), s = (e("lib/plugins/lazyload/1.9.3/lazyload"), 
-    e("plugins/validator/1.0.0/validator"), e("lib/core/1.0.0/utils/form"));
+    e("plugins/validator/1.0.0/validator"), e("lib/core/1.0.0/utils/form")), a = e("module/footer/1.0.0/footer");
+    new a();
     i.validator.addMethod("lms", function(e, t, n) {
         var r = /^0?(13[0-9]|15[0-9]|17[678]|18[0-9]|14[57])[0-9]{8}$/;
         if (r.test(e)) {
@@ -3213,6 +3334,10 @@ define("conf/forget-pwd", [ "require", "exports", "module", "jquery", "lib/ui/bo
     }, i.validator.format("请输入正确的手机号"));
     i(".jMSubBtn").click(function() {
         i("#jsForgetPwd").submit();
+    });
+    i("body").on("keydown", function(e) {
+        var e = e || window.event;
+        13 == e.keyCode && i("#jsForgetPwd").submit();
     });
     i("#jsForgetPwd").validate({
         rules: {

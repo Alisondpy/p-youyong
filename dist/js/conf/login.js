@@ -679,7 +679,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             hideWithAni: "bounceOut:fast"
         };
         t._ = e = x(n, e);
-        e.fixed = !!e.fixed && q();
+        e.fixed = !!e.fixed && T();
         var o = r('<div class="' + m + '" id="' + (e.id || b()) + '" />').css({
             display: "none",
             position: "absolute",
@@ -709,7 +709,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                     backgroundColor: "#000",
                     opacity: .3
                 };
-                q() || x(n, {
+                T() || x(n, {
                     position: "absolute",
                     width: c.width() + "px",
                     height: d.height() + "px"
@@ -765,8 +765,8 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         return u.parseInt(e, 10) || 0;
     }, k = function(e) {
         return e && 1 === e.nodeType;
-    }, q = function() {
-        return q._ || (q._ = function() {
+    }, T = function() {
+        return T._ || (T._ = function() {
             var e = l.createElement("div"), t = e.cloneNode(!1), n = !1, i = l.body || function() {
                 n = !0;
                 return f.appendChild(l.createElement("body"));
@@ -781,7 +781,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             e = t = null;
             return r;
         }());
-    }, T = function() {
+    }, q = function() {
         return {
             x: d.scrollLeft(),
             y: d.scrollTop()
@@ -801,7 +801,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         e = t ? e : e.target;
         var i = e.ownerDocument;
         if (i === u.document) return n;
-        var o = i.defaultView || i.parentWindow, s = o.frameElement, a = T(), l = r(s).offset();
+        var o = i.defaultView || i.parentWindow, s = o.frameElement, a = q(), l = r(s).offset();
         return {
             left: n.left + l.left - a.x,
             top: n.top + l.top - a.y
@@ -820,9 +820,9 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         return 0;
     }, R = function(e) {
         return L(e, "width");
-    }, N = function(e) {
+    }, S = function(e) {
         return L(e, "height");
-    }, S = function() {
+    }, N = function() {
         try {
             var e = l.activeElement, t = e.contentDocument;
             return t && t.activeElement || e;
@@ -891,7 +891,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             }
             i.open = !0;
             i.anchor = a;
-            i._activeElement = S();
+            i._activeElement = N();
             i.emit("beforeShow", t);
             l.appendTo(t.appendTo).css("display", "block");
             i.emit("show", t);
@@ -961,7 +961,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
         focus: function(e) {
             var t = this._, n = this.node, o = this._popup, s = i.current, a = t.zIndex;
             s && s !== this && s.blur(!1);
-            if (!r.contains(n, S())) {
+            if (!r.contains(n, N())) {
                 var u = o.find("[autofocus]")[0];
                 !t.focusing && u ? t.focusing = !0 : u = n;
                 this._focus(u);
@@ -991,7 +991,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             } catch (t) {}
         },
         center: function() {
-            var e = this._popup, t = this._.fixed, n = T(), i = z(), r = j(e), o = t ? 0 : n.x, s = t ? 0 : n.y, a = (i.w - r.w) / 2 + o, u = .382 * (i.h - r.h) + s;
+            var e = this._popup, t = this._.fixed, n = q(), i = z(), r = j(e), o = t ? 0 : n.x, s = t ? 0 : n.y, a = (i.w - r.w) / 2 + o, u = .382 * (i.h - r.h) + s;
             e.css({
                 left: g(A(a), o),
                 top: g(A(u), s)
@@ -1008,7 +1008,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             l && l.length || (l = [ "b" ]);
             var d = n._dirClass;
             d && o.removeClass(d);
-            var f = i.fixed, h = z(), p = T(), v = R(o), g = N(o), b = E(e), x = R(s), C = N(s), _ = b.left, k = b.top, q = f ? _ - p.x : _, j = f ? k - p.y : k, L = f ? 0 : p.x, S = f ? 0 : p.y, F = L + h.w - v, M = S + h.h - g, $ = {
+            var f = i.fixed, h = z(), p = q(), v = R(o), g = S(o), b = E(e), x = R(s), C = S(s), _ = b.left, k = b.top, T = f ? _ - p.x : _, j = f ? k - p.y : k, L = f ? 0 : p.x, N = f ? 0 : p.y, F = L + h.w - v, M = N + h.h - g, $ = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1021,19 +1021,19 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             }, D = {}, P = [ {
                 t: j - g,
                 b: j + C,
-                l: q - v,
-                r: q + x
+                l: T - v,
+                r: T + x
             }, {
                 t: j,
                 b: j - g + C,
-                l: q,
-                r: q - v + x
+                l: T,
+                r: T - v + x
             } ], U = {
-                l: q + y((x - v) / 2),
+                l: T + y((x - v) / 2),
                 t: j + y((C - g) / 2)
             }, B = {
                 left: [ L, F ],
-                top: [ S, M ]
+                top: [ N, M ]
             };
             c || w(l, function(e, t) {
                 P[t][e] > B[O[e]][1] && (e = l[t] = $[e]);
@@ -1055,7 +1055,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!Z) return n;
                 V = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Z);
             }
-            var Y, Q, X = "top" !== O[H], G = [ "v", "h" ][1 ^ X], J = R(V), K = N(V), ee = {}, te = X ? "left" : "top";
+            var Y, Q, X = "top" !== O[H], G = [ "v", "h" ][1 ^ X], J = R(V), K = S(V), ee = {}, te = X ? "left" : "top";
             switch (G) {
               case "h":
                 Y = y(_ + (x - J) / 2);
@@ -3078,7 +3078,7 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
         if ("function" != typeof _) throw "Error, cannot found the specific type loader (type: `" + C + "`)";
         "html" === C && (w.placeholder = "");
         u && e.extend(w, u);
-        var A = w.container, k = w.event, q = 0 === k.indexOf("scroll"), T = A && A !== s ? e(A) : a, j = function(t) {
+        var A = w.container, k = w.event, T = 0 === k.indexOf("scroll"), q = A && A !== s ? e(A) : a, j = function(t) {
             var i = v._list;
             if (i.length > 0) {
                 var r = 0;
@@ -3136,21 +3136,21 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
                 r || n.attr("src", i);
             } else "image" === v._.type || n.children()[0] || n.html(i);
             n.on("appear", E);
-            q || n.on(k, L);
+            T || n.on(k, L);
             v._list.push(t);
-        }, N = function(e) {
+        }, S = function(e) {
             e = i(e || [], p);
             if (e.length) {
                 n(e, function(e, t) {
                     R(t);
                 });
-                v._inited || S(v);
+                v._inited || N(v);
             }
-        }, S = function(t) {
+        }, N = function(t) {
             if (!t._inited) {
                 var i = r(j, 30);
                 t._inited = !0;
-                q && T.on(k, i);
+                T && q.on(k, i);
                 a.on("resize", i);
                 if (l) {
                     var o = function(i) {
@@ -3167,7 +3167,7 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
                     n(t._list, function(e, t) {
                         I(t);
                     });
-                    q && T.off(k, i);
+                    T && q.off(k, i);
                     a.off("resize", i);
                 });
                 e(document).ready(j);
@@ -3175,13 +3175,13 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
         }, I = function(t) {
             var n = e(t);
             n.off("appear", E);
-            q || n.off(k, L);
+            T || n.off(k, L);
         };
         v.on("lazyItemReady", function(e) {
             I(e);
         });
         v.once("destroy", function() {
-            N = null;
+            S = null;
             j = null;
             z = null;
             E = null;
@@ -3191,10 +3191,10 @@ define("lib/core/1.0.0/io/cookie", [ "require", "exports", "module" ], function(
         v._list = [];
         v.add = function(t) {
             var n = e(t);
-            n.length > 0 && N(n);
+            n.length > 0 && S(n);
         };
         v.update = j;
-        N(t);
+        S(t);
     };
     v.prototype = {
         constructor: v,
@@ -3541,6 +3541,13 @@ define("conf/login", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
     });
     s(".jSubBtn").click(function() {
         s("#jRightLoginMobile").submit();
+    });
+    s("body").on("keydown", function(e) {
+        var e = e || window.event;
+        if (13 == e.keyCode) {
+            0 == s(".jsTab").find(".active").index() ? s(".jMSubBtn").click() : 1 == s(".jsTab").find(".active").index() && s(".jSubBtn").click();
+            e.returnValue = !1;
+        }
     });
     s(".jsTab").on("click", "span", function() {
         if (s(this).hasClass("active")) return !1;
