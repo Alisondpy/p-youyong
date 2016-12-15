@@ -190,10 +190,10 @@ define(function(require, exports, module) {
 
     subForm();
 
-    $(".jMSubBtn").click(function(){
+    jMSubBtn.click(function(){
         $("#jInfoForm").submit();
     })
-    $(".jSubBtn").click(function(){
+    jSubBtn.click(function(){
         $("#jFormPwd").submit();
     })
 
