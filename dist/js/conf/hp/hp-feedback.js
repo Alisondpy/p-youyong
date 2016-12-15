@@ -1040,11 +1040,11 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         name: "realname",
         text: "姓名需2-10个汉字之间",
         func: function(e, t) {
-            return this.optional(t) || /([\u4e00-\u9fa5]{2,4})/.test(e);
+            return this.optional(t) || /([\u4e00-\u9fa5]{2,10})/.test(e);
         }
     }, {
         name: "qq",
-        text: "请输入5-11位QQ号码",
+        text: "请正确填写您的QQ号",
         func: function(e, t) {
             return this.optional(t) || /^\d{5,11}$/.test(e);
         }
@@ -1052,7 +1052,7 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         name: "wechat",
         text: "请输入6-20个字母,数字,— ,_以字母开头",
         func: function(e, t) {
-            return this.optional(t) || /^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/.test(e);
+            return this.optional(t) || /^\w{5,}$/.test(e);
         }
     }, {
         name: "password",
@@ -5876,7 +5876,7 @@ var define2 = define("conf/hp/hp-feedback", [ "require", "exports", "module", "j
     var n = e("jquery");
     e("plugins/validator/1.0.0/validator");
     var o = e("lib/core/1.0.0/utils/form"), r = e("lib/plugins/uploader/1.0.1/uploader"), a = e("lib/core/1.0.0/io/request"), s = e("lib/ui/box/1.0.1/box"), l = e("module/top-search/1.0.0/top-search"), u = e("module/login-status/1.0.0/login-status"), d = e("module/fix-bar/1.0.0/fix-bar"), c = e("module/footer/1.0.0/footer"), p = (new l(), 
-    new u(), new d(), new c(), n("#jImgList")), f = n("#jImgFile");
+    new u(), new d(), new c(), n("#jImgList")), f = n("#jImgFile"), h = n("#jSubForm");
     p.on("click", function() {
         var e = new r({
             tabs: [ {
@@ -5905,7 +5905,7 @@ var define2 = define("conf/hp/hp-feedback", [ "require", "exports", "module", "j
     n("#jViewSub").validate({
         submitHandler: function(e) {
             var t = o.serializeForm(e);
-            a.get($PAGE_DATA.saveUrl, t, function(t) {
+            a.post($PAGE_DATA.saveUrl, t, function(t) {
                 s.ok("意见反馈提交成功");
                 p.html('<label id="jChooseBg" class="upload-btn"><span class="iyoyo iyoyo-add-img"></span></label>');
                 setTimeout(function() {
@@ -5913,7 +5913,7 @@ var define2 = define("conf/hp/hp-feedback", [ "require", "exports", "module", "j
                 }, 3e3);
             }, function() {
                 s.error(data.msg || "提交意见反馈失败");
-            });
+            }, h[0]);
         },
         onfocusout: function(e) {
             n(e).valid();
@@ -5933,13 +5933,13 @@ var define2 = define("conf/hp/hp-feedback", [ "require", "exports", "module", "j
         },
         messages: {
             title: {
-                required: "请填写标题",
-                rangelength: "请输入长度在 6 到 20 之间的字符串"
+                required: "请输入标题",
+                rangelength: "标题长度应为6-20字"
             },
-            content: "请填写具体内容",
+            content: "请填写具体内容，帮助我们了解您的意见与建议",
             contact: {
-                required: "请填写联系方式",
-                isContact: "请填写正确的联系方式"
+                required: "请填写您的联系方式",
+                isContact: "请正确填写您的联系方式"
             }
         }
     });
@@ -5947,7 +5947,7 @@ var define2 = define("conf/hp/hp-feedback", [ "require", "exports", "module", "j
         var i = /(\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14})|(^\d{5,10}$)/;
         return this.optional(t) || i.test(e);
     }, "");
-    n("#jSubForm").click(function() {
+    h.click(function() {
         n("#jViewSub").submit();
     });
 });

@@ -1057,16 +1057,16 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!Y) return n;
                 U = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Y);
             }
-            var Z, X, Q = "top" !== O[W], G = [ "v", "h" ][1 ^ Q], J = S(U), K = L(U), ee = {}, te = Q ? "left" : "top";
+            var X, Z, Q = "top" !== O[W], G = [ "v", "h" ][1 ^ Q], J = S(U), K = L(U), ee = {}, te = Q ? "left" : "top";
             switch (G) {
               case "h":
-                Z = y(k + (x - J) / 2);
-                ee.left = Z;
+                X = y(k + (x - J) / 2);
+                ee.left = X;
                 break;
 
               case "v":
-                X = y($ + (C - K) / 2);
-                ee.top = X;
+                Z = y($ + (C - K) / 2);
+                ee.top = Z;
             }
             U.offset(ee).css(te, "");
             return n;
@@ -2828,11 +2828,11 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         name: "realname",
         text: "姓名需2-10个汉字之间",
         func: function(e, t) {
-            return this.optional(t) || /([\u4e00-\u9fa5]{2,4})/.test(e);
+            return this.optional(t) || /([\u4e00-\u9fa5]{2,10})/.test(e);
         }
     }, {
         name: "qq",
-        text: "请输入5-11位QQ号码",
+        text: "请正确填写您的QQ号",
         func: function(e, t) {
             return this.optional(t) || /^\d{5,11}$/.test(e);
         }
@@ -2840,7 +2840,7 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         name: "wechat",
         text: "请输入6-20个字母,数字,— ,_以字母开头",
         func: function(e, t) {
-            return this.optional(t) || /^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/.test(e);
+            return this.optional(t) || /^\w{5,}$/.test(e);
         }
     }, {
         name: "password",
@@ -3170,25 +3170,25 @@ define("lib/core/1.0.0/utils/form", [ "require", "exports", "module", "jquery" ]
 define("conf/apply", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0.1/crossbox", "lib/core/1.0.0/io/request", "plugins/validator/1.0.0/validator", "template", "lib/core/1.0.0/utils/form" ], function(e, t, n) {
     "use strict";
     var i = e("jquery"), r = e("lib/ui/box/1.0.1/crossbox"), o = e("lib/core/1.0.0/io/request"), s = (e("plugins/validator/1.0.0/validator"), 
-    e("template"), e("lib/core/1.0.0/utils/form")), a = {
-        handle: function(e) {
-            var t = s.serializeForm("#jSigninForm");
-            o.get($PAGE_DATA.getInfo, i.extend({
+    e("template"), e("lib/core/1.0.0/utils/form")), a = i("#jMSubBtn"), u = {
+        handle: function() {
+            var e = s.serializeForm("#jSigninForm");
+            o.post($PAGE_DATA.getInfo, i.extend({
                 activityId: $PAGE_DATA.activityId
-            }, t), function(e) {
-                var t = r.get(window);
+            }, e), function(e) {
                 r.ok("恭喜您，报名成功！");
-                setTimeout(function() {
-                    window.top.window.location.reload();
-                    t.hide();
-                }, 2e3);
+                window.top && window.top.window.location.reload();
             }, function(e) {
                 r.error(e.msg || "网络错误,请重试");
-            }, this);
+            }, a[0]);
         }
     };
-    i(".jMSubBtn").click(function() {
+    a.click(function() {
         i("#jSigninForm").submit();
+    });
+    i("body").on("keydown", function(e) {
+        var e = e || window.event;
+        13 == e.keyCode && i("#jSigninForm").submit();
     });
     i("#jSigninForm").validate({
         rules: {
@@ -3218,7 +3218,7 @@ define("conf/apply", [ "require", "exports", "module", "jquery", "lib/ui/box/1.0
             i(e).valid();
         },
         submitHandler: function(e) {
-            a.handle();
+            u.handle();
         }
     });
 });

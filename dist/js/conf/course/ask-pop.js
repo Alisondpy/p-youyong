@@ -1057,16 +1057,16 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 if (!Y) return n;
                 U = r('<div node-type="arrow" class="ui-arrow"><i></i><b></b></div>').appendTo(Y);
             }
-            var Z, X, Q = "top" !== O[B], G = [ "v", "h" ][1 ^ Q], J = S(U), K = L(U), ee = {}, te = Q ? "left" : "top";
+            var X, Z, Q = "top" !== O[B], G = [ "v", "h" ][1 ^ Q], J = S(U), K = L(U), ee = {}, te = Q ? "left" : "top";
             switch (G) {
               case "h":
-                Z = y(k + (x - J) / 2);
-                ee.left = Z;
+                X = y(k + (x - J) / 2);
+                ee.left = X;
                 break;
 
               case "v":
-                X = y($ + (C - K) / 2);
-                ee.top = X;
+                Z = y($ + (C - K) / 2);
+                ee.top = Z;
             }
             U.offset(ee).css(te, "");
             return n;
@@ -2828,11 +2828,11 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         name: "realname",
         text: "姓名需2-10个汉字之间",
         func: function(e, t) {
-            return this.optional(t) || /([\u4e00-\u9fa5]{2,4})/.test(e);
+            return this.optional(t) || /([\u4e00-\u9fa5]{2,10})/.test(e);
         }
     }, {
         name: "qq",
-        text: "请输入5-11位QQ号码",
+        text: "请正确填写您的QQ号",
         func: function(e, t) {
             return this.optional(t) || /^\d{5,11}$/.test(e);
         }
@@ -2840,7 +2840,7 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         name: "wechat",
         text: "请输入6-20个字母,数字,— ,_以字母开头",
         func: function(e, t) {
-            return this.optional(t) || /^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/.test(e);
+            return this.optional(t) || /^\w{5,}$/.test(e);
         }
     }, {
         name: "password",
@@ -3216,7 +3216,7 @@ define("conf/course/ask-pop", [ "require", "exports", "module", "jquery", "lib/u
     });
     s.on("input propertychange", "#jContent", function() {
         var e = i("#jContent").val().length;
-        if (e > 100) {
+        if (e > 500) {
             i(this).addClass("text-error");
             i("#jTxtNum").css({
                 color: "red"

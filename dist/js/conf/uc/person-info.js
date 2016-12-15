@@ -5671,11 +5671,11 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         name: "realname",
         text: "姓名需2-10个汉字之间",
         func: function(e, t) {
-            return this.optional(t) || /([\u4e00-\u9fa5]{2,4})/.test(e);
+            return this.optional(t) || /([\u4e00-\u9fa5]{2,10})/.test(e);
         }
     }, {
         name: "qq",
-        text: "请输入5-11位QQ号码",
+        text: "请正确填写您的QQ号",
         func: function(e, t) {
             return this.optional(t) || /^\d{5,11}$/.test(e);
         }
@@ -5683,7 +5683,7 @@ define("plugins/validator/1.0.0/validator", [ "require", "exports", "module", "j
         name: "wechat",
         text: "请输入6-20个字母,数字,— ,_以字母开头",
         func: function(e, t) {
-            return this.optional(t) || /^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/.test(e);
+            return this.optional(t) || /^\w{5,}$/.test(e);
         }
     }, {
         name: "password",

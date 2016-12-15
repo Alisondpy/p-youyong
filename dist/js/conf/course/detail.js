@@ -999,7 +999,7 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
             l && l.length || (l = [ "b" ]);
             var f = n._dirClass;
             f && r.removeClass(f);
-            var d = i.fixed, p = $(), h = k(), v = z(r), m = q(r), b = E(e), x = z(a), _ = q(a), A = b.left, T = b.top, j = d ? A - h.x : A, P = d ? T - h.y : T, I = d ? 0 : h.x, S = d ? 0 : h.y, L = I + p.w - v, N = S + p.h - m, U = {
+            var d = i.fixed, p = $(), h = k(), v = z(r), m = q(r), b = E(e), x = z(a), _ = q(a), A = b.left, T = b.top, j = d ? A - h.x : A, P = d ? T - h.y : T, I = d ? 0 : h.x, S = d ? 0 : h.y, N = I + p.w - v, L = S + p.h - m, U = {
                 t: "b",
                 b: "t",
                 l: "r",
@@ -1023,8 +1023,8 @@ define("lib/ui/box/1.0.1/popup", [ "require", "exports", "module", "jquery", "..
                 l: j + y((x - v) / 2),
                 t: P + y((_ - m) / 2)
             }, R = {
-                left: [ I, L ],
-                top: [ S, N ]
+                left: [ I, N ],
+                top: [ S, L ]
             };
             c || w(l, function(e, t) {
                 O[t][e] > R[W[e]][1] && (e = l[t] = U[e]);
@@ -3215,6 +3215,7 @@ define("conf/course/detail", [ "require", "exports", "module", "jquery", "lib/ui
             break;
 
           case "4":
+            "取消只看我的" == a(".jSubNav").find(".bar-right").text("只看我的") && a(".jSubNav").find(".bar-right").text("只看我的");
             i($PAGE_DATA.loadNoteUrl, {
                 sourceType: k,
                 showType: P,

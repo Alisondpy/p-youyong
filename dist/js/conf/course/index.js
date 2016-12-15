@@ -3128,6 +3128,7 @@ define("conf/course/index", [ "require", "exports", "module", "jquery", "lib/ui/
                 r = new c(u("#" + i).find(".jImg"), {
                     mouseWheel: !0,
                     effect: "fadeIn",
+                    loadingClass: "img-error",
                     snap: !0
                 });
                 t && t(e.data.records);

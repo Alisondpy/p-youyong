@@ -4674,7 +4674,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             k.hide();
             T && T.stop();
             A && A.stop();
-            n($PAGE_DATA.note.note, D, "tAnswer", "jNoteTab1");
+            n($PAGE_DATA.note.note, O, "tAnswer", "jNoteTab1");
             break;
 
           case "1":
@@ -4718,7 +4718,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             k.hide();
             T && T.stop();
             A && A.stop();
-            n($PAGE_DATA.question.question, F, "tQuestion", "jQuestionTab1");
+            n($PAGE_DATA.question.question, D, "tQuestion", "jQuestionTab1");
             break;
 
           case "3":
@@ -4775,7 +4775,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             p.ok("发表成功", t[0]);
             r.val("");
             a.children(".num").text("0");
-            t.hasClass("jPublishA") && B.find(".ui-current").text().indexOf("全部笔记") == -1 ? n($PAGE_DATA.note.note, D, "tAnswer", "jNoteTab1") : t.hasClass("jPublishQ") && K.find(".ui-current").text().indexOf("全部问答") == -1 && n($PAGE_DATA.question.question, F, "tQuestion", "jQuestionTab1");
+            t.hasClass("jPublishA") && U.find(".ui-current").text().indexOf("全部笔记") == -1 ? n($PAGE_DATA.note.note, O, "tAnswer", "jNoteTab1") : t.hasClass("jPublishQ") && B.find(".ui-current").text().indexOf("全部问答") == -1 && n($PAGE_DATA.question.question, D, "tQuestion", "jQuestionTab1");
         }, function(e) {
             p.error(e.msg || "网络错误,请重试", t[0]);
         });
@@ -4783,7 +4783,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     function s(e, t, i) {
         m.get(e, t, function(e) {
             p.ok(i + "成功");
-            n($PAGE_DATA.note.note, D, "tAnswer", "jNoteTab1");
+            n($PAGE_DATA.note.note, O, "tAnswer", "jNoteTab1");
         }, function(e) {
             p.error(e.msg || "网络错误,请重试");
         });
@@ -4805,7 +4805,7 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             f: $PAGE_DATA.m3u8,
             a: $PAGE_DATA.play
         }
-    }), z = !0, O = !1;
+    }), z = !0;
     P.on("error", function() {});
     P.on("time", function(e) {
         if (z && e > 0) {
@@ -4822,12 +4822,14 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
                 z = !0;
             });
         }
-        if (!O && e > 60 && !b.isLogin()) {
-            P.pause();
+        if (e >= 60 && !b.isLogin()) {
+            setTimeout(function() {
+                P.pause();
+            }, 500);
+            P.jump(0);
             p.confirm("游客只能观看一分钟,是否前往登录？", function() {
                 b.login(window.location.href);
             }, function() {}, this);
-            O = !0;
         }
     });
     P.on("ended", function() {
@@ -4842,14 +4844,14 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
             });
         }, function() {}, this);
     });
-    var D = {
+    var O = {
         id: 0,
         pageSize: 20,
         sortType: 1,
         showType: 1,
         sourceType: 2,
         sourceId: $
-    }, F = {
+    }, D = {
         id: 0,
         pageSize: 20,
         sortType: 1,
@@ -4862,34 +4864,34 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
         var e = l(this).attr("data-type");
         o(e);
     });
-    var H = {
+    var F = {
         id: $,
         type: 2,
         pageNo: 1,
         pageSize: 20
     };
-    n($PAGE_DATA.dirUrl, H, "tDir", "jDir");
+    n($PAGE_DATA.dirUrl, F, "tDir", "jDir");
     C.on("change", function(e) {
         var t = e.body.find(".ui-current").attr("data-type");
         o(t);
         var i = e.body.attr("data-id");
-        "1" == i && n($PAGE_DATA.dirUrl, H, "tDir", "jDir");
+        "1" == i && n($PAGE_DATA.dirUrl, F, "tDir", "jDir");
         w.update();
     });
-    var N = l(".jPublishA"), V = l(".jPublishQ"), M = l(".jTxtNumA"), G = l(".jTxtNumQ"), W = l(".jTxtA"), U = l(".jTxtQ");
+    var H = l(".jPublishA"), N = l(".jPublishQ"), V = l(".jTxtNumA"), M = l(".jTxtNumQ"), G = l(".jTxtA"), W = l(".jTxtQ");
     x.on("input propertychange", ".jTxtA", function() {
         var e = l(this).val().length;
-        r(e, 500, l(this), N, M);
+        r(e, 500, l(this), H, V);
     });
     x.on("input propertychange", ".jTxtQ", function() {
         var e = l(this).val().length;
-        r(e, 500, l(this), V, G);
+        r(e, 500, l(this), N, M);
     });
-    var B, K, R = l("#jQuesTitle");
+    var U, B, K = l("#jQuesTitle");
     l(".jNoteTap").each(function() {
-        "2" == l(this).attr("data-id") ? B = l(this) : "3" == l(this).attr("data-id") && (K = l(this));
+        "2" == l(this).attr("data-id") ? U = l(this) : "3" == l(this).attr("data-id") && (B = l(this));
     });
-    var X = l("#jAnswer"), Q = {
+    var R = l("#jAnswer"), X = {
         sourceType: 2,
         sourceId: $,
         content: "",
@@ -4897,31 +4899,31 @@ define("conf/play", [ "require", "exports", "module", "jquery", "module/top-sear
     };
     x.on("click", ".jPublishA", function() {
         if (b.isLogin()) {
-            var e = W.val();
-            Q.content = e;
-            X.is(":checked") ? Q.showType = 1 : Q.showType = 2;
-            a(e, l(this), $PAGE_DATA.note.publish, Q, W, M);
+            var e = G.val();
+            X.content = e;
+            R.is(":checked") ? X.showType = 1 : X.showType = 2;
+            a(e, l(this), $PAGE_DATA.note.publish, X, G, V);
         } else b.login(window.location.href);
     });
     x.on("focus", "#jQuesTitle", function() {
-        R.removeClass("question-input-error");
+        K.removeClass("question-input-error");
     });
-    var Y = {
+    var Q = {
         sourceType: 2,
         sourceId: $,
         content: ""
     };
     x.on("click", ".jPublishQ", function() {
         if (b.isLogin()) {
-            var e = R.val(), t = U.val();
+            var e = K.val(), t = W.val();
             if ("" == e) {
                 p.error("请输入问题标题");
-                R.addClass("question-input-error");
+                K.addClass("question-input-error");
             } else {
-                Y.title = e;
-                Y.content = t;
-                a(t, l(this), $PAGE_DATA.question.publish, Y, U, G);
-                R.val("");
+                Q.title = e;
+                Q.content = t;
+                a(t, l(this), $PAGE_DATA.question.publish, Q, W, M);
+                K.val("");
             }
         } else b.login(window.location.href);
     });
