@@ -68,7 +68,7 @@ define(function(require, exports, module) {
 	//评论字数限制
 	jContainer.on('input propertychange','#jContent',function(){
 		var txtLen = $('#jContent').val().length;
-		if(txtLen > 100){
+		if(txtLen > 500){
 			$(this).addClass('text-error');
 			$('#jTxtNum').css({'color':'red'});
 			jContainer.find('input[type=submit]').addClass('ui-btn-disabled');
