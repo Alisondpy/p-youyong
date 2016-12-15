@@ -6,11 +6,12 @@ define(function(require, exports, module) {
     var validate = require('plugins/validator/1.0.0/validator');
     var template = require("template");
     var form = require('lib/core/1.0.0/utils/form');
-
+    var jMSubBtn = $("#jMSubBtn");
     var handshake = {
-        handle:function (data) {
+        handle:function () {
             var ucData = form.serializeForm('#jSigninForm');
-            io.get($PAGE_DATA['getInfo'], $.extend({activityId:$PAGE_DATA['activityId']},ucData) ,function(data){
+            io.post($PAGE_DATA['getInfo'], $.extend({activityId:$PAGE_DATA['activityId']},ucData) ,function(data){
+                //isSubmit = false;
                 var topBox = box.get(window);
                 box.ok('恭喜您，报名成功！')
                 setTimeout(function(){
@@ -19,13 +20,12 @@ define(function(require, exports, module) {
                 },2000);
             },function(res) {
                 box.error(res.msg || '网络错误,请重试');
-            }, this)
+            },jMSubBtn[0]);
         }
     };
-    $(".jMSubBtn").click(function(){
+    jMSubBtn.click(function(){
         $("#jSigninForm").submit();
-    })
-    //handshake.init();
+    });
     $('#jSigninForm').validate({
         rules: {
             realname: {
@@ -57,6 +57,5 @@ define(function(require, exports, module) {
         submitHandler:function(form){
             handshake.handle();
         }
-    })
-
+    });
 });
