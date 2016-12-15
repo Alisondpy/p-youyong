@@ -1,5 +1,5 @@
 {
-  "app.js": "app-29ff7ea602.js",
+  "app.js": "app-de40e76976.js",
   "conf/404.js": "conf/404-71d6a8d181.js",
   "conf/500.js": "conf/500-96e0e3abbe.js",
   "conf/apply.js": "conf/apply-e79a0f7c7d.js",
@@ -20,7 +20,7 @@
   "conf/news/index.js": "conf/news/index-2a688b6ed2.js",
   "conf/news/news-detail.js": "conf/news/news-detail-7ada20fc50.js",
   "conf/open-class-detail.js": "conf/open-class-detail-d7b03cc1ae.js",
-  "conf/play.js": "conf/play-5cf4ab43dd.js",
+  "conf/play.js": "conf/play-6541e9bb8b.js",
   "conf/polling-list.js": "conf/polling-list-4d62daab19.js",
   "conf/register-pop.js": "conf/register-pop-ac28b0e135.js",
   "conf/register.js": "conf/register-728d887736.js",
