@@ -52,13 +52,13 @@ define(function(require, exports, module) {
                 $(element).valid();
             },
             submitHandler: function(formRes){
-
-
                 var formData = form.serializeForm(formRes);
                 Io.post($PAGE_DATA['submit'],formData,function(data){
-                    box.alert("保存成功", function(){
-                          window.location.reload();
-                    });
+                    box.ok("保存成功!");
+                    if(formData['avatarUrl']){
+                        $('#jUcUserAvatar').attr('src',formData['avatarUrl']);
+                    }                   
+                    $('#jUcNickName').html(formData['nickName']);
                 },function(data){
                     box.error((data && data.msg) || '保存失败');
                 },jMSubBtn[0]);
