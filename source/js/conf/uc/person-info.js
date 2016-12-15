@@ -131,7 +131,7 @@ define(function(require, exports, module) {
     infoForm();
 
     function subForm(){
-        jFormPwd.validate({
+        $('#jFormPwd').validate({
             onfocusout: function(element){
                 $(element).valid();
             },
@@ -144,7 +144,7 @@ define(function(require, exports, module) {
 
                 },function(data){
                     box.error(data.msg || '保存失败了');
-                }.jSubBtn[0]);
+                },jSubBtn[0]);
             },
             rules:{
                 oldPassword:{
