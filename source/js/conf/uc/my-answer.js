@@ -142,7 +142,7 @@ define(function(require, exports, module) {
                     callback && callback(data.data.records);
                 } else {
                     jContainer.html(template('tEmpty'));
-                    callback && callback(1);
+                    callback && callback(0);
                 }
                 loading && loading.hide();
             });
@@ -193,7 +193,7 @@ define(function(require, exports, module) {
                     callback && callback(data.data.records);
                 } else {
                     jContainer.html(template('tEmpty'));
-                    callback && callback(1);
+                    callback && callback(0);
                 }
                 loading && loading.hide();
             });

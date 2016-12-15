@@ -63,7 +63,7 @@ define(function(require, exports, module) {
                 callback && callback(res.data.records);//渲染分页数据
             }else {
                 jContainer.html(template('tEmpty'))
-                callback && callback(1);//渲染分页数据
+                callback && callback(0);//渲染分页数据
             }
             loading && loading.hide();
         });
