@@ -41,9 +41,7 @@ define(function(require, exports, module) {
     
 
     //显示是否隐藏游客提示信息
-    var touristTips = new TouristTips({
-        selector:'.mod-l'
-    });
+    var touristTips = new TouristTips();
 
     var Player = require('plugins/ckplayer/6.7.0/player');
 
