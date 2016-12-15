@@ -125,7 +125,7 @@ var CONFIG = {
                 },
                 output: {
                     screw_ie8: false,
-                    beautify: true
+                    beautify: false
                 }
             }
         },
