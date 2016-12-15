@@ -20,6 +20,7 @@ var define2 = define(function(require, exports, module) {
 
     var jImgList = $('#jImgList');
     var jImgFile = $("#jImgFile");
+    var jSubForm = $("#jSubForm");
     //图片上传插件
     jImgList.on('click', function() {
         var uploader = new Uploader({
@@ -55,7 +56,7 @@ var define2 = define(function(require, exports, module) {
     $("#jViewSub").validate({
         submitHandler: function(formRes){
             var formData = form.serializeForm(formRes);
-            io.get($PAGE_DATA['saveUrl'],formData,function(data){
+            io.post($PAGE_DATA['saveUrl'],formData,function(data){
                 box.ok("意见反馈提交成功");
                 jImgList.html('<label id="jChooseBg" class="upload-btn"><span class="iyoyo iyoyo-add-img"></span></label>');
                 setTimeout(function(){
@@ -63,7 +64,7 @@ var define2 = define(function(require, exports, module) {
                 },3000)
             },function(){
                 box.error(data.msg||'提交意见反馈失败');
-            });
+            },jSubForm[0]);
         },
         //失去焦点校验
         onfocusout: function(element){
@@ -101,7 +102,7 @@ var define2 = define(function(require, exports, module) {
         var contact = /(\w[-\w.+]*@([A-Za-z0-9][-A-Za-z0-9]+\.)+[A-Za-z]{2,14})|(^\d{5,10}$)/;
         return this.optional(element) || (contact.test(value));
     }, "");
-    $("#jSubForm").click(function(){
+    jSubForm.click(function(){
         $("#jViewSub").submit();
     })
 });
