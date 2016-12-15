@@ -36,7 +36,7 @@ define(function (require, exports, module) {
                 box.ok("签到成功");
                 setTimeout(function(){
                     window.location.reload();
-                },3000)
+                },2000)
             },
             function (res) {
                 box.error(res.msg || '网络异常，请重试');
@@ -50,11 +50,8 @@ define(function (require, exports, module) {
         if(userLogin){
             io.get(liveUrl, function (res) {
                     window.location.href = res.data.liveshowUrl;
-
-
                 },
                 function (res) {
-                    
                     box.error(res.msg || '网络异常，请重试');
                 }
             )
