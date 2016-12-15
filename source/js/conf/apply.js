@@ -11,7 +11,7 @@ define(function(require, exports, module) {
         handle:function () {
             var ucData = form.serializeForm('#jSigninForm');
             io.post($PAGE_DATA['getInfo'], $.extend({activityId:$PAGE_DATA['activityId']},ucData) ,function(data){
-                box.ok('恭喜您，报名成功！')
+                box.ok('恭喜您，报名成功！');
                 window.top && window.top.window.location.reload();
             },function(res) {
                 box.error(res.msg || '网络错误,请重试');

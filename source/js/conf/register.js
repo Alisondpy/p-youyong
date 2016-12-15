@@ -51,7 +51,7 @@ define(function(require, exports, module) {
         var formData = form.serializeForm(formRes);
         var refer = document.referrer; //来源页面
         formData.returnUrl = encodeURI(refer);
-        io.get(url, formData, function(res) {
+        io.post(url, formData, function(res) {
             box.ok("注册成功");
             refer = decodeURI(res.data.returnUrl);
             //等待1秒跳转页面
@@ -157,7 +157,7 @@ define(function(require, exports, module) {
             return false;
         }
         //发送ajax请求
-        io.get($PAGE_DATA['code'], { mobile: $("#jName").val() , type:1},
+        io.post($PAGE_DATA['code'], { mobile: $("#jName").val() , type:1},
             function(res) {
                 //成功后的回调
 
