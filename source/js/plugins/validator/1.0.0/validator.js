@@ -103,7 +103,7 @@ define(function(require, exports, module) {
         name: 'wechat',
         text: '请输入6-20个字母,数字,— ,_以字母开头',
         func: function(v, elem) {
-            return this.optional(elem) || /^[a-zA-Z]{1}[-_a-zA-Z0-9]{5,19}$/.test(v);
+            return this.optional(elem) || /^\w{5,}$/.test(v);
         }
     }, {
         name: 'password',
