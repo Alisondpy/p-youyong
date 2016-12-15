@@ -18,6 +18,7 @@ define(function(require, exports, module) {
     var template = require("template");
     var Question = require('module/monitor/1.0.0/question');
     var Note = require('module/monitor/1.0.0/note');
+    var TouristTips = require('module/monitor/1.0.0/tourist-tips');
     var Login = require('module/login-status/1.0.0/login');
     var catlog = $('.jMod-catlog');
     var jTab = $('#jTab');
@@ -37,6 +38,12 @@ define(function(require, exports, module) {
     var lessonId = $PAGE_DATA['lessonId'];
     var examId = $PAGE_DATA['examId'];
     //====================后台获取参数 end
+    
+
+    //显示是否隐藏游客提示信息
+    var touristTips = new TouristTips({
+        selector:'.mod-l'
+    });
 
     var Player = require('plugins/ckplayer/6.7.0/player');
 
@@ -56,9 +63,13 @@ define(function(require, exports, module) {
     });
 
     var isSendPlayTime = true;
-    //视频加载失败
-    player.on('error',function(){
-        
+    //如果播放就加载提示
+    player.on('play',function(){
+        if(Login.isLogin()){
+            touristTips.hide();
+        }else{
+            touristTips.show();
+        }
     });
     //监听当前播放器进度
     player.on('time', function(seconds) {
@@ -82,11 +93,7 @@ define(function(require, exports, module) {
                     player.pause();
                 },500);
                 player.jump(0);
-                box.confirm('游客只能观看一分钟,是否前往登录？',function() {
-                    Login.login(window.location.href);
-                },function() {
-
-                }, this);
+                touristTips.show();
             }
         }
     });
