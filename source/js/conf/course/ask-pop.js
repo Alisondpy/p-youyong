@@ -17,7 +17,7 @@ define(function(require, exports, module) {
 	var handshake = {
 		handle:function () {
 			var ucData = form.serializeForm('#jSigninForm');
-			io.post(submitQuestionUrl, $.extend({},ucData,{"sourceId":sourceId}),function(res){
+			io.get(submitQuestionUrl, $.extend({},ucData,{"sourceId":sourceId}),function(res){
 				if(res){
 					var topBox = box.get(window);
 					topBox.hide();
@@ -30,7 +30,7 @@ define(function(require, exports, module) {
 				}
 			},function(res) {
 				box.error(res.msg || '网络错误');
-			},$("#sub")[0])
+			},jContainer.find('input[type=button]')[0])
 		}
 	};
 
@@ -52,7 +52,7 @@ define(function(require, exports, module) {
 			}
 		},
 		submitHandler:function(form){
-			if(!jContainer.find('input[type=submit]').hasClass('ui-btn-disabled')){
+			if(!jContainer.find('input[type=button]').hasClass('ui-btn-disabled')){
 				handshake.handle();
 			}
 		},
@@ -62,7 +62,7 @@ define(function(require, exports, module) {
 		}
 	})
 
-	$(".jAskSub").click(function(){
+	$("#jSubmit").click(function(){
 		$('#jSigninForm').submit();
 	})
 	//评论字数限制
