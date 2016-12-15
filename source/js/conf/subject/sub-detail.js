@@ -50,6 +50,8 @@ define(function (require, exports, module) {
         if(userLogin){
             io.get(liveUrl, function (res) {
                     window.location.href = res.data.liveshowUrl;
+
+
                 },
                 function (res) {
                     
