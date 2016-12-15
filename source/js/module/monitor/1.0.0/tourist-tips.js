@@ -2,7 +2,7 @@ define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     var build = require('lib/core/1.0.0/dom/build');
-    var Login = require('module/login-status/1.0.0/login');
+    var Login = require('../../login-status/1.0.0/login');
 
     function TouristTips(options) {
         var _this = this;
@@ -27,7 +27,7 @@ define(function(require, exports, module) {
             _this.hide();
         });
         _this.login.on('click', function() {
-            Login.go(window.location.href);
+            Login.login(window.location.href);
         });
     }
     TouristTips.prototype.show = function() {
