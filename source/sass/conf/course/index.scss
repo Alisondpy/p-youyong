@@ -15,7 +15,15 @@
 .ui-hid {
     display: none;
 }
-
+.ui-error{
+    color: #4b677b;
+    font-size: 20px;
+    text-align: center;
+    padding: 100px;
+    a{
+        color: #ec3e48;
+    }
+}
 .mod-course {
     position: relative;
     padding: 40px 0;

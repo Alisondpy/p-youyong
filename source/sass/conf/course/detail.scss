@@ -15,7 +15,15 @@ a {
 .ui-hid {
     display: none;
 }
-
+.ui-error{
+      color: #4b677b;
+      font-size: 20px;
+      text-align: center;
+      padding: 100px;
+      a{
+          color: #ec3e48;
+      }
+  }
 .mod-detail {
     background-color: #eef3f7;
     position: relative;

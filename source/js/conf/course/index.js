@@ -67,7 +67,7 @@ define(function(require, exports, module) {
         });
 
         pager.on('ajaxError', function(data) {
-            document.getElementById(htmEl).innerHTML = "<div style='color: #000;'>请求超时请重试！<a href=''>刷新</a></div>";
+            document.getElementById(htmEl).innerHTML = "<div class='ui-error'>请求超时请重试！<a href=''>刷新</a></div>";
             loading && loading.hide();
         });
 

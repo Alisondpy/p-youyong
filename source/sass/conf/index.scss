@@ -243,6 +243,17 @@ $height: 172px;
         }
     }
     .mod-industry {
+        position: relative;
+        .ui-more{
+            position: absolute;
+            font-size: 32px;
+            color: #4b677b;
+            top: 0;
+            right: 0;
+            &:hover{
+                color: $BgHoverColor;
+            }
+        }
         width: 591px;
         position: relative;
         .content {
