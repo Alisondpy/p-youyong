@@ -387,6 +387,10 @@ body {
                 font-style: normal;
             }
             .head-img{
+                span{
+                    width: 100%;
+                    display: inline-block;
+                }
                 padding-top: 10px;
                 width: 70px;
                 height: 70px;
@@ -417,7 +421,7 @@ body {
                 }
                 .arrow {
                     position: absolute;
-                    top: 42px;
+                    top: 40px;
                     left: -19px;
                     display: inline-block;
                     font-size: 28px;
@@ -430,7 +434,7 @@ body {
                     background:none;
                 }
                 .arrow-focus {
-                    color: #aaa;
+                    color: #4b677b;
                 }
                 .arrow-error {
                     color: #ec3e48;
@@ -441,7 +445,6 @@ body {
                     height: 60px;
                     margin-top: 10px;
                     padding: 10px;
-                    border: 1px solid #ccc;
                     outline: none;
                     resize: none;
                     font-size: 14px;
@@ -450,9 +453,6 @@ body {
                 .text-disabled {
                     border: 1px solid #eef3f7;
                     background: #eef3f7;
-                }
-                .text-focus {
-                    border: 1px solid #aaa;
                 }
                 .text-error {
                     border: 1px solid #ec3e48;

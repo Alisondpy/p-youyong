@@ -56,7 +56,6 @@ define(function(require, exports, module) {
     });
 
     var isSendPlayTime = true;
-    var isYou = false;
     //视频加载失败
     player.on('error',function(){
         
@@ -77,17 +76,17 @@ define(function(require, exports, module) {
                 isSendPlayTime = true;
             });
         }
-        if (!isYou) {
-            if (seconds > 60) {
-                if (!Login.isLogin()){
+        if (seconds >= 60){
+            if (!Login.isLogin()){
+                setTimeout(function(){
                     player.pause();
-                    box.confirm('游客只能观看一分钟,是否前往登录？',
-                        function() {
-                            Login.login(window.location.href);
-                        },
-                        function() {}, this);
-                    isYou = true;
-                }
+                },500);
+                player.jump(0);
+                box.confirm('游客只能观看一分钟,是否前往登录？',function() {
+                    Login.login(window.location.href);
+                },function() {
+
+                }, this);
             }
         }
     });
@@ -95,19 +94,18 @@ define(function(require, exports, module) {
     player.on('ended',function(){
         console.log(examId);
         if(examId != ''){
-            box.confirm('是否进入考试页面？',
-                function() {
-                    box.loadUrl($PAGE_DATA['examUrl'], {
-                        title: '考试',
-                        className: 'ui-test-box',
-                        fixed: true,
-                        width: $(window).width(),
-                        height: $(window).height()
-                    });
-                },
-                function() {
+            box.confirm('是否进入考试页面？',function() {
+                box.loadUrl($PAGE_DATA['examUrl'], {
+                    title: '考试',
+                    className: 'ui-test-box',
+                    fixed: true,
+                    width: $(window).width(),
+                    height: $(window).height()
+                });
+            },
+            function() {
 
-                }, this);
+            }, this);
         }
     });
     //====================播放器 end

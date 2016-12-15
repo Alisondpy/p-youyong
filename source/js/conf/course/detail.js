@@ -146,6 +146,9 @@ define(function(require, exports, module) {
                 renderList($PAGE_DATA['loadQuestionUrl'], { 'id': sourceId }, 'jWrap2', 'jWrap2Box', jPagination);
                 break;
             case '4':
+                if($('.jSubNav').find('.bar-right').text('只看我的') == '取消只看我的'){
+                    $('.jSubNav').find('.bar-right').text('只看我的');
+                }
                 renderList($PAGE_DATA['loadNoteUrl'], { 'sourceType': sourceType, "showType": showType, "sourceId": sourceId }, 'jWrap3', 'jWrap3Box', jPagination);
                 break;
         }

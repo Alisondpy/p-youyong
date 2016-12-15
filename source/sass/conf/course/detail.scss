@@ -291,6 +291,10 @@ a {
             position: relative;
             width: 84px;
             height: 84px;
+            span{
+                width: 100%;
+                display: inline-block;
+            }
             img {
                 width: 84px;
                 height: 84px;
@@ -352,7 +356,7 @@ a {
                     background:none;
                 }
                 .arrow-focus {
-                    color: #aaa;
+                    color: #4b677b;
                 }
                 .arrow-error {
                     color: #ec3e48;
@@ -369,9 +373,6 @@ a {
                 .text-disabled {
                     border: 1px solid #eef3f7;
                     background: #eef3f7;
-                }
-                .text-focus {
-                    border: 1px solid #aaa;
                 }
                 .text-error {
                     border: 1px solid #ec3e48;
@@ -437,7 +438,7 @@ a {
                     }
                 }
             }
-            .note {
+            .note,.question {
                 padding-bottom: 30px;
                 border-bottom: 1px solid #eef3f7;
             }
