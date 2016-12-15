@@ -8,6 +8,11 @@ body {
 }
 .ui-empty-list{
 	padding: 100px 0;
+	.iyoyo{
+		font-size: 60px;
+		height: 70px;
+		line-height: 70px;
+	}
 }
 .text-error{
 	border-color: #ec3e48 !important;
@@ -262,7 +267,6 @@ em{
 									}
 									i{
 										font-style:normal;
-										margin-left:5px;
 									}
 								}
 								.answer{
@@ -311,6 +315,9 @@ em{
 							.ques-contain{
 								.time{
 									display: block;
+									i{
+										color: #b8b8b8;
+									}
 								}
 								.answer{
 									margin-left: 0;

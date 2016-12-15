@@ -17,7 +17,7 @@ define(function(require, exports, module) {
 	var handshake = {
 		handle:function () {
 			var ucData = form.serializeForm('#jSigninForm');
-			io.get(submitQuestionUrl, $.extend({},ucData,{"sourceId":sourceId}),function(res){
+			io.post(submitQuestionUrl, $.extend({},ucData,{"sourceId":sourceId}),function(res){
 				if(res){
 					var topBox = box.get(window);
 					topBox.hide();
@@ -30,7 +30,7 @@ define(function(require, exports, module) {
 				}
 			},function(res) {
 				box.error(res.msg || '网络错误');
-			}, this)
+			},$("#sub")[0])
 		}
 	};
 
