@@ -70,13 +70,12 @@ body {
                     color: #ec3b45;
                 }
                 .ui-input {
-                    padding: 10px 0;
+                    padding: 12px 0;
                     padding-left: 38px;
                     width: 242px;
-                    height:26px; 
-                    padding-top: 14px;
                     color: #95aab8;
                     border-radius: 4px;
+                    font-size: 16px;
                     &.error + label {
                         display: inline-block;
                         color: #ec3b45;
@@ -89,12 +88,7 @@ body {
                     display: inline-block;
                     margin-right: 4px;
                     width: 167px;
-                    height: 26px;
-                    line-height: 46px;
                     border-radius: 4px;
-                    .iyoyo{
-                    	top: 6px;
-                    }
                 }
                 .ui-btn {
                     display: inline-block;
@@ -111,7 +105,7 @@ body {
                 }
                 .iyoyo {
                     position: absolute;
-                    top: 16px;
+                    top: 13px;
                     padding: 0 10px;
                     font-size: 18px;
                     color: #95aab8;

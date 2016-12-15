@@ -63,13 +63,14 @@ body{
 					}
 				}
 				.ui-input{
-				    width: 242px;
-				    height: 26px;
 					padding: 10px 0;
 					padding-left:38px;
+				    width: 242px;
+				    height: 26px;
+				    line-height: 22px;
 				    color: #95aab8;
 					border-radius: 4px;
-				    line-height: 22px;
+				    font-size: 16px;
 					& + .error{
 						margin-top: 2px;
 						display: inline-block;
@@ -115,7 +116,7 @@ body{
 				position: relative;
 				margin-top: 20px;
 				padding: 2px 0;
-				height: 42px;
+				height: 46px;
 				&.error-red,&.error{
 					color: #ec3b45;
 					.iyoyo{
@@ -124,17 +125,19 @@ body{
 				}
 				.ui-input{
 					padding: 10px 0;
+				    line-height: 22px;
 				    width: 242px;
 				    padding-left: 38px;
 				    color: #95aab8;
 				    height: 26px;
-				    line-height: 22px;
+				    font-size: 16px;
 					border-radius: 4px;
 					&.error{
 						border: 1px solid #ec3b45;
 					}
 					& + .error{
 						display: inline-block;
+						margin-top: 2px;
 						color: #ec3b45;
 						i:after{
 							color: #ec3b45;
@@ -174,7 +177,7 @@ body{
 				.iyoyo{
 					position: absolute;
 					padding: 0 10px;
-					top: 12px;
+					top: 14px;
 					font-size: 18px;
 					color: #95aab8;
 				}
