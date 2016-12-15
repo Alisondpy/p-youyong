@@ -53,6 +53,7 @@ define(function(require, exports, module) {
                 lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
                     mouseWheel: true,
                     effect: 'fadeIn',
+                    loadingClass : 'img-error',
                     snap: true
                 });
                 callback && callback(res.data.records);
