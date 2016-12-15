@@ -15,24 +15,21 @@ h1 {
     padding: 0;
 }
 
-
 // 讲师详情上的内容样式
 .mod-lecturer {
     .w-1180 {
         width: 1180px;
         margin: 0 auto;
-        .ifm-bottom-bar{
-            margin:20px 0;
+        .ifm-bottom-bar {
+            margin: 20px 0;
         }
-
         .mod-up {
             .title {
                 margin: 42px 0 19px 0;
                 font-size: 16px;
-                em{
-
-                    font-style:normal;
-                    margin-right:2px;
+                em {
+                    font-style: normal;
+                    margin-right: 2px;
                 }
             }
             .mod-contain {
@@ -42,13 +39,13 @@ h1 {
                     float: left;
                     width: 255px;
                     height: 255px;
-                    line-height:255px;
-                    text-align:center;
-                    overflow:hidden;
+                    line-height: 255px;
+                    text-align: center;
+                    overflow: hidden;
                     img {
                         max-width: 255px;
-                        max-height:255px;
-                        vertical-align:middle;
+                        max-height: 255px;
+                        vertical-align: middle;
                     }
                 }
                 .info {
@@ -85,7 +82,7 @@ h1 {
                 }
                 .contain-right {
                     float: right;
-                    display:none;
+                    display: none;
                     img {
                         width: 140px;
                         height: 140px;
@@ -96,24 +93,22 @@ h1 {
                 }
             }
         }
-
         .mod-down {
             margin-top: 27px;
-            .mod-tab {  
-            	li{
-            		float:left;
-            		.w-a {
-                    display: inline-block;
-                    width: 151px;
-                    height: 50px;
-                    line-height: 51px;
-                    text-align: center;
-                    overflow: hidden;
-                    font-size: 16px;
-                    background: #fff;
-                	}
-            	}          	
-
+            .mod-tab {
+                li {
+                    float: left;
+                    .w-a {
+                        display: inline-block;
+                        width: 151px;
+                        height: 50px;
+                        line-height: 51px;
+                        text-align: center;
+                        overflow: hidden;
+                        font-size: 16px;
+                        background: #fff;
+                    }
+                }
                 .tab1 {
                     float: left;
                 }
@@ -122,32 +117,38 @@ h1 {
                     border-left: none;
                 }
             }
-            .tab-container{
+            .tab-container {
                 display: none;
-                .main-container{
-                    background-color:#fff;
+                .main-container {
+                    background-color: #fff;
                     padding: 41px 28px 41px 17px;
-                   .tab2{
+                    .tab2 {
                         width: 1152px;
                         padding: 30px 15px 0;
-                            .description{
-                                 position: relative;
-                                 width:258px;
-                                 height: 140px;
-                                 overflow:hidden;
-                                 text-align:center;
-                                 img{
-                                    height:140px;
-                                    vertical-align:middle;
-                                 }
+                        .description {
+                            position: relative;
+                            width: 258px;
+                            height: 140px;
+                            overflow: hidden;
+                            text-align: center;
+                            img {
+                                transition: .6s;
+                                width: 258px;
+                                vertical-align: middle;
+                                &.img-error {
+                                    width: 258px;
+                                    height: 140px;
+                                }
+                                &:hover{
+                                    transform: scale(1.1);
+                                }
                             }
+                        }
                     }
-
                 }
                 padding-bottom:50px;
             }
-
-            .course {               
+            .course {
                 .contain-course {
                     float: left;
                     margin-left: 21px;
@@ -185,9 +186,8 @@ h1 {
                     }
                 }
             }
-
             .teacher-info {
-            	display: none;
+                display: none;
                 .info-t {
                     margin-top: 0;
                     color: #666666;
@@ -199,17 +199,15 @@ h1 {
                     font-size: 18px;
                 }
             }
-
-            .current{
-            	display:block;
-            	.t{
-            		color:#f00;
-            		border:1px solid #eee;
-            		border-bottom:none;		
-            	}
+            .current {
+                display: block;
+                .t {
+                    color: #f00;
+                    border: 1px solid #eee;
+                    border-bottom: none;
+                }
             }
         }
-
         .pager {
             float: right;
         }
