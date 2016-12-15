@@ -86,13 +86,13 @@ var define2 = define(function(require, exports, module) {
         },
         messages: {
             title: {
-                required: "请填写标题",
-                rangelength: "请输入长度在 6 到 20 之间的字符串"
+                required: "请输入标题",
+                rangelength: "标题长度应为6-20字"
             },
-            content:'请填写具体内容',
+            content:'请填写具体内容，帮助我们了解您的意见与建议',
             contact:{
-                required: "请填写联系方式",
-                isContact:"请填写正确的联系方式"
+                required: "请填写您的联系方式",
+                isContact:"请正确填写您的联系方式"
             }
         }
     })

@@ -17,5 +17,6 @@ define(function(require, exports, module) {
     //判断用户是否登陆
     var userLogin = Login.isLogin();
     var io = require('lib/core/1.0.0/io/request');
+    //弹出层
     var box = require('lib/ui/box/1.0.1/crossbox');
 });
