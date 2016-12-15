@@ -21,6 +21,12 @@ define(function(require, exports, module) {
     jMSubBtn.click(function(){
         $("#jSigninForm").submit();
     });
+    $('body').on('keydown', function (e) {
+        var e = e || window.event;
+        if(e.keyCode == 13) {
+            $("#jSigninForm").submit();
+        }
+    })
     $('#jSigninForm').validate({
         rules: {
             realname: {
