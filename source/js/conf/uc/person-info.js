@@ -15,6 +15,8 @@ define(function(require, exports, module) {
     //图片上传插件
     var jAvater = $('#jAvater');
     var jImg = $('.jImg');
+    var jMSubBtn = $('.jMSubBtn');
+    var jSubBtn = $('.jSubBtn');
     //三级联动
     var location = require();
     jAvater.on('click', function() {
@@ -59,7 +61,7 @@ define(function(require, exports, module) {
                     });
                 },function(data){
                     box.error((data && data.msg) || '保存失败');
-                });
+                },jMSubBtn[0]);
             },
             rules:{
                 password:{
@@ -142,7 +144,7 @@ define(function(require, exports, module) {
 
                 },function(data){
                     box.error(data.msg || '保存失败了');
-                });
+                }.jSubBtn[0]);
             },
             rules:{
                 oldPassword:{
