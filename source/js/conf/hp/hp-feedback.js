@@ -58,10 +58,8 @@ var define2 = define(function(require, exports, module) {
             var formData = form.serializeForm(formRes);
             io.post($PAGE_DATA['saveUrl'],formData,function(data){
                 box.ok("意见反馈提交成功");
+                formRes.reset();
                 jImgList.html('<label id="jChooseBg" class="upload-btn"><span class="iyoyo iyoyo-add-img"></span></label>');
-                setTimeout(function(){
-                    formRes.reset();
-                },3000)
             },function(){
                 box.error(data.msg||'提交意见反馈失败');
             },jSubForm[0]);
