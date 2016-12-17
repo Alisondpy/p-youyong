@@ -26,6 +26,10 @@ define(function(require, exports, module) {
     var tab = new Tab(jTab);
     var lazy, question, note;
 
+    //分享
+    var Share = require('plugins/share/1.0.0/share');
+    var share = new Share('#jShare');
+
     var jQuestionTab1 = $('#jQuestionTab1'); //我的问答容器
     var jQuestionTab2 = $('#jQuestionTab2'); //全部问答容器
     var jNoteTab1 = $('#jNoteTab1'); //我的笔记容器

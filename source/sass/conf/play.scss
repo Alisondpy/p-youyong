@@ -3,6 +3,7 @@
 @import "../common/common";
 @import "../common/tab/tab";
 @import "../common/layer/default/layer";
+@import "../common/share/share";
 body {
     background-color: #eee;
 }
@@ -58,7 +59,9 @@ body {
 em {
     font-style: normal;
 }
-
+.mod-share{
+    padding-top: 10px;
+}
 .mod-page {
     width: 1180px;
     margin: 0 auto;

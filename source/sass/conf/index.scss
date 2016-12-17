@@ -3,6 +3,7 @@
 @import "../common/common";
 @import "../common/slider/slider";
 @import "../common/layer/default/layer";
+@import "../plugins/scroller/1.0.0/scroller";
 
 /*index config begin*/
 
@@ -105,6 +106,11 @@
 .mod-training {
     .mod-title {
         @include mod-title(#666, 50px, 36px);
+    }
+    h2{
+        &:hover{
+            color: $BgHoverColor;
+        }
     }
     padding-bottom: 50px;
     .item {
