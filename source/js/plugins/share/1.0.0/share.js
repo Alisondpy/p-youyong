@@ -2,12 +2,12 @@ define(function(require, exports, module) {
     'use strict';
     var $ = require('jquery');
     /**
-     * 分享组件 http://share.baidu.com/code/advance
+     * 分享组件
      * @Author jiangchaoyi
      * @DateTime 2016-12-17T14:33:42+0800
      * @version 1.0.0
      * @param {jquery.selector} selector 
-     * @param {mix} options 暂时不支持，目前只开放三个分享（微信、qzone、weibo)
+     * @param {mix} options 见default描述，参考：http://share.baidu.com/code/advance
      * 名称	ID
      */
     function Share(selector, options) {
@@ -18,8 +18,8 @@ define(function(require, exports, module) {
         }
         var defaults = {
             viewList: ['weixin', 'qzone', 'tsina'], //参考http://share.baidu.com/code/advance#toid
-            class: 'ui-share',
-            shareTxt: '分享',
+            class: 'ui-share', //自定义样式
+            shareTxt: '分享', //分享按钮
             config: {
                 common: {
                     bdStyle: 'none'
