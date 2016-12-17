@@ -6,9 +6,8 @@ define(function(require, exports, module) {
 
     function FixBar(options) {
         var _this = this;
-        return;
         var defaults = {
-            onlineServiceUrl: ''
+            onlineServiceUrl: ($PAGE_DATA && $PAGE_DATA['onlineServiceUrl']) || ''
         };
         _this.options = $.extend(true, {}, defaults, options);
         _this._init();
@@ -49,12 +48,14 @@ define(function(require, exports, module) {
         var str = '';
         str += '<div class="ui-fix-bar">';
         str += '    <ul class="list clearfix" node-type="list">';
-        str += '        <li class="jItem item item-service" node-id="service">';
-        str += '            <a href="' + _this.options.onlineServiceUrl + '">';
-        str += '                <i class="iyoyo iyoyo-service"></i>';
-        str += '                <span>在线客服</span>';
-        str += '            </a>';
-        str += '        </li>';
+        if (_this.options.onlineServiceUrl) {
+            str += '        <li class="jItem item item-service" node-id="service">';
+            str += '            <a target="_blank" href="' + _this.options.onlineServiceUrl + '">';
+            str += '                <i class="iyoyo iyoyo-service"></i>';
+            str += '                <span>在线客服</span>';
+            str += '            </a>';
+            str += '        </li>';
+        }
         str += '    </ul>';
         str += '</div>';
         return str;
