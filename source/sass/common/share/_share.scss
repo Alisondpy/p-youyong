@@ -1,0 +1,39 @@
+.ui-share {
+    height: 22px;
+    line-height: 22px;
+    .txt {
+        font-size: 14px;
+        float: left;
+        font-size: 10px;
+        color: #5e5e5e;
+    }
+    a {
+        background-image: none;
+        margin: 0;
+        padding: 0;
+        margin-left: 5px;
+    }
+    .iyoyo {
+        width: 22px;
+        height: 22px;
+        line-height: 22px;
+        display: inline-block;
+        font-size: 22px;
+        color: #999;
+    }
+    .iyoyo-weixin {
+        &:hover {
+            color: #5ecb7f;
+        }
+    }
+    .iyoyo-qzone {
+        &:hover {
+            color: #f6c743;
+        }
+    }
+    .iyoyo-weibo {
+        &:hover {
+            color: #ec5c51;
+        }
+    }
+}

@@ -17,6 +17,9 @@ define(function(require, exports, module) {
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
+    //分享
+    var Share = require('plugins/share/1.0.0/share');
+    var share = new Share('#jShare');
 
     //slider
     var slider = new Slider('#jSlider', {
@@ -51,9 +54,9 @@ define(function(require, exports, module) {
         }
     });
 
-    box.tips('ddd',{
-        xtype:'ok',
-        duration : 0
+    box.tips('ddd', {
+        xtype: 'ok',
+        duration: 0
     });
     var clickHandles = {
 
