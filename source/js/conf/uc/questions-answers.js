@@ -14,8 +14,11 @@ define(function(require, exports, module) {
     var loginStatus = new LoginStatus();
     var fixBar = new FixBar();
     var footer = new Footer();
+    //分享
+    var Share = require('plugins/share/1.0.0/share');
+    var share = new Share('#jShare');
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
-    var box = require('lib/ui/box/1.0.1/box');
+    var box = require('lib/ui/box/1.0.1/crossbox');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Pager = require('plugins/pager/1.0.0/pager');
     var Login = require('module/login-status/1.0.0/login');
@@ -178,6 +181,36 @@ define(function(require, exports, module) {
                 }
                 clickInterface($PAGE_DATA['commentClickUrl'], data, '点赞');
             }
+        } else {
+            Login.login(window.location.href);
+        }
+    });
+
+    //采纳为最佳答案
+    main.on('click', '#jRebest', function() {
+        if (!Login.isLogin()) {
+            var dataType = $(this).attr('data-dataType');
+            var type = $(this).attr('data-type');
+            var id = $(this).attr('data-id');
+            var data = {
+                    "dataType": dataType,
+                    "type": type,
+                    "id": id
+                }
+            clickInterface($PAGE_DATA['commentClickUrl'], data, '采纳');
+        } else {
+            Login.login(window.location.href);
+        }
+    });
+
+    /*提问弹窗*/
+    $('#jModRight').on('click', '#jBtnNewQuestions', function() {
+        if (!Login.isLogin()) {
+            box.loadUrl($PAGE_DATA['toQuestionPage'] + "?id=" + sourceId, {
+                title: '提问页面',
+                autoRelease: true,
+                modal: false
+            });
         } else {
             Login.login(window.location.href);
         }

@@ -24,7 +24,8 @@
             courseId: 1,
             lessonId:2
         };
-        $PAGE_DATA['lessonId'] = '1001',
+        $PAGE_DATA['examId'] = '22222';
+        $PAGE_DATA['lessonId'] = '1001';
         //目录请求地址
         $PAGE_DATA['dirUrl'] = $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json';
         $PAGE_DATA['examUrl'] = $PAGE_DATA['baseStaticUrl']+'source/api/course/details.json';
@@ -32,7 +33,7 @@
         $PAGE_DATA['note'] = {
             note:$PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',
             like:$PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',
-            picked:$PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',
+            pick:$PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',
             publish:$PAGE_DATA['baseStaticUrl']+'source/api/course/details.json'
         }
         //问答请求地址
@@ -60,12 +61,12 @@
                 </div>
                 <div class="opation clearfix">
                     <div class="change clearfix">
-                        <a href="javascript:;" class="arrow-l">
+                        <a href="/p-youyong/dist/html/play.html" class="arrow-l" id="jArrowL">
                             <em class="line"></em>
                             <i class="iyoyo iyoyo-arrow-left-sm"></i>
                         </a>
 
-                        <a href="javascript:;" class="arrow-r">
+                        <a href="/p-youyong/dist/html/play.html" class="arrow-r" id="jArrowR">
                             <em class="line"></em>
                             <i class="iyoyo iyoyo-arrow-right-sm"></i>
                         </a>
@@ -221,6 +222,12 @@
                 <div class="contain-down">
                     <span class="time"><em>时间:</em><i>{{value.createTime}}</i></span>
                     <span class="answer">
+                        {{if value.isCollected == 0}}
+                        <a class="admit pick" data-id="{{value.id}}"><i>采集</i><strong>{{value.collectCount}}</strong></a>
+                        {{/if}}
+                        {{if value.isCollected == 1}}
+                        <a class="admit pick picked" data-id="{{value.id}}"><i>已采集</i><strong>{{value.collectCount}}</strong></a>
+                        {{/if}}
                         {{if value.isPraised == 0}}
                         <a class="admit like" data-id="{{value.id}}"><i class="iyoyo iyoyo-favour"></i><strong>{{value.praiseCount}}</strong></a>
                         {{/if}}

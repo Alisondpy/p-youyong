@@ -26,13 +26,12 @@ define(function(require, exports, module) {
 
     /*后台全局变量*/
     var sourceId = $PAGE_DATA['sourceId'];
-    var toQuestionPage = $PAGE_DATA['toQuestionPage'];
     var jPagination = $('#jPagination');
 
     /*提问弹窗*/
     $('.jWrap2').on('click', '#jQuestion', function() {
         if (Login.isLogin()) {
-            box.loadUrl(toQuestionPage + "?id=" + sourceId, {
+            box.loadUrl($PAGE_DATA['toQuestionPage'] + "?id=" + sourceId, {
                 title: '提问页面',
                 autoRelease: true,
                 modal: false
@@ -156,22 +155,22 @@ define(function(require, exports, module) {
     });
 
     /*导航菜单切换*/
-    //var nav1 = new navigation('.jWrap2',{
-    //    currentClass:'active',//当前样式
-    //    navSelector:['#jSubNav'],//导航栏dom选择器
-    //    navItemSlect:'.bar-left'
-    //});
-    //nav1.on('change',function(data){
-    //    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap2','jWrap2Box',jPagination);
-    //});
-    //var nav2 = new navigation('.jWrap3',{
-    //    currentClass:'active',//当前样式
-    //    navSelector:['#jSubNav'],//导航栏dom选择器
-    //    navItemSlect:'.bar-left'
-    //});
-    //nav2.on('change',function(data){
-    //    renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap3','jWrap3Box',jPagination);
-    //});
+    var nav1 = new navigation('.jWrap2',{
+        currentClass:'active',//当前样式
+        navSelector:['#jSubNav'],//导航栏dom选择器
+        navItemSlect:'.bar-left'
+    });
+    nav1.on('change',function(data){
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap2','jWrap2Box',jPagination);
+    });
+    var nav2 = new navigation('.jWrap3',{
+        currentClass:'active',//当前样式
+        navSelector:['#jSubNav'],//导航栏dom选择器
+        navItemSlect:'.bar-left'
+    });
+    nav2.on('change',function(data){
+        renderList($PAGE_DATA['baseStaticUrl']+'source/api/course/details.json',{'data':data},'jWrap3','jWrap3Box',jPagination);
+    });
 
     /*评论交互*/
     //评论字数限制
@@ -274,14 +273,27 @@ define(function(require, exports, module) {
 
     //采集
     $('#jWrap3Box').on('click', '.mod-item .pick', function() {
-        if (Login.isLogin()) {
-            var id = $(this).attr('data-id');
+        if (!Login.isLogin()) {
+            var dataType = $(this).attr('data-dataType');
+            var type = $(this).attr('data-type');
+            var id = $(this).attr('data-value');
+            var data;
             if ($(this).hasClass("picked")) {
-                clickInterface($PAGE_DATA['baseStaticUrl'] + 'source/api/course/details.json', id, '取消采集');
+                data = {
+                    "dataType": dataType,
+                    "type": type,
+                    "id": id
+                }
+                clickInterface($PAGE_DATA['baseStaticUrl'] + 'source/api/course/details.json', data, '取消采集');
                 $(this).find('i').text('采集');
                 $(this).removeClass('picked');
             } else {
-                clickInterface($PAGE_DATA['baseStaticUrl'] + 'source/api/course/details.json', id, '采集');
+                data = {
+                    "dataType": dataType,
+                    "type": type,
+                    "id": id
+                }
+                clickInterface($PAGE_DATA['baseStaticUrl'] + 'source/api/course/details.json', data, '采集');
                 $(this).find('i').text('已采集');
                 $(this).addClass('picked');
             }

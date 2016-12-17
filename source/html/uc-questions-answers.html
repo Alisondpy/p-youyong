@@ -7,7 +7,7 @@
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/uc/questions-answers.css" type="text/css" charset="utf-8" />
     <script type="text/javascript">
-        $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
+        $PAGE_DATA['pagerAnswers'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
     </script>
 </head>
 
@@ -30,12 +30,7 @@
                                 <span class="name txt-overflow">花村扛把子</span>
                                 <span class="questions txt-overflow">Mac装PS CC如何破解？</span>
                             </div>
-                            <!-- <div class="share f-r">
-                                <i class="iyo">分享</i>
-                                <i class="iyoyo iyoyo-weixin"></i>
-                                <i class="iyoyo iyoyo-qzone"></i>
-                                <i class="iyoyo iyoyo-weibo"></i>
-                            </div> -->
+                            <div class="share f-r" id="jShare"></div>
                         </div>
                         <div class="bottom">
                             <p class="details txt-overflow">我从百度上没搜索到指点迷津我从百度上没搜索到指点迷津我从百度上没搜索到指点迷津我从百度上没搜索到指点迷津我从百度上没搜索到指点迷津</p>
@@ -67,7 +62,7 @@
                     <div class="head-img f-l"><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="http://img1.bbgstatic.com/1584d52b0e7_bc_a0497d85409460dcc0e0ecb723257bb4_1242x680.jpeg" alt="课程详情" class="jImg img-error">花村扛把子</div>
                     <div class="input f-l">
                         <i class="arrow iyoyo iyoyo-iyoyo-arrow-left-normal jArrow"></i>
-                        <textarea name="comment" placeholder="看点糟点，不吐不快！别憋着，马上大声说出来吧！" class="jTxt"></textarea>
+                        <textarea name="comment" placeholder="看点糟点，不吐不快！别憋着，马上大声说出来吧！" class="jTxt ui-input"></textarea>
                         <span class="limit jTxtNum"><i>0</i>/300</span>
                     </div>
                     <a href="javascript:void(0);"  class="publish jPublish f-l"><span>发表评论</span></a>
@@ -91,8 +86,8 @@
         </div>
         <!-- 左侧内容 end -->
         <!-- 右侧内容 start -->
-        <div class="mod-right-content f-r">
-            <!-- <button class="ui-btn ui-btn-danger news-btn" id="jBtnNewQuestions">发布新问题</button> -->
+        <div class="mod-right-content f-r" id="jModRight">
+            <button class="ui-btn ui-btn-danger news-btn" id="jBtnNewQuestions">发布新问题</button>
             <div class="title">相关问题</div>
             <div class="question" id="jRightQuestions">
                 <a href="" class="a txt-overflow" >相关问题相关问题相关问题相关问题相关问题</a>
@@ -127,7 +122,7 @@
                     <div class="info clearfix jInfo">
                         <div class="info-left f-l">
                             <span class="time">时间 :<i class="ago">{{value.createTime}}天前</i></span>
-                            <!-- <span class="rebest">采纳为最佳答案</span> -->
+                            <span class="rebest" id="jRebest">采纳为最佳答案</span>
                         </div>
                         <div class="info-right f-r jClkRefavour">
                             <!-- <span class="response jClkResponse">回复</span> -->

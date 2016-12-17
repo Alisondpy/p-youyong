@@ -334,6 +334,7 @@ em {
                             padding-bottom: 10px;
                             border-bottom: 1px solid #eee;
                             .time {
+                                display: block;
                                 em {
                                     font-style: normal;
                                 }
@@ -344,7 +345,6 @@ em {
                             }
                             .answer {
                                 color: #b8b8b8;
-                                margin-left: 14px;
                                 em {
                                     font-style: normal;
                                     margin: 0 4px 0 5px;
@@ -387,11 +387,7 @@ em {
                             }
                         }
                         .ques-contain {
-                            .time {
-                                display: block;
-                            }
                             .answer {
-                                margin-left: 0;
                                 em {
                                     margin: 0;
                                     padding-right: 5px;
