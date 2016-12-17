@@ -147,16 +147,19 @@ define(function(require, exports, module) {
 
     var jTab2 = $('#jTab2');
     jTab2.on('click','.jLive',function(){
-        var id = $(this).attr('data-id');
+        var _this = $(this);
+        var id = _this.attr('data-id');
         io.get($PAGE_DATA['LiveShowUrl'],{courseId:id},function(res){
             if(res && res.data && res.data.liveshowUrl){
-                box.loadUrl(res.data.liveshowUrl,{
-                    title:'直播',
-                    className:'ui-test-box',
-                    fixed:true,
-                    width:$(window).width(),
-                    height:$(window).height()
-                });
+                //box.loadUrl(res.data.liveshowUrl,{
+                //    title:'直播',
+                //    className:'ui-test-box',
+                //    fixed:true,
+                //    width:$(window).width(),
+                //    height:$(window).height()
+                //});
+                var newTab=window.open('about:blank');
+                newTab.location.href = res.data.liveshowUrl;
             }else {
                 box.error('服务器错误,请重试');
             }

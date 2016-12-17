@@ -96,8 +96,8 @@ define(function(require, exports, module) {
         }
     });
     //视频播放结束
+    var jArrowR = $('#jArrowR');
     player.on('ended',function(){
-        console.log(examId);
         if(examId != ''){
             box.confirm('是否进入考试页面？',function() {
                 box.loadUrl($PAGE_DATA['examUrl'], {
@@ -109,7 +109,10 @@ define(function(require, exports, module) {
                 });
             },
             function() {
-
+                var href = jArrowR.attr('href');
+                if(href != ''){
+                    window.location.href = jArrowR.attr('href');
+                }
             }, this);
         }
     });
@@ -461,5 +464,40 @@ define(function(require, exports, module) {
             Login.login(window.location.href);
         }
     });
-    //============================笔记点赞 start
+
+    //笔记点赞
+    jTab.on('click','.pick',function(){
+        if(Login.isLogin()){//记得清除
+            var num = $(this).find('strong');
+            var number = parseInt(num.text());
+            var id = $(this).attr('data-id');
+            var data;
+            if ($(this).hasClass("picked")) {
+                data = {
+                    "dataType":4,
+                    "type":1,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['note'].pick,data,'取消采集');
+                $(this).removeClass('picked');
+                $(this).find('i').text('采集');
+                if((number - 1) >= 0){
+                    num.text(number - 1);
+                }
+            }else {
+                data = {
+                    "dataType":4,
+                    "type":2,
+                    "id":id
+                }
+                clickInterface($PAGE_DATA['note'].pick,data,'采集');
+                $(this).find('i').text('已采集');
+                $(this).addClass('picked');
+                num.text(number + 1);
+            }
+        } else {
+            Login.login(window.location.href);
+        }
+    });
+    //============================笔记点赞和采集 start
 });

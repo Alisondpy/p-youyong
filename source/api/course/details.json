@@ -24,6 +24,8 @@
 				"name":"课时1",
 				"createTime":"2001-03-15",
 				"isPraised":0,
+				"isCollected":0,
+				"collectCount":20,
 				"courseTime":"5.00",
 				"studyState":3
 			},
@@ -44,6 +46,8 @@
 				"name":"课时2",
 				"createTime":"2001-03-15",
 				"isPraised":1,
+				"isCollected":1,
+				"collectCount":20,
 				"courseTime":"23.20",
 				"studyState":2
 			},
@@ -64,6 +68,8 @@
 				"name":"课时3",
 				"createTime":"2001-03-15",
 				"isPraised":0,
+				"isCollected":0,
+				"collectCount":20,
 				"courseTime":"6.00",
 				"studyState":1
 			},
@@ -84,6 +90,8 @@
 				"name":"课时4",
 				"createTime":"2001-03-15",
 				"isPraised":1,
+				"isCollected":1,
+				"collectCount":20,
 				"courseTime":"28.00",
 				"studyState":2
 			},
@@ -104,6 +112,8 @@
 				"name":"课时5",
 				"createTime":"2001-03-15",
 				"isPraised":0,
+				"isCollected":0,
+				"collectCount":20,
 				"courseTime":"16.34",
 				"studyState":1
 			}
