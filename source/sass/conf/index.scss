@@ -189,7 +189,7 @@ $height: 172px;
             margin: 1px auto 0 auto;
             position: relative;
             left: 0;
-            transition: width 0.5s linear, left 0.5s linear;
+            transition: width 0.3s linear, left 0.3s linear;
             &:hover {
                 width: 566px;
                 left: 0;
@@ -207,7 +207,7 @@ $height: 172px;
             font-weight: bold;
             line-height: 100px;
             margin-left: 30px;
-            transition: margin 0.5s linear;
+            transition: margin 0.3s linear;
         }
         .content {
             margin-left: 28px;
@@ -241,7 +241,7 @@ $height: 172px;
             top: 50%;
             right: 0;
             margin-top: -25px;
-            transition: margin 0.5s linear;
+            transition: margin 0.3s linear;
             &:hover {
                 background: #ff515b;
             }

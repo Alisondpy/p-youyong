@@ -23,6 +23,8 @@ define(function(require, exports, module) {
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
+    require('plugins/layer/layer');
+
     //轮播图
     $('#jSlider').slider();
 
