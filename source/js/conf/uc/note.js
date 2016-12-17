@@ -71,7 +71,7 @@ define(function(require, exports, module) {
                         var id = _this.parents('.jEdit').attr('data-id');
                         _this.parents('.jEdit').find('.jHide').show().siblings('.jSave').hide();
                         _this.parents('.jEdit').siblings('.jEditDetails').removeAttr('contenteditable').removeClass('edittxt');
-                        InitEvent.postparams($PAGE_DATA['noteSave'], { 'id': id, 'context': context }, '保存成功！');
+                        InitEvent.postparams($PAGE_DATA['noteSave'], { 'id': id, 'context': context }, '保存成功！', pager);
 
                     })
                     body.on('click', '.jEdit .jDel', function() {
@@ -81,6 +81,15 @@ define(function(require, exports, module) {
                             InitEvent.postparams($PAGE_DATA['noteDel'], { 'id': id }, '删除成功！', pager)
                         }, function() {})
 
+                    })
+                    body.on('click', '.jEdit  .jOpen', function(){
+                        var _this = $(this);
+                        var id = _this.parents('.jEdit').attr('data-id');
+                        var isOpen = _this.attr('data-id');
+                        var open = isOpen == 1 ? '是否设为公开？':'是否设为私密？';
+                        box.confirm( open, function() {
+                            InitEvent.postparams($PAGE_DATA['toPrivateOrOpenNote'], { 'id': id ,'isOpen':isOpen}, '设置成功！', pager);
+                        }, function() {})
                     })
                 }
             },

@@ -7,8 +7,10 @@
     <!--#include file="./common/css.html"-->
     <link rel="stylesheet" href="/css/conf/uc/news.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
-    $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
-    $PAGE_DATA['currentPage'] = '1';
+    $PAGE_DATA['messageList'] = '/userCenter/messgae/list';
+    $PAGE_DATA['delList'] = '/userCenter/messgae/del';
+    $PAGE_DATA['readed'] = '/userCenter/messgae/allReaded';
+    $PAGE_DATA['clearAll'] = '/userCenter/messgae/clearAll';
     </script>
 </head>
 <body>
@@ -29,12 +31,16 @@
                         <!-- tab 头部 end -->
                         <div class="ifm-top-bar">
                             <!-- tab右侧工具栏 start -->
+                                <div class="control jControl">
+                                    <!-- <span class="ready" id="jReady">全部标记为已读</span>
+                                    <buttom class="ui-btn ui-btn-danger" id="jClear">清空</buttom> -->
+                                </div>
                             <!-- tab右侧工具栏 end -->
                         </div>
                     </div>
                     <div class="ifm-tab-bd" node-type="bd">
                         <!-- tab内容区域-1 start-->
-                        <div class="ifm-tab-container" node-type="container" data-id="1">
+                        <div class="ifm-tab-container current" node-type="container" data-id="1">
                             <div class="ifm-main-container">
                                 <!-- 页面主内容 start -->
                                 <div node-type="jContainer">
@@ -65,22 +71,29 @@
     <script type="text/javascript">
     require(['conf/uc/news'], function() {});
     </script>
-    <script type="text/html" id="jNote">
+    <script type="text/html" id="tNews">
         <div class="mod-news">
             <ul class="news-list">
-            <!-- {{each resultList as item i}} -->
-                <li class="item">
+            {{each resultList as item i}}
+                <li class="item jItem {{if item.status==1}}active{{/if}}" data-id="{{item.id}}">
                     <div class="details">
-                        据韩联社报道，韩国总统朴槿惠同意在明年4月辞去总统职务。随着“亲信干政”事件的不断发酵，韩国朝野及民众的反对声浪不断高涨。上周六，共有大约232万韩国民众在全国各地举行大规模集会。据韩联社报道，韩国总统朴槿惠同意在明年4月辞去总统职务。随着“亲信干政”事件的不断发酵，韩国朝野及民众的反对声浪不断高涨。上周六，共有大约232万韩国民众在全国各地举行大规模集会。据韩联社报道，韩国总统朴槿惠同意在明年4月辞去总统职务。随着“亲信干政”事件的不断发酵，韩国朝野及民众的反对声浪不断高涨。
+                        {{item.content}}
                         <a href="javascript:;">立即报名>></a>
                     </div>
                     <div class="control clearfix">
-                        <span class="time">2016-12-06</span>
+                        <span class="time">{{item.receiveTime}}</span>
+                        <i class="iyoyo iyoyo-del jDel"></i>
                     </div>
                 </li>
-                <!-- {{/each}} -->
+            {{/each}}
             </ul>
         </div>
+    </script>
+    <script type="text/html" id="tControl">
+        <span class="ready jRead">全部标记为已读</span><buttom class="ui-btn ui-btn-danger jClear">清空</buttom>
+    </script>
+    <script type="text/html" id="tEmpty">
+        <div class="ui-empty-list"><div class="iyoyo iyoyo-box"></div><div class="txt">暂无消息</div></div>
     </script>
     <!--#include file="./common/tj.html"-->
     <!--#include file="./common/statistics.html"-->
