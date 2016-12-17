@@ -482,7 +482,7 @@ yx-axis
 .mCSB_scrollTools .mCSB_buttonDown,
 .mCSB_scrollTools .mCSB_buttonLeft,
 .mCSB_scrollTools .mCSB_buttonRight {
-    background-image: url(mCSB_buttons.png);
+    background-image: url('#{$gImgBase}scroller/mCSB_buttons.png');
     /* css sprites */
     background-repeat: no-repeat;
     opacity: 0.4;

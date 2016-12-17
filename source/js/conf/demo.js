@@ -21,13 +21,16 @@ define(function(require, exports, module) {
     require('plugins/scroller/1.0.0/jquery.mCustomScrollbar');
     require('plugins/scroller/1.0.0/jquery.mousewheel');
     $("#jScroller").mCustomScrollbar({
-        axis: 'y',
-        mouseWheel: {
-            preventDefault: true
-        },
-        scrollButtons: {
-            enable: true
-        },
+        // axis: 'y',
+        // // alwaysShowScrollbar:2,
+        // autoHideScrollbar:false,
+        // autoExpandScrollbar:true,
+        // mouseWheel: {
+        //     preventDefault: true
+        // },
+        // // scrollButtons: {
+        // //     enable: true
+        // // },
         theme: "minimal-dark" //参考皮肤http://manos.malihu.gr/repository/custom-scrollbar/demo/examples/scrollbar_themes_demo.html
     });
 
