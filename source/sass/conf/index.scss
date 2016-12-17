@@ -252,6 +252,14 @@ $height: 172px;
                 background: #ff515b;
             }
         }
+        .ui-off{
+            background: #eef3f7;
+            border: 1px solid #eef3f7;
+            color: #666;
+            &:hover {
+                background: #eef3f7;
+            }
+        }
     }
     .mod-industry {
         position: relative;

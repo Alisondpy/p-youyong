@@ -220,16 +220,15 @@ define(function(require, exports, module) {
 
     //采纳为最佳答案
     main.on('click', '.jRebest', function() {
-        if (!Login.isLogin()) {
-            var dataType = $(this).attr('data-dataType');
-            var type = $(this).attr('data-type');
-            var id = $(this).attr('data-id');
-            var data = {
-                    "dataType": dataType,
-                    "type": type,
-                    "id": id
+        if (Login.isLogin()) {
+            if(!$(this).hasClass('isBest')){
+                var answerId = $(this).attr('data-id');
+                var data = {
+                    "questionId": questionId,
+                    "answerId": answerId
                 }
-            clickInterface($PAGE_DATA['commentClickUrl'], data, '采纳');
+                clickInterface($PAGE_DATA['adoptAnswerUrl'], data, '采纳');
+            }
         } else {
             Login.login(window.location.href);
         }
@@ -237,8 +236,8 @@ define(function(require, exports, module) {
 
     /*提问弹窗*/
     $('#jModRight').on('click', '#jBtnNewQuestions', function() {
-        if (!Login.isLogin()) {
-            box.loadUrl($PAGE_DATA['toQuestionPage'] + "?id=" + sourceId, {
+        if (Login.isLogin()) {
+            box.loadUrl($PAGE_DATA['toQuestionPage'] + "?id=" + $PAGE_DATA['courseId'], {
                 title: '提问页面',
                 autoRelease: true,
                 modal: false

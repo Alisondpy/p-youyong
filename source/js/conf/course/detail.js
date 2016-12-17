@@ -278,9 +278,14 @@ define(function(require, exports, module) {
     //采集
     $('#jWrap3Box').on('click', '.mod-item .pick', function() {
         if (Login.isLogin()) {
+            var isMyNote = $(this).attr('data-type');
             var id = $(this).attr('data-value');
-            if (!$(this).hasClass("picked")) {
-                clickInterface($PAGE_DATA['commentPickUrl'],{noteId:id},'采集');
+            if(isMyNote == '0'){
+                if (!$(this).hasClass("picked")) {
+                    clickInterface($PAGE_DATA['commentPickUrl'],{noteId:id},'采集');
+                }
+            }else {
+                box.warn('不能采集自己的笔记');
             }
         } else {
             Login.login(window.location.href);
