@@ -17,6 +17,20 @@ define(function(require, exports, module) {
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
+    //自定义滚动条皮肤
+    require('plugins/scroller/1.0.0/jquery.mCustomScrollbar');
+    require('plugins/scroller/1.0.0/jquery.mousewheel');
+    $("#jScroller").mCustomScrollbar({
+        axis: 'y',
+        mouseWheel: {
+            preventDefault: true
+        },
+        scrollButtons: {
+            enable: true
+        },
+        theme: "minimal-dark" //参考皮肤http://manos.malihu.gr/repository/custom-scrollbar/demo/examples/scrollbar_themes_demo.html
+    });
+
     //分享
     var Share = require('plugins/share/1.0.0/share');
     var share = new Share('#jShare');
