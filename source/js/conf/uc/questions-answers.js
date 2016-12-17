@@ -14,6 +14,9 @@ define(function(require, exports, module) {
     var loginStatus = new LoginStatus();
     var fixBar = new FixBar();
     var footer = new Footer();
+    //分享
+    var Share = require('plugins/share/1.0.0/share');
+    var share = new Share('#jShare');
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
     var box = require('lib/ui/box/1.0.1/crossbox');
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
