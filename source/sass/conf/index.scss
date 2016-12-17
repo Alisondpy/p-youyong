@@ -174,9 +174,14 @@ $height: 172px;
         margin-bottom: 30px;
     }
     .mod-open {
-        width: 528px;
-        margin-right: 61px;
-        position: relative;
+        margin-right: 23px;
+        .items{
+            width: 566px;
+            height: 403px;
+            position: relative;
+            left: -19px;
+            overflow: hidden;
+        }
         .item {
             width: 528px;
             height: 100px;
@@ -187,7 +192,7 @@ $height: 172px;
             transition: width 0.5s linear, left 0.5s linear;
             &:hover {
                 width: 566px;
-                left: -19px;
+                left: 0;
                 .date {
                     margin-left: 49px;
                 }
