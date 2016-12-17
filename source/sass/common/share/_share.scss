@@ -1,17 +1,14 @@
 .ui-share {
     height: 22px;
     line-height: 22px;
-    .txt {
-        font-size: 14px;
-        float: left;
-        font-size: 10px;
-        color: #5e5e5e;
+    .txt,
+    .iyoyo {
+        display: inline-block;
     }
-    a {
-        background-image: none;
-        margin: 0;
-        padding: 0;
-        margin-left: 5px;
+    .txt {
+        color: #5e5e5e;
+        font-size: 14px;
+        vertical-align: middle;
     }
     .iyoyo {
         width: 22px;
@@ -20,6 +17,7 @@
         display: inline-block;
         font-size: 22px;
         color: #999;
+        margin-left: 5px;
     }
     .iyoyo-weixin {
         &:hover {
@@ -31,7 +29,7 @@
             color: #f6c743;
         }
     }
-    .iyoyo-weibo {
+    .iyoyo-tsina {
         &:hover {
             color: #ec5c51;
         }
