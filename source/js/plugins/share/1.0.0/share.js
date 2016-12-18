@@ -28,6 +28,9 @@ define(function(require, exports, module) {
                         // bdUrl: '自定义分享url地址',
                         // bdPic: '自定义分享图片'
                 },
+                share: [{
+                    "bdSize": 16
+                }],
                 slide: '',
                 image: '',
                 selectShare: ''
