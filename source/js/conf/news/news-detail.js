@@ -26,4 +26,7 @@ define(function(require, exports, module) {
     var Share = require('plugins/share/1.0.0/share');
     var share = new Share('#jShare');
 
+    $('#jPraise').click(function(e){
+        
+    });
 });

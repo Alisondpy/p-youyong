@@ -69,10 +69,16 @@
                 color: #fff;
             }
             span {
+                position: relative;
+                top: -5px;
                 color: #fff;
                 font-size: 12px;
                 display: block;
             }
+            cursor: pointer;
+        }
+        .praised{
+            background: $hoverColor;
         }
         .share {
             text-align: center;

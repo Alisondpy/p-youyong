@@ -147,10 +147,11 @@ define(function(require, exports, module) {
 
     var jTab2 = $('#jTab2');
     jTab2.on('click','.jLive',function(){
+        var newTab=window.open('about:blank');
         var _this = $(this);
         var id = _this.attr('data-id');
         io.get($PAGE_DATA['LiveShowUrl'],{courseId:id},function(res){
-            if(res && res.data && res.data.liveshowUrl){
+            if(res && res.data){
                 //box.loadUrl(res.data.liveshowUrl,{
                 //    title:'直播',
                 //    className:'ui-test-box',
@@ -158,8 +159,11 @@ define(function(require, exports, module) {
                 //    width:$(window).width(),
                 //    height:$(window).height()
                 //});
-                var newTab=window.open('about:blank');
-                newTab.location.href = res.data.liveshowUrl;
+                if(res.data.liveshowUrl != ''){
+                    newTab.location.href = res.data.liveshowUrl;
+                }else {
+                    newTab.close();
+                }
             }else {
                 box.error('服务器错误,请重试');
             }
