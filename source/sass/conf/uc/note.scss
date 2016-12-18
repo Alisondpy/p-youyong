@@ -66,20 +66,25 @@
 				.edit{
 					.iyoyo{
 						font-size: 12px;
+					}
+					.iyoyo-key, .iyoyo-del, .iyoyo-note{
+						color: #f43c3c;
 						cursor: pointer;
 					}
-					.iyoyo-key, .iyoyo-del{
-						color: #f43c3c;
-					}
 					.secret{
-						margin-right: 15px;
+						margin-right: 10px;
+						.iyoyo-key{
+							&.green{
+								color: #32CD32 ;
+							}
+						}
 						.normal{
+							margin-right: 10px;
 							font-style: normal;	
 						}
 					}
 					.iyoyo-note{
 						color: #5e7d8f;
-						margin-left: 10px;
 						margin-right: 10px;
 					}
 					.ui-btn{
