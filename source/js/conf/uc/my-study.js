@@ -49,7 +49,7 @@ define(function(require, exports, module) {
                         data.data.deletingTxt = '管理'
                     }
                     jContainer.html(template('jModule', data.data));
-                    lazy = new Lazyload($('.jImg'), {
+                    lazy = new Lazyload(jContainer.find('.jImg'), {
                         mouseWheel: true,
                         effect: 'fadeIn',
                         snap: true
@@ -99,6 +99,10 @@ define(function(require, exports, module) {
                         }, function(){
                             // box.tips('已取消')
                         })
+                    })
+                    body.on('click', '.jControl .jLoad', function(){
+                        var curId = $(this).attr('data-id');
+                           window.location.href = $PAGE_DATA['getUrl']+curId+'&type=0';
                     })
                }
             }
