@@ -24,6 +24,8 @@ define(function(require, exports, module) {
 					box.ok('提问成功');
 					if(window.top && window.top.window.pager){
 						window.top.window.pager();
+					}else if(window.top && window.top.window.url){
+						window.top.window.location.href = window.top.window.url;
 					}
 				}else {
 					box.error(res.msg || '提问失败');

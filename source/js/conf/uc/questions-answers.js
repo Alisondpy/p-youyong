@@ -157,7 +157,8 @@ define(function(require, exports, module) {
                         box.ok('发表成功');
                         txt.val('');
                         txtNum.children('i').text('0');
-                        pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                        window.location.reload();
+                        //pager.pagination.selectPage(pager.pagination.get('currentPage'));
                     },function(res){
                         box.error(res.msg || '网络错误,请重试');
                     });
@@ -187,7 +188,11 @@ define(function(require, exports, module) {
     function clickInterface(url, data, msg) {
         io.get(url, data, function(res) {
             box.ok(msg + '成功');
-            pager.pagination.selectPage(pager.pagination.get('currentPage'));
+            if(msg == '采纳'){
+                window.location.reload();
+            }else {
+                pager.pagination.selectPage(pager.pagination.get('currentPage'));
+            }
         }, function(res) {
             box.error(res.msg || '网络错误,请重试');
         });
@@ -251,4 +256,6 @@ define(function(require, exports, module) {
             Login.login(window.location.href);
         }
     });
+
+    window.url = window.location.href;
 });
