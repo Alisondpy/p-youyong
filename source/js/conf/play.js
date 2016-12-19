@@ -479,7 +479,6 @@ define(function(require, exports, module) {
         if(Login.isLogin()){//记得清除
             var num = $(this).find('strong');
             var number = parseInt(num.text());
-            console.log(number,typeof number);
             var isMyNote = $(this).attr('data-type');
             var id = $(this).attr('data-id');
             if(isMyNote == '0'){
