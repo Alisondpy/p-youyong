@@ -241,7 +241,7 @@ define(function(require, exports, module) {
 
 
     /*点赞交互*/
-    //点赞和采集的接口处理
+    //点赞和采集和公开私有的接口处理
     function clickInterface(url, data, msg) {
         io.get(url, data, function(res) {
             box.ok(msg + '成功');
@@ -312,6 +312,17 @@ define(function(require, exports, module) {
         } else {
             Login.login(window.location.href);
         }
+    });
+
+    //私密或者公开
+    $('#jWrap3Box').on('click','.mod-item .jIsOpen',function(){
+        var _this = $(this);
+        var id = _this.attr('data-id');
+        var isOpen = _this.attr('data-type');
+        var open = isOpen == 1 ? '是否设为公开？':'是否设为私密？';
+        box.confirm( open, function() {
+            clickInterface($PAGE_DATA['toPrivateOrOpenNote'],{ 'id': id ,'isOpen':isOpen},'设置');
+        }, function() {})
     });
 
     window.pager = function() {
