@@ -24,6 +24,9 @@ define(function(require, exports, module) {
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
+    //赞效果
+    var Praise = require('module/praise/1.0.0/praise');
+
     //分享
     var Share = require('plugins/share/1.0.0/share');
     var share = new Share('#jShare');
@@ -250,6 +253,7 @@ define(function(require, exports, module) {
 
     //点赞
     $('#jWrap1Box,#jWrap3Box').on('click', '.mod-item .like', function() {
+        var praise = new Praise(this);
         if (Login.isLogin()) {
             var dataType = $(this).attr('data-dataType');
             var type = $(this).attr('data-type');
@@ -262,6 +266,7 @@ define(function(require, exports, module) {
                     "id": id
                 }
                 clickInterface($PAGE_DATA['commentClickUrl'], data, '取消点赞');
+                praise.delete();
             } else {
                 data = {
                     "dataType": dataType,
@@ -269,6 +274,7 @@ define(function(require, exports, module) {
                     "id": id
                 }
                 clickInterface($PAGE_DATA['commentClickUrl'], data, '点赞');
+                praise.add();
             }
         } else {
             Login.login(window.location.href);

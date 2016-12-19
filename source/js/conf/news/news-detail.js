@@ -35,12 +35,12 @@ define(function(require, exports, module) {
     //点赞接口处理
     function clickInterface(url, data, msg) {
         io.get(url, data, function(res) {
-            //box.ok(msg + '成功');
+            box.ok(msg + '成功');
         }, function(res) {
             box.error(res.msg || '网络错误,请重试');
         });
     };
-    $('#jNewsPraise').click(function(e){
+    $('#jNewsPraise').click(function(){
         var praise = new Praise(this);
         if (Login.isLogin()) {
             var numBox = $(this).find('span');

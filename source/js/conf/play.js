@@ -26,6 +26,8 @@ define(function(require, exports, module) {
     var tab = new Tab(jTab);
     var lazy, question, note;
 
+    //赞效果
+    var Praise = require('module/praise/1.0.0/praise');
     //分享
     var Share = require('plugins/share/1.0.0/share');
     var share = new Share('#jShare');
@@ -438,6 +440,7 @@ define(function(require, exports, module) {
 
     //笔记点赞
     jTab.on('click','.like',function(){
+        var praise = new Praise(this);
         if(Login.isLogin()){//记得清除
             var num = $(this).find('strong');
             var number = parseInt(num.text());
@@ -450,6 +453,7 @@ define(function(require, exports, module) {
                     "id":id
                 }
                 clickInterface($PAGE_DATA['note'].like,data,'取消点赞');
+                praise.delete();
                 $(this).removeClass('activeLike');
                 if((number - 1) >= 0){
                     num.text(number - 1);
@@ -461,6 +465,7 @@ define(function(require, exports, module) {
                     "id":id
                 }
                 clickInterface($PAGE_DATA['note'].like,data,'点赞');
+                praise.add();
                 $(this).addClass('activeLike');
                 num.text(number + 1);
             }

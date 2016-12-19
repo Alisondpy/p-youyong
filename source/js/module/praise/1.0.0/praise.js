@@ -9,18 +9,27 @@ define(function(require, exports, module) {
 	 */
 	function Praise(selector,options){
 		var _this = this;
-		var defaults = {
-			start:{
-				color:"#E94F06"
-			},
-			end:{
-
-			},
-			duration:1500
-		};
 		_this.el = $(selector);
-		console.log(_this.el.offset(),_this.el.width(),_this.el.height());
-		_this.options = $.extend(true,{},defaults,options);
+		var defaults = {
+			duration:1000,
+			add:{
+				offsetTop:_this.el.height()+20,
+				initCss:{
+					zIndex:1,
+					color:"#ea3e48"
+				},
+				fontSize: _this.el.height()/2
+			},
+			delete:{
+				offsetTop:_this.el.height()+20,
+				initCss:{
+					zIndex:1,
+					color:"#666"
+				},
+				fontSize: _this.el.height()/2
+			}
+		};
+		_this.options = $.extend(true,{},defaults,options)
 		_this._init();
 	};
 
@@ -31,47 +40,50 @@ define(function(require, exports, module) {
 		var _this = this;
 		_this.x = _this.el.offset().left+(_this.el.width()/2);
 		_this.y = _this.el.offset().top;
+		_this.b = $("<div></div>");
+		_this.b.css({
+			position: "absolute",
+			top: _this.y,
+			left: _this.x-(_this.el.width()/2),
+			width:_this.el.width(),
+			"text-align":'center'
+		});
 	};
 
 	Praise.prototype.add = function() {
 		var _this = this;
-		var $b = $("<b>+1</b>");
-		$b.css({
-			top: _this.y,
-			left: _this.x,
-			position: "absolute",
-			color: _this.options.start.color
-		});
-		$("body").append($b);
-		$b.animate({
-			top: _this.y - _this.el.height(),
-			left: _this.x - (_this.el.width()/4),
-			opacity: 0,
-			"font-size": _this.el.width()/2
+		_this.b.text('+1');
+		_this.b.css(_this.options.add.initCss);
+		$("body").append(_this.b);
+		_this.b.animate({
+			"font-size": _this.options.add.fontSize,
+			top: _this.y - _this.options.add.offsetTop,
+			left: _this.x - (_this.b.width()/2),
+			opacity: 0
 		},  _this.options.duration, function() {
-			$b.remove();
+			_this.destroy();
 		});
 	};
 
 	Praise.prototype.delete = function(){
 		var _this = this;
-		var $b = $("<b>-1</b>");
-		$b.css({
-			top: _this.y,
-			left: _this.x,
-			position: "absolute",
-			color: _this.options.start.color
-		});
-		$("body").append($b);
-		$b.animate({
-			top: _this.y - _this.el.height(),
-			left: _this.x - (_this.el.width()/4),
-			opacity: 0,
-			"font-size": _this.el.width()/2
+		_this.b.text('-1');
+		_this.b.css(_this.options.delete.initCss);
+		$("body").append(_this.b);
+		_this.b.animate({
+			"font-size": _this.options.delete.fontSize,
+			top: _this.y - _this.options.delete.offsetTop,
+			left: _this.x - (_this.b.width()/2),
+			opacity: 0
 		}, _this.options.duration, function() {
-			$b.remove();
+			_this.destroy();
 		});
 	};
+
+	Praise.prototype.destroy = function(){
+		var _this = this;
+		_this.b.remove();
+	}
 
 	module.exports = Praise;
 
