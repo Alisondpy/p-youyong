@@ -94,9 +94,9 @@
                 <!--考试未开始-->
                 {{if value.status == 0}}
                     <li class="jExamList item  clearfix {{deletingClass}}" data-value="{{value.id}}">
-                        <div class="picture f-l">
+                        <!-- <div class="picture f-l">
                             <a href="javascript:;"><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src={{value.imageUrl}} alt="系列课" class="jImg img-error"></a>
-                        </div>
+                        </div> -->
                         <div class="contain f-l">
                             <div class="title clearfix">
                                 <h3 class="hit f-l" title="{{value.examName}}">{{value.examName}}</h3>
@@ -124,9 +124,9 @@
                 <!-- 考试开始 -->
                 {{if value.status == 1 && value.isExamed == 0}}
                     <li class="jExamList item  clearfix {{deletingClass}}" data-value="{{value.id}}">
-                        <div class="picture f-l">
+                        <!-- <div class="picture f-l">
                             <a href="javascript:;"><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src={{value.imageUrl}} alt="系列课" class="jImg img-error"></a>
-                        </div>
+                        </div> -->
                         <div class="contain f-l">
                             <div class="title clearfix">
                                 <h3 class="hit f-l" title="{{value.examName}}">{{value.examName}}</h3>
@@ -172,9 +172,9 @@
             <ul>
                 {{each resultList as value i}}
                     <li class="jExamList item  clearfix jBtnManage jItem {{deletingClass}}" data-value="{{value.id}}">
-                        <div class="picture f-l">
+                       <!--  <div class="picture f-l">
                             <a href="javascript:;"><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src={{value.imageUrl}} alt="系列课" class="jImg img-error"></a>
-                        </div>
+                        </div> -->
                         <div class="contain f-l">
                             <div class="title clearfix">
                                 <h3 class="hit f-l" title="{{value.examName}}">{{value.examName}}</h3>
