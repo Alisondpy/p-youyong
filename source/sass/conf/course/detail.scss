@@ -32,6 +32,7 @@ a {
 .ui-open{
     color: #32CD32 !important;
     left: 15px;
+    z-index: 0;
 }
 .mod-detail {
     background-color: #eef3f7;
@@ -538,6 +539,7 @@ a {
                     margin-right: 35px;
                     font-size: 14px;
                     color: #333;
+                    z-index: 1;
                     i{
                         font-style:normal;
                     }

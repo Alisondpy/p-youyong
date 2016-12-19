@@ -104,6 +104,7 @@ define(function(require, exports, module) {
     //视频播放结束
     var jArrowR = $('#jArrowR');
     player.on('ended',function(){
+        var href = jArrowR.attr('href');
         if(examId != ''){
             box.confirm('是否进入考试页面？',function() {
                 box.loadUrl($PAGE_DATA['examUrl'], {
@@ -115,11 +116,14 @@ define(function(require, exports, module) {
                 });
             },
             function() {
-                var href = jArrowR.attr('href');
-                if(href != ''){
-                    window.location.href = jArrowR.attr('href');
+                if(href != '' && href){
+                    window.location.href = href;
                 }
             }, this);
+        }else {
+            if(href != '' && href){
+                window.location.href = href;
+            }
         }
     });
     //====================播放器 end
