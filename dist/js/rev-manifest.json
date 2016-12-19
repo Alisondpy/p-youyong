@@ -1,11 +1,11 @@
 {
-  "app.js": "app-96d4091272.js",
+  "app.js": "app-2f71cf89a8.js",
   "conf/404.js": "conf/404-71d6a8d181.js",
   "conf/500.js": "conf/500-96e0e3abbe.js",
   "conf/apply.js": "conf/apply-e79a0f7c7d.js",
   "conf/ckplayer.js": "conf/ckplayer-ada3d40e9c.js",
   "conf/course/ask-pop.js": "conf/course/ask-pop-11422fb6fc.js",
-  "conf/course/detail.js": "conf/course/detail-817c81211e.js",
+  "conf/course/detail.js": "conf/course/detail-f3c3bd1251.js",
   "conf/course/index.js": "conf/course/index-401b312f27.js",
   "conf/course/list.js": "conf/course/list-ed0289db6c.js",
   "conf/demo.js": "conf/demo-44b0178fa2.js",
