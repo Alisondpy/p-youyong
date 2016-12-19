@@ -17,7 +17,7 @@ define(function(require, exports, module) {
             throw new Error('the params [selector] is require.');
         }
         var defaults = {
-            viewList: ['weixin', 'qzone', 'tsina'], //参考http://share.baidu.com/code/advance#toid
+            viewList: ['weixin', 'qzone', 'tsina'], //参考http://share.baidu.com/code/advance#toid 
             class: 'ui-share', //自定义样式
             shareTxt: '分享', //分享按钮
             config: {
