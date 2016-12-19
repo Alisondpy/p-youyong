@@ -1,17 +1,20 @@
-<!DOCTYPE html><html><head><title>我的消息</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/news.css?v=c03a660c0a" charset="utf-8"><script>$PAGE_DATA.getPager=$PAGE_DATA.baseStaticUrl+"/source/api/uc/index/pager.json",$PAGE_DATA.currentPage="1"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><div id="jIfmTab" class="ifm-tab"><div class="ifm-hd clearfix"><!-- tab 头部 start --><ul class="clearfix ifm-tab-hd" node-type="hd"><li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的消息</a></li></ul><!-- tab 头部 end --><div class="ifm-top-bar"><!-- tab右侧工具栏 start --><!-- tab右侧工具栏 end --></div></div><div class="ifm-tab-bd" node-type="bd"><!-- tab内容区域-1 start--><div class="ifm-tab-container" node-type="container" 
-data-id="1"><div class="ifm-main-container"><!-- 页面主内容 start --><div node-type="jContainer"><div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后...</div></div></div><!-- 页面主内容 end --></div><div class="ifm-bottom-bar"><!-- 底部工具栏 start --><div node-type="jPagination" class="pager"></div><!-- 底部工具栏 end --></div></div><!-- tab内容区域-1 end--></div></div></div></div><!--#include file="./module/uc/right-container.html"--></div><!--#include file="./common/footer.html"--><!--#include file="./common/js.html"--><script>require(["conf/uc/news"],function(){})</script><script type="text/html" id="jNote">
+<!DOCTYPE html><html><head><title>我的消息</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/news.css?v=392d52e199" charset="utf-8"><script>$PAGE_DATA.messageList="/userCenter/messgae/list",$PAGE_DATA.delList="/userCenter/messgae/del",$PAGE_DATA.readed="/userCenter/messgae/allReaded",$PAGE_DATA.clearAll="/userCenter/messgae/clearAll"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><div id="jIfmTab" class="ifm-tab"><div class="ifm-hd clearfix"><!-- tab 头部 start --><ul class="clearfix ifm-tab-hd" node-type="hd"><li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的消息</a></li></ul><!-- tab 头部 end --><div class="ifm-top-bar"><!-- tab右侧工具栏 start --><div class="control jControl">
+<!-- <span class="ready" id="jReady">全部标记为已读</span>
+                                    <buttom class="ui-btn ui-btn-danger" id="jClear">清空</buttom> --></div><!-- tab右侧工具栏 end --></div></div><div class="ifm-tab-bd" node-type="bd"><!-- tab内容区域-1 start--><div class="ifm-tab-container current" node-type="container" data-id="1"><div class="ifm-main-container"><!-- 页面主内容 start --><div node-type="jContainer"><div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后...</div></div></div><!-- 页面主内容 end --></div><div class="ifm-bottom-bar"><!-- 底部工具栏 start --><div node-type="jPagination" class="pager"></div><!-- 底部工具栏 end --></div></div><!-- tab内容区域-1 end--></div></div></div></div><!--#include file="./module/uc/right-container.html"--></div><!--#include file="./common/footer.html"--><!--#include file="./common/js.html"--><script>require(["conf/uc/news"],function(){})</script><script type="text/html" id="tNews">
 <div class="mod-news">
             <ul class="news-list">
-            <!-- {{each resultList as item i}} -->
-                <li class="item">
+            {{each resultList as item i}}
+                <li class="item jItem {{if item.status==1}}active{{/if}}" data-id="{{item.id}}">
                     <div class="details">
-                        据韩联社报道，韩国总统朴槿惠同意在明年4月辞去总统职务。随着“亲信干政”事件的不断发酵，韩国朝野及民众的反对声浪不断高涨。上周六，共有大约232万韩国民众在全国各地举行大规模集会。据韩联社报道，韩国总统朴槿惠同意在明年4月辞去总统职务。随着“亲信干政”事件的不断发酵，韩国朝野及民众的反对声浪不断高涨。上周六，共有大约232万韩国民众在全国各地举行大规模集会。据韩联社报道，韩国总统朴槿惠同意在明年4月辞去总统职务。随着“亲信干政”事件的不断发酵，韩国朝野及民众的反对声浪不断高涨。
+                        {{item.content}}
                         <a href="javascript:;">立即报名>></a>
                     </div>
                     <div class="control clearfix">
-                        <span class="time">2016-12-06</span>
+                        <span class="time">{{item.receiveTime}}</span>
+                        <i class="iyoyo iyoyo-del jDel"></i>
                     </div>
                 </li>
-                <!-- {{/each}} -->
+            {{/each}}
             </ul>
-        </div></script><!--#include file="./common/tj.html"--><!--#include file="./common/statistics.html"--></body></html>
+        </div></script><script type="text/html" id="tControl"><span class="ready jRead">全部标记为已读</span><buttom class="ui-btn ui-btn-danger jClear">清空</buttom></script><script type="text/html" id="tEmpty"><div class="ui-empty-list"><div class="iyoyo iyoyo-box"></div><div class="txt">暂无消息</div></div></script><!--#include file="./common/tj.html"-->
+<!--#include file="./common/statistics.html"--></body></html>

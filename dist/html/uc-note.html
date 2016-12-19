@@ -1,4 +1,4 @@
-<!DOCTYPE html><html><head><title>我的笔记</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/note.css?v=80feba84e1" charset="utf-8"><script>$PAGE_DATA.noteInfo=$PAGE_DATA.baseStaticUrl+"/source/api/uc/note.json"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><div id="jIfmTab" class="ifm-tab"><div class="ifm-hd clearfix"><!-- tab 头部 start --><ul class="clearfix ifm-tab-hd" node-type="hd"><li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的笔记</a></li></ul><!-- tab 头部 end --><div class="ifm-top-bar"><!-- tab右侧工具栏 start -->
+<!DOCTYPE html><html><head><title>我的笔记</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/note.css?v=e14ed3b2b4" charset="utf-8"><script>$PAGE_DATA.noteInfo=$PAGE_DATA.baseStaticUrl+"/source/api/uc/note.json"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><div id="jIfmTab" class="ifm-tab"><div class="ifm-hd clearfix"><!-- tab 头部 start --><ul class="clearfix ifm-tab-hd" node-type="hd"><li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的笔记</a></li></ul><!-- tab 头部 end --><div class="ifm-top-bar"><!-- tab右侧工具栏 start -->
 <!-- <div class="ui-uc-search-bar" id="jUcSearchBar">
                                 <label class="lbl" for="_ucSearchBar">按考试名称模糊搜索</label>
                                 <input class="txt" id="_ucSearchBar" node-type="ipt" type="text" data-id="key">
@@ -22,14 +22,16 @@
                         <div class="edit f-r">
                             <span class="secret jHide">
                                 {{if item.isProvite=="1"}}
-                                    <i class="iyoyo iyoyo-key"></i>
+                                    <i class="iyoyo iyoyo-key jOpen" data-id="1"  title="点击公开"></i>
                                     <em class="normal">私密</em>
                                 {{else}}
-                                    <i class="iyoyo iyoyo-favour"></i>
-                                    <em class="normal">{{item.pariseNum}}</em>
+                                    <i class="iyoyo iyoyo-key green jOpen" data-id="0" title="点击私密"></i>
+                                    <em class="normal">公开</em>
+                                    <i class="iyoyo iyoyo-favour" title="点赞数"></i>
+                                    <em class="normal">{{item.pariseNum=='0'?'0':item.pariseNum}}</em>
                                 {{/if}}
-                                <i class="iyoyo iyoyo-note jEditTxt"></i>
-                                <i class="iyoyo iyoyo-del jDel"></i>
+                                <i class="iyoyo iyoyo-note jEditTxt" title="编辑"></i>
+                                <i class="iyoyo iyoyo-del jDel"  title="删除"></i>
                             </span>
                             <button class="ui-btn ui-btn-danger jSave">保存</button>
                         </div>
