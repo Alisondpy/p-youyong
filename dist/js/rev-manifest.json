@@ -1,10 +1,10 @@
 {
-  "app.js": "app-82deef6014.js",
+  "app.js": "app-96d4091272.js",
   "conf/404.js": "conf/404-71d6a8d181.js",
   "conf/500.js": "conf/500-96e0e3abbe.js",
   "conf/apply.js": "conf/apply-e79a0f7c7d.js",
   "conf/ckplayer.js": "conf/ckplayer-ada3d40e9c.js",
-  "conf/course/ask-pop.js": "conf/course/ask-pop-10a256cbea.js",
+  "conf/course/ask-pop.js": "conf/course/ask-pop-11422fb6fc.js",
   "conf/course/detail.js": "conf/course/detail-817c81211e.js",
   "conf/course/index.js": "conf/course/index-401b312f27.js",
   "conf/course/list.js": "conf/course/list-ed0289db6c.js",
@@ -20,7 +20,7 @@
   "conf/news/index.js": "conf/news/index-bd2cbf67aa.js",
   "conf/news/news-detail.js": "conf/news/news-detail-0223ea26d4.js",
   "conf/open-class-detail.js": "conf/open-class-detail-6d8ff06d47.js",
-  "conf/play.js": "conf/play-0854dafa77.js",
+  "conf/play.js": "conf/play-38d30a7f97.js",
   "conf/polling-list.js": "conf/polling-list-643fa181fb.js",
   "conf/register-pop.js": "conf/register-pop-ac28b0e135.js",
   "conf/register.js": "conf/register-728d887736.js",
@@ -38,5 +38,5 @@
   "conf/uc/news.js": "conf/uc/news-b4de7bd69b.js",
   "conf/uc/note.js": "conf/uc/note-9f52223637.js",
   "conf/uc/person-info.js": "conf/uc/person-info-f50949f09d.js",
-  "conf/uc/questions-answers.js": "conf/uc/questions-answers-87aabf93a0.js"
+  "conf/uc/questions-answers.js": "conf/uc/questions-answers-1ecd3916c1.js"
 }
