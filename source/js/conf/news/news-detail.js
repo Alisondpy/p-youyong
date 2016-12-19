@@ -42,7 +42,7 @@ define(function(require, exports, module) {
     };
     $('#jNewsPraise').click(function(e){
         var praise = new Praise(this);
-        if (!Login.isLogin()) {
+        if (Login.isLogin()) {
             var numBox = $(this).find('span');
             var number = parseInt(numBox.text());
             var dataType = $(this).attr('data-dataType');

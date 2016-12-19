@@ -14,7 +14,7 @@ define(function(require, exports, module) {
 				color:"#E94F06"
 			},
 			end:{
-				
+
 			},
 			duration:1500
 		};
