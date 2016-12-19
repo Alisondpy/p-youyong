@@ -24,6 +24,10 @@ define(function(require, exports, module) {
     var footer = new Footer();
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
+    //分享
+    var Share = require('plugins/share/1.0.0/share');
+    var share = new Share('#jShare');
+
     /*后台全局变量*/
     var sourceId = $PAGE_DATA['sourceId'];
     var jPagination = $('#jPagination');
@@ -273,29 +277,15 @@ define(function(require, exports, module) {
 
     //采集
     $('#jWrap3Box').on('click', '.mod-item .pick', function() {
-        if (!Login.isLogin()) {
-            var dataType = $(this).attr('data-dataType');
-            var type = $(this).attr('data-type');
+        if (Login.isLogin()) {
+            var isMyNote = $(this).attr('data-type');
             var id = $(this).attr('data-value');
-            var data;
-            if ($(this).hasClass("picked")) {
-                data = {
-                    "dataType": dataType,
-                    "type": type,
-                    "id": id
+            if(isMyNote == '0'){
+                if (!$(this).hasClass("picked")) {
+                    clickInterface($PAGE_DATA['commentPickUrl'],{noteId:id},'采集');
                 }
-                clickInterface($PAGE_DATA['baseStaticUrl'] + 'source/api/course/details.json', data, '取消采集');
-                $(this).find('i').text('采集');
-                $(this).removeClass('picked');
-            } else {
-                data = {
-                    "dataType": dataType,
-                    "type": type,
-                    "id": id
-                }
-                clickInterface($PAGE_DATA['baseStaticUrl'] + 'source/api/course/details.json', data, '采集');
-                $(this).find('i').text('已采集');
-                $(this).addClass('picked');
+            }else {
+                box.warn('不能采集自己的笔记');
             }
         } else {
             Login.login(window.location.href);

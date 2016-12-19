@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="/css/conf/uc/my-study.css" type="text/css" charset="utf-8">
     <script type="text/javascript">
         $PAGE_DATA['getPager'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/study.json';
+        $PAGE_DATA['getUrl'] ='/courseSeries/toCoursePlay?bizId=';
     </script>
 </head>
 
@@ -94,11 +95,16 @@
                             </div>
                         </div>
                         <div class="d-zone jControl">
-                            <div class="load f-r jLoad jAplly">
-                                <p class="num">{{value.studyRate}}%</p>
+                            <div class="load f-r jAplly">
+                                {{if value.historyStudyProgress != 100}}
+                                <button class="ui-btn gostudy jLoad" data-id={{value.Id}}>继续学习</button>
+                                {{/if}}
+                                {{if value.historyStudyProgress == 100}}
+                                <p class="num">{{value.historyStudyProgress}}%</p>
                                 <p class="txt">学习进度</p>
+                                {{/if}}
                             </div>
-                            <div class="dele f-r jDel" data-id={{value.id}}>
+                            <div class="dele f-r jDel" data-id={{value.Id}}>
                                 <i class="iyoyo iyoyo-del"></i>
                             </div>
                         </div>

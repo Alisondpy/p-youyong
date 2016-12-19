@@ -71,6 +71,7 @@
                             <i class="iyoyo iyoyo-arrow-right-sm"></i>
                         </a>
                     </div>
+                    <div class="f-r mod-share" id="jShare"></div>
                 </div>
             </div>
             <div class="mod-r" id="jTab">
@@ -223,10 +224,10 @@
                     <span class="time"><em>时间:</em><i>{{value.createTime}}</i></span>
                     <span class="answer">
                         {{if value.isCollected == 0}}
-                        <a class="admit pick" data-id="{{value.id}}"><i>采集</i><strong>{{value.collectCount}}</strong></a>
+                        <a class="admit pick" data-id="{{value.id}}" data-type="{{value.isMyNote}}"><i>采集</i><strong>{{value.collectCount}}</strong></a>
                         {{/if}}
                         {{if value.isCollected == 1}}
-                        <a class="admit pick picked" data-id="{{value.id}}"><i>已采集</i><strong>{{value.collectCount}}</strong></a>
+                        <a class="admit pick picked" data-id="{{value.id}}" data-type="{{value.isMyNote}}"><i>已采集</i><strong>{{value.collectCount}}</strong></a>
                         {{/if}}
                         {{if value.isPraised == 0}}
                         <a class="admit like" data-id="{{value.id}}"><i class="iyoyo iyoyo-favour"></i><strong>{{value.praiseCount}}</strong></a>

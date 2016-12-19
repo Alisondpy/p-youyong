@@ -36,6 +36,36 @@ define(function(require, exports, module) {
         effect: 'fadeIn',
         snap: true
     });
+
+    //============== 获取后台数据
+    var isMyQuestion =  $PAGE_DATA['isMyQuestion'];//是否是自己的问题 1是|0否
+    var hasAnswer = $PAGE_DATA['hasAnswer'];//是否有最佳答案 1是|0否
+    //============== 获取后台数据
+
+    //============== 是否显示采纳按钮
+    function isShow(isMyQuestion,hasAnswer){
+        if(isMyQuestion == '0' && hasAnswer == '0'){//不是自己的问题，没有最佳答案
+            $('.jRebest').each(function(i){
+                $(this).hide();
+            });
+        }else if(isMyQuestion == '0' && hasAnswer == '1'){//不是自己的问题，有最佳答案
+            $('.jRebest').each(function(i){
+                if(i != 0){
+                    $(this).hide();
+                }
+            });
+        }else if(isMyQuestion == '1' && hasAnswer == '0'){//是自己的问题，没有最佳答案
+
+        }else {//是自己的问题，有最佳答案
+            $('.jRebest').each(function(i){
+                if(i != 0){
+                    $(this).hide();
+                }
+            });
+        }
+    }
+    //============== 是否显示采纳按钮
+
     /* 渲染分页列表 */
     function renderList(url, data, tmpEl, htmEl, pagEl) {
         if (typeof pager !== 'undefined') {
@@ -57,6 +87,8 @@ define(function(require, exports, module) {
             if (!$.isEmptyObject(res.data) && res.data && res.data.resultList && res.data.resultList.length > 0) {
                 var html = template(tmpEl, res.data);
                 document.getElementById(htmEl).innerHTML = html;
+
+                isShow(isMyQuestion,hasAnswer);
                 //图片懒加载
                 lazy = new Lazyload($("#" + htmEl).find('.jImg'), {
                     mouseWheel: true,
@@ -187,17 +219,16 @@ define(function(require, exports, module) {
     });
 
     //采纳为最佳答案
-    main.on('click', '#jRebest', function() {
-        if (!Login.isLogin()) {
-            var dataType = $(this).attr('data-dataType');
-            var type = $(this).attr('data-type');
-            var id = $(this).attr('data-id');
-            var data = {
-                    "dataType": dataType,
-                    "type": type,
-                    "id": id
+    main.on('click', '.jRebest', function() {
+        if (Login.isLogin()) {
+            if(!$(this).hasClass('isBest')){
+                var answerId = $(this).attr('data-id');
+                var data = {
+                    "questionId": questionId,
+                    "answerId": answerId
                 }
-            clickInterface($PAGE_DATA['commentClickUrl'], data, '采纳');
+                clickInterface($PAGE_DATA['adoptAnswerUrl'], data, '采纳');
+            }
         } else {
             Login.login(window.location.href);
         }
@@ -205,8 +236,8 @@ define(function(require, exports, module) {
 
     /*提问弹窗*/
     $('#jModRight').on('click', '#jBtnNewQuestions', function() {
-        if (!Login.isLogin()) {
-            box.loadUrl($PAGE_DATA['toQuestionPage'] + "?id=" + sourceId, {
+        if (Login.isLogin()) {
+            box.loadUrl($PAGE_DATA['toQuestionPage'] + "?id=" + $PAGE_DATA['courseId'], {
                 title: '提问页面',
                 autoRelease: true,
                 modal: false

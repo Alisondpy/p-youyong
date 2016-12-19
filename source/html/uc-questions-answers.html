@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="/css/conf/uc/questions-answers.css" type="text/css" charset="utf-8" />
     <script type="text/javascript">
         $PAGE_DATA['pagerAnswers'] = $PAGE_DATA['baseStaticUrl'] + '/source/api/uc/index/pager.json';
+        $PAGE_DATA['isMyQuestion'] = '1';
+        $PAGE_DATA['hasAnswer'] = '0';
     </script>
 </head>
 
@@ -122,7 +124,7 @@
                     <div class="info clearfix jInfo">
                         <div class="info-left f-l">
                             <span class="time">时间 :<i class="ago">{{value.createTime}}天前</i></span>
-                            <span class="rebest" id="jRebest">采纳为最佳答案</span>
+                            <span class="rebest jRebest" data-id="{{value.id}}">采纳为最佳答案</span>
                         </div>
                         <div class="info-right f-r jClkRefavour">
                             <!-- <span class="response jClkResponse">回复</span> -->

@@ -88,14 +88,16 @@
                         <div class="edit f-r">
                             <span class="secret jHide">
                                 {{if item.isProvite=="1"}}
-                                    <i class="iyoyo iyoyo-key"></i>
+                                    <i class="iyoyo iyoyo-key jOpen" data-id="1"  title="点击公开"></i>
                                     <em class="normal">私密</em>
                                 {{else}}
-                                    <i class="iyoyo iyoyo-favour"></i>
-                                    <em class="normal">{{item.pariseNum}}</em>
+                                    <i class="iyoyo iyoyo-key green jOpen" data-id="0" title="点击私密"></i>
+                                    <em class="normal">公开</em>
+                                    <i class="iyoyo iyoyo-favour" title="点赞数"></i>
+                                    <em class="normal">{{item.pariseNum=='0'?'0':item.pariseNum}}</em>
                                 {{/if}}
-                                <i class="iyoyo iyoyo-note jEditTxt"></i>
-                                <i class="iyoyo iyoyo-del jDel"></i>
+                                <i class="iyoyo iyoyo-note jEditTxt" title="编辑"></i>
+                                <i class="iyoyo iyoyo-del jDel"  title="删除"></i>
                             </span>
                             <button class="ui-btn ui-btn-danger jSave">保存</button>
                         </div>

@@ -26,6 +26,10 @@ define(function(require, exports, module) {
     var tab = new Tab(jTab);
     var lazy, question, note;
 
+    //分享
+    var Share = require('plugins/share/1.0.0/share');
+    var share = new Share('#jShare');
+
     var jQuestionTab1 = $('#jQuestionTab1'); //我的问答容器
     var jQuestionTab2 = $('#jQuestionTab2'); //全部问答容器
     var jNoteTab1 = $('#jNoteTab1'); //我的笔记容器
@@ -465,35 +469,22 @@ define(function(require, exports, module) {
         }
     });
 
-    //笔记点赞
+    //笔记采集
     jTab.on('click','.pick',function(){
         if(Login.isLogin()){//记得清除
             var num = $(this).find('strong');
             var number = parseInt(num.text());
+            console.log(number,typeof number);
+            var isMyNote = $(this).attr('data-type');
             var id = $(this).attr('data-id');
-            var data;
-            if ($(this).hasClass("picked")) {
-                data = {
-                    "dataType":4,
-                    "type":1,
-                    "id":id
-                }
-                clickInterface($PAGE_DATA['note'].pick,data,'取消采集');
-                $(this).removeClass('picked');
-                $(this).find('i').text('采集');
-                if((number - 1) >= 0){
-                    num.text(number - 1);
+            if(isMyNote == '0'){
+                if (!$(this).hasClass("picked")) {
+                    clickInterface($PAGE_DATA['note'].pick,{noteId:id},'采集');
+                    num = number + 1;
+                    $(this).addClass("picked").html('已采集<strong>'+num+'</strong>');
                 }
             }else {
-                data = {
-                    "dataType":4,
-                    "type":2,
-                    "id":id
-                }
-                clickInterface($PAGE_DATA['note'].pick,data,'采集');
-                $(this).find('i').text('已采集');
-                $(this).addClass('picked');
-                num.text(number + 1);
+                box.warn('不能采集自己的笔记');
             }
         } else {
             Login.login(window.location.href);

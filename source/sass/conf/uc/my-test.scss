@@ -2,50 +2,15 @@
 @import "../../common/config/level-2";
 @import "../../common/common";
 @import "../../module/uc/common";
+@import "../../module/mod-empty";
 @import "../../common/pager/pager";
 
 .inline-block {
   display: inline-block;
 }
 .ifm-right-container {
-  .mod-test-title {
-    width: 188px;
-    height: 56px;
-    line-height: 56px;
-    text-align: center;
-    font-weight: normal;
-    font-size: 18px;
-    color: #44687d;
-    background: #fff;
-  }
-  .ifm-tab {
-    position: relative;
-    background: #fff;
-    padding: 20px 30px 70px;
-    .ifm-tab-hd {
-      .ifm-tab-item {
-        margin-right: -20px;
-        &.active {
-          a {
-            height: 33px;
-            line-height: 33px;
-            color: #fff;
-            background: #ff1c41;
-            z-index: 2;
-          }
-        }
-        a {
-          position: relative;
-          height: 33px;
-          line-height: 33px;
-          padding: 0 30px;
-          border-radius: 20px;
-          font-size: 14px;
-          color: #4b677b;
-          background: #e3ebf1;
-        }
-      }
-    }
+  .ifm-main-container{
+    padding:20px 36px;
   }
   .ui-btn {
     width: 96px;
@@ -56,7 +21,7 @@
     background: #ff1c41;
     color: #fff;
     font-size: 14px;
-    position: absolute;
+    // position: absolute;
     top: 20px;
     right: 30px;
     &.deleting {
@@ -68,7 +33,7 @@
 
   .mod-item {
     .exam-restart{
-      margin-left:50px;
+      margin-left:35px;
       font-size:14px;
       text-align:right;
       color:#44687d;
@@ -98,9 +63,17 @@
       background: #fff;
       line-height: 80px;
       margin-right: 20px;
-      img {
-        width: 100%;
+      a{
+        display:inline-block;
+        width:150px;
+        height:80px;
+        line-height:80px;
+        overflow:hidden;
+          img {
+          height:80px;
+        }
       }
+
     }
     .contain {
       .title {
@@ -192,14 +165,15 @@
           }
         }
         h6{
-          margin-left:20px;
+          margin:15px 0 0 20px;
         }
         .view-page {
           color: #44687d;
           font-size: 12px;
-          display:inline-block;
+          display:block;
           line-height:1;
           font-weight: normal;
+          margin-top:6px;
           &:hover {
             text-decoration: underline;
           }
@@ -215,9 +189,9 @@
 
 }
 
-.ui-pager {
-  margin-top: 100px;
-}
+// .ui-pager {
+//   margin-top: 100px;
+// }
 
 .ui-empty-list {
   padding: 100px 0;
