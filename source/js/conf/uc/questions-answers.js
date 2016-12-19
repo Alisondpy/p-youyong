@@ -200,7 +200,7 @@ define(function(require, exports, module) {
 
     //点赞
     main.on('click', '#jLike', function() {
-        var praise = new Praise('#jLike');
+        var praise = new Praise(this);
         if (Login.isLogin()) {
             var dataType = $(this).attr('data-dataType');
             var type = $(this).attr('data-type');
