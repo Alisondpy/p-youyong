@@ -1,5 +1,5 @@
 {
-  "app.js": "app-58ed728a73.js",
+  "app.js": "app-7bdc0ec08e.js",
   "conf/404.js": "conf/404-71d6a8d181.js",
   "conf/500.js": "conf/500-96e0e3abbe.js",
   "conf/apply.js": "conf/apply-c050223585.js",
@@ -8,7 +8,7 @@
   "conf/course/detail.js": "conf/course/detail-fb4e23e244.js",
   "conf/course/index.js": "conf/course/index-c97aebcd70.js",
   "conf/course/list.js": "conf/course/list-21a46310ed.js",
-  "conf/demo.js": "conf/demo-825eef853e.js",
+  "conf/demo.js": "conf/demo-a4613c6e39.js",
   "conf/forget-pwd.js": "conf/forget-pwd-97e1938751.js",
   "conf/hp/hp-feedback.js": "conf/hp/hp-feedback-4e7b90cda7.js",
   "conf/hp/hp-index.js": "conf/hp/hp-index-b1b046c3f1.js",
