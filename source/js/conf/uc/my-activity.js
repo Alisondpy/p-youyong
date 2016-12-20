@@ -50,6 +50,7 @@ define(function(require, exports, module) {
                     }
                     jContainer.html(template('jModule', data.data));
                     lazy = new Lazyload($('.jImg'), {
+                        loadingClass: 'img-error',
                         mouseWheel: true,
                         effect: 'fadeIn',
                         snap: true

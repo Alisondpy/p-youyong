@@ -58,6 +58,7 @@ define(function(require, exports, module) {
 
     //image-lazyload
     var lazy = new Lazyload($('#jImgList .jImg'), {
+        loadingClass: 'img-error',
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true

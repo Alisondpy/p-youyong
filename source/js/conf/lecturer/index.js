@@ -50,6 +50,7 @@ define(function(require, exports, module) {
                 document.getElementById(htmEl).innerHTML = html;
                 //图片懒加载
                 lazy = new Lazyload($("#"+htmEl).find('.jImg'), {
+                    loadingClass: 'img-error',
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true

@@ -12,6 +12,7 @@ define(function(require, exports, module) {
     var jHotTrain = $("#jHotTrain");
     //图片懒加载
     lazy = new Lazyload(jHotTrain.find('.jImg'), {
+        loadingClass: 'img-error',
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true

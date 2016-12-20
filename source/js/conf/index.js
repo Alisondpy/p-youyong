@@ -42,6 +42,7 @@ define(function(require, exports, module) {
 
     //图片懒加载
     var lazy = new Lazyload($('.jImg'), {
+        loadingClass: 'img-error',
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true

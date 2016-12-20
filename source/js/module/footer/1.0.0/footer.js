@@ -21,7 +21,9 @@ define(function(require, exports, module) {
         var _this = this,
             builder = build.build(_this.el[0], false),
             footerImg = builder.get('footerImg');
-        var lazyload = new Lazyload(footerImg);
+        var lazyload = new Lazyload(footerImg, {
+            loadingClass: 'img-error',
+        });
     }
 
     module.exports = Footer;

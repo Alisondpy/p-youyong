@@ -15,6 +15,7 @@ define(function(require, exports, module) {
     /*图片懒加载 start*/
     var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var lazy = new Lazyload($('.jImg'), {
+        loadingClass: 'img-error',
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true

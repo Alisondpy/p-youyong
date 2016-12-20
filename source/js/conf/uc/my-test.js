@@ -61,6 +61,7 @@ define(function(require, exports, module) {
                     jContainer.html(template('jTestModule', data.data));
                                     //图片懒加载
                     lazy = new Lazyload(jContainer.find('.jImg'), {
+                        loadingClass: 'img-error',
                         mouseWheel: true,
                         effect: 'fadeIn',
                         snap: true

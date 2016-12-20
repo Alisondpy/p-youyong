@@ -34,6 +34,7 @@ define(function(require, exports, module) {
     var jPagination = $('#jPagination');
 
     lazy = new Lazyload($('.jImg'), {
+        loadingClass: 'img-error',
         mouseWheel: true,
         effect: 'fadeIn',
         snap: true
@@ -93,6 +94,7 @@ define(function(require, exports, module) {
                 isShow(isMyQuestion,hasAnswer);
                 //图片懒加载
                 lazy = new Lazyload($("#" + htmEl).find('.jImg'), {
+                    loadingClass: 'img-error',
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true

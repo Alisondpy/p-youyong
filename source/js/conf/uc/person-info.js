@@ -8,7 +8,6 @@ define(function(require, exports, module) {
 
     var form = require('lib/core/1.0.0/utils/form');
     var box = require('lib/ui/box/1.0.1/box');
-    var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var Uploader = require('lib/plugins/uploader/1.0.1/uploader');
     require('plugins/validator/1.0.0/validator');
     var Io = require('lib/core/1.0.0/io/request');

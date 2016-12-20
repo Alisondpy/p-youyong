@@ -60,6 +60,7 @@ define(function(require, exports, module) {
                 jContainer.html(template('jModule', data.data));
                         //image-lazyload
                 var lazy = new Lazyload($('.jImg'), {
+                    loadingClass: 'img-error',
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true
@@ -118,6 +119,7 @@ define(function(require, exports, module) {
                 jContainer.html(template('jModule2', data.data));
                         //image-lazyload
                 var lazy = new Lazyload($('.jImg'), {
+                    loadingClass: 'img-error',
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true
@@ -176,6 +178,7 @@ define(function(require, exports, module) {
                 jContainer.html(template('jModule3', data.data));
                         //image-lazyload
                 var lazy = new Lazyload($('.jImg'), {
+                    loadingClass: 'img-error',
                     mouseWheel: true,
                     effect: 'fadeIn',
                     snap: true

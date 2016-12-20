@@ -6,7 +6,6 @@ define(function(require, exports, module) {
     /*顶部搜索、登录状态、底部、右侧在线客服 end*/
 
     var box = require('lib/ui/box/1.0.1/box');
-    var Lazyload = require('lib/plugins/lazyload/1.9.3/lazyload');
     var io = require('lib/core/1.0.0/io/request');
     var build = require('lib/core/1.0.0/dom/build');
     var Pager = require('plugins/pager/1.0.0/pager');
