@@ -165,9 +165,11 @@ define(function(require, exports, module) {
                     newTab.close();
                 }
             }else {
+                newTab.close();
                 box.error('服务器错误,请重试');
             }
         },function(res){
+            newTab.close();
             box.error(res.msg || '网络错误,请重试');
         })
     });
