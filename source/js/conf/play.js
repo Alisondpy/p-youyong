@@ -353,6 +353,7 @@ define(function(require, exports, module) {
             quesCurrent = $(this);
         }
     });
+    var answer = $('#jAnswer');
     function pubAjax(content,_this,url,data,txt,txtNum){
         if(content == ''){
             box.error('请输入内容');
@@ -361,6 +362,7 @@ define(function(require, exports, module) {
                 io.get(url,data,function(res){
                     box.ok('发表成功',_this[0]);
                     txt.val('');
+                    answer.prop('checked',false);
                     txtNum.children('.num').text('0');
                     if(_this.hasClass('jPublishA') && (noteCurrent.find('.ui-current').text().indexOf('全部笔记') == -1)){
                         renderTemp($PAGE_DATA['note'].note,reqNoteData1,'tAnswer','jNoteTab1');
@@ -373,7 +375,6 @@ define(function(require, exports, module) {
             }
         }
     }
-    var answer = $('#jAnswer');
     var publishDataA = {
         sourceType: 2,
         sourceId: lessonId,
