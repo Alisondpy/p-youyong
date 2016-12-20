@@ -125,7 +125,7 @@ define(function(require, exports, module) {
         sendPost: function() {
             // console.log(this);
             io.get('/m-service-market/source/api/demo/demo.json', { 'foo': 'foo text' }, function(res) {
-                console.log(res.msg + ' (code: ' + res.error + ')');
+                console.log(res.msg + ' ( code: ' + res.error + ')');
             }, this);
             // io.get('/m-service-market/source/api/demo/publish-require.json', { 'foo': 'foo text' }, function(res) {
             //     alert(res.msg + ' (code: ' + res.error + ')');
