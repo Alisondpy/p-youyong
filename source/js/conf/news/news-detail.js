@@ -52,7 +52,7 @@ define(function(require, exports, module) {
             if ($(this).hasClass("praised")) {
                 data = {
                     "dataType": dataType,
-                    "type": type,
+                    "type": 1,
                     "id": id
                 }
                 clickInterface($PAGE_DATA['commentClickUrl'], data, '取消点赞');
@@ -62,7 +62,7 @@ define(function(require, exports, module) {
             } else {
                 data = {
                     "dataType": dataType,
-                    "type": type,
+                    "type": 2,
                     "id": id
                 }
                 clickInterface($PAGE_DATA['commentClickUrl'], data, '点赞');
