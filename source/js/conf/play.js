@@ -77,19 +77,21 @@ define(function(require, exports, module) {
     });
     //监听当前播放器进度
     player.on('time', function(seconds) {
-        if (isSendPlayTime && seconds > 0) {
-            isSendPlayTime = false;
-            var _params = $.extend(true, {}, $PAGE_DATA['setPlayTimeParams'], {
-                playTime: seconds,
-                duration: player.getTotalTime(),
-                courseId: sourceId,
-                lessonId: lessonId
-            });
-            io.get($PAGE_DATA['setPlayTime'], _params, function(data) {
-                isSendPlayTime = true;
-            }, function(data) {
-                isSendPlayTime = true;
-            });
+        if (Login.isLogin()){// 未登录用户不记录学习记录
+            if (isSendPlayTime && seconds > 0) {
+                isSendPlayTime = false;
+                var _params = $.extend(true, {}, $PAGE_DATA['setPlayTimeParams'], {
+                    playTime: seconds,
+                    duration: player.getTotalTime(),
+                    courseId: sourceId,
+                    lessonId: lessonId
+                });
+                io.get($PAGE_DATA['setPlayTime'], _params, function(data) {
+                    isSendPlayTime = true;
+                }, function(data) {
+                    isSendPlayTime = true;
+                });
+            }
         }
         if (seconds >= 60){
             if (!Login.isLogin()){
@@ -104,16 +106,19 @@ define(function(require, exports, module) {
     //视频播放结束
     var jArrowR = $('#jArrowR');
     player.on('ended',function(){
+        var newTab;
         var href = jArrowR.attr('href');
         if(examId != ''){
             box.confirm('是否进入考试页面？',function() {
-                box.loadUrl($PAGE_DATA['examUrl'], {
-                    title: '考试',
-                    className: 'ui-test-box',
-                    fixed: true,
-                    width: $(window).width(),
-                    height: $(window).height()
-                });
+                //box.loadUrl($PAGE_DATA['examUrl'], {
+                //    title: '考试',
+                //    className: 'ui-test-box',
+                //    fixed: true,
+                //    width: $(window).width(),
+                //    height: $(window).height()
+                //});
+                newTab = window.open('about:blank');
+                newTab.location.href = $PAGE_DATA['examUrl'];
             },
             function() {
                 if(href != '' && href){
