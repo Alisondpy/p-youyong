@@ -168,11 +168,11 @@ define(function(require, exports, module) {
         //验证码循环
         var count = 60;
         //class:change ==== 修改点击提交触发验证,触发验证手机号,恢复验证码按钮色彩的bug
-        verifyCode.val(count).addClass("ui-btn-disable change");
+        verifyCode.val(count+'s').addClass("ui-btn-disable change");
         var time = setInterval(function() {
             if (count > 1) {
                 count--;
-                verifyCode.val(count);
+                verifyCode.val(count+'s');
             } else {
                 verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
                 clearInterval(time);

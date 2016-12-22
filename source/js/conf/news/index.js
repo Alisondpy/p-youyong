@@ -46,7 +46,11 @@ define(function(require, exports, module) {
         }
         pager = new Pager(pagEl, {
             url:url,
-            data:data
+            data:data,
+            options: {
+                pageSize: 10,
+                currentPage: 1
+            }
         });
 
         var loading = null;

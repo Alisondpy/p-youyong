@@ -17,6 +17,12 @@
         color: #666;
         line-height: 1;
         margin-bottom: 30px;
+        a{
+            color: #666;
+            &:hover{
+                color: #ec3e48;
+            }
+        }
     }
     .news-content {
         background: #fff;

@@ -77,6 +77,10 @@ em {
                 a {
                     font-size: 14px;
                     font-weight: normal;
+                    color: #666;
+                    &:hover{
+                        color: #ec3e48;
+                    }
                 }
             }
         }

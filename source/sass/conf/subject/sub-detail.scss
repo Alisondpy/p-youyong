@@ -21,6 +21,12 @@ body {
         padding-bottom: 20px;
         font-size: 14px;
         color: #666;
+        a{
+            color: #666;
+            &:hover{
+                color: #ec3e48;
+            }
+        }
     }
     .mod-content {
         background-color: #fff;
@@ -37,7 +43,7 @@ body {
             }
         }
         .sub-content {
-            width: 576px;
+            width: 570px;
             h1 {
                 font-size: 32px;
                 color: #333;

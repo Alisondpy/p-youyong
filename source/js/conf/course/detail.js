@@ -194,7 +194,7 @@ define(function(require, exports, module) {
             $(this).addClass('text-error');
             publish.addClass('publish-error');
             arrow.addClass('arrow-error');
-            txtNum.css({ 'color': 'red' });
+            txtNum.css({ 'color': 'red'});
         } else {
             $(this).removeClass('text-error');
             publish.removeClass('publish-error');

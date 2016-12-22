@@ -26,10 +26,16 @@ h1 {
         .mod-up {
             .title {
                 margin: 42px 0 19px 0;
-                font-size: 16px;
+                font-size: 14px;
                 em {
                     font-style: normal;
                     margin-right: 2px;
+                }
+                a{
+                    color: #666;
+                    &:hover{
+                        color: #ec3e48;
+                    }
                 }
             }
             .mod-contain {
@@ -55,8 +61,8 @@ h1 {
                         font-size: 30px;
                     }
                     .job {
-                        font-size: 16px;
-                        font-weight: bold;
+                        font-size: 14px;
+                        color: #5e5e5e;
                     }
                     .text {
                         margin-top: 15px;
