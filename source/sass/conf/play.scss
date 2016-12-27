@@ -23,12 +23,12 @@ body {
 
 .ui-answer-box {
     width: 271px;
-    height: 440px;
+    max-height: 440px;
     overflow-y: auto;
 }
 
 .ui-question-box {
-    height: 392px;
+    max-height: 392px;
 }
 
 .ui-hide {

@@ -661,6 +661,13 @@ $height: 172px;
         height: 70px;
         overflow: hidden;
     }
+    .more {
+        @include more($BgDisabledColor, 40px,0px);
+        &:hover {
+            border: 1px solid $hoverColor;
+            color: $hoverColor;
+        }
+    }
 }
 
 

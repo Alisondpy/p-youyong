@@ -240,7 +240,10 @@
 <script id="jWrap2" type="text/html">
     {{each resultList as value i}}
     <div class="mod-item clearfix">
-        <div class="head-img f-l"><img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.avatarUrl}}" alt="课程详情" class="jImg img-error"></div>
+        <div class="head-img f-l">
+            <img src="//s1.zzhstatic.com/lib/assets/images/s.gif" data-src="{{value.avatarUrl}}" alt="课程详情" class="jImg img-error">
+            <i class="iyoyo iyoyo-question-2"></i>
+        </div>
         <div class="sub-content question f-l">
             <h2>{{value.nickname}}</h2>
             <a href="uc-questions-answers.html?{{value.id}}" class="h3 txt-overflow">{{value.title}}</a>
