@@ -441,7 +441,9 @@ em {
             .mod-catlog {
                 display: none;
                 padding: 0 18px;
-                margin-top: 20px;
+                padding: 20px;
+                height: 624px;
+                overflow-y: auto;
                 .status {
                     //.iyoyo-circle{
                     //	color: #fff;

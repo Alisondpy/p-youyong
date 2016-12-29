@@ -7,7 +7,7 @@
 @import "../../common/share/share";
 
 body {
-    background-color: #e4ebf0;
+    background-color: #eef3f7;
 }
 .ui-error{
     color: #4b677b;
@@ -25,13 +25,13 @@ body {
     //左边问答内容
     .mod-left-content {
         width: 840px;
-        background-color: #fff;
         //我的问题
         .mod-my-questions {
             width: 780px;
-            padding-top: 30px;
-            margin: 0 auto;
+            padding: 30px 30px 20px;
+            margin: 0 auto 20px;
             border-bottom: 1px solid #eee;
+            background-color: #fff;
             /*no*/
             //提问者头像
             .logo {
@@ -392,6 +392,7 @@ body {
         .comment {
             position: relative;
             padding: 20px 0 50px 40px;
+            background-color: #fff;
             i,span{
                 display: inline-block;
                 font-style: normal;
@@ -521,6 +522,20 @@ body {
                 line-height: 24px;
                 font-size: 14px;
             }
+        }
+    }
+}
+.mod-content{
+    background: #fff;
+}
+.mod-path {
+    padding-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+    a{
+        color: #666;
+        &:hover{
+            color: #ec3e48;
         }
     }
 }

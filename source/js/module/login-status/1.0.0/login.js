@@ -23,7 +23,7 @@ define(function(require, exports, module) {
     exports.login = function(returnUrl) {
         if (LOGIN_URL) {
             if (returnUrl) {
-                returnUrl = '?returnUrl=' + decodeURIComponent(returnUrl);
+                returnUrl = '?returnUrl=' + encodeURIComponent(returnUrl);
             } else {
                 returnUrl = '';
             }

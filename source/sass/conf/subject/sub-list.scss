@@ -67,6 +67,7 @@ body {
             min-height: 300px;
             .sub-detail {
                 li {
+                    position: relative;
                     padding: 30px 0;
                     border-top: 1px solid #eee;
                     &:first-child {
@@ -124,5 +125,34 @@ body {
     padding: 100px;
     .txt {
         font-size: 22px;
+    }
+}
+.ui-sign-btn {
+    position: absolute;
+    right: 0;
+    bottom: 30px;
+    display:inline-block;
+    width: 130px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border:1px solid #ea3e48;
+    border-radius: 3px;
+    font-size: 16px;
+    color: #ec3e48;
+    margin-right: 20px;
+    &:hover{
+        background: #ec3e48;
+        color: #fff;
+    }
+    &.ui-sign-over{
+        color: #fff;
+        border:1px solid #b9c9d4;
+        background:#b9c9d4;
+    }
+    &.ui-sign-has{
+        color: #fff;
+        border:1px solid #95aab8;
+        background:#95aab8;
     }
 }

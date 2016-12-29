@@ -44,7 +44,7 @@ define(function(require, exports, module) {
                 modal: false
             });
         } else {
-            Login.login(window.location.href);
+            Login.login(window.location.href+'#3');
         }
     });
 
@@ -133,7 +133,7 @@ define(function(require, exports, module) {
         var data = $('#jSubNav').find('.current').attr("data-type");
         renderList($PAGE_DATA['LessonUrl'], { 'type': data, "id": sourceId }, 'jWrap0', 'jWrap0Box', jPagination);
     }
-    init();
+
 
     /*tab页切换*/
     var jTab = $('#jTab');
@@ -162,6 +162,12 @@ define(function(require, exports, module) {
         }
         allLazy.update();
     });
+    var tabType = window.location.hash.split("#")[1];
+    if(tabType){
+        tab.setCurrent(tabType);
+    }else {
+        init();
+    }
 
     /*导航菜单切换*/
     var nav1 = new navigation('.jWrap2',{
@@ -224,8 +230,13 @@ define(function(require, exports, module) {
                 }
             }
         } else {
-            Login.login(window.location.href);
+            Login.login(window.location.href+'#2');
         }
+    });
+
+    //登录
+    wrap1.on('click','#jLogin',function(){
+        Login.login(window.location.href+'#2');
     });
 
     //评论focus效果
@@ -256,8 +267,8 @@ define(function(require, exports, module) {
     //点赞
     $('#jWrap1Box,#jWrap3Box').on('click', '.mod-item .like', function() {
         var praise = new Praise(this);
+        var dataType = $(this).attr('data-dataType');
         if (Login.isLogin()) {
-            var dataType = $(this).attr('data-dataType');
             var type = $(this).attr('data-type');
             var id = $(this).attr('data-value');
             var data;
@@ -279,7 +290,11 @@ define(function(require, exports, module) {
                 praise.add();
             }
         } else {
-            Login.login(window.location.href);
+            if(dataType == '5'){
+                Login.login(window.location.href+'#2');
+            }else {
+                Login.login(window.location.href+'#4');
+            }
         }
     });
 
@@ -296,7 +311,7 @@ define(function(require, exports, module) {
                 box.warn('不能采集自己的笔记');
             }
         } else {
-            Login.login(window.location.href);
+            Login.login(window.location.href+'#4');
         }
 
     });
@@ -312,7 +327,7 @@ define(function(require, exports, module) {
                 $(this).text('只看我的');
             }
         } else {
-            Login.login(window.location.href);
+            Login.login(window.location.href+'#4');
         }
     });
 

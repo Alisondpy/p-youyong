@@ -29,12 +29,12 @@ a,span,b,i,em {  display: inline-block;  font-style: normal;font-weight: normal;
 img {width: 100%;height: 100%;vertical-align: middle;border:none;}
 textarea{ resize:none;}
 .text-overflow{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width:100%;}
-.col-666{color:#666;}
+.col-666{color:#4b677b;}
 .pl-10{padding-left:10px;}
 .col-999{color:#999;}
 .mb-25{margin-bottom:25px;}
 .shadow{box-shadow:0 0 30px rgba(17,5,10,.5);}
-.wrap{width:1200px;margin:0 auto 40px;}
+.wrap{width:1200px;margin:0 auto 40px;position: relative;}
 .wrap p{font-size:14px;}
 .wrap p a{font-size:14px;}
 .collegeHeader{height:80px;line-height:80px;background:#fff;}
@@ -85,12 +85,17 @@ textarea{ resize:none;}
 .companyList  li:hover .companyWrap span{display:block;}
 .jobWrap i{vertical-align: sub;}
 .courseTitle{background:#fff;padding:25px 40px;}
-.courseTitle h2{font-size:30px;color:#fa694e;}
-.courseTitle p{line-height:20px;color:#666;}
-.courseLabel span{color:#999;margin-right:40px;padding-left:35px;line-height:25px;background:url(../../../images/course/collegeIconList.png)no-repeat 0 -743px;}
+.courseTitle h2{font-size:24px;color:#1c2c36;}
+.courseTitle p{line-height:20px;font-size:14px;color:#4b677b;}
+.courseLabel span{font-size:14px;color:#95aab8;margin-right:40px;padding-left:35px;line-height:25px;background:url(../../../images/course/collegeIconList.png)no-repeat 0 -743px;}
 .studentCount{padding-left: 34px;background: url(../../../images/course/collegeIconList.png)no-repeat 9px -1176px;;}
 .courseLabel span:first-child{background-position:0 -635px;}
 
+//.stageShow{
+//	position: absolute;
+//	top:400px;
+//	right: -20px;
+//}
 .stageShow{background:#fff;padding:50px 40px 30px 70px;}
 .stageShow .stageLabel{float:left;font-size:18px;color:#ccc;width:320px;position:relative;}
 .stageShow .active,.stageShow .current{color:#fa694e;}
@@ -104,21 +109,26 @@ textarea{ resize:none;}
 .stageShow .current span{box-shadow:0 0 0 12px rgba(250,135,77,.2),0 0 5px 23px rgba(250,135,77,.2);}
 
 .courseStage{padding:25px 40px 5px;background:#fff;}
-.courseStage h3{font-size:18px;color:#fa694e;}
+.courseStage h3{font-size:18px;color:#1c2c36;}
 .courseStage p{line-height:20px;}
 .courseContainer{overflow: hidden;}
 .courseContainer ul{width:1250px;}
 .videoDetail a{width:100%;height:516px;}
 .courseContainer li p{overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width:100%;}
 .courseContainer li a{width:100%;}
-.courseContainer li{float:left;margin-right:20px;background:#f2f2f2;padding-bottom:5px;margin-bottom:20px;position:relative;width: 265px;overflow: hidden;}
-.courseContainer h2{font-size:16px;color:#666;line-height:1;padding-left:10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width:90%;}
-.courseContainer li:hover{box-shadow:0 0 10px rgba(17,5,10,.3);}
-.locked{position:absolute;width:100%;top:0;left:0;height:144px;background:rgba(255,255,255,.9) url(../../../images/course/collegeIconList.png)no-repeat 103px -439px;}
+.courseContainer li{float:left;margin-right:20px;padding-bottom:5px;margin-bottom:20px;position:relative;width: 265px;overflow: hidden;}
+.courseContainer h2{font-size:18px;color:#1c2c36;font-weight:700;line-height:normal;padding-left:10px;overflow: hidden;text-overflow: ellipsis;white-space: nowrap;width:90%;}
+.locked{position:absolute;width:100%;top:0;left:0;height:144px;background:rgba(255,255,255,.8) url(../../../images/course/collegeIconList.png)no-repeat 103px -439px;}
 .lockedCourse h2{color:#999;}
 .courseContainer .mod-course-img{width:100%;height:140px;overflow: hidden;text-align: center;position: relative;}
-.mod-course-img img{width:auto;height:100%;}
-.courseContainer .mod-course-img:after{content:'';position:absolute;bottom:0;left:0;width:100%;height:40px;background: linear-gradient(transparent,rgba(0,0,0,.1) 25%,rgba(0,0,0,0.3) 50%,rgba(0,0,0,0.55) 75%,rgba(0,0,0,0.8));}
+.mod-course-img img{
+	width:auto;
+	height:100%;
+	transition: 0.6s;
+	&:hover{
+		transform: scale(1.1);
+	}
+}
 .collegeBanner li{float:left;}
 .collegeBanner{width:calc(100% + 17px);height:800px;overflow: hidden;position:relative;}
 .collegeBanner ul{width:99999px;position:absolute;}
@@ -128,10 +138,9 @@ textarea{ resize:none;}
 
 .loadMore{height:40px;background:#fff;text-align: center;line-height: 40px;color:#999;}
 .loadMore span{padding-left:24px;background:url(../../../images/course/collegeIconList.png)no-repeat 0 -922px;cursor: pointer;}
-.loadMore:hover{background:#e8e8e8;}
-.loadMore:hover span{background-position:0 -971px;color:#fa874d;}
+.loadMore:hover span{background-position:0 -971px;color:#ec3e48;}
 .loadMore.active span{background-position:0 -1022px;}
-.loadMore.active:hover span{background-position:0 -1082px;color:#fa874d;}
+.loadMore.active:hover span{background-position:0 -1082px;color:#ec3e48;}
 .clearfix{zoom: 1}
 .clearfix:after{content:'';display:block;clear:both;overflow: hidden;}
 .fl{float: left;}
@@ -146,7 +155,36 @@ textarea{ resize:none;}
 
 .mod-footer .mod-footer-right .support img{width:auto;}
 .ui-sign-btn:hover{color:#fff;}
-
+.mod-course-label{
+	display: inline-block;
+	height: 60px;
+	overflow: hidden;
+}
+.courseContainer li{
+	position: relative;
+}
+.ui-number{
+	position: absolute;
+	left: 8px;
+	bottom: 0;
+	font-size: 12px;
+	color: #95aab8;
+	margin-right: 40px;
+	padding-left: 35px;
+	height: 25px;
+	transition: height 0.2s linear;
+	line-height: 25px;
+	background: url(../../../images/course/collegeIconList.png?v=11238eca1c) no-repeat 0 -743px;
+}
+.courseContainer li:hover{
+	h2{
+		color: #ec3e48;
+		white-space: pre-wrap;
+	}
+	.ui-number{
+		height: 0;
+	}
+}
 
 
 
