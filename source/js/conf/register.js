@@ -160,24 +160,23 @@ define(function(require, exports, module) {
         io.post($PAGE_DATA['code'], { mobile: $("#jName").val() , type:1},
             function(res) {
                 //成功后的回调
-
+                //验证码循环
+                var count = 60;
+                //class:change ==== 修改点击提交触发验证,触发验证手机号,恢复验证码按钮色彩的bug
+                verifyCode.val(count+'s').addClass("ui-btn-disable change");
+                var time = setInterval(function() {
+                    if (count > 1) {
+                        count--;
+                        verifyCode.val(count+'s');
+                    } else {
+                        verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
+                        clearInterval(time);
+                    }
+                }, 1000);
             },
             function(res) {
                 box.error((res && res.msg) || '网络错误，请重试！');
             });
-        //验证码循环
-        var count = 60;
-        //class:change ==== 修改点击提交触发验证,触发验证手机号,恢复验证码按钮色彩的bug
-        verifyCode.val(count+'s').addClass("ui-btn-disable change");
-        var time = setInterval(function() {
-            if (count > 1) {
-                count--;
-                verifyCode.val(count+'s');
-            } else {
-                verifyCode.removeClass("ui-btn-disable change").val("获取验证码");
-                clearInterval(time);
-            }
-        }, 1000);
     });
     $(".jPopBtn").on("click", function() {
         box.loadUrl($PAGE_DATA['popUrl'], {
