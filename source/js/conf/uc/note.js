@@ -41,14 +41,18 @@ define(function(require, exports, module) {
                     InitEvent.init(body, pager);
                     callback && callback(data.data.records);
                 } else {
-                    jContainer.html(template('tEmpty'));
+                    if(pager.pagination.get('currentPage') != 1){
+                        pager.pagination.selectPage(1);
+                    }else {
+                        jContainer.html(template('tEmpty'));
+                    }
                     callback && callback(0);
                 }
                 loading && loading.hide();
             });
 
             pager.on('ajaxError', function(data) {
-                box.warn(data.mst||'网络错误，请重试！');
+                box.warn(data.msg||'网络错误，请重试！');
                 loading && loading.hide();
             });
         }
@@ -96,6 +100,7 @@ define(function(require, exports, module) {
                 io.get(url, data, function(res) {
                     box.ok(tips)
                     pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                    loading && loading.hide();
                 }, function(res) {
                     box.error(res.msg || '网络错误,请重试');
                 }, this)

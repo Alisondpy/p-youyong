@@ -58,7 +58,11 @@ define(function(require, exports, module) {
                     InitEvent.init(body,pager);
                     callback && callback(data.data.records);
                 } else {
-                    jContainer.html(template('tEmpty'));
+                    if(pager.pagination.get('currentPage') != 1){
+                        pager.pagination.selectPage(1);
+                    }else {
+                        jContainer.html(template('tEmpty'));
+                    }
                     callback && callback(0);
                 }
                 loading && loading.hide();
@@ -94,6 +98,7 @@ define(function(require, exports, module) {
                                 isDeleting = true;
                                 box.ok('删除成功!');
                                 pager.pagination.selectPage(pager.pagination.get('currentPage'));
+                                loading && loading.hide();
                             }, function (res) {
                                 box.error(res.msg || '网络错误,请重试');
                             }, this)
