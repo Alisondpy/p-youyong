@@ -1,35 +1,5 @@
-<div class="mod-hot f-r">
-    <h2 class="hot-title">热门活动</h2>
-    <ul id="jHotActive" class="mod-hot-list">
-        <li class="clearfix">
-            <a href="javascript:;" title=""><span class="hot-rank top-three">1</span>好好学习，天天向上</a>
-            <span class="applicants-no">1000 &nbsp;报名</span>
-        </li>
-        <li class="clearfix">
-            <a href="javascript:;" title=""><span class="hot-rank top-three">2</span>好好学习，天天向上</a>
-            <span class="applicants-no">1000 &nbsp;报名</span>
-        </li>
-        <li class="clearfix">
-            <a href="javascript:;" title=""><span class="hot-rank top-three">3</span>好好学习，天天向上</a>
-            <span class="applicants-no">1000 &nbsp;报名</span>
-        </li>
-        <li class="clearfix">
-            <a href="javascript:;" title=""><span class="hot-rank">4</span>好好学习，天天向上</a>
-            <span class="applicants-no">1000 &nbsp;报名</span>
-        </li>
-        <li class="clearfix">
-            <a href="javascript:;" title=""><span class="hot-rank">5</span>好好学习，天天向上</a>
-            <span class="applicants-no">1000 &nbsp;报名</span>
-        </li>
-        <li class="clearfix">
-            <a href="javascript:;" title=""><span class="hot-rank">6</span>好好学习，天天向上</a>
-            <span class="applicants-no">1000 &nbsp;报名</span>
-        </li>
-    </ul>
-</div>
-<!--热门活动的模板-->
-<script id="hot" type="text/html">
-    {{each list as value i}}
+<div class="mod-hot f-r"><h2 class="hot-title">热门活动</h2><ul id="jHotActive" class="mod-hot-list"><li class="clearfix"><a href="javascript:;"><span class="hot-rank top-three">1</span>好好学习，天天向上</a> <span class="applicants-no">1000 &nbsp;报名</span></li><li class="clearfix"><a href="javascript:;"><span class="hot-rank top-three">2</span>好好学习，天天向上</a> <span class="applicants-no">1000 &nbsp;报名</span></li><li class="clearfix"><a href="javascript:;"><span class="hot-rank top-three">3</span>好好学习，天天向上</a> <span class="applicants-no">1000 &nbsp;报名</span></li><li class="clearfix"><a href="javascript:;"><span class="hot-rank">4</span>好好学习，天天向上</a> <span class="applicants-no">1000 &nbsp;报名</span></li><li class="clearfix"><a href="javascript:;"><span class="hot-rank">5</span>好好学习，天天向上</a> <span class="applicants-no">1000 &nbsp;报名</span></li><li class="clearfix"><a href="javascript:;"><span class="hot-rank">6</span>好好学习，天天向上</a> <span class="applicants-no">1000 &nbsp;报名</span></li></ul></div><!--热门活动的模板--><script id="hot" 
+type="text/html">{{each list as value i}}
         <li class="clearfix">
             {{if i < 3}}
             <a href="javascript:;" title=""><span class="hot-rank top-three">{{i+1}}</span>{{value.activeTitle}}</a>
@@ -39,5 +9,4 @@
             {{/if}}
                 <span class="applicants-no">{{value.activeNo}} &nbsp;报名</span>
         </li>
-    {{/each}}
-</script>
+    {{/each}}</script>
