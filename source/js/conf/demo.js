@@ -35,8 +35,8 @@ define(function(require, exports, module) {
     });
 
     //分享
-    var Share = require('plugins/share/1.0.0/share');
-    var share = new Share('#jShare');
+    // var Share = require('plugins/share/1.0.0/share');
+    // var share = new Share('#jShare');
 
     //slider
     var slider = new Slider('#jSlider', {
