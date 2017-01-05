@@ -1,5 +1,50 @@
-<!DOCTYPE html><html><head><title>师资阵容</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/lecturer/index.css?v=a3036acffa" charset="utf-8"></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-course"><div class="mod-container" id="jCourseType"><div class="mod-nav" id="jCourseNav"><div class="common-nav" id="jNavType" name="type"><span class="type">分类</span><ul class="clearfix nav"><li class="f-l current"><a href="javascript:void(0);">全部</a></li><li class="f-l" data-value="0"><a href="javascript:void(0);">沟通管理</a></li><li class="f-l" data-value="1"><a href="javascript:void(0);">职业技能</a></li><li class="f-l" data-value="2"><a href="javascript:void(0);">创业</a></li></ul></div></div><div class="mod-learn"><div class="lists clearfix" id="jLists"><div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后</div></div></div></div><div 
-class="mod-page clearfix"><div id="jPagination" class="f-r"></div></div></div></div><!--#include file="./common/footer.html"--><!--#include file="./common/js.html"--><script>require(["conf/lecturer/index"],function(){})</script><script id="lists" type="text/html">{{each resultList as value i}}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>师资阵容</title>
+    <!--#include file="./common/meta.html"-->
+    <!--#include file="./common/css.html"-->
+    <link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/lecturer/index.css?v=cfb7026c02" type="text/css" charset="utf-8">
+</head>
+<body>
+<!-- 我是注释 -->
+<!--#include file="./common/header.html"-->
+<div class="mod-course">
+    <div class="mod-container" id="jCourseType">
+        <div class="mod-nav" id="jCourseNav">
+            <div class="common-nav" id="jNavType" name="type">
+                <span class="type">分类</span>
+                <ul class="clearfix nav">
+                    <li class="f-l current"><a href="javascript:void(0);">全部</a></li>
+                    <li class="f-l" data-value="0"><a href="javascript:void(0);">沟通管理</a></li>
+                    <li class="f-l" data-value="1"><a href="javascript:void(0);">职业技能</a></li>
+                    <li class="f-l" data-value="2"><a href="javascript:void(0);">创业</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="mod-learn">
+            <div class="lists clearfix" id="jLists">
+                <div class="ui-loading-list">
+                    <div class="img-loading"></div>
+                    <div class="txt">
+                        正在卖力加载，请稍后
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="mod-page clearfix">
+            <div id="jPagination" class="f-r"></div>
+        </div>
+    </div>
+</div>
+<!--#include file="./common/footer.html"-->
+<!--#include file="./common/js.html"-->
+<script type="text/javascript">
+    require(['conf/lecturer/index'], function() {});
+</script>
+<script id="lists" type="text/html">
+    {{each resultList as value i}}
     <a href="javascript:void(0);" class="list f-l">
         <img src="//s1.zhongzhihui.com/lib/assets/images/s.gif" data-src="{{value.courseImageUrl}}" alt="讲师" class="jImg img-error">
         <div class="description">
@@ -9,7 +54,16 @@ class="mod-page clearfix"><div id="jPagination" class="f-r"></div></div></div></
         <span class="label">{{value.tag}}</span>
         <span class="mask"></span>
     </a>
-    {{/each}}</script><script id="tEmpty" type="text/html"><div class="ui-empty-list">
+    {{/each}}
+</script>
+<script id="tEmpty" type="text/html">
+    <div class="ui-empty-list">
         <div class="iyoyo iyoyo-box"></div>
         <div class="txt">暂无数据</div>
-    </div></script><!--#include file="./common/tj.html"--><!--#include file="./common/statistics.html"--></body></html>
+    </div>
+</script>
+<!--#include file="./common/tj.html"-->
+<!--#include file="./common/statistics.html"-->
+</body>
+
+</html>

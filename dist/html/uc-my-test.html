@@ -1,7 +1,93 @@
-<!DOCTYPE html><html><head><title>我的考试</title><!--#include file="./common/meta.html"--><!--#include file="./common/css.html"--><link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/my-test.css?v=1bcb3c3e7e" charset="utf-8"><script>$PAGE_DATA.loadTest=$PAGE_DATA.baseStaticUrl+"/source/api/uc/test.json",$PAGE_DATA.examnotes="/userCenter/exam/listResult",$PAGE_DATA.analysisUrl="/userCenter/exam/gotoAnalysis?examId=112"</script></head><body><!-- 我是注释 --><!--#include file="./common/header.html"--><div class="mod-page"><div class="ifm-uc clearfix"><!--#include file="./module/uc/left-menu.html"--><div class="ifm-right-container"><div id="jIfmTab" class="ifm-tab"><div class="ifm-hd clearfix"><!-- tab 头部 start --><ul class="clearfix ifm-tab-hd" node-type="hd"><li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的考试</a></li><li class="ifm-tab-item" node-type="hdItem" data-target="2"><a href="javascript:;">考试记录</a></li></ul></div><div class="ifm-tab-bd" 
-node-type="bd"><!-- tab内容区域-1 start--><div class="ifm-tab-container current" node-type="container" data-id="1"><div class="ifm-main-container"><!-- 页面主内容 start --><div node-type="jContainer"><div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后...</div></div></div><!-- 页面主内容 end --></div><div class="ifm-bottom-bar"><!-- 底部工具栏 start --><div node-type="jPagination" class="pager jPagination"></div><!-- 底部工具栏 end --></div></div><!-- tab内容区域-1 end--><!-- tab内容区域-2 start--><div class="ifm-tab-container" node-type="container" data-id="2"><div class="ifm-main-container"><!-- 页面主内容 start --><div node-type="jContainer"><div class="ui-loading-list"><div class="img-loading"></div><div class="txt">正在卖力加载，请稍后...</div></div></div><!-- 页面主内容 end --></div><div class="ifm-bottom-bar"><!-- 底部工具栏 start --><div node-type="jPagination" class="pager jPagination"></div><!-- 底部工具栏 end --></div></div><!-- tab内容区域-2 end--></div></div></div></div><!--#include file="./module/uc/right-container.html"-->
-</div><!--#include file="./common/footer.html"--><!--#include file="./common/js.html"--><script>require(["conf/uc/my-test"],function(){})</script><!--#include file="./common/tj.html"--><!--#include file="./common/statistics.html"--><script type="text/html" id="jTestModule">
-<div class="mod-contain clearfix">
+<!DOCTYPE html>
+<html>
+<head>
+    <title>我的考试</title>
+    <!--#include file="./common/meta.html"-->
+    <!--#include file="./common/css.html"-->
+    <link rel="stylesheet" href="//s1.zhongzhihui.com/p-youyong/dist/css/conf/uc/my-test.css?v=aa80a6c792" type="text/css" charset="utf-8"/>
+    <script type="text/javascript">
+        $PAGE_DATA['loadTest']=$PAGE_DATA['baseStaticUrl'] + '/source/api/uc/test.json';
+        $PAGE_DATA['examnotes']='/userCenter/exam/listResult';
+        $PAGE_DATA['analysisUrl']= '/userCenter/exam/gotoAnalysis?examId=112';
+    </script>
+</head>
+
+<body>
+<!-- 我是注释 -->
+<!--#include file="./common/header.html"-->
+<div class="mod-page ">
+    <div class="ifm-uc clearfix">
+            <!--#include file="./module/uc/left-menu.html"-->
+            <div class="ifm-right-container">
+                <div id="jIfmTab" class="ifm-tab">
+                    <div class="ifm-hd clearfix">
+                        <!-- tab 头部 start -->
+                        <ul class="clearfix ifm-tab-hd" node-type="hd">
+                            <li class="ifm-tab-item current" node-type="hdItem" data-target="1"><a href="javascript:;">我的考试</a></li>
+                             <li class="ifm-tab-item" node-type="hdItem" data-target="2"><a href="javascript:;">考试记录</a></li>
+                        </ul>
+                    </div>
+                <div class="ifm-tab-bd" node-type="bd">
+                    <!-- tab内容区域-1 start-->
+                    <div class="ifm-tab-container current"  node-type="container" data-id="1">
+                        <div class="ifm-main-container">
+                            <!-- 页面主内容 start -->
+                            <div node-type="jContainer">
+                                <div class="ui-loading-list">
+                                    <div class="img-loading"></div>
+                                    <div class="txt">
+                                        正在卖力加载，请稍后...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 页面主内容 end -->
+                        </div>
+                        <div class="ifm-bottom-bar">
+                            <!-- 底部工具栏 start -->
+                            <div node-type="jPagination" class="pager jPagination"></div>
+                            <!-- 底部工具栏 end -->
+                        </div>
+                    </div>
+                    <!-- tab内容区域-1 end-->
+
+                    <!-- tab内容区域-2 start-->
+                    <div class="ifm-tab-container"  node-type="container" data-id="2">
+                        <div class="ifm-main-container">
+                            <!-- 页面主内容 start -->
+                            <div node-type="jContainer">
+                                <div class="ui-loading-list">
+                                    <div class="img-loading"></div>
+                                    <div class="txt">
+                                        正在卖力加载，请稍后...
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- 页面主内容 end -->
+                        </div>
+                        <div class="ifm-bottom-bar">
+                            <!-- 底部工具栏 start -->
+                            <div node-type="jPagination" class="pager jPagination"></div>
+                            <!-- 底部工具栏 end -->
+                        </div>
+                    </div>
+                    <!-- tab内容区域-2 end-->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--#include file="./module/uc/right-container.html"-->
+</div>
+<!--#include file="./common/footer.html"-->
+<!--#include file="./common/js.html"-->
+<script type="text/javascript">
+    require(['conf/uc/my-test'], function(){});
+</script>
+<!--#include file="./common/tj.html"-->
+<!--#include file="./common/statistics.html"-->
+<script type="text/html" id="jTestModule">
+    <div class="mod-contain clearfix">
         <div class="mod-item" >
             <ul>
                 {{each resultList as value i}}
@@ -75,8 +161,10 @@ node-type="bd"><!-- tab内容区域-1 start--><div class="ifm-tab-container curr
             </ul>
         </div>
     </div>
-</script><!----><script type="text/html" id="jModuleTest2">
-<div class="mod-contain clearfix">
+</script>
+<!---->
+<script type="text/html" id="jModuleTest2">
+   <div class="mod-contain clearfix">
         <div class="btn clearfix">
             <button class="ui-btn jBtn f-r {{deletingClass}}">{{deletingTxt}}</button>
         </div>
@@ -129,7 +217,13 @@ node-type="bd"><!-- tab内容区域-1 start--><div class="ifm-tab-container curr
             </ul>
         </div>
     </div>
-</script><script id="tEmpty" type="text/html"><div class="ui-empty-list">
+
+</script>
+<script id="tEmpty" type="text/html">
+    <div class="ui-empty-list">
         <div class="iyoyo iyoyo-box"></div>
         <div class="txt">请先学习，再来考试哦</div>
-    </div></script></body></html>
+    </div>
+</script>
+</body>
+</html>
